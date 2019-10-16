@@ -1,81 +1,34 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Reports</h1>
-
-<table>
-  <thead>
+<div class="d-flex align-items-center">
+  <h2>レポート一覧</h2>
+  <div class="ml-auto reports_button">
+    <%= link_to "レポートを作成", new_report_path, class:"btn btn-outline-info button" %>
+  </div>
+</div>
+<table class="table table-bordered border-primary table-hover table-sm eports_table">
+  <thead class="thead-dark">
     <tr>
-      <th>Fertility treatment number</th>
-      <th>Treatment type</th>
-      <th>Current state</th>
-      <th>Work style</th>
-      <th>Number of clinics</th>
-      <th>Address at that time</th>
-      <th>Number of aih</th>
-      <th>Treatment start age</th>
-      <th>Treatment end age</th>
-      <th>Treatment period</th>
-      <th>Amh</th>
-      <th>Bmi</th>
-      <th>Types of eggs and sperm</th>
-      <th>Total number of sairan</th>
-      <th>Number of eggs collected</th>
-      <th>Total number of transplants</th>
-      <th>Number of eggs stored</th>
-      <th>Type of sairan cycle</th>
-      <th>Types of fertilization methods</th>
-      <th>Number of fertilized eggs</th>
-      <th>Number of frozen eggs</th>
-      <th>Cost</th>
-      <th>Credit card validity</th>
-      <th>Clinic selection criteria</th>
-      <th>Content</th>
-      <th>Successful egg maturity</th>
-      <th>Successful embryo culture days</th>
-      <th>Successful embryo grade</th>
-      <th colspan="3"></th>
+      <th>何人目不妊</th>
+      <th>住まい</th>
+      <th>クリニック</th>
+      <th>年齢</th>
+      <th>AMH値</th>
+      <th>採卵回数</th>
+      <th>移植回数</th>
+      <th>作成日</th>
     </tr>
   </thead>
-
   <tbody>
     <% @reports.each do |report| %>
       <tr>
+        <td><%= report.report.fertility_treatment_number %>目不妊</td>
         <td><%= report.fertility_treatment_number %></td>
-        <td><%= report.treatment_type %></td>
-        <td><%= report.current_state %></td>
-        <td><%= report.work_style %></td>
-        <td><%= report.number_of_clinics %></td>
-        <td><%= report.address_at_that_time %></td>
-        <td><%= report.number_of_aih %></td>
-        <td><%= report.treatment_start_age %></td>
-        <td><%= report.treatment_end_age %></td>
-        <td><%= report.treatment_period %></td>
-        <td><%= report.amh %></td>
-        <td><%= report.bmi %></td>
-        <td><%= report.types_of_eggs_and_sperm %></td>
-        <td><%= report.total_number_of_sairan %></td>
-        <td><%= report.number_of_eggs_collected %></td>
-        <td><%= report.total_number_of_transplants %></td>
-        <td><%= report.number_of_eggs_stored %></td>
-        <td><%= report.type_of_sairan_cycle %></td>
-        <td><%= report.types_of_fertilization_methods %></td>
-        <td><%= report.number_of_fertilized_eggs %></td>
-        <td><%= report.number_of_frozen_eggs %></td>
-        <td><%= report.cost %></td>
-        <td><%= report.credit_card_validity %></td>
-        <td><%= report.clinic_selection_criteria %></td>
-        <td><%= report.content %></td>
-        <td><%= report.successful_egg_maturity %></td>
-        <td><%= report.successful_embryo_culture_days %></td>
-        <td><%= report.successful_embryo_grade %></td>
-        <td><%= link_to 'Show', report %></td>
-        <td><%= link_to 'Edit', edit_report_path(report) %></td>
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= report.fertility_treatment_number %></td>
+        <td><%= report.fertility_treatment_number %>歳</td>
+        <td><%= report.fertility_treatment_number %></td>
+        <td><%= report.fertility_treatment_number %></td>
+        <td><%= link_to '詳細', report, class: 'btn btn-outline-dark' %></td>
+        <td><%= link_to '削除', report, class: 'btn btn-outline-dark', method: :delete, data: { confirm: '削除しますか？' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Report', new_report_path %>

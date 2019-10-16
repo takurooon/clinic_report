@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /reports
   # GET /reports.json
@@ -98,5 +99,5 @@ class ReportsController < ApplicationController
         :successful_embryo_culture_days,
         :successful_embryo_grade
         )
-    endΩ
+    end
 end
