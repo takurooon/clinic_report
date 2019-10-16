@@ -58,6 +58,9 @@ GEM
       zeitwerk (~> 2.1, >= 2.1.8)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    annotate (3.0.2)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 13.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
@@ -74,6 +77,7 @@ GEM
       xpath (~> 3.2)
     childprocess (2.0.0)
       rake (< 13.0)
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     devise (4.7.1)
@@ -120,6 +124,14 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.1.4)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.7.0)
+      byebug (~> 11.0)
+      pry (~> 0.10)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     public_suffix (4.0.1)
     puma (3.12.1)
     rack (2.0.7)
@@ -225,6 +237,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
@@ -233,6 +246,8 @@ DEPENDENCIES
   letter_opener_web
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
+  pry-byebug
+  pry-rails
   puma (~> 3.11)
   rails (~> 6.0.0)
   rails-i18n
