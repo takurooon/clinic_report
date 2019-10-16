@@ -14,6 +14,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # 追加
 gem 'devise'
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
