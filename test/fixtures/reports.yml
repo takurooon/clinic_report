@@ -1,0 +1,61 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fertility_treatment_number: 1
+  treatment_type: 1
+  current_state: 1
+  work_style: 1
+  number_of_clinics: 1
+  address_at_that_time: 1
+  number_of_aih: 1
+  treatment_start_age: 1
+  treatment_end_age: 1
+  treatment_period: 1
+  amh: 1
+  bmi: 1
+  types_of_eggs_and_sperm: 1
+  total_number_of_sairan: 1
+  number_of_eggs_collected: 1
+  total_number_of_transplants: 1
+  number_of_eggs_stored: 1
+  type_of_sairan_cycle: 1
+  types_of_fertilization_methods: 1
+  number_of_fertilized_eggs: 1
+  number_of_frozen_eggs: 1
+  cost: 1
+  credit_card_validity: 1
+  clinic_selection_criteria: 1
+  content: MyText
+  successful_egg_maturity: 1
+  successful_embryo_culture_days: 1
+  successful_embryo_grade: 1
+
+two:
+  fertility_treatment_number: 1
+  treatment_type: 1
+  current_state: 1
+  work_style: 1
+  number_of_clinics: 1
+  address_at_that_time: 1
+  number_of_aih: 1
+  treatment_start_age: 1
+  treatment_end_age: 1
+  treatment_period: 1
+  amh: 1
+  bmi: 1
+  types_of_eggs_and_sperm: 1
+  total_number_of_sairan: 1
+  number_of_eggs_collected: 1
+  total_number_of_transplants: 1
+  number_of_eggs_stored: 1
+  type_of_sairan_cycle: 1
+  types_of_fertilization_methods: 1
+  number_of_fertilized_eggs: 1
+  number_of_frozen_eggs: 1
+  cost: 1
+  credit_card_validity: 1
+  clinic_selection_criteria: 1
+  content: MyText
+  successful_egg_maturity: 1
+  successful_embryo_culture_days: 1
+  successful_embryo_grade: 1

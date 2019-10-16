@@ -1,0 +1,157 @@
+<%= form_with(model: report, local: true) do |form| %>
+  <% if report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+        <% report.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fertility_treatment_number %>
+    <%= form.number_field :fertility_treatment_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :treatment_type %>
+    <%= form.number_field :treatment_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :current_state %>
+    <%= form.number_field :current_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :work_style %>
+    <%= form.number_field :work_style %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_clinics %>
+    <%= form.number_field :number_of_clinics %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_at_that_time %>
+    <%= form.number_field :address_at_that_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_aih %>
+    <%= form.number_field :number_of_aih %>
+  </div>
+
+  <div class="field">
+    <%= form.label :treatment_start_age %>
+    <%= form.number_field :treatment_start_age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :treatment_end_age %>
+    <%= form.number_field :treatment_end_age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :treatment_period %>
+    <%= form.number_field :treatment_period %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amh %>
+    <%= form.number_field :amh %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bmi %>
+    <%= form.number_field :bmi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :types_of_eggs_and_sperm %>
+    <%= form.number_field :types_of_eggs_and_sperm %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_number_of_sairan %>
+    <%= form.number_field :total_number_of_sairan %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_eggs_collected %>
+    <%= form.number_field :number_of_eggs_collected %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_number_of_transplants %>
+    <%= form.number_field :total_number_of_transplants %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_eggs_stored %>
+    <%= form.number_field :number_of_eggs_stored %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type_of_sairan_cycle %>
+    <%= form.number_field :type_of_sairan_cycle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :types_of_fertilization_methods %>
+    <%= form.number_field :types_of_fertilization_methods %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_fertilized_eggs %>
+    <%= form.number_field :number_of_fertilized_eggs %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_frozen_eggs %>
+    <%= form.number_field :number_of_frozen_eggs %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cost %>
+    <%= form.number_field :cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :credit_card_validity %>
+    <%= form.number_field :credit_card_validity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :clinic_selection_criteria %>
+    <%= form.number_field :clinic_selection_criteria %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :successful_egg_maturity %>
+    <%= form.number_field :successful_egg_maturity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :successful_embryo_culture_days %>
+    <%= form.number_field :successful_embryo_culture_days %>
+  </div>
+
+  <div class="field">
+    <%= form.label :successful_embryo_grade %>
+    <%= form.number_field :successful_embryo_grade %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
