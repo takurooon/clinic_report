@@ -14,7 +14,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # 追加
 gem 'devise'
-gem 'rails-i18n'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -28,9 +27,6 @@ group :development do
 
   # 追加
   gem 'letter_opener_web'
-  gem 'pry-rails'
-  gem 'pry-byebug'
-  gem 'annotate'
 end
 
 group :test do
