@@ -16,6 +16,7 @@ class ReportsController < ApplicationController
   # GET /reports/new
   def new
     @report = Report.new
+    @report.clinic_reviews.build
   end
 
   # GET /reports/1/edit
@@ -93,12 +94,18 @@ class ReportsController < ApplicationController
         :types_of_fertilization_methods,
         :number_of_fertilized_eggs,
         :number_of_frozen_eggs,
-        :cost, :credit_card_validity,
+        :cost,
+        :credit_card_validity,
         :clinic_selection_criteria,
         :content,
         :successful_egg_maturity,
         :successful_embryo_culture_days,
-        :successful_embryo_grade
-        )
+        :successful_embryo_grade,
+        clinic_reviews_attributes:[
+        :cost,
+        :credit_card_validity,
+        :clinic_selection_criteria,
+        :review
+        ])
     end
 end

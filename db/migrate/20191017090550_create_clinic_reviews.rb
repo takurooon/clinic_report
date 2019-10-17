@@ -7,6 +7,7 @@ class CreateClinicReviews < ActiveRecord::Migration[6.0]
       t.integer :credit_card_validity
       t.integer :clinic_selection_criteria
       t.integer :average_waiting_time
+      t.text :review
 
       t.timestamps
     end

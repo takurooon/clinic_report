@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_090550) do
+ActiveRecord::Schema.define(version: 2019_10_17_104057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_10_17_090550) do
     t.integer "credit_card_validity"
     t.integer "clinic_selection_criteria"
     t.integer "average_waiting_time"
+    t.text "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["clinic_id"], name: "index_clinic_reviews_on_clinic_id"
@@ -57,18 +58,13 @@ ActiveRecord::Schema.define(version: 2019_10_17_090550) do
     t.integer "types_of_fertilization_methods"
     t.integer "number_of_fertilized_eggs"
     t.integer "number_of_frozen_eggs"
-    t.integer "cost"
-    t.integer "credit_card_validity"
-    t.integer "clinic_selection_criteria"
     t.text "content"
     t.integer "successful_egg_maturity"
     t.integer "successful_embryo_culture_days"
     t.integer "successful_embryo_grade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "clinic_id", null: false
     t.bigint "user_id", null: false
-    t.index ["clinic_id"], name: "index_reports_on_clinic_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
@@ -100,6 +96,5 @@ ActiveRecord::Schema.define(version: 2019_10_17_090550) do
 
   add_foreign_key "clinic_reviews", "clinics"
   add_foreign_key "clinic_reviews", "reports"
-  add_foreign_key "reports", "clinics"
   add_foreign_key "reports", "users"
 end

@@ -159,13 +159,51 @@
         当てはまるものを選択してください。
     </small>
   </div>
-  <div class="form-group">
-    <%= f.label :content, '治療の感想について自由にお書きください。多くの詳細情報を残すことで治療中の方の有益な参考情報になります（尚、次項に「クリニックレビュー」記述欄が用意されています）' %>
-    <%= f.text_area :content, :class => "form-control", rows: 10 %>
-    <small id="poster-tip" class="form-text text-muted">
-        可能な限り多くの情報を書いてください。
-    </small>
-  </div>
+
+  <%= f.fields_for :clinic_reviews do |review| %>
+    <div class="form-group">
+      <%= review.label :cost, 'このクリニックで総額いくらかかりましたか' %>
+      <%= review.select :cost, { "10万円未満" => 1, "10〜30万円未満" => 2, "30〜50万円未満" => 3, "50〜100万円未満" => 4, "100〜150万円未満" => 5, "150〜200万円未満" => 6, "200〜250万円未満" => 7, "250〜300万円未満" => 8, "300〜350万円未満" => 9, "350〜400万円未満" => 10, "400〜450万円未満" => 11, "450〜500万円未満"  => 12, "500〜550万円未満" => 13, "550〜600万円未満" => 14, "600〜650万円未満" => 15, "650〜700万円未満" => 16, "700〜750万円未満" => 17, "750〜800万円未満" => 18, "800〜850万円未満" => 19, "850〜900万円未満" => 20, "900〜950万円未満" => 21, "950〜1,000万円未満" => 22, "1,000〜1,500万円未満" => 23, "1,500〜2,000万円未満" => 24, "2,000万円以上" => 99 }, {}, { :class => "form-control" }  %>
+      <small id="poster-tip" class="form-text text-muted">
+          当てはまるものを選択してください。
+      </small>
+    </div>
+    <div class="form-group">
+      <%= review.label :credit_card_validity, 'クレジットカードは使えましたか？' %>
+      <%= review.select :credit_card_validity, { "可" => 1, "不可" => 2, "一定の金額から使用可能" => 3, "その他" => 99 }, {}, { :class => "form-control" }  %>
+      <small id="poster-tip" class="form-text text-muted">
+          当てはまるものを選択してください。
+      </small>
+    </div>
+    <div class="form-group">
+      <%= review.label :average_waiting_time, 'クリニックでの平均待ち時間はどのくらいでしたか' %>
+      <%= review.select :average_waiting_time, { "〜1時間" => 1, "〜2時間" => 2, "〜3時間" => 3, "〜4時間" => 4, "〜5時間" => 5, "それ以上" => 6 }, {}, { :class => "form-control" }  %>
+      <small id="poster-tip" class="form-text text-muted">
+          当てはまるものを選択してください。
+      </small>
+    </div>
+    <div class="form-group">
+      <%= review.label :clinic_selection_criteria, 'このクリニックを選んだ理由' %>
+      <%= review.select :clinic_selection_criteria, { "自宅から近かったから" => 1, "職場から近かったから" => 2, "口コミがよかったから" => 3, "料金が手頃だったから" => 4, "以前に通ったことがあったから" => 5, "それ以上" => 6 }, {}, { :class => "form-control" }  %>
+      <small id="poster-tip" class="form-text text-muted">
+          当てはまるものを選択してください。
+      </small>
+    </div>
+    <div class="form-group">
+      <%= review.label :review, 'クリニックについてレビュー含め自由にお書きください。' %>
+      <%= review.text_area :review, :class => "form-control", rows: 10 %>
+      <small id="poster-tip" class="form-text text-muted">
+          誹謗中傷等はおやめください。投稿ポリシーに違反している場合削除致します。
+      </small>
+    </div>
+    <div class="form-group">
+      <%= review.label :content, '治療の感想について自由にお書きください。多くの詳細情報を残すことで治療中の方の有益な参考情報になります（尚、次項に「クリニックレビュー」記述欄が用意されています）' %>
+      <%= review.text_area :content, :class => "form-control", rows: 10 %>
+      <small id="poster-tip" class="form-text text-muted">
+          可能な限り多くの情報を書いてください。
+      </small>
+    </div>
+  <% end %>
 
   <%= f.submit '投稿', class: 'btn btn-info btn-block' %>
   <small id="submit-tip" class="form-text text-muted">
