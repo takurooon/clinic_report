@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_16_130956) do
+ActiveRecord::Schema.define(version: 2019_10_17_090550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clinic_reviews", force: :cascade do |t|
+    t.bigint "clinic_id", null: false
+    t.bigint "report_id", null: false
+    t.integer "cost"
+    t.integer "credit_card_validity"
+    t.integer "clinic_selection_criteria"
+    t.integer "average_waiting_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clinic_id"], name: "index_clinic_reviews_on_clinic_id"
+    t.index ["report_id"], name: "index_clinic_reviews_on_report_id"
+  end
 
   create_table "clinics", force: :cascade do |t|
     t.string "clinic_name"
@@ -85,6 +98,8 @@ ActiveRecord::Schema.define(version: 2019_10_16_130956) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "clinic_reviews", "clinics"
+  add_foreign_key "clinic_reviews", "reports"
   add_foreign_key "reports", "clinics"
   add_foreign_key "reports", "users"
 end

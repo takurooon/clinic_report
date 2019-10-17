@@ -26,10 +26,11 @@ class ReportsController < ApplicationController
   # POST /reports.json
   def create
     @report = Report.new(report_params)
+    report.user_id = current_user.id
 
     respond_to do |format|
       if @report.save
-        format.html { redirect_to @report, notice: 'Report was successfully created.' }
+        format.html { redirect_to @report, notice: 'レポートを作成しました。' }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to @report, notice: 'Report was successfully updated.' }
+        format.html { redirect_to @report, notice: 'レポートを更新しました。' }
         format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit }
@@ -57,7 +58,7 @@ class ReportsController < ApplicationController
   def destroy
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to reports_url, notice: 'Report was successfully destroyed.' }
+      format.html { redirect_to reports_url, notice: 'レポートを削除しました。' }
       format.json { head :no_content }
     end
   end
