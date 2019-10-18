@@ -3,7 +3,8 @@
 <div class="d-flex align-items-center">
   <h2><%= @report.user.name %>さんの<%= @report.fertility_treatment_number %>人目の治療レポート</h2>
   <div class="ml-auto reports_button">
-    <%= link_to "レポートを作成", new_user_report_path(:user_id), class:"btn btn-outline-info button" %>
+    <%= link_to "一覧", reports_path, class:"btn btn-outline-info button" %>
+    <%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>
   </div>
 </div>
 <table class="table">
@@ -110,8 +111,8 @@
       <th scope="row">妊娠に至った胚のグレード</th>
       <td><%= @report.successful_embryo_grade %></td>
     </tr>
-    </tbody>
-    </table>
+  </tbody>
+</table>
 
-<%= link_to 'Edit', edit_report_path(@report) %> |
-<%= link_to 'Back', reports_path %>
+<%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>
+<%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>
