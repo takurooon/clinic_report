@@ -4,7 +4,7 @@
       <%= link_to "レポート一覧", reports_path, class:"btn btn-outline-info" %>
   </div>
 </div>
-<%= form_with(model: @report, local: true) do |f| %>
+<%= form_with(model: [@report, @clinic_review], local: true) do |f| %>
   <div class="form-group">
     <%= f.label :fertility_treatment_number, '何人目の不妊治療ですか?（何人目不妊ですか）' %>
     <%= f.select :fertility_treatment_number, { "1人目" => 1, "2人目" => 2, "3人目" => 3, "4人目" => 4, "5人目" => 5, "6人目以上" => 99 }, {}, { :class => "form-control" }  %>

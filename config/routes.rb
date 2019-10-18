@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
 
-  devise_for :users
   root 'reports#index'
+  
+  devise_for :users
 
-  resources :reports
+  resources :users, shallow: true do
+    resources :reports
+  end
+
+  resources :reports, shallow: true do
+    resources :clinic_reviews
+  end
+  
+  resources :reports, only: [:index]
+  
+  resources :clinic_reviews, only: [:index]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

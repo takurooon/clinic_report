@@ -27,11 +27,11 @@ class ReportsController < ApplicationController
   # POST /reports.json
   def create
     @report = Report.new(report_params)
-    report.user_id = current_user.id
+    @report.user_id = current_user.id
 
     respond_to do |format|
       if @report.save
-        format.html { redirect_to @report, notice: 'レポートを作成しました。' }
+        format.html { redirect_to report_path(@report), notice: 'レポートを作成しました。' }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new }
@@ -94,9 +94,6 @@ class ReportsController < ApplicationController
         :types_of_fertilization_methods,
         :number_of_fertilized_eggs,
         :number_of_frozen_eggs,
-        :cost,
-        :credit_card_validity,
-        :clinic_selection_criteria,
         :content,
         :successful_egg_maturity,
         :successful_embryo_culture_days,
