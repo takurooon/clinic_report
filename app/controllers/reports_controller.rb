@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    @reports = Report.all.order(updated_at: :desc)
   end
 
   # GET /reports/1
@@ -98,6 +98,7 @@ class ReportsController < ApplicationController
         :successful_egg_maturity,
         :successful_embryo_culture_days,
         :successful_embryo_grade,
+
         clinic_reviews_attributes:[
         :cost,
         :credit_card_validity,

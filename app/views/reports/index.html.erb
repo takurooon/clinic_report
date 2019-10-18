@@ -6,14 +6,31 @@
 </div>
 
 <% @reports.each do |report| %>
-
-<div class="card">
-  <h5 class="card-header"><%= report.treatment_end_age %>歳&nbsp;&nbsp;<%= report.fertility_treatment_number %>人目不妊&nbsp;&nbsp;<%= report.user.name %>さん(<%= report.work_style %>)のレポート</h5>
-  <div class="card-body">
-    <h5 class="card-title"><%= report.address_at_that_time %>&nbsp;&nbsp;クリニック名(<%= report.type_of_sairan_cycle %>)</h5>
-    <p class="card-text"><%= report.treatment_start_age %>歳から通院開始。総採卵回数<%= report.total_number_of_sairan %>回、総採卵個数<%= report.number_of_eggs_collected %>個、総移植回数<%= report.total_number_of_transplants %>回で<%= report.current_state %>。</p>
-    <%= link_to "詳細", report, class:"btn btn-primary" %>
+  <div class="card mb-3" style="max-width: 100%;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <svg class="bd-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image</text></svg>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h4 class="card-title"><%= report.treatment_end_age %>歳&nbsp;&nbsp;<%= report.fertility_treatment_number %>人目不妊&nbsp;&nbsp;<%= report.user.name %>さん(<%= report.work_style %>)のレポート</h4><br>
+            <h5 class="card-title"><%= report.address_at_that_time %>クリニック名(<%= report.type_of_sairan_cycle %>)</h5>
+              <p class="card-text"><%= report.treatment_start_age %>歳から通院開始。総採卵回数<%= report.total_number_of_sairan %>回、総採卵個数<%= report.number_of_eggs_collected %>個、総移植回数<%= report.total_number_of_transplants %>回で<%= report.current_state %>。
+              </p><br>
+          <div class="inline-block_report-card-text">
+            <%= link_to "詳細", report, class:"btn btn-primary" %>
+          </div>&nbsp;
+          <div class="inline-block_report-card-text">
+            <p class="card-text">
+              <small class="text-muted">更新:
+                <time datetime="<%= report.updated_at %>">
+                <%= time_ago_in_words(report.updated_at) %>
+                </time>前&nbsp;&nbsp;&nbsp;投稿:
+                <%= report.created_at.to_s(:datetime_jp) %>
+              </small></p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
 <% end %>

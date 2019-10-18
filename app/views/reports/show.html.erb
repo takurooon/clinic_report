@@ -1,12 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <div class="d-flex align-items-center">
-  <h2><%= @report.user.name %>さんの<%= @report.fertility_treatment_number %>人目の治療レポート</h2>
+  <h2 class="inline-block_report-heading"><%= @report.user.name %>さんの<%= @report.fertility_treatment_number %>人目の治療レポート</h2>&nbsp;&nbsp;
+  <div class="inline-block_report-heading">
+    <small class="form-text text-muted">
+      投稿:<%= @report.created_at.to_s(:datetime_jp) %>
+    </small>
+    <small class="form-text text-muted">
+      更新:<%= @report.updated_at.to_s(:datetime_jp) %>
+    </small>
+  </div>
   <div class="ml-auto reports_button">
     <%= link_to "一覧", reports_path, class:"btn btn-outline-info button" %>
     <%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>
   </div>
-</div>
+</div><br>
 <table class="table">
   <thead class="thead-dark">
     <tr>
