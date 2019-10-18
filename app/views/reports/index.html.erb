@@ -4,31 +4,16 @@
     <%= link_to "レポートを作成", new_user_report_path(:user_id), class:"btn btn-outline-info button" %>
   </div>
 </div>
-<table class="table table-bordered border-primary table-hover table-sm eports_table">
-  <thead class="thead-dark">
-    <tr>
-      <th>何人目不妊</th>
-      <th>住まい</th>
-      <th>クリニック</th>
-      <th>年齢</th>
-      <th>AMH値</th>
-      <th>採卵回数</th>
-      <th>移植回数</th>
-      <th>作成日</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @reports.each do |report| %>
-      <tr>
-        <td><%= report.fertility_treatment_number %>目不妊</td>
-        <td><%= report.fertility_treatment_number %></td>
-        <td><%= report.fertility_treatment_number %></td>
-        <td><%= report.fertility_treatment_number %>歳</td>
-        <td><%= report.fertility_treatment_number %></td>
-        <td><%= report.fertility_treatment_number %></td>
-        <td><%= link_to '詳細', report, class: 'btn btn-outline-dark' %></td>
-        <td><%= link_to '削除', report, class: 'btn btn-outline-dark', method: :delete, data: { confirm: '削除しますか？' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<% @reports.each do |report| %>
+
+<div class="card">
+  <h5 class="card-header"><%= report.treatment_end_age %>歳&nbsp;&nbsp;<%= report.fertility_treatment_number %>人目不妊&nbsp;&nbsp;<%= report.user.name %>さん(<%= report.work_style %>)のレポート</h5>
+  <div class="card-body">
+    <h5 class="card-title"><%= report.address_at_that_time %>&nbsp;&nbsp;クリニック名(<%= report.type_of_sairan_cycle %>)</h5>
+    <p class="card-text"><%= report.treatment_start_age %>歳から通院開始。総採卵回数<%= report.total_number_of_sairan %>回、総採卵個数<%= report.number_of_eggs_collected %>個、総移植回数<%= report.total_number_of_transplants %>回で<%= report.current_state %>。</p>
+    <%= link_to "詳細", report, class:"btn btn-primary" %>
+  </div>
+</div>
+
+<% end %>
