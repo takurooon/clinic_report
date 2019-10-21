@@ -3,7 +3,8 @@ h1 {
 }
 
 .container {
-  margin: 30px 0; 
+  margin: 30px 0;
+  width: 1140px;
 }
 
 .form-group {
@@ -12,4 +13,12 @@ h1 {
 
 .submit-btn {
   margin-top: 40px;
+}
+
+.navbar {
+  height: 45px;
+}
+
+.navbar-btn {
+  margin: 0px 5px;
 }
