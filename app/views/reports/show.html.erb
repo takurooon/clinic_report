@@ -104,23 +104,31 @@
       <td><%= @report.number_of_frozen_eggs %></td>
     </tr>
     <tr>
+    <th scope="row">妊娠に至った未受精卵の成熟度</th>
+    <td><%= @report.successful_egg_maturity %></td>
+    </tr>
+    <tr>
+    <th scope="row">妊娠に至った胚の培養日数</th>
+    <td><%= @report.successful_embryo_culture_days %></td>
+    </tr>
+    <tr>
+    <th scope="row">妊娠に至った胚のグレード</th>
+    <td><%= @report.successful_embryo_grade %></td>
+    </tr>
+    <tr>
       <th scope="row">感想</th>
       <td><%= @report.content %></td>
     </tr>
-    <tr>
-      <th scope="row">妊娠に至った未受精卵の成熟度</th>
-      <td><%= @report.successful_egg_maturity %></td>
-    </tr>
-    <tr>
-      <th scope="row">妊娠に至った胚の培養日数</th>
-      <td><%= @report.successful_embryo_culture_days %></td>
-    </tr>
-    <tr>
-      <th scope="row">妊娠に至った胚のグレード</th>
-      <td><%= @report.successful_embryo_grade %></td>
-    </tr>
-  </tbody>
+    </tbody>
 </table>
 
 <%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>
 <%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>
+
+
+<div class="p-comment__list">
+  <div class="p-comment__listTitle">コメント</div>
+  <%= render @report.comments %>
+</div>
+
+<%= render partial: 'comments/form', locals: { comment: @comment } %>

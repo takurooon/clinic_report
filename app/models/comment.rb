@@ -8,7 +8,7 @@ end
 # Table name: comments
 #
 #  id         :bigint           not null, primary key
-#  content    :string           not null
+#  comment    :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  report_id  :bigint           not null
