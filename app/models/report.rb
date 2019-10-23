@@ -1,6 +1,7 @@
 class Report < ApplicationRecord
   belongs_to :user
   has_many :clinic_reviews
+  has_many :comments
 end
 
 # == Schema Information
