@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'my_page' => 'users/registrations#my_page'
+    
   end
 
   resources :users, shallow: true do

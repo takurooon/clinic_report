@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   def create
     comment = Comment.new(comment_params)
+    comment.user_id = current_user.id
     if comment.save
       flash[:notice] = 'コメントを投稿しました'
       redirect_to comment.report
@@ -16,6 +17,6 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:report_id, :user_id, :comment)
+      params.require(:comment).permit(:report_id, :comment)
     end
 end

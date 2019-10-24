@@ -1,7 +1,7 @@
 class Report < ApplicationRecord
   belongs_to :user
   has_many :clinic_reviews
-  has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy  
 end
 
 # == Schema Information
