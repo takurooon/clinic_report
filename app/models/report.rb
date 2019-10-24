@@ -3,6 +3,8 @@ class Report < ApplicationRecord
   has_many :clinic_reviews
   has_many :comments, dependent: :destroy
   # has_rich_text :content
+
+  
   
   # fertility_treatment_numberの区分値(何人目か)
   HASH_FERTILITY_TREATMENT_NUMBER = { "1人目" => 1, "2人目" => 2, "3人目" => 3, "4人目" => 4, "5人目" => 5, "6人目以上" => 99 }

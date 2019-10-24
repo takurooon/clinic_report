@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_054528) do
+ActiveRecord::Schema.define(version: 2019_10_24_075619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,159 @@ ActiveRecord::Schema.define(version: 2019_10_23_054528) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "f_diseases", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "f_infertility_factors", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "f_surgeries", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "m_diseases", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "m_infertility_factors", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "m_surgeries", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ovarian_stimulations", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ovulation_inducers", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ovulation_inhibitors", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "report_f_diseases", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "f_disease_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["f_disease_id"], name: "index_report_f_diseases_on_f_disease_id"
+    t.index ["report_id"], name: "index_report_f_diseases_on_report_id"
+  end
+
+  create_table "report_f_infertility_factors", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "f_infertility_factor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["f_infertility_factor_id"], name: "index_report_f_infertility_factors_on_f_infertility_factor_id"
+    t.index ["report_id"], name: "index_report_f_infertility_factors_on_report_id"
+  end
+
+  create_table "report_f_surgeries", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "f_surgery_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["f_surgery_id"], name: "index_report_f_surgeries_on_f_surgery_id"
+    t.index ["report_id"], name: "index_report_f_surgeries_on_report_id"
+  end
+
+  create_table "report_m_diseases", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "m_disease_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["m_disease_id"], name: "index_report_m_diseases_on_m_disease_id"
+    t.index ["report_id"], name: "index_report_m_diseases_on_report_id"
+  end
+
+  create_table "report_m_infertility_factors", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "m_infertility_factor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["m_infertility_factor_id"], name: "index_report_m_infertility_factors_on_m_infertility_factor_id"
+    t.index ["report_id"], name: "index_report_m_infertility_factors_on_report_id"
+  end
+
+  create_table "report_m_surgeries", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "m_surgery_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["m_surgery_id"], name: "index_report_m_surgeries_on_m_surgery_id"
+    t.index ["report_id"], name: "index_report_m_surgeries_on_report_id"
+  end
+
+  create_table "report_ovarian_stimulations", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "ovarian_stimulation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ovarian_stimulation_id"], name: "index_report_ovarian_stimulations_on_ovarian_stimulation_id"
+    t.index ["report_id"], name: "index_report_ovarian_stimulations_on_report_id"
+  end
+
+  create_table "report_ovulation_inducers", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "ovulation_inducer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ovulation_inducer_id"], name: "index_report_ovulation_inducers_on_ovulation_inducer_id"
+    t.index ["report_id"], name: "index_report_ovulation_inducers_on_report_id"
+  end
+
+  create_table "report_ovulation_inhibitors", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "ovulation_inhibitor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ovulation_inhibitor_id"], name: "index_report_ovulation_inhibitors_on_ovulation_inhibitor_id"
+    t.index ["report_id"], name: "index_report_ovulation_inhibitors_on_report_id"
+  end
+
+  create_table "report_supplements", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "supplement_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_report_supplements_on_report_id"
+    t.index ["supplement_id"], name: "index_report_supplements_on_supplement_id"
+  end
+
+  create_table "report_transfer_options", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "transfer_option_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_report_transfer_options_on_report_id"
+    t.index ["transfer_option_id"], name: "index_report_transfer_options_on_transfer_option_id"
+  end
+
   create_table "reports", force: :cascade do |t|
     t.integer "fertility_treatment_number"
     t.integer "treatment_type"
@@ -79,6 +232,18 @@ ActiveRecord::Schema.define(version: 2019_10_23_054528) do
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
+  create_table "supplements", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "transfer_options", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -109,5 +274,27 @@ ActiveRecord::Schema.define(version: 2019_10_23_054528) do
   add_foreign_key "clinic_reviews", "reports"
   add_foreign_key "comments", "reports"
   add_foreign_key "comments", "users"
+  add_foreign_key "report_f_diseases", "f_diseases"
+  add_foreign_key "report_f_diseases", "reports"
+  add_foreign_key "report_f_infertility_factors", "f_infertility_factors"
+  add_foreign_key "report_f_infertility_factors", "reports"
+  add_foreign_key "report_f_surgeries", "f_surgeries"
+  add_foreign_key "report_f_surgeries", "reports"
+  add_foreign_key "report_m_diseases", "m_diseases"
+  add_foreign_key "report_m_diseases", "reports"
+  add_foreign_key "report_m_infertility_factors", "m_infertility_factors"
+  add_foreign_key "report_m_infertility_factors", "reports"
+  add_foreign_key "report_m_surgeries", "m_surgeries"
+  add_foreign_key "report_m_surgeries", "reports"
+  add_foreign_key "report_ovarian_stimulations", "ovarian_stimulations"
+  add_foreign_key "report_ovarian_stimulations", "reports"
+  add_foreign_key "report_ovulation_inducers", "ovulation_inducers"
+  add_foreign_key "report_ovulation_inducers", "reports"
+  add_foreign_key "report_ovulation_inhibitors", "ovulation_inhibitors"
+  add_foreign_key "report_ovulation_inhibitors", "reports"
+  add_foreign_key "report_supplements", "reports"
+  add_foreign_key "report_supplements", "supplements"
+  add_foreign_key "report_transfer_options", "reports"
+  add_foreign_key "report_transfer_options", "transfer_options"
   add_foreign_key "reports", "users"
 end

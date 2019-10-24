@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  validates :name, presence: true
-  
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :email, presence: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,6 +9,9 @@ class User < ApplicationRecord
 
   has_many :reports, dependent: :destroy
   has_many :comments
+
+  # genderの区分値(男女)
+  # HASH_GENDER = { "女" => 1, "男" => 2 }
 end
 
 # == Schema Information
