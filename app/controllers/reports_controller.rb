@@ -29,7 +29,7 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     @report.user_id = current_user.id
-
+  
     respond_to do |format|
       if @report.save
         format.html { redirect_to report_path(@report), notice: 'レポートを作成しました。' }
@@ -101,6 +101,7 @@ class ReportsController < ApplicationController
         :successful_embryo_grade,
 
         clinic_reviews_attributes:[
+        :clinic_id,
         :cost,
         :credit_card_validity,
         :clinic_selection_criteria,

@@ -61,6 +61,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
-    my_page_path(id: current_user.id)
+    my_page_path
   end
 end

@@ -1,5 +1,9 @@
 <h2>ログイン</h2>
-
+<% if alert %>
+  <div class="alert alert-warning" role="alert">
+    <p class="alert alert-error"><%= alert %></p>
+  </div>
+<% end %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group">
     <%= f.label :email, 'メール' %><br />

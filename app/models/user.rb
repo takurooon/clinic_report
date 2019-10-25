@@ -19,6 +19,7 @@ end
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  birthday               :datetime
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -26,7 +27,7 @@ end
 #  current_sign_in_ip     :inet
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  gender                 :string
+#  gender                 :integer
 #  icon                   :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :inet

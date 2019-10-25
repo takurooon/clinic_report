@@ -25,7 +25,7 @@
   <tbody>
     <tr>
       <th scope="row">治療の種類</th>
-      <td><%= @report.treatment_type %></td>
+      <td><%= @report.str_treatment_type %></td>
     </tr>
     <tr>
       <th scope="row">現在の状況</th>
@@ -110,6 +110,10 @@
     <tr>
     <th scope="row">妊娠に至った胚の培養日数</th>
     <td><%= @report.successful_embryo_culture_days %></td>
+    </tr>
+    <tr>
+    <th scope="row">妊娠に至った胚の培養日数</th>
+    <td><%= @report.clinic_reviews[0].cost %></td>
     </tr>
    
     <tr>

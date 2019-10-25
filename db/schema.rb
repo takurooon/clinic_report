@@ -262,7 +262,8 @@ ActiveRecord::Schema.define(version: 2019_10_24_075619) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.string "gender"
+    t.integer "gender"
+    t.datetime "birthday"
     t.string "icon"
     t.string "link"
     t.text "self_introduction"
