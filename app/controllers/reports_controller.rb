@@ -5,9 +5,8 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    # @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Report.all
-    # @reports = @reports.page(params[:page])
-    @reports = Report.all.order(updated_at: :desc)
+    @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
+    @reports = @reports.page(params[:page]).order(updated_at: :desc)
   end
 
   # GET /reports/1
