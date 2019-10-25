@@ -1,6 +1,16 @@
 <div class="d-flex align-items-center">
   <h2>レポート一覧</h2>
   <div class="ml-auto reports_button">
+    <%= form_tag reports_path, method: :get, class: 'reports__searchForm' do %>
+      <%= select_tag :tag_id,
+                    options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                    {
+                      prompt: 'タグで絞り込み',
+                      class: 'form-control reports__select',
+                      onchange: 'submit(this.form);'
+                    }
+      %>
+    <% end %>
     <%= link_to "レポートを作成", new_user_report_path(:user_id), class:"btn btn-outline-info button" %>
   </div>
 </div>

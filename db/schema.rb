@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_075619) do
+ActiveRecord::Schema.define(version: 2019_10_25_132804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,15 @@ ActiveRecord::Schema.define(version: 2019_10_24_075619) do
     t.index ["supplement_id"], name: "index_report_supplements_on_supplement_id"
   end
 
+  create_table "report_tags", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_report_tags_on_report_id"
+    t.index ["tag_id"], name: "index_report_tags_on_tag_id"
+  end
+
   create_table "report_transfer_options", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.bigint "transfer_option_id", null: false
@@ -234,6 +243,12 @@ ActiveRecord::Schema.define(version: 2019_10_24_075619) do
 
   create_table "supplements", force: :cascade do |t|
     t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -295,6 +310,8 @@ ActiveRecord::Schema.define(version: 2019_10_24_075619) do
   add_foreign_key "report_ovulation_inhibitors", "reports"
   add_foreign_key "report_supplements", "reports"
   add_foreign_key "report_supplements", "supplements"
+  add_foreign_key "report_tags", "reports"
+  add_foreign_key "report_tags", "tags"
   add_foreign_key "report_transfer_options", "reports"
   add_foreign_key "report_transfer_options", "transfer_options"
   add_foreign_key "reports", "users"

@@ -6,6 +6,9 @@ class Report < ApplicationRecord
   
   has_many :comments, dependent: :destroy
 
+  has_many :report_tags, dependent: :destroy
+  has_many :tags, through: :report_tags
+
   has_many :report_supplements, dependent: :destroy
   has_many :supplements, through: :report_supplements
 

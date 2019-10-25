@@ -5,6 +5,8 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
+    # @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Report.all
+    # @reports = @reports.page(params[:page])
     @reports = Report.all.order(updated_at: :desc)
   end
 
@@ -99,6 +101,7 @@ class ReportsController < ApplicationController
         :successful_egg_maturity,
         :successful_embryo_culture_days,
         :successful_embryo_grade,
+        tag_ids: [],
 
         clinic_reviews_attributes:[
         :clinic_id,

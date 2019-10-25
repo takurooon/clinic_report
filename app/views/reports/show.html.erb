@@ -11,10 +11,27 @@
     </small>
   </div>
   <div class="ml-auto reports_button">
+    <%= form_tag reports_path, method: :get, class: 'reports__searchForm' do %>
+      <%= select_tag :tag_id,
+                    options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                    {
+                      prompt: 'タグで絞り込み',
+                      class: 'form-control reports__select',
+                      onchange: 'submit(this.form);'
+                    }
+      %>
+    <% end %>
     <%= link_to "一覧", reports_path, class:"btn btn-outline-info button" %>
     <%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>
   </div>
 </div><br>
+
+<% @report.tags.each do |tag| %>
+  <div class="tag-box">
+    <span class="badge badge-primary"><%= tag.name %></span>
+  </div>
+<% end %>
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
