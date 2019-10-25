@@ -1,8 +1,44 @@
 class Report < ApplicationRecord
   belongs_to :user
+
   has_many :clinic_reviews
   accepts_nested_attributes_for :clinic_reviews
+  
   has_many :comments, dependent: :destroy
+
+  has_many :report_supplements, dependent: :destroy
+  has_many :supplements, through: :report_supplements
+
+  has_many :report_f_infertility_factors, dependent: :destroy
+  has_many :f_infertility_factors, through: :report_f_infertility_factors
+
+  has_many :report_m_infertility_factors, dependent: :destroy
+  has_many :m_infertility_factors, through: :report_m_infertility_factors
+
+  has_many :report_f_diseases, dependent: :destroy
+  has_many :f_diseases, through: :report_f_diseases
+
+  has_many :report_m_diseases, dependent: :destroy
+  has_many :m_diseases, through: :report_m_diseases
+
+  has_many :report_f_surgeries, dependent: :destroy
+  has_many :f_surgeries, through: :report_f_surgeries
+
+  has_many :report_m_surgeries, dependent: :destroy
+  has_many :m_surgeries, through: :report_m_surgeries
+
+  has_many :report_ovarian_stimulations, dependent: :destroy
+  has_many :ovarian_stimulations, through: :report_ovarian_stimulations
+
+  has_many :report_ovulation_inhibitors, dependent: :destroy
+  has_many :ovulation_inhibitors, through: :report_ovulation_inhibitors
+
+  has_many :report_ovulation_inducers, dependent: :destroy
+  has_many :ovulation_inducers, through: :report_ovulation_inducers
+
+  has_many :report_transfer_options, dependent: :destroy
+  has_many :transfer_options, through: :report_transfer_options
+
   # has_rich_text :content
 
   # fertility_treatment_numberの区分値(何人目か)
