@@ -18,6 +18,7 @@ gem 'rails-i18n'
 gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'image_processing'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
