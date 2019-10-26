@@ -9,6 +9,8 @@ class Report < ApplicationRecord
   has_many :report_tags, dependent: :destroy
   has_many :tags, through: :report_tags
 
+  has_rich_text :content
+
   has_many :report_supplements, dependent: :destroy
   has_many :supplements, through: :report_supplements
 
@@ -41,8 +43,6 @@ class Report < ApplicationRecord
 
   has_many :report_transfer_options, dependent: :destroy
   has_many :transfer_options, through: :report_transfer_options
-
-  # has_rich_text :content
 
   # fertility_treatment_numberの区分値(何人目か)
   HASH_FERTILITY_TREATMENT_NUMBER = { 1 => "1人目", 2 => "2人目", 3 => "3人目", 4 => "4人目", 5 => "5人目", 99 => "6人目以上" }

@@ -1,6 +1,8 @@
 class ClinicReview < ApplicationRecord
   belongs_to :report
   belongs_to :clinic
+
+  has_rich_text :content
 end
 
 # == Schema Information
