@@ -1,48 +1,66 @@
 class Report < ApplicationRecord
+  # バリデーション
+  # validates :title, length: { maximum: 32 }
+  validates :content, length: { maximum: 1 }
+
+  # アクションテキスト
+  has_rich_text :content
+  
+  # ---親---
+    # ユーザー
   belongs_to :user
 
+  # ---子---
+    # クリニックレビュー
   has_many :clinic_reviews
   accepts_nested_attributes_for :clinic_reviews
-  
+    # コメント
   has_many :comments, dependent: :destroy
 
+  # ---多対多---
+    # タグ
   has_many :report_tags, dependent: :destroy
   has_many :tags, through: :report_tags
 
-  has_rich_text :content
-
+    # サプリ
   has_many :report_supplements, dependent: :destroy
   has_many :supplements, through: :report_supplements
-
+  
+    # 不妊原因(男女それぞれ)
   has_many :report_f_infertility_factors, dependent: :destroy
   has_many :f_infertility_factors, through: :report_f_infertility_factors
-
   has_many :report_m_infertility_factors, dependent: :destroy
   has_many :m_infertility_factors, through: :report_m_infertility_factors
 
+    # 疾患(男女それぞれ)
   has_many :report_f_diseases, dependent: :destroy
   has_many :f_diseases, through: :report_f_diseases
-
   has_many :report_m_diseases, dependent: :destroy
   has_many :m_diseases, through: :report_m_diseases
 
+    # 手術歴(男女それぞれ)
   has_many :report_f_surgeries, dependent: :destroy
   has_many :f_surgeries, through: :report_f_surgeries
-
   has_many :report_m_surgeries, dependent: :destroy
   has_many :m_surgeries, through: :report_m_surgeries
 
+    # 卵巣刺激薬剤
   has_many :report_ovarian_stimulations, dependent: :destroy
   has_many :ovarian_stimulations, through: :report_ovarian_stimulations
 
+    # 排卵抑制剤
   has_many :report_ovulation_inhibitors, dependent: :destroy
   has_many :ovulation_inhibitors, through: :report_ovulation_inhibitors
 
+    # 排卵促進剤
   has_many :report_ovulation_inducers, dependent: :destroy
   has_many :ovulation_inducers, through: :report_ovulation_inducers
 
+    # 移植オプション
   has_many :report_transfer_options, dependent: :destroy
   has_many :transfer_options, through: :report_transfer_options
+
+
 
   # fertility_treatment_numberの区分値(何人目か)
   HASH_FERTILITY_TREATMENT_NUMBER = { 1 => "1人目", 2 => "2人目", 3 => "3人目", 4 => "4人目", 5 => "5人目", 99 => "6人目以上" }

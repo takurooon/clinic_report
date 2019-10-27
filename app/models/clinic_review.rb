@@ -1,8 +1,14 @@
 class ClinicReview < ApplicationRecord
+  # バリデーション
+  validates :review, length: { maximum: 3000 }
+  
+  # アクションテキスト
+  has_rich_text :review
+
+  # ---親---
   belongs_to :report
   belongs_to :clinic
 
-  has_rich_text :content
 end
 
 # == Schema Information

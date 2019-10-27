@@ -2,6 +2,14 @@
 ja:
   activerecord:
     errors:
+      models:
+        report:
+          attributes:
+            content:
+              too_long: が%{count}文字を超えています。
+    attributes:
+      report:
+        content: 感想(体験記)
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
