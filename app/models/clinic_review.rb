@@ -1,6 +1,21 @@
 class ClinicReview < ApplicationRecord
   # バリデーション
-  validates :review, length: { maximum: 3000 }
+  validate :validate_review_length
+  
+  MAX_REVIEW_LENGTH = 10000
+  
+  def validate_review_length
+    length = review.to_plain_text.length
+
+    if length > MAX_REVIEW_LENGTH
+      errors.add(
+        :review,
+        :too_long,
+        max_review_length: MAX_REVIEW_LENGTH,
+        length: length
+      )
+    end
+  end
   
   # アクションテキスト
   has_rich_text :review

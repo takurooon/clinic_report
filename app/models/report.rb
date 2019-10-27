@@ -1,7 +1,22 @@
 class Report < ApplicationRecord
   # バリデーション
   # validates :title, length: { maximum: 32 }
-  validates :content, length: { maximum: 1 }
+  validate :validate_content_length
+  
+  MAX_CONTENT_LENGTH = 30000
+  
+  def validate_content_length
+    length = content.to_plain_text.length
+
+    if length > MAX_CONTENT_LENGTH
+      errors.add(
+        :content,
+        :too_long,
+        max_content_length: MAX_CONTENT_LENGTH,
+        length: length
+      )
+    end
+  end
 
   # アクションテキスト
   has_rich_text :content
