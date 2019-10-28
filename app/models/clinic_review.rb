@@ -2,10 +2,10 @@ class ClinicReview < ApplicationRecord
   # バリデーション
   validate :validate_review_length
   
-  MAX_REVIEW_LENGTH = 10000
+  MAX_REVIEW_LENGTH = 1
   
   def validate_review_length
-    length = review.to_plain_text.length
+    length = review.to_s.length
 
     if length > MAX_REVIEW_LENGTH
       errors.add(
@@ -16,9 +16,6 @@ class ClinicReview < ApplicationRecord
       )
     end
   end
-  
-  # アクションテキスト
-  has_rich_text :review
 
   # ---親---
   belongs_to :report
