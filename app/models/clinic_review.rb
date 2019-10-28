@@ -2,7 +2,7 @@ class ClinicReview < ApplicationRecord
   # バリデーション
   validate :validate_review_length
   
-  MAX_REVIEW_LENGTH = 1
+  MAX_REVIEW_LENGTH = 10000
   
   def validate_review_length
     length = review.to_s.length
