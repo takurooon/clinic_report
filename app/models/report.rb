@@ -119,7 +119,7 @@ class Report < ApplicationRecord
 
 
   # treatment_typeの区分値(治療方法)
-  HUSH_TREATMENT_TYPE = {
+  HASH_TREATMENT_TYPE = {
     1 => "顕微･体外受精",
     2 => "人工授精",
     3 => "タイミング指導法",
@@ -127,7 +127,7 @@ class Report < ApplicationRecord
   }
 
   # current_stateの区分値(現在の状況)
-  HUSH_CURRENT_STATE = {
+  HASH_CURRENT_STATE = {
     1 => "現在妊娠中",
     2 => "出産した",
     3 => "妊娠または出産に至らず転院(治療継続予定)",
@@ -135,7 +135,7 @@ class Report < ApplicationRecord
   }
 
   # work_styleの区分値(治療中の働き方)
-  HUSH_WORK_STYLE = {
+  HASH_WORK_STYLE = {
     1 => "正社員",
     2 => "契約社員",
     3 => "パート",
@@ -149,7 +149,7 @@ class Report < ApplicationRecord
   }
   
   # treatment_periodの区分値(休み期間覗く正味治療期間/CL単位)
-  HUSH_TREATMENT_PERIOD = {
+  HASH_TREATMENT_PERIOD = {
     1 => "〜1ヵ月",
     2 => "〜3ヵ月",
     3 => "〜半年",
@@ -171,7 +171,7 @@ class Report < ApplicationRecord
   }
 
   # bmiの区分値(BMI値)
-  HUSH_BMI = {
+  HASH_BMI = {
     1 => "18.5未満",
     2 => "18.5〜25未満",
     3 => "25〜30未満",
@@ -181,7 +181,7 @@ class Report < ApplicationRecord
   }
   
   # amhの区分値(AMH値)
-  HUSH_AMH = {
+  HASH_AMH = {
     1 => "0.1以下",
     2 => "0.3以下",
     3 => "0.5以下",
@@ -209,7 +209,7 @@ class Report < ApplicationRecord
   }
   
   # types_of_eggs_and_spermの区分値(卵子と精子の帰属)
-  HUSH_TYPES_OF_EGGS_AND_SPERM = {
+  HASH_TYPES_OF_EGGS_AND_SPERM = {
     1 => "自分自身の卵子/精子を用いた",
     2 => "提供卵子を用いた",
     3 => "提供精子を用いた",
@@ -220,7 +220,7 @@ class Report < ApplicationRecord
   }
 
   # type_of_sairan_cycleの区分値(採卵周期種別)
-  HUSH_TYPE_OF_SAIRAN_CYCLE = {
+  HASH_TYPE_OF_SAIRAN_CYCLE = {
     1 => "完全自然",
     2 => "内服薬使用（クロミッド等）",
     3 => "内服薬＋注射",
@@ -231,7 +231,7 @@ class Report < ApplicationRecord
   }
 
   # types_of_fertilization_methodsの区分値(受精方法)
-  HUSH_TYPES_OF_FERTILIZATION_METHODS = {
+  HASH_TYPES_OF_FERTILIZATION_METHODS = {
     1 => "体外受精（ふりかけ）",
     2 => "顕微授精",
     3 => "スプリット法",
@@ -239,7 +239,7 @@ class Report < ApplicationRecord
   }
 
   # successful_egg_maturityの区分値(妊娠に至った卵子の成熟度)
-  HUSH_SUCCESSFUL_EGG_MATURITY =  {
+  HASH_SUCCESSFUL_EGG_MATURITY =  {
     1 => "成熟卵(M2)",
     2 => "未成熟卵(M1)",
     3 => "未成熟卵(GV)",
@@ -247,7 +247,7 @@ class Report < ApplicationRecord
   }
   
   # successful_embryo_grade_qualityの区分値(妊娠に至った胚の質) ない
-  HUSH_SUCCESSFUL_EMBRYO_GRADE_QUALITY = {
+  HASH_SUCCESSFUL_EMBRYO_GRADE_QUALITY = {
     1 => "AA",
     2 => "AB",
     3 => "AC",
@@ -260,8 +260,9 @@ class Report < ApplicationRecord
     99 => "その他",
     100 => "不明"
   }
+
   # successful_ova_with_ivmの区分値(妊娠に至った卵子へのIVMの有無)
-  HUSH_SUCCESSFUL_EMBRYO_GRADE_QUALITY = {
+  HASH_SUCCESSFUL_EMBRYO_GRADE_QUALITY = {
     1 => "あり",
     2 => "なし",
     10 => "不明"
@@ -625,7 +626,7 @@ class Report < ApplicationRecord
   end
 
   # successful_embryo_grade_sizeの区分値(妊娠に至った胚の大きさ) ないsize
-  HUSH_SUCCESSFUL_EMBRYO_GRADE_SIZE = { "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "その他" => 99, "不明" => 100 }
+  HASH_SUCCESSFUL_EMBRYO_GRADE_SIZE = { "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "その他" => 99, "不明" => 100 }
   SUCCESSFUL_EMBRYO_GRADE_SIZE_MAXIMUM = 1000
   SUCCESSFUL_EMBRYO_GRADE_SIZE_RANGE = 10
   STR_SUCCESSFUL_EMBRYO_GRADE_SIZE_MAXIMUM = "それ#{DAY}#{OR_MORE}"
@@ -658,36 +659,38 @@ end
 #
 # Table name: reports
 #
-#  id                             :bigint           not null, primary key
-#  address_at_that_time           :integer
-#  amh                            :integer
-#  bmi                            :integer
-#  content                        :text
-#  current_state                  :integer
-#  fertility_treatment_number     :integer
-#  number_of_aih                  :integer
-#  number_of_clinics              :integer
-#  number_of_eggs_collected       :integer
-#  number_of_eggs_stored          :integer
-#  number_of_fertilized_eggs      :integer
-#  number_of_frozen_eggs          :integer
-#  successful_egg_maturity        :integer
-#  successful_embryo_culture_days :integer
-#  successful_embryo_grade        :integer
-#  total_number_of_sairan         :integer
-#  total_number_of_transplants    :integer
-#  treatment_end_age              :integer
-#  treatment_period               :integer
-#  treatment_start_age            :integer
-#  treatment_type                 :integer
-#  type_of_sairan_cycle           :integer
-#  types_of_eggs_and_sperm        :integer
-#  types_of_fertilization_methods :integer
-#  work_style                     :integer
-#  created_at                     :datetime         not null
-#  updated_at                     :datetime         not null
-#  latest_clinic_review_id        :integer
-#  user_id                        :bigint           not null
+#  id                              :bigint           not null, primary key
+#  address_at_that_time            :integer
+#  amh                             :integer
+#  bmi                             :integer
+#  content                         :text
+#  current_state                   :integer
+#  fertility_treatment_number      :integer
+#  number_of_aih                   :integer
+#  number_of_clinics               :integer
+#  number_of_eggs_collected        :integer
+#  number_of_eggs_stored           :integer
+#  number_of_fertilized_eggs       :integer
+#  number_of_frozen_eggs           :integer
+#  successful_egg_maturity         :integer
+#  successful_embryo_culture_days  :integer
+#  successful_embryo_grade_quality :integer
+#  successful_embryo_grade_size    :integer
+#  successful_ova_with_ivm         :integer
+#  total_number_of_sairan          :integer
+#  total_number_of_transplants     :integer
+#  treatment_end_age               :integer
+#  treatment_period                :integer
+#  treatment_start_age             :integer
+#  treatment_type                  :integer
+#  type_of_sairan_cycle            :integer
+#  types_of_eggs_and_sperm         :integer
+#  types_of_fertilization_methods  :integer
+#  work_style                      :integer
+#  created_at                      :datetime         not null
+#  updated_at                      :datetime         not null
+#  latest_clinic_review_id         :integer
+#  user_id                         :bigint           not null
 #
 # Indexes
 #

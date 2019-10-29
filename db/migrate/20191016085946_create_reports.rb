@@ -28,7 +28,9 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :content
       t.integer :successful_egg_maturity
       t.integer :successful_embryo_culture_days
-      t.integer :successful_embryo_grade
+      t.integer :successful_embryo_grade_quality
+      t.integer :successful_embryo_grade_size
+      t.integer :successful_ova_with_ivm
 
       t.timestamps
     end

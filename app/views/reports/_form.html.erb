@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <%= f.label :current_state, '現在妊娠中ですか？すでに出産されていますか？' %>
-    <%= f.select :current_state, Report::HUSH_CURRENT_STATE.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         妊娠中または出産しているか選択してください。
     </small>
@@ -27,14 +27,14 @@
   </div>
   <div class="form-group">
     <%= f.label :treatment_type, '治療の種類を選択してください' %>
-    <%= f.select :treatment_type, Report::HUSH_TREATMENT_TYPE.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :treatment_type, Report::HASH_TREATMENT_TYPE.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         妊娠中または出産しているか選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :work_style, '通院中の働き方にもっとも当てはまるのはどれですか？' %>
-    <%= f.select :work_style, Report::HUSH_WORK_STYLE.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         一番当てはまるものを選択してください。
     </small>
@@ -72,42 +72,42 @@
   </div>
   <div class="form-group">
     <%= f.label :treatment_period, 'お休み期間をのぞくと正味このクリニックにはどれくらいの期間通院しましたか' %>
-    <%= f.select :treatment_period, Report::HUSH_TREATMENT_PERIOD.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         おおよその期間を選択ください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :amh, '治療中のAMH値はいくつでしたか' %>
-    <%= f.select :amh, Report::HUSH_AMH.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :amh, Report::HASH_AMH.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         一番直近の値を選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :bmi, '治療中のBMI値はいくつでしたか' %>
-    <%= f.select :bmi, Report::HUSH_BMI.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :bmi, Report::HASH_BMI.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         一番直近の値を選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :types_of_eggs_and_sperm, '用いた卵子と精子' %>
-    <%= f.select :types_of_eggs_and_sperm, Report::HUSH_TYPES_OF_EGGS_AND_SPERM.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :types_of_eggs_and_sperm, Report::HASH_TYPES_OF_EGGS_AND_SPERM.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :type_of_sairan_cycle, '妊娠に至った周期の採卵誘発方法は' %>
-    <%= f.select :type_of_sairan_cycle, Report::HUSH_TYPE_OF_SAIRAN_CYCLE.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :type_of_sairan_cycle, Report::HASH_TYPE_OF_SAIRAN_CYCLE.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :successful_egg_maturity, '妊娠に至った卵子の成熟度' %>
-    <%= f.select :successful_egg_maturity, Report::HUSH_SUCCESSFUL_EGG_MATURITY.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :successful_egg_maturity, Report::HASH_SUCCESSFUL_EGG_MATURITY.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
@@ -149,7 +149,7 @@
   </div>
   <div class="form-group">
     <%= f.label :types_of_fertilization_methods, '妊娠に至った卵子と精子の受精方法を教えてください' %>
-    <%= f.select :types_of_fertilization_methods, Report::HUSH_TYPES_OF_FERTILIZATION_METHODS.invert, {}, { :class => "form-control" }  %>
+    <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
@@ -172,28 +172,28 @@
   <%= f.fields_for :clinic_reviews do |review| %>
     <div class="form-group">
       <%= review.label :cost, 'このクリニックで総額いくらかかりましたか' %>
-      <%= review.select :cost, { "10万円未満" => 1, "10〜30万円未満" => 2, "30〜50万円未満" => 3, "50〜100万円未満" => 4, "100〜150万円未満" => 5, "150〜200万円未満" => 6, "200〜250万円未満" => 7, "250〜300万円未満" => 8, "300〜350万円未満" => 9, "350〜400万円未満" => 10, "400〜450万円未満" => 11, "450〜500万円未満"  => 12, "500〜550万円未満" => 13, "550〜600万円未満" => 14, "600〜650万円未満" => 15, "650〜700万円未満" => 16, "700〜750万円未満" => 17, "750〜800万円未満" => 18, "800〜850万円未満" => 19, "850〜900万円未満" => 20, "900〜950万円未満" => 21, "950〜1,000万円未満" => 22, "1,000〜1,500万円未満" => 23, "1,500〜2,000万円未満" => 24, "2,000万円以上" => 99 }, {}, { :class => "form-control" }  %>
+      <%= review.select :cost, ClinicReview::HASH_COST.invert, {}, { :class => "form-control" }  %>
       <small id="poster-tip" class="form-text text-muted">
           当てはまるものを選択してください。
       </small>
     </div>
     <div class="form-group">
       <%= review.label :credit_card_validity, 'クレジットカードは使えましたか？' %>
-      <%= review.select :credit_card_validity, { "可" => 1, "不可" => 2, "一定の金額から使用可能" => 3, "その他" => 99 }, {}, { :class => "form-control" }  %>
+      <%= review.select :credit_card_validity, ClinicReview::HASH_CREDIT_CARD_VALIDITY.invert, {}, { :class => "form-control" }  %>
       <small id="poster-tip" class="form-text text-muted">
           当てはまるものを選択してください。
       </small>
     </div>
     <div class="form-group">
       <%= review.label :average_waiting_time, 'クリニックでの平均待ち時間はどのくらいでしたか' %>
-      <%= review.select :average_waiting_time, { "〜1時間" => 1, "〜2時間" => 2, "〜3時間" => 3, "〜4時間" => 4, "〜5時間" => 5, "それ以上" => 6 }, {}, { :class => "form-control" }  %>
+      <%= review.select :average_waiting_time, ClinicReview::HASH_VERAGE_WAITING_TIME.invert, {}, { :class => "form-control" }  %>
       <small id="poster-tip" class="form-text text-muted">
           当てはまるものを選択してください。
       </small>
     </div>
     <div class="form-group">
       <%= review.label :clinic_selection_criteria, 'このクリニックを選んだ理由' %>
-      <%= review.select :clinic_selection_criteria, { "自宅から近かったから" => 1, "職場から近かったから" => 2, "口コミがよかったから" => 3, "料金が手頃だったから" => 4, "以前に通ったことがあったから" => 5, "それ以上" => 6 }, {}, { :class => "form-control" }  %>
+      <%= review.select :clinic_selection_criteria, ClinicReview::HASH_CLINIC_SELECTION_CRITERIA.invert, {}, { :class => "form-control" }  %>
       <small id="poster-tip" class="form-text text-muted">
           当てはまるものを選択してください。
       </small>

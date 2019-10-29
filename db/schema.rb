@@ -264,7 +264,9 @@ ActiveRecord::Schema.define(version: 2019_10_26_040521) do
     t.text "content"
     t.integer "successful_egg_maturity"
     t.integer "successful_embryo_culture_days"
-    t.integer "successful_embryo_grade"
+    t.integer "successful_embryo_grade_quality"
+    t.integer "successful_embryo_grade_size"
+    t.integer "successful_ova_with_ivm"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
