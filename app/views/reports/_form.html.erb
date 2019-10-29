@@ -12,134 +12,158 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :current_state, '現在妊娠中ですか？すでに出産されていますか？' %>
+    <%= f.select :current_state, Report::HUSH_CURRENT_STATE.invert, {}, { :class => "form-control" }  %>
+    <small id="poster-tip" class="form-text text-muted">
+        妊娠中または出産しているか選択してください。
+    </small>
+  </div>
+  <div class="form-group">
     <%= f.label :fertility_treatment_number, '何人目の不妊治療ですか?（何人目不妊ですか）' %>
-    <%= f.select :fertility_treatment_number, { "1人目" => 1, "2人目" => 2, "3人目" => 3, "4人目" => 4, "5人目" => 5, "6人目以上" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :fertility_treatment_number, Report.make_select_options_fertility_treatment_number, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         選択してください。
     </small>
   </div>
   <div class="form-group">
-    <%= f.label :current_state, '現在妊娠中ですか？すでに出産されていますか？' %>
-    <%= f.select :current_state, { "現在妊娠中" => 1, "出産した" => 2, "妊娠または出産に至らず転院(治療継続予定)" => 3, "不妊治療を辞めた(治療自体を継続しない)" => 4 }, {}, { :class => "form-control" }  %>
+    <%= f.label :treatment_type, '治療の種類を選択してください' %>
+    <%= f.select :treatment_type, Report::HUSH_TREATMENT_TYPE.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         妊娠中または出産しているか選択してください。
     </small>
   </div>
   <div class="form-group">
-    <%= f.label :treatment_type, '治療の種類を選択してください' %>
-    <%= f.select :treatment_type, { "顕微･体外受精" => 1, "人工授精" => 2, "タイミング指導法" => 3, "その他" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.label :work_style, '通院中の働き方にもっとも当てはまるのはどれですか？' %>
+    <%= f.select :work_style, Report::HUSH_WORK_STYLE.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
-        妊娠中または出産しているか選択してください。
+        一番当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :number_of_clinics, 'このクリニックは何院目ですか？' %>
-    <%= f.select :number_of_clinics, { "1院目" => 1, "2院目" => 2, "3院目" => 3, "4院目" => 4, "5院目" => 5, "6院目" => 6, "7院目" => 7, "8院目" => 8, "9院目" => 9, "10院目" => 10, "それ以上" => 99 }, {}, { :class => "form-control" } %>
+    <%= f.select :number_of_clinics, Report.make_select_options_number_of_clinics, {}, { :class => "form-control" } %>
     <small id="poster-tip" class="form-text text-muted">
         治療を開始してから何院目の医療機関か選択してください。
     </small>
   </div>
+  
+  "住まい"
+
+  <div class="form-group">
+    <%= f.label :number_of_aih, '体外・顕微受精にステップアップする前に人工授精は何回実施しましたか' %>
+    <%= f.select :number_of_aih, Report.make_select_options_number_of_aih, {}, { :class => "form-control" }  %>
+    <small id="poster-tip" class="form-text text-muted">
+        当てはまるものを選択してください。
+    </small>
+  </div>
   <div class="form-group">
     <%= f.label :treatment_start_age, 'このクリニックで治療を開始したのは何歳の時ですか' %>
-    <%= f.select :treatment_start_age, { "20歳未満" => 19, "20歳" => 20, "21歳" => 21, "22歳" => 22, "23歳" => 23, "24歳" => 24, "25歳" => 25, "26歳" => 26, "27歳" => 27, "28歳" => 28, "29歳" => 29, "30歳" => 30, "31歳" => 31, "32歳" => 32, "33歳" => 33, "34歳" => 34, "35歳" => 35, "36歳" => 36, "37歳" => 37, "38歳" => 38, "39歳" => 39, "40歳" => 40, "41歳" => 41, "42歳" => 42, "43歳" => 43, "44歳" => 44, "45歳" => 45, "46歳" => 46, "47歳" => 47, "48歳" => 48, "49歳" => 49, "50歳" => 50, "51歳" => 51, "52歳" => 52, "53歳" => 53, "54歳" => 54, "55歳" => 55, "56歳" => 56, "57歳" => 57, "58歳" => 58, "59歳" => 29, "60歳以上" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :treatment_start_age, Report.make_select_options_treatment_start_age, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         通院を開始した年齢を選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :treatment_end_age, 'このクリニックで治療を終了したのは何歳の時ですか' %>
-    <%= f.select :treatment_end_age, { "20歳未満" => 19, "20歳" => 20, "21歳" => 21, "22歳" => 22, "23歳" => 23, "24歳" => 24, "25歳" => 25, "26歳" => 26, "27歳" => 27, "28歳" => 28, "29歳" => 29, "30歳" => 30, "31歳" => 31, "32歳" => 32, "33歳" => 33, "34歳" => 34, "35歳" => 35, "36歳" => 36, "37歳" => 37, "38歳" => 38, "39歳" => 39, "40歳" => 40, "41歳" => 41, "42歳" => 42, "43歳" => 43, "44歳" => 44, "45歳" => 45, "46歳" => 46, "47歳" => 47, "48歳" => 48, "49歳" => 49, "50歳" => 50, "51歳" => 51, "52歳" => 52, "53歳" => 53, "54歳" => 54, "55歳" => 55, "56歳" => 56, "57歳" => 57, "58歳" => 58, "59歳" => 29, "60歳以上" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :treatment_end_age, Report.make_select_options_treatment_end_age, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         妊娠、または治療を断念し、通院を終了した年齢を選択してください。
     </small>
   </div>
   <div class="form-group">
-    <%= f.label :work_style, '通院中の働き方にもっとも当てはまるのはどれですか？' %>
-    <%= f.select :work_style, { "正社員" => 1, "契約社員" => 2, "パート" => 3, "仕事はしていなかった" => 4, "正社員→退職" => 5, "正社員→長期休暇" => 6, "契約社員→退職" => 7, "パート→退職" => 8, "リモートワーク等へ切り替え" => 9, "その他" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.label :treatment_period, 'お休み期間をのぞくと正味このクリニックにはどれくらいの期間通院しましたか' %>
+    <%= f.select :treatment_period, Report::HUSH_TREATMENT_PERIOD.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
-        一番当てはまるものを選択してください。
-    </small>
-  </div>
-  <div class="form-group">
-    <%= f.label :number_of_aih, '体外・顕微受精にステップアップする前に人工授精は何回実施しましたか' %>
-    <%= f.select :number_of_aih, { "1回" => 1, "2回" => 2, "3回" => 3, "4回" => 4, "5回" => 5, "6回" => 6, "7回" => 7, "8回" => 8, "9回" => 9, "10回" => 10, "10回以上" => 99 }, {}, { :class => "form-control" }  %>
-    <small id="poster-tip" class="form-text text-muted">
-        当てはまるものを選択してください。
+        おおよその期間を選択ください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :amh, '治療中のAMH値はいくつでしたか' %>
-    <%= f.select :amh, { "0.1以下" => 1, "0.3以下" => 2, "0.5以下" => 3, "0.7以下" => 4, "1.0以下" => 5, "1.5以下" => 6, "2.0以下" => 7, "2.5以下" => 8, "3.0以下" => 9, "3.5以下" => 10, "4.0以下" => 11, "4.5以下"  => 12, "5.0以下" => 13, "5.5以下" => 14, "6.0以下" => 15, "6.5以下" => 16, "7.0以下" => 17, "7.5以下" => 18, "8.0以下" => 19, "8.5以下" => 20, "9.0以下" => 21, "9.5以下" => 22, "10.0以下" => 23, "10.1以上" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :amh, Report::HUSH_AMH.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         一番直近の値を選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :bmi, '治療中のBMI値はいくつでしたか' %>
-    <%= f.select :bmi, { "18.5未満" => 1, "18.5〜25未満" => 2, "25〜30未満" => 3, "30〜35未満" => 4, "35〜40未満" => 5, "40以上" => 6 }, {}, { :class => "form-control" }  %>
+    <%= f.select :bmi, Report::HUSH_BMI.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         一番直近の値を選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :types_of_eggs_and_sperm, '用いた卵子と精子' %>
-    <%= f.select :types_of_eggs_and_sperm, { "自分自身の卵子/精子を用いた" => 1, "提供卵子を用いた" => 2, "提供精子を用いた" => 3, "どちらも提供を受けた" => 4, "凍結していた自分の未受精卵を用いた" => 5, "凍結していた自分の精子を用いた" => 6, "その他" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :types_of_eggs_and_sperm, Report::HUSH_TYPES_OF_EGGS_AND_SPERM.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :type_of_sairan_cycle, '妊娠に至った周期の採卵誘発方法は' %>
-    <%= f.select :type_of_sairan_cycle, { "完全自然" => 1, "内服薬使用（クロミッド等）" => 2, "内服薬＋注射" => 3, "4個" => 4, "アンタゴニスト法" => 5, "ロング法" => 6, "ショート法" => 7 }, {}, { :class => "form-control" }  %>
+    <%= f.select :type_of_sairan_cycle, Report::HUSH_TYPE_OF_SAIRAN_CYCLE.invert, {}, { :class => "form-control" }  %>
+    <small id="poster-tip" class="form-text text-muted">
+        当てはまるものを選択してください。
+    </small>
+  </div>
+  <div class="form-group">
+    <%= f.label :successful_egg_maturity, '妊娠に至った卵子の成熟度' %>
+    <%= f.select :successful_egg_maturity, Report::HUSH_SUCCESSFUL_EGG_MATURITY.invert, {}, { :class => "form-control" }  %>
+    <small id="poster-tip" class="form-text text-muted">
+        当てはまるものを選択してください。
+    </small>
+  </div>
+  <div class="form-group">
+    <%= f.label :successful_embryo_culture_days, '妊娠に至った胚の培養日数' %>
+    <%= f.select :successful_embryo_culture_days, Report.make_select_options_successful_embryo_culture_days, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :total_number_of_sairan, 'このクリニックでの全採卵回数' %>
-    <%= f.select :total_number_of_sairan, { "1回" => 1, "2回" => 2, "3回" => 3, "4回" => 4, "5回" => 5, "6回" => 6, "7回" => 7, "8回" => 8, "9回" => 9, "10回" => 10, "11回" => 11, "12回"  => 12, "13回" => 13, "14回" => 14, "15回" => 15, "16回" => 16, "17回" => 17, "18回" => 18, "19回" => 19, "20回" => 20, "それ以上" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :total_number_of_sairan, Report.make_select_options_total_number_of_sairan, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :number_of_eggs_collected, 'このクリニックでの全採卵個数' %>
-    <%= f.select :number_of_eggs_collected, { "0個" => 1, "2個" => 2, "3個" => 3, "4個" => 4, "5個" => 5, "6個" => 6, "7個" => 7, "8個" => 8, "9個" => 9, "10個" => 10, "11個" => 11, "12個"  => 12, "13個" => 13, "14個" => 14, "15個" => 15, "16個" => 16, "17個" => 17, "18個" => 18, "19個" => 19, "20個" => 20, "21個" => 21, "22個" => 22, "23個" => 23, "24個" => 24, "25個" => 25, "26個" => 26, "27個" => 27, "28個" => 28, "29個" => 29, "30個" => 30, "31個" => 31, "32個"  => 32, "33個" => 33, "34個" => 34, "35個" => 35, "36個" => 36, "37個" => 37, "38個" => 38, "39個" => 39, "40個" => 40, "41個" => 41, "42個" => 42, "43個" => 43, "44個" => 44, "45個" => 45, "46個" => 46, "47個" => 47, "48個" => 48, "49個" => 49, "50個" => 50, "51個" => 51, "52個"  => 52, "53個" => 53, "54個" => 54, "55個" => 55, "56個" => 56, "57個" => 57, "58個" => 58, "59個" => 59, "60個" => 60, "61個" => 61, "62個" => 62, "63個" => 63, "64個" => 64, "65個" => 65, "66個" => 66, "67個" => 67, "68個" => 68, "69個" => 69, "70個" => 70, "11個" => 71, "72個"  => 72, "73個" => 73, "74個" => 74, "75個" => 75, "76個" => 76, "77個" => 77, "78個" => 78, "79個" => 79, "80個" => 80, "81個" => 81, "82個" => 82, "83個" => 83, "84個" => 84, "85個" => 85, "86個" => 86, "87個" => 87, "88個" => 88, "89個" => 89, "90個" => 90, "91個" => 91, "92個"  => 92, "93個" => 93, "94個" => 94, "95個" => 95, "96個" => 96, "97個" => 97, "98個" => 98, "99個" => 99, "100個" => 100, "101〜150個" => 101, "151〜200個" => 102, "201〜300個" => 103, "301〜400個" => 104, "401〜500個" => 105, "501〜1,000個" => 106, "それ以上" => 999 }, {}, { :class => "form-control" }  %>
+    <%= f.select :number_of_eggs_collected, Report.make_select_options_number_of_eggs_collected, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :total_number_of_transplants, 'このクリニックでの全移植回数' %>
-    <%= f.select :total_number_of_transplants, { "1回" => 1, "2回" => 2, "3回" => 3, "4回" => 4, "5回" => 5, "6回" => 6, "7回" => 7, "8回" => 8, "9回" => 9, "10回" => 10, "11回" => 11, "12回"  => 12, "13回" => 13, "14回" => 14, "15回" => 15, "16回" => 16, "17回" => 17, "18回" => 18, "19回" => 19, "20回" => 20, "それ以上" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :total_number_of_transplants, Report.make_select_options_total_number_of_transplants, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :number_of_eggs_stored, 'このクリニックにある凍結胚の数（貯卵数）' %>
-    <%= f.select :number_of_eggs_stored, { "1個" => 1, "2個" => 2, "3個" => 3, "4個" => 4, "5個" => 5, "6個" => 6, "7個" => 7, "8個" => 8, "9個" => 9, "10個" => 10, "11個" => 11, "12個"  => 12, "13個" => 13, "14個" => 14, "15個" => 15, "16個" => 16, "17個" => 17, "18個" => 18, "19個" => 19, "20個" => 20, "21個" => 21, "22個" => 22, "23個" => 23, "24個" => 24, "25個" => 25, "26個" => 26, "27個" => 27, "28個" => 28, "29個" => 29, "30個" => 30, "それ以上" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :number_of_eggs_stored, Report.make_select_options_number_of_eggs_stored, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :types_of_fertilization_methods, '妊娠に至った卵子と精子の受精方法を教えてください' %>
-    <%= f.select :types_of_fertilization_methods, { "体外受精（ふりかけ）" => 1, "顕微授精" => 2, "スプリット法" => 3 }, {}, { :class => "form-control" }  %>
+    <%= f.select :types_of_fertilization_methods, Report::HUSH_TYPES_OF_FERTILIZATION_METHODS.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :number_of_fertilized_eggs, '最新の周期で受精まで至った個数' %>
-    <%= f.select :number_of_fertilized_eggs, { "1個" => 1, "2個" => 2, "3個" => 3, "4個" => 4, "5個" => 5, "6個" => 6, "7個" => 7, "8個" => 8, "9個" => 9, "10個" => 10, "11個" => 11, "12個"  => 12, "13個" => 13, "14個" => 14, "15個" => 15, "16個" => 16, "17個" => 17, "18個" => 18, "19個" => 19, "20個" => 20, "21個" => 21, "22個" => 22, "23個" => 23, "24個" => 24, "25個" => 25, "26個" => 26, "27個" => 27, "28個" => 28, "29個" => 29, "30個" => 30, "31個" => 31, "32個"  => 32, "33個" => 33, "34個" => 34, "35個" => 35, "36個" => 36, "37個" => 37, "38個" => 38, "39個" => 39, "40個" => 40, "41個" => 41, "42個" => 42, "43個" => 43, "44個" => 44, "45個" => 45, "46個" => 46, "47個" => 47, "48個" => 48, "49個" => 49, "50個" => 50, "それ以上" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :number_of_fertilized_eggs, Report.make_select_options_number_of_eggs_collected, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>
   </div>
   <div class="form-group">
     <%= f.label :number_of_frozen_eggs, '最新の周期で受精した胚はいくつ凍結できましたか' %>
-    <%= f.select :number_of_frozen_eggs, { "1個" => 1, "2個" => 2, "3個" => 3, "4個" => 4, "5個" => 5, "6個" => 6, "7個" => 7, "8個" => 8, "9個" => 9, "10個" => 10, "11個" => 11, "12個"  => 12, "13個" => 13, "14個" => 14, "15個" => 15, "16個" => 16, "17個" => 17, "18個" => 18, "19個" => 19, "20個" => 20, "21個" => 21, "22個" => 22, "23個" => 23, "24個" => 24, "25個" => 25, "26個" => 26, "27個" => 27, "28個" => 28, "29個" => 29, "30個" => 30, "31個" => 31, "32個"  => 32, "33個" => 33, "34個" => 34, "35個" => 35, "36個" => 36, "37個" => 37, "38個" => 38, "39個" => 39, "40個" => 40, "41個" => 41, "42個" => 42, "43個" => 43, "44個" => 44, "45個" => 45, "46個" => 46, "47個" => 47, "48個" => 48, "49個" => 49, "50個" => 50, "それ以上" => 99 }, {}, { :class => "form-control" }  %>
+    <%= f.select :number_of_frozen_eggs, Report.make_select_options_number_of_frozen_eggs, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
         当てはまるものを選択してください。
     </small>

@@ -12,7 +12,6 @@ ja:
             content:
               too_long: が上限の%{max_content_length}文字を超えています。[%{length}/%{max_content_length}文字]
               attachments_count_too_big: の添付画像が%{max_content_attachments_count}を超えています。
-
         clinic_review:
           attributes:
             review:

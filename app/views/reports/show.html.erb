@@ -41,12 +41,16 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">治療の種類</th>
-      <td><%= @report.str_treatment_type %></td>
-    </tr>
-    <tr>
       <th scope="row">現在の状況</th>
       <td><%= @report.current_state %></td>
+    </tr>
+    <tr>
+      <th scope="row">何人目不妊</th>
+      <td><%= @report.str_fertility_treatment_number %></td>
+    </tr>
+    <tr>
+      <th scope="row">治療の種類</th>
+      <td><%= @report.treatment_type %></td>
     </tr>
     <tr>
       <th scope="row">治療中の働き方</th>
@@ -54,7 +58,7 @@
     </tr>
     <tr>
       <th scope="row">転院数</th>
-      <td><%= @report.number_of_clinics %>院目</td>
+      <td><%= @report.str_number_of_clinics %></td>
     </tr>
     <tr>
       <th scope="row">治療中の住まい</th>
@@ -62,15 +66,15 @@
     </tr>
     <tr>
       <th scope="row">人工授精の回数</th>
-      <td><%= @report.number_of_aih %></td>
+      <td><%= @report.str_number_of_aih %></td>
     </tr>
     <tr>
       <th scope="row">このクリニックでの治療開始時の年齢</th>
-      <td><%= @report.treatment_start_age %>歳</td>
+      <td><%= @report.str_treatment_start_age %>歳</td>
     </tr>
     <tr>
       <th scope="row">このクリニックでの治療終了時の年齢</th>
-      <td><%= @report.treatment_end_age %>歳</td>
+      <td><%= @report.str_treatment_end_age %>歳</td>
     </tr>
     <tr>
       <th scope="row">実際の治療期間</th>
@@ -90,15 +94,15 @@
     </tr>
     <tr>
       <th scope="row">このクリニックでの全採卵回数</th>
-      <td><%= @report.total_number_of_sairan %></td>
+      <td><%= @report.str_total_number_of_sairan %></td>
     </tr>
     <tr>
       <th scope="row">このクリニックでの全採卵個数</th>
-      <td><%= @report.number_of_eggs_collected %></td>
+      <td><%= @report.str_total_number_of_eggs_collected %></td>
     </tr>
     <tr>
       <th scope="row">このクリニックでの全移植回数</th>
-      <td><%= @report.total_number_of_transplants %></td>
+      <td><%= @report.str_total_number_of_transplants %></td>
     </tr>
     <tr>
       <th scope="row">このクリニックにある凍結胚の数（貯卵数）</th>
