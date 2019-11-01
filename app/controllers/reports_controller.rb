@@ -18,7 +18,6 @@ class ReportsController < ApplicationController
   # GET /reports/new
   def new
     @report = Report.new
-    @report.clinic_reviews.build
   end
 
   # GET /reports/1/edit
@@ -102,14 +101,12 @@ class ReportsController < ApplicationController
       :successful_embryo_grade_quality,
       :successful_embryo_grade_size,
       :successful_ova_with_ivm,
-      tag_ids: [],
-
-      clinic_reviews_attributes:[
       :clinic_id,
       :cost,
       :credit_card_validity,
       :clinic_selection_criteria,
-      :review
-      ])
+      :clinic_review,
+      tag_ids: []
+      )
     end
 end

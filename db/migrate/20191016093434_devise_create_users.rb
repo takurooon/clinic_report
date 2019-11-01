@@ -41,6 +41,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :icon
       t.string :link
       t.text   :self_introduction
+      t.string :provider
+      t.string :uid
+      t.string :username
     end
 
     add_index :users, :email,                unique: true

@@ -66,9 +66,6 @@ class Report < ApplicationRecord
   belongs_to :user
 
   # ---子---
-    # クリニックレビュー
-  has_many :clinic_reviews
-  accepts_nested_attributes_for :clinic_reviews
     # コメント
   has_many :comments, dependent: :destroy
 
@@ -114,9 +111,6 @@ class Report < ApplicationRecord
     # 移植オプション
   has_many :report_transfer_options, dependent: :destroy
   has_many :transfer_options, through: :report_transfer_options
-
-
-
 
   # treatment_typeの区分値(治療方法)
   HASH_TREATMENT_TYPE = {
@@ -262,11 +256,70 @@ class Report < ApplicationRecord
   }
 
   # successful_ova_with_ivmの区分値(妊娠に至った卵子へのIVMの有無)
-  HASH_SUCCESSFUL_EMBRYO_GRADE_QUALITY = {
+  HASH_SUCCESSFUL_OVA_WITH_IVM = {
     1 => "あり",
     2 => "なし",
     10 => "不明"
   }
+
+  # costの区分値(CLでの費用訴額)
+  HASH_COST = {
+    1 => "10万円未満",
+    2 => "10〜30万円未満",
+    3 => "30〜50万円未満",
+    4 => "50〜100万円未満",
+    5 => "100〜150万円未満",
+    6 => "150〜200万円未満",
+    7 => "200〜250万円未満",
+    8 => "250〜300万円未満",
+    9 => "300〜350万円未満",
+    10 => "350〜400万円未満",
+    11 => "400〜450万円未満",
+    12 => "450〜500万円未満",
+    13 => "500〜550万円未満",
+    14 => "550〜600万円未満",
+    15 => "600〜650万円未満",
+    16 => "650〜700万円未満",
+    17 => "700〜750万円未満",
+    18 => "750〜800万円未満",
+    19 => "800〜850万円未満",
+    20 => "850〜900万円未満",
+    21 => "900〜950万円未満",
+    22 => "950〜1,000万円未満",
+    23 => "1,000〜1,500万円未満",
+    24 => "1,500〜2,000万円未満",
+    99 => "2,000万円以上"
+  }
+
+  # credit_card_validityの区分値(クレジットカード使用可否)
+  HASH_CREDIT_CARD_VALIDITY = {
+    1 => "可",
+    2 => "不可",
+    3 => "一定の金額から使用可能",
+    99 => "その他"
+    }
+  
+  # verage_waiting_timeの区分値(クリニックでの平均待ち時間)
+  HASH_VERAGE_WAITING_TIME = {
+    1 => "〜1時間",
+    2 => "〜2時間",
+    3 => "〜3時間",
+    4 => "〜4時間",
+    5 => "〜5時間",
+    99 => "それ以上"
+  }
+
+  # clinic_selection_criteriaの区分値(このクリニック選定理由)
+  HASH_CLINIC_SELECTION_CRITERIA = {
+    1 => "自宅から近かったから",
+    2 => "職場から近かったから",
+    3 => "口コミがよかったから",
+    4 => "料金が手頃だったから",
+    5 => "以前に通ったことがあったから",
+    99 => "それ以上"
+    }
+
+
 
 
   TIMES = "回"
@@ -662,21 +715,31 @@ end
 #  id                              :bigint           not null, primary key
 #  address_at_that_time            :integer
 #  amh                             :integer
+#  average_waiting_time            :integer
 #  bmi                             :integer
+#  clinic_review                   :text
+#  clinic_selection_criteria       :integer
 #  content                         :text
+#  cost                            :integer
+#  credit_card_validity            :integer
 #  current_state                   :integer
 #  fertility_treatment_number      :integer
 #  number_of_aih                   :integer
 #  number_of_clinics               :integer
 #  number_of_eggs_collected        :integer
 #  number_of_eggs_stored           :integer
+#  number_of_employees             :integer
 #  number_of_fertilized_eggs       :integer
 #  number_of_frozen_eggs           :integer
+#  period_of_time_spent_traveling  :integer
+#  scope_of_disclosure             :integer
+#  smoking                         :integer
 #  successful_egg_maturity         :integer
 #  successful_embryo_culture_days  :integer
 #  successful_embryo_grade_quality :integer
 #  successful_embryo_grade_size    :integer
 #  successful_ova_with_ivm         :integer
+#  title                           :string
 #  total_number_of_sairan          :integer
 #  total_number_of_transplants     :integer
 #  treatment_end_age               :integer
@@ -686,17 +749,20 @@ end
 #  type_of_sairan_cycle            :integer
 #  types_of_eggs_and_sperm         :integer
 #  types_of_fertilization_methods  :integer
+#  using_the_support_system        :integer
 #  work_style                      :integer
 #  created_at                      :datetime         not null
 #  updated_at                      :datetime         not null
-#  latest_clinic_review_id         :integer
+#  clinic_id                       :bigint           not null
 #  user_id                         :bigint           not null
 #
 # Indexes
 #
-#  index_reports_on_user_id  (user_id)
+#  index_reports_on_clinic_id  (clinic_id)
+#  index_reports_on_user_id    (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (clinic_id => clinics.id)
 #  fk_rails_...  (user_id => users.id)
 #

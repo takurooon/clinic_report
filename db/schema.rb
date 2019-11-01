@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_26_040521) do
+ActiveRecord::Schema.define(version: 2019_11_01_070427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,16 +48,14 @@ ActiveRecord::Schema.define(version: 2019_10_26_040521) do
 
   create_table "clinic_reviews", force: :cascade do |t|
     t.bigint "clinic_id", null: false
-    t.bigint "report_id", null: false
-    t.integer "cost"
-    t.integer "credit_card_validity"
+    t.bigint "user_id", null: false
     t.integer "clinic_selection_criteria"
     t.integer "average_waiting_time"
     t.text "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["clinic_id"], name: "index_clinic_reviews_on_clinic_id"
-    t.index ["report_id"], name: "index_clinic_reviews_on_report_id"
+    t.index ["user_id"], name: "index_clinic_reviews_on_user_id"
   end
 
   create_table "clinics", force: :cascade do |t|
@@ -108,6 +106,12 @@ ActiveRecord::Schema.define(version: 2019_10_26_040521) do
   end
 
   create_table "m_surgeries", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "other_efforts", force: :cascade do |t|
     t.integer "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -185,6 +189,15 @@ ActiveRecord::Schema.define(version: 2019_10_26_040521) do
     t.index ["report_id"], name: "index_report_m_surgeries_on_report_id"
   end
 
+  create_table "report_other_efforts", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "other_effort_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["other_effort_id"], name: "index_report_other_efforts_on_other_effort_id"
+    t.index ["report_id"], name: "index_report_other_efforts_on_report_id"
+  end
+
   create_table "report_ovarian_stimulations", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.bigint "ovarian_stimulation_id", null: false
@@ -240,10 +253,12 @@ ActiveRecord::Schema.define(version: 2019_10_26_040521) do
   end
 
   create_table "reports", force: :cascade do |t|
+    t.string "title"
     t.integer "fertility_treatment_number"
     t.integer "treatment_type"
     t.integer "current_state"
     t.integer "work_style"
+    t.integer "number_of_employees"
     t.integer "number_of_clinics"
     t.integer "address_at_that_time"
     t.integer "number_of_aih"
@@ -261,16 +276,26 @@ ActiveRecord::Schema.define(version: 2019_10_26_040521) do
     t.integer "types_of_fertilization_methods"
     t.integer "number_of_fertilized_eggs"
     t.integer "number_of_frozen_eggs"
-    t.text "content"
+    t.integer "cost"
+    t.integer "credit_card_validity"
+    t.integer "clinic_selection_criteria"
     t.integer "successful_egg_maturity"
     t.integer "successful_embryo_culture_days"
     t.integer "successful_embryo_grade_quality"
     t.integer "successful_embryo_grade_size"
     t.integer "successful_ova_with_ivm"
+    t.integer "average_waiting_time"
+    t.integer "smoking"
+    t.integer "period_of_time_spent_traveling"
+    t.integer "using_the_support_system"
+    t.integer "scope_of_disclosure"
+    t.text "content"
+    t.text "clinic_review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "clinic_id", null: false
     t.bigint "user_id", null: false
-    t.integer "latest_clinic_review_id"
+    t.index ["clinic_id"], name: "index_reports_on_clinic_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
@@ -319,13 +344,12 @@ ActiveRecord::Schema.define(version: 2019_10_26_040521) do
     t.string "uid"
     t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "clinic_reviews", "clinics"
-  add_foreign_key "clinic_reviews", "reports"
+  add_foreign_key "clinic_reviews", "users"
   add_foreign_key "comments", "reports"
   add_foreign_key "comments", "users"
   add_foreign_key "report_f_diseases", "f_diseases"
@@ -340,6 +364,8 @@ ActiveRecord::Schema.define(version: 2019_10_26_040521) do
   add_foreign_key "report_m_infertility_factors", "reports"
   add_foreign_key "report_m_surgeries", "m_surgeries"
   add_foreign_key "report_m_surgeries", "reports"
+  add_foreign_key "report_other_efforts", "other_efforts"
+  add_foreign_key "report_other_efforts", "reports"
   add_foreign_key "report_ovarian_stimulations", "ovarian_stimulations"
   add_foreign_key "report_ovarian_stimulations", "reports"
   add_foreign_key "report_ovulation_inducers", "ovulation_inducers"
@@ -352,5 +378,6 @@ ActiveRecord::Schema.define(version: 2019_10_26_040521) do
   add_foreign_key "report_tags", "tags"
   add_foreign_key "report_transfer_options", "reports"
   add_foreign_key "report_transfer_options", "transfer_options"
+  add_foreign_key "reports", "clinics"
   add_foreign_key "reports", "users"
 end
