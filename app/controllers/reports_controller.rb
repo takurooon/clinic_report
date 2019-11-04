@@ -4,6 +4,11 @@ class ReportsController < ApplicationController
 
   # GET /reports
   # GET /reports.json
+  def home
+    @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
+    @reports = @reports.page(params[:page]).order(updated_at: :desc)
+  end
+
   def index
     @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
     @reports = @reports.page(params[:page]).order(updated_at: :desc)

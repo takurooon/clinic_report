@@ -12,6 +12,12 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :title, 'レポートのタイトル' %>
+    <%= f.text_field :title, :class => "form-control" %>
+    <small id="poster-tip" class="form-text text-muted">
+    </small>
+  </div>
+  <div class="form-group">
     <%= f.label :current_state, '現在妊娠中ですか？すでに出産されていますか？' %>
     <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, {}, { :class => "form-control" }  %>
     <small id="poster-tip" class="form-text text-muted">
@@ -206,6 +212,7 @@
         誹謗中傷等はおやめください。投稿ポリシーに違反している場合削除致します。
     </small>
   </div>
+
   <div>
     <%= f.label :clinic_id, 'クリニック' %>
     <%= f.text_field :clinic_id, :class => "form-control" %>

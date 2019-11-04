@@ -1,0 +1,25 @@
+<h3 class="d-none d-md-block mt-4">最近のレポート</h3>
+<% @reports.each do |report| %>
+  <div class="card post ">
+    <div class="card-header media">
+      <a href="/">
+        <アイコン>
+      </a>
+      <div class="media-body">
+        <p><%= report.user.name %>さんの<%= report.clinic_id %>のレポート</p>
+        <small class="text-muted">
+        <%= report.treatment_end_age %>歳:<%= report.fertility_treatment_number %>人目不妊
+        </small><br>
+        <small class="text-muted">更新:
+          <time datetime="<%= report.updated_at %>">
+          <%= time_ago_in_words(report.updated_at) %>
+          </time>前&nbsp;&nbsp;&nbsp;投稿:
+          <%= report.created_at.to_s(:datetime_jp) %>
+        </small>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= report.title %></h5>
+    </div>
+  </div>
+<% end %>

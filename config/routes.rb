@@ -1,25 +1,22 @@
 Rails.application.routes.draw do
 
-  get 'comments/create'
-  get 'comments/destroy'
-  root 'reports#index'
+  root 'reports#home'
   
   devise_for :users, controllers: {
-   registrations: 'users/registrations',
-   sessions: 'users/sessions',
-   passwords: 'users/passwords',
-   confirmations: 'users/confirmations'
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    confirmations: 'users/confirmations'
   }
-
+  
   devise_scope :user do
     get 'my_page' => 'users/registrations#my_page'
-    
   end
-
+  
   resources :users, shallow: true do
     resources :reports
   end
-
+  
   resources :reports, shallow: true do
     resources :clinic_reviews
   end
@@ -27,7 +24,6 @@ Rails.application.routes.draw do
   resources :reports, only: %i[index]
   resources :clinic_reviews, only: %i[index]
   resources :comments, only: %i[create destroy]
-
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

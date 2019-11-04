@@ -64,12 +64,15 @@ class Report < ApplicationRecord
   # ---親---
     # ユーザー
   belongs_to :user
+  belongs_to :clinic
 
   # ---子---
     # コメント
   has_many :comments, dependent: :destroy
 
   # ---多対多---
+  has_many :report_clinics, dependent: :destroy
+  has_many :clinics, through: :report_clinics
     # タグ
   has_many :report_tags, dependent: :destroy
   has_many :tags, through: :report_tags
