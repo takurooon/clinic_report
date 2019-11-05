@@ -33,9 +33,7 @@ end
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
-#                       comments_create GET    /comments/create(.:format)                                                               comments#create
-#                      comments_destroy GET    /comments/destroy(.:format)                                                              comments#destroy
-#                                  root GET    /                                                                                        reports#index
+#                                  root GET    /                                                                                        reports#home
 #                      new_user_session GET    /users/sign_in(.:format)                                                                 users/sessions#new
 #                          user_session POST   /users/sign_in(.:format)                                                                 users/sessions#create
 #                  destroy_user_session DELETE /users/sign_out(.:format)                                                                users/sessions#destroy

@@ -79,10 +79,13 @@ class ReportsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
       params.require(:report).permit(
+      :title,
       :fertility_treatment_number,
       :treatment_type,
       :current_state,
       :work_style,
+      :number_of_employees,
+      :address_at_that_time,
       :number_of_clinics,
       :address_at_that_time,
       :number_of_aih,
@@ -111,6 +114,15 @@ class ReportsController < ApplicationController
       :credit_card_validity,
       :clinic_selection_criteria,
       :clinic_review,
+      :successful_embryo_grade_quality,
+      :successful_embryo_grade_size,
+      :successful_ova_with_ivm,
+      :average_waiting_time,
+      :smoking,
+      :period_of_time_spent_traveling,
+      :using_the_support_system,
+      :scope_of_disclosure,
+      :content,
       tag_ids: []
       )
     end
