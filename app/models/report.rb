@@ -58,6 +58,11 @@ class Report < ApplicationRecord
     end
   end
 
+  # like判定メソッド
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
+
   # アクションテキスト
   has_rich_text :content
   
@@ -68,11 +73,14 @@ class Report < ApplicationRecord
 
   # ---子---
     # コメント
-  has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy  
+  has_many :likes, dependent: :destroy  
 
   # ---多対多---
   has_many :report_clinics, dependent: :destroy
   has_many :clinics, through: :report_clinics
+
+
     # タグ
   has_many :report_tags, dependent: :destroy
   has_many :tags, through: :report_tags

@@ -17,6 +17,11 @@
     <div class="my-page-right col-12 col-md-9">
      
     </div>
+
+    <% @like_reports.each do |report| %>
+      <hr>
+      <p><span>お気に入りレポート内容: </span><%=link_to report.title, report_path(report.id) %></p>
+    <% end %>
   </div>
 
   <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>

@@ -1,10 +1,9 @@
 <h3 class="d-none d-md-block mt-4">最近のレポート</h3>
 <% @reports.each do |report| %>
-  <div class="card post ">
+  <%= link_to report do %>
+  <div class="card post">
     <div class="card-header media">
-      <a href="/">
-        <アイコン>
-      </a>
+      <アイコン>
       <div class="media-body">
         <p><%= report.user.name %>さんの<%= report.clinic.clinic_name %>のレポート</p>
         <small class="text-muted">
@@ -21,5 +20,17 @@
     <div class="card-body">
       <h5 class="card-title"><%= report.title %></h5>
     </div>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <% if report.liked_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+          <p><span>お気に入り解除: </span><%=link_to report.likes.count, report_likes_path(report.id), method: :delete %></p>
+      <% else %>
+          <p><span>お気に入り登録: </span><%=link_to report.likes.count, report_likes_path(report.id), method: :post %></p>
+      <% end %>
+      <% else %>
+        <p><span>お気に入り数: </span><%= report.likes.count %></p>
+    <% end %>
+
   </div>
 <% end %>

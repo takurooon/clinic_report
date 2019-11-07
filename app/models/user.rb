@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   has_many :reports, dependent: :destroy
   has_many :comments
+  has_many :likes, dependent: :destroy
+  has_many :like_reports, through: :likes, source: :report
+
 
   mount_uploader :icon, ImageUploader
 
