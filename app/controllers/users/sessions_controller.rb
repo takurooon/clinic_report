@@ -30,7 +30,7 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to params[:user][:url]
   end
 
-  protected
+  # protected
 
   # ログイン後に飛ばす先を指定
   def after_sign_in_path_for(resource)
@@ -39,7 +39,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # ログアウト後に飛ばす先を指定
   def after_sign_out_path_for(resource)
-    new_user_session_path
+    root_path
   end
   
   # If you have extra params to permit, append them to the sanitizer.

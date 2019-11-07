@@ -1,5 +1,6 @@
 class OvulationInhibitor < ApplicationRecord
-  has_many :report_ovulation_inhibitor
+  has_many :report_ovulation_inhibitor, dependent: :destroy
+  has_many :reports, through: :report_ovulation_inhibitor
 end
 
 # == Schema Information

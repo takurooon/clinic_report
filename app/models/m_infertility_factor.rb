@@ -1,5 +1,6 @@
 class MInfertilityFactor < ApplicationRecord
-  has_many :report_m_infertility_factors
+  has_many :report_m_infertility_factors, dependent: :destroy
+  has_many :reports, through: :report_m_infertility_factors
 end
 
 # == Schema Information

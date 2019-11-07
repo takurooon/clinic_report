@@ -1,5 +1,6 @@
 class MDisease < ApplicationRecord
-  has_many :report_m_diseases
+  has_many :report_m_diseases, dependent: :destroy
+  has_many :reports, through: :report_m_diseases
 end
 
 # == Schema Information

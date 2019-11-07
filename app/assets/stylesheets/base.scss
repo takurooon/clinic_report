@@ -27,3 +27,27 @@ h1 {
   margin-bottom: 10px;
   display: inline-block;
 }
+
+.signupin {
+  margin: 0 30px;
+}
+
+.signupin-left {
+  display: flex;
+	align-items: center;
+	justify-content: right;
+}
+
+.signupin-right {
+  display: flex;
+	align-items: center;
+	justify-content: right;
+}
+
+.sns-signupin-area {
+  width: 300px;
+}
+
+.sns-signupin-button {
+  margin: 15px;
+}

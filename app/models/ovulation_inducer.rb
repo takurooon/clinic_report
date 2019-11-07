@@ -1,5 +1,6 @@
 class OvulationInducer < ApplicationRecord
-  has_many :report_ovulation_inducer
+  has_many :report_ovulation_inducer, dependent: :destroy
+  has_many :reports, through: :report_ovulation_inducer
 end
 
 # == Schema Information

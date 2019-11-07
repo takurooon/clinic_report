@@ -1,5 +1,6 @@
 class OvarianStimulation < ApplicationRecord
-  has_many :report_ovarian_stimulation
+  has_many :report_ovarian_stimulation, dependent: :destroy
+  has_many :reports, through: :report_ovarian_stimulation
 end
 
 # == Schema Information

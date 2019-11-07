@@ -1,4 +1,6 @@
 class OtherEffort < ApplicationRecord
+  has_many :report_effort, dependent: :destroy
+  has_many :reports, through: :report_effort
 end
 
 # == Schema Information

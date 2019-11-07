@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :reports, dependent: :destroy
   has_many :comments
 
+  mount_uploader :icon, ImageUploader
+
   # genderの区分値(男女)
   # HASH_GENDER = { "女" => 1, "男" => 2 }
 end

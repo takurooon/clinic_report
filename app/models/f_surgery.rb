@@ -1,5 +1,6 @@
 class FSurgery < ApplicationRecord
-  has_many :report_f_surgery
+  has_many :report_f_surgery, dependent: :destroy
+  has_many :reports, through: :report_f_surgery
 end
 
 # == Schema Information

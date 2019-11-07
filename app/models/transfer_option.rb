@@ -1,4 +1,6 @@
 class TransferOption < ApplicationRecord
+  has_many :report_transfer, dependent: :destroy
+  has_many :reports, through: :report_transfer
 end
 
 # == Schema Information
