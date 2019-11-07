@@ -30,7 +30,7 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to params[:user][:url]
   end
 
-  # protected
+  protected
 
   # ログイン後に飛ばす先を指定
   def after_sign_in_path_for(resource)

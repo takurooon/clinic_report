@@ -2,8 +2,6 @@ class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
-  # GET /reports
-  # GET /reports.json
   def home
     @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
     @reports = @reports.page(params[:page]).order(updated_at: :desc)
@@ -14,23 +12,17 @@ class ReportsController < ApplicationController
     @reports = @reports.page(params[:page]).order(updated_at: :desc)
   end
 
-  # GET /reports/1
-  # GET /reports/1.json
   def show
     @comment = Comment.new(report_id: @report.id)
   end
 
-  # GET /reports/new
   def new
     @report = Report.new
   end
 
-  # GET /reports/1/edit
   def edit
   end
 
-  # POST /reports
-  # POST /reports.json
   def create
     @report = Report.new(report_params)
     @report.user_id = current_user.id
@@ -46,8 +38,6 @@ class ReportsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reports/1
-  # PATCH/PUT /reports/1.json
   def update
     respond_to do |format|
       if @report.update(report_params)
@@ -60,8 +50,6 @@ class ReportsController < ApplicationController
     end
   end
 
-  # DELETE /reports/1
-  # DELETE /reports/1.json
   def destroy
     @report.destroy
     respond_to do |format|
@@ -71,12 +59,11 @@ class ReportsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  
     def set_report
       @report = Report.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
       params.require(:report).permit(
       :title,

@@ -1,0 +1,23 @@
+<div class="d-flex align-items-center">
+<h2>マイページ</h2>
+  <div class="ml-auto reports_button">
+    <%= link_to "レポートを作成", new_report_path, class:"btn btn-outline-info button" %>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="mypage-left col-12 col-md-3>
+      <ul class="mypage-sidemenu">
+        <li>ダッシュボード</li>
+        <li>設定</li>
+        <%= @user.name %>さん
+      </div>
+    </div>
+
+    <div class="my-page-right col-12 col-md-9">
+     
+    </div>
+  </div>
+
+  <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+</div>

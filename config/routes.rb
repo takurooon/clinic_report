@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'my_page/index'
   root 'reports#home'
   
   devise_for :users, controllers: {
@@ -9,19 +10,14 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
   
-  devise_scope :user do
-    get 'my_page' => 'users/registrations#my_page'
-  end
-  
+  get 'my_page' => 'my_page#index'
+
   resources :users, shallow: true do
-    resources :reports
+    resources :reports, only: %[index]
   end
   
-  resources :reports, shallow: true do
-    resources :clinic_reviews
-  end
+  resources :reports
   
-  resources :reports, only: %i[index]
   resources :clinic_reviews, only: %i[index]
   resources :comments, only: %i[create destroy]
 
