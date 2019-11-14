@@ -11,17 +11,15 @@
         <li>ダッシュボード</li>
         <li>設定</li>
         <%= @user.name %>さん
-      </div>
+      </ul>
     </div>
 
     <div class="my-page-right col-12 col-md-9">
-     
-    </div>
-
     <% @like_reports.each do |report| %>
       <hr>
-      <p><span>お気に入りレポート内容: </span><%=link_to report.title, report_path(report.id) %></p>
+      <p><span>お気に入りレポート: </span><%=link_to report.title, report %></p>
     <% end %>
+    </div>
   </div>
 
   <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>

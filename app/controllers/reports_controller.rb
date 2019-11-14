@@ -5,6 +5,8 @@ class ReportsController < ApplicationController
   def home
     @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
     @reports = @reports.page(params[:page]).order(updated_at: :desc)
+    @reports = Report.all
+    @users = User.all
   end
 
   def index

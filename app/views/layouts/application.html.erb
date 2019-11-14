@@ -14,6 +14,12 @@
   <%= render 'header' %>
 
   <div class="container">
+    <% if alert %>
+      <div class="alert alert-warning" role="alert">
+        <p class="alert alert-error"><%= alert %></p>
+      </div>
+    <% end %>
+    
     <%= yield %>
   </div>
   </body>

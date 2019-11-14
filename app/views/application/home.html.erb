@@ -1,49 +1,41 @@
-<div class="jumbotron" style="background-color:#BBDEFB">
-  <div class="container">
-
-    <p class="lead">
-      <span class="d-inline-block">
-        は不妊治療を終了（妊娠/出産または治療自体を断念）された方が治療歴をレポートとして残せる投稿サービスです。
-      </span>
-    </p>
-
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header bg-light">レポートを書こう
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">ご自身の不妊治療の物語綴ってください。</h5>
-            <p class="card-text">ブログのようなレポートを思う存分書き込んでください。テキストで書き込む他に細かい治療項目を選択できる機能も活用して、細かい情報を残しましょう。</p>
-            <hr>
-            <h5 class="card-title">クリニックのレビューも書けます。</h5>
-            <p class="card-text">レビューを書くことでクリニックを検討中の方の役にたちます</p>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-<div class="container">
+<div class="mainview">
+  <h1>みんなの治療レポートを参考にしよう</h1>
   <div class="row">
-
-    <div class="col-md-3 d-none d-md-block">
-      <%= render 'left' %>
+    <div class="catch col-md">
+        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      <%= link_to "レポートを見る", reports_path, class: "btn btn-info rounded-pill home-welcome-btn" %>
     </div>
-
-    
-    <div id="posts-container" class="col-12 col-md-6">
-      <%= render 'center' %>
-    </div>
-
-    <div class="col-12 col-md-3 pt-md-4">
-    <%= render 'right' %>
+    <div class="home-top-img col-md">
+      <%= image_tag "home/home_top_img.png", alt: "home-top-img", width: "800px", class: "img-fluid", loading: "lazy" %>
     </div>
   </div>
 </div>
 
-
-<%= paginate @reports %>
+<div class="container-fluid summary">
+  <div class="inner">
+    <h2 class="alignCenter">レポートを参考にしてみよう</h2>
+    <div class="sumaryBox row">
+      <div class="sumaryBox__item-icon">
+        <i class="far fa-user-circle"></i>
+      </div>
+      <div class="sumaryBox__item">
+        <div>ユーザー数</div>
+        <div><%= @users.count %>人</div>
+      </div>
+      <div class="sumaryBox__item-icon">
+        <i class="far fa-id-card"></i>
+      </div>
+      <div class="sumaryBox__item">
+        <div>レポート数</div>
+        <div><%= @reports.count %>件</div>
+      </div>
+      <div class="sumaryBox__item-icon">
+        <i class="far fa-handshake"></i>
+      </div>
+      <div class="sumaryBox__item">
+        <div>クリニック数</div>
+        <div><span>1,000</span>件</div>
+      </div>
+    </div>
+  </div>
+</div>

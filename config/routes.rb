@@ -31,8 +31,6 @@ end
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
-#                          likes_create GET    /likes/create(.:format)                                                                  likes#create
-#                         likes_destroy GET    /likes/destroy(.:format)                                                                 likes#destroy
 #                         my_page_index GET    /my_page/index(.:format)                                                                 my_page#index
 #                                  root GET    /                                                                                        reports#home
 #                      new_user_session GET    /users/sign_in(.:format)                                                                 users/sessions#new
@@ -63,6 +61,8 @@ end
 #                                       PATCH  /users/:id(.:format)                                                                     users#update
 #                                       PUT    /users/:id(.:format)                                                                     users#update
 #                                       DELETE /users/:id(.:format)                                                                     users#destroy
+#                          report_likes DELETE /reports/:report_id/likes(.:format)                                                      likes#destroy
+#                                       POST   /reports/:report_id/likes(.:format)                                                      likes#create
 #                               reports GET    /reports(.:format)                                                                       reports#index
 #                                       POST   /reports(.:format)                                                                       reports#create
 #                            new_report GET    /reports/new(.:format)                                                                   reports#new

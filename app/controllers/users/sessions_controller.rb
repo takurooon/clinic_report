@@ -2,7 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-
+  protect_from_forgery with: :exception
   # GET /resource/sign_in
   # def new
   #   super
@@ -30,7 +30,7 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to params[:user][:url]
   end
 
-  protected
+  # protected
 
   # ログイン後に飛ばす先を指定
   def after_sign_in_path_for(resource)
