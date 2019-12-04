@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center">
+<div class="d-flex align-items-center mt-5">
   <div class="ml-auto reports_button">
     <%= form_tag reports_path, method: :get, class: 'reports__searchForm' do %>
       <%= select_tag :tag_id,
@@ -16,23 +16,75 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-
-    <div class="col-md-3 d-none d-md-block">
-      <%= render 'left' %>
+<div class="row category">
+  <div class="col-12 d-none d-md-block mb-4">
+    <h2>カテゴリ一覧</h2>
+  </div>
+  <div class="col-md-6 col-lg-4 d-none d-md-block">
+    <div class="row category-list">
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+          <img src="" class="category-img">
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+          カテゴリ名
+      </div>
     </div>
-
-    
-    <div id="posts-container" class="col-12 col-md-6">
-      <%= render 'center' %>
+  </div>
+  <div class="col-md-6 col-lg-4 d-none d-md-block">
+    <div class="row category-list">
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+          <img src="" class="category-img">
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+          カテゴリ名
+      </div>
     </div>
-
-    <div class="col-12 col-md-3 pt-md-4">
-    <%= render 'right' %>
+  </div>
+  <div class="col-md-6 col-lg-4 d-none d-md-block">
+    <div class="row category-list">
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+          <img src="" class="category-img">
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+          カテゴリ名
+      </div>
     </div>
+  </div>
+  <div class="col-md-6 col-lg-4 d-none d-md-block">
+    <div class="row category-list">
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+          <img src="" class="category-img">
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+          カテゴリ名
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 d-none d-md-block">
+    <div class="row category-list">
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+          <img src="" class="category-img">
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+          カテゴリ名
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 d-none d-md-block">
+    <div class="row category-list">
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+          <img src="" class="category-img">
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+          カテゴリ名
+      </div>
+    </div>
+  </div>
+  <div class="col-12 d-none d-md-block">
+    <small class="float-right">全てのカテゴリを見る></small>
   </div>
 </div>
 
+<%= render 'center' %>
 
 <%= paginate @reports %>

@@ -6,8 +6,9 @@ class Report < ApplicationRecord
   validate :validate_content_attachment_byte_size
   validate :validate_content_attachments_count
   
+  
   def validate_treatment_age
-    if  treatment_start_age > treatment_end_age
+    if treatment_start_age > treatment_end_age
       errors.add(
         :treatment_end_age,
         :treatment_end_age_is_earlier_than_treatment_start_age
@@ -80,56 +81,82 @@ class Report < ApplicationRecord
   has_many :report_clinics, dependent: :destroy
   has_many :clinics, through: :report_clinics
 
-
-    # タグ
+  # タグ
   has_many :report_tags, dependent: :destroy
   has_many :tags, through: :report_tags
 
-    # サプリ
+  # サプリ
   has_many :report_supplements, dependent: :destroy
   has_many :supplements, through: :report_supplements
+  accepts_nested_attributes_for :supplements
   
-    # 不妊原因(男女それぞれ)
+  # 不妊原因(男女それぞれ)
   has_many :report_f_infertility_factors, dependent: :destroy
   has_many :f_infertility_factors, through: :report_f_infertility_factors
+  accepts_nested_attributes_for :f_infertility_factors
   has_many :report_m_infertility_factors, dependent: :destroy
   has_many :m_infertility_factors, through: :report_m_infertility_factors
+  accepts_nested_attributes_for :m_infertility_factors
 
-    # 疾患(男女それぞれ)
+  # 疾患(男女それぞれ)
   has_many :report_f_diseases, dependent: :destroy
   has_many :f_diseases, through: :report_f_diseases
+  accepts_nested_attributes_for :f_diseases
   has_many :report_m_diseases, dependent: :destroy
   has_many :m_diseases, through: :report_m_diseases
+  accepts_nested_attributes_for :m_diseases
 
-    # 手術歴(男女それぞれ)
+  # 手術歴(男女それぞれ)
   has_many :report_f_surgeries, dependent: :destroy
   has_many :f_surgeries, through: :report_f_surgeries
+  accepts_nested_attributes_for :f_surgeries
   has_many :report_m_surgeries, dependent: :destroy
   has_many :m_surgeries, through: :report_m_surgeries
+  accepts_nested_attributes_for :m_surgeries
 
-    # 卵巣刺激薬剤
+  # 卵巣刺激薬剤
   has_many :report_ovarian_stimulations, dependent: :destroy
   has_many :ovarian_stimulations, through: :report_ovarian_stimulations
+  accepts_nested_attributes_for :ovarian_stimulations
 
-    # 排卵抑制剤
+  # 排卵抑制剤
   has_many :report_ovulation_inhibitors, dependent: :destroy
   has_many :ovulation_inhibitors, through: :report_ovulation_inhibitors
+  accepts_nested_attributes_for :ovulation_inhibitors
 
-    # 排卵促進剤
+  # 排卵促進剤
   has_many :report_ovulation_inducers, dependent: :destroy
   has_many :ovulation_inducers, through: :report_ovulation_inducers
+  accepts_nested_attributes_for :ovulation_inducers
 
-    # 移植オプション
+  # 移植オプション
   has_many :report_transfer_options, dependent: :destroy
   has_many :transfer_options, through: :report_transfer_options
+  accepts_nested_attributes_for :transfer_options
+
+  # 治療の開示範囲
+  has_many :report_scope_of_disclosures, dependent: :destroy
+  has_many :scope_of_disclosures, through: :report_scope_of_disclosures
+  accepts_nested_attributes_for :scope_of_disclosures
+
+  # クリニックでの治療以外で行ったこと(努力)
+  has_many :report_other_efforts, dependent: :destroy
+  has_many :other_efforts, through: :report_other_efforts
+  accepts_nested_attributes_for :scope_of_disclosures
+
 
   # treatment_typeの区分値(治療方法)
   HASH_TREATMENT_TYPE = {
-    1 => "顕微･体外受精",
+    1 => "高度不妊治療(体外/顕微受精)",
     2 => "人工授精",
     3 => "タイミング指導法",
     99 => "その他"
   }
+
+  def str_treatment_type
+    return HASH_TREATMENT_TYPE[self.treatment_type]
+  end
+
 
   # current_stateの区分値(現在の状況)
   HASH_CURRENT_STATE = {
@@ -139,19 +166,10 @@ class Report < ApplicationRecord
     4 => "不妊治療を辞めた(治療自体を継続しない)"
   }
 
-  # work_styleの区分値(治療中の働き方)
-  HASH_WORK_STYLE = {
-    1 => "正社員",
-    2 => "契約社員",
-    3 => "パート",
-    4 => "仕事はしていなかった",
-    5 => "正社員→退職",
-    6 => "正社員→長期休暇",
-    7 => "契約社員→退職",
-    8 => "パート→退職",
-    9 => "リモートワーク等へ切り替え",
-    99 => "その他"
-  }
+  def str_current_state
+    return HASH_CURRENT_STATE[self.current_state]
+  end
+
   
   # treatment_periodの区分値(休み期間覗く正味治療期間/CL単位)
   HASH_TREATMENT_PERIOD = {
@@ -175,6 +193,11 @@ class Report < ApplicationRecord
     99 => "それ以上"
   }
 
+  def str_treatment_period
+    return HASH_TREATMENT_PERIOD[self.treatment_period]
+  end
+
+
   # bmiの区分値(BMI値)
   HASH_BMI = {
     1 => "18.5未満",
@@ -184,7 +207,12 @@ class Report < ApplicationRecord
     5 => "35〜40未満",
     6 => "40以上"
   }
+
+  def str_bmi
+    return HASH_BMI[self.bmi]
+  end
   
+
   # amhの区分値(AMH値)
   HASH_AMH = {
     1 => "0.1以下",
@@ -212,6 +240,11 @@ class Report < ApplicationRecord
     23 => "10.0以下",
     99 => "10.1以上"
   }
+
+  def str_amh
+    return HASH_AMH[self.amh]
+  end
+
   
   # types_of_eggs_and_spermの区分値(卵子と精子の帰属)
   HASH_TYPES_OF_EGGS_AND_SPERM = {
@@ -224,35 +257,104 @@ class Report < ApplicationRecord
     99 => "その他"
   }
 
+  def str_types_of_eggs_and_sperm
+    return HASH_TYPES_OF_EGGS_AND_SPERM[self.types_of_eggs_and_sperm]
+  end
+
+
   # type_of_sairan_cycleの区分値(採卵周期種別)
   HASH_TYPE_OF_SAIRAN_CYCLE = {
-    1 => "完全自然",
-    2 => "内服薬使用（クロミッド等）",
-    3 => "内服薬＋注射",
-    4 => "アンタゴニスト法",
+    1 => "完全自然周期",
+    2 => "クロミフェン(クロミッド)法",
+    3 => "hMG/rFSH法",
+    4 => "クロミフェン+hMG/rFSH法",
     5 => "ロング法",
     6 => "ショート法",
-    99 => "不明"
+    7 => "アンタゴニスト法",
+    99 => "その他",
+    100 => "不明"
   }
+
+  def str_type_of_sairan_cycle
+    return HASH_TYPE_OF_SAIRAN_CYCLE[self.type_of_sairan_cycle]
+  end
+
 
   # types_of_fertilization_methodsの区分値(受精方法)
   HASH_TYPES_OF_FERTILIZATION_METHODS = {
     1 => "体外受精（ふりかけ）",
     2 => "顕微授精",
     3 => "スプリット法",
-    99 => "不明"
+    100 => "不明"
   }
 
-  # successful_egg_maturityの区分値(妊娠に至った卵子の成熟度)
-  HASH_SUCCESSFUL_EGG_MATURITY =  {
+  def str_types_of_fertilization_methods
+    return HASH_TYPES_OF_FERTILIZATION_METHODS[self.types_of_fertilization_methods]
+  end
+
+
+  # egg_maturityの区分値(妊娠に至った卵子の成熟度)
+  HASH_EGG_MATURITY =  {
     1 => "成熟卵(M2)",
     2 => "未成熟卵(M1)",
     3 => "未成熟卵(GV)",
-    99 => "不明"
+    99 => "その他",
+    100 => "不明"
   }
+
+  def str_egg_maturity
+    return HASH_EGG_MATURITY[self.egg_maturity]
+  end
+
   
-  # successful_embryo_grade_qualityの区分値(妊娠に至った胚の質) ない
-  HASH_SUCCESSFUL_EMBRYO_GRADE_QUALITY = {
+  # embryo_stageの区分値(妊娠に至った胚のステージ)
+  HASH_EMBRYO_STAGE = {
+    1 => "初期胚",
+    2 => "胚盤胞以上",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_embryo_stage
+    return HASH_EMBRYO_STAGE[self.embryo_stage]
+  end
+
+
+  # early_embryo_gradeの区分値(初期胚のグレード)
+  HASH_EARLY_EMBRYO_GRADE = {
+    1 => "グレード1",
+    2 => "グレード2",
+    3 => "グレード3",
+    4 => "グレード4",
+    5 => "グレード5",
+    9 => "その他",
+    100 => "不明"
+  }
+
+  def str_early_embryo_grade
+    return HASH_EARLY_EMBRYO_GRADE[self.early_embryo_grade]
+  end
+
+
+  # blastocyst_grade1の区分値(胚盤胞以上のグレード)
+  HASH_BLASTOCYST_GRADE1 = {
+    1 => "1 (初期胚盤胞)",
+    2 => "2 (胚盤胞)",
+    3 => "3 (完全胚盤胞)",
+    4 => "4 (拡張胚盤胞)",
+    5 => "5 (孵化胚盤胞)",
+    6 => "6 (孵化後胚盤胞)",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_blastocyst_grade1
+    return HASH_BLASTOCYST_GRADE1[self.blastocyst_grade1]
+  end
+
+
+  # blastocyst_grade2の区分値(胚盤胞以上の評価/ICM/TE)
+  HASH_BLASTOCYST_GRADE2 = {
     1 => "AA",
     2 => "AB",
     3 => "AC",
@@ -262,18 +364,34 @@ class Report < ApplicationRecord
     7 => "CA",
     8 => "CB",
     9 => "CC",
+    10 => "A不明",
+    11 => "B不明",
+    12 => "C不明",
+    13 => "不明A",
+    14 => "不明B",
+    15 => "不明C",
     99 => "その他",
     100 => "不明"
   }
 
-  # successful_ova_with_ivmの区分値(妊娠に至った卵子へのIVMの有無)
-  HASH_SUCCESSFUL_OVA_WITH_IVM = {
+  def str_blastocyst_grade2
+    return HASH_BLASTOCYST_GRADE2[self.blastocyst_grade2]
+  end
+
+
+  # ova_with_ivmの区分値(妊娠に至った卵子へのIVMの有無)
+  HASH_OVA_WITH_IVM = {
     1 => "あり",
     2 => "なし",
-    10 => "不明"
+    100 => "不明"
   }
 
-  # costの区分値(CLでの費用訴額)
+  def str_ova_with_ivm
+    return HASH_OVA_WITH_IVM[self.ova_with_ivm]
+  end
+
+
+  # costの区分値(CLでの費用総額)
   HASH_COST = {
     1 => "10万円未満",
     2 => "10〜30万円未満",
@@ -299,26 +417,44 @@ class Report < ApplicationRecord
     22 => "950〜1,000万円未満",
     23 => "1,000〜1,500万円未満",
     24 => "1,500〜2,000万円未満",
-    99 => "2,000万円以上"
+    99 => "2,000万円以上",
+    100 => "不明"
   }
+
+  def str_cost
+    return HASH_COST[self.cost]
+  end
+
 
   # credit_card_validityの区分値(クレジットカード使用可否)
   HASH_CREDIT_CARD_VALIDITY = {
     1 => "可",
     2 => "不可",
     3 => "一定の金額から使用可能",
-    99 => "その他"
+    99 => "その他",
+    100 => "不明"
     }
+
+  def str_credit_card_validity
+    return HASH_CREDIT_CARD_VALIDITY[self.credit_card_validity]
+  end
   
-  # verage_waiting_timeの区分値(クリニックでの平均待ち時間)
-  HASH_VERAGE_WAITING_TIME = {
+
+  # average_waiting_timeの区分値(クリニックでの平均待ち時間)
+  HASH_AVERAGE_WAITING_TIME = {
     1 => "〜1時間",
     2 => "〜2時間",
     3 => "〜3時間",
     4 => "〜4時間",
     5 => "〜5時間",
-    99 => "それ以上"
+    99 => "それ以上",
+    100 => "不明"
   }
+
+  def str_average_waiting_time
+    return HASH_AVERAGE_WAITING_TIME[self.average_waiting_time]
+  end
+
 
   # clinic_selection_criteriaの区分値(このクリニック選定理由)
   HASH_CLINIC_SELECTION_CRITERIA = {
@@ -327,8 +463,230 @@ class Report < ApplicationRecord
     3 => "口コミがよかったから",
     4 => "料金が手頃だったから",
     5 => "以前に通ったことがあったから",
-    99 => "それ以上"
+    6 => "知人から勧められたから",
+    99 => "その他"
     }
+
+  def str_clinic_selection_criteria
+    return HASH_CLINIC_SELECTION_CRITERIA[self.clinic_selection_criteria]
+  end
+
+
+  # industry_typeの区分値(業種) ※参考→業種コード表（日本標準産業分類）
+  HASH_INDUSTRY_TYPE = {
+    1 => "農業 林業",
+    2 => "漁業",
+    3 => "鉱業 採石業 砂利採取業",
+    4 => "建設業",
+    5 => "製造業",
+    6 => "電気 ガス 熱供給 水道業",
+    7 => "情報通信業",
+    8 => "運輸業 郵便業",
+    9 => "卸売業 小売業",
+    10 => "金融業 保険業",
+    11 => "不動産業 物品賃貸業",
+    12 => "学術研究 専門サービス業",
+    13 => "生活関連サービス業 娯楽業",
+    14 => "教育 学習支援業",
+    15 => "医療 福祉",
+    16 => "複合サービス事業",
+    17 => "サービス業(他に分類されないもの)",
+    18 => "公務員",
+    19 => "分類不能の産業"
+  }
+
+  def str_industry_type
+    return HASH_INDUSTRY_TYPE[self.industry_type]
+  end
+
+
+  # private_or_listed_companyの区分値(上場非上場)
+  HASH_PRIVATE_OR_LISTED_COMPANY = {
+    1 => "上場企業",
+    2 => "非上場企業",
+    100 => "不明"
+  }
+
+  def str_private_or_listed_company
+    return HASH_PRIVATE_OR_LISTED_COMPANY[self.private_or_listed_company]
+  end
+
+
+  # domestic_or_foreign_capitalの区分値(日系or外資)
+  HASH_DOMESTIC_OR_FOREIGN_CAPITAL = {
+    1 => "日系企業",
+    2 => "外資系企業",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_domestic_or_foreign_capital
+    return HASH_DOMESTIC_OR_FOREIGN_CAPITAL[self.domestic_or_foreign_capital]
+  end
+
+
+  # capital_sizeの区分値(資本金)
+  HASH_CAPITAL_SIZE = {
+    1 => "5千万円以下",
+    2 => "1億円以下",
+    3 => "3億円以下",
+    4 => "3億円よりも大きい",
+    100 => "不明"
+  }
+
+  def str_capital_size
+    return HASH_CAPITAL_SIZE[self.capital_size]
+  end
+
+
+  # departmentの区分値(部署)
+  HASH_DEPARTMENT = {
+    1 => "企画･広報",
+    2 => "販売･営業",
+    3 => "製造･生産",
+    4 => "調達･購買",
+    5 => "生産管理･品質管理",
+    6 => "技術･研究開発",
+    7 => "総務･人事",
+    8 => "経理･財務",
+    9 => "情報システム",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_department
+    return HASH_DEPARTMENT[self.department]
+  end  
+
+
+  # positionの区分値(役職)
+  HASH_POSITION = {
+    1 => "経営層･役員クラス",
+    2 => "部長クラス",
+    3 => "課長クラス",
+    4 => "係長･主任クラス",
+    5 => "一般社員クラス",
+    6 => "その他専門職･特別職等",
+    99 => "その他"
+  }
+
+  def str_position
+    return HASH_POSITION[self.position]
+  end
+
+
+  # number_of_employeesの区分値(従業員数)
+  HASH_NUMBER_OF_EMPLOYEES = {
+    1 => "5人以下",
+    2 => "20人以下",
+    3 => "50人以下",
+    4 => "100人以下",
+    5 => "500人以下",
+    6 => "千人以下",
+    7 => "5千人以下",
+    8 => "1万人以下",
+    99 => "それ以上",
+    100 => "不明"
+  }
+
+  def str_number_of_employees
+    return HASH_NUMBER_OF_EMPLOYEES[self.number_of_employees]
+  end
+
+
+  # work_styleの区分値(働き方)
+  HASH_WORK_STYLE = {
+    1 => "公務員",
+    2 => "会社役員",
+    3 => "会社員(正社員)",
+    4 => "会社員(契約社員/派遣社員)",
+    5 => "自営業/フリーランス",
+    6 => "パート/アルバイト",
+    7 => "学生",
+    8 => "主婦",
+    9 => "無職",
+    99 => "その他"
+  }
+
+  def str_work_style
+    return HASH_WORK_STYLE[self.work_style]
+  end
+
+
+  # suspended_or_retirement_jobの区分値(治療に際しての働き方の変化)
+  HASH_SUSPENDED_OR_RETIREMENT_JOB = {
+    1 => "特に変わっていない",
+    2 => "休職した",
+    3 => "退職した",
+    4 => "転職した",
+    5 => "異動した(転部)",
+    6 => "役職を変えた",
+    99 => "その他"
+  }
+
+  def str_suspended_or_retirement_job
+    return HASH_SUSPENDED_OR_RETIREMENT_JOB[self.suspended_or_retirement_job]
+  end
+
+
+  # treatment_support_systemの区分値(社内の不妊治療のサポート制度有無)
+  HASH_TREATMENT_SUPPORT_SYSTEM = {
+    1 => "有る",
+    2 => "無い",
+    3 => "有るが機能していない(形骸化)",
+    4 => "制度導入予定",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_treatment_support_system
+    return HASH_TREATMENT_SUPPORT_SYSTEM[self.treatment_support_system]
+  end
+
+
+  # smokingの区分値(喫煙有無)
+  HASH_SMOKING = {
+    1 => "もとから非喫煙者(断煙済み)",
+    2 => "治療のために禁煙した",
+    3 => "禁煙しなかった",
+    99 => "その他"
+  }
+
+  def str_smoking
+    return HASH_SMOKING[self.smoking]
+  end
+
+  # average_waiting_timeの区分値(クリニックでの平均待ち時間)
+  HASH_AVERAGE_WAITING_TIME = {
+    1 => "1時間以内",
+    2 => "2時間以内",
+    3 => "3時間以内",
+    4 => "4時間以内",
+    5 => "5時間以内",
+    99 => "それ以上"
+  }
+
+  def str_average_waiting_time
+    return HASH_AVERAGE_WAITING_TIME[self.average_waiting_time]
+  end
+
+
+  # address_at_that_timeの区分値(治療中の住まい)
+
+
+  # period_of_time_spent_travelingの区分値(通院時間)
+  HASH_PERIOD_OF_TIME_SPENT_TRAVELING = {
+    1 => "1時間以内",
+    2 => "2時間以内",
+    3 => "3時間以内",
+    4 => "4時間以内",
+    5 => "5時間以内",
+    99 => "それ以上"
+  }
+
+  def str_period_of_time_spent_traveling
+    return HASH_PERIOD_OF_TIME_SPENT_TRAVELING[self.period_of_time_spent_traveling]
+  end
 
 
 
@@ -514,6 +872,32 @@ class Report < ApplicationRecord
     hash
   end
 
+  # all_number_of_sairanの区分値(全採卵回数/CL単位)
+  ALL_NUMBER_OF_SAIRAN_MAXIMUM = 1000
+  ALL_NUMBER_OF_SAIRAN_RANGE = 20
+  UPPER_THE_ALL_NUMBER_OF_SAIRAN_RANGE = ALL_NUMBER_OF_SAIRAN_RANGE + 1
+  STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM = "#{UPPER_THE_ALL_NUMBER_OF_SAIRAN_RANGE}#{TIMES}#{OR_MORE}"
+
+  def str_all_number_of_sairan
+    if self.all_number_of_sairan == ALL_NUMBER_OF_SAIRAN_MAXIMUM
+      STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM
+    elsif self.all_number_of_sairan >= 1 || self.all_number_of_sairan <= ALL_NUMBER_OF_SAIRAN_RANGE
+      "#{self.all_number_of_sairan} #{TIMES}"
+    else
+      raise
+    end
+  end
+
+  def self.make_select_options_all_number_of_sairan
+    hash = {}
+    (1..ALL_NUMBER_OF_SAIRAN_RANGE).each do |i|
+      hash["#{i}#{TIMES}"] = i
+    end
+
+    hash[STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM] = STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM
+    hash
+  end
+  
   # total_number_of_transplantsの区分値(全移植回数/CL単位)
   TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM = 1000
   TOTAL_NUMBER_OF_TRANSPLANTS_RANGE = 20
@@ -539,13 +923,38 @@ class Report < ApplicationRecord
     hash
   end
 
+  # all_number_of_transplantsの区分値(全移植回数/CL単位)
+  ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM = 1000
+  ALL_NUMBER_OF_TRANSPLANTS_RANGE = 20
+  UPPER_THE_ALL_NUMBER_OF_TRANSPLANTS_RANGE = ALL_NUMBER_OF_TRANSPLANTS_RANGE + 1
+  STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM = "#{UPPER_THE_ALL_NUMBER_OF_TRANSPLANTS_RANGE}#{TIMES}#{OR_MORE}"
+
+  def str_all_number_of_transplants
+    if self.all_number_of_transplants == ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM
+      STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM
+    elsif self.all_number_of_transplants >= 1 || self.all_number_of_transplants <= ALL_NUMBER_OF_TRANSPLANTS_RANGE
+      "#{self.all_number_of_transplants} #{TIMES}"
+    else
+      raise
+    end
+  end
+
+  def self.make_select_options_all_number_of_transplants
+    hash = {}
+    (1..ALL_NUMBER_OF_TRANSPLANTS_RANGE).each do |i|
+      hash["#{i}#{TIMES}"] = i
+    end
+    hash[STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM] = STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM
+    hash
+  end
+
   # number_of_eggs_collectedの区分値(採卵個数/CL単位)
   NUMBER_OF_EGGS_COLLECTED_MAXIMUM = 1000
   NUMBER_OF_EGGS_COLLECTED_RANGE1 = 100
   NUMBER_OF_EGGS_COLLECTED_RANGE2 = 106
   STR_NUMBER_OF_EGGS_COLLECTED_MAXIMUM = "1,000#{PIECES}#{OR_MORE}"
 
-  def str_total_number_of_eggs_collected
+  def str_number_of_eggs_collected
     case self.number_of_eggs_collected
     when UNKNOWN
       STR_UNKNOWN
@@ -661,59 +1070,59 @@ class Report < ApplicationRecord
     hash
   end
 
-  # successful_embryo_culture_daysの区分値(妊娠に至った胚の培養日数)
-  SUCCESSFUL_EMBRYO_CULTURE_DAYS_MAXIMUM = 1000
-  SUCCESSFUL_EMBRYO_CULTURE_DAYS_RANGE = 10
-  STR_SUCCESSFUL_EMBRYO_CULTURE_DAYS_MAXIMUM = "それ#{DAY}#{OR_MORE}"
+  # embryo_culture_daysの区分値(妊娠に至った胚の培養日数)
+  EMBRYO_CULTURE_DAYS_MAXIMUM = 1000
+  EMBRYO_CULTURE_DAYS_RANGE = 10
+  STR_EMBRYO_CULTURE_DAYS_MAXIMUM = "それ#{DAY}#{OR_MORE}"
 
-  def str_successful_embryo_culture_days
-    case self.successful_embryo_culture_days
+  def str_embryo_culture_days
+    case self.embryo_culture_days
     when UNKNOWN
       STR_UNKNOWN
-    when SUCCESSFUL_EMBRYO_CULTURE_DAYS_MAXIMUM
-      STR_SUCCESSFUL_EMBRYO_CULTURE_DAYS_MAXIMUM
-    when 1..SUCCESSFUL_EMBRYO_CULTURE_DAYS_RANGE1
-      "#{self.successful_embryo_culture_days} #{DAY}"
+    when EMBRYO_CULTURE_DAYS_MAXIMUM
+      STR_EMBRYO_CULTURE_DAYS_MAXIMUM
+    when 1..EMBRYO_CULTURE_DAYS_RANGE
+      "#{self.embryo_culture_days} #{DAY}"
     else
       raise
     end
   end
 
-  def self.make_select_options_successful_embryo_culture_days
+  def self.make_select_options_embryo_culture_days
     hash = {}
-    (1..SUCCESSFUL_EMBRYO_CULTURE_DAYS_RANGE).each do |i|
+    (1..EMBRYO_CULTURE_DAYS_RANGE).each do |i|
       hash["#{i}#{DAY}"] = i
     end
-    hash[STR_SUCCESSFUL_EMBRYO_CULTURE_DAYS_MAXIMUM] = STR_SUCCESSFUL_EMBRYO_CULTURE_DAYS_MAXIMUM
+    hash[STR_EMBRYO_CULTURE_DAYS_MAXIMUM] = STR_EMBRYO_CULTURE_DAYS_MAXIMUM
     hash[STR_UNKNOWN] = STR_UNKNOWN
     hash
   end
 
-  # successful_embryo_grade_sizeの区分値(妊娠に至った胚の大きさ) ないsize
-  HASH_SUCCESSFUL_EMBRYO_GRADE_SIZE = { "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "その他" => 99, "不明" => 100 }
-  SUCCESSFUL_EMBRYO_GRADE_SIZE_MAXIMUM = 1000
-  SUCCESSFUL_EMBRYO_GRADE_SIZE_RANGE = 10
-  STR_SUCCESSFUL_EMBRYO_GRADE_SIZE_MAXIMUM = "それ#{DAY}#{OR_MORE}"
+  # embryo_grade_sizeの区分値(妊娠に至った胚の大きさ) ないsize
+  HASH_EMBRYO_GRADE_SIZE = { "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "その他" => 99, "不明" => 100 }
+  EMBRYO_GRADE_SIZE_MAXIMUM = 1000
+  EMBRYO_GRADE_SIZE_RANGE = 10
+  STR_EMBRYO_GRADE_SIZE_MAXIMUM = "それ#{DAY}#{OR_MORE}"
 
-  def str_successful_embryo_grade_size
-    case self.successful_embryo_grade_size
+  def str_embryo_grade_size
+    case self.embryo_grade_size
     when UNKNOWN
       STR_UNKNOWN
-    when SUCCESSFUL_EMBRYO_GRADE_SIZE_MAXIMUM
-      STR_SUCCESSFUL_EMBRYO_GRADE_SIZE_MAXIMUM
-    when 1..SUCCESSFUL_EMBRYO_GRADE_SIZE_RANGE1
-      "#{self.successful_embryo_grade_size} #{DAY}"
+    when EMBRYO_GRADE_SIZE_MAXIMUM
+      STR_EMBRYO_GRADE_SIZE_MAXIMUM
+    when 1..EMBRYO_GRADE_SIZE_RANGE1
+      "#{self.embryo_grade_size} #{DAY}"
     else
       raise
     end
   end
 
-  def self.make_select_options_successful_embryo_grade_size
+  def self.make_select_options_embryo_grade_size
     hash = {}
-    (1..SUCCESSFUL_EMBRYO_GRADE_SIZE_RANGE).each do |i|
+    (1..EMBRYO_GRADE_SIZE_RANGE).each do |i|
       hash["#{i}#{DAY}"] = i
     end
-    hash[STR_SUCCESSFUL_EMBRYO_GRADE_SIZE_MAXIMUM] = STR_SUCCESSFUL_EMBRYO_GRADE_SIZE_MAXIMUM
+    hash[STR_EMBRYO_GRADE_SIZE_MAXIMUM] = STR_EMBRYO_GRADE_SIZE_MAXIMUM
     hash[STR_UNKNOWN] = STR_UNKNOWN
     hash
   end
@@ -723,49 +1132,60 @@ end
 #
 # Table name: reports
 #
-#  id                              :bigint           not null, primary key
-#  address_at_that_time            :integer
-#  amh                             :integer
-#  average_waiting_time            :integer
-#  bmi                             :integer
-#  clinic_review                   :text
-#  clinic_selection_criteria       :integer
-#  content                         :text
-#  cost                            :integer
-#  credit_card_validity            :integer
-#  current_state                   :integer
-#  fertility_treatment_number      :integer
-#  number_of_aih                   :integer
-#  number_of_clinics               :integer
-#  number_of_eggs_collected        :integer
-#  number_of_eggs_stored           :integer
-#  number_of_employees             :integer
-#  number_of_fertilized_eggs       :integer
-#  number_of_frozen_eggs           :integer
-#  period_of_time_spent_traveling  :integer
-#  scope_of_disclosure             :integer
-#  smoking                         :integer
-#  successful_egg_maturity         :integer
-#  successful_embryo_culture_days  :integer
-#  successful_embryo_grade_quality :integer
-#  successful_embryo_grade_size    :integer
-#  successful_ova_with_ivm         :integer
-#  title                           :string
-#  total_number_of_sairan          :integer
-#  total_number_of_transplants     :integer
-#  treatment_end_age               :integer
-#  treatment_period                :integer
-#  treatment_start_age             :integer
-#  treatment_type                  :integer
-#  type_of_sairan_cycle            :integer
-#  types_of_eggs_and_sperm         :integer
-#  types_of_fertilization_methods  :integer
-#  using_the_support_system        :integer
-#  work_style                      :integer
-#  created_at                      :datetime         not null
-#  updated_at                      :datetime         not null
-#  clinic_id                       :bigint           not null
-#  user_id                         :bigint           not null
+#  id                               :bigint           not null, primary key
+#  address_at_that_time             :integer
+#  all_number_of_sairan             :integer
+#  all_number_of_transplants        :integer
+#  amh                              :integer
+#  average_waiting_time             :integer
+#  blastocyst_grade1                :integer
+#  blastocyst_grade2                :integer
+#  bmi                              :integer
+#  capital_size                     :integer
+#  clinic_review                    :text
+#  clinic_selection_criteria        :integer
+#  content                          :text
+#  cost                             :integer
+#  credit_card_validity             :integer
+#  current_state                    :integer
+#  department                       :integer
+#  domestic_or_foreign_capital      :integer
+#  early_embryo_grade               :integer
+#  egg_maturity                     :integer
+#  embryo_culture_days              :integer
+#  embryo_stage                     :integer
+#  fertility_treatment_number       :integer
+#  industry_type                    :integer
+#  number_of_aih                    :integer
+#  number_of_clinics                :integer
+#  number_of_eggs_collected         :integer
+#  number_of_eggs_stored            :integer
+#  number_of_employees              :integer
+#  number_of_fertilized_eggs        :integer
+#  number_of_frozen_eggs            :integer
+#  ova_with_ivm                     :integer
+#  period_of_time_spent_traveling   :integer
+#  position                         :integer
+#  private_or_listed_company        :integer
+#  reasons_for_choosing_this_clinic :text
+#  smoking                          :integer
+#  suspended_or_retirement_job      :integer
+#  title                            :string
+#  total_number_of_sairan           :integer
+#  total_number_of_transplants      :integer
+#  treatment_end_age                :integer
+#  treatment_period                 :integer
+#  treatment_start_age              :integer
+#  treatment_support_system         :integer
+#  treatment_type                   :integer
+#  type_of_sairan_cycle             :integer
+#  types_of_eggs_and_sperm          :integer
+#  types_of_fertilization_methods   :integer
+#  work_style                       :integer
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  clinic_id                        :bigint           not null
+#  user_id                          :bigint           not null
 #
 # Indexes
 #

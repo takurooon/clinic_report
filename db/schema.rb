@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_113100) do
+ActiveRecord::Schema.define(version: 2019_11_21_131044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,19 +76,19 @@ ActiveRecord::Schema.define(version: 2019_11_07_113100) do
   end
 
   create_table "f_diseases", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "f_infertility_factors", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "f_surgeries", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -101,43 +101,43 @@ ActiveRecord::Schema.define(version: 2019_11_07_113100) do
   end
 
   create_table "m_diseases", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "m_infertility_factors", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "m_surgeries", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "other_efforts", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "ovarian_stimulations", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "ovulation_inducers", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "ovulation_inhibitors", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -232,6 +232,15 @@ ActiveRecord::Schema.define(version: 2019_11_07_113100) do
     t.index ["report_id"], name: "index_report_ovulation_inhibitors_on_report_id"
   end
 
+  create_table "report_scope_of_disclosures", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "scope_of_disclosure_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_report_scope_of_disclosures_on_report_id"
+    t.index ["scope_of_disclosure_id"], name: "index_report_scope_of_disclosures_on_scope_of_disclosure_id"
+  end
+
   create_table "report_supplements", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.bigint "supplement_id", null: false
@@ -261,43 +270,54 @@ ActiveRecord::Schema.define(version: 2019_11_07_113100) do
 
   create_table "reports", force: :cascade do |t|
     t.string "title"
-    t.integer "fertility_treatment_number"
-    t.integer "treatment_type"
     t.integer "current_state"
-    t.integer "work_style"
-    t.integer "number_of_employees"
+    t.integer "fertility_treatment_number"
     t.integer "number_of_clinics"
-    t.integer "address_at_that_time"
-    t.integer "number_of_aih"
+    t.integer "clinic_selection_criteria"
+    t.integer "treatment_type"
     t.integer "treatment_start_age"
     t.integer "treatment_end_age"
     t.integer "treatment_period"
+    t.integer "number_of_aih"
     t.integer "amh"
     t.integer "bmi"
+    t.integer "smoking"
     t.integer "types_of_eggs_and_sperm"
-    t.integer "total_number_of_sairan"
-    t.integer "number_of_eggs_collected"
-    t.integer "total_number_of_transplants"
-    t.integer "number_of_eggs_stored"
     t.integer "type_of_sairan_cycle"
+    t.integer "total_number_of_sairan"
+    t.integer "all_number_of_sairan"
+    t.integer "number_of_eggs_collected"
+    t.integer "egg_maturity"
+    t.integer "ova_with_ivm"
     t.integer "types_of_fertilization_methods"
     t.integer "number_of_fertilized_eggs"
     t.integer "number_of_frozen_eggs"
+    t.integer "embryo_culture_days"
+    t.integer "embryo_stage"
+    t.integer "early_embryo_grade"
+    t.integer "blastocyst_grade1"
+    t.integer "blastocyst_grade2"
+    t.integer "total_number_of_transplants"
+    t.integer "all_number_of_transplants"
+    t.integer "number_of_eggs_stored"
     t.integer "cost"
     t.integer "credit_card_validity"
-    t.integer "clinic_selection_criteria"
-    t.integer "successful_egg_maturity"
-    t.integer "successful_embryo_culture_days"
-    t.integer "successful_embryo_grade_quality"
-    t.integer "successful_embryo_grade_size"
-    t.integer "successful_ova_with_ivm"
     t.integer "average_waiting_time"
-    t.integer "smoking"
     t.integer "period_of_time_spent_traveling"
-    t.integer "using_the_support_system"
-    t.integer "scope_of_disclosure"
+    t.integer "address_at_that_time"
+    t.integer "work_style"
+    t.integer "industry_type"
+    t.integer "private_or_listed_company"
+    t.integer "domestic_or_foreign_capital"
+    t.integer "capital_size"
+    t.integer "department"
+    t.integer "position"
+    t.integer "number_of_employees"
+    t.integer "treatment_support_system"
+    t.integer "suspended_or_retirement_job"
     t.text "content"
     t.text "clinic_review"
+    t.text "reasons_for_choosing_this_clinic"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "clinic_id", null: false
@@ -306,8 +326,14 @@ ActiveRecord::Schema.define(version: 2019_11_07_113100) do
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
+  create_table "scope_of_disclosures", force: :cascade do |t|
+    t.string "scope"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "supplements", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -319,7 +345,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_113100) do
   end
 
   create_table "transfer_options", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -350,7 +376,9 @@ ActiveRecord::Schema.define(version: 2019_11_07_113100) do
     t.string "provider"
     t.string "uid"
     t.string "username"
+    t.string "image_url"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -379,6 +407,8 @@ ActiveRecord::Schema.define(version: 2019_11_07_113100) do
   add_foreign_key "report_ovulation_inducers", "reports"
   add_foreign_key "report_ovulation_inhibitors", "ovulation_inhibitors"
   add_foreign_key "report_ovulation_inhibitors", "reports"
+  add_foreign_key "report_scope_of_disclosures", "reports"
+  add_foreign_key "report_scope_of_disclosures", "scope_of_disclosures"
   add_foreign_key "report_supplements", "reports"
   add_foreign_key "report_supplements", "supplements"
   add_foreign_key "report_tags", "reports"

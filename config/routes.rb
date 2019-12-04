@@ -17,11 +17,15 @@ Rails.application.routes.draw do
   end
   
   resources :reports do
+    collection do
+      post :confirm
+    end
     resource :likes, only: [:create, :destroy]
+    
   end
   
-  resources :clinic_reviews, only: %i[index]
   resources :comments, only: %i[create destroy]
+  resources :clinic_reviews, only: %i[index]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
@@ -61,6 +65,7 @@ end
 #                                       PATCH  /users/:id(.:format)                                                                     users#update
 #                                       PUT    /users/:id(.:format)                                                                     users#update
 #                                       DELETE /users/:id(.:format)                                                                     users#destroy
+#                       confirm_reports POST   /reports/confirm(.:format)                                                               reports#confirm
 #                          report_likes DELETE /reports/:report_id/likes(.:format)                                                      likes#destroy
 #                                       POST   /reports/:report_id/likes(.:format)                                                      likes#create
 #                               reports GET    /reports(.:format)                                                                       reports#index
@@ -71,9 +76,9 @@ end
 #                                       PATCH  /reports/:id(.:format)                                                                   reports#update
 #                                       PUT    /reports/:id(.:format)                                                                   reports#update
 #                                       DELETE /reports/:id(.:format)                                                                   reports#destroy
-#                        clinic_reviews GET    /clinic_reviews(.:format)                                                                clinic_reviews#index
 #                              comments POST   /comments(.:format)                                                                      comments#create
 #                               comment DELETE /comments/:id(.:format)                                                                  comments#destroy
+#                        clinic_reviews GET    /clinic_reviews(.:format)                                                                clinic_reviews#index
 #                     letter_opener_web        /letter_opener                                                                           LetterOpenerWeb::Engine
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create

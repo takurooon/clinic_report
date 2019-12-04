@@ -1,3 +1,16 @@
-// Place all the styles related to the my_page controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.mypage.row {
+  margin-left: -10px; /* 「rowがデフォルトで持つネガティブmargin（-15px）」 - 「liに持たせたいpadding 」*/
+  margin-right: -10px; /* 「rowがデフォルトで持つネガティブmargin（-15px）」 - 「liに持たせたいpadding 」*/
+}
+.mypage-content {
+  padding: 0 5px; /* 隣り合うborder同士の余白 */
+}
+
+.mypage-sidemenu {
+  padding: 0 5px; /* 隣り合うborder同士の余白 */
+}
+
+.mypage-menu-item {
+  padding: 10px;
+  border: solid #333333;
+}

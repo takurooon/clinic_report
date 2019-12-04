@@ -16,7 +16,7 @@ h1 {
 }
 
 .navbar {
-  height: 45px;
+  height: 60px;
 }
 
 .navbar-btn {
@@ -50,4 +50,13 @@ h1 {
 
 .sns-signupin-button {
   margin: 15px;
+}
+
+.report-box-inner a:link {
+  text-decoration: none;
+}
+
+.report-box-inner a:hover {
+  text-decoration: underline;
+  color: rgb(38, 130, 244);
 }

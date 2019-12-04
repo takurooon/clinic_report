@@ -13,6 +13,7 @@
 #  encrypted_password     :string           default(""), not null
 #  gender                 :integer
 #  icon                   :string
+#  image_url              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :inet
 #  link                   :string
@@ -32,6 +33,7 @@
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_provider_and_uid      (provider,uid) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 

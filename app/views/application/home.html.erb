@@ -1,41 +1,12 @@
 <div class="mainview">
-  <h1>みんなの治療レポートを参考にしよう</h1>
   <div class="row">
     <div class="catch col-md">
+      <h1>みんなの治療レポートを参考にしよう</h1>
         <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-      <%= link_to "レポートを見る", reports_path, class: "btn btn-info rounded-pill home-welcome-btn" %>
+        <%= link_to "レポート一覧", reports_path, class:"btn btn-info rounded-pill home-welcome-btn btn-block disabled w-50 mx-auto" %>
     </div>
     <div class="home-top-img col-md">
-      <%= image_tag "home/home_top_img.png", alt: "home-top-img", width: "800px", class: "img-fluid", loading: "lazy" %>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid summary">
-  <div class="inner">
-    <h2 class="alignCenter">レポートを参考にしてみよう</h2>
-    <div class="sumaryBox row">
-      <div class="sumaryBox__item-icon">
-        <i class="far fa-user-circle"></i>
-      </div>
-      <div class="sumaryBox__item">
-        <div>ユーザー数</div>
-        <div><%= @users.count %>人</div>
-      </div>
-      <div class="sumaryBox__item-icon">
-        <i class="far fa-id-card"></i>
-      </div>
-      <div class="sumaryBox__item">
-        <div>レポート数</div>
-        <div><%= @reports.count %>件</div>
-      </div>
-      <div class="sumaryBox__item-icon">
-        <i class="far fa-handshake"></i>
-      </div>
-      <div class="sumaryBox__item">
-        <div>クリニック数</div>
-        <div><span>1,000</span>件</div>
-      </div>
+      <%= image_tag "home/home_top_img.png", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
     </div>
   </div>
 </div>

@@ -3,23 +3,26 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def home
-    @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
-    @reports = @reports.page(params[:page]).order(updated_at: :desc)
+    set_allreport
     @reports = Report.all
     @users = User.all
   end
 
   def index
-    @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
-    @reports = @reports.page(params[:page]).order(updated_at: :desc)
+    set_allreport
   end
 
   def show
+    set_report
     @comment = Comment.new(report_id: @report.id)
   end
 
   def new
     @report = Report.new
+  end
+
+  def confirm
+    @report = Report.new(report_params)
   end
 
   def edit
@@ -30,7 +33,9 @@ class ReportsController < ApplicationController
     @report.user_id = current_user.id
   
     respond_to do |format|
-      if @report.save
+      if params[:back]
+        format.html { render :new }
+      elsif @report.save
         format.html { redirect_to report_path(@report), notice: 'レポートを作成しました。' }
         format.json { render :show, status: :created, location: @report }
       else
@@ -66,52 +71,76 @@ class ReportsController < ApplicationController
       @report = Report.find(params[:id])
     end
 
+    def set_allreport
+      @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
+      @reports = @reports.page(params[:page]).order(updated_at: :desc)
+    end
+
     def report_params
       params.require(:report).permit(
+      :clinic_id,
       :title,
-      :fertility_treatment_number,
-      :treatment_type,
       :current_state,
-      :work_style,
-      :number_of_employees,
-      :address_at_that_time,
+      :fertility_treatment_number,
       :number_of_clinics,
-      :address_at_that_time,
-      :number_of_aih,
+      :clinic_selection_criteria,
+      :treatment_type,
       :treatment_start_age,
       :treatment_end_age,
       :treatment_period,
+      :number_of_aih,
       :amh,
       :bmi,
+      :smoking,
       :types_of_eggs_and_sperm,
-      :total_number_of_sairan,
-      :number_of_eggs_collected,
-      :total_number_of_transplants,
-      :number_of_eggs_stored,
       :type_of_sairan_cycle,
+      :total_number_of_sairan,
+      :all_number_of_sairan,
+      :number_of_eggs_collected,
+      :egg_maturity,
+      :ova_with_ivm,
       :types_of_fertilization_methods,
       :number_of_fertilized_eggs,
       :number_of_frozen_eggs,
-      :content,
-      :successful_egg_maturity,
-      :successful_embryo_culture_days,
-      :successful_embryo_grade_quality,
-      :successful_embryo_grade_size,
-      :successful_ova_with_ivm,
-      :clinic_id,
+      :embryo_culture_days,
+      :embryo_stage,
+      :early_embryo_grade,
+      :blastocyst_grade1,
+      :blastocyst_grade2,
+      :total_number_of_transplants,
+      :all_number_of_transplants,
+      :number_of_eggs_stored,
       :cost,
       :credit_card_validity,
-      :clinic_selection_criteria,
-      :clinic_review,
-      :successful_embryo_grade_quality,
-      :successful_embryo_grade_size,
-      :successful_ova_with_ivm,
       :average_waiting_time,
-      :smoking,
       :period_of_time_spent_traveling,
-      :using_the_support_system,
-      :scope_of_disclosure,
+      :address_at_that_time,
+      :work_style,
+      :industry_type,
+      :private_or_listed_company,
+      :domestic_or_foreign_capital,
+      :capital_size,
+      :department,
+      :position,
+      :number_of_employees,
+      :treatment_support_system,
+      :suspended_or_retirement_job,
+      :reasons_for_choosing_this_clinic,
       :content,
+      :clinic_review,
+      f_infertility_factor_ids: [],
+      m_infertility_factor_ids: [],
+      f_disease_ids: [],
+      m_disease_ids: [],
+      f_surgery_ids: [],
+      m_surgery_ids: [],
+      ovarian_stimulation_ids: [],
+      ovulation_inhibitor_ids: [],
+      ovulation_inducer_ids: [],
+      transfer_option_ids: [],
+      other_effort_ids: [],
+      supplement_ids: [],
+      scope_of_disclosure_ids: [],
       tag_ids: []
       )
     end

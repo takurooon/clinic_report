@@ -1,11 +1,11 @@
-<div class="d-flex align-items-center">
-  <h1>レポート作成</h1>
-  <div class="ml-auto posts_button">
-    <%= link_to "レポート一覧", reports_path, class:"btn btn-outline-info" %>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8 d-flex align-items-center">
+    <h1>レポート作成</h1>
+    <div class="ml-auto posts_button">
+      <%= link_to "レポート一覧", reports_path, class:"btn btn-outline-info" %>
+    </div>
   </div>
 </div>
 
 <%= render 'form', report: @report %><br>
-
-<%= link_to '戻る', @report, class:"btn btn-outline-info button" %>
-<%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>

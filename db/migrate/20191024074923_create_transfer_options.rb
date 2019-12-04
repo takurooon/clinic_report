@@ -1,7 +1,7 @@
 class CreateTransferOptions < ActiveRecord::Migration[6.0]
   def change
     create_table :transfer_options do |t|
-      t.integer :name
+      t.string :name
 
       t.timestamps
     end

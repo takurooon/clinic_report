@@ -1,0 +1,21 @@
+.row.category{
+  margin-bottom: 100px;
+}
+
+img.category-img {
+  width: 70px;
+}
+
+.row.category-list {
+  background-color:#fff;
+  padding: 20px 10px;
+  box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
+  margin:20px 0px;
+}
+
+.row.category-list .category-title{
+  height: 50px;
+  padding: 20px 0px;
+  font-size: 18px;
+  color:#333;
+}

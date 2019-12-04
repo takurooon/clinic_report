@@ -1,24 +1,22 @@
-<%= form_with(model: report, local: true, url: confirm_reports_path) do |f| %>
-  <% if report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+<%= form_with(model: @report, local: true) do |f| %>
 
-      <ul>
-        <% report.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
   <div class="row  justify-content-center">
     <div class="col-md-8">
-      <div class="form-group">
-        <%= f.label :current_state, '投稿時点(現在)の状況を教えて下さい。' %>
-          <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, {}, { :class => "form-control" }  %>
-          <small id="poster-tip" class="form-text text-muted">
-              妊娠中または出産しているか選択してください。
-          </small>
+    <h2>投稿内容の確認</h2><br>
+      <p>以下の内容でよろしいですか？</p>
+      <p>内容に誤りがなければ投稿してください。</p>
+      <p>内容を修正したい場合には「戻る」ボタンで入力フォームにお戻りください。なお、投稿後も修正/編集は可能です。</p>
+
+      <div class="current-status border rounded px-3 py-2 mt-5">
+        <h3>現在(投稿時点)の状況を教えて下さい。</h3>
+        <div class="form-group">
+          <% f.label :current_state, '現在(投稿時点)の状況を教えて下さい。' %>
+            <%= f.hidden_field :current_state %>
+            <p class="answer"><%= @report.str_current_state %></p>
+            <small id="poster-tip" class="form-text text-muted">
+                妊娠中または出産しているか選択してください。
+            </small>
+        </div>
       </div>
       
       <div class="clinic-overview border rounded px-3 py-2 mt-5">
@@ -27,7 +25,8 @@
           <div class="col-md-6">
             <div class="form-group">
               <%= f.label :clinic_id, 'クリニック選択してください。' %>
-              <%= f.text_field :clinic_id, :class => "form-control" %>
+              <%= f.hidden_field :clinic_id, :class => "form-control" %>
+              <p class-"answer"><%= @report.clinic_id %></p>
               <small id="poster-tip" class="form-text text-muted">
                   最新のクリニックを選んでください。
               </small>
@@ -36,7 +35,8 @@
           <div class="col-md-6">
             <div class="form-group">
               <%= f.label :number_of_clinics, 'このクリニックは何院目ですか？' %>
-              <%= f.select :number_of_clinics, Report.make_select_options_number_of_clinics, {}, { :class => "form-control" } %>
+              <%= f.hidden_field :number_of_clinics %>
+              <p class="answer"><%= @report.str_number_of_clinics %></p>
               <small id="poster-tip" class="form-text text-muted">
                   治療を開始してから何院目の医療機関か選択してください。
               </small>
@@ -48,14 +48,16 @@
           <div class="col-md-12">
             <div class="form-group">
               <%= f.label :clinic_selection_criteria, 'このクリニックを選んだ理由' %>
-              <%= f.select :clinic_selection_criteria, Report::HASH_CLINIC_SELECTION_CRITERIA.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :clinic_selection_criteria %>
+              <p class="answer"><%= @report.str_clinic_selection_criteria %></p>
               <small id="poster-tip" class="form-text text-muted">
                   当てはまるものを選択してください。
               </small>
             </div> 
             <div class="form-group">
               <%= f.label :reasons_for_choosing_this_clinic, 'このクリニックを選んだ理由について(自由記述)。' %>
-              <%= f.text_area :reasons_for_choosing_this_clinic, :class => "form-control", rows: 5, :placeholder => "例):信頼する〇〇医師がいたから/ 〇〇治療を実施できるクリニックだったから など" %>
+              <%= f.hidden_field :reasons_for_choosing_this_clinic %>
+              <p class="answer"><%= @report.reasons_for_choosing_this_clinic %></p>
               <small id="poster-tip" class="form-text text-muted">
                 どういう基準でクリニックを選ばれたかを教えてください。
               </small>
@@ -68,378 +70,366 @@
       <h3>治療レポート</h3>
         <div class="form-group">
           <%= f.label :title, 'あなたの治療レポートのタイトル' %>
-          <%= f.text_field :title, :class => "form-control", :placeholder => "レポートのタイトル" %>
+          <%= f.hidden_field :title %>
+          <p class="answer"><%= @report.title %></p>
           <small id="poster-tip" class="form-text text-muted">
           </small>
         </div>
         <div class="form-group">
           <%= f.label :content, '妊娠した/治療を断念したクリニックの詳しい治療内容を書き残してください。' %>
-          <%= f.rich_text_area :content, :placeholder => "治療内容、数値、費用、CLの雰囲気や感想など(文字制限無し)" %>
+          <%= f.hidden_field :content %>
+          <%= @report.content %>
           <small id="poster-tip" class="form-text text-muted">
             この後にある質問項目を先に答えると、治療レポートをより詳しく作成しやすくなります。
           </small>
         </div>
       </div>
+    
       <div class="question border rounded px-3 py-2 mt-5">
       <h3>クリニックでの治療情報</h3>
         <div class="form-group">
           <%= f.label :fertility_treatment_number, '何人目の不妊治療ですか?（何人目不妊ですか）' %>
-          <%= f.select :fertility_treatment_number, Report.make_select_options_fertility_treatment_number, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :fertility_treatment_number %>
+          <p class="answer"><%= @report.str_fertility_treatment_number %></p>
           <small id="poster-tip" class="form-text text-muted">
               選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :treatment_type, '治療の種類を選択してください' %>
-          <%= f.select :treatment_type, Report::HASH_TREATMENT_TYPE.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :treatment_type %>
+          <p class="answer"><%= @report.str_treatment_type %></p>
           <small id="poster-tip" class="form-text text-muted">
               治療の種類を選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :treatment_start_age, 'このクリニックで治療を開始したのは何歳の時ですか' %>
-          <%= f.select :treatment_start_age, Report.make_select_options_treatment_start_age, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :treatment_start_age %>
+          <p class="answer"><%= @report.str_treatment_start_age %></p>
           <small id="poster-tip" class="form-text text-muted">
               通院を開始した年齢を選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :treatment_end_age, 'このクリニックで治療を終了したのは何歳の時ですか' %>
-          <%= f.select :treatment_end_age, Report.make_select_options_treatment_end_age, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :treatment_end_age %>
+          <p class="answer"><%= @report.str_treatment_end_age %></p>
           <small id="poster-tip" class="form-text text-muted">
               妊娠、または治療を断念し、通院を終了した年齢を選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :treatment_period, 'お休み期間をのぞくと正味このクリニックにはどれくらいの期間通院しましたか' %>
-          <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :treatment_period %>
+          <p class="answer"><%= @report.str_treatment_period %></p>
           <small id="poster-tip" class="form-text text-muted">
               おおよその期間を選択ください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :number_of_aih, '体外・顕微受精にステップアップする前に人工授精は何回実施しましたか' %>
-          <%= f.select :number_of_aih, Report.make_select_options_number_of_aih, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :number_of_aih %>
+          <p class="answer"><%= @report.str_number_of_aih %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :amh, '治療中のAMH値はいくつでしたか' %>
-          <%= f.select :amh, Report::HASH_AMH.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :amh %>
+          <p class="answer"><%= @report.str_amh %></p>
           <small id="poster-tip" class="form-text text-muted">
               一番直近の値を選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :bmi, '治療中のBMI値はいくつでしたか' %>
-          <%= f.select :bmi, Report::HASH_BMI.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :bmi %>
+          <p class="answer"><%= @report.str_bmi %></p>
           <small id="poster-tip" class="form-text text-muted">
               一番直近の値を選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :smoking, '治療中の喫煙の有無' %>
-          <%= f.select :smoking, Report::HASH_SMOKING.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :smoking %>
+          <p class="answer"><%= @report.str_smoking %></p>
           <small id="poster-tip" class="form-text text-muted">
               一番近いものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :f_infertility_factor, '女性側の不妊原因を教えてください' %><br>
-          <div class="border rounded px-3 py-3 ">
-            <%= f.collection_check_boxes(:f_infertility_factor_ids, FInfertilityFactor.all, :id, :name) do |b| %>
-              <div class="form-check form-check-inline">
-                <%= b.label class: "form-check-label" do %>
-                  <%= b.check_box class: "form-check-input" %>
-                  <%= b.text %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <%= f.label :f_infertility_factor, '女性側の不妊原因' %><br>
+          <%= f.hidden_field :f_infertility_factor_ids, multiple: true, value: nil %>
+          <% @report.f_infertility_factors.each do |f_infertility_factor| %>
+            <% f.hidden_field :f_infertility_factor_ids, multiple: true, value: f_infertility_factor.id %>
+            <span class="answer"><%= f_infertility_factor.str_f_infertility_factor %></span>
+          <% end %>
           <small id="poster-tip" class="form-text text-muted">
             当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :m_infertility_factor, '男性側の不妊原因を教えてください' %><br>
-          <div class="border rounded px-3 py-3 ">
-            <%= f.collection_check_boxes(:m_infertility_factor_ids, MInfertilityFactor.all, :id, :name) do |b| %>
-              <div class="form-check form-check-inline">
-                <%= b.label class: "form-check-label" do %>
-                  <%= b.check_box class: "form-check-input" %>
-                  <%= b.text %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <%= f.label :m_infertility_factor, '男性側の不妊原因' %><br>
+          <%= f.hidden_field :m_infertility_factor_ids, multiple: true, value: nil %>
+          <% @report.m_infertility_factors.each do |m_infertility_factor| %>
+            <% f.hidden_field :m_infertility_factor_ids, multiple: true, value: m_infertility_factor.id %>
+            <span class="answer"><%= m_infertility_factor.str_m_infertility_factor %></span>
+          <% end %>
           <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
+          当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :f_disease, '女性側の疾患があれば教えてください' %><br>
-          <div class="border rounded px-3 py-3 ">
-            <%= f.collection_check_boxes(:f_disease_ids, FDisease.all, :id, :name) do |b| %>
-              <div class="form-check form-check-inline">
-                <%= b.label class: "form-check-label" do %>
-                  <%= b.check_box class: "form-check-input" %>
-                  <%= b.text %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <%= f.label :f_disease, '女性側の疾患' %><br>
+          <%= f.hidden_field :f_disease_ids, multiple: true, value: nil %>
+          <% @report.f_diseases.each do |f_disease| %>
+            <% f.hidden_field :f_disease_ids, multiple: true, value: f_disease.id %>
+            <span class="answer"><%= f_disease.str_f_disease %></span>
+          <% end %>
           <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
+          当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :m_disease, '男性側の疾患があれば教えてください' %><br>
-          <div class="border rounded px-3 py-3 ">
-            <%= f.collection_check_boxes(:m_disease_ids, MDisease.all, :id, :name) do |b| %>
-              <div class="form-check form-check-inline">
-                <%= b.label class: "form-check-label" do %>
-                  <%= b.check_box class: "form-check-input" %>
-                  <%= b.text %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <%= f.label :m_disease, '男性側の疾患' %><br>
+          <%= f.hidden_field :m_disease_ids, multiple: true, value: nil %>
+          <% @report.m_diseases.each do |m_disease| %>
+            <% f.hidden_field :m_disease_ids, multiple: true, value: m_disease.id %>
+            <span class="answer"><%= m_disease.str_m_disease %></span>
+          <% end %>
           <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
+          当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :f_surgery, '女性側での手術歴があれば教えてください' %><br>
-          <div class="border rounded px-3 py-3 ">
-            <%= f.collection_check_boxes(:f_surgery_ids, FSurgery.all, :id, :name) do |b| %>
-              <div class="form-check form-check-inline">
-                <%= b.label class: "form-check-label" do %>
-                  <%= b.check_box class: "form-check-input" %>
-                  <%= b.text %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <%= f.label :f_surgery, '女性側の手術歴' %><br>
+          <%= f.hidden_field :f_surgery_ids, multiple: true, value: nil %>
+          <% @report.f_surgeries.each do |f_surgery| %>
+            <% f.hidden_field :f_surgery_ids, multiple: true, value: f_surgery.id %>
+            <span class="answer"><%= f_surgery.str_f_surgery %></span>
+          <% end %>
           <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
+          当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :m_surgery, '男性側での手術歴があれば教えてください' %><br>
-          <div class="border rounded px-3 py-3 ">
-            <%= f.collection_check_boxes(:m_surgery_ids, MSurgery.all, :id, :name) do |b| %>
-              <div class="form-check form-check-inline">
-                <%= b.label class: "form-check-label" do %>
-                  <%= b.check_box class: "form-check-input" %>
-                  <%= b.text %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <%= f.label :m_surgery, '男性側の手術歴' %><br>
+          <%= f.hidden_field :m_surgery_ids, multiple: true, value: nil %>
+          <% @report.m_surgeries.each do |m_surgery| %>
+            <% f.hidden_field :m_surgery_ids, multiple: true, value: m_surgery.id %>
+            <span class="answer"><%= m_surgery.str_m_surgery %></span>
+          <% end %>
           <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
+          当てはまるものを選択してください。
           </small>
-        </div>
+        </div>        
         <div class="form-group">
           <%= f.label :types_of_eggs_and_sperm, '用いた卵子と精子' %>
-          <%= f.select :types_of_eggs_and_sperm, Report::HASH_TYPES_OF_EGGS_AND_SPERM.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :types_of_eggs_and_sperm %>
+          <p class="answer"><%= @report.str_types_of_eggs_and_sperm %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :type_of_sairan_cycle, '妊娠に至った周期の採卵誘発方法は' %>
-          <%= f.select :type_of_sairan_cycle, Report::HASH_TYPE_OF_SAIRAN_CYCLE.invert, {}, { :class => "form-control" }  %>
-          <small id="poster-tip" class="form-text text-muted">
-              当てはまるものを選択してください。
-          </small>
-        </div>
-        
-        <div class="form-group">
-          <%= f.label :total_number_of_sairan, 'このクリニックでの全採卵回数' %>
-          <%= f.select :total_number_of_sairan, Report.make_select_options_total_number_of_sairan, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :type_of_sairan_cycle %>
+          <p class="answer"><%= @report.str_type_of_sairan_cycle %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :all_number_of_sairan, 'このクリニックでの全採卵回数' %>
-          <%= f.select :all_number_of_sairan, Report.make_select_options_all_number_of_sairan, {}, { :class => "form-control" }  %>
+          <%= f.label :total_number_of_sairan, 'このクリニックでの全採卵「回」数' %>
+          <%= f.hidden_field :total_number_of_sairan %>
+          <p class="answer"><%= @report.str_total_number_of_sairan %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :number_of_eggs_collected, 'このクリニックでの全採卵個数' %>
-          <%= f.select :number_of_eggs_collected, Report.make_select_options_number_of_eggs_collected, {}, { :class => "form-control" }  %>
+          <%= f.label :all_number_of_sairan, 'このクリニック以外も含めた全採卵「回」数' %>
+          <%= f.hidden_field :all_number_of_sairan %>
+          <p class="answer"><%= @report.str_all_number_of_sairan %></p>
+          <small id="poster-tip" class="form-text text-muted">
+              当てはまるものを選択してください。
+          </small>
+        </div>
+        <div class="form-group">
+          <%= f.label :number_of_eggs_collected, 'このクリニックでの全採卵「個」数' %>
+          <%= f.hidden_field :number_of_eggs_collected %>
+          <p class="answer"><%= @report.str_number_of_eggs_collected %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :egg_maturity, '妊娠に至った卵子の成熟度' %>
-          <%= f.select :egg_maturity, Report::HASH_EGG_MATURITY.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :egg_maturity %>
+          <p class="answer"><%= @report.str_egg_maturity %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :ova_with_ivm, '妊娠に至った卵子の成熟度' %>
-          <%= f.select :ova_with_ivm, Report::HASH_OVA_WITH_IVM.invert, {}, { :class => "form-control" }  %>
+          <%= f.label :ova_with_ivm, 'IVM実施の有無' %>
+          <%= f.hidden_field :ova_with_ivm %>
+          <p class="answer"><%= @report.str_ova_with_ivm %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :types_of_fertilization_methods, '妊娠に至った卵子と精子の受精方法を教えてください' %>
-          <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :types_of_fertilization_methods %>
+          <p class="answer"><%= @report.str_types_of_fertilization_methods %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :number_of_fertilized_eggs, '最新の周期で受精まで至った個数' %>
-          <%= f.select :number_of_fertilized_eggs, Report.make_select_options_number_of_eggs_collected, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :number_of_fertilized_eggs %>
+          <p class="answer"><%= @report.str_number_of_fertilized_eggs %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :number_of_frozen_eggs, '最新の周期で受精した胚はいくつ凍結できましたか' %>
-          <%= f.select :number_of_frozen_eggs, Report.make_select_options_number_of_frozen_eggs, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :number_of_frozen_eggs %>
+          <p class="answer"><%= @report.str_number_of_frozen_eggs %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :embryo_culture_days, '妊娠に至った胚の培養日数' %>
-          <%= f.select :embryo_culture_days, Report.make_select_options_embryo_culture_days, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :embryo_culture_days %>
+          <p class="answer"><%= @report.str_embryo_culture_days %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :embryo_stage, '妊娠に至った胚のステージ' %>
-          <%= f.select :embryo_stage, Report::HASH_EMBRYO_STAGE.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :embryo_stage %>
+          <p class="answer"><%= @report.str_embryo_stage %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :early_embryo_grade, '初期胚のグレード' %>
-          <%= f.select :early_embryo_grade, Report::HASH_EARLY_EMBRYO_GRADE.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :early_embryo_grade %>
+          <p class="answer"><%= @report.str_early_embryo_grade %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :blastocyst_grade1, '胚盤胞以上のグレード' %>
-          <%= f.select :blastocyst_grade1, Report::HASH_BLASTOCYST_GRADE1.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :blastocyst_grade1 %>
+          <p class="answer"><%= @report.str_blastocyst_grade1 %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :blastocyst_grade2, '胚盤胞以上の評価' %>
-          <%= f.select :blastocyst_grade2, Report::HASH_BLASTOCYST_GRADE2.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :blastocyst_grade2 %>
+          <p class="answer"><%= @report.str_blastocyst_grade2 %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :transfer_option, '移植オプション（複数選択可）' %><br>
-          <div class="border rounded px-3 py-3 ">
-            <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
-              <div class="form-check form-check-inline">
-                <%= b.label class: "form-check-label" do %>
-                  <%= b.check_box class: "form-check-input" %>
-                  <%= b.text %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <%= f.label :transfer_option, '移植オプション' %><br>
+          <%= f.hidden_field :transfer_option_ids, multiple: true, value: nil %>
+          <% @report.transfer_options.each do |option| %>
+            <% f.hidden_field :transfer_option_ids, multiple: true, value: option.id %>
+            <span class="answer"><%= option.str_transfer_option %></span>
+          <% end %>
           <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
+            妊娠に至った周期に服用していたサプリがあれば全て選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :total_number_of_transplants, 'このクリニックでの全移植「回」数' %>
-          <%= f.select :total_number_of_transplants, Report.make_select_options_total_number_of_transplants, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :total_number_of_transplants %>
+          <p class="answer"><%= @report.str_total_number_of_transplants %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :all_number_of_transplants, 'このクリニック以外も含めた全移植「回」数' %>
-          <%= f.select :all_number_of_transplants, Report.make_select_options_all_number_of_transplants, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :all_number_of_transplants %>
+          <p class="answer"><%= @report.str_all_number_of_transplants %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :number_of_eggs_stored, 'このクリニックにある凍結胚の数（貯卵数）' %>
-          <%= f.select :number_of_eggs_stored, Report.make_select_options_number_of_eggs_stored, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :number_of_eggs_stored %>
+          <p class="answer"><%= @report.str_number_of_eggs_stored %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :other_effort, 'クリニックでの治療以外に行ったこと（複数選択可）' %><br>
-          <div class="border rounded px-3 py-3 ">
-            <%= f.collection_check_boxes(:other_effort_ids, OtherEffort.all, :id, :name) do |b| %>
-              <div class="form-check form-check-inline">
-                <%= b.label class: "form-check-label" do %>
-                  <%= b.check_box class: "form-check-input" %>
-                  <%= b.text %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <%= f.label :other_effort, 'クリニックでの治療以外に行ったこと' %><br>
+          <%= f.hidden_field :other_effort_ids, multiple: true, value: nil %>
+          <% @report.other_efforts.each do |effort| %>
+            <% f.hidden_field :other_effort_ids, multiple: true, value: effort.id %>
+            <span class="answer"><%= effort.str_other_effort %></span>
+          <% end %>
           <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
+            妊娠に至った周期に服用していたサプリがあれば全て選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :name, '治療中サプリを使用しましたか（複数選択可）' %><br>
-          <div class="border rounded px-3 py-3 ">
-            <%= f.collection_check_boxes(:supplement_ids, Supplement.all, :id, :name) do |b| %>
-              <div class="form-check form-check-inline">
-                <%= b.label class: "form-check-label" do %>
-                  <%= b.check_box class: "form-check-input" %>
-                  <%= b.text %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+          <%= f.label :supplement, '治療中サプリを使用しましたか' %><br>
+          <%= f.hidden_field :supplement_ids, multiple: true, value: nil %>
+          <% @report.supplements.each do |supplement| %>
+            <% f.hidden_field :supplement_ids, multiple: true, value: supplement.id %>
+            <span class="answer"><%= supplement.str_supplement %></span>
+          <% end %>
           <small id="poster-tip" class="form-text text-muted">
             妊娠に至った周期に服用していたサプリがあれば全て選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :cost, 'このクリニックで総額いくらかかりましたか' %>
-          <%= f.select :cost, Report::HASH_COST.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :cost %>
+          <p class="answer"><%= @report.str_cost %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :credit_card_validity, 'クレジットカードは使えましたか？' %>
-          <%= f.select :credit_card_validity, Report::HASH_CREDIT_CARD_VALIDITY.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :credit_card_validity %>
+          <p class="answer"><%= @report.str_credit_card_validity %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
           <%= f.label :average_waiting_time, 'クリニックでの平均待ち時間はどのくらいでしたか' %>
-          <%= f.select :average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME.invert, {}, { :class => "form-control" }  %>
+          <%= f.hidden_field :average_waiting_time %>
+          <p class="answer"><%= @report.str_average_waiting_time %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
         </div>
         <div class="form-group">
-          <%= f.label :period_of_time_spent_traveling, 'クリニックでの平均待ち時間はどのくらいでしたか' %>
-          <%= f.select :period_of_time_spent_traveling, Report::HASH_PERIOD_OF_TIME_SPENT_TRAVELING.invert, {}, { :class => "form-control" }  %>
+          <%= f.label :period_of_time_spent_traveling, 'クリニックまでの通院時間' %>
+          <%= f.hidden_field :period_of_time_spent_traveling %>
+          <p class="answer"><%= @report.str_period_of_time_spent_traveling %></p>
           <small id="poster-tip" class="form-text text-muted">
               当てはまるものを選択してください。
           </small>
@@ -453,35 +443,40 @@
           <div class="work-style-item col-6">
             <div class="form-group">
               <%= f.label :work_style, '治療時の働き方' %>
-              <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :work_style %>
+              <p class="answer"><%= @report.str_work_style %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
             </div>
             <div class="form-group">
               <%= f.label :private_or_listed_company, '上場の有無' %>
-              <%= f.select :private_or_listed_company, Report::HASH_PRIVATE_OR_LISTED_COMPANY.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :private_or_listed_company %>
+              <p class="answer"><%= @report.str_private_or_listed_company %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
             </div>
             <div class="form-group">
               <%= f.label :capital_size, '資本金規模' %>
-              <%= f.select :capital_size, Report::HASH_CAPITAL_SIZE.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :capital_size %>
+              <p class="answer"><%= @report.str_capital_size %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
             </div>
             <div class="form-group">
               <%= f.label :position, '役職' %>
-              <%= f.select :position, Report::HASH_POSITION.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :position %>
+              <p class="answer"><%= @report.str_position %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
             </div>
             <div class="form-group">
               <%= f.label :treatment_support_system, '支援制度の有無' %>
-              <%= f.select :treatment_support_system, Report::HASH_TREATMENT_SUPPORT_SYSTEM.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :treatment_support_system %>
+              <p class="answer"><%= @report.str_treatment_support_system %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
@@ -491,61 +486,59 @@
           <div class="work-style-item col-6">
             <div class="form-group">
               <%= f.label :industry_type, '業種' %>
-              <%= f.select :industry_type, Report::HASH_INDUSTRY_TYPE.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :industry_type %>
+              <p class="answer"><%= @report.str_industry_type %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
             </div>
             <div class="form-group">
               <%= f.label :domestic_or_foreign_capital, '日系企業 or 外資企業' %>
-              <%= f.select :domestic_or_foreign_capital, Report::HASH_DOMESTIC_OR_FOREIGN_CAPITAL.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :domestic_or_foreign_capital %>
+              <p class="answer"><%= @report.str_domestic_or_foreign_capital %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
             </div>
             <div class="form-group">
               <%= f.label :department, '部署' %>
-              <%= f.select :department, Report::HASH_DEPARTMENT.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :department %>
+              <p class="answer"><%= @report.str_department %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
             </div>
             <div class="form-group">
               <%= f.label :number_of_employees, '従業員数' %>
-              <%= f.select :number_of_employees, Report::HASH_NUMBER_OF_EMPLOYEES.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :number_of_employees %>
+              <p class="answer"><%= @report.str_number_of_employees %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
             </div>
             <div class="form-group">
               <%= f.label :suspended_or_retirement_job, '休職や退職の有無' %>
-              <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, {}, { :class => "form-control" }  %>
+              <%= f.hidden_field :suspended_or_retirement_job %>
+              <p class="answer"><%= @report.str_suspended_or_retirement_job %></p>
               <small id="poster-tip" class="form-text text-muted">
                   一番当てはまるものを選択してください。
               </small>
             </div>
           </div>
         </div><br>
+        <div class="form-group">
+          <%= f.label :scope_of_disclosure, '治療のことをどこまでオープンにしましたか' %>
+          <%= f.hidden_field :scope_of_disclosure_ids, multiple: true, value: nil %>
+          <% @report.scope_of_disclosures.each do |disclosure| %>
+            <% f.hidden_field :scope_disclosure_ids, multiple: true, value: disclosure.id %><br>
+            <span class="answer"><%= disclosure.str_scope_of_disclosure %></span>
+          <% end %>
+          <small id="poster-tip" class="form-text text-muted">
+              一番当てはまるものを選択してください。
+          </small>
+        </div>
 
-          <div class="form-group">
-            <%= f.label :name, '治療のことをどこまでオープンにしましたか（複数選択可）' %><br>
-            <div class="border rounded px-3 py-3 ">
-              <%= f.collection_check_boxes(:scope_of_disclosure_ids, ScopeOfDisclosure.all, :id, :scope) do |b| %>
-                <div class="form-check form-check-inline">
-                  <%= b.label class: "form-check-label" do %>
-                    <%= b.check_box class: "form-check-input" %>
-                    <%= b.text %>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-            <small id="poster-tip" class="form-text text-muted">
-              開示範囲を選択してください。
-            </small>
-          </div>
       </div>
-
-      
 
 
       <div class="form-group border rounded px-3 py-3">
@@ -566,7 +559,7 @@
         </div>
       </div><br><br>
       <div>
-      <%= f.submit '確認', class: 'btn btn-info btn-block w-50 mx-auto d-block' %>
+      <%= f.submit 'この内容で投稿', class: 'btn btn-info btn-block w-50 mx-auto d-block' %>
         <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
           投稿する前に投稿内容を見直してください!
         </small>
