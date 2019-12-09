@@ -13,7 +13,7 @@
   <div class="ml-auto reports_button">
     <%= form_tag reports_path, method: :get, class: 'reports__searchForm' do %>
       <%= select_tag :tag_id,
-                    options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                    options_from_collection_for_select(Tag.all, :id, :tag_name, params[:tag_id]),
                     {
                       prompt: 'タグで絞り込み',
                       class: 'form-control reports__select',
@@ -28,7 +28,7 @@
 
 <% @report.tags.each do |tag| %>
   <div class="tag-box">
-    <span class="badge badge-primary"><%= tag.name %></span>
+    <span class="badge badge-info"><%= tag.tag_name %></span>
   </div>
 <% end %>
 
@@ -137,7 +137,7 @@
     </tr>
     <tr>
       <th scope="row">女性側の不妊原因</th>
-      <td><%= @report.f_infertility_factors %></td>
+      <td><%= @report.f_infertility_factors.name %></td>
     </tr>
     <tr>
       <th scope="row">男性側の不妊原因</th>

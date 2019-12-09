@@ -1,6 +1,6 @@
 class Report < ApplicationRecord
   # バリデーション
-  # validates :title, length: { maximum: 32 }
+  validates :title, length: { maximum: 32 }
   validate :validate_treatment_age
   validate :validate_content_length
   validate :validate_content_attachment_byte_size
@@ -75,7 +75,7 @@ class Report < ApplicationRecord
   # ---子---
     # コメント
   has_many :comments, dependent: :destroy  
-  has_many :likes, dependent: :destroy  
+  has_many :likes, dependent: :destroy
 
   # ---多対多---
   has_many :report_clinics, dependent: :destroy
@@ -84,6 +84,23 @@ class Report < ApplicationRecord
   # タグ
   has_many :report_tags, dependent: :destroy
   has_many :tags, through: :report_tags
+
+  def save_reports(tag_list)
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+    old_tags = current_tags - tag_list
+    new_tags = tag_list - current_tags
+
+    # Destroy old taggings:
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(tag_name: old_name)
+    end
+
+    # Create new taggings:
+    new_tags.each do |new_name|
+      report_tag = Tag.find_or_create_by(tag_name: new_name)
+      self.tags << report_tag
+    end
+  end
 
   # サプリ
   has_many :report_supplements, dependent: :destroy
@@ -394,26 +411,26 @@ class Report < ApplicationRecord
   # costの区分値(CLでの費用総額)
   HASH_COST = {
     1 => "10万円未満",
-    2 => "10〜30万円未満",
-    3 => "30〜50万円未満",
-    4 => "50〜100万円未満",
-    5 => "100〜150万円未満",
-    6 => "150〜200万円未満",
-    7 => "200〜250万円未満",
-    8 => "250〜300万円未満",
-    9 => "300〜350万円未満",
-    10 => "350〜400万円未満",
-    11 => "400〜450万円未満",
-    12 => "450〜500万円未満",
-    13 => "500〜550万円未満",
-    14 => "550〜600万円未満",
-    15 => "600〜650万円未満",
-    16 => "650〜700万円未満",
-    17 => "700〜750万円未満",
-    18 => "750〜800万円未満",
-    19 => "800〜850万円未満",
-    20 => "850〜900万円未満",
-    21 => "900〜950万円未満",
+    2 => "20万円未満",
+    3 => "30万円未満",
+    4 => "40万円未満",
+    5 => "50万円未満",
+    6 => "60万円未満",
+    7 => "70万円未満",
+    8 => "80万円未満",
+    9 => "90万円未満",
+    10 => "100万円未満",
+    11 => "110万円未満",
+    12 => "120万円未満",
+    13 => "130万円未満",
+    14 => "140万円未満",
+    15 => "150万円未満",
+    16 => "160万円未満",
+    17 => "170万円未満",
+    18 => "180万円未満",
+    19 => "190万円未満",
+    20 => "200万円未満",
+    21 => "210万円未満",
     22 => "950〜1,000万円未満",
     23 => "1,000〜1,500万円未満",
     24 => "1,500〜2,000万円未満",
@@ -701,6 +718,7 @@ class Report < ApplicationRecord
   THE_BEGINNING_OF_AGE = 19
   UNKNOWN = 999
   STR_UNKNOWN = "不明"
+  LESS_YEN = "円未満"
   
   # fertility_treatment_numberの区分値(何人目か)
   FERTILITY_TREATMENT_NUMBER_UNIT = "人目不妊"

@@ -544,16 +544,14 @@
             </small>
           </div>
       </div>
-
       
-
 
       <div class="form-group border rounded px-3 py-3">
         <div class="row">
           <div class="col-12">
             <h3>タグ</h3>
           </div>
-          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
             <div class="col-md-4">
               <div class="form-check">
                 <%= tag.label class: 'form-check-label' do %>
@@ -564,12 +562,18 @@
             </div>
           <% end %>
         </div>
+        
+        <div class="form-group">
+          <%= f.label :name, "新しくタグを作成する"  %>
+          <%= text_field_tag :tag_name, "", class: "form-control", placeholder: "二人目不妊 完全自然周期 など" %>
+        </div>
       </div><br><br>
+
       <div>
-      <%= f.submit '確認', class: 'btn btn-info btn-block w-50 mx-auto d-block' %>
-        <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
-          投稿する前に投稿内容を見直してください!
-        </small>
+        <%= f.submit '確認', class: 'btn btn-info btn-block w-50 mx-auto d-block' %>
+          <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
+            投稿する前に投稿内容を見直してください!
+          </small>
       </div>
       <br><br>
       <%= link_to '戻る', @report, class:"btn btn-outline-info button" %>

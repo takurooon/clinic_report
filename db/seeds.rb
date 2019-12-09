@@ -7,41 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Tag.create([
-  { name: "自然周期" },
-  { name: "アンタゴニスト法" },
-  { name: "ショート法" },
-  { name: "ロング法" },
-  { name: "A" },
-  { name: "B" },
-  { name: "C" },
-  { name: "D" },
-  { name: "E" },
-  { name: "F" },
-  { name: "G" },
-  { name: "H" },
-  { name: "I" },
-  { name: "J" },
-  { name: "K" },
-  { name: "L" },
-  { name: "M" },
-  { name: "N" },
-  { name: "O" },
-  { name: "P" },
-  { name: "Q" },
-  { name: "R" },
-  { name: "S" },
-  { name: "T" },
-  { name: "U" },
-  { name: "V" },
-  { name: "W" },
-  { name: "X" },
-  { name: "Y" },
-  { name: "Z" },
+  { tag_name: "自然周期" },
+  { tag_name: "アンタゴニスト法" },
+  { tag_name: "ショート法" },
+  { tag_name: "ロング法" }
 ])
 
 Clinic.create([
   { clinic_name: "加藤レディスクリニック" },
   { clinic_name: "リプロダクションクリニック東京" },
+  { clinic_name: "ナチュラルアートクリニック日本橋" },
 ])
 
 

@@ -13,9 +13,26 @@ img.category-img {
   margin:20px 0px;
 }
 
-.row.category-list .category-title{
+.row.category-list .category-title {
   height: 50px;
   padding: 20px 0px;
   font-size: 18px;
   color:#333;
+}
+
+.report-box-inner a:link {
+  text-decoration: none;
+}
+
+.report-box-inner a:hover {
+  text-decoration: underline;
+  color: rgb(38, 130, 244);
+}
+
+.report-body {
+  background-color: #fff;
+}
+
+.report-info {
+  background-color: #fff;
 }

@@ -5,32 +5,32 @@
   <div class="row reports-index">
     <% @reports.each do |report| %>
       <div class="report-box col-xs-12 col-sm-12 col-md-6 col-lg-4 my-2">
-          <div class="report-box-inner mx-0.1 px-3 py-3 h-100 rounded border">
-            <%= link_to report do %>
-            <div class="report-body h-50">
-              <h5 class="report-title text-dark"><%= report.title %></h5>
-              <div class="row">
-                <div class="tag-box col-xs-4 col-sm-4 col-md-3">
-                  <span class="badge badge-primary"><%= report.tags.name %></span>
-                </div>
-              </div>
-            </div>
-            <% end %>
-            <div class="report-info border-top">
-              <div class="row">
-                <div class="report-icon col-3">
-                  <%= report.user.icon %>
-                </div>
-                <div class="report-author col-9">
-                  <div><%= report.user.name %></div>
-                  <small class="text-muted">
-                    <div>更新:<time datetime="<%= report.updated_at %>"><%= time_ago_in_words(report.updated_at) %></time>前</div>
-                    <div>投稿:<%= report.created_at.to_s(:datetime_jp) %></div>
-                  </small>
-                </div>
+        <div class="report-box-inner mx-0.1 px-3 py-3 h-100 rounded border">
+          <%= link_to report do %>
+          <div class="report-body h-50">
+            <h5 class="report-title text-dark"><%= report.title %></h5>
+            <div class="row">
+              <div class="tag-box col-xs-4 col-sm-4 col-md-3">
+                <span class="badge badge-primary"><%= report.tags.name %></span>
               </div>
             </div>
           </div>
+          <% end %>
+          <div class="report-info border-top">
+            <div class="row">
+              <div class="report-icon col-3">
+                <%= report.user.icon %>
+              </div>
+              <div class="report-author col-9">
+                <div><%= report.user.name %></div>
+                <small class="text-muted">
+                  <div>更新:<time datetime="<%= report.updated_at %>"><%= time_ago_in_words(report.updated_at) %></time>前</div>
+                  <div>投稿:<%= report.created_at.to_s(:datetime_jp) %></div>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
