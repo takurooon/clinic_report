@@ -137,27 +137,51 @@
     </tr>
     <tr>
       <th scope="row">女性側の不妊原因</th>
-      <td><%= @report.f_infertility_factors.name %></td>
+      <td>
+        <% @f_infertility_factors.each do |f_infertility_factor| %>
+          <%= f_infertility_factor.name %>&nbsp;&nbsp;
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">男性側の不妊原因</th>
-      <td><%= @report.m_infertility_factors %></td>
+      <td>
+        <% @m_infertility_factors.each do |m_infertility_factor| %>
+          <%= m_infertility_factor.name %>&nbsp;&nbsp;
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">女性側の疾患</th>
-      <td><%= @report.f_diseases %></td>
+      <td>
+        <% @f_diseases.each do |f_disease| %>
+          <%= f_disease.name %>&nbsp;&nbsp;
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">男性側の疾患</th>
-      <td><%= @report.m_diseases %></td>
+      <td>
+        <% @m_diseases.each do |m_disease| %>
+          <%= m_disease.name %>&nbsp;&nbsp;
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">女性側の手術歴</th>
-      <td><%= @report.f_surgeries %></td>
+      <td>
+        <% @f_surgeries.each do |f_surgery| %>
+          <%= f_surgery.name %>&nbsp;&nbsp;
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">男性側の手術歴</th>
-      <td><%= @report.m_surgeries %></td>
+      <td>
+        <% @m_surgeries.each do |m_surgery| %>
+          <%= m_surgery.name %>&nbsp;&nbsp;
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">卵子または精子の提供の有無</th>
@@ -166,6 +190,14 @@
     <tr>
       <th scope="row">妊娠に至った周期の採卵誘発方法</th>
       <td><%= @report.str_type_of_sairan_cycle %></td>
+    </tr>
+    <tr>
+      <th scope="row">採卵周期で使用した薬剤</th>
+      <td>
+      <% @sairan_medicines.each do |sairan_medicine| %>
+        <%= sairan_medicine.name %>&nbsp;&nbsp;
+      <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">このクリニックでの全採卵「回」数</th>
@@ -180,7 +212,7 @@
       <td><%= @report.str_number_of_eggs_collected %></td>
     </tr>
     <tr>
-      <th scope="row">妊娠に至った未受精卵の成熟度</th>
+      <th scope="row">妊娠に至った卵子(受精前)の成熟度</th>
       <td><%= @report.str_egg_maturity %></td>
     </tr>
     <tr>
@@ -220,15 +252,27 @@
       <td><%= @report.str_blastocyst_grade2 %></td>
     </tr>
     <tr>
+      <th scope="row">移植周期に使用した薬剤</th>
+      <td>
+      <% @transfer_medicines.each do |transfer_medicine| %>
+        <%= transfer_medicine.name %>&nbsp;&nbsp;
+      <% end %>
+      </td>
+    </tr>
+    <tr>
       <th scope="row">移植オプション</th>
-      <td><%= @report.transfer_options.name %></td>
+      <td>
+      <% @transfer_options.each do |transfer_option| %>
+        <%= transfer_option.name %>&nbsp;&nbsp;
+      <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">このクリニックでの全移植「回」数</th>
       <td><%= @report.str_total_number_of_transplants %></td>
     </tr>
     <tr>
-      <th scope="row">このクリニック以外も含めたでの全移植「回」数</th>
+      <th scope="row">このクリニック以外も含めた全移植「回」数</th>
       <td><%= @report.str_all_number_of_transplants %></td>
     </tr>
     <tr>
@@ -237,14 +281,23 @@
     </tr>
     <tr>
       <th scope="row">クリニックの治療中以外に行ったこと</th>
-      <td><%= @report.other_efforts.name %></td>
+      <td>
+        <% @other_efforts.each do |other_effort| %>
+          <%= other_effort.name %>&nbsp;&nbsp;
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">治療中に使用していたサプリ</th>
-      <td><%= @report.supplements.name %></td>
+      <td>
+      <% @supplements.each do |supplement| %>
+        <%= supplement.name %>&nbsp;&nbsp;
+      <% end %>
+      </td>
     </tr>
+    
     <tr>
-      <th scope="row">費用</th>
+      <th scope="row">このクリニックでかかった費用総額</th>
       <td><%= @report.str_cost %></td>
     </tr>
     <tr>
@@ -260,7 +313,7 @@
       <td><%= @report.address_at_that_time %></td>
     </tr>
     <tr>
-      <th scope="row">クリニックまでの通院時間</th>
+      <th scope="row">クリニックの通院にかかる平均所要時間</th>
       <td><%= @report.str_period_of_time_spent_traveling %></td>
     </tr>
     <tr>
@@ -304,8 +357,12 @@
       <td><%= @report.str_suspended_or_retirement_job %></td>
     </tr>
     <tr>
-      <th scope="row">治療の公表範囲</th>
-      <td><%= @report.scope_of_disclosures %></td>
+      <th scope="row">治療の開示範囲</th>
+      <td>
+        <% @scope_of_disclosures.each do |scope_of_disclosure| %>
+          <%= scope_of_disclosure.scope %>
+        <% end %>
+      </td>
     </tr>
     </tbody>
 </table>

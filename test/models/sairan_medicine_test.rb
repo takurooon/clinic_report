@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: ovulation_inducers
+# Table name: sairan_medicines
 #
 #  id         :bigint           not null, primary key
 #  name       :string
@@ -10,7 +10,7 @@
 
 require 'test_helper'
 
-class OvulationInducerTest < ActiveSupport::TestCase
+class SairanMedicineTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

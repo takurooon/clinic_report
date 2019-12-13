@@ -1,3 +1,4 @@
+<div class="container form">
 <%= form_with(model: @report, local: true) do |f| %>
 
   <div class="row  justify-content-center">
@@ -115,28 +116,43 @@
           <p class="answer"><%= @report.str_smoking %></p>
         </div>
         <div class="form-group">
-          <%= f.label :f_infertility_factor, '女性側の不妊原因' %><br>
+          <%= f.label :f_infertility_factor, '選択した女性側の不妊原因' %><br>
           <%= f.hidden_field :f_infertility_factor_ids, multiple: true, value: nil %>
           <% @report.f_infertility_factors.each do |f_infertility_factor| %>
-            <% f.hidden_field :f_infertility_factor_ids, multiple: true, value: f_infertility_factor.id %>
+            <%= f.hidden_field :f_infertility_factor_ids, multiple: true, value: f_infertility_factor.id %>
             <span class="answer"><%= f_infertility_factor.str_f_infertility_factor %></span>
           <% end %>
+          <div class="form-group">
+            <%= f.label :f_infertility_factor, "作成した女性側の不妊原因"  %><br>
+            <%= hidden_field_tag :fif_name, @fif_name %>
+            <span class="answer"><%= @fif_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :m_infertility_factor, '男性側の不妊原因' %><br>
           <%= f.hidden_field :m_infertility_factor_ids, multiple: true, value: nil %>
           <% @report.m_infertility_factors.each do |m_infertility_factor| %>
-            <% f.hidden_field :m_infertility_factor_ids, multiple: true, value: m_infertility_factor.id %>
+            <%= f.hidden_field :m_infertility_factor_ids, multiple: true, value: m_infertility_factor.id %>
             <span class="answer"><%= m_infertility_factor.str_m_infertility_factor %></span>
           <% end %>
+          <div class="form-group">
+            <%= f.label :m_infertility_factor, "作成した女性側の不妊原因"  %><br>
+            <%= hidden_field_tag :mif_name, @mif_name %>
+            <span class="answer"><%= @mif_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :f_disease, '女性側の疾患' %><br>
           <%= f.hidden_field :f_disease_ids, multiple: true, value: nil %>
           <% @report.f_diseases.each do |f_disease| %>
-            <% f.hidden_field :f_disease_ids, multiple: true, value: f_disease.id %>
+            <%= f.hidden_field :f_disease_ids, multiple: true, value: f_disease.id %>
             <span class="answer"><%= f_disease.str_f_disease %></span>
           <% end %>
+          <div class="form-group">
+            <%= f.label :f_disease, "作成した女性側の疾患名"  %><br>
+            <%= hidden_field_tag :fd_name, @fd_name %>
+            <span class="answer"><%= @fd_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :m_disease, '男性側の疾患' %><br>
@@ -145,23 +161,38 @@
             <% f.hidden_field :m_disease_ids, multiple: true, value: m_disease.id %>
             <span class="answer"><%= m_disease.str_m_disease %></span>
           <% end %>
+          <div class="form-group">
+            <%= f.label :m_disease, "作成した男性側の疾患名"  %><br>
+            <%= hidden_field_tag :md_name, @md_name %>
+            <span class="answer"><%= @md_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :f_surgery, '女性側の手術歴' %><br>
           <%= f.hidden_field :f_surgery_ids, multiple: true, value: nil %>
           <% @report.f_surgeries.each do |f_surgery| %>
-            <% f.hidden_field :f_surgery_ids, multiple: true, value: f_surgery.id %>
+            <%= f.hidden_field :f_surgery_ids, multiple: true, value: f_surgery.id %>
             <span class="answer"><%= f_surgery.str_f_surgery %></span>
           <% end %>
+          <div class="form-group">
+            <%= f.label :f_surgery, "作成した女性側の手術名"  %><br>
+            <%= hidden_field_tag :fs_name, @fs_name %>
+            <span class="answer"><%= @fs_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :m_surgery, '男性側の手術歴' %><br>
           <%= f.hidden_field :m_surgery_ids, multiple: true, value: nil %>
           <% @report.m_surgeries.each do |m_surgery| %>
-            <% f.hidden_field :m_surgery_ids, multiple: true, value: m_surgery.id %>
+            <%= f.hidden_field :m_surgery_ids, multiple: true, value: m_surgery.id %>
             <span class="answer"><%= m_surgery.str_m_surgery %></span>
           <% end %>
-        </div>        
+          <div class="form-group">
+            <%= f.label :m_surgery, "作成した男性側の手術名"  %><br>
+            <%= hidden_field_tag :ms_name, @ms_name %>
+            <span class="answer"><%= @ms_name %></span>
+          </div>
+        </div>
         <div class="form-group">
           <%= f.label :types_of_eggs_and_sperm, '用いた卵子と精子' %>
           <%= f.hidden_field :types_of_eggs_and_sperm %>
@@ -171,6 +202,19 @@
           <%= f.label :type_of_sairan_cycle, '妊娠に至った周期の採卵誘発方法は' %>
           <%= f.hidden_field :type_of_sairan_cycle %>
           <p class="answer"><%= @report.str_type_of_sairan_cycle %></p>
+        </div>
+        <div class="form-group">
+          <%= f.label :sairan_medicine, '採卵周期で使用した薬剤' %><br>
+          <%= f.hidden_field :sairan_medicine_ids, multiple: true, value: nil %>
+          <% @report.sairan_medicines.each do |sairan_medicine| %>
+            <%= f.hidden_field :sairan_medicine_ids, multiple: true, value: sairan_medicine.id %>
+            <span class="answer"><%= sairan_medicine.str_sairan_medicine %></span>
+          <% end %>
+          <div class="form-group">
+            <%= f.label :sairan_medicine, "作成した採卵周期に使用した薬剤"  %><br>
+            <%= hidden_field_tag :sm_name, @sm_name %>
+            <span class="answer"><%= @sm_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :total_number_of_sairan, 'このクリニックでの全採卵「回」数' %>
@@ -238,12 +282,30 @@
           <p class="answer"><%= @report.str_blastocyst_grade2 %></p>
         </div>
         <div class="form-group">
+          <%= f.label :transfer_medicine, '移植周期で使用した薬剤' %><br>
+          <%= f.hidden_field :transfer_medicine_ids, multiple: true, value: nil %>
+          <% @report.transfer_medicines.each do |option| %>
+            <%= f.hidden_field :transfer_medicine_ids, multiple: true, value: option.id %>
+            <span class="answer"><%= option.str_transfer_medicine %></span>
+          <% end %>
+          <div class="form-group">
+            <%= f.label :transfer_medicine, "作成した移植周期で使用した薬剤" %><br>
+            <%= hidden_field_tag :tm_name, @tm_name %>
+            <span class="answer"><%= @tm_name %></span>
+          </div>
+        </div>
+        <div class="form-group">
           <%= f.label :transfer_option, '移植オプション' %><br>
           <%= f.hidden_field :transfer_option_ids, multiple: true, value: nil %>
           <% @report.transfer_options.each do |option| %>
-            <% f.hidden_field :transfer_option_ids, multiple: true, value: option.id %>
+            <%= f.hidden_field :transfer_option_ids, multiple: true, value: option.id %>
             <span class="answer"><%= option.str_transfer_option %></span>
           <% end %>
+          <div class="form-group">
+            <%= f.label :transfer_option, "作成した移植オプション" %><br>
+            <%= hidden_field_tag :to_name, @to_name %>
+            <span class="answer"><%= @to_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :total_number_of_transplants, 'このクリニックでの全移植「回」数' %>
@@ -264,17 +326,27 @@
           <%= f.label :other_effort, 'クリニックでの治療以外に行ったこと' %><br>
           <%= f.hidden_field :other_effort_ids, multiple: true, value: nil %>
           <% @report.other_efforts.each do |effort| %>
-            <% f.hidden_field :other_effort_ids, multiple: true, value: effort.id %>
+            <%= f.hidden_field :other_effort_ids, multiple: true, value: effort.id %>
             <span class="answer"><%= effort.str_other_effort %></span>
           <% end %>
+          <div class="form-group">
+            <%= f.label :other_effort, "作成したクリニックでの治療以外に行ったこと" %><br>
+            <%= hidden_field_tag :oe_name, @oe_name %>
+            <span class="answer"><%= @oe_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :supplement, '治療中サプリを使用しましたか' %><br>
           <%= f.hidden_field :supplement_ids, multiple: true, value: nil %>
           <% @report.supplements.each do |supplement| %>
-            <% f.hidden_field :supplement_ids, multiple: true, value: supplement.id %>
+            <%= f.hidden_field :supplement_ids, multiple: true, value: supplement.id %>
             <span class="answer"><%= supplement.str_supplement %></span>
           <% end %>
+          <div class="form-group">
+            <%= f.label :supplement, "作成したサプリ"  %><br>
+            <%= hidden_field_tag :supplement_name, @supplement_name %>
+            <span class="answer"><%= @supplement_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :cost, 'このクリニックで総額いくらかかりましたか' %>
@@ -362,11 +434,15 @@
           <%= f.label :scope_of_disclosure, '治療のことをどこまでオープンにしましたか' %>
           <%= f.hidden_field :scope_of_disclosure_ids, multiple: true, value: nil %>
           <% @report.scope_of_disclosures.each do |disclosure| %>
-            <% f.hidden_field :scope_disclosure_ids, multiple: true, value: disclosure.id %><br>
+            <%= f.hidden_field :scope_disclosure_ids, multiple: true, value: disclosure.id %><br>
             <span class="answer"><%= disclosure.str_scope_of_disclosure %></span>
           <% end %>
         </div>
-
+        <div class="form-group">
+          <%= f.label :scope_of_disclosure, "作成した開示範囲" %><br>
+          <%= hidden_field_tag :sod_scope, @sod_scope %>
+          <span class="answer"><%= @sod_scope %></span>
+        </div>
       </div>
 
       
@@ -384,24 +460,24 @@
             <span class="answer"><%= tag.str_tag %></span>
           <% end %>
         </div>
-      
         <div class="form-group">
-          <%= f.label :name, "作成したタグ"  %><br>
+          <%= f.label :tag, "作成したタグ" %><br>
           <%= hidden_field_tag :tag_name, @tag_name %>
           <span class="answer"><%= @tag_name %></span>
         </div>
-      </div><br><br>
+      </div>
 
+      </div><br><br>
       <div>
-        <%= f.submit 'この内容で投稿', class: 'btn btn-info btn-block w-50 mx-auto d-block' %>
+        <%= f.submit 'この内容で投稿', class: 'btn btn-raised btn-warning w-50 mx-auto d-block' %>
           <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
             投稿する前に投稿内容を見直してください!
           </small>
       </div>
       <br><br>
 
-      <%= link_to '戻る', @report, class:"btn btn-outline-info button" %>
+      <%= link_to '戻る', "javascript:history.back();", class:"btn btn-outline-info button" %>
       <%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>
-    </div>
   </div>
 <% end %>
+</div>

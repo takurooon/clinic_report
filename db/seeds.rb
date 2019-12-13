@@ -117,6 +117,16 @@ MSurgery.create([
   { name: "ととと" },
 ])
 
+SairanMedicine.create([
+  { name: "クロミッド(クロミフェン/セロフェン)" },
+  { name: "フェマーラ" },
+])
+
+TransferMedicine.create([
+  { name: "hCG" },
+  { name: "プラノバール" },
+])
+
 TransferOption.create([
   { name: "ななな" },
   { name: "ににに" },

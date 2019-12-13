@@ -1,79 +1,129 @@
-<div class="container mypage">
-  <div class="row">
-    <div class="sidebar col-3">
-      <p>ダッシュボード</p>
-      <p>プロフィール</p>
-      <p>ダッシュボード</p>
-      <p>ダッシュボード</p>
-    </div>
-    <div class="main col-9">
-      <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th style="width:25%"></th>
-            <th style="width:75%"></th>
-          <tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>名前</th>
-            <td><%= @user.name %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="d-flex align-items-center">
-<h2>マイページ</h2>
-  <div class="ml-auto reports_button">
-    <%= link_to "レポートを作成", new_report_path, class:"btn btn-outline-info button" %>
-  </div>
-</div>
-<div class="container">
-  <div class="row mypage">
-    <ul class="d-none d-md-block col-md-3 list-unstyled">
-      <li class="mypage-menu-item">aaaa</li>
-    </ul>
-    <ul class="col-9 list-unstyled">
-      <li class="mypage-menu-item">aaaa</li>
-    </ul>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="mypage-left col-12 col-md-3>
-      <ul class="mypage-sidemenu">
-        <li>ダッシュボード</li>
-        <li>設定</li>
-        <%= @user.name %>さん
-      </ul>
-    </div>
-
-    <div class="my-page-right col-12 col-md-9">
-    <% @like_reports.each do |report| %>
-      <hr>
-      <p><span>お気に入りレポート: </span><%=link_to report.title, report %></p>
-    <% end %>
+<div class="content">
+  <div class="jumbotron-underlayer">
+    <div class="jumbotron">
+      <div class="container">
+        <h2 class="text-center jumbotron-underlayer__title">マイページ</h2>
+      </div>
     </div>
   </div>
 
-  <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+  <div class="mypage c-bg-light c-border-t c-border-r c-border-l">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">レポート</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">プロフィール</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">設定</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">分析</a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-reports-list">
+
+              <div class="myindex">
+                <ul class="nav nav-tabs" id="myindex-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="my-reports-tab" data-toggle="tab" href="#my-reports" role="tab" aria-controls="my-reports" aria-selected="true">マイレポート</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="like-reports-tab" data-toggle="tab" href="#like-reports" role="tab" aria-controls="like-reports" aria-selected="false">いいねしたレポート</a>
+                  </li>
+                </ul>
+
+                <div class="tab-content" id="myindex">
+                  <div class="tab-pane fade show active" id="my-reports" role="tabpanel" aria-labelledby="my-reports-tab">
+                    <div class="card border-light mb-3" style="max-width:100%;">
+                      <% @reports.each do |myreport| %>
+                        <%= link_to myreport do %>
+                          <div class="card-header"><%= myreport.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= myreport.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                          <div class="card-body">
+                            <h5 class="card-title"><%= myreport.title %></h5>
+                            <p class="card-text"></p>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="like-reports" role="tabpanel" aria-labelledby="like-reports-tab">
+                    <div class="card border-light mb-3" style="max-width:100%;">
+                      <% @like_reports.each do |like| %>
+                        <div class="card-header"><%= like.user %>&nbsp;さんの&nbsp;<strong><%= like.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                        <div class="card-body">
+                          <h5 class="card-title"><%= like.title %></h5>
+                          <p class="card-text"></p>
+                        </div>
+                      <% end %>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th class="profile-item-l">ユーザー名</th>
+                    <td class="profile-item-r"><%= @user.name %></td>
+                  </tr>
+                  <tr>
+                    <th>メールアドレス</th>
+                    <td><%= @user.email %></td>
+                  </tr>
+                  <tr>
+                    <th>性別</th>
+                    <td>
+                      <% if @user.gender.blank? %>
+                        <%= "(未登録)" %>&nbsp;&nbsp;→&nbsp;<a href="#">設定する</a>
+                      <% else %>
+                        <%= @user.gender %>&nbsp;&nbsp;→&nbsp;<a href="#">編集する</a>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>生年月</th>
+                    <td>
+                      <% if @user.birthday.blank? %>
+                        <%= "(未登録)" %>&nbsp;&nbsp;→&nbsp;<a href="#">設定する</a>
+                      <% else %>
+                        <%= @user.birthday %>&nbsp;&nbsp;→&nbsp;<a href="#">編集する</a>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>アドレス</th>
+                    <td>
+                      <% if @user.birthday.blank? %>
+                        <%= "(未登録)" %>&nbsp;&nbsp;→&nbsp;<a href="#">設定する</a>
+                      <% else %>
+                        <%= @user.birthday %>&nbsp;&nbsp;→&nbsp;<a href="#">編集する</a>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>リンク</th>
+                    <td>
+                      <% if @user.link.blank? %>
+                        <%= "ブログやSNSのリンクなど" %>&nbsp;&nbsp;→&nbsp;<a href="#">設定する</a>
+                      <% else %>
+                        <%= @user.link %>&nbsp;&nbsp;→&nbsp;<a href="#">編集する</a>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>自己紹介</th>
+                    <td><div class="self-introduction border"></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: ovulation_inhibitors
+# Table name: sairan_medicines
 #
 #  id         :bigint           not null, primary key
 #  name       :string
@@ -8,10 +8,10 @@
 #  updated_at :datetime         not null
 #
 
-require 'test_helper'
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-class OvulationInhibitorTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-end
+one:
+  name: MyString
+
+two:
+  name: MyString

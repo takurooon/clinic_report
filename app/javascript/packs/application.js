@@ -9,7 +9,8 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 
-import "bootstrap"
+// import "bootstrap"
+import 'bootstrap-material-design'
 import "../stylesheets/application"
 import "@fortawesome/fontawesome-free/js/all";
 
@@ -17,7 +18,6 @@ document.addEventListener("turblinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
   $('[data-toggle="popover"]').popover()
 })
-
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

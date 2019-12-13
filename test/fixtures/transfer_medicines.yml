@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: ovulation_inducers
+# Table name: transfer_medicines
 #
 #  id         :bigint           not null, primary key
 #  name       :string
@@ -11,7 +11,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: 1
+  name: MyString
 
 two:
-  name: 1
+  name: MyString

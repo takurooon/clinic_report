@@ -85,7 +85,7 @@ class Report < ApplicationRecord
   has_many :report_tags, dependent: :destroy
   has_many :tags, through: :report_tags
 
-  def save_reports(tag_list)
+  def save_tags(tag_list)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
     old_tags = current_tags - tag_list
     new_tags = tag_list - current_tags
@@ -101,11 +101,6 @@ class Report < ApplicationRecord
       self.tags << report_tag
     end
   end
-
-  # サプリ
-  has_many :report_supplements, dependent: :destroy
-  has_many :supplements, through: :report_supplements
-  accepts_nested_attributes_for :supplements
   
   # 不妊原因(男女それぞれ)
   has_many :report_f_infertility_factors, dependent: :destroy
@@ -115,6 +110,40 @@ class Report < ApplicationRecord
   has_many :m_infertility_factors, through: :report_m_infertility_factors
   accepts_nested_attributes_for :m_infertility_factors
 
+  def save_fifs(fif_list)
+    current_fifs = self.f_infertility_factors.pluck(:name) unless self.f_infertility_factors.nil?
+    old_fifs = current_fifs - fif_list
+    new_fifs = fif_list - current_fifs
+
+    # Destroy old f_infertility_factors:
+    old_fifs.each do |old_name|
+      self.f_infertility_factors.delete FInfertilityFactor.find_by(name: old_name)
+    end
+
+    # Create new f_infertility_factors:
+    new_fifs.each do |new_name|
+      report_fif = FInfertilityFactor.find_or_create_by(name: new_name)
+      self.f_infertility_factors << report_fif
+    end
+  end
+
+  def save_mifs(mif_list)
+    current_mifs = self.m_infertility_factors.pluck(:name) unless self.m_infertility_factors.nil?
+    old_mifs = current_mifs - mif_list
+    new_mifs = mif_list - current_mifs
+
+    # Destroy old mim_infertility_factorsfs:
+    old_mifs.each do |old_name|
+      self.m_infertility_factors.delete MInfertilityMactor.find_by(name: old_name)
+    end
+
+    # Create new m_infertility_factors:
+    new_mifs.each do |new_name|
+      report_mif = MInfertilityFactor.find_or_create_by(name: new_name)
+      self.m_infertility_factors << report_mif
+    end
+  end
+
   # 疾患(男女それぞれ)
   has_many :report_f_diseases, dependent: :destroy
   has_many :f_diseases, through: :report_f_diseases
@@ -122,6 +151,40 @@ class Report < ApplicationRecord
   has_many :report_m_diseases, dependent: :destroy
   has_many :m_diseases, through: :report_m_diseases
   accepts_nested_attributes_for :m_diseases
+
+  def save_fds(fd_list)
+    current_fds = self.f_diseases.pluck(:name) unless self.f_diseases.nil?
+    old_fds = current_fds - fd_list
+    new_fds = fd_list - current_fds
+
+    # Destroy old f_diseases:
+    old_fds.each do |old_name|
+      self.f_infertility_factors.delete FDisease.find_by(name: old_name)
+    end
+
+    # Create new f_diseases:
+    new_fds.each do |new_name|
+      report_fd = FDisease.find_or_create_by(name: new_name)
+      self.f_diseases << report_fd
+    end
+  end
+
+  def save_mds(md_list)
+    current_mds = self.m_diseases.pluck(:name) unless self.m_diseases.nil?
+    old_mds = current_mds - md_list
+    new_mds = md_list - current_mds
+
+    # Destroy old m_diseases:
+    old_mds.each do |old_name|
+      self.m_infertility_factors.delete MDisease.find_by(name: old_name)
+    end
+
+    # Create new m_diseases:
+    new_mds.each do |new_name|
+      report_md = MDisease.find_or_create_by(name: new_name)
+      self.m_diseases << report_md
+    end
+  end
 
   # 手術歴(男女それぞれ)
   has_many :report_f_surgeries, dependent: :destroy
@@ -131,36 +194,171 @@ class Report < ApplicationRecord
   has_many :m_surgeries, through: :report_m_surgeries
   accepts_nested_attributes_for :m_surgeries
 
-  # 卵巣刺激薬剤
-  has_many :report_ovarian_stimulations, dependent: :destroy
-  has_many :ovarian_stimulations, through: :report_ovarian_stimulations
-  accepts_nested_attributes_for :ovarian_stimulations
+  def save_fss(fs_list)
+    current_fss = self.f_surgeries.pluck(:name) unless self.f_surgeries.nil?
+    old_fss = current_fss - fs_list
+    new_fss = fs_list - current_fss
 
-  # 排卵抑制剤
-  has_many :report_ovulation_inhibitors, dependent: :destroy
-  has_many :ovulation_inhibitors, through: :report_ovulation_inhibitors
-  accepts_nested_attributes_for :ovulation_inhibitors
+    # Destroy old f_surgeries:
+    old_fss.each do |old_name|
+      self.f_surgeries.delete FSurgery.find_by(name: old_name)
+    end
 
-  # 排卵促進剤
-  has_many :report_ovulation_inducers, dependent: :destroy
-  has_many :ovulation_inducers, through: :report_ovulation_inducers
-  accepts_nested_attributes_for :ovulation_inducers
+    # Create new f_surgeries:
+    new_fss.each do |new_name|
+      report_fs = FSurgery.find_or_create_by(name: new_name)
+      self.f_surgeries << report_fs
+    end
+  end
+
+  def save_mss(ms_list)
+    current_mss = self.m_surgeries.pluck(:name) unless self.m_surgeries.nil?
+    old_mss = current_mss - ms_list
+    new_mss = ms_list - current_mss
+
+    # Destroy old m_surgeries:
+    old_mss.each do |old_name|
+      self.m_surgeries.delete MSurgery.find_by(name: old_name)
+    end
+
+    # Create new m_surgeries:
+    new_mss.each do |new_name|
+      report_ms = MSurgery.find_or_create_by(name: new_name)
+      self.m_surgeries << report_ms
+    end
+  end
+
+  # 採卵周期での使用薬剤
+  has_many :report_sairan_medicines, dependent: :destroy
+  has_many :sairan_medicines, through: :report_sairan_medicines
+  accepts_nested_attributes_for :sairan_medicines
+
+  def save_sms(sm_list)
+    current_sms = self.sairan_medicines.pluck(:name) unless self.sairan_medicines.nil?
+    old_sms = current_sms - sm_list
+    new_sms = sm_list - current_sms
+
+    # Destroy old sairan_medicines:
+    old_sms.each do |old_name|
+      self.sairan_medicines.delete SairanMedicine.find_by(name: old_name)
+    end
+
+    # Create new sairan_medicines:
+    new_sms.each do |new_name|
+      report_sm = SairanMedicine.find_or_create_by(name: new_name)
+      self.sairan_medicines << report_sm
+    end
+  end
+
+  # 移植周期での使用薬剤
+  has_many :report_transfer_medicines, dependent: :destroy
+  has_many :transfer_medicines, through: :report_transfer_medicines
+  accepts_nested_attributes_for :transfer_medicines
+
+  def save_tms(tm_list)
+    current_tms = self.transfer_medicines.pluck(:name) unless self.transfer_medicines.nil?
+    old_tms = current_tms - tm_list
+    new_tms = tm_list - current_tms
+
+    # Destroy old transfer_medicines:
+    old_tms.each do |old_name|
+      self.tms.delete TransferMedicine.find_by(name: old_name)
+    end
+
+    # Create new transfer_medicines:
+    new_tms.each do |new_name|
+      report_tm = TransferMedicine.find_or_create_by(name: new_name)
+      self.transfer_medicines << report_tm
+    end
+  end
 
   # 移植オプション
   has_many :report_transfer_options, dependent: :destroy
   has_many :transfer_options, through: :report_transfer_options
   accepts_nested_attributes_for :transfer_options
 
+  def save_tos(to_list)
+    current_tos = self.transfer_options.pluck(:name) unless self.transfer_options.nil?
+    old_tos = current_tos - to_list
+    new_tos = to_list - current_tos
+
+    # Destroy old transfer_options:
+    old_tos.each do |old_name|
+      self.tos.delete TransferOption.find_by(name: old_name)
+    end
+
+    # Create new transfer_options:
+    new_tos.each do |new_name|
+      report_to = TransferOption.find_or_create_by(name: new_name)
+      self.transfer_options << report_to
+    end
+  end
+
+  # クリニックでの治療以外で行ったこと(努力)
+  has_many :report_other_efforts, dependent: :destroy
+  has_many :other_efforts, through: :report_other_efforts
+  accepts_nested_attributes_for :other_efforts
+
+  def save_oes(oe_list)
+    current_oes = self.other_efforts.pluck(:name) unless self.other_efforts.nil?
+    old_oes = current_oes - oe_list
+    new_oes = oe_list - current_oes
+
+    # Destroy old other_efforts:
+    old_oes.each do |old_name|
+      self.oes.delete OtherEffort.find_by(name: old_name)
+    end
+
+    # Create new other_efforts:
+    new_oes.each do |new_name|
+      report_oe = OtherEffort.find_or_create_by(name: new_name)
+      self.other_efforts << report_oe
+    end
+  end
+
+  # サプリ
+  has_many :report_supplements, dependent: :destroy
+  has_many :supplements, through: :report_supplements
+  accepts_nested_attributes_for :supplements
+
+  def save_supplements(supplement_list)
+    current_supplements = self.supplements.pluck(:name) unless self.supplements.nil?
+    old_supplements = current_supplements - supplement_list
+    new_supplements = supplement_list - current_supplements
+
+    # Destroy old supplements:
+    old_supplements.each do |old_name|
+      self.supplements.delete Supplement.find_by(name: old_name)
+    end
+
+    # Create new supplements:
+    new_supplements.each do |new_name|
+      report_supplement = Supplement.find_or_create_by(name: new_name)
+      self.supplements << report_supplement
+    end
+  end
+
   # 治療の開示範囲
   has_many :report_scope_of_disclosures, dependent: :destroy
   has_many :scope_of_disclosures, through: :report_scope_of_disclosures
   accepts_nested_attributes_for :scope_of_disclosures
 
-  # クリニックでの治療以外で行ったこと(努力)
-  has_many :report_other_efforts, dependent: :destroy
-  has_many :other_efforts, through: :report_other_efforts
-  accepts_nested_attributes_for :scope_of_disclosures
+  def save_sods(sod_list)
+    current_sods = self.scope_of_disclosures.pluck(:scope) unless self.scope_of_disclosures.nil?
+    old_sods = current_sods - sod_list
+    new_sods = sod_list - current_sods
 
+    # Destroy old scope_of_disclosures:
+    old_sods.each do |old_scope|
+      self.sods.delete ScopeOfDisclosure.find_by(scope: old_scope)
+    end
+
+    # Create new scope_of_disclosures:
+    new_sods.each do |new_scope|
+      report_sod = ScopeOfDisclosure.find_or_create_by(scope: new_scope)
+      self.scope_of_disclosures << report_sod
+    end
+  end
 
   # treatment_typeの区分値(治療方法)
   HASH_TREATMENT_TYPE = {
@@ -1028,7 +1226,7 @@ class Report < ApplicationRecord
     end
   end
 
-  def self.make_select_options_number_of_eggs_collected
+  def self.make_select_options_number_of_fertilized_eggs
     hash = {}
     (1..NUMBER_OF_FERTILIZED_EGGS_RANGE).each do |i|
       hash["#{i}#{PIECES}"] = i

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_21_131044) do
+ActiveRecord::Schema.define(version: 2019_12_13_070435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,24 +124,6 @@ ActiveRecord::Schema.define(version: 2019_11_21_131044) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ovarian_stimulations", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "ovulation_inducers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "ovulation_inhibitors", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "report_f_diseases", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.bigint "f_disease_id", null: false
@@ -205,31 +187,13 @@ ActiveRecord::Schema.define(version: 2019_11_21_131044) do
     t.index ["report_id"], name: "index_report_other_efforts_on_report_id"
   end
 
-  create_table "report_ovarian_stimulations", force: :cascade do |t|
+  create_table "report_sairan_medicines", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.bigint "ovarian_stimulation_id", null: false
+    t.bigint "sairan_medicine_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ovarian_stimulation_id"], name: "index_report_ovarian_stimulations_on_ovarian_stimulation_id"
-    t.index ["report_id"], name: "index_report_ovarian_stimulations_on_report_id"
-  end
-
-  create_table "report_ovulation_inducers", force: :cascade do |t|
-    t.bigint "report_id", null: false
-    t.bigint "ovulation_inducer_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ovulation_inducer_id"], name: "index_report_ovulation_inducers_on_ovulation_inducer_id"
-    t.index ["report_id"], name: "index_report_ovulation_inducers_on_report_id"
-  end
-
-  create_table "report_ovulation_inhibitors", force: :cascade do |t|
-    t.bigint "report_id", null: false
-    t.bigint "ovulation_inhibitor_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ovulation_inhibitor_id"], name: "index_report_ovulation_inhibitors_on_ovulation_inhibitor_id"
-    t.index ["report_id"], name: "index_report_ovulation_inhibitors_on_report_id"
+    t.index ["report_id"], name: "index_report_sairan_medicines_on_report_id"
+    t.index ["sairan_medicine_id"], name: "index_report_sairan_medicines_on_sairan_medicine_id"
   end
 
   create_table "report_scope_of_disclosures", force: :cascade do |t|
@@ -257,6 +221,15 @@ ActiveRecord::Schema.define(version: 2019_11_21_131044) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id"], name: "index_report_tags_on_report_id"
     t.index ["tag_id"], name: "index_report_tags_on_tag_id"
+  end
+
+  create_table "report_transfer_medicines", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "transfer_medicine_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_report_transfer_medicines_on_report_id"
+    t.index ["transfer_medicine_id"], name: "index_report_transfer_medicines_on_transfer_medicine_id"
   end
 
   create_table "report_transfer_options", force: :cascade do |t|
@@ -326,6 +299,12 @@ ActiveRecord::Schema.define(version: 2019_11_21_131044) do
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
+  create_table "sairan_medicines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "scope_of_disclosures", force: :cascade do |t|
     t.string "scope"
     t.datetime "created_at", precision: 6, null: false
@@ -340,6 +319,12 @@ ActiveRecord::Schema.define(version: 2019_11_21_131044) do
 
   create_table "tags", force: :cascade do |t|
     t.string "tag_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "transfer_medicines", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -401,18 +386,16 @@ ActiveRecord::Schema.define(version: 2019_11_21_131044) do
   add_foreign_key "report_m_surgeries", "reports"
   add_foreign_key "report_other_efforts", "other_efforts"
   add_foreign_key "report_other_efforts", "reports"
-  add_foreign_key "report_ovarian_stimulations", "ovarian_stimulations"
-  add_foreign_key "report_ovarian_stimulations", "reports"
-  add_foreign_key "report_ovulation_inducers", "ovulation_inducers"
-  add_foreign_key "report_ovulation_inducers", "reports"
-  add_foreign_key "report_ovulation_inhibitors", "ovulation_inhibitors"
-  add_foreign_key "report_ovulation_inhibitors", "reports"
+  add_foreign_key "report_sairan_medicines", "reports"
+  add_foreign_key "report_sairan_medicines", "sairan_medicines"
   add_foreign_key "report_scope_of_disclosures", "reports"
   add_foreign_key "report_scope_of_disclosures", "scope_of_disclosures"
   add_foreign_key "report_supplements", "reports"
   add_foreign_key "report_supplements", "supplements"
   add_foreign_key "report_tags", "reports"
   add_foreign_key "report_tags", "tags"
+  add_foreign_key "report_transfer_medicines", "reports"
+  add_foreign_key "report_transfer_medicines", "transfer_medicines"
   add_foreign_key "report_transfer_options", "reports"
   add_foreign_key "report_transfer_options", "transfer_options"
   add_foreign_key "reports", "clinics"
