@@ -2,7 +2,7 @@
   <div class="jumbotron-underlayer">
     <div class="jumbotron">
       <div class="container">
-        <h2 class="text-center jumbotron-underlayer__title">マイページ</h2>
+        <h2 class="text-center jumbotron-underlayer__title"><%= current_user.name %>さんのマイページ</h2>
       </div>
     </div>
   </div>
@@ -25,21 +25,37 @@
               <div class="myindex">
                 <ul class="nav nav-tabs" id="myindex-tab" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" id="my-reports-tab" data-toggle="tab" href="#my-reports" role="tab" aria-controls="my-reports" aria-selected="true">マイレポート</a>
+                    <a class="nav-link active" id="publised-reports-tab" data-toggle="tab" href="#published-reports" role="tab" aria-controls="published-reports" aria-selected="true">マイレポート</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="draft-reports-tab" data-toggle="tab" href="#draft-reports" role="tab" aria-controls="draft-reports" aria-selected="false">保存中(非公開)のレポート</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" id="like-reports-tab" data-toggle="tab" href="#like-reports" role="tab" aria-controls="like-reports" aria-selected="false">いいねしたレポート</a>
                   </li>
                 </ul>
 
-                <div class="tab-content" id="myindex">
-                  <div class="tab-pane fade show active" id="my-reports" role="tabpanel" aria-labelledby="my-reports-tab">
+                <div class="tab-content" id="publishedindex">
+                  <div class="tab-pane fade show active" id="published-reports" role="tabpanel" aria-labelledby="published-reports-tab">
                     <div class="card border-light mb-3" style="max-width:100%;">
-                      <% @reports.each do |myreport| %>
-                        <%= link_to myreport do %>
-                          <div class="card-header"><%= myreport.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= myreport.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                      <% @published_reports.each do |published| %>
+                        <%= link_to published do %>
+                          <div class="card-header"><%= published.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
                           <div class="card-body">
-                            <h5 class="card-title"><%= myreport.title %></h5>
+                            <h5 class="card-title"><%= published.title %></h5>
+                            <p class="card-text"></p>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade show active" id="draft-reports" role="tabpanel" aria-labelledby="draft-reports-tab">
+                    <div class="card border-light mb-3" style="max-width:100%;">
+                      <% @draft_reports.each do |draft| %>
+                        <%= link_to draft do %>
+                          <div class="card-header"><%= draft.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                          <div class="card-body">
+                            <h5 class="card-title"><%= draft.title %></h5>
                             <p class="card-text"></p>
                           </div>
                         <% end %>
@@ -55,7 +71,7 @@
                           <p class="card-text"></p>
                         </div>
                       <% end %>
-                  </div>
+                    </div>
                   </div>
                 </div>
               </div>

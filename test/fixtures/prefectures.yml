@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: prefectures
+#
+#  id         :bigint           not null, primary key
+#  code       :integer
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  code: 1
+  references: 
+  references: 
+
+two:
+  name: MyString
+  code: 1
+  references: 
+  references: 

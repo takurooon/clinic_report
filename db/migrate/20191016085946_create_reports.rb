@@ -50,6 +50,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :content
       t.text :clinic_review
       t.text :reasons_for_choosing_this_clinic
+      t.integer :status, default: 0, null: false
       t.timestamps
     end
   end

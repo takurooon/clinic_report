@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   }
   
   get 'my_page' => 'my_page#index'
-
+  get 'my_page/draft' => 'reports#draft'
+  
   resources :users, shallow: true do
     resources :reports, only: %[index]
   end
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
   end
   
   resources :comments, only: %i[create destroy]
-  resources :clinic_reviews, only: %i[index]
+  # resources :clinic_reviews, only: %i[index]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

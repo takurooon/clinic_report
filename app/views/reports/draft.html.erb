@@ -1,5 +1,5 @@
-<h3 class="d-none d-md-block mt-4 mb-4">最新レポート</h3>
-<h3 class="d-sm d-md-none mt-4 mb-4 text-center">最新レポート</h3>
+<h3 class="d-none d-md-block mt-4 mb-4">下書きレポート</h3>
+<h3 class="d-sm d-md-none mt-4 mb-4 text-center">下書きレポート</h3>
 
 <div class="container">
   <div class="row reports-index">
@@ -23,10 +23,6 @@
               </div>
               <div class="report-author col-9">
                 <div><%= link_to report.user.name, user_path(report.user_id) %></div>
-                <small class="text-muted">
-                  <div>更新:<time datetime="<%= report.updated_at %>"><%= time_ago_in_words(report.updated_at) %></time>前</div>
-                  <div>投稿:<%= report.created_at.to_s(:datetime_jp) %></div>
-                </small>
               </div>
             </div>
           </div>

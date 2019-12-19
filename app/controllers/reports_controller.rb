@@ -10,6 +10,14 @@ class ReportsController < ApplicationController
 
   def index
     set_allreport
+    @reports = Report.published.order("created_at DESC").page(params[:page]).per(10)
+    # toptags = ReportTag.group(:tag_id).order("count_all desc").count.first
+    # @toptags = Tag.find(toptags)
+  end
+
+  def draft
+    @user = current_user
+    @reports = @user.reports.draft.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def show
@@ -26,15 +34,169 @@ class ReportsController < ApplicationController
     @supplements = @report.supplements
     @scope_of_disclosures = @report.scope_of_disclosures
     @comment = Comment.new(report_id: @report.id)
+
+    if @report.draft? && @report.user != current_user
+      redirect_to root_path
+    end
   end
 
   def new
     @report = Report.new
+    @report.current_state = session[:current_state]
+    @report.clinic_id = session[:clinic_id]
+    @report.number_of_clinics = session[:number_of_clinics]
+    @report.clinic_selection_criteria = session[:clinic_selection_criteria]
+    @report.reasons_for_choosing_this_clinic = session[:reasons_for_choosing_this_clinic]
+    @report.title = session[:title]
+    # @report.content = session[:content]
+    @report.fertility_treatment_number = session[:fertility_treatment_number]
+    @report.treatment_type = session[:treatment_type]
+    @report.treatment_start_age = session[:treatment_start_age]
+    @report.treatment_end_age = session[:treatment_end_age]
+    @report.treatment_period = session[:treatment_period]
+    @report.number_of_aih = session[:number_of_aih]
+    @report.amh = session[:amh]
+    @report.bmi = session[:bmi]
+    @report.smoking = session[:smoking]
+    @report.f_infertility_factor_ids = session[:f_infertility_factor_ids]
+    # @report.fif_name = session[:fif_name]
+    @report.m_infertility_factor_ids = session[:m_infertility_factor_ids]
+    # @report.mif_name = session[:mif_name]
+    @report.f_disease_ids = session[:f_disease_ids]
+    # @report.fd_name = session[:fd_name]
+    @report.m_disease_ids = session[:m_disease_ids]
+    # @report.md_name = session[:md_name]
+    @report.f_surgery_ids = session[:f_surgery_ids]
+    # @report.fs_name = session[:fs_name]
+    @report.m_surgery_ids = session[:m_surgery_ids]
+    # @report.ms_name = session[:ms_name]
+    @report.types_of_eggs_and_sperm = session[:types_of_eggs_and_sperm]
+    @report.type_of_sairan_cycle = session[:type_of_sairan_cycle]
+    @report.sairan_medicine_ids = session[:sairan_medicine_ids]
+    # # @report.sm_name = session[:sm_name]
+    @report.total_number_of_sairan = session[:total_number_of_sairan]
+    @report.all_number_of_sairan = session[:all_number_of_sairan]
+    @report.number_of_eggs_collected = session[:number_of_eggs_collected]
+    @report.egg_maturity = session[:egg_maturity]
+    @report.ova_with_ivm = session[:ova_with_ivm]
+    @report.types_of_fertilization_methods = session[:types_of_fertilization_methods]
+    @report.number_of_fertilized_eggs = session[:number_of_fertilized_eggs]
+    @report.number_of_frozen_eggs = session[:number_of_frozen_eggs]
+    @report.embryo_culture_days = session[:embryo_culture_days]
+    @report.embryo_stage = session[:embryo_stage]
+    @report.early_embryo_grade = session[:early_embryo_grade]
+    @report.blastocyst_grade1 = session[:blastocyst_grade1]
+    @report.blastocyst_grade2 = session[:blastocyst_grade2]
+    @report.transfer_medicine_ids = session[:transfer_medicine_ids]
+    # @report.tm_name = session[:tm_name]
+    @report.transfer_option_ids = session[:transfer_option_ids]
+    # @report.to_name = session[:to_name]
+    @report.total_number_of_transplants = session[:total_number_of_transplants]
+    @report.all_number_of_transplants = session[:all_number_of_transplants]
+    @report.number_of_eggs_stored = session[:number_of_eggs_stored]
+    @report.other_effort_ids = session[:other_effort_ids]
+    # @report.oe_name = session[:oe_name]
+    @report.supplement_ids = session[:supplement_ids]
+    # @report.supplement_name = session[:supplement_name]
+    @report.cost = session[:cost]
+    @report.credit_card_validity = session[:credit_card_validity]
+    @report.average_waiting_time = session[:average_waiting_time]
+    @report.period_of_time_spent_traveling = session[:period_of_time_spent_traveling]
+    @report.work_style = session[:work_style]
+    @report.private_or_listed_company = session[:private_or_listed_company]
+    @report.capital_size = session[:capital_size]
+    @report.position = session[:position]
+    @report.treatment_support_system = session[:treatment_support_system]
+    @report.industry_type = session[:industry_type]
+    @report.domestic_or_foreign_capital = session[:domestic_or_foreign_capital]
+    @report.department = session[:department]
+    @report.number_of_employees = session[:number_of_employees]
+    @report.suspended_or_retirement_job = session[:suspended_or_retirement_job]
+    @report.scope_of_disclosure_ids = session[:scope_of_disclosure_ids]
+    # @report.sod_scope = session[:sod_scope]
+    @report.tag_ids = session[:tag_ids]
+    # @report.tag_name = session[:tag_name]
+
     @all_tag_list = Tag.all.pluck(:tag_name)
   end
 
   def confirm
     @report = Report.new(report_params_for_confirm)
+    session[:current_state] = params[:report][:current_state]
+    session[:clinic_id] = params[:report][:clinic_id]
+    session[:number_of_clinics] = params[:report][:number_of_clinics]
+    session[:clinic_selection_criteria] = params[:report][:clinic_selection_criteria]
+    session[:reasons_for_choosing_this_clinic] = params[:report][:reasons_for_choosing_this_clinic]
+    session[:title] = params[:report][:title]
+    # session[:content] = params[:report][:content]
+    session[:fertility_treatment_number] = params[:report][:fertility_treatment_number]
+    session[:treatment_type] = params[:report][:treatment_type]
+    session[:treatment_start_age] = params[:report][:treatment_start_age]
+    session[:treatment_end_age] = params[:report][:treatment_end_age]
+    session[:treatment_period] = params[:report][:treatment_period]
+    session[:number_of_aih] = params[:report][:number_of_aih]
+    session[:amh] = params[:report][:amh]
+    session[:bmi] = params[:report][:bmi]
+    session[:smoking] = params[:report][:smoking]
+    session[:f_infertility_factor_ids] = params[:report][:f_infertility_factor_ids]
+    session[:fif_name] = params[:report][:fif_name]
+    session[:m_infertility_factor_ids] = params[:report][:m_infertility_factor_ids]
+    session[:mif_name] = params[:report][:mif_name]
+    session[:f_disease_ids] = params[:report][:f_disease_ids]
+    session[:fd_name] = params[:report][:fd_name]
+    session[:m_disease_ids] = params[:report][:m_disease_ids]
+    session[:md_name] = params[:report][:md_name]
+    session[:f_surgery_ids] = params[:report][:f_surgery_ids]
+    session[:fs_name] = params[:report][:fs_name]
+    session[:m_surgery_ids] = params[:report][:m_surgery_ids]
+    session[:ms_name] = params[:report][:ms_name]
+    session[:types_of_eggs_and_sperm] = params[:report][:types_of_eggs_and_sperm]
+    session[:type_of_sairan_cycle] = params[:report][:type_of_sairan_cycle]
+    session[:sairan_medicine_ids] = params[:report][:sairan_medicine_ids]
+    session[:sm_name] = params[:report][:sm_name]
+    session[:total_number_of_sairan] = params[:report][:total_number_of_sairan]
+    session[:all_number_of_sairan] = params[:report][:all_number_of_sairan]
+    session[:number_of_eggs_collected] = params[:report][:number_of_eggs_collected]
+    session[:egg_maturity] = params[:report][:egg_maturity]
+    session[:ova_with_ivm] = params[:report][:ova_with_ivm]
+    session[:types_of_fertilization_methods] = params[:report][:types_of_fertilization_methods]
+    session[:number_of_fertilized_eggs] = params[:report][:number_of_fertilized_eggs]
+    session[:number_of_frozen_eggs] = params[:report][:number_of_frozen_eggs]
+    session[:embryo_culture_days] = params[:report][:embryo_culture_days]
+    session[:embryo_stage] = params[:report][:embryo_stage]
+    session[:early_embryo_grade] = params[:report][:early_embryo_grade]
+    session[:blastocyst_grade1] = params[:report][:blastocyst_grade1]
+    session[:blastocyst_grade2] = params[:report][:blastocyst_grade2]
+    session[:transfer_medicine_ids] = params[:report][:transfer_medicine_ids]
+    session[:tm_name] = params[:report][:tm_name]
+    session[:transfer_option_ids] = params[:report][:transfer_option_ids]
+    session[:to_name] = params[:report][:to_name]
+    session[:total_number_of_transplants] = params[:report][:total_number_of_transplants]
+    session[:all_number_of_transplants] = params[:report][:all_number_of_transplants]
+    session[:number_of_eggs_stored] = params[:report][:number_of_eggs_stored]
+    session[:other_effort_ids] = params[:report][:other_effort_ids]
+    session[:oe_name] = params[:report][:oe_name]
+    session[:supplement_ids] = params[:report][:supplement_ids]
+    session[:supplement_name] = params[:report][:supplement_name]
+    session[:cost] = params[:report][:cost]
+    session[:credit_card_validity] = params[:report][:credit_card_validity]
+    session[:average_waiting_time] = params[:report][:average_waiting_time]
+    session[:period_of_time_spent_traveling] = params[:report][:period_of_time_spent_traveling]
+    session[:work_style] = params[:report][:work_style]
+    session[:private_or_listed_company] = params[:report][:private_or_listed_company]
+    session[:capital_size] = params[:report][:capital_size]
+    session[:position] = params[:report][:position]
+    session[:treatment_support_system] = params[:report][:treatment_support_system]
+    session[:industry_type] = params[:report][:industry_type]
+    session[:domestic_or_foreign_capital] = params[:report][:domestic_or_foreign_capital]
+    session[:department] = params[:report][:department]
+    session[:number_of_employees] = params[:report][:number_of_employees]
+    session[:suspended_or_retirement_job] = params[:report][:suspended_or_retirement_job]
+    session[:scope_of_disclosure_ids] = params[:report][:scope_of_disclosure_ids]
+    session[:sod_scope] = params[:report][:sod_scope]
+    session[:tag_ids] = params[:report][:tag_ids]
+    session[:tag_name] = params[:report][:tag_name]
+
     @fif_name = params[:fif_name]
     @mif_name = params[:mif_name]
     @fd_name = params[:fd_name]
@@ -233,10 +395,8 @@ class ReportsController < ApplicationController
       if @report.update(report_params)
         @report.save_reports(tag_list)
         format.html { redirect_to @report, notice: 'レポートを更新しました。' }
-        format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit }
-        format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -245,7 +405,6 @@ class ReportsController < ApplicationController
     @report.destroy
     respond_to do |format|
       format.html { redirect_to reports_url, notice: 'レポートを削除しました。' }
-      format.json { head :no_content }
     end
   end
 
@@ -312,6 +471,7 @@ class ReportsController < ApplicationController
         :reasons_for_choosing_this_clinic,
         :content,
         :clinic_review,
+        :status,
         f_infertility_factor_ids: [],
         m_infertility_factor_ids: [],
         f_disease_ids: [],
@@ -380,6 +540,7 @@ class ReportsController < ApplicationController
         :reasons_for_choosing_this_clinic,
         :content,
         :clinic_review,
+        :status,
       )
     end
 end

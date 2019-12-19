@@ -1,5 +1,10 @@
 ---
 ja:
+  enums:
+    report:
+      status:
+        draft: '下書き'
+        published: '公開'
   activerecord:
     errors:
       models:

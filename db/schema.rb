@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_070435) do
+ActiveRecord::Schema.define(version: 2019_12_16_065812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 2019_12_13_070435) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.integer "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "clinic_reviews", force: :cascade do |t|
     t.bigint "clinic_id", null: false
     t.bigint "user_id", null: false
@@ -59,8 +66,20 @@ ActiveRecord::Schema.define(version: 2019_12_13_070435) do
   end
 
   create_table "clinics", force: :cascade do |t|
-    t.string "clinic_name"
+    t.string "name"
     t.integer "jsog_code"
+    t.string "post_code"
+    t.string "address1"
+    t.string "address2"
+    t.string "tel"
+    t.integer "senkoishido"
+    t.integer "fujinkashuyo"
+    t.integer "shusanki"
+    t.integer "ivf"
+    t.integer "hai_ranshi_toketsu"
+    t.integer "kenbijusei"
+    t.integer "social_ranshitoketsu"
+    t.integer "teikyoseishi_aih"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -119,6 +138,25 @@ ActiveRecord::Schema.define(version: 2019_12_13_070435) do
   end
 
   create_table "other_efforts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.string "name"
+    t.integer "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "region1s", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "region2s", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -291,6 +329,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_070435) do
     t.text "content"
     t.text "clinic_review"
     t.text "reasons_for_choosing_this_clinic"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "clinic_id", null: false

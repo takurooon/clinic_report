@@ -465,10 +465,19 @@
           <%= hidden_field_tag :tag_name, @tag_name %>
           <span class="answer"><%= @tag_name %></span>
         </div>
-      </div>
-
       </div><br><br>
       <div>
+        <div class="draft-published-btn">
+          <%= f.label :status, '公開状況' %><br>
+          <%= f.hidden_field :status %>
+          <p class="answer">
+            <% if @report.status == "published" %>
+              <%= "公開" %>
+            <% else %>
+              <%= "保存" %>
+            <% end %>
+          </p>
+        </div>
         <%= f.submit 'この内容で投稿', class: 'btn btn-raised btn-warning w-50 mx-auto d-block' %>
           <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
             投稿する前に投稿内容を見直してください!

@@ -39,6 +39,7 @@
 #  private_or_listed_company        :integer
 #  reasons_for_choosing_this_clinic :text
 #  smoking                          :integer
+#  status                           :integer          default(0), not null
 #  suspended_or_retirement_job      :integer
 #  title                            :string
 #  total_number_of_sairan           :integer

@@ -1,4 +1,8 @@
 class Report < ApplicationRecord
+
+  # 公開状況
+  enum status: { draft: 0, published: 1 }
+
   # バリデーション
   validates :title, length: { maximum: 32 }
   validate :validate_treatment_age
@@ -8,6 +12,8 @@ class Report < ApplicationRecord
   
   
   def validate_treatment_age
+    return "" if self.treatment_start_age.nil?
+    return "" if self.treatment_end_age.nil?
     if treatment_start_age > treatment_end_age
       errors.add(
         :treatment_end_age,
@@ -926,6 +932,7 @@ class Report < ApplicationRecord
   STR_FERTILITY_TREATMENT_NUMBER_MAXIMUM = "#{UPPER_THE_FERTILITY_TREATMENT_NUMBER_RANGE}#{FERTILITY_TREATMENT_NUMBER_UNIT}#{OR_MORE}"
 
   def str_fertility_treatment_number
+    return "" if self.fertility_treatment_number.nil?
     if self.fertility_treatment_number == FERTILITY_TREATMENT_NUMBER_MAXIMUM
       STR_FERTILITY_TREATMENT_NUMBER_MAXIMUM
     elsif self.fertility_treatment_number >= 1 || self.fertility_treatment_number <= FERTILITY_TREATMENT_NUMBER_RANGE
@@ -952,6 +959,7 @@ class Report < ApplicationRecord
   STR_NUMBER_OF_CLINICS_MAXIMUM = "#{UPPER_THE_NUMBER_OF_CLINICS_RANGE}#{NUMBER_OF_CLINICS_UNIT}#{OR_MORE}"
 
   def str_number_of_clinics
+    return "" if self.number_of_clinics.nil?
     if self.number_of_clinics == NUMBER_OF_CLINICS_MAXIMUM
       STR_NUMBER_OF_CLINICS_MAXIMUM
     elsif self.number_of_clinics >= 1 || self.number_of_clinics <= NUMBER_OF_CLINICS_RANGE
@@ -978,6 +986,7 @@ class Report < ApplicationRecord
   STR_NUMBER_OF_AIH_MAXIMUM = "#{UPPER_THE_NUMBER_OF_AIH_RANGE}#{TIMES}#{OR_MORE}"
 
   def str_number_of_aih
+    return "" if self.number_of_aih.nil?
     if self.number_of_aih == NUMBER_OF_AIH_MAXIMUM
       STR_NUMBER_OF_AIH_MAXIMUM
     elsif self.number_of_aih >= 1 || self.number_of_aih <= NUMBER_OF_AIH_RANGE
@@ -1004,6 +1013,7 @@ class Report < ApplicationRecord
   STR_TREATMENT_START_AGE_MINIMUM = "#{THE_BEGINNING_OF_AGE}#{AGE}#{OR_LESS}"
 
   def str_treatment_start_age
+    return "" if self.treatment_start_age.nil?
     if self.treatment_start_age == TREATMENT_START_AGE_MAXIMUM
       STR_TREATMENT_START_AGE_MAXIMUM
     elsif self.treatment_start_age <= THE_BEGINNING_OF_AGE
@@ -1037,6 +1047,7 @@ class Report < ApplicationRecord
 
 
   def str_treatment_end_age
+    return "" if self.treatment_end_age.nil?
     if self.treatment_end_age == TREATMENT_END_AGE_MAXIMUM
       STR_TREATMENT_END_AGE_MAXIMUM
     elsif self.treatment_end_age <= THE_BEGINNING_OF_AGE
@@ -1069,6 +1080,7 @@ class Report < ApplicationRecord
   STR_TOTAL_NUMBER_OF_SAIRAN_MAXIMUM = "#{UPPER_THE_TOTAL_NUMBER_OF_SAIRAN_RANGE}#{TIMES}#{OR_MORE}"
 
   def str_total_number_of_sairan
+    return "" if self.total_number_of_sairan.nil?
     if self.total_number_of_sairan == TOTAL_NUMBER_OF_SAIRAN_MAXIMUM
       STR_TOTAL_NUMBER_OF_SAIRAN_MAXIMUM
     elsif self.total_number_of_sairan >= 1 || self.total_number_of_sairan <= TOTAL_NUMBER_OF_SAIRAN_RANGE
@@ -1095,6 +1107,7 @@ class Report < ApplicationRecord
   STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM = "#{UPPER_THE_ALL_NUMBER_OF_SAIRAN_RANGE}#{TIMES}#{OR_MORE}"
 
   def str_all_number_of_sairan
+    return "" if self.all_number_of_sairan.nil?
     if self.all_number_of_sairan == ALL_NUMBER_OF_SAIRAN_MAXIMUM
       STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM
     elsif self.all_number_of_sairan >= 1 || self.all_number_of_sairan <= ALL_NUMBER_OF_SAIRAN_RANGE
@@ -1121,6 +1134,7 @@ class Report < ApplicationRecord
   STR_TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM = "#{UPPER_THE_TOTAL_NUMBER_OF_TRANSPLANTS_RANGE}#{TIMES}#{OR_MORE}"
 
   def str_total_number_of_transplants
+    return "" if self.total_number_of_transplants.nil?
     if self.total_number_of_transplants == TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM
       STR_TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM
     elsif self.total_number_of_transplants >= 1 || self.total_number_of_transplants <= TOTAL_NUMBER_OF_TRANSPLANTS_RANGE
@@ -1146,6 +1160,7 @@ class Report < ApplicationRecord
   STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM = "#{UPPER_THE_ALL_NUMBER_OF_TRANSPLANTS_RANGE}#{TIMES}#{OR_MORE}"
 
   def str_all_number_of_transplants
+    return "" if self.all_number_of_transplants.nil?
     if self.all_number_of_transplants == ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM
       STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM
     elsif self.all_number_of_transplants >= 1 || self.all_number_of_transplants <= ALL_NUMBER_OF_TRANSPLANTS_RANGE
@@ -1171,6 +1186,7 @@ class Report < ApplicationRecord
   STR_NUMBER_OF_EGGS_COLLECTED_MAXIMUM = "1,000#{PIECES}#{OR_MORE}"
 
   def str_number_of_eggs_collected
+    return "" if self.number_of_eggs_collected.nil?
     case self.number_of_eggs_collected
     when UNKNOWN
       STR_UNKNOWN
@@ -1217,6 +1233,7 @@ class Report < ApplicationRecord
   STR_NUMBER_OF_FERTILIZED_EGGS_MAXIMUM = "それ#{OR_MORE}"
 
   def str_number_of_fertilized_eggs
+    return "" if self.number_of_fertilized_eggs.nil?
     if self.number_of_fertilized_eggs == NUMBER_OF_FERTILIZED_EGGS_MAXIMUM
       STR_NUMBER_OF_FERTILIZED_EGGS_MAXIMUM
     elsif self.number_of_fertilized_eggs >= 1 || self.number_of_fertilized_eggs <= NUMBER_OF_FERTILIZED_EGGS_RANGE
@@ -1242,6 +1259,7 @@ class Report < ApplicationRecord
   STR_NUMBER_OF_FROZEN_EGGS_MAXIMUM = "それ#{OR_MORE}"
 
   def str_number_of_frozen_eggs
+    return "" if self.number_of_frozen_eggs.nil?
     if self.number_of_frozen_eggs == NUMBER_OF_FROZEN_EGGS_MAXIMUM
       STR_NUMBER_OF_FROZEN_EGGS_MAXIMUM
     elsif self.number_of_frozen_eggs >= 1 || self.number_of_frozen_eggs <= NUMBER_OF_FROZEN_EGGS_RANGE
@@ -1267,6 +1285,7 @@ class Report < ApplicationRecord
   STR_NUMBER_OF_EGGS_STORED_MAXIMUM = "それ#{OR_MORE}"
 
   def str_number_of_eggs_stored
+    return "" if self.number_of_eggs_stored.nil?
     if self.number_of_eggs_stored == NUMBER_OF_EGGS_STORED_MAXIMUM
       STR_NUMBER_OF_EGGS_STORED_MAXIMUM
     elsif self.number_of_eggs_stored >= 1 || self.number_of_eggs_stored <= NUMBER_OF_EGGS_STORED_RANGE
@@ -1292,6 +1311,7 @@ class Report < ApplicationRecord
   STR_EMBRYO_CULTURE_DAYS_MAXIMUM = "それ#{DAY}#{OR_MORE}"
 
   def str_embryo_culture_days
+    return "" if self.embryo_culture_days.nil?
     case self.embryo_culture_days
     when UNKNOWN
       STR_UNKNOWN
@@ -1321,6 +1341,7 @@ class Report < ApplicationRecord
   STR_EMBRYO_GRADE_SIZE_MAXIMUM = "それ#{DAY}#{OR_MORE}"
 
   def str_embryo_grade_size
+    return "" if self.embryo_grade_size.nil?
     case self.embryo_grade_size
     when UNKNOWN
       STR_UNKNOWN
@@ -1385,6 +1406,7 @@ end
 #  private_or_listed_company        :integer
 #  reasons_for_choosing_this_clinic :text
 #  smoking                          :integer
+#  status                           :integer          default(0), not null
 #  suspended_or_retirement_job      :integer
 #  title                            :string
 #  total_number_of_sairan           :integer
