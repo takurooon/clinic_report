@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'my_page/index'
   root 'reports#home'
+  get 'my_page/index'
   
   devise_for :users, controllers: {
     registrations: 'users/registrations',
