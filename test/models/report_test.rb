@@ -4,9 +4,11 @@
 #
 #  id                               :bigint           not null, primary key
 #  address_at_that_time             :integer
+#  all_cost                         :integer
 #  all_number_of_sairan             :integer
 #  all_number_of_transplants        :integer
 #  amh                              :integer
+#  annual_income                    :integer
 #  average_waiting_time             :integer
 #  blastocyst_grade1                :integer
 #  blastocyst_grade2                :integer
@@ -25,6 +27,8 @@
 #  embryo_culture_days              :integer
 #  embryo_stage                     :integer
 #  fertility_treatment_number       :integer
+#  first_age_to_start               :integer
+#  household_net_income             :integer
 #  industry_type                    :integer
 #  number_of_aih                    :integer
 #  number_of_clinics                :integer
@@ -38,8 +42,9 @@
 #  position                         :integer
 #  private_or_listed_company        :integer
 #  reasons_for_choosing_this_clinic :text
+#  reservation_method               :integer
 #  smoking                          :integer
-#  status                           :integer          default(0), not null
+#  status                           :integer          default("draft"), not null
 #  suspended_or_retirement_job      :integer
 #  title                            :string
 #  total_number_of_sairan           :integer

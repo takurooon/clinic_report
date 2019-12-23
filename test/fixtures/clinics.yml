@@ -19,6 +19,15 @@
 #  tel                  :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  city_id              :bigint           not null
+#
+# Indexes
+#
+#  index_clinics_on_city_id  (city_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (city_id => cities.id)
 #
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

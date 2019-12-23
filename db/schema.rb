@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_065812) do
+ActiveRecord::Schema.define(version: 2019_12_20_042448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(version: 2019_12_16_065812) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.integer "code"
+    t.bigint "prefecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
   end
 
   create_table "clinic_reviews", force: :cascade do |t|
@@ -82,6 +84,8 @@ ActiveRecord::Schema.define(version: 2019_12_16_065812) do
     t.integer "teikyoseishi_aih"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "city_id", null: false
+    t.index ["city_id"], name: "index_clinics_on_city_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -146,8 +150,12 @@ ActiveRecord::Schema.define(version: 2019_12_16_065812) do
   create_table "prefectures", force: :cascade do |t|
     t.string "name"
     t.integer "code"
+    t.bigint "region1_id", null: false
+    t.bigint "region2_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["region1_id"], name: "index_prefectures_on_region1_id"
+    t.index ["region2_id"], name: "index_prefectures_on_region2_id"
   end
 
   create_table "region1s", force: :cascade do |t|
@@ -287,6 +295,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_065812) do
     t.integer "clinic_selection_criteria"
     t.integer "treatment_type"
     t.integer "treatment_start_age"
+    t.integer "first_age_to_start"
     t.integer "treatment_end_age"
     t.integer "treatment_period"
     t.integer "number_of_aih"
@@ -312,8 +321,10 @@ ActiveRecord::Schema.define(version: 2019_12_16_065812) do
     t.integer "all_number_of_transplants"
     t.integer "number_of_eggs_stored"
     t.integer "cost"
+    t.integer "all_cost"
     t.integer "credit_card_validity"
     t.integer "average_waiting_time"
+    t.integer "reservation_method"
     t.integer "period_of_time_spent_traveling"
     t.integer "address_at_that_time"
     t.integer "work_style"
@@ -323,6 +334,8 @@ ActiveRecord::Schema.define(version: 2019_12_16_065812) do
     t.integer "capital_size"
     t.integer "department"
     t.integer "position"
+    t.integer "annual_income"
+    t.integer "household_net_income"
     t.integer "number_of_employees"
     t.integer "treatment_support_system"
     t.integer "suspended_or_retirement_job"
@@ -407,10 +420,14 @@ ActiveRecord::Schema.define(version: 2019_12_16_065812) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cities", "prefectures"
   add_foreign_key "clinic_reviews", "clinics"
   add_foreign_key "clinic_reviews", "users"
+  add_foreign_key "clinics", "cities"
   add_foreign_key "comments", "reports"
   add_foreign_key "comments", "users"
+  add_foreign_key "prefectures", "region1s"
+  add_foreign_key "prefectures", "region2s"
   add_foreign_key "report_f_diseases", "f_diseases"
   add_foreign_key "report_f_diseases", "reports"
   add_foreign_key "report_f_infertility_factors", "f_infertility_factors"

@@ -13,13 +13,6 @@ Tag.create([
   { tag_name: "ロング法" }
 ])
 
-Clinic.create([
-  { name: "加藤レディスクリニック" },
-  { name: "リプロダクションクリニック東京" },
-  { name: "ナチュラルアートクリニック日本橋" },
-])
-
-
 Supplement.create([
   { name: "ビタミン" },
   { name: "葉酸" },
@@ -141,30 +134,4 @@ OtherEffort.create([
   { name: "ぬぬぬ" },
   { name: "ねねね" },
   { name: "ののの" },
-])
-
-
-Prefecture.create([
-  { name: "北海道" },
-  { name: "青森県" },
-  { name: "岩手県" },
-])
-
-City.create([
-  { name: "札幌市" },
-  { name: "青森県" },
-  { name: "岩手県" },
-])
-
-
-Region1.create([
-  { name: "東北地方" },
-  { name: "関東地方" },
-  { name: "中国地方" },
-])
-
-Region2.create([
-  { name: "北関東" },
-  { name: "山陰" },
-  { name: "山陽" },
 ])

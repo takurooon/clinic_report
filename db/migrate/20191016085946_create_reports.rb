@@ -8,6 +8,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :clinic_selection_criteria
       t.integer :treatment_type
       t.integer :treatment_start_age
+      t.integer :first_age_to_start
       t.integer :treatment_end_age
       t.integer :treatment_period
       t.integer :number_of_aih
@@ -33,8 +34,10 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :all_number_of_transplants
       t.integer :number_of_eggs_stored
       t.integer :cost
+      t.integer :all_cost
       t.integer :credit_card_validity
       t.integer :average_waiting_time
+      t.integer :reservation_method
       t.integer :period_of_time_spent_traveling
       t.integer :address_at_that_time
       t.integer :work_style
@@ -44,6 +47,8 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :capital_size
       t.integer :department
       t.integer :position
+      t.integer :annual_income
+      t.integer :household_net_income
       t.integer :number_of_employees
       t.integer :treatment_support_system
       t.integer :suspended_or_retirement_job

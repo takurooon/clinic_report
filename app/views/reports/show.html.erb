@@ -114,6 +114,10 @@
       <td><%= @report.str_treatment_start_age %></td>
     </tr>
     <tr>
+      <th scope="row">不妊治療自体(妊活含む)を始めた年齢</th>
+      <td><%= @report.str_first_age_to_start %></td>
+    </tr>
+    <tr>
       <th scope="row">このクリニックでの治療終了時の年齢</th>
       <td><%= @report.str_treatment_end_age %></td>
     </tr>
@@ -303,12 +307,20 @@
       <td><%= @report.str_cost %></td>
     </tr>
     <tr>
+      <th scope="row">このクリニック以外にかけた治療費用(他のクリニックでの治療/鍼灸漢方治療/サプリなど)も含めた費用の総額</th>
+      <td><%= @report.str_all_cost %></td>
+    </tr>
+    <tr>
       <th scope="row">クレジットカード使用可否</th>
       <td><%= @report.str_credit_card_validity %></td>
     </tr>
     <tr>
       <th scope="row">クリニックでの平均待ち時間</th>
       <td><%= @report.str_average_waiting_time %></td>
+    </tr>
+    <tr>
+      <th scope="row">診察の予約方法について</th>
+      <td><%= @report.str_reservation_method %></td>
     </tr>
     <tr>
       <th scope="row">治療中の住まい</th>
@@ -357,6 +369,14 @@
     <tr>
       <th scope="row">治療に際しての働き方の変化</th>
       <td><%= @report.str_suspended_or_retirement_job %></td>
+    </tr>
+    <tr>
+      <th scope="row">治療当時のご自身の年収</th>
+      <td><%= @report.str_annual_income %></td>
+    </tr>
+    <tr>
+      <th scope="row">治療当時の前年の夫婦合算所得(所得＝収入 - 経費)</th>
+      <td><%= @report.str_household_net_income %></td>
     </tr>
     <tr>
       <th scope="row">治療の開示範囲</th>

@@ -86,6 +86,11 @@
           <p class="answer"><%= @report.str_treatment_start_age %></p>
         </div>
         <div class="form-group">
+          <%= f.label :first_age_to_start, '不妊治療自体(妊活含む)を始めたのは何歳の時ですか' %>
+          <%= f.hidden_field :first_age_to_start %>
+          <p class="answer"><%= @report.str_first_age_to_start %></p>
+        </div>
+        <div class="form-group">
           <%= f.label :treatment_end_age, 'このクリニックで治療を終了したのは何歳の時ですか' %>
           <%= f.hidden_field :treatment_end_age %>
           <p class="answer"><%= @report.str_treatment_end_age %></p>
@@ -354,6 +359,11 @@
           <p class="answer"><%= @report.str_cost %></p>
         </div>
         <div class="form-group">
+          <%= f.label :all_cost, 'このクリニック以外にかけた治療費用(他のクリニックでの治療/鍼灸漢方治療/サプリなど)も含めると費用の総額はどれくらいですか' %>
+          <%= f.hidden_field :all_cost %>
+          <p class="answer"><%= @report.str_all_cost %></p>
+        </div>
+        <div class="form-group">
           <%= f.label :credit_card_validity, 'クレジットカードは使えましたか？' %>
           <%= f.hidden_field :credit_card_validity %>
           <p class="answer"><%= @report.str_credit_card_validity %></p>
@@ -362,6 +372,11 @@
           <%= f.label :average_waiting_time, 'クリニックでの平均待ち時間はどのくらいでしたか' %>
           <%= f.hidden_field :average_waiting_time %>
           <p class="answer"><%= @report.str_average_waiting_time %></p>
+        </div>
+        <div class="form-group">
+          <%= f.label :reservation_method, '診察の予約方法について' %>
+          <%= f.hidden_field :reservation_method %>
+          <p class="answer"><%= @report.str_reservation_method %></p>
         </div>
         <div class="form-group">
           <%= f.label :period_of_time_spent_traveling, 'クリニックまでの通院時間' %>
@@ -400,6 +415,11 @@
               <%= f.hidden_field :treatment_support_system %>
               <p class="answer"><%= @report.str_treatment_support_system %></p>
             </div>
+            <div class="form-group">
+              <%= f.label :annual_income, '治療当時のご自身の年収' %>
+              <%= f.hidden_field :annual_income %>
+              <p class="answer"><%= @report.str_annual_income %></p>
+            </div>
           </div>
           
           <div class="work-style-item col-6">
@@ -427,6 +447,11 @@
               <%= f.label :suspended_or_retirement_job, '休職や退職の有無' %>
               <%= f.hidden_field :suspended_or_retirement_job %>
               <p class="answer"><%= @report.str_suspended_or_retirement_job %></p>
+            </div>
+            <div class="form-group">
+              <%= f.label :household_net_income, '治療当時の前年の「夫婦合算所得」' %>
+              <%= f.hidden_field :household_net_income %>
+              <p class="answer"><%= @report.str_household_net_income %></p>
             </div>
           </div>
         </div><br>

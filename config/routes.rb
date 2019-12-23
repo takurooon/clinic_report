@@ -22,9 +22,8 @@ Rails.application.routes.draw do
       post :confirm
     end
     resource :likes, only: [:create, :destroy]
-    
   end
-  
+
   resources :comments, only: %i[create destroy]
   # resources :clinic_reviews, only: %i[index]
 
@@ -57,6 +56,7 @@ end
 #                     user_confirmation GET    /users/confirmation(.:format)                                                            users/confirmations#show
 #                                       POST   /users/confirmation(.:format)                                                            users/confirmations#create
 #                               my_page GET    /my_page(.:format)                                                                       my_page#index
+#                         my_page_draft GET    /my_page/draft(.:format)                                                                 reports#draft
 #                          user_reports GET    /users/:user_id/reports(.:format)                                                        reports#index
 #                                 users GET    /users(.:format)                                                                         users#index
 #                                       POST   /users(.:format)                                                                         users#create
@@ -79,7 +79,6 @@ end
 #                                       DELETE /reports/:id(.:format)                                                                   reports#destroy
 #                              comments POST   /comments(.:format)                                                                      comments#create
 #                               comment DELETE /comments/:id(.:format)                                                                  comments#destroy
-#                        clinic_reviews GET    /clinic_reviews(.:format)                                                                clinic_reviews#index
 #                     letter_opener_web        /letter_opener                                                                           LetterOpenerWeb::Engine
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create

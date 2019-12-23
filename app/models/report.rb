@@ -1,6 +1,6 @@
 class Report < ApplicationRecord
 
-  # 公開状況
+  # レポートの公開状況
   enum status: { draft: 0, published: 1 }
 
   # バリデーション
@@ -646,6 +646,40 @@ class Report < ApplicationRecord
     return HASH_COST[self.cost]
   end
 
+  # all_costの区分値(不妊治療に関する費用総額)
+  HASH_ALL_COST = {
+    1 => "10万円未満",
+    2 => "20万円未満",
+    3 => "30万円未満",
+    4 => "40万円未満",
+    5 => "50万円未満",
+    6 => "60万円未満",
+    7 => "70万円未満",
+    8 => "80万円未満",
+    9 => "90万円未満",
+    10 => "100万円未満",
+    11 => "110万円未満",
+    12 => "120万円未満",
+    13 => "130万円未満",
+    14 => "140万円未満",
+    15 => "150万円未満",
+    16 => "160万円未満",
+    17 => "170万円未満",
+    18 => "180万円未満",
+    19 => "190万円未満",
+    20 => "200万円未満",
+    21 => "210万円未満",
+    22 => "950〜1,000万円未満",
+    23 => "1,000〜1,500万円未満",
+    24 => "1,500〜2,000万円未満",
+    99 => "2,000万円以上",
+    100 => "不明"
+  }
+
+  def str_all_cost
+    return HASH_ALL_COST[self.all_cost]
+  end
+
 
   # credit_card_validityの区分値(クレジットカード使用可否)
   HASH_CREDIT_CARD_VALIDITY = {
@@ -659,21 +693,50 @@ class Report < ApplicationRecord
   def str_credit_card_validity
     return HASH_CREDIT_CARD_VALIDITY[self.credit_card_validity]
   end
-  
 
-  # average_waiting_timeの区分値(クリニックでの平均待ち時間)
-  HASH_AVERAGE_WAITING_TIME = {
-    1 => "〜1時間",
-    2 => "〜2時間",
-    3 => "〜3時間",
-    4 => "〜4時間",
-    5 => "〜5時間",
-    99 => "それ以上",
-    100 => "不明"
+
+  # reservation_methodの区分値(web予約の有無)
+  HASH_RESERVATION_METHOD = {
+    1 => "電話予約のみ",
+    2 => "web予約のみ",
+    2 => "電話･web予約どちらも",
+    3 => "不明"
+  }
+
+  def str_reservation_method
+    return HASH_RESERVATION_METHOD[self.reservation_method]
+  end
+
+
+   # average_waiting_timeの区分値(クリニックでの平均待ち時間)
+   HASH_AVERAGE_WAITING_TIME = {
+    1 => "1時間以内",
+    2 => "2時間以内",
+    3 => "3時間以内",
+    4 => "4時間以内",
+    5 => "5時間以内",
+    99 => "それ以上"
   }
 
   def str_average_waiting_time
     return HASH_AVERAGE_WAITING_TIME[self.average_waiting_time]
+  end
+
+  # address_at_that_timeの区分値(治療中の住まい)
+
+
+  # period_of_time_spent_travelingの区分値(通院時間)
+  HASH_PERIOD_OF_TIME_SPENT_TRAVELING = {
+    1 => "1時間以内",
+    2 => "2時間以内",
+    3 => "3時間以内",
+    4 => "4時間以内",
+    5 => "5時間以内",
+    99 => "それ以上"
+  }
+
+  def str_period_of_time_spent_traveling
+    return HASH_PERIOD_OF_TIME_SPENT_TRAVELING[self.period_of_time_spent_traveling]
   end
 
 
@@ -834,6 +897,52 @@ class Report < ApplicationRecord
   end
 
 
+  # annual_incomeの区分値(当時のご自身の年収)
+  HASH_ANNUAL_INCOME = {
+    1 => "50万円未満",
+    2 => "100万円未満",
+    3 => "200万円未満",
+    4 => "300万円未満",
+    5 => "400万円未満",
+    6 => "500万円未満",
+    7 => "600万円未満",
+    8 => "700万円未満",
+    9 => "800万円未満",
+    10 => "900万円未満",
+    11 => "1,000万円未満",
+    12 => "1,500万円未満",
+    13 => "2,000万円未満",
+    14 => "2,000万円以上"
+  }
+
+  def str_annual_income
+    return HASH_ANNUAL_INCOME[self.annual_income]
+  end
+
+
+  # household_net_incomeの区分値(当時、前年の夫婦合算所得)
+  HASH_HOUSEHOLD_NET_INCOME = {
+    1 => "50万円未満",
+    2 => "100万円未満",
+    3 => "200万円未満",
+    4 => "300万円未満",
+    5 => "400万円未満",
+    6 => "500万円未満",
+    7 => "600万円未満",
+    8 => "730万円未満",
+    9 => "800万円未満",
+    10 => "905万円未満",
+    11 => "1,000万円未満",
+    12 => "1,500万円未満",
+    13 => "2,000万円未満",
+    14 => "2,000万円以上"
+  }
+
+  def str_household_net_income
+    return HASH_HOUSEHOLD_NET_INCOME[self.household_net_income]
+  end
+
+
   # suspended_or_retirement_jobの区分値(治療に際しての働き方の変化)
   HASH_SUSPENDED_OR_RETIREMENT_JOB = {
     1 => "特に変わっていない",
@@ -876,40 +985,6 @@ class Report < ApplicationRecord
   def str_smoking
     return HASH_SMOKING[self.smoking]
   end
-
-  # average_waiting_timeの区分値(クリニックでの平均待ち時間)
-  HASH_AVERAGE_WAITING_TIME = {
-    1 => "1時間以内",
-    2 => "2時間以内",
-    3 => "3時間以内",
-    4 => "4時間以内",
-    5 => "5時間以内",
-    99 => "それ以上"
-  }
-
-  def str_average_waiting_time
-    return HASH_AVERAGE_WAITING_TIME[self.average_waiting_time]
-  end
-
-
-  # address_at_that_timeの区分値(治療中の住まい)
-
-
-  # period_of_time_spent_travelingの区分値(通院時間)
-  HASH_PERIOD_OF_TIME_SPENT_TRAVELING = {
-    1 => "1時間以内",
-    2 => "2時間以内",
-    3 => "3時間以内",
-    4 => "4時間以内",
-    5 => "5時間以内",
-    99 => "それ以上"
-  }
-
-  def str_period_of_time_spent_traveling
-    return HASH_PERIOD_OF_TIME_SPENT_TRAVELING[self.period_of_time_spent_traveling]
-  end
-
-
 
 
   TIMES = "回"
@@ -1004,6 +1079,41 @@ class Report < ApplicationRecord
     hash[STR_NUMBER_OF_AIH_MAXIMUM] = STR_NUMBER_OF_AIH_MAXIMUM
     hash
   end
+
+
+  # first_age_to_startの区分値(治療開始年齢/妊活〜不妊治療全体)
+  FIRST_AGE_TO_START_MAXIMUM = 1000
+  FIRST_AGE_TO_START_RANGE = 59
+  UPPER_THE_FIRST_AGE_TO_START_RANGE = FIRST_AGE_TO_START_RANGE + 1
+  STR_FIRST_AGE_TO_START_MAXIMUM = "#{UPPER_THE_FIRST_AGE_TO_START_RANGE}#{AGE}#{OR_MORE}"
+  STR_FIRST_AGE_TO_START_MINIMUM = "#{THE_BEGINNING_OF_AGE}#{AGE}#{OR_LESS}"
+
+  def str_first_age_to_start
+    return "" if self.first_age_to_start.nil?
+    if self.first_age_to_start == FIRST_AGE_TO_START_MAXIMUM
+      STR_FIRST_AGE_TO_START_MAXIMUM
+    elsif self.first_age_to_start <= THE_BEGINNING_OF_AGE
+      STR_FIRST_AGE_TO_START_MINIMUM
+    elsif self.first_age_to_start > THE_BEGINNING_OF_AGE || self.first_age_to_start <= FIRST_AGE_TO_START_RANGE
+      "#{self.first_age_to_start} #{AGE}"
+    else
+      raise
+    end
+  end
+  
+  def self.make_select_options_first_age_to_start
+    hash = {}
+    (THE_BEGINNING_OF_AGE..FIRST_AGE_TO_START_RANGE).each do |i|
+      if i == THE_BEGINNING_OF_AGE
+        hash[STR_FIRST_AGE_TO_START_MINIMUM] = i
+      else
+        hash["#{i}#{AGE}"] = i
+      end
+    end
+    hash[STR_FIRST_AGE_TO_START_MAXIMUM] = STR_FIRST_AGE_TO_START_MAXIMUM
+    hash
+  end
+
 
   # treatment_start_ageの区分値(治療開始年齢/CL単位)
   TREATMENT_START_AGE_MAXIMUM = 1000
@@ -1297,7 +1407,7 @@ class Report < ApplicationRecord
 
   def self.make_select_options_number_of_eggs_stored
     hash = {}
-    (1..NUMBER_OF_EGGS_STORED_RANGE).each do |i|
+    (0..NUMBER_OF_EGGS_STORED_RANGE).each do |i|
       hash["#{i}#{PIECES}"] = i
     end
     hash[STR_NUMBER_OF_EGGS_STORED_MAXIMUM] = STR_NUMBER_OF_EGGS_STORED_MAXIMUM
@@ -1334,7 +1444,7 @@ class Report < ApplicationRecord
     hash
   end
 
-  # embryo_grade_sizeの区分値(妊娠に至った胚の大きさ) ないsize
+  # embryo_grade_sizeの区分値(妊娠に至った胚の大きさ) 
   HASH_EMBRYO_GRADE_SIZE = { "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "その他" => 99, "不明" => 100 }
   EMBRYO_GRADE_SIZE_MAXIMUM = 1000
   EMBRYO_GRADE_SIZE_RANGE = 10
@@ -1371,9 +1481,11 @@ end
 #
 #  id                               :bigint           not null, primary key
 #  address_at_that_time             :integer
+#  all_cost                         :integer
 #  all_number_of_sairan             :integer
 #  all_number_of_transplants        :integer
 #  amh                              :integer
+#  annual_income                    :integer
 #  average_waiting_time             :integer
 #  blastocyst_grade1                :integer
 #  blastocyst_grade2                :integer
@@ -1392,6 +1504,8 @@ end
 #  embryo_culture_days              :integer
 #  embryo_stage                     :integer
 #  fertility_treatment_number       :integer
+#  first_age_to_start               :integer
+#  household_net_income             :integer
 #  industry_type                    :integer
 #  number_of_aih                    :integer
 #  number_of_clinics                :integer
@@ -1405,8 +1519,9 @@ end
 #  position                         :integer
 #  private_or_listed_company        :integer
 #  reasons_for_choosing_this_clinic :text
+#  reservation_method               :integer
 #  smoking                          :integer
-#  status                           :integer          default(0), not null
+#  status                           :integer          default("draft"), not null
 #  suspended_or_retirement_job      :integer
 #  title                            :string
 #  total_number_of_sairan           :integer

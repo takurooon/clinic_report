@@ -1,6 +1,7 @@
 class Clinic < ApplicationRecord
   has_many :reports
   has_many :clnic_reviews
+  belongs_to :city
 end
 
 # == Schema Information
@@ -24,4 +25,13 @@ end
 #  tel                  :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  city_id              :bigint           not null
+#
+# Indexes
+#
+#  index_clinics_on_city_id  (city_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (city_id => cities.id)
 #
