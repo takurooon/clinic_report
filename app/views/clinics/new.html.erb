@@ -1,0 +1,10 @@
+<div class="row show">
+  <div class="col-md-2"></div>
+  <div class="col-md-8 d-flex align-items-center">
+    <h1>クリニック登録</h1>
+    <div class="ml-auto posts_button">
+      <%= link_to "クリニック一覧", clinics_path, class:"btn btn-outline-info" %>
+    </div>
+  </div>
+</div>
+<%= render 'form', clinic: @clinic %><br>

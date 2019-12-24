@@ -18,14 +18,35 @@
           <div class="col-md-6">
             <div class="form-group">
 
+            <%= select_tag(:select_prefecture, options_from_collection_for_select(Prefecture.all, :id, :name)) %>
+            <div id="select_city"><%= select_tag(:city, options_for_select([["未選択", 99]])) %></div>
 
-
-              <%= f.label :clinic_id, 'クリニックを選択してください。' %>
-              <%= f.text_field :clinic_id, class: "form-control" %>
+              <%= f.label :clinic, 'クリニックを選択してください。' %>
+              <%= f.select :clinic_id, [["未選択", 100]] %>
               <small id="poster-tip" class="form-text text-muted">
                   最新のクリニックを選んでください。
               </small>
             </div>
+
+            <script>
+            $(function() {
+              $('#select_prefecture').change(function() {
+                $.ajax('/cities_select',
+                  {
+                    type: 'get',
+                    data: { prefecture_id: $(this).val() },
+                  }
+                )
+                .done(function(data) {
+                  $('#select_city').html(data) 
+                })
+                .fail(function() {
+                  window.alert('正しい結果を得られませんでした。');
+                });
+              });
+            });
+            </script>
+
           </div>
           <div class="col-md-6">
             <div class="form-group">
@@ -87,6 +108,7 @@
       </div>
       <div class="spacer">
       </div>
+
       <div class="mt-1">
         <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block mt-3">
             タップして開く↓

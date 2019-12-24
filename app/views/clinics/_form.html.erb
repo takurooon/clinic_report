@@ -1,0 +1,16 @@
+<%= form_with(model: clinic, local: true) do |f| %>
+  都道府県 <%= f.collection_select :prefecture_id , Prefecture.all,:id,:name %><br />
+  市区町村 <%= render partial: 'address/cities',  locals: { prefecture_id: Prefecture.first.id }  %>
+<% end %>
+
+<script>
+$(document).on 'change', '#post_mst_prefecture', ->
+  $.ajax(
+    type: 'GET'
+    url: '/posts/cities_select'
+    data: {
+      prefecture_id: $(this).val()
+    }
+  ).done (data) ->
+    $('#post_mst_city').html(data)
+</script>

@@ -24,6 +24,11 @@ Rails.application.routes.draw do
     resource :likes, only: [:create, :destroy]
   end
 
+  resources :clinics
+  
+  get "cities_select" => "clinics#cities_select"
+  get "clinics_select" => "clinics#clinics_select"
+  
   resources :comments, only: %i[create destroy]
   # resources :clinic_reviews, only: %i[index]
 
