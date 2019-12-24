@@ -1,6 +1,16 @@
 <div class="container form">
 <%= form_with(model: report, local: true, url: confirm_reports_path) do |f| %>
-  
+  <% if report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+        <% report.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="row  justify-content-center">
     <div class="col-md-9">
@@ -20,7 +30,7 @@
 
             <%= select_tag(:select_prefecture, options_from_collection_for_select(Prefecture.all, :id, :name)) %>
             <div id="select_city"><%= select_tag(:city, options_for_select([["未選択", 99]])) %></div>
-
+            <div id="clinic">
               <%= f.label :clinic, 'クリニックを選択してください。' %>
               <%= f.select :clinic_id, [["未選択", 100]] %>
               <small id="poster-tip" class="form-text text-muted">
@@ -38,7 +48,23 @@
                   }
                 )
                 .done(function(data) {
-                  $('#select_city').html(data) 
+                  $('#city').html(data) 
+                })
+                .fail(function() {
+                  window.alert('正しい結果を得られませんでした。');
+                });
+              });
+            });
+            $(function() {
+              $('#city').change(function() {
+                $.ajax('/clinics_select',
+                  {
+                    type: 'get',
+                    data: { city_id: $(this).val() },
+                  }
+                )
+                .done(function(data) {
+                  $('#clinic').html(data) 
                 })
                 .fail(function() {
                   window.alert('正しい結果を得られませんでした。');

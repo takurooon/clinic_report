@@ -11,5 +11,4 @@ class ClinicsController < ApplicationController
       render partial: 'address/clinics', locals: { city_id: params[:city_id] }
     # end
   end
-
 end

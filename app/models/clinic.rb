@@ -2,7 +2,10 @@ class Clinic < ApplicationRecord
   has_many :reports
   has_many :clnic_reviews
   belongs_to :city
-  belongs_to :prefecture
+
+  def str_clinic
+    return self.name
+  end
 end
 
 # == Schema Information
