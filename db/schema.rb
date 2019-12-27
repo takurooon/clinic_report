@@ -149,22 +149,13 @@ ActiveRecord::Schema.define(version: 2019_12_20_042448) do
 
   create_table "prefectures", force: :cascade do |t|
     t.string "name"
-    t.integer "code"
     t.bigint "region1_id", null: false
-    t.bigint "region2_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["region1_id"], name: "index_prefectures_on_region1_id"
-    t.index ["region2_id"], name: "index_prefectures_on_region2_id"
   end
 
   create_table "region1s", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "region2s", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -427,7 +418,6 @@ ActiveRecord::Schema.define(version: 2019_12_20_042448) do
   add_foreign_key "comments", "reports"
   add_foreign_key "comments", "users"
   add_foreign_key "prefectures", "region1s"
-  add_foreign_key "prefectures", "region2s"
   add_foreign_key "report_f_diseases", "f_diseases"
   add_foreign_key "report_f_diseases", "reports"
   add_foreign_key "report_f_infertility_factors", "f_infertility_factors"

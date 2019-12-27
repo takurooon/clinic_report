@@ -6,6 +6,49 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require "csv"
+
+CSV.foreach('db/csv/region1.csv', headers: true) do |row|
+  Region1.create(
+    name: row['name']
+  )
+end
+
+CSV.foreach('db/csv/prefecture.csv', headers: true) do |row|
+  Prefecture.create(
+    name: row['name'],
+    region1_id: row['region1_id']
+  )
+end
+
+CSV.foreach('db/csv/city.csv', headers: true) do |row|
+  City.create(
+    name: row['name'],
+    code: row['code'],
+    prefecture_id: row['prefecture_id']
+  )
+end
+
+CSV.foreach('db/csv/clinic.csv', headers: true) do |row|
+  Clinic.create(
+    name: row['name'],
+    post_code: row['post_code'],
+    address1: row['address1'],
+    address2: row['address2'],
+    tel: row['tel'],
+    jsog_code: row['jsog_code'],
+    senkoishido: row['senkoishido'],
+    fujinkashuyo: row['fujinkashuyo'],
+    shusanki: row['shusanki'],
+    ivf: row['ivf'],
+    hai_ranshi_toketsu: row['hai_ranshi_toketsu'],
+    kenbijusei: row['kenbijusei'],
+    social_ranshitoketsu: row['social_ranshitoketsu'],
+    teikyoseishi_aih: row['teikyoseishi_aih'],
+    city_id: row['city_id']
+  )
+end
+
 Tag.create([
   { tag_name: "自然周期" },
   { tag_name: "アンタゴニスト法" },

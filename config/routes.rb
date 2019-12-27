@@ -40,8 +40,8 @@ end
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
-#                         my_page_index GET    /my_page/index(.:format)                                                                 my_page#index
 #                                  root GET    /                                                                                        reports#home
+#                         my_page_index GET    /my_page/index(.:format)                                                                 my_page#index
 #                      new_user_session GET    /users/sign_in(.:format)                                                                 users/sessions#new
 #                          user_session POST   /users/sign_in(.:format)                                                                 users/sessions#create
 #                  destroy_user_session DELETE /users/sign_out(.:format)                                                                users/sessions#destroy
@@ -82,6 +82,16 @@ end
 #                                       PATCH  /reports/:id(.:format)                                                                   reports#update
 #                                       PUT    /reports/:id(.:format)                                                                   reports#update
 #                                       DELETE /reports/:id(.:format)                                                                   reports#destroy
+#                               clinics GET    /clinics(.:format)                                                                       clinics#index
+#                                       POST   /clinics(.:format)                                                                       clinics#create
+#                            new_clinic GET    /clinics/new(.:format)                                                                   clinics#new
+#                           edit_clinic GET    /clinics/:id/edit(.:format)                                                              clinics#edit
+#                                clinic GET    /clinics/:id(.:format)                                                                   clinics#show
+#                                       PATCH  /clinics/:id(.:format)                                                                   clinics#update
+#                                       PUT    /clinics/:id(.:format)                                                                   clinics#update
+#                                       DELETE /clinics/:id(.:format)                                                                   clinics#destroy
+#                         cities_select GET    /cities_select(.:format)                                                                 clinics#cities_select
+#                        clinics_select GET    /clinics_select(.:format)                                                                clinics#clinics_select
 #                              comments POST   /comments(.:format)                                                                      comments#create
 #                               comment DELETE /comments/:id(.:format)                                                                  comments#destroy
 #                     letter_opener_web        /letter_opener                                                                           LetterOpenerWeb::Engine
