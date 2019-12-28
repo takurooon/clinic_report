@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     collection do
       post :confirm
     end
+    member do
+      patch :confirm
+    end
     resource :likes, only: [:create, :destroy]
   end
 

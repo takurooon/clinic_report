@@ -80,12 +80,8 @@ class Report < ApplicationRecord
 
   # ---子---
     # コメント
-  has_many :comments, dependent: :destroy  
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-
-  # ---多対多---
-  has_many :report_clinics, dependent: :destroy
-  has_many :clinics, through: :report_clinics
 
   # タグ
   has_many :report_tags, dependent: :destroy
@@ -165,7 +161,7 @@ class Report < ApplicationRecord
 
     # Destroy old f_diseases:
     old_fds.each do |old_name|
-      self.f_infertility_factors.delete FDisease.find_by(name: old_name)
+      self.f_diseases.delete FDisease.find_by(name: old_name)
     end
 
     # Create new f_diseases:
@@ -182,7 +178,7 @@ class Report < ApplicationRecord
 
     # Destroy old m_diseases:
     old_mds.each do |old_name|
-      self.m_infertility_factors.delete MDisease.find_by(name: old_name)
+      self.m_diseases.delete MDisease.find_by(name: old_name)
     end
 
     # Create new m_diseases:

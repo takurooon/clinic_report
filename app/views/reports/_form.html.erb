@@ -1,5 +1,11 @@
 <div class="container form">
-<%= form_with(model: report, local: true, url: confirm_reports_path) do |f| %>
+<% if is_new
+    url = confirm_reports_path
+    else
+    url = confirm_report_path(report.id)
+    end %>
+
+<%= form_with(model: report, local: true, url: url) do |f| %>
   <% if report.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
