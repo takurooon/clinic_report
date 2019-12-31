@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   
   get 'my_page' => 'my_page#index'
   get 'my_page/draft' => 'reports#draft'
+  get 'thanks' => 'my_page#thanks'
   
   resources :users, shallow: true do
     resources :reports, only: %[index]
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
     end
     member do
       patch :confirm
+      patch :release
+      patch :nonrelease
     end
     resource :likes, only: [:create, :destroy]
   end
@@ -65,6 +68,7 @@ end
 #                                       POST   /users/confirmation(.:format)                                                            users/confirmations#create
 #                               my_page GET    /my_page(.:format)                                                                       my_page#index
 #                         my_page_draft GET    /my_page/draft(.:format)                                                                 reports#draft
+#                                thanks GET    /thanks(.:format)                                                                        my_page#thanks
 #                          user_reports GET    /users/:user_id/reports(.:format)                                                        reports#index
 #                                 users GET    /users(.:format)                                                                         users#index
 #                                       POST   /users(.:format)                                                                         users#create
@@ -75,6 +79,9 @@ end
 #                                       PUT    /users/:id(.:format)                                                                     users#update
 #                                       DELETE /users/:id(.:format)                                                                     users#destroy
 #                       confirm_reports POST   /reports/confirm(.:format)                                                               reports#confirm
+#                        confirm_report PATCH  /reports/:id/confirm(.:format)                                                           reports#confirm
+#                        release_report PATCH  /reports/:id/release(.:format)                                                           reports#release
+#                     nonrelease_report PATCH  /reports/:id/nonrelease(.:format)                                                        reports#nonrelease
 #                          report_likes DELETE /reports/:report_id/likes(.:format)                                                      likes#destroy
 #                                       POST   /reports/:report_id/likes(.:format)                                                      likes#create
 #                               reports GET    /reports(.:format)                                                                       reports#index

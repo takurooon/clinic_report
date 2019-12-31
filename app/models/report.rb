@@ -1,7 +1,11 @@
 class Report < ApplicationRecord
 
   # レポートの公開状況
-  enum status: { draft: 0, published: 1 }
+  enum status: { nonreleased: 0, released: 1 }
+
+  # 年収/世帯合算所得の公開状況 参考:https://qiita.com/emacs_hhkb/items/fce19f443e5770ad2e13
+  enum annual_income_status: { show: 0, hide: 1 }, _prefix: true
+  enum household_net_income_status: { show: 0, hide: 1 }, _prefix: true
 
   # バリデーション
   validates :title, length: { maximum: 32 }
@@ -83,24 +87,24 @@ class Report < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  # タグ
-  has_many :report_tags, dependent: :destroy
-  has_many :tags, through: :report_tags
+  # 検査項目
+  has_many :report_inspections, dependent: :destroy
+  has_many :inspections, through: :report_inspections
 
-  def save_tags(tag_list)
-    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
-    old_tags = current_tags - tag_list
-    new_tags = tag_list - current_tags
+  def save_i(i_list)
+    current_is = self.inspections.pluck(:name) unless self.inspections.nil?
+    old_is = current_is - i_list
+    new_is = i_list - current_is
 
-    # Destroy old taggings:
-    old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(tag_name: old_name)
+    # Destroy old inspections:
+    old_is.each do |old_name|
+      self.inspections.delete Tag.find_by(name: old_name)
     end
 
-    # Create new taggings:
-    new_tags.each do |new_name|
-      report_tag = Tag.find_or_create_by(tag_name: new_name)
-      self.tags << report_tag
+    # Create new inspections:
+    new_is.each do |new_name|
+      report_i = Inspection.find_or_create_by(name: new_name)
+      self.inspections << report_i
     end
   end
   
@@ -362,6 +366,27 @@ class Report < ApplicationRecord
     end
   end
 
+  # タグ
+  has_many :report_tags, dependent: :destroy
+  has_many :tags, through: :report_tags
+
+  def save_tags(tag_list)
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+    old_tags = current_tags - tag_list
+    new_tags = tag_list - current_tags
+
+    # Destroy old taggings:
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(tag_name: old_name)
+    end
+
+    # Create new taggings:
+    new_tags.each do |new_name|
+      report_tag = Tag.find_or_create_by(tag_name: new_name)
+      self.tags << report_tag
+    end
+  end
+
   # treatment_typeの区分値(治療方法)
   HASH_TREATMENT_TYPE = {
     1 => "高度不妊治療(体外/顕微受精)",
@@ -377,10 +402,9 @@ class Report < ApplicationRecord
 
   # current_stateの区分値(現在の状況)
   HASH_CURRENT_STATE = {
-    1 => "現在妊娠中",
+    1 => "妊娠中",
     2 => "出産した",
-    3 => "妊娠または出産に至らず転院(治療継続予定)",
-    4 => "不妊治療を辞めた(治療自体を継続しない)"
+    3 => "治療を断念(継続しない)"
   }
 
   def str_current_state
@@ -407,7 +431,8 @@ class Report < ApplicationRecord
     15 => "〜8年",
     16 => "〜9年",
     17 => "〜10年",
-    99 => "それ以上"
+    99 => "それ以上",
+    100 => "不明"
   }
 
   def str_treatment_period
@@ -422,7 +447,8 @@ class Report < ApplicationRecord
     3 => "25〜30未満",
     4 => "30〜35未満",
     5 => "35〜40未満",
-    6 => "40以上"
+    6 => "40以上",
+    99 => "不明"
   }
 
   def str_bmi
@@ -455,7 +481,8 @@ class Report < ApplicationRecord
     21 => "9.0以下",
     22 => "9.5以下",
     23 => "10.0以下",
-    99 => "10.1以上"
+    99 => "10.1以上",
+    100 => "不明"
   }
 
   def str_amh
@@ -695,8 +722,10 @@ class Report < ApplicationRecord
   HASH_RESERVATION_METHOD = {
     1 => "電話予約のみ",
     2 => "web予約のみ",
-    2 => "電話･web予約どちらも",
-    3 => "不明"
+    3 => "電話･web予約どちらも",
+    4 => "予約不可",
+    5 => "その他",
+    6 => "不明"
   }
 
   def str_reservation_method
@@ -742,8 +771,10 @@ class Report < ApplicationRecord
     2 => "職場から近かったから",
     3 => "口コミがよかったから",
     4 => "料金が手頃だったから",
-    5 => "以前に通ったことがあったから",
-    6 => "知人から勧められたから",
+    5 => "知人から勧められたから",
+    6 => "説明会に参加して決めた",
+    7 => "ホームページが良かった",
+    8 => "広告に勧められて",
     99 => "その他"
     }
 
@@ -766,6 +797,7 @@ class Report < ApplicationRecord
     10 => "金融業 保険業",
     11 => "不動産業 物品賃貸業",
     12 => "学術研究 専門サービス業",
+    12 => "宿泊業 飲食サービス業",
     13 => "生活関連サービス業 娯楽業",
     14 => "教育 学習支援業",
     15 => "医療 福祉",
@@ -998,7 +1030,7 @@ class Report < ApplicationRecord
   # fertility_treatment_numberの区分値(何人目か)
   FERTILITY_TREATMENT_NUMBER_UNIT = "人目不妊"
   FERTILITY_TREATMENT_NUMBER_MAXIMUM = 1000
-  FERTILITY_TREATMENT_NUMBER_RANGE = 5
+  FERTILITY_TREATMENT_NUMBER_RANGE = 2
   UPPER_THE_FERTILITY_TREATMENT_NUMBER_RANGE = FERTILITY_TREATMENT_NUMBER_RANGE + 1
   STR_FERTILITY_TREATMENT_NUMBER_MAXIMUM = "#{UPPER_THE_FERTILITY_TREATMENT_NUMBER_RANGE}#{FERTILITY_TREATMENT_NUMBER_UNIT}#{OR_MORE}"
 
@@ -1482,6 +1514,7 @@ end
 #  all_number_of_transplants        :integer
 #  amh                              :integer
 #  annual_income                    :integer
+#  annual_income_status             :integer          default("show"), not null
 #  average_waiting_time             :integer
 #  blastocyst_grade1                :integer
 #  blastocyst_grade2                :integer
@@ -1502,6 +1535,7 @@ end
 #  fertility_treatment_number       :integer
 #  first_age_to_start               :integer
 #  household_net_income             :integer
+#  household_net_income_status      :integer          default("show"), not null
 #  industry_type                    :integer
 #  number_of_aih                    :integer
 #  number_of_clinics                :integer
@@ -1517,7 +1551,7 @@ end
 #  reasons_for_choosing_this_clinic :text
 #  reservation_method               :integer
 #  smoking                          :integer
-#  status                           :integer          default("draft"), not null
+#  status                           :integer          default("released"), not null
 #  suspended_or_retirement_job      :integer
 #  title                            :string
 #  total_number_of_sairan           :integer
@@ -1531,6 +1565,7 @@ end
 #  types_of_eggs_and_sperm          :integer
 #  types_of_fertilization_methods   :integer
 #  work_style                       :integer
+#  year_of_treatment_end            :date
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #  clinic_id                        :bigint           not null

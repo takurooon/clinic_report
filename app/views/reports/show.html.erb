@@ -102,6 +102,10 @@
       <td><%= @report.content %></td>
     </tr>
     <tr>
+      <th scope="row">このクリニックでの治療終了年</th>
+      <td><%= @report.year_of_treatment_end %></td>
+    </tr>
+    <tr>
       <th scope="row">何人目不妊</th>
       <td><%= @report.str_fertility_treatment_number %></td>
     </tr>
@@ -128,6 +132,14 @@
     <tr>
       <th scope="row">人工授精の回数</th>
       <td><%= @report.str_number_of_aih %></td>
+    </tr>
+    <tr>
+      <th scope="row">受けた検査</th>
+      <td>
+        <% @inspections.each do |inspection| %>
+          <%= inspection.name %>&nbsp;&nbsp;
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">治療中の最新のAMH値</th>
@@ -332,7 +344,7 @@
     </tr>
     <tr>
       <th scope="row">治療中の働き方</th>
-      <td><%= @report.str_work_style %></td>
+        <td><%= @report.str_work_style %></td>
     </tr>
     <tr>
       <th scope="row">業種</th>
@@ -372,11 +384,19 @@
     </tr>
     <tr>
       <th scope="row">治療当時のご自身の年収</th>
-      <td><%= @report.str_annual_income %></td>
+      <% if @report.annual_income_status == "hide"%>
+        <td><%= "非公開" %></td>
+      <% else %>
+        <td><%= @report.str_annual_income %></td>
+      <% end %>
     </tr>
     <tr>
       <th scope="row">治療当時の前年の夫婦合算所得(所得＝収入 - 経費)</th>
-      <td><%= @report.str_household_net_income %></td>
+      <% if @report.household_net_income_status == "hide" %>
+        <td><%= "非公開" %></td>
+      <% else %>
+        <td><%= @report.str_household_net_income %></td>
+      <% end %>
     </tr>
     <tr>
       <th scope="row">治療の開示範囲</th>

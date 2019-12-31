@@ -33,11 +33,15 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <div><%= select_tag(:select_prefecture, options_from_collection_for_select(Prefecture.all, :id, :name))%></div><br>
-              <div id="select_city"><%= select_tag(:city, options_for_select([["選択してください", 99]])) %></div><br>
-              <div id="clinic">
-                <%= f.label :clinic, 'クリニックを選択してください' %>
-                <%= f.select :clinic_id, [["未選択", 100]] %>
+
+              <div>
+                <%= select_tag :select_prefecture, options_from_collection_for_select(Prefecture.all, :id, :name), { prompt: "都道府県を選択する", class: "form-control" } %>
+              </div><br>
+
+              <div>
+                <%= select_tag :city, options_for_select([["市区町村を選択する", 99]]), { class: "form-control" } %></div><br>
+              <div>
+                <%= f.select :clinic_id, {}, { prompt: "クリニックを選択する"}, { class: "form-control" } %>
                 <small id="poster-tip" class="form-text text-muted">
                     最新のクリニックを選んでください。
                 </small>
@@ -58,6 +62,7 @@
                 .fail(function() {
                   window.alert('正しい結果を得られませんでした。');
                 });
+                $('#report_clinic_id').val('');
               });
             });
             $(function() {
@@ -69,23 +74,7 @@
                   }
                 )
                 .done(function(data) {
-                  $('#clinic').html(data) 
-                })
-                .fail(function() {
-                  window.alert('正しい結果を得られませんでした。');
-                });
-              });
-            });
-            $(function() {
-              $('#select_prefecture').change(function() {
-                $.ajax('/clinics_select',
-                  {
-                    type: 'get',
-                    data: { city_id: $(this).val() },
-                  }
-                )
-                .done(function(data) {
-                  $('#clinic').html(data) 
+                  $('#report_clinic_id').html(data) 
                 })
                 .fail(function() {
                   window.alert('正しい結果を得られませんでした。');
@@ -145,8 +134,8 @@
       <div class="mt-5">
         <div class="draft-published-btn">
         <p><strong>下書き</strong> か、<strong>公開</strong>かを選択して<span style="color:#03A9F4"><strong>青ボタン</strong></span>を押してください</p>
-          <%= radio_button_tag :status1, :draft %>下書き
-          <%= radio_button_tag :status1, :published %>公開
+          <%= radio_button_tag :status1, :nonreleased %>下書き
+          <%= radio_button_tag :status1, :released %>公開
         </div>
         <%= f.submit '保存 / 投稿確認', name: "temp", class: 'btn btn-raised btn-info w-50 mx-auto d-block' %>
           <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block mt-3">
@@ -167,6 +156,17 @@
       <div class="collapse" id="questions">
         <div class="question border rounded px-3 py-2 mt-5">
         <h3>クリニックでの治療情報</h3>
+          <div class="form-group">
+            <%= f.label :year_of_treatment_end, 'このクリニックでの治療を終了した年を教えてください' %>
+              <%= f.date_select :year_of_treatment_end, {
+                discard_month: true,
+                discard_day: true,
+                start_year: (Time.now.year),
+                end_year: 2000,
+                prompt: "選択してください"
+                },
+                { class: "form-control" } %>
+          </div>
           <div class="form-group">
             <%= f.label :fertility_treatment_number, '何人目の不妊治療ですか?（何人目不妊ですか）' %>
             <%= f.select :fertility_treatment_number, Report.make_select_options_fertility_treatment_number, { prompt: "選択してください" }, { class: "form-control" } %>
@@ -217,6 +217,26 @@
             </small>
           </div>
           <div class="form-group">
+            <div class="border rounded px-3 py-3 ">
+            <%= f.label :inspection, '実施した検査を教えてください' %><br>
+              <%= f.collection_check_boxes(:inspection_ids, Inspection.all, :id, :name) do |b| %>
+                <div class="form-check form-check-inline">
+                  <%= b.label class: "form-check-label" do %>
+                    <%= b.check_box class: "form-check-input" %>
+                    <%= b.text %>
+                  <% end %>
+                </div>
+              <% end %>
+              <small id="poster-tip" class="form-text text-muted">
+                当てはまるものを選択してください。
+              </small>
+              <div class="form-group">
+                <%= f.label :inspection, "上記選択肢に無いので新たに検査を追加作成する"  %>
+                <%= text_field_tag :i_name, "", class: "form-control", placeholder: "複数ある場合は「半角カンマ」で区切って入力してください。例) 佐藤,鈴木,山田" %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
             <%= f.label :amh, '治療中のAMH値はいくつでしたか' %>
             <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
             <small id="poster-tip" class="form-text text-muted">
@@ -239,7 +259,7 @@
           </div>
           <div class="form-group">
             <div class="border rounded px-3 py-3 ">
-            <%= f.label :f_infertility_factor, '女性側の不妊原因を教えてください' %><br>
+            <%= f.label :f_infertility_factor, '女性側の不妊原因と思われるものを教えてください' %><br>
               <%= f.collection_check_boxes(:f_infertility_factor_ids, FInfertilityFactor.all, :id, :name) do |b| %>
                 <div class="form-check form-check-inline">
                   <%= b.label class: "form-check-label" do %>
@@ -259,7 +279,7 @@
           </div>
           <div class="form-group">
             <div class="border rounded px-3 py-3 ">
-            <%= f.label :m_infertility_factor, '男性側の不妊原因を教えてください' %><br>
+            <%= f.label :m_infertility_factor, '男性側の不妊原因と思われるものを教えてください' %><br>
               <%= f.collection_check_boxes(:m_infertility_factor_ids, MInfertilityFactor.all, :id, :name) do |b| %>
                 <div class="form-check form-check-inline">
                   <%= b.label class: "form-check-label" do %>
@@ -673,6 +693,7 @@
                 <small id="poster-tip" class="form-text text-muted">
                     一番当てはまるものを選択してください。
                 </small>
+                <small id="poster-tip" class="form-text text-muted"><%= check_box_tag :annual_income_status, :hide %>非公開</small>
               </div>
             </div>
             
@@ -718,6 +739,7 @@
                 <small id="poster-tip" class="form-text text-muted">
                   所得は、収入から経費を引いたもの。
                 </small>
+                <small id="poster-tip" class="form-text text-muted"><%= check_box_tag :household_net_income_status, :hide %>非公開</small>
               </div>
             </div>
           </div><br>
@@ -766,9 +788,9 @@
         </div><br><br>
         <div class="mt-5">
           <div class="draft-published-btn">
-          <p><strong>下書き</strong> か、<strong>公開</strong>かを選択して<span style="color:#03A9F4"><strong>青ボタン</strong></span>を押してください</p>
-            <%= radio_button_tag :status2, :draft %>下書き
-            <%= radio_button_tag :status2, :published %>公開
+            <p><strong>下書き</strong> か、<strong>公開</strong>かを選択して<span style="color:#03A9F4"><strong>青ボタン</strong></span>を押してください</p>
+            <%= radio_button_tag :status2, :nonreleased %>下書き
+            <%= radio_button_tag :status2, :released %>公開
           </div>
           <%= f.submit '保存 / 投稿確認', class: 'btn btn-raised btn-info w-50 mx-auto d-block' %>
             <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">

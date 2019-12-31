@@ -9,6 +9,7 @@
 #  all_number_of_transplants        :integer
 #  amh                              :integer
 #  annual_income                    :integer
+#  annual_income_status             :integer          default("show"), not null
 #  average_waiting_time             :integer
 #  blastocyst_grade1                :integer
 #  blastocyst_grade2                :integer
@@ -29,6 +30,7 @@
 #  fertility_treatment_number       :integer
 #  first_age_to_start               :integer
 #  household_net_income             :integer
+#  household_net_income_status      :integer          default("show"), not null
 #  industry_type                    :integer
 #  number_of_aih                    :integer
 #  number_of_clinics                :integer
@@ -44,7 +46,7 @@
 #  reasons_for_choosing_this_clinic :text
 #  reservation_method               :integer
 #  smoking                          :integer
-#  status                           :integer          default("draft"), not null
+#  status                           :integer          default("released"), not null
 #  suspended_or_retirement_job      :integer
 #  title                            :string
 #  total_number_of_sairan           :integer
@@ -58,6 +60,7 @@
 #  types_of_eggs_and_sperm          :integer
 #  types_of_fertilization_methods   :integer
 #  work_style                       :integer
+#  year_of_treatment_end            :date
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #  clinic_id                        :bigint           not null

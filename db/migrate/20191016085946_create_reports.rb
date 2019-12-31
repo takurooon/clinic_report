@@ -3,6 +3,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
     create_table :reports do |t|
       t.string :title
       t.integer :current_state
+      t.date :year_of_treatment_end
       t.integer :fertility_treatment_number
       t.integer :number_of_clinics
       t.integer :clinic_selection_criteria
@@ -55,7 +56,9 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :content
       t.text :clinic_review
       t.text :reasons_for_choosing_this_clinic
-      t.integer :status, default: 0, null: false
+      t.integer :status, default: 1, null: false
+      t.integer :annual_income_status, default: 0, null: false
+      t.integer :household_net_income_status, default: 0, null: false
       t.timestamps
     end
   end

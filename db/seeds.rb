@@ -79,6 +79,7 @@ ScopeOfDisclosure.create([
 ])
 
 FInfertilityFactor.create([
+  { name: "原因不明" },
   { name: "多嚢胞性卵巣症候群(PCOS)" },
   { name: "視床下部排卵障害(中枢性の排卵障害)" },
   { name: "下垂体性排卵障害(中枢性の排卵障害)" },
@@ -105,6 +106,7 @@ FInfertilityFactor.create([
 ])
 
 MInfertilityFactor.create([
+  { name: "原因不明" },
   { name: "勃起障害(ED)" },
   { name: "膣内射精障害" },
   { name: "逆行性射精" },
@@ -177,4 +179,9 @@ OtherEffort.create([
   { name: "ぬぬぬ" },
   { name: "ねねね" },
   { name: "ののの" },
+])
+
+Inspection.create([
+  { name: "フーナー検査" },
+  { name: "卵管造影検査" },
 ])

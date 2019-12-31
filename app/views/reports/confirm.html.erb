@@ -71,6 +71,11 @@
       <div class="question border rounded px-3 py-2 mt-5">
       <h3>クリニックでの治療情報</h3>
         <div class="form-group">
+          <%= f.label :year_of_treatment_end, 'このクリニックでの治療を終了した年' %>
+          <%= f.hidden_field :year_of_treatment_end %>
+          <p class="answer"><%= @report.year_of_treatment_end %>年</p>
+        </div>
+        <div class="form-group">
           <%= f.label :fertility_treatment_number, '何人目の不妊治療ですか?（何人目不妊ですか）' %>
           <%= f.hidden_field :fertility_treatment_number %>
           <p class="answer"><%= @report.str_fertility_treatment_number %></p>
@@ -104,6 +109,19 @@
           <%= f.label :number_of_aih, '体外・顕微受精にステップアップする前に人工授精は何回実施しましたか' %>
           <%= f.hidden_field :number_of_aih %>
           <p class="answer"><%= @report.str_number_of_aih %></p>
+        </div>
+        <div class="form-group">
+          <%= f.label :inspection, '実施した検査' %><br>
+          <%= f.hidden_field :inspection_ids, multiple: true, value: nil %>
+          <% @report.inspections.each do |inspection| %>
+            <%= f.hidden_field :inspection_ids, multiple: true, value: inspection.id %>
+            <span class="answer"><%= inspection.str_inspection %></span>
+          <% end %>
+          <div class="form-group">
+            <%= f.label :inspection, "作成追加した検査" %><br>
+            <%= hidden_field_tag :i_name, @i_name %>
+            <span class="answer"><%= @i_name %></span>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :amh, '治療中のAMH値はいくつでしたか' %>
@@ -419,6 +437,12 @@
               <%= f.label :annual_income, '治療当時のご自身の年収' %>
               <%= f.hidden_field :annual_income %>
               <p class="answer"><%= @report.str_annual_income %></p>
+              <%= f.hidden_field :annual_income_status %>
+                <p class="answer">
+                  <% if @report.annual_income_status == "hide" %>
+                    <%= "非公開" %>
+                  <% end %>
+                </p>
             </div>
           </div>
           
@@ -452,6 +476,12 @@
               <%= f.label :household_net_income, '治療当時の前年の「夫婦合算所得」' %>
               <%= f.hidden_field :household_net_income %>
               <p class="answer"><%= @report.str_household_net_income %></p>
+              <%= f.hidden_field :household_net_income_status %>
+                <p class="answer">
+                  <% if @report.household_net_income_status == "hide" %>
+                    <%= "非公開" %>
+                  <% end %>
+                </p>
             </div>
           </div>
         </div><br>
@@ -496,7 +526,7 @@
           <%= f.label :status, '公開状況' %><br>
           <%= f.hidden_field :status %>
           <p class="answer">
-            <% if @report.status == "published" %>
+            <% if @report.status == "released" %>
               <%= "公開" %>
             <% else %>
               <%= "保存" %>

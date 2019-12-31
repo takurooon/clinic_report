@@ -10,17 +10,18 @@ class ReportsController < ApplicationController
 
   def index
     set_allreport
-    @reports = Report.published.order("created_at DESC").page(params[:page]).per(10)
+    @reports = Report.released.order("created_at DESC").page(params[:page]).per(10)
     # toptags = ReportTag.group(:tag_id).order("created_at DESC").take(3)
     # @toptags = Tag.find(toptags)
   end
 
   def draft
     @user = current_user
-    @reports = @user.reports.draft.order("created_at DESC").page(params[:page]).per(10)
+    @reports = @user.reports.nonreleased.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def show
+    @inspections = @report.inspections
     @f_infertility_factors = @report.f_infertility_factors
     @m_infertility_factors = @report.m_infertility_factors
     @f_diseases = @report.f_diseases
@@ -35,9 +36,12 @@ class ReportsController < ApplicationController
     @scope_of_disclosures = @report.scope_of_disclosures
     @comment = Comment.new(report_id: @report.id)
 
-    if @report.draft? && @report.user != current_user
+    if @report.nonreleased? && @report.user != current_user
       redirect_to root_path
     end
+
+    @annual_income_status = Report.find(params[:id]).annual_income_status
+    @household_net_income_status = Report.find(params[:id]).household_net_income_status
   end
 
   def new
@@ -59,6 +63,23 @@ class ReportsController < ApplicationController
       @report.status = params[:status1]
     end
 
+    if @report.status.nil?
+      @report.status = "released"
+    end
+
+    if params[:annual_income_status].nil?
+      @report.annual_income_status = "show"
+    else
+      @report.annual_income_status = params[:annual_income_status]
+    end
+
+    if params[:household_net_income_status].nil?
+      @report.household_net_income_status = "show"
+    else
+      @report.household_net_income_status = params[:household_net_income_status]
+    end
+
+    @i_name = params[:i_name]
     @fif_name = params[:fif_name]
     @mif_name = params[:mif_name]
     @fd_name = params[:fd_name]
@@ -77,6 +98,21 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params_for_create)
     @report.user_id = current_user.id
+
+    if @report.status.nil?
+      @report.status = "released"
+    end
+
+    i_list = params[:i_name].split(",")
+    i_ids = params[:report][:inspection_ids]
+    i_ids.each do |i_id|
+      if i_id.blank?
+        next
+      end
+      i = Inspection.find(i_id)
+      i_list << i.name
+    end
+    i_list = i_list.uniq
 
     fif_list = params[:fif_name].split(",")
     fif_ids = params[:report][:f_infertility_factor_ids]
@@ -225,6 +261,7 @@ class ReportsController < ApplicationController
       if params[:back]
         format.html { render :new }
       elsif @report.save
+        @report.save_i(i_list)
         @report.save_fifs(fif_list)
         @report.save_mifs(mif_list)
         @report.save_fds(fd_list)
@@ -241,7 +278,6 @@ class ReportsController < ApplicationController
         format.html { redirect_to report_path(@report), notice: 'レポートを作成しました。' }
         format.json { render :show, status: :created, location: @report }
       else
-        binding.pry
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
@@ -249,13 +285,42 @@ class ReportsController < ApplicationController
   end
 
   def edit
+    if @report.user != current_user
+      redirect_to root_path, alert: '編集権限がありません' 
+      return
+    end
     @tag_list = @report.tags.pluck(:tag_name).join(",")
   end
 
+  def release
+    report =  Report.find(params[:id])
+    report.released! unless report.released?
+    redirect_to edit_report_path(report), notice: 'このレポートを公開しました'
+  end
+
+  def nonreleased
+    report =  Report.find(params[:id])
+    report.nonreleased! unless report.nonreleased?
+    redirect_to edit_report_path(report), notice: 'このレポートを非公開にしました'
+  end
+
   def update
+    if @report.user != current_user
+      redirect_to root_path, alert: '編集権限がありません' 
+      return
+    end
     @report = Report.find(params[:id])
-    # @report.attributes = report_params_for_create
-    
+
+    i_list = params[:i_name].split(",")
+    i_ids = params[:report][:inspection_ids]
+    i_ids.each do |i_id|
+      if i_id.blank?
+        next
+      end
+      i = Inspection.find(i_id)
+      i_list << i.name
+    end
+    i_list = i_list.uniq
 
     fif_list = params[:fif_name].split(",")
     fif_ids = params[:report][:f_infertility_factor_ids]
@@ -404,6 +469,7 @@ class ReportsController < ApplicationController
       if params[:back]
         format.html { render :edit }
       elsif @report.update(report_params_for_create)
+        @report.save_i(i_list)
         @report.save_fifs(fif_list)
         @report.save_mifs(mif_list)
         @report.save_fds(fd_list)
@@ -420,7 +486,6 @@ class ReportsController < ApplicationController
         format.html { redirect_to report_path(@report), notice: 'レポートを作成しました。' }
         format.json { render :show, status: :created, location: @report }
       else
-        binding.pry
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
@@ -428,6 +493,10 @@ class ReportsController < ApplicationController
   end
 
   def destroy
+    if @report.user != current_user
+      redirect_to root_path, alert: '削除権限がありません' 
+      return
+    end
     @report.destroy
     respond_to do |format|
       format.html { redirect_to reports_url, notice: 'レポートを削除しました。' }
@@ -450,11 +519,13 @@ class ReportsController < ApplicationController
         :clinic_id,
         :title,
         :current_state,
+        :year_of_treatment_end,
         :fertility_treatment_number,
         :number_of_clinics,
         :clinic_selection_criteria,
         :treatment_type,
         :treatment_start_age,
+        :first_age_to_start,
         :treatment_end_age,
         :treatment_period,
         :number_of_aih,
@@ -496,11 +567,15 @@ class ReportsController < ApplicationController
         :number_of_employees,
         :treatment_support_system,
         :annual_income,
+        :household_net_income,
         :suspended_or_retirement_job,
         :reasons_for_choosing_this_clinic,
         :content,
         :clinic_review,
         :status,
+        :annual_income_status,
+        :household_net_income_status,
+        inspection_ids: [],
         f_infertility_factor_ids: [],
         m_infertility_factor_ids: [],
         f_disease_ids: [],
@@ -522,11 +597,13 @@ class ReportsController < ApplicationController
         :clinic_id,
         :title,
         :current_state,
+        :year_of_treatment_end,
         :fertility_treatment_number,
         :number_of_clinics,
         :clinic_selection_criteria,
         :treatment_type,
         :treatment_start_age,
+        :first_age_to_start,
         :treatment_end_age,
         :treatment_period,
         :number_of_aih,
@@ -574,6 +651,8 @@ class ReportsController < ApplicationController
         :content,
         :clinic_review,
         :status,
+        :annual_income_status,
+        :household_net_income_status,
       )
     end
 end
