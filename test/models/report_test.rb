@@ -3,7 +3,6 @@
 # Table name: reports
 #
 #  id                               :bigint           not null, primary key
-#  address_at_that_time             :integer
 #  all_cost                         :integer
 #  all_number_of_sairan             :integer
 #  all_number_of_transplants        :integer
@@ -63,17 +62,23 @@
 #  year_of_treatment_end            :date
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
+#  city_id                          :bigint
 #  clinic_id                        :bigint           not null
+#  prefecture_id                    :bigint
 #  user_id                          :bigint           not null
 #
 # Indexes
 #
-#  index_reports_on_clinic_id  (clinic_id)
-#  index_reports_on_user_id    (user_id)
+#  index_reports_on_city_id        (city_id)
+#  index_reports_on_clinic_id      (clinic_id)
+#  index_reports_on_prefecture_id  (prefecture_id)
+#  index_reports_on_user_id        (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (city_id => cities.id)
 #  fk_rails_...  (clinic_id => clinics.id)
+#  fk_rails_...  (prefecture_id => prefectures.id)
 #  fk_rails_...  (user_id => users.id)
 #
 

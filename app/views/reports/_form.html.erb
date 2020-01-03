@@ -155,7 +155,7 @@
       </div>
       <div class="collapse" id="questions">
         <div class="question border rounded px-3 py-2 mt-5">
-        <h3>クリニックでの治療情報</h3>
+          <h3>クリニックでの治療情報</h3>
           <div class="form-group">
             <%= f.label :year_of_treatment_end, 'このクリニックでの治療を終了した年を教えてください' %>
               <%= f.date_select :year_of_treatment_end, {
@@ -645,7 +645,35 @@
                 当てはまるものを選択してください。
             </small>
           </div>
-          "住まい"
+          
+          <div class="form-group">
+            <%= f.label :address_at_the_time_of_treatment, '治療当時の住まい' %>
+            <div>
+              <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "都道府県を選択してください"}, {class: "form-control"}) %>
+            </div><br>
+            <div>
+              <%= f.select :city_id, {}, { prompt: "市区町村を選択してください"}, { class: "form-control" } %>
+            </div>
+          </div>
+          <script>
+          $(function() {
+            $('#report_prefecture_id').change(function() {
+              $.ajax('/address_cities_select',
+                {
+                  type: 'get',
+                  data: { prefecture_id: $(this).val() },
+                }
+              )
+              .done(function(data) {
+                $('#report_city_id').html(data) 
+              })
+              .fail(function() {
+                window.alert('正しい結果を得られませんでした。');
+              });
+            });
+          });
+          </script>
+
         </div>
 
         <div class="work-style border rounded px-3 py-2 mt-5">

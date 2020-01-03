@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   
   get "cities_select" => "clinics#cities_select"
   get "clinics_select" => "clinics#clinics_select"
+  get "address_cities_select" => "reports#address_cities_select"
   
   resources :comments, only: %i[create destroy]
   # resources :clinic_reviews, only: %i[index]
@@ -102,6 +103,7 @@ end
 #                                       DELETE /clinics/:id(.:format)                                                                   clinics#destroy
 #                         cities_select GET    /cities_select(.:format)                                                                 clinics#cities_select
 #                        clinics_select GET    /clinics_select(.:format)                                                                clinics#clinics_select
+#                 address_cities_select GET    /address_cities_select(.:format)                                                         reports#address_cities_select
 #                              comments POST   /comments(.:format)                                                                      comments#create
 #                               comment DELETE /comments/:id(.:format)                                                                  comments#destroy
 #                     letter_opener_web        /letter_opener                                                                           LetterOpenerWeb::Engine

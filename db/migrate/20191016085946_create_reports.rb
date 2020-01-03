@@ -40,7 +40,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :average_waiting_time
       t.integer :reservation_method
       t.integer :period_of_time_spent_traveling
-      t.integer :address_at_that_time
       t.integer :work_style
       t.integer :industry_type
       t.integer :private_or_listed_company

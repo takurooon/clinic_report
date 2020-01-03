@@ -503,6 +503,11 @@ class ReportsController < ApplicationController
     end
   end
 
+  def address_cities_select
+    @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id)
+    render partial: 'address/address_cities'
+  end
+
   private
   
     def set_report
@@ -556,7 +561,8 @@ class ReportsController < ApplicationController
         :average_waiting_time,
         :reservation_method,
         :period_of_time_spent_traveling,
-        :address_at_that_time,
+        :prefecture_id,
+        :city_id,
         :work_style,
         :industry_type,
         :private_or_listed_company,
@@ -634,7 +640,8 @@ class ReportsController < ApplicationController
         :average_waiting_time,
         :reservation_method,
         :period_of_time_spent_traveling,
-        :address_at_that_time,
+        :prefecture_id,
+        :city_id,
         :work_style,
         :industry_type,
         :private_or_listed_company,

@@ -401,7 +401,14 @@
           <%= f.hidden_field :period_of_time_spent_traveling %>
           <p class="answer"><%= @report.str_period_of_time_spent_traveling %></p>
         </div>
-        "住まい"
+        <div class="form-group">
+          <%= f.label :address_at_the_time_of_treatment, '治療当時の住まい' %>
+          <%= f.hidden_field :prefecture_id %>
+          <p class="answer"><%= @report.prefecture_id %></p>
+          <%= f.hidden_field :city_id %>
+          <p class="answer"><%= @report.city_id %></p>
+        </div>
+        
       </div>
 
       <div class="work-style border rounded px-3 py-2 mt-5">
