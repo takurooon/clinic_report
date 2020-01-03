@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-
+              <%= f.label :clinic_id, 'クリニックを選んでください' %>
               <div>
                 <%= select_tag :select_prefecture, options_from_collection_for_select(Prefecture.all, :id, :name), { prompt: "都道府県を選択する", class: "form-control" } %>
               </div><br>
@@ -650,10 +650,12 @@
             <%= f.label :address_at_the_time_of_treatment, '治療当時の住まい' %>
             <div>
               <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "都道府県を選択してください"}, {class: "form-control"}) %>
-            </div><br>
+            </div>
+            <small id="poster-tip" class="form-text text-muted"><%= f.check_box :prefecture_at_the_time_status, {}, "hide", "show" %>非公開</small><br>
             <div>
               <%= f.select :city_id, {}, { prompt: "市区町村を選択してください"}, { class: "form-control" } %>
             </div>
+            <small id="poster-tip" class="form-text text-muted"><%= f.check_box :city_at_the_time_status, {}, "hide", "show" %>非公開</small>
           </div>
           <script>
           $(function() {
@@ -721,7 +723,7 @@
                 <small id="poster-tip" class="form-text text-muted">
                     一番当てはまるものを選択してください。
                 </small>
-                <small id="poster-tip" class="form-text text-muted"><%= check_box_tag :annual_income_status, :hide %>非公開</small>
+                <small id="poster-tip" class="form-text text-muted"><%= f.check_box :annual_income_status, {}, "hide", "show" %>非公開</small>
               </div>
             </div>
             
@@ -767,7 +769,7 @@
                 <small id="poster-tip" class="form-text text-muted">
                   所得は、収入から経費を引いたもの。
                 </small>
-                <small id="poster-tip" class="form-text text-muted"><%= check_box_tag :household_net_income_status, :hide %>非公開</small>
+                <small id="poster-tip" class="form-text text-muted"><%= f.check_box :household_net_income_status, {}, "hide", "show" %>非公開</small>
               </div>
             </div>
           </div><br>

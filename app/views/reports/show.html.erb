@@ -336,7 +336,16 @@
     </tr>
     <tr>
       <th scope="row">治療中の住まい</th>
-      <td><%= @report.address_at_that_time %></td>
+      <% if @report.prefecture_at_the_time_status == "hide"%>
+        <td><%= "非公開" %></td>
+      <% else %>
+        <td><%= @report.prefecture.name %></td>
+      <% end %>
+      <% if @report.city_at_the_time_status == "hide"%>
+        <td><%= "非公開" %></td>
+      <% else %>
+        <td><%= @report.city.name %></td>
+      <% end %>
     </tr>
     <tr>
       <th scope="row">クリニックの通院にかかる平均所要時間</th>

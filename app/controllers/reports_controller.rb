@@ -67,17 +67,17 @@ class ReportsController < ApplicationController
       @report.status = "released"
     end
 
-    if params[:annual_income_status].nil?
-      @report.annual_income_status = "show"
-    else
-      @report.annual_income_status = params[:annual_income_status]
-    end
+    # if params[:annual_income_status].nil?
+    #   @report.annual_income_status = "show"
+    # else
+    #   @report.annual_income_status = params[:annual_income_status]
+    # end
 
-    if params[:household_net_income_status].nil?
-      @report.household_net_income_status = "show"
-    else
-      @report.household_net_income_status = params[:household_net_income_status]
-    end
+    # if params[:household_net_income_status].nil?
+    #   @report.household_net_income_status = "show"
+    # else
+    #   @report.household_net_income_status = params[:household_net_income_status]
+    # end
 
     @i_name = params[:i_name]
     @fif_name = params[:fif_name]
@@ -298,7 +298,7 @@ class ReportsController < ApplicationController
     redirect_to edit_report_path(report), notice: 'このレポートを公開しました'
   end
 
-  def nonreleased
+  def nonrelease
     report =  Report.find(params[:id])
     report.nonreleased! unless report.nonreleased?
     redirect_to edit_report_path(report), notice: 'このレポートを非公開にしました'
@@ -562,7 +562,9 @@ class ReportsController < ApplicationController
         :reservation_method,
         :period_of_time_spent_traveling,
         :prefecture_id,
+        :prefecture_at_the_time_status,
         :city_id,
+        :city_at_the_time_status,
         :work_style,
         :industry_type,
         :private_or_listed_company,
@@ -641,7 +643,9 @@ class ReportsController < ApplicationController
         :reservation_method,
         :period_of_time_spent_traveling,
         :prefecture_id,
+        :prefecture_at_the_time_status,
         :city_id,
+        :city_at_the_time_status,
         :work_style,
         :industry_type,
         :private_or_listed_company,

@@ -24,7 +24,7 @@
             <div class="form-group">
               <%= f.label :clinic_id, 'クリニック選択してください。' %>
               <%= f.hidden_field :clinic_id, :class => "form-control" %>
-              <p class-"answer"><%= @report.clinic.name %></p>
+              <p class="answer"><%= @report.clinic.name %></p>
             </div>
           </div>
           <div class="col-md-6">
@@ -404,11 +404,23 @@
         <div class="form-group">
           <%= f.label :address_at_the_time_of_treatment, '治療当時の住まい' %>
           <%= f.hidden_field :prefecture_id %>
-          <p class="answer"><%= @report.prefecture_id %></p>
+          <p class="answer"><%= @report.prefecture.name unless @report.prefecture.nil? %></p>
+          <%= f.hidden_field :prefecture_at_the_time_status %>
+            <p class="answer">
+              <% if @report.prefecture_at_the_time_status == "hide" %>
+                <%= "非公開" %>
+              <% end %>
+            </p>
           <%= f.hidden_field :city_id %>
-          <p class="answer"><%= @report.city_id %></p>
+          <p class="answer"><%= @report.city.name unless @report.city.nil? %></p>
+          <%= f.hidden_field :city_at_the_time_status %>
+            <p class="answer">
+              <% if @report.city_at_the_time_status == "hide" %>
+                <%= "非公開" %>
+              <% end %>
+            </p>
         </div>
-        
+
       </div>
 
       <div class="work-style border rounded px-3 py-2 mt-5">

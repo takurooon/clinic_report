@@ -14,6 +14,7 @@
 #  blastocyst_grade2                :integer
 #  bmi                              :integer
 #  capital_size                     :integer
+#  city_at_the_time_status          :integer          default(0), not null
 #  clinic_review                    :text
 #  clinic_selection_criteria        :integer
 #  content                          :text
@@ -41,6 +42,7 @@
 #  ova_with_ivm                     :integer
 #  period_of_time_spent_traveling   :integer
 #  position                         :integer
+#  prefecture_at_the_time_status    :integer          default(0), not null
 #  private_or_listed_company        :integer
 #  reasons_for_choosing_this_clinic :text
 #  reservation_method               :integer

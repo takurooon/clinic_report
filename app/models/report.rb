@@ -1,11 +1,15 @@
 class Report < ApplicationRecord
 
-  # レポートの公開状況
-  enum status: { nonreleased: 0, released: 1 }
+  # レポートの公開状況 参考:https://qiita.com/tomoharutt/items/f1a70babaddcf7ab47be
+  enum status: { released: 0, nonreleased: 1 }
 
   # 年収/世帯合算所得の公開状況 参考:https://qiita.com/emacs_hhkb/items/fce19f443e5770ad2e13
   enum annual_income_status: { show: 0, hide: 1 }, _prefix: true
   enum household_net_income_status: { show: 0, hide: 1 }, _prefix: true
+
+  # 治療当時の住まいの公開状況 参考:http://mnmandahalf.hatenablog.com/entry/2017/08/20/164442
+  enum prefecture_at_the_time_status: { show: 0, hide: 1 }, _prefix: true
+  enum city_at_the_time_status: { show: 0, hide: 1 }, _prefix: true
 
   # バリデーション
   validates :title, length: { maximum: 32 }
@@ -1521,6 +1525,7 @@ end
 #  blastocyst_grade2                :integer
 #  bmi                              :integer
 #  capital_size                     :integer
+#  city_at_the_time_status          :integer          default(0), not null
 #  clinic_review                    :text
 #  clinic_selection_criteria        :integer
 #  content                          :text
@@ -1548,6 +1553,7 @@ end
 #  ova_with_ivm                     :integer
 #  period_of_time_spent_traveling   :integer
 #  position                         :integer
+#  prefecture_at_the_time_status    :integer          default(0), not null
 #  private_or_listed_company        :integer
 #  reasons_for_choosing_this_clinic :text
 #  reservation_method               :integer
