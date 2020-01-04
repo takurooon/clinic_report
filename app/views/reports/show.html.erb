@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
+<% if @report.title.empty? %>
+  <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_50_bold:#{@report.user.name}さんのレポート,co_rgb:333,w_500,c_fit/v1578103738/default_ogp_it8mur.jpg"} %>
+<% else %>
+  <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_50_bold:#{@report.title},co_rgb:333,w_500,c_fit/v1578103738/default_ogp_it8mur.jpg"} %>
+<% end %>
 
 <div class="d-flex align-items-center  mt-5">
   <h2 class="inline-block_report-heading"><%= @report.user.name %>さんの<%= @report.fertility_treatment_number %>人目の治療レポート</h2>&nbsp;&nbsp;

@@ -24,16 +24,14 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: 'RePOCO',
-      title: 'トップページ',
+      title: '不妊治療レポート投稿サービス',
       reverse: true,
       charset: 'utf-8',
-      description: '不妊治療の通院先と実績をレポートとして残せるサービスです。',
+      description: '不妊治療の通院先と実績をレポートとして投稿しよう！',
       keywords: '不妊治療,体外受精,顕微受精',
       canonical: request.original_url,
       separator: '|',
       icon: [
-        { href: asset_pack_url('media/images/favicon.ico')},
-        { href: asset_pack_url('media/images/meta_tags.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
       ],
       og: {
         site_name: :site,
@@ -41,13 +39,13 @@ module ApplicationHelper
         description: :description,
         type: 'website',
         url: request.original_url,
-        image: asset_pack_url('media/images/chomeko blog....jpg'),
+        image: image_url('home/home_top_img.png'),
         local: 'ja-JP',
       },
       twitter: {
-        card: 'summary',
-        site: '@chomeko3o',
-        image: asset_pack_url('media/images/twitter_icon.png'),
+        card: 'summary_large_image',
+        site: '@pocoloooog',
+        image: image_url('home/home_top_img.png'),
         width: 100,
         height: 100
       }
