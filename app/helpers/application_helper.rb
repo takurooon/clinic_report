@@ -19,4 +19,39 @@ module ApplicationHelper
   def devise_mapping
       @devise_mapping ||= Devise.mappings[:user]
   end
+
+  # OGP設定 参考:https://pgmg-rails.com/blogs/16 https://qiita.com/kenzoukenzou104809/items/fe3122abd8e98f9089ba
+  def default_meta_tags
+    {
+      site: 'RePOCO',
+      title: 'トップページ',
+      reverse: true,
+      charset: 'utf-8',
+      description: '不妊治療の通院先と実績をレポートとして残せるサービスです。',
+      keywords: '不妊治療,体外受精,顕微受精',
+      canonical: request.original_url,
+      separator: '|',
+      icon: [
+        { href: asset_pack_url('media/images/favicon.ico')},
+        { href: asset_pack_url('media/images/meta_tags.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
+      ],
+      og: {
+        site_name: :site,
+        title: :title,
+        description: :description,
+        type: 'website',
+        url: request.original_url,
+        image: asset_pack_url('media/images/chomeko blog....jpg'),
+        local: 'ja-JP',
+      },
+      twitter: {
+        card: 'summary',
+        site: '@chomeko3o',
+        image: asset_pack_url('media/images/twitter_icon.png'),
+        width: 100,
+        height: 100
+      }
+    }
+  end
+
 end

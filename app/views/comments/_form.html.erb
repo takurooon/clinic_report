@@ -3,8 +3,7 @@
   <%= form_with model: comment do |f| %>
     <%= f.hidden_field :report_id %>
       <div class="form-group">
-        <%= f.label :comment, 'コメント' %>
-        <%= f.text_area :comment, class: 'form-control', rows: 4 %>
+        <%= f.text_area :comment, class: 'form-control', rows: 4, placeholder: "最大1,000文字" %>
       </div>
     <%= f.submit '送信', class: 'btn btn-primary' %>
   <% end %>

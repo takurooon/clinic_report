@@ -2,6 +2,8 @@ class Tag < ApplicationRecord
   has_many :report_tags, dependent: :destroy
   has_many :reports, through: :report_tags
 
+  validates :tag_name, length: { in: 1..15 }
+
   def str_tag
     return self.tag_name
   end
