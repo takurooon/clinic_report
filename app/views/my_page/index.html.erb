@@ -28,10 +28,7 @@
                     <a class="nav-link active" id="publised-reports-tab" data-toggle="tab" href="#published-reports" role="tab" aria-controls="published-reports" aria-selected="true">マイレポート</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="draft-reports-tab" data-toggle="tab" href="#draft-reports" role="tab" aria-controls="draft-reports" aria-selected="false">保存中(非公開)のレポート</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="like-reports-tab" data-toggle="tab" href="#like-reports" role="tab" aria-controls="like-reports" aria-selected="false">いいねしたレポート</a>
+                    <a class="nav-link" id="draft-reports-tab" data-toggle="tab" href="#draft-reports" role="tab" aria-controls="draft-reports" aria-selected="false">保存中(非公開)レポート</a>
                   </li>
                 </ul>
 
@@ -59,17 +56,6 @@
                             <p class="card-text"></p>
                           </div>
                         <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="like-reports" role="tabpanel" aria-labelledby="like-reports-tab">
-                    <div class="card border-light mb-3" style="max-width:100%;">
-                      <% @like_reports.each do |like| %>
-                        <div class="card-header"><%= like.user %>&nbsp;さんの&nbsp;<strong><%= like.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
-                        <div class="card-body">
-                          <h5 class="card-title"><%= like.title %></h5>
-                          <p class="card-text"></p>
-                        </div>
                       <% end %>
                     </div>
                   </div>

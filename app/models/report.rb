@@ -14,21 +14,11 @@ class Report < ApplicationRecord
   # バリデーション
   validates :title, length: { maximum: 32 }
   validate :validate_treatment_age
+  validate :validate_all_treatment_age
   validate :validate_content_length
   validate :validate_content_attachment_byte_size
   validate :validate_content_attachments_count
-  
-  
-  def validate_treatment_age
-    return "" if self.treatment_start_age.nil?
-    return "" if self.treatment_end_age.nil?
-    if treatment_start_age > treatment_end_age
-      errors.add(
-        :treatment_end_age,
-        :treatment_end_age_is_earlier_than_treatment_start_age
-      )
-    end
-  end
+  # validate :validate_content_report_count
 
   MAX_CONTENT_LENGTH = 30000
   MEGA_BYTES = 3
@@ -36,6 +26,28 @@ class Report < ApplicationRecord
   MAX_CONTENT_ATTACHMENT_BYTE_SIZE = MEGA_BYTES * 1_000 * ONE_KILOBYTE
   MAX_CONTENT_ATTACHMENTS_COUNT = 4
 
+  def validate_treatment_age
+    return "" if self.treatment_start_age.nil?
+    return "" if self.treatment_end_age.nil?
+    if treatment_start_age > treatment_end_age
+      errors.add(
+        :base,
+        :treatment_end_age_is_earlier_than_treatment_start_age
+      )
+    end
+  end
+
+  def validate_all_treatment_age
+    return "" if self.first_age_to_start.nil?
+    return "" if self.treatment_start_age.nil?
+    if first_age_to_start > treatment_start_age
+      errors.add(
+        :base,
+        :cl_treatment_start_age_is_earlier_than_first_start_age
+      )
+    end
+  end
+  
   def validate_content_length
     length = content.to_plain_text.length
 
@@ -72,6 +84,15 @@ class Report < ApplicationRecord
       )
     end
   end
+
+  # def validate_content_report_count
+  #   if user.reports.count > 1
+  #     errors.add(
+  #       :base, 
+  #       :only_one_report_is_allowed
+  #     )
+  #   end
+  # end
 
   # like判定メソッド
   def liked_by?(user)
@@ -758,11 +779,12 @@ class Report < ApplicationRecord
 
   # period_of_time_spent_travelingの区分値(通院時間)
   HASH_PERIOD_OF_TIME_SPENT_TRAVELING = {
-    1 => "1時間以内",
-    2 => "2時間以内",
-    3 => "3時間以内",
-    4 => "4時間以内",
-    5 => "5時間以内",
+    1 => "30分以内",
+    2 => "1時間以内",
+    3 => "2時間以内",
+    4 => "3時間以内",
+    5 => "4時間以内",
+    6 => "5時間以内",
     99 => "それ以上"
   }
 
@@ -780,7 +802,7 @@ class Report < ApplicationRecord
     5 => "知人から勧められたから",
     6 => "説明会に参加して決めた",
     7 => "ホームページが良かった",
-    8 => "広告に勧められて",
+    8 => "広告を見て",
     99 => "その他"
     }
 

@@ -11,7 +11,12 @@
             <h5 class="report-title text-dark"><%= report.title %></h5>
             <div class="row">
               <div class="tag-box col-xs-4 col-sm-4 col-md-3">
-                
+
+              <% report.tags.each_with_index do |tag, i| %>
+                <span class="badge badge-primary"><%= tag.tag_name %></span>
+                <% break if i== 2 %>
+              <% end %>
+
               </div>
             </div>
           </div>

@@ -24,6 +24,8 @@ gem 'mini_magick'
 gem 'font_awesome5_rails'
 gem 'enum_help'
 gem 'meta-tags'
+# ↓installしたが読込方法不明 https://qiita.com/Bashi50/items/8ea90ef68985d34fd0c4
+gem 'jQuery-Validation-Engine-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

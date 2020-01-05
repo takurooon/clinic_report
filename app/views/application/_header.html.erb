@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg border-bottom navbar-light fixed-top">
   <div class="container">
-    <%= link_to "EAU", root_path, class: "navbar-brand" %>
+    <%= link_to "REPOCO", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
@@ -65,7 +65,7 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-group">
             <%= f.label :email, 'メール' %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control validate[required, custom[email], maxSize[20]]' %>
           </div>
 
           <div class="form-group">

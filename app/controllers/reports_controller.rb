@@ -3,16 +3,15 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def home
-    set_allreport
     @reports = Report.all
     @users = User.all
   end
 
   def index
-    set_allreport
     @reports = Report.released.order("created_at DESC").page(params[:page]).per(10)
-    # toptags = ReportTag.group(:tag_id).order("created_at DESC").take(3)
-    # @toptags = Tag.find(toptags)
+    @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
+    @reports = @reports.page(params[:page]).order(updated_at: :desc)
+    @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
   end
 
   def draft
@@ -66,18 +65,6 @@ class ReportsController < ApplicationController
     if @report.status.nil?
       @report.status = "released"
     end
-
-    # if params[:annual_income_status].nil?
-    #   @report.annual_income_status = "show"
-    # else
-    #   @report.annual_income_status = params[:annual_income_status]
-    # end
-
-    # if params[:household_net_income_status].nil?
-    #   @report.household_net_income_status = "show"
-    # else
-    #   @report.household_net_income_status = params[:household_net_income_status]
-    # end
 
     @i_name = params[:i_name]
     @fif_name = params[:fif_name]
@@ -512,11 +499,6 @@ class ReportsController < ApplicationController
   
     def set_report
       @report = Report.find(params[:id])
-    end
-
-    def set_allreport
-      @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
-      @reports = @reports.page(params[:page]).order(updated_at: :desc)
     end
 
     def report_params_for_confirm

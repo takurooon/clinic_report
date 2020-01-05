@@ -1,5 +1,7 @@
 # Note: You must restart bin/webpack-dev-server for changes to take effect
 
+# 参考:https://qiita.com/tatsuyankmura/items/728e190b92e0370eefbb
+
 default: &default
   source_path: app/javascript
   source_entry_path: packs

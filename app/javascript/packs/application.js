@@ -9,12 +9,10 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 
-// 追加(有効か不明)
-require("stylesheets/application")
 
 // import "bootstrap"
-import 'bootstrap-material-design'
 import "../stylesheets/application"
+import 'bootstrap-material-design'
 import "@fortawesome/fontawesome-free/js/all";
 
 document.addEventListener("turblinks:load", () => {
