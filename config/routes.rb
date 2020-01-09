@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
 
-  root 'reports#home'
-  get 'my_page/index'
+  root 'reports#index'
+  get 'home' => 'reports#home'
+  get 'my_page' => 'my_page#index'
+  get 'my_page/draft' => 'reports#draft'
+  get 'thanks' => 'my_page#thanks'
+  get 'category/amh' => 'searches#all_amh'
+  get 'category/amh/:value' => 'searches#amh'
+  get 'category/tags' => 'searches#tags'
+  get 'category/tags/:tag_name' => 'searches#tag'
+  get 'category/clinics' => 'searches#clinics'
+  get 'category/clinics/:name' => 'searches#clinic'
   
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -9,11 +18,7 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     confirmations: 'users/confirmations'
   }
-  
-  get 'my_page' => 'my_page#index'
-  get 'my_page/draft' => 'reports#draft'
-  get 'thanks' => 'my_page#thanks'
-  
+
   resources :users, shallow: true do
     resources :reports, only: %[index]
   end

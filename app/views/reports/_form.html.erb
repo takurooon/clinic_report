@@ -19,7 +19,7 @@
   <% end %>
 
   <div class="row justify-content-center" id="main-report">
-    <div class="col-md-9">
+    <div class="col-md-9 form-area">
       <div class="form-group">
         <%= f.label :current_state, '投稿時点(現在)の状況を教えて下さい。', class: "question-matters" %>
           <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, { prompt: "選択してください" }, { class: "form-control" } %>
@@ -112,7 +112,7 @@
             </div> 
             <div class="form-group">
               <%= f.label :reasons_for_choosing_this_clinic, 'このクリニックを選んだ理由について(自由記述)', class: "question-matters" %>
-              <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control border", style: "background: #f3f3f3", rows: 5, placeholder: "例):信頼する〇〇医師がいたから/ 〇〇治療を実施できるクリニックだったから など" %>
+              <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):信頼する〇〇医師がいたから/ 〇〇治療を実施できるクリニックだったから など" %>
               <small id="poster-tip" class="form-text text-muted">
                 どういう基準でクリニックを選ばれたかを教えてください。
               </small>
@@ -121,7 +121,7 @@
         </div>
       </div>
       
-      <div class="main-content border border-primary rounded px-3 py-2 mt-5">
+      <div class="main-content border border-warning rounded px-3 py-2 mt-5">
         <h3>治療レポート</h3>
         <div class="form-group">
           <%= f.label :title, 'あなたの治療レポートのタイトル', class: "question-matters" %>
@@ -801,7 +801,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group border rounded px-3 py-3">
+        <div class="form-group border rounded px-3 py-3 tag-area">
           <div class="row">
             <div class="col-12">
               <h3>タグ</h3>
@@ -837,8 +837,10 @@
         </div>
       </div>
       <br><br>
-      <%= link_to '戻る', @report, class:"btn btn-outline-info button" %>
-      <%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>
+      <div class="float-right">
+        <%= link_to '戻る', @report, class:"btn btn-outline-info button" %>
+        <%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>
+      </div>
     </div>
   </div>
 <% end %>

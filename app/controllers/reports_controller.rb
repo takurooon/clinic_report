@@ -3,14 +3,11 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def home
-    @reports = Report.all
-    @users = User.all
   end
 
   def index
-    @reports = Report.released.order("created_at DESC").page(params[:page]).per(10)
     @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
-    @reports = @reports.page(params[:page]).order(updated_at: :desc)
+    @reports = Report.released.order("created_at DESC").page(params[:page]).per(10)
     @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
   end
 
@@ -20,19 +17,6 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @inspections = @report.inspections
-    @f_infertility_factors = @report.f_infertility_factors
-    @m_infertility_factors = @report.m_infertility_factors
-    @f_diseases = @report.f_diseases
-    @m_diseases = @report.m_diseases
-    @f_surgeries = @report.f_surgeries
-    @m_surgeries = @report.m_surgeries
-    @sairan_medicines = @report.sairan_medicines
-    @transfer_medicines = @report.transfer_medicines
-    @transfer_options = @report.transfer_options
-    @other_efforts = @report.other_efforts
-    @supplements = @report.supplements
-    @scope_of_disclosures = @report.scope_of_disclosures
     @comment = Comment.new(report_id: @report.id)
 
     if @report.nonreleased? && @report.user != current_user

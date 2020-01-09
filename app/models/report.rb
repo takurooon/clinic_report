@@ -106,8 +106,8 @@ class Report < ApplicationRecord
     # ユーザー
   belongs_to :user
   belongs_to :clinic
-  belongs_to :prefecture
-  belongs_to :city
+  belongs_to :prefecture, optional: true
+  belongs_to :city, optional: true
 
   # ---子---
     # コメント

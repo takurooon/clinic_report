@@ -1,43 +1,86 @@
-<p id="notice"><%= notice %></p>
-<% if @report.title.empty? %>
-  <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.user.name}さんのレポコ,co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
-<% else %>
-  <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.title},co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
-<% end %>
-
-<div class="d-flex align-items-center  mt-5">
-  <h2 class="inline-block_report-heading"><%= @report.user.name %>さんの<%= @report.fertility_treatment_number %>人目の治療レポート</h2>&nbsp;&nbsp;
-  <div class="inline-block_report-heading">
-    <small class="form-text text-muted">
-      投稿:<%= @report.created_at.to_s(:datetime_jp) %>
-    </small>
-    <small class="form-text text-muted">
-      更新:<%= @report.updated_at.to_s(:datetime_jp) %>
-    </small>
-  </div>
-  <div class="ml-auto reports_button">
-    <%= form_tag reports_path, method: :get, class: 'reports__searchForm' do %>
-      <%= select_tag :tag_id,
-                    options_from_collection_for_select(Tag.all, :id, :tag_name, params[:tag_id]),
-                    {
-                      prompt: 'タグで絞り込み',
-                      class: 'form-control reports__select',
-                      onchange: 'submit(this.form);'
-                    }
-      %>
+<div class="container">
+  <div class="col-md-9 main-column mr-2">
+    <p id="notice"><%= notice %></p>
+    <% if @report.title.empty? %>
+      <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.user.name}さんのレポコ,co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
+    <% else %>
+      <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.title},co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
     <% end %>
-    <%= link_to "一覧", reports_path, class:"btn btn-outline-info button" %>
-    <%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>
-  </div>
-</div><br>
 
-<% @report.tags.each do |tag| %>
-  <div class="tag-box">
-    <span class="badge badge-info"><%= tag.tag_name %></span>
-  </div>
-<% end %>
+    <div class="d-flex align-items-center mt-5">
+      <div class="title mb-5">
+        <% if @report.title.empty? %>
+          <h1><%= @report.user.name %>さんの&nbsp;&nbsp;<%= @report.clinic.name %>(<%= @report.clinic.city.prefecture.name %>)での治療レポート</h1>
+        <% else %>
+          <h1><%= @report.title %></h1>
+        <% end %>
+      </div>
+    </div>
 
-<div class="">
+    <div class="report-main-content">
+      <div class="d-none d-md-block col-md-12 mt-4 mb-4">
+        <div class='row mb-3 sns-bar'>
+          <div class="col-md-3 twitter-button d-flex align-items-center justify-content-center"><%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+          <div class="col-md-3 facebook-button d-flex align-items-center justify-content-center"><%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+          <div class="col-md-3 line-button d-flex align-items-center justify-content-center"><%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+          <div class="col-md-3 slack-button d-flex align-items-center justify-content-center"><%= link_to 'Slack', "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
+        </div>
+      </div>
+      <div class="row user-info">
+        <div class="col-md-5"><%= @report.user.name %>さんの<%= @report.fertility_treatment_number %>人目の治療レポート</div>
+        <div class="col-md-3">
+          <small class="form-text text-muted">
+            投稿:<%= @report.created_at.to_s(:datetime_jp) %>
+          </small>
+          <small class="form-text text-muted">
+            更新:<%= @report.updated_at.to_s(:datetime_jp) %>
+          </small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <% @report.tags.each do |tag| %>
+          <span class="badge badge-info"><%= tag.tag_name %></span>
+        <% end %>
+      </div>
+      <div class="content">
+        <%= @report.content %>
+      </div>
+      <div class="d-none d-md-block col-md-12 mt-4 mb-4">
+        <div class='row mb-3 sns-bar'>
+          <div class="col-md-3 twitter-button d-flex align-items-center justify-content-center"><%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+          <div class="col-md-3 facebook-button d-flex align-items-center justify-content-center"><%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+          <div class="col-md-3 line-button d-flex align-items-center justify-content-center"><%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+          <div class="col-md-3 slack-button d-flex align-items-center justify-content-center"><%= link_to 'Slack', "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
+        </div>
+      </div>
+      <div class="report-info">
+      </div>
+      <div class="d-none d-md-block col-md-12 mt-4 mb-4">
+        <div class='row mb-3 sns-bar'>
+          <div class="col-md-3 twitter-button d-flex align-items-center justify-content-center"><%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+          <div class="col-md-3 facebook-button d-flex align-items-center justify-content-center"><%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+          <div class="col-md-3 line-button d-flex align-items-center justify-content-center"><%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+          <div class="col-md-3 slack-button d-flex align-items-center justify-content-center"><%= link_to 'Slack', "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 side-column">
+  </div>
+</div>
+<div class="d-none d-md-block col-md-12 mt-4 mb-4">
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="report-head">
 </div>
@@ -108,7 +151,11 @@
     </tr>
     <tr>
       <th scope="row">このクリニックでの治療終了年</th>
-      <td><%= @report.year_of_treatment_end %></td>
+      <% unless @report.year_of_treatment_end.nil? %>
+        <td><%= @report.year_of_treatment_end.year %>年</td>
+      <% else %>
+        <td>未回答</td>
+      <% end %>
     </tr>
     <tr>
       <th scope="row">何人目不妊</th>
@@ -141,7 +188,7 @@
     <tr>
       <th scope="row">受けた検査</th>
       <td>
-        <% @inspections.each do |inspection| %>
+        <% @report.inspections.each do |inspection| %>
           <%= inspection.name %>&nbsp;&nbsp;
         <% end %>
       </td>
@@ -161,7 +208,7 @@
     <tr>
       <th scope="row">女性側の不妊原因</th>
       <td>
-        <% @f_infertility_factors.each do |f_infertility_factor| %>
+        <% @report.f_infertility_factors.each do |f_infertility_factor| %>
           <%= f_infertility_factor.name %>&nbsp;&nbsp;
         <% end %>
       </td>
@@ -169,7 +216,7 @@
     <tr>
       <th scope="row">男性側の不妊原因</th>
       <td>
-        <% @m_infertility_factors.each do |m_infertility_factor| %>
+        <% @report.m_infertility_factors.each do |m_infertility_factor| %>
           <%= m_infertility_factor.name %>&nbsp;&nbsp;
         <% end %>
       </td>
@@ -177,7 +224,7 @@
     <tr>
       <th scope="row">女性側の疾患</th>
       <td>
-        <% @f_diseases.each do |f_disease| %>
+        <% @report.f_diseases.each do |f_disease| %>
           <%= f_disease.name %>&nbsp;&nbsp;
         <% end %>
       </td>
@@ -185,7 +232,7 @@
     <tr>
       <th scope="row">男性側の疾患</th>
       <td>
-        <% @m_diseases.each do |m_disease| %>
+        <% @report.m_diseases.each do |m_disease| %>
           <%= m_disease.name %>&nbsp;&nbsp;
         <% end %>
       </td>
@@ -193,7 +240,7 @@
     <tr>
       <th scope="row">女性側の手術歴</th>
       <td>
-        <% @f_surgeries.each do |f_surgery| %>
+        <% @report.f_surgeries.each do |f_surgery| %>
           <%= f_surgery.name %>&nbsp;&nbsp;
         <% end %>
       </td>
@@ -201,7 +248,7 @@
     <tr>
       <th scope="row">男性側の手術歴</th>
       <td>
-        <% @m_surgeries.each do |m_surgery| %>
+        <% @report.m_surgeries.each do |m_surgery| %>
           <%= m_surgery.name %>&nbsp;&nbsp;
         <% end %>
       </td>
@@ -217,7 +264,7 @@
     <tr>
       <th scope="row">採卵周期で使用した薬剤</th>
       <td>
-      <% @sairan_medicines.each do |sairan_medicine| %>
+      <% @report.sairan_medicines.each do |sairan_medicine| %>
         <%= sairan_medicine.name %>&nbsp;&nbsp;
       <% end %>
       </td>
@@ -277,7 +324,7 @@
     <tr>
       <th scope="row">移植周期に使用した薬剤</th>
       <td>
-      <% @transfer_medicines.each do |transfer_medicine| %>
+      <% @report.transfer_medicines.each do |transfer_medicine| %>
         <%= transfer_medicine.name %>&nbsp;&nbsp;
       <% end %>
       </td>
@@ -285,7 +332,7 @@
     <tr>
       <th scope="row">移植オプション</th>
       <td>
-      <% @transfer_options.each do |transfer_option| %>
+      <% @report.transfer_options.each do |transfer_option| %>
         <%= transfer_option.name %>&nbsp;&nbsp;
       <% end %>
       </td>
@@ -305,7 +352,7 @@
     <tr>
       <th scope="row">クリニックの治療中以外に行ったこと</th>
       <td>
-        <% @other_efforts.each do |other_effort| %>
+        <% @report.other_efforts.each do |other_effort| %>
           <%= other_effort.name %>&nbsp;&nbsp;
         <% end %>
       </td>
@@ -313,7 +360,7 @@
     <tr>
       <th scope="row">治療中に使用していたサプリ</th>
       <td>
-      <% @supplements.each do |supplement| %>
+      <% @report.supplements.each do |supplement| %>
         <%= supplement.name %>&nbsp;&nbsp;
       <% end %>
       </td>
@@ -346,6 +393,7 @@
       <% else %>
         <td><%= @report.prefecture.name %></td>
       <% end %>
+      
       <% if @report.city_at_the_time_status == "hide"%>
         <td><%= "非公開" %></td>
       <% else %>
@@ -415,7 +463,7 @@
     <tr>
       <th scope="row">治療の開示範囲</th>
       <td>
-        <% @scope_of_disclosures.each do |scope_of_disclosure| %>
+        <% @report.scope_of_disclosures.each do |scope_of_disclosure| %>
           <%= scope_of_disclosure.scope %>
         <% end %>
       </td>

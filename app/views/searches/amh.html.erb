@@ -1,0 +1,39 @@
+<div class="container">
+<h3 class="d-sm d-md-none mt-4 mb-5 text-center">AMH「<%= @selected_amh %>」の一覧レポート</h3>
+<h3 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">AMH「<%= @selected_amh %>」の一覧レポート</h3>
+
+  <div class="container main-index">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 main-column">
+        <% @amh.each do |amh| %>
+          <div class="row">
+            <div class="card col-12 mb-5 mr-3">
+              <div class="card-header media">
+                <%= link_to "アイコン" %>
+                <div class="media-body ml-5">
+                  <div class="tag-badge" %>
+                    <span class="badge badge-info"><%= amh.str_amh %></span>
+                  </div>
+                  <div class="d-flex d-inline-flex mt-3">
+                    <%= link_to amh.user.name, user_path(amh.user_id), class: "lead mr-5" %>
+                    <div>
+                      <small class="text-muted">
+                        <div>更新:<time datetime="<%= amh.updated_at %>"><%= time_ago_in_words(amh.updated_at) %></time>前</div>
+                        <div>投稿:<%= amh.created_at.to_s(:datetime_jp) %></div>
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <%= link_to amh do %>
+              <div class="card-body">
+                <h5 class="report-title"><%= amh.title %></h5>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <div>
+  </div>
+</div>
