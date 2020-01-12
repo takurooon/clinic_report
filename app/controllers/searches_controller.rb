@@ -38,7 +38,7 @@ class SearchesController < ApplicationController
 
   def clinic
     clinic = params[:name]
-    @clinics = Clinic.find_by(clinic)
+    @clinics = Clinic.find(clinic)
     @reports = Report.where(clinic_id: clinic)
     @clinic_reports = Report.where(activated: true).search(params[:search])
   end
