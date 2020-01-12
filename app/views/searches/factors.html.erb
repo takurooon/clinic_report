@@ -1,0 +1,31 @@
+<div class="container">
+  <h3 class="d-sm d-md-none mt-4 mb-5 text-center">不妊原因から探す</h3>
+  <h3 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">不妊原因から探す</h3>
+
+  <div class="container all_factors">
+    <div class="row tab-content">
+      <div class="col-md-8 offset-md-2 pl-0">
+        <ul class="nav nav-tabs mb-3">
+          <li class="nav-item">
+            <a href="#f_factors" class="nav-link active" data-toggle="tab" style="font-size: 16px">女性側の不妊原因</a>
+          </li>
+          <li class="nav-item">
+            <a href="#m_factors" class="nav-link" data-toggle="tab" style="font-size: 16px">男性側の不妊原因</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8 offset-md-2 main-column tab-pane active" id="f_factors">
+        <% @f_factors.each do |f_factor| %>
+          <span class="btn btn-primary border border-primary mr-2 mb-3"><%= link_to f_factor.name, "/category/factors/#{f_factor.name}(name: 'female')" %></span>
+        <% end %>
+      </div>
+      <div class="col-md-8 offset-md-2 main-column tab-pane" id="m_factors">
+        <% @m_factors.each do |m_factor| %>
+          <span class="btn btn-info border border-info mr-2 mb-3"><%= link_to m_factor.name, "/category/factors/#{m_factor.name}" %></span>
+        <% end %>
+      </div>
+    <div>
+  </div>
+</div>
+
+<%= paginate @f_factors_page %>

@@ -1,0 +1,51 @@
+<div class="container">
+  <h4 class="d-sm d-md-none mt-4 mb-5 text-center">「<%= @clinics.name %>」<br>でのレポート一覧</h4>
+  <h3 class="d-none d-md-block col-md-8 offset-md-2 mt-4">「<%=  @clinics.name %>」でのレポート一覧</h3>
+  <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
+    <%= @clinics.city.prefecture.name %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= @clinics.city.name %></b></strong>
+  </small>
+
+  <div class="container main-index">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 main-column">
+        <% @reports.each do |report| %>
+          <div class="row">
+            <div class="card col-12 mb-5 mr-3">
+              <div class="card-header media">
+                <%= link_to "アイコン" %>
+                <div class="media-body ml-5">
+                  <div class="tag-badge" %>
+                    <% report.tags.each do |tag| %>
+                      <span class="badge badge-info"><%= tag.tag_name %></span>
+                    <% end %>
+                  </div>
+                  <div class="d-flex d-inline-flex mt-3">
+                    <%= link_to report.user.name, user_path(report.user_id), class: "lead mr-5" %>
+                    <div class="mr-5">
+                      <strong><%= report.treatment_end_age %>歳</strong><br>
+                      <strong><%= report.clinic.name %></strong><br>
+                      <small class="text-muted">
+                        <%= report.year_of_treatment_end.year %>年&nbsp;&nbsp;卒業
+                      </small>
+                    </div>
+                    <div>
+                      <small class="text-muted">
+                        <div>更新:<time datetime="<%= report.updated_at %>"><%= time_ago_in_words(report.updated_at) %></time>前</div>
+                        <div>投稿:<%= report.created_at.to_s(:datetime_jp) %></div>
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <%= link_to report do %>
+              <div class="card-body">
+                <h5 class="report-title"><%= report.title %></h5>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <div>
+  </div>
+</div>

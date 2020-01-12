@@ -114,6 +114,15 @@ class Report < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  # 検索
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+
   # 検査項目
   has_many :report_inspections, dependent: :destroy
   has_many :inspections, through: :report_inspections
@@ -844,6 +853,7 @@ class Report < ApplicationRecord
   HASH_PRIVATE_OR_LISTED_COMPANY = {
     1 => "上場企業",
     2 => "非上場企業",
+    3 => "国家公務員",
     100 => "不明"
   }
 
@@ -854,7 +864,7 @@ class Report < ApplicationRecord
 
   # domestic_or_foreign_capitalの区分値(日系or外資)
   HASH_DOMESTIC_OR_FOREIGN_CAPITAL = {
-    1 => "日系企業",
+    1 => "日系企業(公務員含む)",
     2 => "外資系企業",
     99 => "その他",
     100 => "不明"
@@ -1547,7 +1557,7 @@ end
 #  blastocyst_grade2                :integer
 #  bmi                              :integer
 #  capital_size                     :integer
-#  city_at_the_time_status          :integer          default(0), not null
+#  city_at_the_time_status          :integer          default("show"), not null
 #  clinic_review                    :text
 #  clinic_selection_criteria        :integer
 #  content                          :text
@@ -1575,7 +1585,7 @@ end
 #  ova_with_ivm                     :integer
 #  period_of_time_spent_traveling   :integer
 #  position                         :integer
-#  prefecture_at_the_time_status    :integer          default(0), not null
+#  prefecture_at_the_time_status    :integer          default("show"), not null
 #  private_or_listed_company        :integer
 #  reasons_for_choosing_this_clinic :text
 #  reservation_method               :integer

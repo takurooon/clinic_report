@@ -25,6 +25,9 @@
       <option value="#">選択してください</option>
       <option value="category/amh">AMH</option>
       <option value="category/tags">タグ</option>
+      <option value="category/age">年齢</option>
+      <option value="category/clinics">クリニック</option>
+      <option value="category/area">エリア</option>
     </select>
   </div>
 </div>
@@ -57,48 +60,60 @@
         <% end %>
       </div>
       <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <div class="row category-list">
-          <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-            <%= fa_icon " clock", class: 'mx-2', size: '3x', color: "#2c2c54" %>
+        <%= link_to category_age_path do %>
+          <div class="row category-list">
+            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+              <%= fa_icon " clock", class: 'mx-2', size: '3x', color: "#2c2c54" %>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                年齢
+            </div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-              年齢
-          </div>
-        </div>
+        <% end %>
       </div>
       <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <div class="row category-list">
-          <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-            <%= fa_icon "hospital", class: 'mx-2', size: '3x', color: "#2c2c54" %>
+        <%= link_to category_clinics_path do %>
+          <div class="row category-list">
+            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+              <%= fa_icon "hospital", class: 'mx-2', size: '3x', color: "#2c2c54" %>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                クリニック
+            </div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-              クリニック
-          </div>
-        </div>
+        <% end %>
       </div>
       <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <div class="row category-list">
-          <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-            <%= fa_icon "book", class: 'mx-2', size: '3x', color: "#2c2c54" %>
+        <%= link_to category_factors_path do %>
+          <div class="row category-list">
+            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+              <%= fa_icon "book", class: 'mx-2', size: '3x', color: "#2c2c54" %>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                不妊原因
+            </div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-              不妊原因
-          </div>
-        </div>
+        <% end %>
       </div>
       <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <div class="row category-list">
-          <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-            <%= fa_icon "map", class: 'mx-2', size: '3x', color: "#2c2c54" %>
+        <%= link_to category_area_path do %>
+          <div class="row category-list">
+            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+              <%= fa_icon "map", class: 'mx-2', size: '3x', color: "#2c2c54" %>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                エリア
+            </div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-              エリア
-          </div>
+        <% end %>
+      </div>
+
+      <% if false %>
+        <div class="col-12 d-none d-md-block">
+          <small class="float-right">全てのカテゴリを見る></small>
         </div>
-      </div>
-      <div class="col-12 d-none d-md-block">
-        <small class="float-right">全てのカテゴリを見る></small>
-      </div>
+      <% end %>
+
     </div>
   </div>
 </div>

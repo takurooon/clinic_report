@@ -1,1 +1,14 @@
-<h1>メール送りました</h1>
+<div class="container pt-5">
+  <div class="row mx-5 px-5 signup-mail">
+    <div class="col-12">
+      <h3>登録頂いたメールアドレスへ認証リンクを送りました。</h3><br><br>
+      <p>ご登録ありがとうございます！</p>
+      <p>ご入力頂いたメールアドレスへ認証リンクを送りました。認証リンクをクリック頂くことで登録完了となります。</p>
+      <p>ログイン画面にて、登録したメールアドレスとパスワードを入力頂くとログインできます。</p><br>
+      <p class="text-center mt-5"><%= link_to "REPOCO", reports_path %></p>
+    </div>
+    <div class="mx-auto mb-5">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-raised btn-info mx-auto", "data-toggle": "modal", "data-target": "#signinModal" %>
+    </div>
+  </div>
+</div>

@@ -5,12 +5,20 @@ Rails.application.routes.draw do
   get 'my_page' => 'my_page#index'
   get 'my_page/draft' => 'reports#draft'
   get 'thanks' => 'my_page#thanks'
+  get 'category/search' => 'searches#search'
   get 'category/amh' => 'searches#all_amh'
   get 'category/amh/:value' => 'searches#amh'
   get 'category/tags' => 'searches#tags'
   get 'category/tags/:tag_name' => 'searches#tag'
   get 'category/clinics' => 'searches#clinics'
   get 'category/clinics/:name' => 'searches#clinic'
+  get 'category/age' => 'searches#all_age'
+  get 'category/age/:value' => 'searches#age'
+  get 'category/factors' => 'searches#factors'
+  get 'category/factors/:value' => 'searches#factor'
+  get 'category/area' => 'searches#all_area'
+  get 'category/area/prefecture/:value' => 'searches#area_prefecture'
+  get 'category/area/city/:value' => 'searches#area_city'
   
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -52,8 +60,17 @@ end
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
-#                                  root GET    /                                                                                        reports#home
-#                         my_page_index GET    /my_page/index(.:format)                                                                 my_page#index
+#                                  root GET    /                                                                                        reports#index
+#                                  home GET    /home(.:format)                                                                          reports#home
+#                               my_page GET    /my_page(.:format)                                                                       my_page#index
+#                         my_page_draft GET    /my_page/draft(.:format)                                                                 reports#draft
+#                                thanks GET    /thanks(.:format)                                                                        my_page#thanks
+#                          category_amh GET    /category/amh(.:format)                                                                  searches#all_amh
+#                                       GET    /category/amh/:value(.:format)                                                           searches#amh
+#                         category_tags GET    /category/tags(.:format)                                                                 searches#tags
+#                                       GET    /category/tags/:tag_name(.:format)                                                       searches#tag
+#                      category_clinics GET    /category/clinics(.:format)                                                              searches#clinics
+#                                       GET    /category/clinics/:name(.:format)                                                        searches#clinic
 #                      new_user_session GET    /users/sign_in(.:format)                                                                 users/sessions#new
 #                          user_session POST   /users/sign_in(.:format)                                                                 users/sessions#create
 #                  destroy_user_session DELETE /users/sign_out(.:format)                                                                users/sessions#destroy
@@ -72,9 +89,6 @@ end
 #                 new_user_confirmation GET    /users/confirmation/new(.:format)                                                        users/confirmations#new
 #                     user_confirmation GET    /users/confirmation(.:format)                                                            users/confirmations#show
 #                                       POST   /users/confirmation(.:format)                                                            users/confirmations#create
-#                               my_page GET    /my_page(.:format)                                                                       my_page#index
-#                         my_page_draft GET    /my_page/draft(.:format)                                                                 reports#draft
-#                                thanks GET    /thanks(.:format)                                                                        my_page#thanks
 #                          user_reports GET    /users/:user_id/reports(.:format)                                                        reports#index
 #                                 users GET    /users(.:format)                                                                         users#index
 #                                       POST   /users(.:format)                                                                         users#create

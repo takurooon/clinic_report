@@ -1,0 +1,61 @@
+<div class="container">
+  <h3 class="d-sm d-md-none mt-4 mb-5 text-center">クリニックから探す</h3>
+  <h3 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">クリニックから探す</h3>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="form-group">
+        <div>
+          <%= select_tag :select_prefecture,
+                          options_from_collection_for_select(Prefecture.all, :id, :name),
+                          {
+                            prompt: "都道府県を選択する",
+                            class: "form-control"
+                          }
+          %>
+        </div><br>
+
+        <div>
+          <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control" } %></div><br>
+        <div>
+          <%= select 'report', :clinic_id, @clinics, { prompt: "クリニックを選択する"}, { class: "form-control", onchange: "location = 'clinics/' + this.value" } %>
+        </div>
+      </div>
+      <script>
+      $(function() {
+        $('#select_prefecture').change(function() {
+          $.ajax('/cities_select',
+            {
+              type: 'get',
+              data: { prefecture_id: $(this).val() },
+            }
+          )
+          .done(function(data) {
+            $('#city').html(data) 
+          })
+          .fail(function() {
+            window.alert('正しい結果を得られませんでした。');
+          });
+          $('#report_clinic_id').val('');
+        });
+      });
+      $(function() {
+        $('#city').change(function() {
+          $.ajax('/clinics_select',
+            {
+              type: 'get',
+              data: { city_id: $(this).val() },
+            }
+          )
+          .done(function(data) {
+            $('#report_clinic_id').html(data) 
+          })
+          .fail(function() {
+            window.alert('正しい結果を得られませんでした。');
+          });
+        });
+      });
+      </script>
+    </div>
+  </div>
+</div>

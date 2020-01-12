@@ -46,6 +46,7 @@
 
               <div>
                 <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control" } %></div><br>
+              </div>
               <div>
                 <%= f.select :clinic_id, {}, { prompt: "クリニックを選択する"}, { class: "form-control" } %>
                 <small id="poster-tip" class="form-text text-muted">

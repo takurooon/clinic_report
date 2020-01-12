@@ -124,35 +124,22 @@ MInfertilityFactor.create([
 ])
 
 FDisease.create([
-  { name: "あああ" },
-  { name: "いいい" },
-  { name: "ううう" },
-  { name: "えええ" },
-  { name: "おおお" },
+  { name: "バセドウ病" },
+  { name: "橋本病" },
 ])
 
 MDisease.create([
-  { name: "かかか" },
-  { name: "ききき" },
-  { name: "くくく" },
-  { name: "けけけ" },
-  { name: "こここ" },
+  { name: "糖尿病" },
+  { name: "痛風" },
 ])
 
 FSurgery.create([
-  { name: "さささ" },
-  { name: "ししし" },
-  { name: "すすす" },
-  { name: "せせせ" },
-  { name: "そそそ" },
+  { name: "子宮筋腫" },
+  { name: "卵管切除" },
 ])
 
 MSurgery.create([
-  { name: "たたた" },
-  { name: "ちちち" },
-  { name: "つつつ" },
-  { name: "ててて" },
-  { name: "ととと" },
+  { name: "精索静脈瘤" },
 ])
 
 SairanMedicine.create([
@@ -166,19 +153,16 @@ TransferMedicine.create([
 ])
 
 TransferOption.create([
-  { name: "ななな" },
-  { name: "ににに" },
-  { name: "ぬぬぬ" },
-  { name: "ねねね" },
-  { name: "ののの" },
+  { name: "エンブリオグルー" },
+  { name: "二段階移植" },
+  { name: "シート法" },
 ])
 
 OtherEffort.create([
-  { name: "ななな" },
-  { name: "ににに" },
-  { name: "ぬぬぬ" },
-  { name: "ねねね" },
-  { name: "ののの" },
+  { name: "漢方" },
+  { name: "鍼灸" },
+  { name: "ヨガ" },
+  { name: "よもぎ蒸し" },
 ])
 
 Inspection.create([
