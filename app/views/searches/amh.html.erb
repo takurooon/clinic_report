@@ -12,8 +12,9 @@
                 <%= link_to "アイコン" %>
                 <div class="media-body ml-5">
                   <div class="tag-badge" %>
+                    <span class="badge badge-pill badge-primary"><%= link_to amh.city.prefecture.name, "/category/area/prefecture/#{amh.city.prefecture.id}" %></span>
                     <% amh.tags.each do |tag| %>
-                      <span class="badge badge-info"><%= tag.tag_name %></span>
+                      <span class="badge badge-info"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}" %></span>
                     <% end %>
                   </div>
                   <div class="d-flex d-inline-flex mt-3">

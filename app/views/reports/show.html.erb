@@ -1,4 +1,4 @@
-<div class="col-md-9 main-column px-0">
+<div class="col-md-9 main-column">
   <p id="notice"><%= notice %></p>
   <% if @report.title.empty? %>
     <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.user.name}さんのレポコ,co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
@@ -425,7 +425,7 @@
     </div>
   </div>
 </div>
-<div class="col-md-3 side-column px-0">
+<div class="col-md-3 side-column">
 </div>
 
 <%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>
