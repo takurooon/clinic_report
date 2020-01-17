@@ -1,48 +1,41 @@
-<div calss="signin-title">
-  <h1 class="text-center">ログイン</h1>
-</div>
-
-<div class="signupin">
+<div class="container signup-in">
   <div class="row">
-    <div class="signupin-left col-xs-12 col-sm-6">
-      <div class="sns-signupin-area">
-        <div class="sns-signupin-button">
-          <a href="#" class="btn btn-primary btn-block disabled w-100" tabindex="-1" role="button" aria-disabled="true">Twitterでログイン</a>
+    <div class="col-md-6 offset-md-3 mt-md-5 mb-md-5">
+      <div class="card text-center">
+        <div class="card-header">
+          <h2><i class="fas fa-sign-in-alt", color="#4BAAF3"></i>&nbsp;&nbsp;ログイン</h2>
         </div>
-        <div class="sns-signupin-button">
-          <a href="#" class="btn btn-primary btn-block disabled w-100" tabindex="-1" role="button" aria-disabled="true">Facebookでログイン</a>
-        </div>
-        <div class="sns-signupin-button">
-          <a href="#" class="btn btn-danger btn-block disabled w-100" tabindex="-1" role="button" aria-disabled="true">Googleでログイン</a>
+        <div class="card-body">
+          <div class="p-3">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+      
+              <div class="form-group mt-0">
+                <%= f.label :email, 'メール' %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+              </div>
+
+              <div class="form-group mt-0">
+                <%= f.label :password, 'パスワード' %><br />
+                <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+              </div>
+              
+              <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end %>
+
+              <div class="actions mt-5">
+                <%= f.submit "ログイン", class: 'btn btn-raised btn-primary mx-auto d-block w-75' %>
+              </div>
+              
+            <% end %>
+            <%= render "devise/shared/links" %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="signupin-right col-xs-12 col-sm-6">
-      <div class="sns-signupin-area">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="form-group">
-            <%= f.label :email, 'メール' %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :password, 'パスワード' %><br />
-            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
-          </div>
-          
-          <% if devise_mapping.rememberable? %>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-          <% end %>
-
-          <div class="actions">
-            <%= f.submit "E-mailログイン", class: 'btn btn-raised btn-primary mx-auto d-block' %>
-          </div>
-        <% end %>
-        <%= render "devise/shared/links" %>
-      <div>
     </div>
   </div>
 </div>
