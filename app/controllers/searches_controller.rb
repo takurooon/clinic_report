@@ -43,6 +43,21 @@ class SearchesController < ApplicationController
     @clinic_reports = Report.where(activated: true).search(params[:search])
   end
 
+  def clinic_prefecture
+    prefecture = params[:name]
+    @prefecture = Prefecture.find_by(name: prefecture)
+    cities = City.where(prefecture_id: @prefecture)
+    clinics = Clinic.where(city_id: cities.ids)
+    @reports = Report.where(clinic_id: clinics.ids)
+  end
+  
+  def clinic_city
+    city = params[:name]
+    @city = City.find_by(name: city)
+    clinics = Clinic.where(city_id: @city.id)
+    @reports = Report.where(clinic_id: clinics.ids)
+  end
+
   def all_age
     age = Report.make_select_options_treatment_end_age.invert
     reports = Report.group(:treatment_end_age).where.not(treatment_end_age: nil).distinct.count
@@ -90,7 +105,7 @@ class SearchesController < ApplicationController
 
   def area_prefecture
     @prefecture = Prefecture.find_by(id: params[:value])
-    @reports= Report.joins(prefecture: :cities).where(prefecture_id: params[:value] ).distinct
+    @reports= Report.joins(prefecture: :cities).where(prefecture_id: params[:value]).distinct
   end
 
   def area_city

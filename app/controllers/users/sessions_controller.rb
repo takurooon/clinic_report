@@ -35,11 +35,12 @@ class Users::SessionsController < Devise::SessionsController
   # ログイン後に飛ばす先を指定
   def after_sign_in_path_for(resource)
     flash[:notice] = "ログインしました"
-    reports_path
+    stored_location_for(resource) || mypage_root_path
   end
 
   # ログアウト後に飛ばす先を指定
   def after_sign_out_path_for(resource)
+    flash[:notice] = "ログアウトしました"
     root_path
   end
   

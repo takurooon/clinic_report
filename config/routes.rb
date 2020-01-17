@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'category/tags/:tag_name' => 'searches#tag'
   get 'category/clinics' => 'searches#clinics'
   get 'category/clinics/:name' => 'searches#clinic'
+  get 'category/clinics/prefecture/:name' => 'searches#clinic_prefecture'
+  get 'category/clinics/city/:name' => 'searches#clinic_city'
   get 'category/age' => 'searches#all_age'
   get 'category/age/:value' => 'searches#age'
   get 'category/factors' => 'searches#factors'

@@ -1,3 +1,4 @@
+<div class="container form">
 <% if is_new
     url = confirm_reports_path
     else
@@ -8,7 +9,6 @@
   <% if report.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
-
       <ul>
         <% report.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -44,8 +44,8 @@
               </div><br>
 
               <div>
-                <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control" } %></div><br>
-              </div>
+                <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control" } %>
+              </div><br>
               <div>
                 <%= f.select :clinic_id, {}, { prompt: "クリニックを選択する"}, { class: "form-control" } %>
                 <small id="poster-tip" class="form-text text-muted">
@@ -844,3 +844,4 @@
     </div>
   </div>
 <% end %>
+</div>

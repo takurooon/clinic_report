@@ -1,11 +1,11 @@
 <div class="container px-2">
-  <h4 class="d-sm d-md-none mt-4 text-center">「<strong><%= @clinics.name %></strong>」<br>でのレポート一覧</h4>
+  <h4 class="d-sm d-md-none mt-4 text-center">「<strong><%= @city.name %></strong>」にあるクリニックでの<br>レポート一覧</h4>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-5">
-    <%= link_to @clinics.city.prefecture.name, "/category/clinics/prefecture/#{@clinics.city.prefecture.name}" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= link_to @clinics.city.name, "/category/clinics/city/#{@clinics.city.name}" %></b></strong>
+    <%= link_to @city.prefecture.name, "/category/clinics/prefecture/#{@city.prefecture.name}" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= @city.name %></b></strong>
   </small>
-  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4">「<strong><%=  @clinics.name %></strong>」でのレポート一覧</h4>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4">「<strong><%= @city.name %></strong>」にあるクリニックでのレポート一覧</h4>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
-    <%= link_to @clinics.city.prefecture.name, "/category/clinics/prefecture/#{@clinics.city.prefecture.name}" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= link_to @clinics.city.name, "/category/clinics/city/#{@clinics.city.name}" %></b></strong>
+    <%= link_to @city.prefecture.name, "/category/clinics/prefecture/#{@city.prefecture.name}" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= @city.name %></b></strong>
   </small>
     
   <div class="container main-index">
@@ -87,7 +87,6 @@
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         <% end %>
       </div>

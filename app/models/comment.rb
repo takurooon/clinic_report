@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :report
-  validates :comment, length: { in: 1..1000 }
+  validates :comment, presence: true, length: { in: 1..1000 }
 end
 
 # == Schema Information

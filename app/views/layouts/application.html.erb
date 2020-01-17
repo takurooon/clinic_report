@@ -17,11 +17,11 @@
   
   <div class="base">
     <div class="container px-0">
-    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+      <%= render 'layouts/flash' %>
+      <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
       <%= yield %>
     </div>
   </div>
   <%= render 'footer' %>
-  
   </body>
 </html>

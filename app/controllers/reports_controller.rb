@@ -33,6 +33,7 @@ class ReportsController < ApplicationController
   end
 
   def confirm
+    flash[:alert] = "まだ投稿は完了していません。必須項目の「クリニック」と「お住まい(非公開設定可)」は選択済みですか？"
     if params[:id].nil?
       @report = Report.new(report_params_for_confirm)
     else

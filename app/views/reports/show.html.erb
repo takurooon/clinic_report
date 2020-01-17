@@ -1,5 +1,4 @@
 <div class="col-md-9 main-column">
-  <p id="notice"><%= notice %></p>
   <% if @report.title.empty? %>
     <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.user.name}さんのレポコ,co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
   <% else %>
@@ -17,13 +16,23 @@
   </div>
 
   <div class="mb-3">
+    <% unless @report.treatment_end_age.nil? %>
+      <span class="badge badge-light"><%= link_to @report.treatment_end_age, "/category/age/#{@report.treatment_end_age}", class: "text-dark" %>歳</span>
+    <% end %>
+    <% unless @report.city.prefecture.nil? %>
+      <span class="badge badge-pill badge-primary"><%= link_to @report.city.prefecture.name, "/category/area/prefecture/#{@report.city.prefecture.id}", class: "text-light" %></span>
+    <% end %>
+    <% unless @report.city.nil? %>
+      <span class="badge badge-pill badge-primary"><%= link_to @report.city.name, "/category/area/city/#{@report.city.id}",  class: "text-light" %></span>
+    <% end %>
     <% @report.tags.each do |tag| %>
-      <span class="badge badge-info"><%= tag.tag_name %></span>
+      <span class="badge badge-info"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class: "text-light" %></span>
     <% end %>
   </div>
   <div class="report-main-content">
     <div class="row user-info">
-      <div class="col-md-5"><%= @report.user.name %>さんの<%= @report.fertility_treatment_number %>人目の治療レポート</div>
+      <div class="col-md-8 pt-3 pb-2"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの<%= link_to @report.clinic.name, "/category/clinics/#{@report.clinic.id}" %>での<% unless @report.fertility_treatment_number.nil? %><%= @report.fertility_treatment_number %>人目<% end %>治療レポート<span class="badge badge-light"><%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}", class: "text-dark" %></span>/<span class="badge badge-light"><%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}", class: "text-dark" %></span>
+      </div>
       <div class="col-md-3">
         <small class="form-text text-muted">
           投稿:<%= @report.created_at.to_s(:datetime_jp) %>
@@ -416,20 +425,34 @@
         <div class="col-md-3 slack-button d-flex align-items-center justify-content-center"><%= link_to 'Slack', "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
       </div>
     </div>
+    
+    
     <div class="comment-area">
       <div class="p-comment__list">
-        <div class="p-comment__listTitle">コメント</div>
+        <h4 class="p-comment__listTitle">コメント</h4>
         <%= render @report.comments %>
       </div>
+      <% if current_user %>
       <%= render partial: 'comments/form', locals: { comment: @comment } %>
+      <% else %>
+      <div class="card text-center mb-5">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-pencil-alt", color="#4BAAF3"></i>&nbsp;&nbsp;ログインしてコメントしてみよう！</h5>
+          <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
+          <%=link_to 'ログイン', new_user_session_path, class: "btn btn-raised btn-info mr-2" %>
+          <%=link_to '新規登録',  new_user_registration_path, class: "btn btn-info border ml-2" %>
+        </div>
+      </div>
+      <% end %>
     </div>
+
   </div>
 </div>
 <div class="col-md-3 side-column">
 </div>
 
 <%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>
-<%= link_to '削除', report_path(@report), method: :delete, class:"btn btn-outline-info button" %>
+<%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-outline-info button" %>
 <%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>
 
 

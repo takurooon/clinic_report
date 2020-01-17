@@ -59,6 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   # サインアップ後に飛ばす先を指定
   def after_inactive_sign_up_path_for(resource)
+    flash[:notice] = "まだ登録は完了していません。認証リンクを確認し登録を完了してください"
     thanks_path
   end
 end

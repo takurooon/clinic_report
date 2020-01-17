@@ -23,7 +23,9 @@
             <div class="form-group">
               <%= f.label :clinic_id, 'クリニック選択してください。' %>
               <%= f.hidden_field :clinic_id, :class => "form-control" %>
-              <p class="answer"><%= @report.clinic.name %></p>
+              <% unless @report.clinic.nil? %>
+                <p class="answer"><%= @report.clinic.name %></p>
+              <% end %>
             </div>
           </div>
           <div class="col-md-6">

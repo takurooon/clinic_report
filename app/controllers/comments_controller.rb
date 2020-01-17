@@ -6,13 +6,15 @@ class CommentsController < ApplicationController
       flash[:notice] = 'コメントを投稿しました'
       redirect_to comment.report
     else
-      flash[:comment] = comment
-      flash[:error_messages] = comment.errors.full_messages
-      redirect_back fallback_location: comment.report
+      flash[:alert] = comment.errors.full_messages
+      redirect_back(fallback_location: comment.report)
     end
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    comment.delete
+    redirect_to comment.report, flash: { notice: "コメントが削除されました" }
   end
 
   private

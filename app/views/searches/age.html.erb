@@ -1,49 +1,96 @@
-<div class="container">
-  <h3 class="d-sm d-md-none mt-4 mb-5 text-center">年齢「<%= @selected_age %>」のレポート一覧</h3>
-  <h3 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">年齢「<%= @selected_age %>」のレポート一覧</h3>
-
+<div class="container px-2">
+  <h4 class="d-sm d-md-none mt-4 mb-5 text-center px-2">「<strong><%= @selected_age %></strong>」の方の<br>レポート一覧</h4>
+  <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-5">
+    <%= link_to "年齢", "/category/age" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= @selected_age %></b></strong>
+  </small>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">「<strong><%= @selected_age %></strong>」の方のレポート一覧</h4>
+  <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
+    <%= link_to "年齢", "/category/age" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= @selected_age %></b></strong>
+  </small>
+  
   <div class="container main-index">
     <div class="row">
       <div class="col-md-8 offset-md-2 main-column">
         <% @age.each do |age| %>
           <div class="row">
-            <div class="card col-12 mb-5 mr-3">
-              <div class="card-header media">
-                <%= link_to "アイコン" %>
-                <div class="media-body ml-5">
-                  <div class="tag-badge" %>
-                  <span class="badge badge-pill badge-primary"><%= link_to age.city.prefecture.name, "/category/area/prefecture/#{age.city.prefecture.id}" %></span>
-                    <% age.tags.each do |tag| %>
-                      <span class="badge badge-info"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}" %></span>
-                    <% end %>
-                  </div>
-                  <div class="d-flex d-inline-flex mt-3">
-                    <%= link_to age.user.name, user_path(age.user_id), class: "lead mr-5" %>
-                    <div class="mr-5">
-                      <strong><%= age.treatment_end_age %>歳</strong><br>
-                      <strong><%= age.clinic.name %></strong><br>
-                      <small class="text-muted">
-                        <%= age.year_of_treatment_end.year %>年&nbsp;&nbsp;卒業
-                      </small>
+            <div class="card col-12 mb-4 pb-0 px-2">
+              <%= link_to age do %>
+              <div class="card-header media title">
+                <div class="index-title d-flex align-items-center pt-3">
+                  <% if age.title.empty? %>
+                    <h4 class="mb-0 mt-2 mx-lg-5"><%= age.user.name %>さんの&nbsp;&nbsp;<%= age.clinic.name %>(<%= age.clinic.city.prefecture.name %>)での治療レポート</h4>
+                  <% else %>
+                    <h4 class="mb-0 mt-2 mx-lg-5"><%= age.title %></h4>
+                  <% end %>
+                </div>
+              </div>
+              <% end %>
+              
+              <div class="card-body">
+                <div class="media-body">
+                  <div class="row">
+                    <div class="col-4 pl-0 text-center">
+                      <%= link_to "アイコン"%>
+                      <div class="mt-4 mb-2 d-sm d-md-none align-items-center text-center">
+                        <p><%= link_to age.user.name, user_path(age.user_id) %></p>
+                      </div>
                     </div>
-                    <div>
-                      <small class="text-muted">
-                        <div>更新:<time datetime="<%= age.updated_at %>"><%= time_ago_in_words(age.updated_at) %></time>前</div>
-                        <div>投稿:<%= age.created_at.to_s(:datetime_jp) %></div>
-                      </small>
+                    <div class="col-8 pl-0">
+                      <div class="d-lg-flex justify-content-start">
+                        <div class="d-flex justify-content-start mr-2">
+                          <div class="age-badge pr-2">
+                            <% unless age.treatment_end_age.nil? %>
+                            <span class="badge badge-light"><%= link_to age.treatment_end_age, "/category/age/#{age.treatment_end_age}" %>歳</span>
+                            <% end %>
+                          </div>
+                          <div class="prefecture-badge">
+                            <% unless age.city.prefecture.nil? %>
+                              <span class="badge badge-pill badge-primary"><%= link_to age.city.prefecture.name, "/category/area/prefecture/#{age.city.prefecture.id}" %></span>
+                            <% end %>
+                          </div>
+                          <div class="city-badge">
+                            <% unless age.city.nil? %>
+                              <span class="badge badge-pill badge-primary"><%= link_to age.city.name, "/category/area/city/#{age.city.id}" %></span>
+                            <% end %>
+                          </div>
+                        </div>
+                        <div class="tag-badge col-12 pl-0"%>
+                          <% age.tags.each_with_index do |tag, i| %>
+                            <span class="badge badge-info"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}" %></span>
+                            <% break if i== 2 %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-md-4 pl-0 mt-4 mb-2 d-none d-md-block text-center">
+                          <h6><%= link_to age.user.name, user_path(age.user_id) %></h6>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                          <div class="mt-3 d-lg-flex align-items-center justify-content-start">
+                            <h6 class="mb-0 mr-2"><%= link_to age.clinic.name, "/category/clinics/#{age.clinic.id}" %></h6>
+                            <div class="clinic_address"><span class="badge badge-dark"><%= link_to age.clinic.city.prefecture.name, "/category/clinics/prefecture/#{age.clinic.city.prefecture.name}" %></span>&nbsp;<span class="badge badge-dark"><%= link_to age.clinic.city.name, "/category/clinics/city/#{age.clinic.city.name}" %></span></div><br>
+                          </div>
+                          <small class="text-muted">
+                            <% unless age.year_of_treatment_end.nil? %>
+                              <%= age.year_of_treatment_end.year %>年&nbsp;卒業&nbsp;/
+                            <% end %>
+                            <span>投稿:<%= age.created_at.to_s(:datetime_jp) %></span>
+                            <span>更新:<time datetime="<%= age.updated_at %>"><%= time_ago_in_words(age.updated_at) %></time>前</span>
+                          </small>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <%= link_to age do %>
-              <div class="card-body">
-                <h5 class="report-title"><%= age.title %></h5>
-              </div>
-              <% end %>
             </div>
           </div>
         <% end %>
       </div>
-    <div>
+    </div>
   </div>
 </div>
