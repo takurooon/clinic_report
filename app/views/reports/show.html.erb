@@ -1,454 +1,474 @@
-<div class="col-md-9 main-column">
-  <% if @report.title.empty? %>
-    <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.user.name}さんのレポコ,co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
-  <% else %>
-    <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.title},co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
-  <% end %>
-
-  <div class="d-flex align-items-center mt-5">
-    <div class="title mb-5">
+<div class="contaner px-2 px-md-0">
+  <div class="row">
+    <div class="d-none d-md-block col-md-1 sns-side-button">
+    </div>
+    <div class="col-md-1 mr-2 d-none d-md-block position-fixed mt-5 pt-5">
+      <div class="py-2"><%= link_to image_tag("icon/twitter_side_icon.png", alt: "twitter_side_icon", width: "45px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+      <div class="py-2"><%= link_to image_tag("icon/facebook_side_icon.png", alt: "facebook_side_icon", width: "45px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+      <div class="py-2"><%= link_to image_tag("icon/line_side_icon.png", alt: "line_side_icon", width: "45px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+      <div class="py-2"><%= link_to image_tag("icon/slack_side_icon.png", alt: "slack_side_icon", width: "45px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
+      <div class="py-2"><%= link_to image_tag("icon/hatena_side_icon.png", alt: "hatena_side_icon", width: "45px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
+      <div class="py-2"><%= link_to image_tag("icon/pocket_side_icon.png", alt: "pocket_side_icon", width: "45px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
+    </div>
+    <div class="col-md-8 main-column">
       <% if @report.title.empty? %>
-        <h1><%= @report.user.name %>さんの&nbsp;&nbsp;<%= @report.clinic.name %>(<%= @report.clinic.city.prefecture.name %>)での治療レポート</h1>
+        <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.user.name}さんのレポコ,co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
       <% else %>
-        <h1><%= @report.title %></h1>
+        <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.title},co_rgb:333,w_550,c_fit/v1578120752/ogp_pink_yidrcq.png"} %>
       <% end %>
-    </div>
-  </div>
 
-  <div class="mb-3">
-    <% unless @report.treatment_end_age.nil? %>
-      <span class="badge badge-light"><%= link_to @report.treatment_end_age, "/category/age/#{@report.treatment_end_age}", class: "text-dark" %>歳</span>
-    <% end %>
-    <% unless @report.city.prefecture.nil? %>
-      <span class="badge badge-pill badge-primary"><%= link_to @report.city.prefecture.name, "/category/area/prefecture/#{@report.city.prefecture.id}", class: "text-light" %></span>
-    <% end %>
-    <% unless @report.city.nil? %>
-      <span class="badge badge-pill badge-primary"><%= link_to @report.city.name, "/category/area/city/#{@report.city.id}",  class: "text-light" %></span>
-    <% end %>
-    <% @report.tags.each do |tag| %>
-      <span class="badge badge-info"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class: "text-light" %></span>
-    <% end %>
-  </div>
-  <div class="report-main-content">
-    <div class="row user-info">
-      <div class="col-md-8 pt-3 pb-2"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの<%= link_to @report.clinic.name, "/category/clinics/#{@report.clinic.id}" %>での<% unless @report.fertility_treatment_number.nil? %><%= @report.fertility_treatment_number %>人目<% end %>治療レポート<span class="badge badge-light"><%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}", class: "text-dark" %></span>/<span class="badge badge-light"><%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}", class: "text-dark" %></span>
-      </div>
-      <div class="col-md-3">
-        <small class="form-text text-muted">
-          投稿:<%= @report.created_at.to_s(:datetime_jp) %>
-        </small>
-        <small class="form-text text-muted">
-          更新:<%= @report.updated_at.to_s(:datetime_jp) %>
-        </small>
-      </div>
-    </div>
-    <div class="d-none d-md-block col-md-12 mt-4 mb-4">
-      <div class='row mb-3 sns-bar'>
-        <div class="col-md-3 twitter-button d-flex align-items-center justify-content-center"><%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
-        <div class="col-md-3 facebook-button d-flex align-items-center justify-content-center"><%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
-        <div class="col-md-3 line-button d-flex align-items-center justify-content-center"><%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
-        <div class="col-md-3 slack-button d-flex align-items-center justify-content-center"><%= link_to 'Slack', "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
-      </div>
-    </div>
-    <div class="content">
-      <%= @report.content %>
-    </div>
-    <div class="d-none d-md-block col-md-12 mt-4 mb-4 sns-button">
-      <div class='row mb-3 sns-bar'>
-        <div class="col-md-3 twitter-button d-flex align-items-center justify-content-center"><%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
-        <div class="col-md-3 facebook-button d-flex align-items-center justify-content-center"><%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
-        <div class="col-md-3 line-button d-flex align-items-center justify-content-center"><%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
-        <div class="col-md-3 slack-button d-flex align-items-center justify-content-center"><%= link_to 'Slack', "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
-      </div>
-    </div>
-    <div class="report-info">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th class="text-center" style="width:40%">項目</th>
-            <th class="text-center" style="width:60%">結果</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">現在の状況</th>
-            <td class="pl-4 result-column"><%= @report.str_current_state %></td>
-          </tr>
-          <tr>
-            <th scope="row">クリニック</th>
-            <td class="pl-4 result-column"><%= @report.clinic.name %></td>
-          </tr>
-          <tr>
-            <th scope="row">転院数</th>
-            <td class="pl-4 result-column"><%= @report.str_number_of_clinics %></td>
-          </tr>
-          <tr>
-            <th scope="row">クリニック選定理由</th>
-            <td class="pl-4 result-column"><%= @report.str_clinic_selection_criteria %></td>
-          </tr>
-          <tr>
-            <th scope="row">クリニック選定理由(さらに詳しく)</th>
-            <td class="pl-4 result-column"><%= @report.reasons_for_choosing_this_clinic %></td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニックでの治療終了年</th>
-            <% unless @report.year_of_treatment_end.nil? %>
-              <td class="pl-4 result-column"><%= @report.year_of_treatment_end.year %>年</td>
-            <% else %>
-              <td class="pl-4 result-column">未回答</td>
-            <% end %>
-          </tr>
-          <tr>
-            <th scope="row">何人目不妊</th>
-            <td class="pl-4 result-column"><%= @report.str_fertility_treatment_number %></td>
-          </tr>
-          <tr>
-            <th scope="row">治療の種類</th>
-            <td class="pl-4 result-column"><%= @report.str_treatment_type %></td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニックでの治療開始時の年齢</th>
-            <td class="pl-4 result-column"><%= @report.str_treatment_start_age %></td>
-          </tr>
-          <tr>
-            <th scope="row">不妊治療自体(妊活含む)を始めた年齢</th>
-            <td class="pl-4 result-column"><%= @report.str_first_age_to_start %></td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニックでの治療終了時の年齢</th>
-            <td class="pl-4 result-column"><%= @report.str_treatment_end_age %></td>
-          </tr>
-          <tr>
-            <th scope="row">実際の治療期間</th>
-            <td class="pl-4 result-column"><%= @report.str_treatment_period %></td>
-          </tr>
-          <tr>
-            <th scope="row">人工授精の回数</th>
-            <td class="pl-4 result-column"><%= @report.str_number_of_aih %></td>
-          </tr>
-          <tr>
-            <th scope="row">受けた検査</th>
-            <td class="pl-4 result-column">
-              <% @report.inspections.each do |inspection| %>
-                <%= inspection.name %>&nbsp;&nbsp;
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">治療中の最新のAMH値</th>
-            <td class="pl-4 result-column"><%= @report.str_amh %></td>
-          </tr>
-          <tr>
-            <th scope="row">治療中の最新のBMI</th>
-            <td class="pl-4 result-column"><%= @report.str_bmi %></td>
-          </tr>
-          <tr>
-            <th scope="row">治療中の喫煙有無</th>
-            <td class="pl-4 result-column"><%= @report.str_smoking %></td>
-          </tr>
-          <tr>
-            <th scope="row">女性側の不妊原因</th>
-            <td class="pl-4 result-column">
-              <% @report.f_infertility_factors.each do |f_infertility_factor| %>
-                <%= f_infertility_factor.name %>&nbsp;&nbsp;
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">男性側の不妊原因</th>
-            <td class="pl-4 result-column">
-              <% @report.m_infertility_factors.each do |m_infertility_factor| %>
-                <%= m_infertility_factor.name %>&nbsp;&nbsp;
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">女性側の疾患</th>
-            <td class="pl-4 result-column">
-              <% @report.f_diseases.each do |f_disease| %>
-                <%= f_disease.name %>&nbsp;&nbsp;
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">男性側の疾患</th>
-            <td class="pl-4 result-column">
-              <% @report.m_diseases.each do |m_disease| %>
-                <%= m_disease.name %>&nbsp;&nbsp;
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">女性側の手術歴</th>
-            <td class="pl-4 result-column">
-              <% @report.f_surgeries.each do |f_surgery| %>
-                <%= f_surgery.name %>&nbsp;&nbsp;
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">男性側の手術歴</th>
-            <td class="pl-4 result-column">
-              <% @report.m_surgeries.each do |m_surgery| %>
-                <%= m_surgery.name %>&nbsp;&nbsp;
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">卵子または精子の提供の有無</th>
-            <td class="pl-4 result-column"><%= @report.str_types_of_eggs_and_sperm %></td>
-          </tr>
-          <tr>
-            <th scope="row">妊娠に至った周期の採卵誘発方法</th>
-            <td class="pl-4 result-column"><%= @report.str_type_of_sairan_cycle %></td>
-          </tr>
-          <tr>
-            <th scope="row">採卵周期で使用した薬剤</th>
-            <td class="pl-4 result-column">
-            <% @report.sairan_medicines.each do |sairan_medicine| %>
-              <%= sairan_medicine.name %>&nbsp;&nbsp;
-            <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニックでの全採卵「回」数</th>
-            <td class="pl-4 result-column"><%= @report.str_total_number_of_sairan %></td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニック以外も含めた全採卵「回」数</th>
-            <td class="pl-4 result-column"><%= @report.str_all_number_of_sairan %></td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニックでの全採卵「個」数</th>
-            <td class="pl-4 result-column"><%= @report.str_number_of_eggs_collected %></td>
-          </tr>
-          <tr>
-            <th scope="row">妊娠に至った卵子(受精前)の成熟度</th>
-            <td class="pl-4 result-column"><%= @report.str_egg_maturity %></td>
-          </tr>
-          <tr>
-            <th scope="row">IVM実施の有無</th>
-            <td class="pl-4 result-column"><%= @report.str_ova_with_ivm %></td>
-          </tr>
-          <tr>
-            <th scope="row">妊娠に至った卵子と精子の受精方法</th>
-            <td class="pl-4 result-column"><%= @report.str_types_of_fertilization_methods %></td>
-          </tr>
-          <tr>
-            <th scope="row">最新の周期での受精個数</th>
-            <td class="pl-4 result-column"><%= @report.str_number_of_fertilized_eggs %></td>
-          </tr>
-          <tr>
-            <th scope="row">最新周期での凍結胚数</th>
-            <td class="pl-4 result-column"><%= @report.str_number_of_frozen_eggs %></td>
-          </tr>
-          <tr>
-            <th scope="row">妊娠に至った胚の培養日数</th>
-            <td class="pl-4 result-column"><%= @report.str_embryo_culture_days %></td>
-          </tr>
-          <tr>
-            <th scope="row">妊娠に至った胚のステージ</th>
-            <td class="pl-4 result-column"><%= @report.str_embryo_stage %></td>
-          </tr>
-          <tr>
-            <th scope="row">初期胚のグレード</th>
-            <td class="pl-4 result-column"><%= @report.str_early_embryo_grade %></td>
-          </tr>
-          <tr>
-            <th scope="row">胚盤胞以上のグレード</th>
-            <td class="pl-4 result-column"><%= @report.str_blastocyst_grade1 %></td>
-          </tr>
-          <tr>
-            <th scope="row">胚盤胞以上の評価</th>
-            <td class="pl-4 result-column"><%= @report.str_blastocyst_grade2 %></td>
-          </tr>
-          <tr>
-            <th scope="row">移植周期に使用した薬剤</th>
-            <td class="pl-4 result-column">
-            <% @report.transfer_medicines.each do |transfer_medicine| %>
-              <%= transfer_medicine.name %>&nbsp;&nbsp;
-            <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">移植オプション</th>
-            <td class="pl-4 result-column">
-            <% @report.transfer_options.each do |transfer_option| %>
-              <%= transfer_option.name %>&nbsp;&nbsp;
-            <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニックでの全移植「回」数</th>
-            <td class="pl-4 result-column"><%= @report.str_total_number_of_transplants %></td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニック以外も含めた全移植「回」数</th>
-            <td class="pl-4 result-column"><%= @report.str_all_number_of_transplants %></td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニックにある凍結胚の数（貯卵数）</th>
-            <td class="pl-4 result-column"><%= @report.str_number_of_eggs_stored %></td>
-          </tr>
-          <tr>
-            <th scope="row">クリニックの治療中以外に行ったこと</th>
-            <td class="pl-4 result-column">
-              <% @report.other_efforts.each do |other_effort| %>
-                <%= other_effort.name %>&nbsp;&nbsp;
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">治療中に使用していたサプリ</th>
-            <td class="pl-4 result-column">
-            <% @report.supplements.each do |supplement| %>
-              <%= supplement.name %>&nbsp;&nbsp;
-            <% end %>
-            </td>
-          </tr>
-          
-          <tr>
-            <th scope="row">このクリニックでかかった費用総額</th>
-            <td class="pl-4 result-column"><%= @report.str_cost %></td>
-          </tr>
-          <tr>
-            <th scope="row">このクリニック以外も含んだ費用総額</th>
-            <td class="pl-4 result-column"><%= @report.str_all_cost %></td>
-          </tr>
-          <tr>
-            <th scope="row">クレジットカード使用可否</th>
-            <td class="pl-4 result-column"><%= @report.str_credit_card_validity %></td>
-          </tr>
-          <tr>
-            <th scope="row">クリニックでの平均待ち時間</th>
-            <td class="pl-4 result-column"><%= @report.str_average_waiting_time %></td>
-          </tr>
-          <tr>
-            <th scope="row">診察の予約方法について</th>
-            <td class="pl-4 result-column"><%= @report.str_reservation_method %></td>
-          </tr>
-          <tr>
-            <th scope="row">治療中の住まい</th>
-            <td class="pl-4 result-column">
-              <% if @report.prefecture_at_the_time_status == "hide"%>
-                <%= "非公開" %>
-              <% else %>
-                <%= @report.prefecture.name %>
-              <% end %>
-              <% if @report.city_at_the_time_status == "hide"%>
-                <%= "非公開" %>
-              <% else %>
-                <%= @report.city.name %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">クリニックの通院にかかる平均所要時間</th>
-            <td class="pl-4 result-column"><%= @report.str_period_of_time_spent_traveling %></td>
-          </tr>
-          <tr>
-            <th scope="row">治療中の働き方</th>
-              <td class="pl-4 result-column"><%= @report.str_work_style %></td>
-          </tr>
-          <tr>
-            <th scope="row">業種</th>
-            <td class="pl-4 result-column"><%= @report.str_industry_type %></td>
-          </tr>
-          <tr>
-            <th scope="row">上場の有無</th>
-            <td class="pl-4 result-column"><%= @report.str_private_or_listed_company %></td>
-          </tr>
-          <tr>
-            <th scope="row">日系企業 or 外資企業</th>
-            <td class="pl-4 result-column"><%= @report.str_domestic_or_foreign_capital %></td>
-          </tr>
-          <tr>
-            <th scope="row">資本金規模</th>
-            <td class="pl-4 result-column"><%= @report.str_capital_size %></td>
-          </tr>
-          <tr>
-            <th scope="row">部署</th>
-            <td class="pl-4 result-column"><%= @report.str_department %></td>
-          </tr>
-          <tr>
-            <th scope="row">役職</th>
-            <td class="pl-4 result-column"><%= @report.str_position %></td>
-          </tr>
-          <tr>
-            <th scope="row">従業員数</th>
-            <td class="pl-4 result-column"><%= @report.str_number_of_employees %></td>
-          </tr>
-          <tr>
-            <th scope="row">支援制度の有無</th>
-            <td class="pl-4 result-column"><%= @report.str_treatment_support_system %></td>
-          </tr>
-          <tr>
-            <th scope="row">治療に際しての働き方の変化</th>
-            <td class="pl-4 result-column"><%= @report.str_suspended_or_retirement_job %></td>
-          </tr>
-          <tr>
-            <th scope="row">治療当時のご自身の年収</th>
-            <td class="pl-4 result-column">
-              <% if @report.annual_income_status == "hide"%>
-                <%= "非公開" %>
-              <% else %>
-                <%= @report.str_annual_income %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">治療当時の前年の夫婦合算所得(所得＝収入 - 経費)</th>
-            <td class="pl-4 result-column">
-              <% if @report.household_net_income_status == "hide" %>
-                <%= "非公開" %>
-              <% else %>
-                <%= @report.str_household_net_income %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">治療の開示範囲</th>
-            <td class="pl-4 result-column">
-              <% @report.scope_of_disclosures.each do |scope_of_disclosure| %>
-                <%= scope_of_disclosure.scope %>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="d-none d-md-block col-md-12 mt-4 mb-4 sns-button">
-      <div class='row mb-3 sns-bar'>
-        <div class="col-md-3 twitter-button d-flex align-items-center justify-content-center"><%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
-        <div class="col-md-3 facebook-button d-flex align-items-center justify-content-center"><%= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
-        <div class="col-md-3 line-button d-flex align-items-center justify-content-center"><%= link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
-        <div class="col-md-3 slack-button d-flex align-items-center justify-content-center"><%= link_to 'Slack', "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
-      </div>
-    </div>
-    
-    
-    <div class="comment-area">
-      <div class="p-comment__list">
-        <h4 class="p-comment__listTitle">コメント</h4>
-        <%= render @report.comments %>
-      </div>
-      <% if current_user %>
-      <%= render partial: 'comments/form', locals: { comment: @comment } %>
-      <% else %>
-      <div class="card text-center mb-5">
-        <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-pencil-alt", color="#4BAAF3"></i>&nbsp;&nbsp;ログインしてコメントしてみよう！</h5>
-          <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
-          <%=link_to 'ログイン', new_user_session_path, class: "btn btn-raised btn-info mr-2" %>
-          <%=link_to '新規登録',  new_user_registration_path, class: "btn btn-info border ml-2" %>
+      <div class="d-flex align-items-center mt-5">
+        <div class="title mb-5">
+          <% if @report.title.empty? %>
+            <h1><%= @report.user.name %>さんの&nbsp;&nbsp;<%= @report.clinic.name %>(<%= @report.clinic.city.prefecture.name %>)での治療レポート</h1>
+          <% else %>
+            <h1><%= @report.title %></h1>
+          <% end %>
         </div>
       </div>
-      <% end %>
-    </div>
 
+      <div class="mb-3">
+        <% unless @report.treatment_end_age.nil? %>
+          <span class="badge badge-light"><%= link_to @report.treatment_end_age, "/category/age/#{@report.treatment_end_age}", class: "text-dark" %>歳</span>
+        <% end %>
+        <% unless @report.city.prefecture.nil? %>
+          <span class="badge badge-pill badge-primary"><%= link_to @report.city.prefecture.name, "/category/area/prefecture/#{@report.city.prefecture.id}", class: "text-light" %></span>
+        <% end %>
+        <% unless @report.city.nil? %>
+          <span class="badge badge-pill badge-primary"><%= link_to @report.city.name, "/category/area/city/#{@report.city.id}",  class: "text-light" %></span>
+        <% end %>
+        <% @report.tags.each do |tag| %>
+          <span class="badge badge-info"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class: "text-light" %></span>
+        <% end %>
+      </div>
+      <div class="report-main-content">
+        <div class="row user-info">
+          <div class="col-md-8 pt-3 pb-2"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの<%= link_to @report.clinic.name, "/category/clinics/#{@report.clinic.id}" %>での<% unless @report.fertility_treatment_number.nil? %><%= @report.fertility_treatment_number %>人目<% end %>治療レポート<span class="badge badge-light"><%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}", class: "text-dark" %></span>/<span class="badge badge-light"><%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}", class: "text-dark" %></span>
+          </div>
+          <div class="col-md-3">
+            <small class="form-text text-muted">
+              投稿:<%= @report.created_at.to_s(:datetime_jp) %>
+            </small>
+            <small class="form-text text-muted">
+              更新:<%= @report.updated_at.to_s(:datetime_jp) %>
+            </small>
+          </div>
+        </div>
+        <div class="d-none d-md-block col-md-12 mt-4 mb-4">
+          <div class='row mb-3 sns-bar'>
+            <div class="col-md-2 twitter-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/twitter_icon.png", alt: "twitter_icon", width: "40px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+            <div class="col-md-2 facebook-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/facebook_icon.png", alt: "facebook_icon", width: "40px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+            <div class="col-md-2 line-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/line_icon.png", alt: "line_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+            <div class="col-md-2 slack-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/slack_icon.png", alt: "slack_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
+            <div class="col-md-2 hatena-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/hatena_icon.png", alt: "hatena_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
+            <div class="col-md-2 pocket-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/pocket_icon.png", alt: "pocket_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
+          </div>
+        </div>
+        <div class="content">
+          <%= @report.content %>
+        </div>
+        <div class="d-none d-md-block col-md-12 mt-4 mb-4 sns-button">
+          <div class='row mb-3 sns-bar'>
+          <div class="col-md-2 twitter-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/twitter_icon.png", alt: "twitter_icon", width: "40px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+          <div class="col-md-2 facebook-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/facebook_icon.png", alt: "facebook_icon", width: "40px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+          <div class="col-md-2 line-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/line_icon.png", alt: "line_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+          <div class="col-md-2 slack-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/slack_icon.png", alt: "slack_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
+          <div class="col-md-2 hatena-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/hatena_icon.png", alt: "hatena_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
+          <div class="col-md-2 pocket-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/pocket_icon.png", alt: "pocket_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
+          </div>
+        </div>
+        <div class="report-info">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th class="text-center" style="width:40%">項目</th>
+                <th class="text-center" style="width:60%">結果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">現在の状況</th>
+                <td class="pl-4 result-column"><%= @report.str_current_state %></td>
+              </tr>
+              <tr>
+                <th scope="row">クリニック</th>
+                <td class="pl-4 result-column"><%= @report.clinic.name %></td>
+              </tr>
+              <tr>
+                <th scope="row">転院数</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_clinics %></td>
+              </tr>
+              <tr>
+                <th scope="row">クリニック選定理由</th>
+                <td class="pl-4 result-column"><%= @report.str_clinic_selection_criteria %></td>
+              </tr>
+              <tr>
+                <th scope="row">クリニック選定理由(さらに詳しく)</th>
+                <td class="pl-4 result-column"><%= @report.reasons_for_choosing_this_clinic %></td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニックでの治療終了年</th>
+                <% unless @report.year_of_treatment_end.nil? %>
+                  <td class="pl-4 result-column"><%= @report.year_of_treatment_end.year %>年</td>
+                <% else %>
+                  <td class="pl-4 result-column">未回答</td>
+                <% end %>
+              </tr>
+              <tr>
+                <th scope="row">何人目不妊</th>
+                <td class="pl-4 result-column"><%= @report.str_fertility_treatment_number %></td>
+              </tr>
+              <tr>
+                <th scope="row">治療の種類</th>
+                <td class="pl-4 result-column"><%= @report.str_treatment_type %></td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニックでの治療開始時の年齢</th>
+                <td class="pl-4 result-column"><%= @report.str_treatment_start_age %></td>
+              </tr>
+              <tr>
+                <th scope="row">不妊治療自体(妊活含む)を始めた年齢</th>
+                <td class="pl-4 result-column"><%= @report.str_first_age_to_start %></td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニックでの治療終了時の年齢</th>
+                <td class="pl-4 result-column"><%= @report.str_treatment_end_age %></td>
+              </tr>
+              <tr>
+                <th scope="row">実際の治療期間</th>
+                <td class="pl-4 result-column"><%= @report.str_treatment_period %></td>
+              </tr>
+              <tr>
+                <th scope="row">人工授精の回数</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_aih %></td>
+              </tr>
+              <tr>
+                <th scope="row">受けた検査</th>
+                <td class="pl-4 result-column">
+                  <% @report.inspections.each do |inspection| %>
+                    <%= inspection.name %>&nbsp;&nbsp;
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">治療中の最新のAMH値</th>
+                <td class="pl-4 result-column"><%= @report.str_amh %></td>
+              </tr>
+              <tr>
+                <th scope="row">治療中の最新のBMI</th>
+                <td class="pl-4 result-column"><%= @report.str_bmi %></td>
+              </tr>
+              <tr>
+                <th scope="row">治療中の喫煙有無</th>
+                <td class="pl-4 result-column"><%= @report.str_smoking %></td>
+              </tr>
+              <tr>
+                <th scope="row">女性側の不妊原因</th>
+                <td class="pl-4 result-column">
+                  <% @report.f_infertility_factors.each do |f_infertility_factor| %>
+                    <%= f_infertility_factor.name %>&nbsp;&nbsp;
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">男性側の不妊原因</th>
+                <td class="pl-4 result-column">
+                  <% @report.m_infertility_factors.each do |m_infertility_factor| %>
+                    <%= m_infertility_factor.name %>&nbsp;&nbsp;
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">女性側の疾患</th>
+                <td class="pl-4 result-column">
+                  <% @report.f_diseases.each do |f_disease| %>
+                    <%= f_disease.name %>&nbsp;&nbsp;
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">男性側の疾患</th>
+                <td class="pl-4 result-column">
+                  <% @report.m_diseases.each do |m_disease| %>
+                    <%= m_disease.name %>&nbsp;&nbsp;
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">女性側の手術歴</th>
+                <td class="pl-4 result-column">
+                  <% @report.f_surgeries.each do |f_surgery| %>
+                    <%= f_surgery.name %>&nbsp;&nbsp;
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">男性側の手術歴</th>
+                <td class="pl-4 result-column">
+                  <% @report.m_surgeries.each do |m_surgery| %>
+                    <%= m_surgery.name %>&nbsp;&nbsp;
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">卵子または精子の提供の有無</th>
+                <td class="pl-4 result-column"><%= @report.str_types_of_eggs_and_sperm %></td>
+              </tr>
+              <tr>
+                <th scope="row">妊娠に至った周期の採卵誘発方法</th>
+                <td class="pl-4 result-column"><%= @report.str_type_of_sairan_cycle %></td>
+              </tr>
+              <tr>
+                <th scope="row">採卵周期で使用した薬剤</th>
+                <td class="pl-4 result-column">
+                <% @report.sairan_medicines.each do |sairan_medicine| %>
+                  <%= sairan_medicine.name %>&nbsp;&nbsp;
+                <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニックでの全採卵「回」数</th>
+                <td class="pl-4 result-column"><%= @report.str_total_number_of_sairan %></td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニック以外も含めた全採卵「回」数</th>
+                <td class="pl-4 result-column"><%= @report.str_all_number_of_sairan %></td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニックでの全採卵「個」数</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_eggs_collected %></td>
+              </tr>
+              <tr>
+                <th scope="row">妊娠に至った卵子(受精前)の成熟度</th>
+                <td class="pl-4 result-column"><%= @report.str_egg_maturity %></td>
+              </tr>
+              <tr>
+                <th scope="row">IVM実施の有無</th>
+                <td class="pl-4 result-column"><%= @report.str_ova_with_ivm %></td>
+              </tr>
+              <tr>
+                <th scope="row">妊娠に至った卵子と精子の受精方法</th>
+                <td class="pl-4 result-column"><%= @report.str_types_of_fertilization_methods %></td>
+              </tr>
+              <tr>
+                <th scope="row">最新の周期での受精個数</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_fertilized_eggs %></td>
+              </tr>
+              <tr>
+                <th scope="row">最新周期での凍結胚数</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_frozen_eggs %></td>
+              </tr>
+              <tr>
+                <th scope="row">妊娠に至った胚の培養日数</th>
+                <td class="pl-4 result-column"><%= @report.str_embryo_culture_days %></td>
+              </tr>
+              <tr>
+                <th scope="row">妊娠に至った胚のステージ</th>
+                <td class="pl-4 result-column"><%= @report.str_embryo_stage %></td>
+              </tr>
+              <tr>
+                <th scope="row">初期胚のグレード</th>
+                <td class="pl-4 result-column"><%= @report.str_early_embryo_grade %></td>
+              </tr>
+              <tr>
+                <th scope="row">胚盤胞以上のグレード</th>
+                <td class="pl-4 result-column"><%= @report.str_blastocyst_grade1 %></td>
+              </tr>
+              <tr>
+                <th scope="row">胚盤胞以上の評価</th>
+                <td class="pl-4 result-column"><%= @report.str_blastocyst_grade2 %></td>
+              </tr>
+              <tr>
+                <th scope="row">移植周期に使用した薬剤</th>
+                <td class="pl-4 result-column">
+                <% @report.transfer_medicines.each do |transfer_medicine| %>
+                  <%= transfer_medicine.name %>&nbsp;&nbsp;
+                <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">移植オプション</th>
+                <td class="pl-4 result-column">
+                <% @report.transfer_options.each do |transfer_option| %>
+                  <%= transfer_option.name %>&nbsp;&nbsp;
+                <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニックでの全移植「回」数</th>
+                <td class="pl-4 result-column"><%= @report.str_total_number_of_transplants %></td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニック以外も含めた全移植「回」数</th>
+                <td class="pl-4 result-column"><%= @report.str_all_number_of_transplants %></td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニックにある凍結胚の数（貯卵数）</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_eggs_stored %></td>
+              </tr>
+              <tr>
+                <th scope="row">クリニックの治療中以外に行ったこと</th>
+                <td class="pl-4 result-column">
+                  <% @report.other_efforts.each do |other_effort| %>
+                    <%= other_effort.name %>&nbsp;&nbsp;
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">治療中に使用していたサプリ</th>
+                <td class="pl-4 result-column">
+                <% @report.supplements.each do |supplement| %>
+                  <%= supplement.name %>&nbsp;&nbsp;
+                <% end %>
+                </td>
+              </tr>
+              
+              <tr>
+                <th scope="row">このクリニックでかかった費用総額</th>
+                <td class="pl-4 result-column"><%= @report.str_cost %></td>
+              </tr>
+              <tr>
+                <th scope="row">このクリニック以外も含んだ費用総額</th>
+                <td class="pl-4 result-column"><%= @report.str_all_cost %></td>
+              </tr>
+              <tr>
+                <th scope="row">クレジットカード使用可否</th>
+                <td class="pl-4 result-column"><%= @report.str_credit_card_validity %></td>
+              </tr>
+              <tr>
+                <th scope="row">クリニックでの平均待ち時間</th>
+                <td class="pl-4 result-column"><%= @report.str_average_waiting_time %></td>
+              </tr>
+              <tr>
+                <th scope="row">診察の予約方法について</th>
+                <td class="pl-4 result-column"><%= @report.str_reservation_method %></td>
+              </tr>
+              <tr>
+                <th scope="row">治療中の住まい</th>
+                <td class="pl-4 result-column">
+                  <% if @report.prefecture_at_the_time_status == "hide"%>
+                    <%= "非公開" %>
+                  <% else %>
+                    <%= @report.prefecture.name %>
+                  <% end %>
+                  <% if @report.city_at_the_time_status == "hide"%>
+                    <%= "非公開" %>
+                  <% else %>
+                    <%= @report.city.name %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">クリニックの通院にかかる平均所要時間</th>
+                <td class="pl-4 result-column"><%= @report.str_period_of_time_spent_traveling %></td>
+              </tr>
+              <tr>
+                <th scope="row">治療中の働き方</th>
+                  <td class="pl-4 result-column"><%= @report.str_work_style %></td>
+              </tr>
+              <tr>
+                <th scope="row">業種</th>
+                <td class="pl-4 result-column"><%= @report.str_industry_type %></td>
+              </tr>
+              <tr>
+                <th scope="row">上場の有無</th>
+                <td class="pl-4 result-column"><%= @report.str_private_or_listed_company %></td>
+              </tr>
+              <tr>
+                <th scope="row">日系企業 or 外資企業</th>
+                <td class="pl-4 result-column"><%= @report.str_domestic_or_foreign_capital %></td>
+              </tr>
+              <tr>
+                <th scope="row">資本金規模</th>
+                <td class="pl-4 result-column"><%= @report.str_capital_size %></td>
+              </tr>
+              <tr>
+                <th scope="row">部署</th>
+                <td class="pl-4 result-column"><%= @report.str_department %></td>
+              </tr>
+              <tr>
+                <th scope="row">役職</th>
+                <td class="pl-4 result-column"><%= @report.str_position %></td>
+              </tr>
+              <tr>
+                <th scope="row">従業員数</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_employees %></td>
+              </tr>
+              <tr>
+                <th scope="row">支援制度の有無</th>
+                <td class="pl-4 result-column"><%= @report.str_treatment_support_system %></td>
+              </tr>
+              <tr>
+                <th scope="row">治療に際しての働き方の変化</th>
+                <td class="pl-4 result-column"><%= @report.str_suspended_or_retirement_job %></td>
+              </tr>
+              <tr>
+                <th scope="row">治療当時のご自身の年収</th>
+                <td class="pl-4 result-column">
+                  <% if @report.annual_income_status == "hide"%>
+                    <%= "非公開" %>
+                  <% else %>
+                    <%= @report.str_annual_income %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">治療当時の前年の夫婦合算所得(所得＝収入 - 経費)</th>
+                <td class="pl-4 result-column">
+                  <% if @report.household_net_income_status == "hide" %>
+                    <%= "非公開" %>
+                  <% else %>
+                    <%= @report.str_household_net_income %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">治療の開示範囲</th>
+                <td class="pl-4 result-column">
+                  <% @report.scope_of_disclosures.each do |scope_of_disclosure| %>
+                    <%= scope_of_disclosure.scope %>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-none d-md-block col-md-12 mt-4 mb-4 sns-button">
+          <div class='row mb-3 sns-bar'>
+          <div class="col-md-2 twitter-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/twitter_icon.png", alt: "twitter_icon", width: "40px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+          <div class="col-md-2 facebook-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/facebook_icon.png", alt: "facebook_icon", width: "40px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+          <div class="col-md-2 line-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/line_icon.png", alt: "line_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+          <div class="col-md-2 slack-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/slack_icon.png", alt: "slack_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
+          <div class="col-md-2 hatena-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/hatena_icon.png", alt: "hatena_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
+          <div class="col-md-2 pocket-button d-flex align-items-center justify-content-center"><%= link_to image_tag("icon/pocket_icon.png", alt: "pocket_icon", width: "40px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
+          </div>
+        </div>
+        
+        
+        <div class="comment-area">
+          <div class="p-comment__list">
+            <h4 class="p-comment__listTitle"><i class="far fa-comments", color="#4BAAF3"></i>&nbsp;&nbsp;コメント</h4>
+            <%= render @report.comments %>
+          </div>
+          <% if current_user %>
+          <%= render partial: 'comments/form', locals: { comment: @comment } %>
+          <% else %>
+          <div class="card text-center mb-5">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-pencil-alt", color="#4BAAF3"></i>&nbsp;&nbsp;ログインしてコメントしてみよう！</h5>
+              <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
+              <%=link_to 'ログイン', new_user_session_path, class: "btn btn-raised btn-info mr-2" %>
+              <%=link_to '新規登録',  new_user_registration_path, class: "btn btn-info border ml-2" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-3 side-column d-none d-md-block">
+    </div>
   </div>
-</div>
-<div class="col-md-3 side-column">
 </div>
 
 <%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>

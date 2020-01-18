@@ -3,6 +3,8 @@
   <div class="p-comment__bottomLine">
     <span><%= comment.user.name %></span>
     <span><%= comment.created_at.to_s(:datetime_jp) %></span>
-    <span><%= link_to '削除', comment, method: :delete, data: { confirm: '削除してもよろしいですか？'} %></span>
+    <% if comment.user == current_user %>
+      <span><%= link_to '削除', comment, method: :delete, data: { confirm: '削除してもよろしいですか？'} %></span>
+    <% end %>
   </div>
 </div>

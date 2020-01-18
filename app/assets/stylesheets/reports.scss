@@ -93,7 +93,7 @@
   background-color: #E8FEFC;
 }
 
-// シェアボタン
+// SNSシェアバー
 .sns-bar {
   height: 40px;
 }
@@ -126,10 +126,46 @@
 }
 
 .slack-button {
-  background-color: #9401ff;
+  background-color: #f1e1ff;
 }
 
 .slack-button a {
   color: #fff;
   font-size: 16px;
+}
+
+.hatena-button {
+  background-color: #7DB4E8;
+}
+
+.hatena-button a {
+  color: #fff;
+  font-size: 16px;
+}
+
+.pocket-button {
+  background-color: #D3505A;
+}
+
+.pocket-button a {
+  color: #fff;
+  font-size: 16px;
+}
+
+// snsボタン
+.container .sns-side-button {
+  position: fixed;
+}
+
+.main-column {
+  margin-left: 80px; 
+}
+
+@media screen and (max-width: 768px) {
+  .main-column{
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0;
+  }
 }

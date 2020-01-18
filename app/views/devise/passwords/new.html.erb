@@ -1,16 +1,28 @@
-<h2>パスワードをお忘れですか?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+<div class="container password-remind">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 mt-md-5 mb-md-5">
+      <div class="card text-center">
+        <div class="card-header">
+          <h2><i class="fas fa-unlock-alt", color="#4BAAF3"></i>&nbsp;&nbsp;パスワードの再発行</h2>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-key", color="#4BAAF3"></i>&nbsp;&nbsp;パスワードをお忘れですか?</h5>
+          <p class="card-text mt-4">送付する登録済みのメールアドレスを入力してください</p>
+          <div class="p-3">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="form-group mt-0">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: '登録済みのメールアドレスを入力' %>
+              </div>
+              <div class="actions mt-5">
+                <%= f.submit "パスワードの再発行", class: 'btn btn-raised btn-primary mx-auto d-block w-75'%>
+              </div>
+            <% end %>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "パスワードの再発行", class: 'btn btn-primary'%>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
