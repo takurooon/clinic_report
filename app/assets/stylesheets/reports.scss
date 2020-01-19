@@ -161,11 +161,27 @@
   margin-left: 80px; 
 }
 
+// md未満ではmain-columnの左マージンを消す消す
 @media screen and (max-width: 768px) {
   .main-column{
       margin-left: 0;
       margin-right: 0;
       padding-left: 0;
       padding-right: 0;
+  }
+}
+
+// 記事の左右padding(md以上で切り替え)
+.trix-content div {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .trix-content div {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
   }
 }

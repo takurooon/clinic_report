@@ -10,6 +10,7 @@ h1 {
 .base {
   padding-top: 60px;
   background-color: rgb(245, 245, 245);
+  background-color: #FFFFFF;
 }
 
 .form-group {
@@ -31,7 +32,7 @@ h1 {
 
 // ナビの背景色
 .navbar-light {
-  background-color: #55E6C1;
+  background-color: #FFF;
 }
 
 .tag-box {
@@ -159,4 +160,16 @@ h2{
 }
 .modal-title{
   color: #fff;
+}
+
+.lead {
+  color: #329d9f;
+}
+
+.main-index .text-color {
+  color: #2c3939;
+}
+
+.main-index .text-color a {
+  color: #2c3939;
 }
