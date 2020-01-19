@@ -17,6 +17,11 @@
         <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_55_bold:#{@report.title},co_rgb:333,w_550,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
       <% end %>
 
+      <% if current_user %>
+        <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
+        <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary btn-sm float-right mx-1" %>
+      <% end %>
+
       <div class="d-flex align-items-center mt-5">
         <div class="title mb-5">
           <% if @report.title.empty? %>
@@ -78,6 +83,13 @@
           </div>
         </div>
         <div class="report-info">
+          <% if current_user %>
+            <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm float-right  mx-1 mt-4 mb-4" %>
+            <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right  mx-1 mt-4 mb-4" %>
+            <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary btn-sm float-right mx-1 mt-4 mb-4" %>
+          <% else %>
+            <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm float-right  mx-1 mt-4 mb-4" %>
+          <%end %>
           <table class="table">
             <thead class="thead-dark">
               <tr>
@@ -443,8 +455,13 @@
             <div class="col-md-2 pocket-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/pocket_bar_brandcolor_icon.png", alt: "pocket_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
           </div>
         </div>
-        
-        
+        <% if current_user %>
+          <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm float-right mx-1" %>
+          <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
+          <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary btn-sm button float-right mx-1" %>
+        <% else %>
+          <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm button float-right mx-1" %>
+        <% end %>
         <div class="comment-area">
           <div class="p-comment__list">
             <h4 class="p-comment__listTitle"><i class="far fa-comments", color="#4BAAF3"></i>&nbsp;&nbsp;コメント</h4>
@@ -465,14 +482,12 @@
         </div>
 
       </div>
+        <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm float-right mx-1" %>
     </div>
     <div class="col-md-3 side-column d-none d-md-block">
     </div>
   </div>
 </div>
 
-<%= link_to '編集', edit_report_path(@report), class:"btn btn-outline-info button" %>
-<%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-outline-info button" %>
-<%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>
 
 
