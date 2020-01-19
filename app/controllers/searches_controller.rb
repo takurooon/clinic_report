@@ -88,16 +88,17 @@ class SearchesController < ApplicationController
   end
 
   def factor
-    s = params[:name]
-    f_factor_name = params[:value]
-    @f_factor = FInfertilityFactor.find_by(name: f_factor_name)
-    @f_reports = @f_factor.reports
-    @f_factors = FInfertilityFactor.page(params[:page]).per(10)
-
-    m_factor_name = params[:value]
-    @m_factor = MInfertilityFactor.find_by(name: m_factor_name)
-    @m_reports = @m_factor.reports
-    @m_factors = MInfertilityFactor.page(params[:page]).per(10)
+    gender = params[:gender]
+    factor_name = params[:value]
+    if gender == "female"
+      @factor = FInfertilityFactor.find_by(name: factor_name)
+      @reports = @factor.reports
+      @factors = FInfertilityFactor.page(params[:page]).per(10)
+    else
+      @factor = MInfertilityFactor.find_by(name: factor_name)
+      @reports = @factor.reports
+      @factors = MInfertilityFactor.page(params[:page]).per(10)
+    end
   end
 
   def all_area

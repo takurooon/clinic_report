@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'category/age' => 'searches#all_age'
   get 'category/age/:value' => 'searches#age'
   get 'category/factors' => 'searches#factors'
-  get 'category/factors/:value' => 'searches#factor'
+  get 'category/factors/:gender/:value' => 'searches#factor'
   get 'category/area' => 'searches#all_area'
   get 'category/area/prefecture/:value' => 'searches#area_prefecture'
   get 'category/area/city/:value' => 'searches#area_city'
