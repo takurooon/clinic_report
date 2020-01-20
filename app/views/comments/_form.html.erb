@@ -1,6 +1,6 @@
 <div class="p-comment__formBox">
   <p class="p-comment__formTitle">コメント記入</p>
-  <%= form_with model: comment do |f| %>
+  <%= form_with model: comment, data: { remote: false } do |f| %>
     <%= f.hidden_field :report_id %>
       <div class="form-group">
         <%= f.text_area :comment, class: 'form-control', rows: 4, placeholder: "最大1,000文字" %>

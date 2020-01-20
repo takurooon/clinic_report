@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     comment.user_id = current_user.id
     if comment.save
-      flash[:notice] = 'コメントを投稿しました'
-      redirect_to comment.report
+      redirect_to comment.report, flash: {notice: 'コメントを投稿しました'}
     else
       flash[:alert] = comment.errors.full_messages
       redirect_back(fallback_location: comment.report)
