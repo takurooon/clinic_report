@@ -1,43 +1,146 @@
-<h2>編集 <%= resource_name.to_s.humanize %></h2>
+<div class="container my-2">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="card">
+          <div class="card-header">
+          <h2><i class="fas fa-pencil-alt", color="#4BAAF3"></i>&nbsp;&nbsp;編集</h2>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center">情報の追加や設定変更</h5>
+            <div class="dashboard">
+              <ul class="nav nav-tabs" id="dashboard-nav" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">プロフィール情報</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="setting-tab" data-toggle="tab" href="#setting" role="tab" aria-controls="setting" aria-selected="false">登録情報</a>
+                </li>
+              </ul>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <div class="tab-content" id="dashboard-content">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <p>多くの情報を盛込むことで治療当事者の治療方針や転院などの参考になります。</p>
+                  <table class="table mb-0">
+                    <tbody>
+                      <tr>
+                        <div class="form-group">
+                          <th class="profile-item-l"><%= f.label :name, "名前" %></th>
+                          <td class="profile-item-r"><%= f.text_field :name, class: "form-control" %></td>
+                        </div>
+                      </tr>
+                      <tr>
+                        <div class="form-group">
+                          <th><%= f.label :birthday, "生年月" %></th>
+                          <td>
+                          <%= raw sprintf(
+                            f.date_select(
+                                :birthday,
+                                use_month_numbers: true,
+                                discard_day: true,
+                                start_year:        (Time.now.year - 60),
+                                end_year:          (Time.now.year - 18),
+                                default:           Date.new(1980, 1, 1),
+                                date_separator:    '%s'), # 年月日区切りをそれぞれ指定
+                            '年 ') + '月'
+                          %><br>
+                          <small>この生年月は非公開(自分のみ閲覧可能)です。この情報は現在の年齢の算出に使用されます。ただ現在の年齢の公開/非公開は次項で設定可能です。</small>
+                          </td>
+                        </div>
+                      </tr>
+                      <tr>
+                        <th>現在の年齢の公開設定</th>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <div class="form-group">
+                          <th><%= f.label :link, "リンク" %></th>
+                          <td><%= f.text_field :link, class: "form-control", placeholder: "twitterやブログのURL" %></td>
+                        </div>
+                      </tr>
+                      <tr>
+                        <div class="form-group">
+                          <th><p class="d-none d-md-block"><%= f.label :self_introduction, "自己紹介" %></p></th>
+                          <td class="pb-0 d-none d-md-block"><%= f.text_area :self_introduction, class: "form-control border rounded-lg", rows: "20", placeholder: "妊活から不妊治療へ至る経緯や、ご自身の細かい属性を盛り込みましょう！" %></td>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="row form-group mt-0 pt-0">
+                    <p class="d-sm d-md-none pl-3"><strong><%= f.label :self_introduction, "自己紹介" %></strong></p>
+                    <%= f.text_area :self_introduction, class: "d-sm d-md-none mx-1 p-1 form-control border rounded-lg", rows: "20" %>
+                  </div>
+                </div>
+                
+                <div class="tab-pane fade show" id="setting" role="tabpanel" aria-labelledby="setting-tab">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <div class="form-group">
+                          <th class="profile-item-l"><%= f.label :email, "メールアドレス" %></th>
+                          <td class="profile-item-r">
+                            <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+                            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                              <div><%= resource.unconfirmed_email %>に届いた認証リンク確認することで更新が完了します</div>
+                            <% end %>
+                          </td>
+                        </div>
+                      </tr>
+                      <tr>
+                        <div class="form-group">
+                          <th><%= f.label :password, "新パスワード" %></th>
+                          <td>
+                            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+                            <% if @minimum_password_length %>
+                              <small><%= @minimum_password_length %> 文字以上で構成して下さい。変更しない場合は空白のまま更新して下さい</small>
+                            <% end %>
+                          </td>
+                        </div>
+                      </tr>
+                      <tr>
+                        <div class="form-group">
+                          <th><%= f.label :password_confirmation, "パスワード確認" %></th>
+                          <td>
+                            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+                            <small>上記と同じパスワードを入力してください</small>
+                          </td>
+                        </div>
+                      </tr>
+                      <tr>
+                        <div class="form-group">
+                          <th><%= f.label :current_password, "現在のパスワード" %></th>
+                          <td>
+                            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+                            <small>パスワードを変更される場合は、こちらに現在のパスワードも入力して下さい</small>
+                          </td>
+                        </div>
+                      </tr>
+                      <tr>
+                        <div class="form-group">
+                          <th><%= f.label :gender, "性別" %></th>
+                          <td>
+                            <%= f.label :female, "女" %>
+                            <%= f.radio_button :gender, :female, class: "mr-3" %>
+                            <%= f.label :male, "男" %>
+                            <%= f.radio_button :gender, :male %>
+                          </td>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+              <%= f.submit "更新", class: "btn btn-raised btn-primary mx-auto d-block w-50 mt-md-5 mt-sm-3" %>
+            </div>
+          </div>
+        </div>
+      <% end %>  
+      <h3>Cancel my account</h3>
+        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      <%= link_to "Back", :back %>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

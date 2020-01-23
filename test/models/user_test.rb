@@ -11,7 +11,7 @@
 #  current_sign_in_ip     :inet
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  gender                 :integer
+#  gender                 :integer          default("female"), not null
 #  icon                   :string
 #  image_url              :string
 #  last_sign_in_at        :datetime

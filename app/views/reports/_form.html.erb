@@ -8,7 +8,7 @@
 <%= form_with(model: report, local: true, url: url) do |f| %>
   <% if report.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+      <h2><%= pluralize(report.errors.count, "error") %> 件の未入力または誤った入力があります</h2>
       <ul>
         <% report.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -127,6 +127,7 @@
           <%= f.label :title, 'あなたの治療レポートのタイトル', class: "question-matters" %>
           <%= f.text_field :title, class: "form-control", placeholder: "レポートのタイトル" %>
           <small id="poster-tip" class="form-text text-muted">
+            ブランクの場合には「〇〇(ユーザー名) の 〇〇(クリニック名) での治療レポート」という自動タイトルが生成されます。
           </small>
         </div>
         <div class="form-group">

@@ -11,17 +11,19 @@
               <%= render "devise/shared/error_messages", resource: resource %>
       
               <div class="form-group mt-0">
-                <%= f.label :email, 'メール' %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+                <%= f.label :email, 'メール', for: "formGroupInput", class: "bmd-label-floating" %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', id: "formGroupInput" %>
+                <span class="bmd-help">登録したメールアドレスを入力してください。</span>
               </div>
 
               <div class="form-group mt-0">
-                <%= f.label :password, 'パスワード' %><br />
-                <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+                <%= f.label :password, 'パスワード', for: "formGroupInput", class: "bmd-label-floating" %><br />
+                <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', id: "formGroupInput" %>
+                <span class="bmd-help">登録したパスワードを入力してください(6〜16文字)</span>
               </div>
               
               <% if devise_mapping.rememberable? %>
-                <div class="field">
+                <div class="field checkbox">
                   <%= f.check_box :remember_me %>
                   <%= f.label :remember_me %>
                 </div>

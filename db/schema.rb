@@ -419,7 +419,7 @@ ActiveRecord::Schema.define(version: 2020_01_03_001505) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.integer "gender"
+    t.integer "gender", default: 0, null: false
     t.datetime "birthday"
     t.string "icon"
     t.string "link"

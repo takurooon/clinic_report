@@ -1,4 +1,4 @@
-<div class="content">
+<div class="container">
   <div class="jumbotron-underlayer">
     <div class="jumbotron">
       <div class="container">
@@ -14,8 +14,6 @@
           <div class="list-group" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">レポート</a>
             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">プロフィール</a>
-            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">設定</a>
-            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">分析</a>
           </div>
         </div>
         <div class="col-md-9">
@@ -46,7 +44,7 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="tab-pane fade show active" id="draft-reports" role="tabpanel" aria-labelledby="draft-reports-tab">
+                  <div class="tab-pane fade show" id="draft-reports" role="tabpanel" aria-labelledby="draft-reports-tab">
                     <div class="card border-light mb-3" style="max-width:100%;">
                       <% @draft_reports.each do |draft| %>
                         <%= link_to draft do %>
@@ -64,23 +62,28 @@
 
             </div>
             <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+              <%= link_to ">> プロフィールを編集", edit_user_registration_path, class: "btn btn-primary float-right mb-3" %>
               <table class="table">
                 <tbody>
                   <tr>
                     <th class="profile-item-l">ユーザー名</th>
-                    <td class="profile-item-r"><%= @user.name %></td>
+                    <td class="profile-item-r">
+                      <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                    </td>
                   </tr>
                   <tr>
                     <th>メールアドレス</th>
-                    <td><%= @user.email %></td>
+                    <td>
+                      <%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                    </td>
                   </tr>
                   <tr>
                     <th>性別</th>
                     <td>
-                      <% if @user.gender.blank? %>
-                        <%= "(未登録)" %>&nbsp;&nbsp;→&nbsp;<a href="#">設定する</a>
+                      <% if @user.gender == "female" %>
+                        <%= "女" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
                       <% else %>
-                        <%= @user.gender %>&nbsp;&nbsp;→&nbsp;<a href="#">編集する</a>
+                        <%= "男" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
                       <% end %>
                     </td>
                   </tr>
@@ -88,19 +91,9 @@
                     <th>生年月</th>
                     <td>
                       <% if @user.birthday.blank? %>
-                        <%= "(未登録)" %>&nbsp;&nbsp;→&nbsp;<a href="#">設定する</a>
+                        <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
                       <% else %>
-                        <%= @user.birthday %>&nbsp;&nbsp;→&nbsp;<a href="#">編集する</a>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>アドレス</th>
-                    <td>
-                      <% if @user.birthday.blank? %>
-                        <%= "(未登録)" %>&nbsp;&nbsp;→&nbsp;<a href="#">設定する</a>
-                      <% else %>
-                        <%= @user.birthday %>&nbsp;&nbsp;→&nbsp;<a href="#">編集する</a>
+                        <%= @user.birthday %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
                       <% end %>
                     </td>
                   </tr>
@@ -108,21 +101,26 @@
                     <th>リンク</th>
                     <td>
                       <% if @user.link.blank? %>
-                        <%= "ブログやSNSのリンクなど" %>&nbsp;&nbsp;→&nbsp;<a href="#">設定する</a>
+                      <span>未登録</span>&nbsp;&nbsp;<small class="text-muted">(ブログやSNSのリンクなど)</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
                       <% else %>
-                        <%= @user.link %>&nbsp;&nbsp;→&nbsp;<a href="#">編集する</a>
+                        <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <th>自己紹介</th>
-                    <td><div class="self-introduction border"></div></td>
+                    <td>
+                      <%= @user.self_introduction %><br>
+                      <% if @user.self_introduction.blank? %>
+                        <strong><%= link_to ">>書いていないあなた！ぜひ書きましょう！", edit_user_registration_path %></strong>
+                      <% else %>
+                        <small><%= link_to ">>もっと詳しい情報を載せるたので編集する！", edit_user_registration_path %></>
+                      <% end %>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-            </div>
-            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+            </%=>
           </div>
         </div>
       </div>

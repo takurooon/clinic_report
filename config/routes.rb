@@ -67,12 +67,22 @@ end
 #                               my_page GET    /my_page(.:format)                                                                       my_page#index
 #                         my_page_draft GET    /my_page/draft(.:format)                                                                 reports#draft
 #                                thanks GET    /thanks(.:format)                                                                        my_page#thanks
+#                       category_search GET    /category/search(.:format)                                                               searches#search
 #                          category_amh GET    /category/amh(.:format)                                                                  searches#all_amh
 #                                       GET    /category/amh/:value(.:format)                                                           searches#amh
 #                         category_tags GET    /category/tags(.:format)                                                                 searches#tags
 #                                       GET    /category/tags/:tag_name(.:format)                                                       searches#tag
 #                      category_clinics GET    /category/clinics(.:format)                                                              searches#clinics
 #                                       GET    /category/clinics/:name(.:format)                                                        searches#clinic
+#                                       GET    /category/clinics/prefecture/:name(.:format)                                             searches#clinic_prefecture
+#                                       GET    /category/clinics/city/:name(.:format)                                                   searches#clinic_city
+#                          category_age GET    /category/age(.:format)                                                                  searches#all_age
+#                                       GET    /category/age/:value(.:format)                                                           searches#age
+#                      category_factors GET    /category/factors(.:format)                                                              searches#factors
+#                                       GET    /category/factors/:gender/:value(.:format)                                               searches#factor
+#                         category_area GET    /category/area(.:format)                                                                 searches#all_area
+#                                       GET    /category/area/prefecture/:value(.:format)                                               searches#area_prefecture
+#                                       GET    /category/area/city/:value(.:format)                                                     searches#area_city
 #                      new_user_session GET    /users/sign_in(.:format)                                                                 users/sessions#new
 #                          user_session POST   /users/sign_in(.:format)                                                                 users/sessions#create
 #                  destroy_user_session DELETE /users/sign_out(.:format)                                                                users/sessions#destroy

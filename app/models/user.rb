@@ -18,8 +18,7 @@ class User < ApplicationRecord
 
   mount_uploader :icon, ImageUploader
 
-  # genderの区分値(男女)
-  # HASH_GENDER = { "女" => 1, "男" => 2 }
+  enum gender: { female: 0, male: 1 }
 end
 
 # == Schema Information
@@ -35,7 +34,7 @@ end
 #  current_sign_in_ip     :inet
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  gender                 :integer
+#  gender                 :integer          default("female"), not null
 #  icon                   :string
 #  image_url              :string
 #  last_sign_in_at        :datetime

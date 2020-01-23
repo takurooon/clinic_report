@@ -13,7 +13,7 @@
       <div class="col-md-8 offset-md-2 main-column text-color">
         <% @age.each do |age| %>
           <div class="row">
-            <div class="card col-12 mb-4 pb-0 px-0">
+            <div class="card col-12 mb-4 pb-0 px-0 border">
               <%= link_to age do %>
               <div class="card-header media title">
                 <div class="index-title d-flex align-items-center pt-3">
@@ -69,8 +69,8 @@
                         <div class="col-md-4 pl-0 mt-4 mb-2 d-none d-md-block text-center">
                           <h6><%= link_to age.user.name, user_path(age.user_id) %></h6>
                         </div>
-                        <div class="col-md-8 pl-0">
-                          <div class="mt-3 d-lg-flex align-items-center justify-content-start">
+                        <div class="col-md-8 pl-0  float-right">
+                          <div class="mt-3 d-lg-flex align-items-center justify-content-start mb-2">
                             <h6 class="mb-0 mr-2"><%= link_to age.clinic.name, "/category/clinics/#{age.clinic.id}" %></h6>
                             <div class="clinic_address"><span class="badge badge-dark"><%= link_to age.clinic.city.prefecture.name, "/category/clinics/prefecture/#{age.clinic.city.prefecture.name}" %></span>&nbsp;<span class="badge badge-dark"><%= link_to age.clinic.city.name, "/category/clinics/city/#{age.clinic.city.name}" %></span></div><br>
                           </div>
@@ -80,6 +80,14 @@
                             <% end %>
                             <span>投稿:<%= age.created_at.to_s(:datetime_jp) %></span>
                             <span>更新:<time datetime="<%= age.updated_at %>"><%= time_ago_in_words(age.updated_at) %></time>前</span>
+                          </small>
+                          <small class="text-muted pl-3">
+                            <%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "25px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %>
+                            <%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "25px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %>
+                            <%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "25px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %>
+                            <%= link_to image_tag("icon/slack_side_brandcolor_icon.png", alt: "slack_side_brandcolor_icon", width: "25px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %>
+                            <%= link_to image_tag("icon/hatena_side_brandcolor_icon.png", alt: "hatena_side_brandcolor_icon", width: "25px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %>
+                            <%= link_to image_tag("icon/pocket_side_brandcolor_icon.png", alt: "pocket_side_brandcolor_icon", width: "25px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %>
                           </small>
                         </div>
                       </div>
