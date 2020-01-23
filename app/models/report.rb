@@ -853,7 +853,8 @@ class Report < ApplicationRecord
   HASH_PRIVATE_OR_LISTED_COMPANY = {
     1 => "上場企業",
     2 => "非上場企業",
-    3 => "国家公務員",
+    3 => "非上場企業(親会社が上場機企業)",
+    4 => "国家公務員",
     100 => "不明"
   }
 

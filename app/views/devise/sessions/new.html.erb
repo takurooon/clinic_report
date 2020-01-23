@@ -9,10 +9,10 @@
           <div class="p-3">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
-      
+
               <div class="form-group mt-0">
                 <%= f.label :email, 'メール', for: "formGroupInput", class: "bmd-label-floating" %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', id: "formGroupInput" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control validate[required, custom[email], maxSize[20]]', id: "formGroupInput" %>
                 <span class="bmd-help">登録したメールアドレスを入力してください。</span>
               </div>
 

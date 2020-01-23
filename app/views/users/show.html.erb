@@ -1,11 +1,13 @@
 <div class="container px-2">
-<button class="btn btn-primary"><%= link_to "ユーザー一覧", users_path %></button>
   <div class="row">
+    <div class="col-12 offset-md-2"><button class="btn btn-primary"><%= link_to "ユーザー一覧", users_path %></button></div>
     <div class="col-md-8 offset-md-2 profile text-color my-5">
       <div class="card mb-3">
         <div class="row">
           <div class="col-3 p-3">
-            <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1"><%= image_tag("home/home_top_img.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %></div>
+            <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1">
+              <%= image_tag("home/home_top_img.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %>
+            </div>
           </div>
           <div class="col-9 pt-4">     
             <h4 class="mb-3"><%= @user.name %></h4>
