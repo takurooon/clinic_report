@@ -2,7 +2,6 @@
   <h4 class="d-sm d-md-none mt-4 mb-5 text-center">「<strong><%= @prefecture.name %></strong>」&nbsp;に住まい方の<br>レポート一覧</h4>
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">「<strong><%= @prefecture.name %></strong>」に住まいの方のレポート一覧</h4>
 
-  
   <div class="container main-index">
     <div class="row">
       <div class="col-md-8 offset-md-2 main-column text-color">
@@ -25,7 +24,13 @@
                 <div class="media-body px-2">
                   <div class="row">
                     <div class="col-4 pl-0 text-center">
-                      <%= link_to "アイコン"%>
+                      <%= link_to user_path(report.user_id) do %>
+                        <% if report.user.icon.blank? %>
+                          <%= image_tag("home/home_top_img.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %>
+                        <% else %>
+                          <img src=<%= report.user.icon %> class = "card-img-top rounded-circle border">
+                        <% end %>
+                      <% end %>
                       <div class="mt-4 mb-2 d-sm d-md-none align-items-center text-center">
                         <p><%= link_to report.user.name, user_path(report.user_id) %></p>
                       </div>
@@ -33,18 +38,25 @@
                     <div class="col-8 pl-0">
                       <div class="d-lg-flex justify-content-start">
                         <div class="d-flex justify-content-start mr-2">
+                          <div class="gender-badge pr-2">
+                            <% if report.user.gender == "female" %>
+                              <span class="badge badge-light"><%= "女" %></span>
+                            <% else %>
+                              <span class="badge badge-light"><%= "男" %></span>
+                            <% end %>
+                          </div>
                           <div class="age-badge pr-2">
-                            <% unless report.treatment_end_age.nil? %>
+                            <% unless report.treatment_end_age.blank? %>
                             <span class="badge badge-light"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}" %>歳</span>
                             <% end %>
                           </div>
                           <div class="prefecture-badge">
-                            <% unless report.city.prefecture.nil? %>
+                            <% unless report.city.prefecture.blank? %>
                               <span class="badge badge-pill badge-primary"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.id}" %></span>
                             <% end %>
                           </div>
                           <div class="city-badge">
-                            <% unless report.city.nil? %>
+                            <% unless report.city.blank? %>
                               <span class="badge badge-pill badge-primary"><%= link_to report.city.name, "/category/area/city/#{report.city.id}" %></span>
                             <% end %>
                           </div>
@@ -70,7 +82,7 @@
                             <div class="clinic_address"><span class="badge badge-dark"><%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}" %></span>&nbsp;<span class="badge badge-dark"><%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}" %></span></div><br>
                           </div>
                           <small class="text-muted">
-                            <% unless report.year_of_treatment_end.nil? %>
+                            <% unless report.year_of_treatment_end.blank? %>
                               <%= report.year_of_treatment_end.year %>年&nbsp;卒業&nbsp;/
                             <% end %>
                             <span>投稿:<%= report.created_at.to_s(:datetime_jp) %></span>

@@ -30,7 +30,13 @@
                 <div class="media-body px-2">
                   <div class="row">
                     <div class="col-4 pl-0 text-center">
-                      <%= link_to "アイコン"%>
+                      <%= link_to user_path(age.user_id) do %>
+                        <% if age.user.icon.blank? %>
+                          <%= image_tag("home/home_top_img.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %>
+                        <% else %>
+                          <img src=<%= age.user.icon %> class = "card-img-top rounded-circle border">
+                        <% end %>
+                      <% end %>
                       <div class="mt-4 mb-2 d-sm d-md-none align-items-center text-center">
                         <p><%= link_to age.user.name, user_path(age.user_id) %></p>
                       </div>
@@ -38,18 +44,25 @@
                     <div class="col-8 pl-0">
                       <div class="d-lg-flex justify-content-start">
                         <div class="d-flex justify-content-start mr-2">
+                          <div class="gender-badge pr-2">
+                            <% if age.user.gender == "female" %>
+                              <span class="badge badge-light"><%= "女" %></span>
+                            <% else %>
+                              <span class="badge badge-light"><%= "男" %></span>
+                            <% end %>
+                          </div>
                           <div class="age-badge pr-2">
-                            <% unless age.treatment_end_age.nil? %>
+                            <% unless age.treatment_end_age.blank? %>
                             <span class="badge badge-light"><%= link_to age.treatment_end_age, "/category/age/#{age.treatment_end_age}" %>歳</span>
                             <% end %>
                           </div>
                           <div class="prefecture-badge">
-                            <% unless age.city.prefecture.nil? %>
+                            <% unless age.city.prefecture.blank? %>
                               <span class="badge badge-pill badge-primary"><%= link_to age.city.prefecture.name, "/category/area/prefecture/#{age.city.prefecture.id}" %></span>
                             <% end %>
                           </div>
                           <div class="city-badge">
-                            <% unless age.city.nil? %>
+                            <% unless age.city.blank? %>
                               <span class="badge badge-pill badge-primary"><%= link_to age.city.name, "/category/area/city/#{age.city.id}" %></span>
                             <% end %>
                           </div>
@@ -75,7 +88,7 @@
                             <div class="clinic_address"><span class="badge badge-dark"><%= link_to age.clinic.city.prefecture.name, "/category/clinics/prefecture/#{age.clinic.city.prefecture.name}" %></span>&nbsp;<span class="badge badge-dark"><%= link_to age.clinic.city.name, "/category/clinics/city/#{age.clinic.city.name}" %></span></div><br>
                           </div>
                           <small class="text-muted">
-                            <% unless age.year_of_treatment_end.nil? %>
+                            <% unless age.year_of_treatment_end.blank? %>
                               <%= age.year_of_treatment_end.year %>年&nbsp;卒業&nbsp;/
                             <% end %>
                             <span>投稿:<%= age.created_at.to_s(:datetime_jp) %></span>

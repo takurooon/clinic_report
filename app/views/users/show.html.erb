@@ -62,17 +62,17 @@
                       <div class="d-lg-flex justify-content-start">
                         <div class="d-flex justify-content-start mr-2">
                           <div class="report-badge pr-2">
-                            <% unless report.treatment_end_age.nil? %>
+                            <% unless report.treatment_end_age.blank? %>
                             <span class="badge badge-light"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}" %>歳</span>
                             <% end %>
                           </div>
                           <div class="prefecture-badge">
-                            <% unless report.city.prefecture.nil? %>
+                            <% unless report.city.prefecture.blank? %>
                               <span class="badge badge-pill badge-primary"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.id}" %></span>
                             <% end %>
                           </div>
                           <div class="city-badge">
-                            <% unless report.city.nil? %>
+                            <% unless report.city.blank? %>
                               <span class="badge badge-pill badge-primary"><%= link_to report.city.name, "/category/area/city/#{report.city.id}" %></span>
                             <% end %>
                           </div>
@@ -98,7 +98,7 @@
                             <div class="clinic_address"><span class="badge badge-dark"><%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}" %></span>&nbsp;<span class="badge badge-dark"><%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}" %></span></div><br>
                           </div>
                           <small class="text-muted">
-                            <% unless report.year_of_treatment_end.nil? %>
+                            <% unless report.year_of_treatment_end.blank? %>
                               <%= report.year_of_treatment_end.year %>年&nbsp;卒業&nbsp;/
                             <% end %>
                             <span>投稿:<%= report.created_at.to_s(:datetime_jp) %></span>
