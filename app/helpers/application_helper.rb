@@ -23,14 +23,14 @@ module ApplicationHelper
   # OGP設定 参考:https://pgmg-rails.com/blogs/16 https://qiita.com/kenzoukenzou104809/items/fe3122abd8e98f9089ba
   def default_meta_tags
     {
-      site: 'REPOCO',
-      title: '不妊治療レポート投稿サービス',
+      site: '不妊治療レポート投稿サービス',
+      title: 'REPOCO',
       reverse: true,
       charset: 'utf-8',
       description: '不妊治療の通院先と実績をレポートとして投稿しよう！',
       keywords: '不妊治療,体外受精,顕微受精',
       canonical: request.original_url,
-      separator: '|',
+      separator: '-',
       icon: [
       ],
       og: {
