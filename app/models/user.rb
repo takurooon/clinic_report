@@ -3,7 +3,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   
   VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
-  validates :password, format: { with: VALID_PASSWORD_REGEX }
+  validates :password, format: { with: VALID_PASSWORD_REGEX },
+                      # user情報をpassword無しで更新する場合はスルー↓(https://hinakochang.hatenablog.com/entry/2019/01/29/134920)
+                      if: -> { new_record? || changes['encrypted_password'] }, allow_blank: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -19,6 +21,21 @@ class User < ApplicationRecord
   mount_uploader :icon, ImageUploader
 
   enum gender: { female: 0, male: 1 }
+
+  # passwordの入力無しでuser情報を更新する
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update(params, *options)
+    clean_up_passwords
+    result
+  end
+
 end
 
 # == Schema Information

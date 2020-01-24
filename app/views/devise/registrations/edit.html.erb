@@ -73,10 +73,6 @@
                       </tr>
                     </tbody>
                   </table>
-                  <div class="row form-group mt-0 pt-0">
-                    <p class="d-sm d-md-none pl-3"><strong><%= f.label :self_introduction, "自己紹介" %></strong></p>
-                    <%= f.text_area :self_introduction, class: "d-sm d-md-none mx-1 p-1 form-control border rounded-lg", rows: "20" %>
-                  </div>
                 </div>
                 
                 <div class="tab-pane fade show" id="setting" role="tabpanel" aria-labelledby="setting-tab">
@@ -113,15 +109,7 @@
                           </td>
                         </div>
                       </tr>
-                      <tr>
-                        <div class="form-group">
-                          <th><%= f.label :current_password, "現在のパスワード" %></th>
-                          <td>
-                            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
-                            <small>パスワードを変更される場合は、こちらに現在のパスワードも入力して下さい</small>
-                          </td>
-                        </div>
-                      </tr>
+                      
                       <tr>
                         <div class="form-group">
                           <th><%= f.label :gender, "性別" %></th>

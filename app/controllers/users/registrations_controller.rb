@@ -39,7 +39,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+  # 追加：パスワードの入力無しでuser情報を更新する(https://kossy-web-engineer.hatenablog.com/entry/2018/11/06/102047)
+  def update_resource(resource, params)
+    resource.update_without_current_password(params)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
