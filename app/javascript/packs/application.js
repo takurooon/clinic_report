@@ -29,8 +29,9 @@ document.addEventListener("turblinks:load", () => {
 
 require("trix")
 require("@rails/actiontext")
-
-
+require("jquery-ui.min")
+require("jquery.tagsinput.min.min")
+require("jquery.validationEngine-ja")
 
 
 

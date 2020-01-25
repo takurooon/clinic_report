@@ -85,8 +85,8 @@
         <div class="report-info">
           <% if current_user %>
             <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm float-right  mx-1 mt-4 mb-4" %>
-            <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right  mx-1 mt-4 mb-4" %>
-            <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary btn-sm float-right mx-1 mt-4 mb-4" %>
+            <%= link_to 'レポの削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right  mx-1 mt-4 mb-4" %>
+            <%= link_to 'レポの編集', edit_report_path(@report), class:"btn btn-secondary btn-sm float-right mx-1 mt-4 mb-4" %>
           <% else %>
             <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm float-right  mx-1 mt-4 mb-4" %>
           <%end %>

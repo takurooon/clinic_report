@@ -34,20 +34,20 @@ class ReportsController < ApplicationController
 
   def confirm
     flash[:alert] = "まだ投稿は完了していません。必須項目の「クリニック」と「お住まい(非公開設定可)」は選択済みですか？"
-    if params[:id].nil?
+    if params[:id].blank?
       @report = Report.new(report_params_for_confirm)
     else
       @report = Report.find(params[:id])
       @report.attributes = report_params_for_confirm
     end
 
-    if params[:temp].nil?
+    if params[:temp].blank?
       @report.status = params[:status2]
     else
       @report.status = params[:status1]
     end
 
-    if @report.status.nil?
+    if @report.status.blank?
       @report.status = "released"
     end
 
@@ -67,15 +67,22 @@ class ReportsController < ApplicationController
     @tag_name = params[:tag_name]
   end
 
+  def molding(materials)
+    list = materials.map do |material|
+      material.gsub(/(\s|　)+/, '')
+    end
+  end
+
   def create
     @report = Report.new(report_params_for_create)
     @report.user_id = current_user.id
 
-    if @report.status.nil?
+    if @report.status.blank?
       @report.status = "released"
     end
 
-    i_list = params[:i_name].split(",")
+    i_name = params[:i_name].split(",")
+    i_list = molding(i_name)
     i_ids = params[:report][:inspection_ids]
     i_ids.each do |i_id|
       if i_id.blank?
@@ -86,7 +93,8 @@ class ReportsController < ApplicationController
     end
     i_list = i_list.uniq
 
-    fif_list = params[:fif_name].split(",")
+    fif_name = params[:fif_name].split(",")
+    fif_list = molding(fif_name)
     fif_ids = params[:report][:f_infertility_factor_ids]
     fif_ids.each do |fif_id|
       if fif_id.blank?
@@ -97,7 +105,8 @@ class ReportsController < ApplicationController
     end
     fif_list = fif_list.uniq
 
-    mif_list = params[:mif_name].split(",")
+    mif_name = params[:mif_name].split(",")
+    mif_list = molding(mif_name)
     mif_ids = params[:report][:m_infertility_factor_ids]
     mif_ids.each do |mif_id|
       if mif_id.blank?
@@ -108,7 +117,8 @@ class ReportsController < ApplicationController
     end
     mif_list = mif_list.uniq
 
-    fd_list = params[:fd_name].split(",")
+    fd_name = params[:fd_name].split(",")
+    fd_list = molding(fd_name)
     fd_ids = params[:report][:f_disease_ids]
     fd_ids.each do |fd_id|
       if fd_id.blank?
@@ -119,7 +129,8 @@ class ReportsController < ApplicationController
     end
     fd_list = fd_list.uniq
 
-    md_list = params[:md_name].split(",")
+    md_name = params[:md_name].split(",")
+    md_list = molding(md_name)
     md_ids = params[:report][:m_disease_ids]
     md_ids.each do |md_id|
       if md_id.blank?
@@ -130,7 +141,8 @@ class ReportsController < ApplicationController
     end
     md_list = md_list.uniq
 
-    fs_list = params[:fs_name].split(",")
+    fs_name = params[:fs_name].split(",")
+    fs_list = molding(fs_name)
     fs_ids = params[:report][:f_surgery_ids]
     fs_ids.each do |fs_id|
       if fs_id.blank?
@@ -141,7 +153,8 @@ class ReportsController < ApplicationController
     end
     fs_list = fs_list.uniq
 
-    ms_list = params[:ms_name].split(",")
+    ms_name = params[:ms_name].split(",")
+    ms_list = molding(ms_name)
     ms_ids = params[:report][:m_surgery_ids]
     ms_ids.each do |ms_id|
       if ms_id.blank?
@@ -152,7 +165,8 @@ class ReportsController < ApplicationController
     end
     ms_list = ms_list.uniq
 
-    sm_list = params[:sm_name].split(",")
+    sm_name = params[:sm_name].split(",")
+    sm_list = molding(sm_name)
     sm_ids = params[:report][:sairan_medicine_ids]
     sm_ids.each do |sm_id|
       if sm_id.blank?
@@ -163,7 +177,8 @@ class ReportsController < ApplicationController
     end
     sm_list = sm_list.uniq
 
-    tm_list = params[:tm_name].split(",")
+    tm_name = params[:tm_name].split(",")
+    tm_list = molding(tm_name)
     tm_ids = params[:report][:transfer_medicine_ids]
     tm_ids.each do |tm_id|
       if tm_id.blank?
@@ -174,7 +189,8 @@ class ReportsController < ApplicationController
     end
     tm_list = tm_list.uniq
 
-    to_list = params[:to_name].split(",")
+    to_name = params[:to_name].split(",")
+    to_list = molding(to_name)
     to_ids = params[:report][:transfer_option_ids]
     to_ids.each do |to_id|
       if to_id.blank?
@@ -185,7 +201,8 @@ class ReportsController < ApplicationController
     end
     to_list = to_list.uniq
 
-    oe_list = params[:oe_name].split(",")
+    oe_name = params[:oe_name].split(",")
+    oe_list = molding(oe_name)
     oe_ids = params[:report][:other_effort_ids]
     oe_ids.each do |oe_id|
       if oe_id.blank?
@@ -196,7 +213,8 @@ class ReportsController < ApplicationController
     end
     to_list = to_list.uniq
 
-    supplement_list = params[:supplement_name].split(",")
+    supplement_name = params[:supplement_name].split(",")
+    supplement_list = molding(supplement_name)
     supplement_ids = params[:report][:supplement_ids]
     supplement_ids.each do |supplement_id|
       if supplement_id.blank?
@@ -207,7 +225,8 @@ class ReportsController < ApplicationController
     end
     supplement_list = supplement_list.uniq
 
-    sod_list = params[:sod_scope].split(",")
+    sod_name = params[:sod_scope].split(",")
+    sod_list = molding(sod_name)
     sod_ids = params[:report][:scope_of_disclosure_ids]
     sod_ids.each do |sod_id|
       if sod_id.blank?
@@ -218,7 +237,8 @@ class ReportsController < ApplicationController
     end
     sod_list = sod_list.uniq
 
-    tag_list = params[:tag_name].split(",")
+    tag_name = params[:tag_name].split(",")
+    tag_list = molding(tag_name)
     tag_ids = params[:report][:tag_ids]
     tag_ids.each do |tag_id|
       if tag_id.blank?
@@ -283,7 +303,8 @@ class ReportsController < ApplicationController
     end
     @report = Report.find(params[:id])
 
-    i_list = params[:i_name].split(",")
+    i_name = params[:i_name].split(",")
+    i_list = molding(i_name)
     i_ids = params[:report][:inspection_ids]
     i_ids.each do |i_id|
       if i_id.blank?
@@ -294,7 +315,8 @@ class ReportsController < ApplicationController
     end
     i_list = i_list.uniq
 
-    fif_list = params[:fif_name].split(",")
+    fif_name = params[:fif_name].split(",")
+    fif_list = molding(fif_name)
     fif_ids = params[:report][:f_infertility_factor_ids]
     fif_ids.each do |fif_id|
       if fif_id.blank?
@@ -305,7 +327,8 @@ class ReportsController < ApplicationController
     end
     fif_list = fif_list.uniq
 
-    mif_list = params[:mif_name].split(",")
+    mif_name = params[:mif_name].split(",")
+    mif_list = molding(mif_name)
     mif_ids = params[:report][:m_infertility_factor_ids]
     mif_ids.each do |mif_id|
       if mif_id.blank?
@@ -316,7 +339,8 @@ class ReportsController < ApplicationController
     end
     mif_list = mif_list.uniq
 
-    fd_list = params[:fd_name].split(",")
+    fd_name = params[:fd_name].split(",")
+    fd_list = molding(fd_name)
     fd_ids = params[:report][:f_disease_ids]
     fd_ids.each do |fd_id|
       if fd_id.blank?
@@ -327,7 +351,8 @@ class ReportsController < ApplicationController
     end
     fd_list = fd_list.uniq
 
-    md_list = params[:md_name].split(",")
+    md_name = params[:md_name].split(",")
+    md_list = molding(md_name)
     md_ids = params[:report][:m_disease_ids]
     md_ids.each do |md_id|
       if md_id.blank?
@@ -338,7 +363,8 @@ class ReportsController < ApplicationController
     end
     md_list = md_list.uniq
 
-    fs_list = params[:fs_name].split(",")
+    fs_name = params[:fs_name].split(",")
+    fs_list = molding(fs_name)
     fs_ids = params[:report][:f_surgery_ids]
     fs_ids.each do |fs_id|
       if fs_id.blank?
@@ -349,7 +375,8 @@ class ReportsController < ApplicationController
     end
     fs_list = fs_list.uniq
 
-    ms_list = params[:ms_name].split(",")
+    ms_name = params[:ms_name].split(",")
+    ms_list = molding(ms_name)
     ms_ids = params[:report][:m_surgery_ids]
     ms_ids.each do |ms_id|
       if ms_id.blank?
@@ -360,7 +387,8 @@ class ReportsController < ApplicationController
     end
     ms_list = ms_list.uniq
 
-    sm_list = params[:sm_name].split(",")
+    sm_name = params[:sm_name].split(",")
+    sm_list = molding(sm_name)
     sm_ids = params[:report][:sairan_medicine_ids]
     sm_ids.each do |sm_id|
       if sm_id.blank?
@@ -371,7 +399,8 @@ class ReportsController < ApplicationController
     end
     sm_list = sm_list.uniq
 
-    tm_list = params[:tm_name].split(",")
+    tm_name = params[:tm_name].split(",")
+    tm_list = molding(tm_name)
     tm_ids = params[:report][:transfer_medicine_ids]
     tm_ids.each do |tm_id|
       if tm_id.blank?
@@ -382,7 +411,8 @@ class ReportsController < ApplicationController
     end
     tm_list = tm_list.uniq
 
-    to_list = params[:to_name].split(",")
+    to_name = params[:to_name].split(",")
+    to_list = molding(to_name)
     to_ids = params[:report][:transfer_option_ids]
     to_ids.each do |to_id|
       if to_id.blank?
@@ -393,7 +423,8 @@ class ReportsController < ApplicationController
     end
     to_list = to_list.uniq
 
-    oe_list = params[:oe_name].split(",")
+    oe_name = params[:oe_name].split(",")
+    oe_list = molding(oe_name)
     oe_ids = params[:report][:other_effort_ids]
     oe_ids.each do |oe_id|
       if oe_id.blank?
@@ -404,7 +435,8 @@ class ReportsController < ApplicationController
     end
     to_list = to_list.uniq
 
-    supplement_list = params[:supplement_name].split(",")
+    supplement_name = params[:supplement_name].split(",")
+    supplement_list = molding(supplement_name)
     supplement_ids = params[:report][:supplement_ids]
     supplement_ids.each do |supplement_id|
       if supplement_id.blank?
@@ -415,7 +447,8 @@ class ReportsController < ApplicationController
     end
     supplement_list = supplement_list.uniq
 
-    sod_list = params[:sod_scope].split(",")
+    sod_name = params[:sod_scope].split(",")
+    sod_list = molding(sod_name)
     sod_ids = params[:report][:scope_of_disclosure_ids]
     sod_ids.each do |sod_id|
       if sod_id.blank?
@@ -426,7 +459,8 @@ class ReportsController < ApplicationController
     end
     sod_list = sod_list.uniq
 
-    tag_list = params[:tag_name].split(",")
+    tag_name = params[:tag_name].split(",")
+    tag_list = molding(tag_name)
     tag_ids = params[:report][:tag_ids]
     tag_ids.each do |tag_id|
       if tag_id.blank?
