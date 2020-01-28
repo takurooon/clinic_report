@@ -32,6 +32,7 @@
 #  household_net_income             :integer
 #  household_net_income_status      :integer          default("show"), not null
 #  industry_type                    :integer
+#  notes_on_type_of_sairan_cycle    :text
 #  number_of_aih                    :integer
 #  number_of_clinics                :integer
 #  number_of_eggs_collected         :integer
@@ -39,6 +40,7 @@
 #  number_of_employees              :integer
 #  number_of_fertilized_eggs        :integer
 #  number_of_frozen_eggs            :integer
+#  number_of_transferable_embryos   :integer
 #  ova_with_ivm                     :integer
 #  period_of_time_spent_traveling   :integer
 #  position                         :integer
@@ -57,9 +59,11 @@
 #  treatment_start_age              :integer
 #  treatment_support_system         :integer
 #  treatment_type                   :integer
+#  type_of_ovarian_stimulation      :integer
 #  type_of_sairan_cycle             :integer
 #  types_of_eggs_and_sperm          :integer
 #  types_of_fertilization_methods   :integer
+#  use_of_anesthesia                :integer
 #  work_style                       :integer
 #  year_of_treatment_end            :date
 #  created_at                       :datetime         not null

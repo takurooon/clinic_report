@@ -10,7 +10,7 @@
       <div class="current-status border rounded px-3 py-2 mt-5">
         <h3>現在(投稿時点)の状況を教えて下さい。</h3>
         <div class="form-group">
-          <% f.label :current_state, '現在(投稿時点)の状況を教えて下さい。' %>
+          <% f.label :current_state, '現在(投稿時点)の状況' %>
             <%= f.hidden_field :current_state %>
             <p class="answer"><%= @report.str_current_state %></p>
         </div>
@@ -21,7 +21,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <%= f.label :clinic_id, 'クリニック選択してください。' %>
+              <%= f.label :clinic_id, 'クリニックを選択' %>
               <%= f.hidden_field :clinic_id, :class => "form-control" %>
               <% unless @report.clinic.nil? %>
                 <p class="answer"><%= @report.clinic.name %></p>
@@ -30,7 +30,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <%= f.label :number_of_clinics, 'このクリニックは何院目ですか？' %>
+              <%= f.label :number_of_clinics, 'このクリニックは何院目?' %>
               <%= f.hidden_field :number_of_clinics %>
               <p class="answer"><%= @report.str_number_of_clinics %></p>
             </div>
@@ -45,7 +45,7 @@
               <p class="answer"><%= @report.str_clinic_selection_criteria %></p>
             </div> 
             <div class="form-group">
-              <%= f.label :reasons_for_choosing_this_clinic, 'このクリニックを選んだ理由について(自由記述)。' %>
+              <%= f.label :reasons_for_choosing_this_clinic, 'このクリニックを選んだ理由について(自由記述)' %>
               <%= f.hidden_field :reasons_for_choosing_this_clinic %>
               <p class="answer"><%= @report.reasons_for_choosing_this_clinic %></p>
             </div>
@@ -223,9 +223,19 @@
           <p class="answer"><%= @report.str_types_of_eggs_and_sperm %></p>
         </div>
         <div class="form-group">
-          <%= f.label :type_of_sairan_cycle, '妊娠に至った周期の採卵誘発方法は' %>
+          <%= f.label :type_of_ovarian_stimulation, '妊娠に至った周期の採卵誘発タイプ' %>
+          <%= f.hidden_field :type_of_ovarian_stimulation %>
+          <p class="answer"><%= @report.str_type_of_ovarian_stimulation %></p>
+        </div>
+        <div class="form-group">
+          <%= f.label :type_of_sairan_cycle, '妊娠に至った周期の採卵誘発方法' %>
           <%= f.hidden_field :type_of_sairan_cycle %>
           <p class="answer"><%= @report.str_type_of_sairan_cycle %></p>
+        </div>
+        <div class="form-group">
+          <%= f.label :notes_on_type_of_sairan_cycle, '妊娠に至った周期の採卵誘発方法の補足説明(があれば)' %>
+          <%= f.hidden_field :notes_on_type_of_sairan_cycle %>
+          <p class="answer"><%= @report.notes_on_type_of_sairan_cycle %></p>
         </div>
         <div class="form-group">
           <%= f.label :sairan_medicine, '採卵周期で使用した薬剤' %><br>
@@ -239,6 +249,11 @@
             <%= hidden_field_tag :sm_name, @sm_name %>
             <span class="answer"><%= @sm_name %></span>
           </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :use_of_anesthesia, '採卵時の麻酔の有無とその種類' %>
+          <%= f.hidden_field :use_of_anesthesia %>
+          <p class="answer"><%= @report.str_use_of_anesthesia %></p>
         </div>
         <div class="form-group">
           <%= f.label :total_number_of_sairan, 'このクリニックでの全採卵「回」数' %>
@@ -256,6 +271,21 @@
           <p class="answer"><%= @report.str_number_of_eggs_collected %></p>
         </div>
         <div class="form-group">
+          <%= f.label :number_of_fertilized_eggs, '最新の採卵周期で受精まで至った個数' %>
+          <%= f.hidden_field :number_of_fertilized_eggs %>
+          <p class="answer"><%= @report.str_number_of_fertilized_eggs %></p>
+        </div>
+        <div class="form-group">
+          <%= f.label :number_of_transferable_embryos, 'その最新周期で受精まで至った胚(受精卵)の内、移植可能となった個数(新鮮胚も含む)' %>
+          <%= f.hidden_field :number_of_transferable_embryos %>
+          <p class="answer"><%= @report.str_number_of_transferable_embryos %></p>
+        </div>
+        <div class="form-group">
+          <%= f.label :number_of_frozen_eggs, 'その移植可能な胚の中の凍結胚数' %>
+          <%= f.hidden_field :number_of_frozen_eggs %>
+          <p class="answer"><%= @report.str_number_of_frozen_eggs %></p>
+        </div>
+        <div class="form-group">
           <%= f.label :egg_maturity, '妊娠に至った卵子の成熟度' %>
           <%= f.hidden_field :egg_maturity %>
           <p class="answer"><%= @report.str_egg_maturity %></p>
@@ -269,16 +299,6 @@
           <%= f.label :types_of_fertilization_methods, '妊娠に至った卵子と精子の受精方法を教えてください' %>
           <%= f.hidden_field :types_of_fertilization_methods %>
           <p class="answer"><%= @report.str_types_of_fertilization_methods %></p>
-        </div>
-        <div class="form-group">
-          <%= f.label :number_of_fertilized_eggs, '最新の周期で受精まで至った個数' %>
-          <%= f.hidden_field :number_of_fertilized_eggs %>
-          <p class="answer"><%= @report.str_number_of_fertilized_eggs %></p>
-        </div>
-        <div class="form-group">
-          <%= f.label :number_of_frozen_eggs, '最新の周期で受精した胚はいくつ凍結できましたか' %>
-          <%= f.hidden_field :number_of_frozen_eggs %>
-          <p class="answer"><%= @report.str_number_of_frozen_eggs %></p>
         </div>
         <div class="form-group">
           <%= f.label :embryo_culture_days, '妊娠に至った胚の培養日数' %>

@@ -17,7 +17,10 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :bmi
       t.integer :smoking
       t.integer :types_of_eggs_and_sperm
+      t.integer :type_of_ovarian_stimulation
       t.integer :type_of_sairan_cycle
+      t.text :notes_on_type_of_sairan_cycle
+      t.integer :use_of_anesthesia
       t.integer :total_number_of_sairan
       t.integer :all_number_of_sairan
       t.integer :number_of_eggs_collected
@@ -25,6 +28,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :ova_with_ivm
       t.integer :types_of_fertilization_methods
       t.integer :number_of_fertilized_eggs
+      t.integer :number_of_transferable_embryos
       t.integer :number_of_frozen_eggs
       t.integer :embryo_culture_days
       t.integer :embryo_stage

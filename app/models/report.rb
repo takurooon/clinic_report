@@ -425,7 +425,7 @@ class Report < ApplicationRecord
 
   # treatment_typeの区分値(治療方法)
   HASH_TREATMENT_TYPE = {
-    1 => "高度不妊治療(体外/顕微受精)",
+    1 => "高度不妊治療(体外受精/顕微授精)",
     2 => "人工授精",
     3 => "タイミング指導法",
     99 => "その他"
@@ -529,11 +529,15 @@ class Report < ApplicationRecord
   # types_of_eggs_and_spermの区分値(卵子と精子の帰属)
   HASH_TYPES_OF_EGGS_AND_SPERM = {
     1 => "自分自身の卵子/精子を用いた",
-    2 => "提供卵子を用いた",
-    3 => "提供精子を用いた",
-    4 => "どちらも提供を受けた",
-    5 => "凍結していた自分の未受精卵を用いた",
-    6 => "凍結していた自分の精子を用いた",
+    2 => "提供卵子を用いた(国内)",
+    3 => "提供卵子を用いた(海外)",
+    4 => "提供精子を用いた(国内)",
+    5 => "提供精子を用いた(海外)",
+    6 => "どちらも提供卵子/精子(国内)",
+    7 => "どちらも提供卵子/精子(海外)",
+    8 => "どちらも提供卵子/精子(国内&海外)",
+    9 => "凍結していた自分の未受精卵を用いた",
+    10 => "凍結していた自分の精子を用いた",
     99 => "その他"
   }
 
@@ -542,7 +546,38 @@ class Report < ApplicationRecord
   end
 
 
-  # type_of_sairan_cycleの区分値(採卵周期種別)
+  # use_of_anesthesiaの区分値(採卵周期大分類)
+  HASH_USE_OF_ANESTHESIA = {
+    1 => "無麻酔",
+    2 => "全身麻酔",
+    3 => "静脈麻酔",
+    4 => "腰椎(下半身)麻酔",
+    5 => "局所麻酔",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_use_of_anesthesia
+    return HASH_USE_OF_ANESTHESIA[self.use_of_anesthesia]
+  end
+
+
+  # type_of_ovarian_stimulationの区分値(採卵周期大分類)
+  HASH_TYPE_OF_OVARIAN_STIMULATION = {
+    1 => "刺激なし",
+    2 => "低刺激",
+    3 => "中刺激",
+    4 => "高刺激",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_type_of_ovarian_stimulation
+    return HASH_TYPE_OF_OVARIAN_STIMULATION[self.type_of_ovarian_stimulation]
+  end
+
+
+  # type_of_sairan_cycleの区分値(採卵周期小分類)
   HASH_TYPE_OF_SAIRAN_CYCLE = {
     1 => "完全自然周期",
     2 => "クロミフェン(クロミッド)法",
@@ -565,6 +600,7 @@ class Report < ApplicationRecord
     1 => "体外受精（ふりかけ）",
     2 => "顕微授精",
     3 => "スプリット法",
+    99 => "その他",
     100 => "不明"
   }
 
@@ -1431,6 +1467,32 @@ class Report < ApplicationRecord
     hash
   end
 
+  # number_of_transferable_embryosの区分値(最新採卵周期での受精した個数/CL単位)
+  NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM = 1000
+  NUMBER_OF_TRANSFERABLE_EMBRYOS_RANGE = 50
+  STR_NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM = "それ#{OR_MORE}"
+
+  def str_number_of_transferable_embryos
+    return "" if self.number_of_transferable_embryos.nil?
+    if self.number_of_transferable_embryos == NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM
+      STR_NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM
+    elsif self.number_of_transferable_embryos >= 1 || self.number_of_transferable_embryos <= NUMBER_OF_TRANSFERABLE_EMBRYOS_RANGE
+      "#{self.number_of_transferable_embryos} #{PIECES}"
+    else
+      raise
+    end
+  end
+
+  def self.make_select_options_number_of_transferable_embryos
+    hash = {}
+    (1..NUMBER_OF_TRANSFERABLE_EMBRYOS_RANGE).each do |i|
+      hash["#{i}#{PIECES}"] = i
+    end
+    hash[STR_NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM] = STR_NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM
+    hash[STR_UNKNOWN] = STR_UNKNOWN
+    hash
+  end
+
   # number_of_frozen_eggsの区分値(最新周期での凍結できた数/CL単位)
   NUMBER_OF_FROZEN_EGGS_MAXIMUM = 1000
   NUMBER_OF_FROZEN_EGGS_RANGE = 50
@@ -1577,6 +1639,7 @@ end
 #  household_net_income             :integer
 #  household_net_income_status      :integer          default("show"), not null
 #  industry_type                    :integer
+#  notes_on_type_of_sairan_cycle    :text
 #  number_of_aih                    :integer
 #  number_of_clinics                :integer
 #  number_of_eggs_collected         :integer
@@ -1584,6 +1647,7 @@ end
 #  number_of_employees              :integer
 #  number_of_fertilized_eggs        :integer
 #  number_of_frozen_eggs            :integer
+#  number_of_transferable_embryos   :integer
 #  ova_with_ivm                     :integer
 #  period_of_time_spent_traveling   :integer
 #  position                         :integer
@@ -1602,9 +1666,11 @@ end
 #  treatment_start_age              :integer
 #  treatment_support_system         :integer
 #  treatment_type                   :integer
+#  type_of_ovarian_stimulation      :integer
 #  type_of_sairan_cycle             :integer
 #  types_of_eggs_and_sperm          :integer
 #  types_of_fertilization_methods   :integer
+#  use_of_anesthesia                :integer
 #  work_style                       :integer
 #  year_of_treatment_end            :date
 #  created_at                       :datetime         not null

@@ -227,8 +227,16 @@
                 <td class="pl-4 result-column"><%= @report.str_types_of_eggs_and_sperm %></td>
               </tr>
               <tr>
+                <th scope="row">妊娠に至った周期の採卵誘発タイプ</th>
+                <td class="pl-4 result-column"><%= @report.str_type_of_ovarian_stimulation %></td>
+              </tr>
+              <tr>
                 <th scope="row">妊娠に至った周期の採卵誘発方法</th>
                 <td class="pl-4 result-column"><%= @report.str_type_of_sairan_cycle %></td>
+              </tr>
+              <tr>
+                <th scope="row">妊娠に至った周期の採卵誘発方法の補足説明</th>
+                <td class="pl-4 result-column"><%= @report.notes_on_type_of_sairan_cycle %></td>
               </tr>
               <tr>
                 <th scope="row">採卵周期で使用した薬剤</th>
@@ -237,6 +245,10 @@
                   <%= sairan_medicine.name %>&nbsp;&nbsp;
                 <% end %>
                 </td>
+              </tr>
+              <tr>
+                <th scope="row">採卵時の麻酔の有無とその種類</th>
+                <td class="pl-4 result-column"><%= @report.str_use_of_anesthesia %></td>
               </tr>
               <tr>
                 <th scope="row">このクリニックでの全採卵「回」数</th>
@@ -251,6 +263,18 @@
                 <td class="pl-4 result-column"><%= @report.str_number_of_eggs_collected %></td>
               </tr>
               <tr>
+                <th scope="row">最新の周期での受精個数</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_fertilized_eggs %></td>
+              </tr>
+              <tr>
+                <th scope="row">その内移植可能な個数(新鮮胚含む)</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_transferable_embryos %></td>
+              </tr>
+              <tr>
+                <th scope="row">移植可能胚の中の凍結胚数</th>
+                <td class="pl-4 result-column"><%= @report.str_number_of_frozen_eggs %></td>
+              </tr>
+              <tr>
                 <th scope="row">妊娠に至った卵子(受精前)の成熟度</th>
                 <td class="pl-4 result-column"><%= @report.str_egg_maturity %></td>
               </tr>
@@ -261,14 +285,6 @@
               <tr>
                 <th scope="row">妊娠に至った卵子と精子の受精方法</th>
                 <td class="pl-4 result-column"><%= @report.str_types_of_fertilization_methods %></td>
-              </tr>
-              <tr>
-                <th scope="row">最新の周期での受精個数</th>
-                <td class="pl-4 result-column"><%= @report.str_number_of_fertilized_eggs %></td>
-              </tr>
-              <tr>
-                <th scope="row">最新周期での凍結胚数</th>
-                <td class="pl-4 result-column"><%= @report.str_number_of_frozen_eggs %></td>
               </tr>
               <tr>
                 <th scope="row">妊娠に至った胚の培養日数</th>
