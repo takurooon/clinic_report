@@ -6,8 +6,8 @@
           <h2><i class="fas fa-user-plus", color="#4BAAF3"></i>&nbsp;&nbsp;パスワードの変更</h2>
         </div>
         <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-pencil-alt", color="#4BAAF3"></i>&nbsp;&nbsp;アカウント作成</h5>
-          <p class="card-text mt-4">以下項目を入力/選択の上、登録してください(全て必須項目)</p>
+          <h5 class="card-title"><i class="fas fa-pencil-alt", color="#4BAAF3"></i>&nbsp;&nbsp;新パスワード作成</h5>
+          <p class="card-text mt-4">6文字以上16文字以下の半角英数字で構成してください</p>
           <div class="p-3">
             <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
