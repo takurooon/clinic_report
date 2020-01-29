@@ -471,7 +471,7 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :use_of_anesthesia '採卵時の麻酔の有無とその種類', class: "question-matters" %></div>
+            <div class="label p-1"><%= f.label :use_of_anesthesia, '採卵時の麻酔の有無とその種類', class: "question-matters" %></div>
             <%= f.select :use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
             <small id="poster-tip" class="form-text text-muted">
                 当てはまるものを選択してください。
