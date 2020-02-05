@@ -219,6 +219,27 @@
                 選択してください。
             </small>
           </div>
+          
+
+          <script>
+            $(function() {
+              ivf($('#report_treatment_type option:selected').val());
+              $("#report_treatment_type").change(function() {
+                ivf($(this).val());
+              });
+            })
+            function ivf(treatment_type) {
+              if (treatment_type === "1") {
+                $(".number_of_aih").show();
+                $(".advanced_fertility_treatment").show();
+              } else {
+                $(".number_of_aih").hide();
+                $(".advanced_fertility_treatment").hide();
+              }
+            }
+          </script>
+
+
           <div class="form-group">
             <div class="label p-1"><%= f.label :treatment_type, '治療の種類を選択してください', class: "question-matters" %></div>
             <%= f.select :treatment_type, Report::HASH_TREATMENT_TYPE.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
@@ -228,23 +249,23 @@
           </div>
           <div class="form-group">
             <div class="label p-1"><%= f.label :treatment_start_age, 'このクリニックで治療を開始したのは何歳の時ですか', class: "question-matters" %></div>
-            <%= f.select :treatment_start_age, Report.make_select_options_treatment_start_age, { prompt: "選択してください" }, { class: "form-control" }  %>
+            <%= f.select :treatment_start_age, Report.make_select_options_treatment_start_age, { prompt: "選択してください", selected: "30" }, { class: "form-control", selected: "30" }  %>
             <small id="poster-tip" class="form-text text-muted">
                 通院を開始した年齢を選択してください。
             </small>
           </div>
           <div class="form-group">
             <div class="label p-1"><%= f.label :first_age_to_start, '不妊治療自体(妊活含む)を始めたのは何歳の時ですか', class: "question-matters" %></div>
-            <%= f.select :first_age_to_start, Report.make_select_options_first_age_to_start, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                前問の年齢よりも高い年齢を選択されないことに注意してください。
+            <%= f.select :first_age_to_start, Report.make_select_options_first_age_to_start, { prompt: "選択してください", selected: "30" }, { class: "form-control" }  %>
+            <small id="poster-tip" class="form-text text-danger">
+                前問の本クリニックでの治療開始年齢よりも高い年齢を選択されないように注意してください。
             </small>
           </div>
           <div class="form-group">
             <div class="label p-1"><%= f.label :treatment_end_age, 'このクリニックで治療を終了したのは何歳の時ですか', class: "question-matters" %></div>
-            <%= f.select :treatment_end_age, Report.make_select_options_treatment_end_age, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                妊娠、または治療を断念し、通院を終了した年齢を選択してください。
+            <%= f.select :treatment_end_age, Report.make_select_options_treatment_end_age, { prompt: "選択してください", selected: "30" }, { class: "form-control" }  %>
+            <small id="poster-tip" class="form-text text-danger">
+                前々問・前問の年齢よりも低い年齢を選択されないように注意してください。
             </small>
           </div>
           <div class="form-group">
@@ -254,7 +275,7 @@
                 おおよその期間を選択ください。
             </small>
           </div>
-          <div class="form-group">
+          <div class="form-group number_of_aih">
             <div class="label p-1"><%= f.label :number_of_aih, '体外・顕微受精にステップアップする前に人工授精は何回実施しましたか(このクリニック以外での人工授精も含む)', class: "question-matters" %></div>
             <%= f.select :number_of_aih, Report.make_select_options_number_of_aih, { prompt: "選択してください" }, { class: "form-control" }  %>
             <small id="poster-tip" class="form-text text-muted">
@@ -430,21 +451,21 @@
             </small>
           </div>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :type_of_ovarian_stimulation, '妊娠に至った周期の採卵誘発のタイプ', class: "question-matters" %></div>
+            <div class="label p-1"><%= f.label :type_of_ovarian_stimulation, '妊娠に至った周期の誘発のタイプ', class: "question-matters" %></div>
             <%= f.select :type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
             <small id="poster-tip" class="form-text text-muted">
                 当てはまるものを選択してください。
             </small>
           </div>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :type_of_sairan_cycle, '妊娠に至った周期の採卵誘発方法', class: "question-matters" %></div>
+            <div class="label p-1"><%= f.label :type_of_sairan_cycle, '妊娠に至った周期の誘発方法', class: "question-matters" %></div>
             <%= f.select :type_of_sairan_cycle, Report::HASH_TYPE_OF_SAIRAN_CYCLE.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
             <small id="poster-tip" class="form-text text-muted">
                 当てはまるものを選択してください。
             </small>
           </div>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :notes_on_type_of_sairan_cycle, '妊娠に至った周期の採卵誘発方法の補足説明(があれば)', class: "question-matters" %></div>
+            <div class="label p-1"><%= f.label :notes_on_type_of_sairan_cycle, '妊娠に至った周期の誘発方法の補足説明(があれば)', class: "question-matters" %></div>
             <%= f.text_area :notes_on_type_of_sairan_cycle, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例) 私が通ったクリニックでは「〇〇法」という独自の呼び方でした。ですが内容は〇〇と一緒でした" %>
             <small id="poster-tip" class="form-text text-muted">
                 説明をつけてより詳しい内容にしませんか。
@@ -452,7 +473,7 @@
           </div>
           <div class="form-group">
             <div class="border rounded px-3 py-3">
-              <div class="label p-1"><%= f.label :sairan_medicine, '採卵周期で使用した薬剤', class: "question-matters" %></div><br>
+              <div class="label p-1"><%= f.label :sairan_medicine, '卵巣刺激(〜採卵周期)で使用した薬剤', class: "question-matters" %></div><br>
               <%= f.collection_check_boxes(:sairan_medicine_ids, SairanMedicine.all, :id, :name) do |b| %>
                 <div class="form-check form-check-inline">
                   <%= b.label class: "form-check-label" do %>
@@ -470,186 +491,206 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :use_of_anesthesia, '採卵時の麻酔の有無とその種類', class: "question-matters" %></div>
-            <%= f.select :use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :total_number_of_sairan, 'このクリニックでの全採卵「回」数', class: "question-matters" %></div>
-            <%= f.select :total_number_of_sairan, Report.make_select_options_total_number_of_sairan, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :all_number_of_sairan, 'このクリニック以外も含めた全採卵「回」数', class: "question-matters" %></div>
-            <%= f.select :all_number_of_sairan, Report.make_select_options_all_number_of_sairan, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :number_of_eggs_collected, 'このクリニックでの最新採卵周期の全採卵「個」数', class: "question-matters" %></div>
-            <%= f.select :number_of_eggs_collected, Report.make_select_options_number_of_eggs_collected, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :number_of_fertilized_eggs, 'その最新周期で受精まで至った個数', class: "question-matters" %></div>
-            <%= f.select :number_of_fertilized_eggs, Report.make_select_options_number_of_fertilized_eggs, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :number_of_transferable_embryos, 'その最新周期で受精まで至った胚(受精卵)の内、移植可能となった個数(新鮮胚も含む)', class: "question-matters" %></div>
-            <%= f.select :number_of_transferable_embryos, Report.make_select_options_number_of_transferable_embryos, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :number_of_frozen_eggs, '移植可能な胚(受精卵)の中の凍結胚数', class: "question-matters" %></div>
-            <%= f.select :number_of_frozen_eggs, Report.make_select_options_number_of_frozen_eggs, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :egg_maturity, 'その中で妊娠に至った卵子(受精前)の成熟度', class: "question-matters" %></div>
-            <%= f.select :egg_maturity, Report::HASH_EGG_MATURITY.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :ova_with_ivm, '妊娠した卵子へのIVM実施の有無', class: "question-matters" %></div>
-            <%= f.select :ova_with_ivm, Report::HASH_OVA_WITH_IVM.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :types_of_fertilization_methods, '妊娠に至った卵子と精子の受精方法', class: "question-matters" %></div>
-            <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :embryo_culture_days, '妊娠に至った胚の培養日数', class: "question-matters" %></div>
-            <%= f.select :embryo_culture_days, Report.make_select_options_embryo_culture_days, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
 
-          <script>
-          $(function() {
-            $(".early_embryo_grade").addClass('hide');
-            $(".blastocyst_grade1").addClass('hide');
-            $("#report_embryo_stage").change(function() {
-              $(".early_embryo_grade").addClass('hide');
-              $(".blastocyst_grade1").addClass('hide');
-              $('#' + $("#report_embryo_stage option:selected").attr("class")).removeClass("hide");
-            });
-          })
-          </script>
 
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :embryo_stage, '妊娠に至った胚のステージ', class: "question-matters" %></div>
-            <%= f.select :embryo_stage, Report::HASH_EMBRYO_STAGE.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-
-          <div class="form-group early_embryo_grade">
-            <div class="label p-1"><%= f.label :early_embryo_grade, '初期胚のグレード', class: "question-matters" %></div>
-            <%= f.select :early_embryo_grade, Report::HASH_EARLY_EMBRYO_GRADE.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group blastocyst_grade1">
-            <div class="label p-1"><%= f.label :blastocyst_grade1, '胚盤胞以上のグレード', class: "question-matters" %></div>
-            <%= f.select :blastocyst_grade1, Report::HASH_BLASTOCYST_GRADE1.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :blastocyst_grade2, '胚盤胞以上の評価', class: "question-matters" %></div>
-            <%= f.select :blastocyst_grade2, Report::HASH_BLASTOCYST_GRADE2.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="border rounded px-3 py-3">
-              <div class="label p-1"><%= f.label :transfer_medicine, '移植周期で使用した薬剤', class: "question-matters" %></div><br>
-              <%= f.collection_check_boxes(:transfer_medicine_ids, TransferMedicine.all, :id, :name) do |b| %>
-                <div class="form-check form-check-inline">
-                  <%= b.label class: "form-check-label" do %>
-                    <%= b.check_box class: "form-check-input" %>
-                    <%= b.text %>
-                  <% end %>
-                </div>
-              <% end %>
+          <div class="advanced_fertility_treatment">
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :use_of_anesthesia, '採卵時の麻酔の有無とその種類', class: "question-matters" %></div>
+              <%= f.select :use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
               <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
+                  当てはまるものを選択してください。
               </small>
-              <div class="form-group">
-                <div class="label p-1"><%= f.label :transfer_medicine, "上記選択肢に無いので新たに薬剤を追加作成する", class: "question-matters" %></div>
-                <%= text_field_tag :tm_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :total_number_of_sairan, 'このクリニックでの全採卵「回」数', class: "question-matters" %></div>
+              <%= f.select :total_number_of_sairan, Report.make_select_options_total_number_of_sairan, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :all_number_of_sairan, 'このクリニック以外も含めた全採卵「回」数', class: "question-matters" %></div>
+              <%= f.select :all_number_of_sairan, Report.make_select_options_all_number_of_sairan, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-danger">
+                  前問の回数以上を入力してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :number_of_eggs_collected, 'このクリニックでの最新採卵周期の全採卵「個」数', class: "question-matters" %></div>
+              <%= f.select :number_of_eggs_collected, Report.make_select_options_number_of_eggs_collected, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :number_of_fertilized_eggs, 'その最新周期で受精まで至った個数', class: "question-matters" %></div>
+              <%= f.select :number_of_fertilized_eggs, Report.make_select_options_number_of_fertilized_eggs, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :number_of_transferable_embryos, 'その最新周期で受精まで至った胚(受精卵)の内、移植可能となった個数(新鮮胚も含む)', class: "question-matters" %></div>
+              <%= f.select :number_of_transferable_embryos, Report.make_select_options_number_of_transferable_embryos, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :number_of_frozen_eggs, '移植可能な胚(受精卵)の中の凍結胚数', class: "question-matters" %></div>
+              <%= f.select :number_of_frozen_eggs, Report.make_select_options_number_of_frozen_eggs, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :egg_maturity, 'その中で妊娠に至った卵子(受精前)の成熟度', class: "question-matters" %></div>
+              <%= f.select :egg_maturity, Report::HASH_EGG_MATURITY.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :ova_with_ivm, '妊娠した卵子へのIVM実施の有無', class: "question-matters" %></div>
+              <%= f.select :ova_with_ivm, Report::HASH_OVA_WITH_IVM.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :types_of_fertilization_methods, '妊娠に至った卵子と精子の受精方法', class: "question-matters" %></div>
+              <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :embryo_culture_days, '妊娠に至った胚の培養日数', class: "question-matters" %></div>
+              <%= f.select :embryo_culture_days, Report.make_select_options_embryo_culture_days, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+
+            <script>
+            $(function() {
+              init($('#report_embryo_stage option:selected').val());
+              $("#report_embryo_stage").change(function() {
+                init($(this).val());
+              });
+            })
+            function init(embryo_stage) {
+              if (embryo_stage === "1") {
+                $(".early_embryo_grade").show();
+                $(".blastocyst_grade1").hide();
+                $(".blastocyst_grade2").hide();
+              } else if (embryo_stage === "2") {
+                $(".blastocyst_grade1").show();
+                $(".blastocyst_grade2").show();
+                $(".early_embryo_grade").hide();
+              } else {
+                $(".early_embryo_grade").hide();
+                $(".blastocyst_grade1").hide();
+                $(".blastocyst_grade2").hide();
+              }
+            }
+            </script>
+
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :embryo_stage, '妊娠に至った胚のステージ', class: "question-matters" %></div>
+              <%= f.select :embryo_stage, Report::HASH_EMBRYO_STAGE.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+
+            <div class="form-group early_embryo_grade">
+              <div class="label p-1"><%= f.label :early_embryo_grade, '初期胚のグレード', class: "question-matters" %></div>
+              <%= f.select :early_embryo_grade, Report::HASH_EARLY_EMBRYO_GRADE.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group blastocyst_grade1">
+              <div class="label p-1"><%= f.label :blastocyst_grade1, '胚盤胞以上のグレード', class: "question-matters" %></div>
+              <%= f.select :blastocyst_grade1, Report::HASH_BLASTOCYST_GRADE1.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group blastocyst_grade2">
+              <div class="label p-1"><%= f.label :blastocyst_grade2, '胚盤胞以上の評価', class: "question-matters" %></div>
+              <%= f.select :blastocyst_grade2, Report::HASH_BLASTOCYST_GRADE2.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="border rounded px-3 py-3">
+                <div class="label p-1"><%= f.label :transfer_medicine, '移植周期で使用した薬剤', class: "question-matters" %></div><br>
+                <%= f.collection_check_boxes(:transfer_medicine_ids, TransferMedicine.all, :id, :name) do |b| %>
+                  <div class="form-check form-check-inline">
+                    <%= b.label class: "form-check-label" do %>
+                      <%= b.check_box class: "form-check-input" %>
+                      <%= b.text %>
+                    <% end %>
+                  </div>
+                <% end %>
+                <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+                </small>
+                <div class="form-group">
+                  <div class="label p-1"><%= f.label :transfer_medicine, "上記選択肢に無いので新たに薬剤を追加作成する", class: "question-matters" %></div>
+                  <%= text_field_tag :tm_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="border rounded px-3 py-3 ">
-              <div class="label p-1"><%= f.label :transfer_option, '移植オプション（複数選択可）', class: "question-matters" %></div><br>
-              <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
-                <div class="form-check form-check-inline">
-                  <%= b.label class: "form-check-label" do %>
-                    <%= b.check_box class: "form-check-input" %>
-                    <%= b.text %>
-                  <% end %>
+            <div class="form-group">
+              <div class="border rounded px-3 py-3 ">
+                <div class="label p-1"><%= f.label :transfer_option, '移植オプション（複数選択可）', class: "question-matters" %></div><br>
+                <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
+                  <div class="form-check form-check-inline">
+                    <%= b.label class: "form-check-label" do %>
+                      <%= b.check_box class: "form-check-input" %>
+                      <%= b.text %>
+                    <% end %>
+                  </div>
+                <% end %>
+                <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+                </small>
+                <div class="form-group">
+                  <div class="label p-1"><%= f.label :transfer_option, "上記選択肢に無いので新たに移植オプションを追加作成する", class: "question-matters" %></div>
+                  <%= text_field_tag :to_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
                 </div>
-              <% end %>
-              <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-              </small>
-              <div class="form-group">
-                <div class="label p-1"><%= f.label :transfer_option, "上記選択肢に無いので新たに移植オプションを追加作成する", class: "question-matters" %></div>
-                <%= text_field_tag :to_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
               </div>
             </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :total_number_of_transplants, 'このクリニックでの全移植「回」数', class: "question-matters" %></div>
+              <%= f.select :total_number_of_transplants, Report.make_select_options_total_number_of_transplants, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :all_number_of_transplants, 'このクリニック以外も含めた全移植「回」数', class: "question-matters" %></div>
+              <%= f.select :all_number_of_transplants, Report.make_select_options_all_number_of_transplants, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-danger">
+                  前問の回数以上を入力してください。
+              </small>
+            </div>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :number_of_eggs_stored, 'このクリニックにある凍結胚の数（貯卵数）', class: "question-matters" %></div>
+              <%= f.select :number_of_eggs_stored, Report.make_select_options_number_of_eggs_stored, { prompt: "選択してください" }, { class: "form-control" }  %>
+              <small id="poster-tip" class="form-text text-muted">
+                  当てはまるものを選択してください。
+              </small>
+            </div>
           </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :total_number_of_transplants, 'このクリニックでの全移植「回」数', class: "question-matters" %></div>
-            <%= f.select :total_number_of_transplants, Report.make_select_options_total_number_of_transplants, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :all_number_of_transplants, 'このクリニック以外も含めた全移植「回」数', class: "question-matters" %></div>
-            <%= f.select :all_number_of_transplants, Report.make_select_options_all_number_of_transplants, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :number_of_eggs_stored, 'このクリニックにある凍結胚の数（貯卵数）', class: "question-matters" %></div>
-            <%= f.select :number_of_eggs_stored, Report.make_select_options_number_of_eggs_stored, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-                当てはまるものを選択してください。
-            </small>
-          </div>
+
+
+
+
           <div class="form-group">
             <div class="border rounded px-3 py-3 ">
               <div class="label p-1"><%= f.label :other_effort, 'クリニックでの治療以外に行ったこと（複数選択可）', class: "question-matters" %></div><br>
@@ -665,7 +706,7 @@
                 当てはまるものを選択してください。
               </small>
               <div class="form-group">
-                <div class="label p-1"><%= f.label :other_effort, "上記選択肢に無いので新たに移植オプションを追加作成する", class: "question-matters" %></div>
+                <div class="label p-1"><%= f.label :other_effort, "上記選択肢に無いので新たに治療以外に行ったことを追加作成する", class: "question-matters" %></div>
                 <%= text_field_tag :oe_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
               </div>
             </div>

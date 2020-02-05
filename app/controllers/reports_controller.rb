@@ -77,6 +77,8 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params_for_create)
     @report.user_id = current_user.id
 
+    @report.normalize
+
     if @report.status.blank?
       @report.status = "released"
     end

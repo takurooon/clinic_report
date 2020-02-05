@@ -15,6 +15,8 @@ class Report < ApplicationRecord
   validates :title, length: { maximum: 32 }
   validate :validate_treatment_age
   validate :validate_all_treatment_age
+  validate :validate_all_number_of_sairan
+  validate :validate_all_number_of_transplants
   validate :validate_content_length
   validate :validate_content_attachment_byte_size
   validate :validate_content_attachments_count
@@ -47,7 +49,29 @@ class Report < ApplicationRecord
       )
     end
   end
-  
+
+  def validate_all_number_of_sairan
+    return "" if self.total_number_of_sairan.nil?
+    return "" if self.all_number_of_sairan.nil?
+    if total_number_of_sairan > all_number_of_sairan
+      errors.add(
+        :base,
+        :the_number_of_sairan_at_this_clinic_exceeds_the_cumulative_total
+      )
+    end
+  end
+
+  def validate_all_number_of_transplants
+    return "" if self.total_number_of_transplants.nil?
+    return "" if self.all_number_of_transplants.nil?
+    if total_number_of_transplants > all_number_of_transplants
+      errors.add(
+        :base,
+        :number_of_transplants_at_this_clinic_exceeds_cumulative_total
+      )
+    end
+  end
+
   def validate_content_length
     length = content.to_plain_text.length
 
@@ -93,6 +117,19 @@ class Report < ApplicationRecord
   #     )
   #   end
   # end
+
+  def normalize
+    if self.embryo_stage == 1
+      self.blastocyst_grade1 = nil
+      self.blastocyst_grade2 = nil
+    elsif self.embryo_stage == 2
+      self.early_embryo_grade = nil
+    else
+      self.early_embryo_grade = nil
+      self.blastocyst_grade1 = nil
+      self.blastocyst_grade2 = nil
+    end
+  end
 
   # like判定メソッド
   def liked_by?(user)
@@ -538,7 +575,8 @@ class Report < ApplicationRecord
     8 => "どちらも提供卵子/精子(国内&海外)",
     9 => "凍結していた自分の未受精卵を用いた",
     10 => "凍結していた自分の精子を用いた",
-    99 => "その他"
+    99 => "その他",
+    100 =>"不明"
   }
 
   def str_types_of_eggs_and_sperm

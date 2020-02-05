@@ -27,7 +27,13 @@
                       <tr>
                         <div class="form-group">
                           <th class="profile-item-l"><%= f.label :icon, "アイコン" %><br/></th>
-                          <td class="profile-item-r"><%= f.file_field :icon, class: "form-control" %></td>
+                          <td class="profile-item-r">
+                            <% unless @user.icon.blank? %>
+                              <div><img src=<%= @user.icon %> class = "icon_image" %></div>
+                              <%= link_to '削除', user_registration_path(@user), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
+                            <% end %>
+                            <div><%= f.file_field :icon, class: "form-control" %></div>
+                          </td>
                         </div>
                       </tr>
                       <tr>

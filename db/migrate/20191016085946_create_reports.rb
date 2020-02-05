@@ -38,6 +38,8 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :total_number_of_transplants
       t.integer :all_number_of_transplants
       t.integer :number_of_eggs_stored
+      t.integer :number_of_miscarriages
+      t.integer :number_of_stillbirths
       t.integer :cost
       t.integer :all_cost
       t.integer :credit_card_validity

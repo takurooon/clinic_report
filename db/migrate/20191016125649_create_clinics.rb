@@ -15,6 +15,9 @@ class CreateClinics < ActiveRecord::Migration[6.0]
       t.integer :kenbijusei
       t.integer :social_ranshitoketsu
       t.integer :teikyoseishi_aih
+      t.integer :pgt
+      t.integer :jis_art
+      t.integer :japco
 
       t.timestamps
     end

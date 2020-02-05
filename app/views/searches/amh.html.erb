@@ -11,16 +11,16 @@
   <div class="container main-index">
     <div class="row">
       <div class="col-md-8 offset-md-2 main-column text-color">
-        <% @amh.each do |amh| %>
+        <% @reports.each do |report| %>
           <div class="row">
             <div class="card col-12 mb-4 pb-0 px-0 border">
-              <%= link_to amh do %>
+              <%= link_to report do %>
               <div class="card-header media title">
                 <div class="index-title d-flex align-items-center pt-3">
-                  <% if amh.title.empty? %>
-                    <h4 class="mb-0 mt-2 mx-lg-5"><%= amh.user.name %>さんの&nbsp;&nbsp;<%= amh.clinic.name %>(<%= amh.clinic.city.prefecture.name %>)での治療レポート</h4>
+                  <% if report.title.empty? %>
+                    <h4 class="mb-0 mt-2 mx-lg-5"><%= report.user.name %>さんの&nbsp;&nbsp;<%= report.clinic.name %>(<%= report.clinic.city.prefecture.name %>)での治療レポート</h4>
                   <% else %>
-                    <h4 class="mb-0 mt-2 mx-lg-5"><%= amh.title %></h4>
+                    <h4 class="mb-0 mt-2 mx-lg-5"><%= report.title %></h4>
                   <% end %>
                 </div>
               </div>
@@ -30,45 +30,45 @@
                 <div class="media-body px-2">
                   <div class="row">
                     <div class="col-4 pl-0 text-center">
-                      <%= link_to user_path(amh.user_id) do %>
-                        <% if amh.user.icon.blank? %>
+                      <%= link_to user_path(report.user_id) do %>
+                        <% if report.user.icon.blank? %>
                           <%= image_tag("home/home_top_img.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %>
                         <% else %>
-                          <img src=<%= amh.user.icon %> class = "card-img-top rounded-circle border">
+                          <img src=<%= report.user.icon %> class = "icon_image">
                         <% end %>
                       <% end %>
                       <div class="mt-4 mb-2 d-sm d-md-none align-items-center text-center">
-                        <p><%= link_to amh.user.name, user_path(amh.user_id) %></p>
+                        <p><%= link_to report.user.name, user_path(report.user_id) %></p>
                       </div>
                     </div>
                     <div class="col-8 pl-0">
                       <div class="d-lg-flex justify-content-start">
                         <div class="d-flex justify-content-start mr-2">
                           <div class="gender-badge pr-2">
-                            <% if amh.user.gender == "female" %>
+                            <% if report.user.gender == "female" %>
                               <span class="badge badge-light"><%= "女" %></span>
                             <% else %>
                               <span class="badge badge-light"><%= "男" %></span>
                             <% end %>
                           </div>
                           <div class="age-badge pr-2">
-                            <% unless amh.treatment_end_age.blank? %>
-                            <span class="badge badge-light"><%= link_to amh.treatment_end_age, "/category/age/#{amh.treatment_end_age}" %>歳</span>
+                            <% unless report.treatment_end_age.blank? %>
+                            <span class="badge badge-light"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}" %>歳</span>
                             <% end %>
                           </div>
                           <div class="prefecture-badge">
-                            <% unless amh.city.prefecture.blank? %>
-                              <span class="badge badge-pill badge-primary"><%= link_to amh.city.prefecture.name, "/category/area/prefecture/#{amh.city.prefecture.id}" %></span>
+                            <% unless report.city.prefecture.blank? %>
+                              <span class="badge badge-pill badge-primary"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.id}" %></span>
                             <% end %>
                           </div>
                           <div class="city-badge">
-                            <% unless amh.city.blank? %>
-                              <span class="badge badge-pill badge-primary"><%= link_to amh.city.name, "/category/area/city/#{amh.city.id}" %></span>
+                            <% unless report.city.blank? %>
+                              <span class="badge badge-pill badge-primary"><%= link_to report.city.name, "/category/area/city/#{report.city.id}" %></span>
                             <% end %>
                           </div>
                         </div>
                         <div class="tag-badge col-12 pl-0"%>
-                          <% amh.tags.each_with_index do |tag, i| %>
+                          <% report.tags.each_with_index do |tag, i| %>
                             <span class="badge badge-info"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}" %></span>
                             <% break if i== 2 %>
                           <% end %>
@@ -80,19 +80,19 @@
                     <div class="col-12">
                       <div class="row">
                         <div class="col-md-4 pl-0 mt-4 mb-2 d-none d-md-block text-center">
-                          <h6><%= link_to amh.user.name, user_path(amh.user_id) %></h6>
+                          <h6><%= link_to report.user.name, user_path(report.user_id) %></h6>
                         </div>
                         <div class="col-md-8 pl-0  float-right">
                           <div class="mt-3 d-lg-flex align-items-center justify-content-start mb-2">
-                            <h6 class="mb-0 mr-2"><%= link_to amh.clinic.name, "/category/clinics/#{amh.clinic.id}" %></h6>
-                            <div class="clinic_address"><span class="badge badge-dark"><%= link_to amh.clinic.city.prefecture.name, "/category/clinics/prefecture/#{amh.clinic.city.prefecture.name}" %></span>&nbsp;<span class="badge badge-dark"><%= link_to amh.clinic.city.name, "/category/clinics/city/#{amh.clinic.city.name}" %></span></div><br>
+                            <h6 class="mb-0 mr-2"><%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}" %></h6>
+                            <div class="clinic_address"><span class="badge badge-dark"><%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}" %></span>&nbsp;<span class="badge badge-dark"><%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}" %></span></div><br>
                           </div>
                           <small class="text-muted">
-                            <% unless amh.year_of_treatment_end.blank? %>
-                              <%= amh.year_of_treatment_end.year %>年&nbsp;卒業&nbsp;/
+                            <% unless report.year_of_treatment_end.blank? %>
+                              <%= report.year_of_treatment_end.year %>年&nbsp;卒業&nbsp;/
                             <% end %>
-                            <span>投稿:<%= amh.created_at.to_s(:datetime_jp) %></span>
-                            <span>更新:<time datetime="<%= amh.updated_at %>"><%= time_ago_in_words(amh.updated_at) %></time>前</span>
+                            <span>投稿:<%= report.created_at.to_s(:datetime_jp) %></span>
+                            <span>更新:<time datetime="<%= report.updated_at %>"><%= time_ago_in_words(report.updated_at) %></time>前</span>
                           </small>
                           <small class="text-muted pl-3">
                             <%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "25px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %>

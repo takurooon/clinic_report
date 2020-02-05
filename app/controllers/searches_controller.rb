@@ -14,7 +14,7 @@ class SearchesController < ApplicationController
     amh = Report::HASH_AMH
     amh_value = params[:value].to_i
     @selected_amh = amh[amh_value]
-    @amh = Report.where(amh: amh_value)
+    @reports = Report.where(amh: amh_value)
     @amh_page = Report.page(params[:page]).per(10)
   end
 
@@ -72,7 +72,7 @@ class SearchesController < ApplicationController
     age = Report.make_select_options_treatment_end_age.invert
     age_value = params[:value].to_i
     @selected_age = age[age_value]
-    @age = Report.where(treatment_end_age: age_value)
+    @reports = Report.where(treatment_end_age: age_value)
   end
 
   def factors

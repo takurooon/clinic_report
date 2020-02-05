@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-8 offset-md-2 main-column">
         <% @tags.each do |tag| %>
-          <span class="btn btn-info border border-primary mr-2 mb-3"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}" %></span>
+          <span class="btn btn-info border border-primary mr-2 mb-3"><%= link_to "##{tag.tag_name}", "/category/tags/#{tag.tag_name}" %></span>
         <% end %>
       </div>
     <div>
