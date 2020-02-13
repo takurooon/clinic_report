@@ -462,9 +462,8 @@ class Report < ApplicationRecord
 
   # treatment_typeの区分値(治療方法)
   HASH_TREATMENT_TYPE = {
-    1 => "高度不妊治療(体外受精/顕微授精)",
+    1 => "体外受精または顕微授精",
     2 => "人工授精",
-    3 => "タイミング指導法",
     99 => "その他"
   }
 
@@ -527,7 +526,7 @@ class Report < ApplicationRecord
   def str_bmi
     return HASH_BMI[self.bmi]
   end
-  
+
 
   # amhの区分値(AMH値)
   HASH_AMH = {
@@ -584,7 +583,7 @@ class Report < ApplicationRecord
   end
 
 
-  # use_of_anesthesiaの区分値(採卵周期大分類)
+  # use_of_anesthesiaの区分値(麻酔の種類)
   HASH_USE_OF_ANESTHESIA = {
     1 => "無麻酔",
     2 => "全身麻酔",
@@ -597,6 +596,22 @@ class Report < ApplicationRecord
 
   def str_use_of_anesthesia
     return HASH_USE_OF_ANESTHESIA[self.use_of_anesthesia]
+  end
+
+
+  # selection_of_anesthesia_typeの区分値(麻酔の有無&種類に関しての選択の余地)
+  HASH_SELECTION_OF_ANESTHESIA_TYPE = {
+    1 => "麻酔の有無のみ選択可",
+    2 => "麻酔の種類(部位)のみ選択可",
+    3 => "麻酔の有無&種類(部位)どちらも選択可",
+    4 => "麻酔の有無&種類(部位)どちらも選択不可",
+    5 => "確認していない/確認できなかった",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_selection_of_anesthesia_type
+    return HASH_SELECTION_OF_ANESTHESIA_TYPE[self.selection_of_anesthesia_type]
   end
 
 
@@ -732,6 +747,82 @@ class Report < ApplicationRecord
     return HASH_BLASTOCYST_GRADE2[self.blastocyst_grade2]
   end
 
+  # number_of_miscarriagesの区分値(流産回数)
+  HASH_NUMBER_OF_MISCARRIAGES = {
+    1 => "0回",
+    2 => "1回",
+    3 => "2回",
+    4 => "3回以上",
+    100 => "答えたくない",
+  }
+
+  def str_number_of_miscarriages
+    return HASH_NUMBER_OF_MISCARRIAGES[self.number_of_miscarriages]
+  end
+
+  # number_of_stillbirthsの区分値(死産回数)
+  HASH_NUMBER_OF_STILLBIRTHS = {
+    1 => "0回",
+    2 => "1回",
+    3 => "2回",
+    4 => "3回以上",
+    100 => "答えたくない",
+  }
+
+  def str_number_of_stillbirths
+    return HASH_NUMBER_OF_STILLBIRTHS[self.number_of_stillbirths]
+  end
+
+  # fuikuの区分値(不育症の診断有無)
+  HASH_FUIKU = {
+    1 => "あり",
+    2 => "なし",
+    99 => "答えたくない",
+    100 => "不明",
+  }
+
+  def str_fuiku
+    return HASH_FUIKU[self.fuiku]
+  end
+
+  # pgtの区分値(CLの実施有無)
+  HASH_PGT1 = {
+    1 => "公式に実施していた",
+    2 => "非公式に実施していた",
+    3 => "実施していると耳にしたことはある",
+    4 => "実施していなかった",
+    5 => "おそらく実施していなかった",
+    6 => "答えたくない",
+  }
+
+  def str_pgt1
+    return HASH_PGT1[self.pgt1]
+  end
+
+  # pgtの区分値(患者側の受診有無)
+  HASH_PGT2 = {
+    1 => "受けていない",
+    2 => "このクリニックで受けた",
+    3 => "別のクリニックで受けた",
+    4 => "答えたくない",
+  }
+
+  def str_pgt2
+    return HASH_PGT2[self.pgt2]
+  end
+
+  # adoptionの区分値(養子縁組について)
+  HASH_ADOPTION = {
+    1 => "養子縁組を検討した/している",
+    2 => "養子縁組の申請をした/している",
+    3 => "養子を迎え入れた",
+    4 => "養子縁組は考えなかった",
+    5 => "答えたくない",
+  }
+
+  def str_adoption
+    return HASH_ADOPTION[self.adoption]
+  end
 
   # ova_with_ivmの区分値(妊娠に至った卵子へのIVMの有無)
   HASH_OVA_WITH_IVM = {
@@ -1647,76 +1738,91 @@ end
 #
 # Table name: reports
 #
-#  id                               :bigint           not null, primary key
-#  all_cost                         :integer
-#  all_number_of_sairan             :integer
-#  all_number_of_transplants        :integer
-#  amh                              :integer
-#  annual_income                    :integer
-#  annual_income_status             :integer          default("show"), not null
-#  average_waiting_time             :integer
-#  blastocyst_grade1                :integer
-#  blastocyst_grade2                :integer
-#  bmi                              :integer
-#  capital_size                     :integer
-#  city_at_the_time_status          :integer          default("show"), not null
-#  clinic_review                    :text
-#  clinic_selection_criteria        :integer
-#  content                          :text
-#  cost                             :integer
-#  credit_card_validity             :integer
-#  current_state                    :integer
-#  department                       :integer
-#  domestic_or_foreign_capital      :integer
-#  early_embryo_grade               :integer
-#  egg_maturity                     :integer
-#  embryo_culture_days              :integer
-#  embryo_stage                     :integer
-#  fertility_treatment_number       :integer
-#  first_age_to_start               :integer
-#  household_net_income             :integer
-#  household_net_income_status      :integer          default("show"), not null
-#  industry_type                    :integer
-#  notes_on_type_of_sairan_cycle    :text
-#  number_of_aih                    :integer
-#  number_of_clinics                :integer
-#  number_of_eggs_collected         :integer
-#  number_of_eggs_stored            :integer
-#  number_of_employees              :integer
-#  number_of_fertilized_eggs        :integer
-#  number_of_frozen_eggs            :integer
-#  number_of_transferable_embryos   :integer
-#  ova_with_ivm                     :integer
-#  period_of_time_spent_traveling   :integer
-#  position                         :integer
-#  prefecture_at_the_time_status    :integer          default("show"), not null
-#  private_or_listed_company        :integer
-#  reasons_for_choosing_this_clinic :text
-#  reservation_method               :integer
-#  smoking                          :integer
-#  status                           :integer          default("released"), not null
-#  suspended_or_retirement_job      :integer
-#  title                            :string
-#  total_number_of_sairan           :integer
-#  total_number_of_transplants      :integer
-#  treatment_end_age                :integer
-#  treatment_period                 :integer
-#  treatment_start_age              :integer
-#  treatment_support_system         :integer
-#  treatment_type                   :integer
-#  type_of_ovarian_stimulation      :integer
-#  type_of_sairan_cycle             :integer
-#  types_of_eggs_and_sperm          :integer
-#  types_of_fertilization_methods   :integer
-#  use_of_anesthesia                :integer
-#  work_style                       :integer
-#  year_of_treatment_end            :date
-#  created_at                       :datetime         not null
-#  updated_at                       :datetime         not null
-#  city_id                          :bigint
-#  clinic_id                        :bigint           not null
-#  prefecture_id                    :bigint
-#  user_id                          :bigint           not null
+#  id                                           :bigint           not null, primary key
+#  adoption                                     :integer
+#  all_cost                                     :integer
+#  all_number_of_sairan                         :integer
+#  all_number_of_transplants                    :integer
+#  amh                                          :integer
+#  annual_income                                :integer
+#  annual_income_status                         :integer          default("show"), not null
+#  average_waiting_time                         :integer
+#  blastocyst_grade1                            :integer
+#  blastocyst_grade1_supplementary_explanation  :text
+#  blastocyst_grade2                            :integer
+#  blastocyst_grade2_supplementary_explanation  :text
+#  bmi                                          :integer
+#  capital_size                                 :integer
+#  city_at_the_time_status                      :integer          default("show"), not null
+#  clinic_review                                :text
+#  clinic_selection_criteria                    :integer
+#  content                                      :text
+#  cost                                         :integer
+#  credit_card_validity                         :integer
+#  current_state                                :integer
+#  department                                   :integer
+#  domestic_or_foreign_capital                  :integer
+#  early_embryo_grade                           :integer
+#  early_embryo_grade_supplementary_explanation :text
+#  egg_maturity                                 :integer
+#  embryo_culture_days                          :integer
+#  embryo_stage                                 :integer
+#  fertility_treatment_number                   :integer
+#  first_age_to_start                           :integer
+#  frozen_embryo_storage_cost                   :text
+#  fuiku                                        :integer
+#  fuiku_supplementary_explanation              :text
+#  household_net_income                         :integer
+#  household_net_income_status                  :integer          default("show"), not null
+#  industry_type                                :integer
+#  notes_on_type_of_sairan_cycle                :text
+#  number_of_aih                                :integer
+#  number_of_clinics                            :integer
+#  number_of_eggs_collected                     :integer
+#  number_of_eggs_stored                        :integer
+#  number_of_employees                          :integer
+#  number_of_fertilized_eggs                    :integer
+#  number_of_frozen_eggs                        :integer
+#  number_of_miscarriages                       :integer
+#  number_of_stillbirths                        :integer
+#  number_of_transferable_embryos               :integer
+#  ova_with_ivm                                 :integer
+#  period_of_time_spent_traveling               :integer
+#  pgt1                                         :integer
+#  pgt2                                         :integer
+#  pgt_supplementary_explanation                :text
+#  position                                     :integer
+#  prefecture_at_the_time_status                :integer          default("show"), not null
+#  private_or_listed_company                    :integer
+#  reasons_for_choosing_this_clinic             :text
+#  reservation_method                           :integer
+#  selection_of_anesthesia_type                 :integer
+#  smoking                                      :integer
+#  special_inspection_supplementary_explanation :text
+#  status                                       :integer          default("released"), not null
+#  supplement_supplementary_explanation         :text
+#  suspended_or_retirement_job                  :integer
+#  title                                        :string
+#  total_number_of_sairan                       :integer
+#  total_number_of_transplants                  :integer
+#  treatment_end_age                            :integer
+#  treatment_period                             :integer
+#  treatment_start_age                          :integer
+#  treatment_support_system                     :integer
+#  treatment_type                               :integer
+#  type_of_ovarian_stimulation                  :integer
+#  type_of_sairan_cycle                         :integer
+#  types_of_eggs_and_sperm                      :integer
+#  types_of_fertilization_methods               :integer
+#  use_of_anesthesia                            :integer
+#  work_style                                   :integer
+#  year_of_treatment_end                        :date
+#  created_at                                   :datetime         not null
+#  updated_at                                   :datetime         not null
+#  city_id                                      :bigint
+#  clinic_id                                    :bigint           not null
+#  prefecture_id                                :bigint
+#  user_id                                      :bigint           not null
 #
 # Indexes
 #

@@ -13,6 +13,10 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :treatment_end_age
       t.integer :treatment_period
       t.integer :number_of_aih
+      t.text :special_inspection_supplementary_explanation
+      t.integer :pgt1
+      t.integer :pgt2
+      t.text :pgt_supplementary_explanation
       t.integer :amh
       t.integer :bmi
       t.integer :smoking
@@ -21,6 +25,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :type_of_sairan_cycle
       t.text :notes_on_type_of_sairan_cycle
       t.integer :use_of_anesthesia
+      t.integer :selection_of_anesthesia_type
       t.integer :total_number_of_sairan
       t.integer :all_number_of_sairan
       t.integer :number_of_eggs_collected
@@ -33,13 +38,21 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :embryo_culture_days
       t.integer :embryo_stage
       t.integer :early_embryo_grade
+      t.text :early_embryo_grade_supplementary_explanation
       t.integer :blastocyst_grade1
+      t.text :blastocyst_grade1_supplementary_explanation
       t.integer :blastocyst_grade2
+      t.text :blastocyst_grade2_supplementary_explanation
       t.integer :total_number_of_transplants
       t.integer :all_number_of_transplants
       t.integer :number_of_eggs_stored
+      t.text :frozen_embryo_storage_cost
       t.integer :number_of_miscarriages
       t.integer :number_of_stillbirths
+      t.integer :fuiku
+      t.text :fuiku_supplementary_explanation
+      t.integer :adoption
+      t.text :supplement_supplementary_explanation
       t.integer :cost
       t.integer :all_cost
       t.integer :credit_card_validity

@@ -29,7 +29,7 @@ CSV.foreach('db/csv/city.csv', headers: true) do |row|
   )
 end
 
-CSV.foreach('db/csv/clinic.csv', headers: true) do |row|
+CSV.foreach('db/csv/clinics.csv', headers: true) do |row|
   Clinic.create(
     name: row['name'],
     post_code: row['post_code'],
@@ -45,6 +45,9 @@ CSV.foreach('db/csv/clinic.csv', headers: true) do |row|
     kenbijusei: row['kenbijusei'],
     social_ranshitoketsu: row['social_ranshitoketsu'],
     teikyoseishi_aih: row['teikyoseishi_aih'],
+    pgt: row['pgt'],
+    jis_art: row['jis_art'],
+    japco: row['japco'],
     city_id: row['city_id']
   )
 end
@@ -75,7 +78,6 @@ ScopeOfDisclosure.create([
   { scope: "上司" },
   { scope: "部下" },
   { scope: "聞かれたら誰にでもオープン" },
-  { scope: "その他" },
 ])
 
 FInfertilityFactor.create([
@@ -102,7 +104,6 @@ FInfertilityFactor.create([
   { name: "抗精子抗体" },
   { name: "内分泌ホルモン異常" },
   { name: "不育症" },
-  { name: "その他" },
 ])
 
 MInfertilityFactor.create([
@@ -120,7 +121,6 @@ MInfertilityFactor.create([
   { name: "先天性精管欠損" },
   { name: "膿精液症" },
   { name: "クラインフェルター症候群" },
-  { name: "その他" },
 ])
 
 FDisease.create([
@@ -166,6 +166,10 @@ OtherEffort.create([
 ])
 
 Inspection.create([
-  { name: "フーナー検査" },
-  { name: "卵管造影検査" },
+  { name: "エラ(ERA)検査" },
+  { name: "エマ(EMMA)検査" },
+  { name: "アリス(ALICE)検査" },
+  { name: "トリオ(TORIO)検査" },
+  { name: "慢性子宮内膜炎（CD138/BCE）検査" },
+  { name: "エラピーク(ERPEAK)検査" },
 ])

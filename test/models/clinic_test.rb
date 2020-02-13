@@ -8,9 +8,12 @@
 #  fujinkashuyo         :integer
 #  hai_ranshi_toketsu   :integer
 #  ivf                  :integer
+#  japco                :integer
+#  jis_art              :integer
 #  jsog_code            :integer
 #  kenbijusei           :integer
 #  name                 :string
+#  pgt                  :integer
 #  post_code            :string
 #  senkoishido          :integer
 #  shusanki             :integer
