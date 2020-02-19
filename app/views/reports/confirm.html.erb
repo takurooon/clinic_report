@@ -529,7 +529,7 @@
           <%= f.label :scope_of_disclosure, '治療のことをどこまでオープンにしましたか' %>
           <%= f.hidden_field :scope_of_disclosure_ids, multiple: true, value: nil %>
           <% @report.scope_of_disclosures.each do |disclosure| %>
-            <%= f.hidden_field :scope_disclosure_ids, multiple: true, value: disclosure.id %><br>
+            <%= f.hidden_field :scope_of_disclosure_ids, multiple: true, value: disclosure.id %><br>
             <span class="answer"><%= disclosure.str_scope_of_disclosure %></span>
           <% end %>
         </div>

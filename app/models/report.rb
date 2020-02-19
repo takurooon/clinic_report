@@ -429,7 +429,7 @@ class Report < ApplicationRecord
 
     # Destroy old scope_of_disclosures:
     old_sods.each do |old_scope|
-      self.sods.delete ScopeOfDisclosure.find_by(scope: old_scope)
+      self.scope_of_disclosures.delete ScopeOfDisclosure.find_by(scope: old_scope)
     end
 
     # Create new scope_of_disclosures:
@@ -813,10 +813,10 @@ class Report < ApplicationRecord
 
   # adoptionの区分値(養子縁組について)
   HASH_ADOPTION = {
-    1 => "養子縁組を検討した/している",
-    2 => "養子縁組の申請をした/している",
-    3 => "養子を迎え入れた",
-    4 => "養子縁組は考えなかった",
+    1 => "検討したことがある/している",
+    2 => "申請をしたことがある/している",
+    3 => "養子は考えなかった/考えない",
+    4 => "養子を迎え入れた",
     5 => "答えたくない",
   }
 
