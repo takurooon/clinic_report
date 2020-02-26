@@ -5,10 +5,10 @@
         <div class="card mb-3">
           <div class="row">
             <div class="col-3 p-3">
-              <% if user.icon %>
-                <img src=<%= user.icon %> class = "icon_image" %>
+              <% if user.icon.blank? %>
+                <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1"><%= image_tag("home/noimage_eyecatch.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %></div>
               <% else %>
-                <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1"><%= image_tag("home/home_top_img.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %></div>
+                <img src=<%= user.icon %> class = "icon_image" %>
               <% end %>
             </div>
             <div class="col-9 pt-4">

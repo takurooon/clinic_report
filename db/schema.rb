@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_03_001505) do
+ActiveRecord::Schema.define(version: 2020_02_26_131648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,19 @@ ActiveRecord::Schema.define(version: 2020_01_03_001505) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "haibanhoishoku_hormones", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "day"
+    t.integer "e2"
+    t.integer "fsh"
+    t.integer "lh"
+    t.integer "p4"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id", "day"], name: "index_haibanhoishoku_hormones_on_report_id_and_day", unique: true
+    t.index ["report_id"], name: "index_haibanhoishoku_hormones_on_report_id"
   end
 
   create_table "inspections", force: :cascade do |t|
@@ -387,6 +400,19 @@ ActiveRecord::Schema.define(version: 2020_01_03_001505) do
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
+  create_table "sairan_hormones", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "day"
+    t.integer "e2"
+    t.integer "fsh"
+    t.integer "lh"
+    t.integer "p4"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id", "day"], name: "index_sairan_hormones_on_report_id_and_day", unique: true
+    t.index ["report_id"], name: "index_sairan_hormones_on_report_id"
+  end
+
   create_table "sairan_medicines", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -397,6 +423,19 @@ ActiveRecord::Schema.define(version: 2020_01_03_001505) do
     t.string "scope"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shinsenhaiishoku_hormones", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "day"
+    t.integer "e2"
+    t.integer "fsh"
+    t.integer "lh"
+    t.integer "p4"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id", "day"], name: "index_shinsenhaiishoku_hormones_on_report_id_and_day", unique: true
+    t.index ["report_id"], name: "index_shinsenhaiishoku_hormones_on_report_id"
   end
 
   create_table "supplements", force: :cascade do |t|
@@ -462,6 +501,7 @@ ActiveRecord::Schema.define(version: 2020_01_03_001505) do
   add_foreign_key "clinics", "cities"
   add_foreign_key "comments", "reports"
   add_foreign_key "comments", "users"
+  add_foreign_key "haibanhoishoku_hormones", "reports"
   add_foreign_key "prefectures", "region1s"
   add_foreign_key "report_f_diseases", "f_diseases"
   add_foreign_key "report_f_diseases", "reports"
@@ -495,4 +535,6 @@ ActiveRecord::Schema.define(version: 2020_01_03_001505) do
   add_foreign_key "reports", "clinics"
   add_foreign_key "reports", "prefectures"
   add_foreign_key "reports", "users"
+  add_foreign_key "sairan_hormones", "reports"
+  add_foreign_key "shinsenhaiishoku_hormones", "reports"
 end

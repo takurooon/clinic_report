@@ -6,10 +6,10 @@
         <div class="row">
           <div class="col-3 p-3">
             <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1">
-              <% if @user.icon %>
-                <img src=<%= @user.icon %> class = "icon_image" %>
+              <% if @user.icon.blank? %>
+                <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1"><%= image_tag("home/noimage_eyecatch.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %></div>
               <% else %>
-                <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1"><%= image_tag("home/home_top_img.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %></div>
+                <img src=<%= @user.icon %> class = "icon_image" %>
               <% end %>
             </div>
           </div>
@@ -58,10 +58,10 @@
                   <div class="row">
                     <div class="col-4 pl-0 text-center">
                       <%= link_to user_path(report.user_id) do %>
-                        <% if @user.icon %>
-                          <img src=<%= @user.icon %> class = "icon_image" %>
+                        <% if @user.icon.blank? %>
+                          <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1"><%= image_tag("home/noimage_eyecatch.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %></div>
                         <% else %>
-                          <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1"><%= image_tag("home/home_top_img.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %></div>
+                          <img src=<%= @user.icon %> class = "icon_image" %>
                         <% end %>
                         <div class="mt-4 mb-2 d-sm d-md-none align-items-center text-center">
                           <p><%= report.user.name %></p>

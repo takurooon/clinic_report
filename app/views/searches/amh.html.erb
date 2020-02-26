@@ -32,7 +32,7 @@
                     <div class="col-4 pl-0 text-center">
                       <%= link_to user_path(report.user_id) do %>
                         <% if report.user.icon.blank? %>
-                          <%= image_tag("home/home_top_img.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %>
+                          <%= image_tag("home/noimage_eyecatch.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %>
                         <% else %>
                           <img src=<%= report.user.icon %> class = "icon_image">
                         <% end %>

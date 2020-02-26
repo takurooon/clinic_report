@@ -17,7 +17,8 @@
     </div>
   <% end %>
 
-  <div class="split-left-box left-box px-3">
+  <div class="split-left-box left-box px-3 pt-5 pb-5">
+
       <div class="form-group">
         <div class="label"><%= f.label :current_state, '投稿時点(現在)の状況', class: "question-matters" %></div>
         <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, { prompt: "選択してください" }, { class: "form-control" } %>
@@ -26,7 +27,7 @@
         </small>
       </div>
 
-      <div class="row">
+      <div class="row mt-0">
         <div class="col-md-6 px-1">
           <div class="form-group border border-danger rounded-lg p-3">
             <small class="text-danger float-right">※必須</small>
@@ -155,6 +156,7 @@
         </div>
       </div>
 
+
       <div class="form-group">
         <div class="label p-1"><%= f.label :year_of_treatment_end, 'このクリニックでの治療を終了した年を教えてください', class: "question-matters" %></div>
           <%= f.date_select :year_of_treatment_end, {
@@ -176,21 +178,23 @@
       </div>
 
       <script>
-        # $(function() {
-        #   ivf($('#report_treatment_type option:selected').val());
-        #   $("#report_treatment_type").change(function() {
-        #     ivf($(this).val());
-        #   });
-        # })
-        # function ivf(treatment_type) {
-        #   if (treatment_type === "1") {
-        #     $(".number_of_aih").show();
-        #     $(".advanced_fertility_treatment").show();
-        #   } else {
-        #     $(".number_of_aih").hide();
-        #     $(".advanced_fertility_treatment").hide();
-        #   }
-        # }
+        $(function() {
+          ivf($('#report_treatment_type option:selected').val());
+          $("#report_treatment_type").change(function() {
+            ivf($(this).val());
+          });
+        })
+        function ivf(treatment_type) {
+          if (treatment_type === "1") {
+            $(".number_of_aih").show();
+            $(".advanced_fertility_treatment1").show();
+            $(".advanced_fertility_treatment2").show();
+          } else {
+            $(".number_of_aih").hide();
+            $(".advanced_fertility_treatment1").hide();
+            $(".advanced_fertility_treatment2").hide();
+          }
+        }
       </script>
 
       <div class="form-group">
@@ -233,34 +237,36 @@
         </small>
       </div>
 
-      <div class="form-group">
-        <div class="label p-1"><%= f.label :number_of_aih, '体外・顕微受精にステップアップする前に人工授精は何回実施しましたか(このクリニック以外での人工授精も含む)', class: "question-matters" %></div>
-        <%= f.select :number_of_aih, Report.make_select_options_number_of_aih, { prompt: "選択してください" }, { class: "form-control" }  %>
-        <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
-        </small>
-      </div>
-    
-      <div class="form-group">
-        <div class="border rounded px-3 py-3">
-          <div class="label p-1"><%= f.label :inspection, '実施した検査を教えてください', class: "question-matters" %></div><br>
-          <%= f.collection_check_boxes(:inspection_ids, Inspection.all, :id, :name) do |b| %>
-            <div class="form-check form-check-inline">
-              <%= b.label class: "form-check-label" do %>
-                <%= b.check_box class: "form-check-input" %>
-                <%= b.text %>
-              <% end %>
-            </div>
-          <% end %>
+      <div class="advanced_fertility_treatment1">
+        <div class="form-group">
+          <div class="label p-1"><%= f.label :number_of_aih, '体外・顕微受精にステップアップする前に人工授精は何回実施しましたか(このクリニック以外での人工授精も含む)', class: "question-matters" %></div>
+          <%= f.select :number_of_aih, Report.make_select_options_number_of_aih, { prompt: "選択してください" }, { class: "form-control" }  %>
           <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
+              当てはまるものを選択してください。
           </small>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :special_inspection_supplementary_explanation, '受けた検査の補足説明', class: "question-matters" %></div>
-            <%= f.text_area :special_inspection_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)ERA検査を受けたタイミングや費用、受けた感想など" %>
+        </div>
+      
+        <div class="form-group">
+          <div class="border rounded px-3 py-3">
+            <div class="label p-1"><%= f.label :inspection, '実施した検査を教えてください', class: "question-matters" %></div><br>
+            <%= f.collection_check_boxes(:inspection_ids, Inspection.all, :id, :name) do |b| %>
+              <div class="form-check form-check-inline">
+                <%= b.label class: "form-check-label" do %>
+                  <%= b.check_box class: "form-check-input" %>
+                  <%= b.text %>
+                <% end %>
+              </div>
+            <% end %>
             <small id="poster-tip" class="form-text text-muted">
-              説明を書いてより詳しいレポートにしませんか
+              当てはまるものを選択してください。
             </small>
+            <div class="form-group">
+              <div class="label p-1"><%= f.label :special_inspection_supplementary_explanation, '受けた検査の補足説明', class: "question-matters" %></div>
+              <%= f.text_area :special_inspection_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)ERA検査を受けたタイミングや費用、受けた感想など" %>
+              <small id="poster-tip" class="form-text text-muted">
+                説明を書いてより詳しいレポートにしませんか
+              </small>
+            </div>
           </div>
         </div>
       </div>
@@ -304,8 +310,11 @@
             当てはまるものを選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :f_infertility_factor, "上記選択肢に無いので新たに不妊原因を追加作成する", class: "question-matters"  %></div>
-            <%= text_field_tag :fif_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :f_infertility_factor, "上記選択肢に無いので新たに不妊原因を追加する", class: "question-matters"  %></div>
+            <%= text_field_tag :fif_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+            <small id="poster-tip" class="form-text text-muted">
+              複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+            </small>
           </div>
         </div>
       </div>
@@ -325,8 +334,11 @@
             当てはまるものを選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :m_infertility_factor, "上記選択肢に無いので新たに不妊原因を追加作成する" , class: "question-matters" %></div>
-              <%= text_field_tag :mif_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :m_infertility_factor, "上記選択肢に無いので新たに不妊原因を追加する" , class: "question-matters" %></div>
+              <%= text_field_tag :mif_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+              <small id="poster-tip" class="form-text text-muted">
+                複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+              </small>
           </div>
         </div>
       </div>
@@ -346,8 +358,11 @@
             当てはまるものを選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :f_disease, "上記選択肢に無いので新たに疾患を追加作成する", class: "question-matters" %></div>
-            <%= text_field_tag :fd_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :f_disease, "上記選択肢に無いので新たに疾患を追加する", class: "question-matters" %></div>
+            <%= text_field_tag :fd_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+            <small id="poster-tip" class="form-text text-muted">
+              複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+            </small>
           </div>
         </div>
       </div>
@@ -367,8 +382,11 @@
             当てはまるものを選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :m_disease, "上記選択肢に無いので新たに疾患を追加作成する", class: "question-matters" %></div>
-            <%= text_field_tag :md_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :m_disease, "上記選択肢に無いので新たに疾患を追加する", class: "question-matters" %></div>
+            <%= text_field_tag :md_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+            <small id="poster-tip" class="form-text text-muted">
+              複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+            </small>
           </div>
         </div>
       </div>
@@ -388,8 +406,11 @@
             当てはまるものを選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :f_surgery, "上記選択肢に無いので新たに手術を追加作成する", class: "question-matters" %></div>
-            <%= text_field_tag :fs_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :f_surgery, "上記選択肢に無いので新たに手術を追加する", class: "question-matters" %></div>
+            <%= text_field_tag :fs_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+            <small id="poster-tip" class="form-text text-muted">
+              複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+            </small>
           </div>
         </div>
       </div>
@@ -409,9 +430,12 @@
             当てはまるものを選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :m_surgery, "上記選択肢に無いので新たに手術を追加作成する", class: "question-matters" %></div>
-            <%= text_field_tag :ms_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :m_surgery, "上記選択肢に無いので新たに手術を追加する", class: "question-matters" %></div>
+            <%= text_field_tag :ms_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
           </div>
+          <small id="poster-tip" class="form-text text-muted">
+            複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+          </small>
         </div>
       </div>
 
@@ -463,13 +487,16 @@
             当てはまるものを選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :sairan_medicine, "上記選択肢に無いので新たに薬剤を追加作成する", class: "question-matters" %></div>
-            <%= text_field_tag :sm_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :sairan_medicine, "上記選択肢に無いので新たに薬剤を追加する", class: "question-matters" %></div>
+            <%= text_field_tag :sm_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+            <small id="poster-tip" class="form-text text-muted">
+              複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+            </small>
           </div>
         </div>
       </div>
 
-      <div class="advanced_fertility_treatment">
+      <div class="advanced_fertility_treatment2">
         <div class="form-group border rounded px-3 py-3">
           <div class="label p-1"><%= f.label :use_of_anesthesia, '採卵時の麻酔の有無とその種類', class: "question-matters" %></div>
           <%= f.select :use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
@@ -484,6 +511,48 @@
             </small>
           </div>
         </div>
+        
+        <div class="form-group border rounded px-0 py-3">
+          <p class="px-3">最新の採卵周期における各ホルモン値を入力してください。</p>
+          <small id="poster-tip" class="form-text text-danger px-3">
+            Dayを選択して各種ホルモン値を半角数字で入力してください。ホルモン値が判明しているDayを若い順に上から詰めて入力してください。Day選択は上段の行のDayよりも大きくならないようご注意ください。全ての行を埋める必要はありません。
+          </small>
+          <small id="poster-tip" class="form-text text-muted px-3">
+            例: D3・D10しか覚えていない場合は1行目でD3を2行目でD10を選択し、各数値を入力する。あとは空白のまま。
+          </small><br>
+          <div class="m-0 mt-2 p-0">
+              <div class="hormone_box">
+                <input id="hormone01" type="checkbox">
+                <label for="hormone01"></label>
+                <div class="hormone_container">
+                  <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
+                  <table class="table table-sm table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Day</th>
+                        <th scope="col">E2</th>
+                        <th scope="col">FSH</th>
+                        <th scope="col">LH</th>
+                        <th scope="col">P4</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="day-column"><%= sairan_hormone.select :day, Report.make_select_sairan_hormone_day, { prompt: "選択" }, { class: "form-control text-muted" } %></th>
+                        <td class="hormon-column"><%= sairan_hormone.number_field :e2, { step: "0.1", class: "form-control" } %></td>
+                        <td class="hormon-column"><%= sairan_hormone.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
+                        <td class="hormon-column"><%= sairan_hormone.number_field :lh, { step: "0.1", class: "form-control" } %></td>
+                        <td class="hormon-column"><%= sairan_hormone.number_field :p4, { step: "0.1", class: "form-control" } %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <% end %>
+                </div>
+              </div>
+          </div>
+        </div>
+
+
         
         <div class="form-group">
           <div class="label p-1"><%= f.label :total_number_of_sairan, 'このクリニックでの全採卵「回」数', class: "question-matters" %></div>
@@ -575,16 +644,22 @@
         function init(embryo_stage) {
           if (embryo_stage === "1") {
             $(".early_embryo_grade").show();
+            $(".shinsenhaiishoku-hormone").show();
             $(".blastocyst_grade1").hide();
             $(".blastocyst_grade2").hide();
+            $(".haibanhoishoku-hormone").hide();
           } else if (embryo_stage === "2") {
+            $(".early_embryo_grade").hide();
+            $(".shinsenhaiishoku-hormone").hide();
             $(".blastocyst_grade1").show();
             $(".blastocyst_grade2").show();
-            $(".early_embryo_grade").hide();
+            $(".haibanhoishoku-hormone").show();
           } else {
             $(".early_embryo_grade").hide();
+            $(".shinsenhaiishoku-hormone").hide();
             $(".blastocyst_grade1").hide();
             $(".blastocyst_grade2").hide();
+            $(".haibanhoishoku-hormone").hide();
           }
         }
         </script>
@@ -609,6 +684,46 @@
             <small id="poster-tip" class="form-text text-muted">
               説明を書いてより詳しいレポートにしませんか
             </small>
+          </div>
+        </div>
+
+        <div class="form-group border rounded px-0 py-3 shinsenhaiishoku-hormone">
+          <p class="px-3">最新の新鮮胚移植周期における各ホルモン値を入力してください。</p>
+          <small id="poster-tip" class="form-text text-danger px-3">
+            Dayを選択して各種ホルモン値を半角数字で入力してください。ホルモン値が判明しているDayを若い順に上から詰めて入力してください。Day選択は上段の行のDayよりも大きくならないようご注意ください。全ての行を埋める必要はありません。
+          </small>
+          <small id="poster-tip" class="form-text text-muted px-3">
+            例: D3・D10しか覚えていない場合は1行目でD3を2行目でD10を選択し、各数値を入力する。あとは空白のまま。
+          </small><br>
+          <div class="m-0 mt-2 p-0">
+            <div class="shinsenhai_box">
+              <input id="shinsenhai01" type="checkbox">
+              <label for="shinsenhai01"></label>
+              <div class="shinsenhai_container">
+                <%= f.fields_for :shinsenhaiishoku_hormones do |shinsenhaiishoku_hormone| %>
+                <table class="table table-sm table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Day</th>
+                      <th scope="col">E2</th>
+                      <th scope="col">FSH</th>
+                      <th scope="col">LH</th>
+                      <th scope="col">P4</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row" class="day-column"><%= shinsenhaiishoku_hormone.select :day, Report.make_select_shinsenhaiishoku_hormone_day, { prompt: "選択" }, { class: "form-control text-muted" } %></th>
+                      <td class="hormon-column"><%= shinsenhaiishoku_hormone.number_field :e2, { step: "0.1", class: "form-control" } %></td>
+                      <td class="hormon-column"><%= shinsenhaiishoku_hormone.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
+                      <td class="hormon-column"><%= shinsenhaiishoku_hormone.number_field :lh, { step: "0.1", class: "form-control" } %></td>
+                      <td class="hormon-column"><%= shinsenhaiishoku_hormone.number_field :p4, { step: "0.1", class: "form-control" } %></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -639,6 +754,46 @@
             <small id="poster-tip" class="form-text text-muted">
               説明を書いてより詳しいレポートにしませんか
             </small>
+          </div>
+        </div>
+
+        <div class="form-group border rounded px-0 py-3 haibanhoishoku-hormone">
+          <p class="px-3">最新の胚盤胞移植周期における各ホルモン値を入力してください。</p>
+          <small id="poster-tip" class="form-text text-danger px-3">
+            Dayを選択して各種ホルモン値を半角数字で入力してください。ホルモン値が判明しているDayを若い順に上から詰めて入力してください。Day選択は上段の行のDayよりも大きくならないようご注意ください。全ての行を埋める必要はありません。
+          </small>
+          <small id="poster-tip" class="form-text text-muted px-3">
+            例: D3・D10しか覚えていない場合は1行目でD3を2行目でD10を選択し、各数値を入力する。あとは空白のまま。
+          </small><br>
+          <div class="m-0 mt-2 p-0">
+            <div class="haibanho_box">
+              <input id="haibanho01" type="checkbox">
+              <label for="haibanho01"></label>
+              <div class="haibanho_container">
+                <%= f.fields_for :haibanhoishoku_hormones do |haibanhoishoku_hormone| %>
+                <table class="table table-sm table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Day</th>
+                      <th scope="col">E2</th>
+                      <th scope="col">FSH</th>
+                      <th scope="col">LH</th>
+                      <th scope="col">P4</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row" class="day-column"><%= haibanhoishoku_hormone.select :day, Report.make_select_haibanhoishoku_hormone_day, { prompt: "選択" }, { class: "form-control text-muted" } %></th>
+                      <td class="hormon-column"><%= haibanhoishoku_hormone.number_field :e2, { step: "0.1", class: "form-control" } %></td>
+                      <td class="hormon-column"><%= haibanhoishoku_hormone.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
+                      <td class="hormon-column"><%= haibanhoishoku_hormone.number_field :lh, { step: "0.1", class: "form-control" } %></td>
+                      <td class="hormon-column"><%= haibanhoishoku_hormone.number_field :p4, { step: "0.1", class: "form-control" } %></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -710,8 +865,11 @@
               当てはまるものを選択してください。
             </small>
             <div class="form-group">
-              <div class="label p-1"><%= f.label :transfer_medicine, "上記選択肢に無いので新たに薬剤を追加作成する", class: "question-matters" %></div>
-              <%= text_field_tag :tm_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+              <div class="label p-1"><%= f.label :transfer_medicine, "上記選択肢に無いので新たに薬剤を追加する", class: "question-matters" %></div>
+              <%= text_field_tag :tm_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+              <small id="poster-tip" class="form-text text-muted">
+                複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+              </small>
             </div>
           </div>
         </div>
@@ -731,8 +889,11 @@
               当てはまるものを選択してください。
             </small>
             <div class="form-group">
-              <div class="label p-1"><%= f.label :transfer_option, "上記選択肢に無いので新たに移植オプションを追加作成する", class: "question-matters" %></div>
-              <%= text_field_tag :to_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+              <div class="label p-1"><%= f.label :transfer_option, "上記選択肢に無いので新たに移植オプションを追加する", class: "question-matters" %></div>
+              <%= text_field_tag :to_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+              <small id="poster-tip" class="form-text text-muted">
+                複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+              </small>
             </div>
           </div>
         </div>
@@ -793,8 +954,11 @@
             当てはまるものを選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :other_effort, "上記選択肢に無いので新たに治療以外に行ったことを追加作成する", class: "question-matters" %></div>
-            <%= text_field_tag :oe_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :other_effort, "上記選択肢に無いので新たに治療以外に行ったことを追加する", class: "question-matters" %></div>
+            <%= text_field_tag :oe_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+            <small id="poster-tip" class="form-text text-muted">
+              複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+            </small>
           </div>
         </div>
       </div>
@@ -814,8 +978,11 @@
             妊娠に至った周期に服用していたサプリがあれば全て選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :supplement, "上記選択肢に無いので新たにサプリ名を追加作成する", class: "question-matters" %></div>
-            <%= text_field_tag :supplement_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :supplement, "上記選択肢に無いので新たにサプリ名を追加する", class: "question-matters" %></div>
+            <%= text_field_tag :supplement_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+            <small id="poster-tip" class="form-text text-muted">
+              複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+            </small>
           </div>
           <div class="form-group">
             <div class="label p-1"><%= f.label :supplement_supplementary_explanation, 'サプリについての補足説明', class: "question-matters" %></div>
@@ -921,13 +1088,19 @@
             <small id="poster-tip" class="form-text text-muted"><%= f.check_box :annual_income_status, {}, "hide", "show" %>非公開</small>
           </div>
         </div>
-        
+
+        <script>
+          function disp(url){
+            window.open(url, "window_name", "width=600,height=500,scrollbars=yes");
+          }
+        </script>
+
         <div class="work-style-item col-6">
           <div class="form-group">
             <div class="label p-1"><%= f.label :industry_type, '業種', class: "question-matters" %></div>
             <%= f.select :industry_type, Report::HASH_INDUSTRY_TYPE.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
             <small id="poster-tip" class="form-text text-muted">
-                一番当てはまるものを選択してください。
+                参考→&nbsp;<a href="http://www.pref.mie.lg.jp/common/content/000151581.pdf" target="window_name" onClick="disp('http://www.pref.mie.lg.jp/common/content/000151581.pdf')">業種コード表(日本標準産業分類)</a>
             </small>
           </div>
           <div class="form-group">
@@ -984,8 +1157,11 @@
             開示範囲を選択してください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :scope_of_disclosure, "開示範囲を追加作成する", class: "question-matters" %></div>
-            <%= text_field_tag :sod_scope, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
+            <div class="label p-1"><%= f.label :scope_of_disclosure, "開示範囲を追加する", class: "question-matters" %></div>
+            <%= text_field_tag :sod_scope, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+            <small id="poster-tip" class="form-text text-muted">
+              複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+            </small>
           </div>
         </div>
       </div>
@@ -1008,30 +1184,29 @@
           <% end %>
         </div>
         <div class="form-group">
-          <div class="label p-1"><%= f.label :name, "新しくタグを追加作成する", class: "question-matters" %></div>
-          <%= text_field_tag :tag_name, "", class: "form-control", placeholder: "複数→半角カンマで区切る" %>
-          <small id="poster-tip" class="form-text text-muted">1タグ最大15文字</small>
+          <div class="label p-1"><%= f.label :name, "新しくタグを追加する", class: "question-matters" %></div>
+          <%= text_field_tag :tag_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
+          <small id="poster-tip" class="form-text text-muted">
+          1タグ最大15文字まで。複数ある場合は「半角カンマ」で区切ってください。前後に空白などを含めないようご注意下さい。
+          </small>
         </div>
       </div>
 
-      <% if false %>
-        <div class="mt-5">
-          <div class="draft-published-btn">
-            <p><strong>下書き</strong> か、<strong>公開</strong>かを選択して<span style="color:#03A9F4"><strong>青ボタン</strong></span>を押してください</p>
-            <%= radio_button_tag :status2, :nonreleased %>下書き
-            <%= radio_button_tag :status2, :released %>公開
-          </div>
-          <%= f.submit '保存 / 投稿確認', class: 'btn btn-raised btn-info w-50 mx-auto d-block' %>
-            <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
-              クリックすると確認画面に遷移します
-            </small>
+      <div class="mt-5">
+        <div class="draft-published-btn">
+          <p><strong>下書き</strong> か、<strong>公開</strong>かを選択して<span style="color:#03A9F4"><strong>青ボタン</strong></span>を押してください</p>
+          <%= radio_button_tag :status2, :nonreleased %>下書き
+          <%= radio_button_tag :status2, :released %>公開
         </div>
-      <% end %>
-
+        <%= f.submit '保存 / 投稿確認', class: 'btn btn-raised btn-info w-50 mx-auto d-block' %>
+          <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
+            クリックすると確認画面に遷移します
+          </small>
+      </div>
 
   </div>
 
-  <div class="split-right-box right-box px-3">
+  <div class="split-right-box right-box px-3 pt-5 pb-5">
       <div class="form-group">
         <div><%= f.label :title, 'あなたの治療レポートのタイトル', class: "question-matters" %></div>
         <%= f.text_field :title, class: "form-control", placeholder: "レポートのタイトル" %>
@@ -1043,7 +1218,7 @@
         <div class="pb-2"><%= f.label :content, '妊娠した/治療を断念したクリニックの詳しい治療内容を書き残してください', class: "question-matters" %></div>
         <%= f.rich_text_area :content, placeholder: "治療内容、数値、費用、CLの雰囲気や感想など(文字制限無し)" %>
         <small id="poster-tip" class="form-text text-muted">
-          先に左の質問を答えることで、より詳しいレポートを作成することができます。
+          左の質問を答えてから、または質問を見ながら綴ることで、より詳しいあなた独自のレポートを作成することができます。
         </small>
       </div>
 

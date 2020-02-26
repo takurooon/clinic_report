@@ -255,6 +255,16 @@
           <%= f.hidden_field :use_of_anesthesia %>
           <p class="answer"><%= @report.str_use_of_anesthesia %></p>
         </div>
+
+        <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
+          <%= sairan_hormone.text_field :day %>
+          <%= sairan_hormone.text_field :e2 %>
+          <%= sairan_hormone.text_field :fsh %>
+          <%= sairan_hormone.text_field :lh %>
+          <%= sairan_hormone.text_field :p4 %>
+        <% end %>
+
+
         <div class="form-group">
           <%= f.label :total_number_of_sairan, 'このクリニックでの全採卵「回」数' %>
           <%= f.hidden_field :total_number_of_sairan %>

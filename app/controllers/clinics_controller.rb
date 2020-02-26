@@ -9,4 +9,7 @@ class ClinicsController < ApplicationController
       @clinics = Clinic.where(city_id: params[:city_id])
       render partial: 'address/clinics'
   end
+
+  def index
+  end
 end

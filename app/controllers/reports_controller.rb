@@ -30,6 +30,37 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
     @all_tag_list = Tag.all.pluck(:tag_name)
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.shinsenhaiishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    
   end
 
   def confirm
@@ -284,6 +315,7 @@ class ReportsController < ApplicationController
       return
     end
     @tag_list = @report.tags.pluck(:tag_name).join(",")
+    @report.sairan_hormones.build
   end
 
   def release
@@ -615,7 +647,10 @@ class ReportsController < ApplicationController
         other_effort_ids: [],
         supplement_ids: [],
         scope_of_disclosure_ids: [],
-        tag_ids: []
+        tag_ids: [],
+        sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
+        shinsenhaiishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
+        haibanhoishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
       )
     end
 
@@ -699,6 +734,9 @@ class ReportsController < ApplicationController
         :status,
         :annual_income_status,
         :household_net_income_status,
+        sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
+        shinsenhaiishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
+        haibanhoishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
       )
     end
 end
