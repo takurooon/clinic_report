@@ -325,6 +325,16 @@
           <%= f.hidden_field :early_embryo_grade %>
           <p class="answer"><%= @report.str_early_embryo_grade %></p>
         </div>
+
+        <%= f.fields_for :shokihaiishoku_hormones do |shokihaiishoku_hormone| %>
+          <%= shokihaiishoku_hormone.text_field :et %>
+          <%= shokihaiishoku_hormone.text_field :e2 %>
+          <%= shokihaiishoku_hormone.text_field :fsh %>
+          <%= shokihaiishoku_hormone.text_field :lh %>
+          <%= shokihaiishoku_hormone.text_field :p4 %>
+          <%= shokihaiishoku_hormone.text_field :hcg %>
+        <% end %>
+
         <div class="form-group">
           <%= f.label :blastocyst_grade1, '胚盤胞以上のグレード' %>
           <%= f.hidden_field :blastocyst_grade1 %>
@@ -335,6 +345,16 @@
           <%= f.hidden_field :blastocyst_grade2 %>
           <p class="answer"><%= @report.str_blastocyst_grade2 %></p>
         </div>
+
+        <%= f.fields_for :haibanhoishoku_hormones do |haibanhoishoku_hormone| %>
+          <%= haibanhoishoku_hormone.text_field :bt %>
+          <%= haibanhoishoku_hormone.text_field :e2 %>
+          <%= haibanhoishoku_hormone.text_field :fsh %>
+          <%= haibanhoishoku_hormone.text_field :lh %>
+          <%= haibanhoishoku_hormone.text_field :p4 %>
+          <%= haibanhoishoku_hormone.text_field :hcg %>
+        <% end %>
+
         <div class="form-group">
           <%= f.label :transfer_medicine, '移植周期で使用した薬剤' %><br>
           <%= f.hidden_field :transfer_medicine_ids, multiple: true, value: nil %>

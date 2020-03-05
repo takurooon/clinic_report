@@ -1,6 +1,7 @@
 class Prefecture < ApplicationRecord
   has_many :cities
   has_many :reports
+  has_many :clinics
   belongs_to :region1
 end
 

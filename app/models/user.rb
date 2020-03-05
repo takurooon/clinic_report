@@ -17,7 +17,6 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_reports, through: :likes, source: :report
 
-
   mount_uploader :icon, ImageUploader
 
   enum gender: { female: 0, male: 1 }

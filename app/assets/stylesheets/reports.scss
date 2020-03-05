@@ -304,7 +304,6 @@
 	transition: all 0.5s;
 }
 
-
 // 採卵ホルモン数値選択テーブルのカラム幅(day,e2...)
 .day-column {
   width: 20%;
@@ -312,6 +311,15 @@
 
 .hormone-column {
   width: 20%;
+}
+
+// 移植数値選択テーブルのカラム幅(day,e2...)
+.et-bt-column {
+  width: 20%;
+}
+
+.et-bt-hormone-column {
+  width: 16%;
 }
 
 
@@ -365,7 +373,7 @@
 	transition: all 0.5s;
 }
 .hormone_box input:checked + label {
-	/* display: none ; 閉じるボタンを消す場合解放 */
+	/* display: none ;閉じるボタンを消す場合解放 */
 }
 .hormone_box input:checked + label:after {
 	font-family: FontAwesome;
@@ -378,15 +386,15 @@
 }
 
 
-// 新鮮胚移植ホルモン値追加アコーディオン
-.shinsenhai_box *, .shinsenhai_box *:before, .shinsenhai_box *:after {
+// 初期胚移植ホルモン値追加アコーディオン
+.shokihai_box *, .shokihai_box *:before, .shokihai_box *:after {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
-.shinsenhai_box {
+.shokihai_box {
 	position: relative;
 }
-.shinsenhai_box label {
+.shokihai_box label {
 	position: absolute;
 	z-index: 1;
 	bottom: 0;
@@ -397,10 +405,10 @@
 	/* 以下グラデーションは背景を自身のサイトに合わせて設定してください */
 	background: linear-gradient(to bottom, rgba(250, 252, 252, 0) 0%, rgba(250, 252, 252, 0.95) 90%);
 }
-.shinsenhai_box input:checked + label {
+.shokihai_box input:checked + label {
 	background: inherit; /* 開いた時にグラデーションを消す */
 }
-.shinsenhai_box label:after {
+.shokihai_box label:after {
 	line-height: 2.5rem;
 	position: absolute;
 	z-index: 2;
@@ -415,26 +423,26 @@
 	border-radius: 20px;
 	background-color: rgba(27, 37, 56, 1);
 }
-.shinsenhai_box input {
+.shokihai_box input {
   // display: none;
   border: none;
   background: none;
   -webkit-appearance: none;
 }
 
-.shinsenhai_box .shinsenhai_container {
+.shokihai_box .shokihai_container {
 	overflow: hidden;
 	height: 450px; /* 開く前に見えている部分の高さ */
 	transition: all 0.5s;
 }
-.shinsenhai_box input:checked + label {
+.shokihai_box input:checked + label {
 	/* display: none ; 閉じるボタンを消す場合解放 */
 }
-.shinsenhai_box input:checked + label:after {
+.shokihai_box input:checked + label:after {
 	font-family: FontAwesome;
 	content: '\f139'' 閉じる';
 }
-.shinsenhai_box input:checked ~ .shinsenhai_container {
+.shokihai_box input:checked ~ .shokihai_container {
 	height: auto;
 	padding-bottom: 80px; /* 閉じるボタンのbottomからの位置 */
 	transition: all 0.5s;
@@ -501,4 +509,30 @@
 	height: auto;
 	padding-bottom: 80px; /* 閉じるボタンのbottomからの位置 */
 	transition: all 0.5s;
+}
+
+// ホルモン値のラベル(day, e2, fsh, lh, p4)
+.hormon-label {
+	background-color: #E8FEFC;
+}
+
+// 転院歴テーブルのラベル&カラム
+.itinerary-of-clinic-label {
+  background-color: #E8FEFC;
+}
+
+.itinerary-of-clinic-col1 {
+	width: 20%;
+}
+
+.itinerary-of-clinic-col2 {
+	width: 20%;
+}
+
+.itinerary-of-clinic-col3 {
+	width: 40%;
+}
+
+.itinerary-of-clinic-col4 {
+	width: 20%;
 }

@@ -56,6 +56,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :cost
       t.integer :all_cost
       t.integer :credit_card_validity
+      t.integer :creditcards_can_be_used_from_more_than
       t.integer :average_waiting_time
       t.integer :reservation_method
       t.integer :period_of_time_spent_traveling

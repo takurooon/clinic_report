@@ -1,10 +1,10 @@
 # == Schema Information
 #
-# Table name: haibanhoishoku_hormones
+# Table name: shokihaiishoku_hormones
 #
 #  id         :bigint           not null, primary key
-#  bt         :integer
 #  e2         :integer
+#  et         :integer
 #  fsh        :integer
 #  hcg        :integer
 #  lh         :integer
@@ -15,8 +15,8 @@
 #
 # Indexes
 #
-#  index_haibanhoishoku_hormones_on_report_id         (report_id)
-#  index_haibanhoishoku_hormones_on_report_id_and_bt  (report_id,bt) UNIQUE
+#  index_shokihaiishoku_hormones_on_report_id         (report_id)
+#  index_shokihaiishoku_hormones_on_report_id_and_et  (report_id,et) UNIQUE
 #
 # Foreign Keys
 #
@@ -27,7 +27,7 @@
 
 one:
   report: one
-  bt: 1
+  et: 1
   e2: 1
   fsh: 1
   lh: 1
@@ -35,7 +35,7 @@ one:
 
 two:
   report: two
-  bt: 1
+  et: 1
   e2: 1
   fsh: 1
   lh: 1

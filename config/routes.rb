@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get "cities_select" => "clinics#cities_select"
   get "clinics_select" => "clinics#clinics_select"
   get "address_cities_select" => "reports#address_cities_select"
+  get "clinic_select" => "clinics#clinic_select"
   
   resources :comments, only: %i[create destroy]
   # resources :clinic_reviews, only: %i[index]

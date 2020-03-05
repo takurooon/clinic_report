@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_131648) do
+ActiveRecord::Schema.define(version: 2020_03_04_152057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,9 @@ ActiveRecord::Schema.define(version: 2020_02_26_131648) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "city_id", null: false
+    t.bigint "prefecture_id", null: false
     t.index ["city_id"], name: "index_clinics_on_city_id"
+    t.index ["prefecture_id"], name: "index_clinics_on_prefecture_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -121,14 +123,15 @@ ActiveRecord::Schema.define(version: 2020_02_26_131648) do
 
   create_table "haibanhoishoku_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "day"
+    t.integer "bt"
     t.integer "e2"
     t.integer "fsh"
     t.integer "lh"
     t.integer "p4"
+    t.integer "hcg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["report_id", "day"], name: "index_haibanhoishoku_hormones_on_report_id_and_day", unique: true
+    t.index ["report_id", "bt"], name: "index_haibanhoishoku_hormones_on_report_id_and_bt", unique: true
     t.index ["report_id"], name: "index_haibanhoishoku_hormones_on_report_id"
   end
 
@@ -136,6 +139,15 @@ ActiveRecord::Schema.define(version: 2020_02_26_131648) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "itinerary_of_choosing_a_clinics", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "clinic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clinic_id"], name: "index_itinerary_of_choosing_a_clinics_on_clinic_id"
+    t.index ["report_id"], name: "index_itinerary_of_choosing_a_clinics_on_report_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -365,6 +377,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_131648) do
     t.integer "cost"
     t.integer "all_cost"
     t.integer "credit_card_validity"
+    t.integer "creditcards_can_be_used_from_more_than"
     t.integer "average_waiting_time"
     t.integer "reservation_method"
     t.integer "period_of_time_spent_traveling"
@@ -425,17 +438,18 @@ ActiveRecord::Schema.define(version: 2020_02_26_131648) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "shinsenhaiishoku_hormones", force: :cascade do |t|
+  create_table "shokihaiishoku_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "day"
+    t.integer "et"
     t.integer "e2"
     t.integer "fsh"
     t.integer "lh"
     t.integer "p4"
+    t.integer "hcg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["report_id", "day"], name: "index_shinsenhaiishoku_hormones_on_report_id_and_day", unique: true
-    t.index ["report_id"], name: "index_shinsenhaiishoku_hormones_on_report_id"
+    t.index ["report_id", "et"], name: "index_shokihaiishoku_hormones_on_report_id_and_et", unique: true
+    t.index ["report_id"], name: "index_shokihaiishoku_hormones_on_report_id"
   end
 
   create_table "supplements", force: :cascade do |t|
@@ -499,9 +513,12 @@ ActiveRecord::Schema.define(version: 2020_02_26_131648) do
   add_foreign_key "clinic_reviews", "clinics"
   add_foreign_key "clinic_reviews", "users"
   add_foreign_key "clinics", "cities"
+  add_foreign_key "clinics", "prefectures"
   add_foreign_key "comments", "reports"
   add_foreign_key "comments", "users"
   add_foreign_key "haibanhoishoku_hormones", "reports"
+  add_foreign_key "itinerary_of_choosing_a_clinics", "clinics"
+  add_foreign_key "itinerary_of_choosing_a_clinics", "reports"
   add_foreign_key "prefectures", "region1s"
   add_foreign_key "report_f_diseases", "f_diseases"
   add_foreign_key "report_f_diseases", "reports"
@@ -536,5 +553,5 @@ ActiveRecord::Schema.define(version: 2020_02_26_131648) do
   add_foreign_key "reports", "prefectures"
   add_foreign_key "reports", "users"
   add_foreign_key "sairan_hormones", "reports"
-  add_foreign_key "shinsenhaiishoku_hormones", "reports"
+  add_foreign_key "shokihaiishoku_hormones", "reports"
 end

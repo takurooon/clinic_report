@@ -123,9 +123,9 @@
           </script>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
-            <div class="label p-1"><%= f.label :number_of_clinics, 'このクリニックは何院目？', class: "question-matters" %></div>
+            <div class="label p-1"><%= f.label :number_of_clinics, 'このクリニックは何院目ですか', class: "question-matters" %></div>
             <%= f.select :number_of_clinics, Report.make_select_options_number_of_clinics, { prompt: "選択してください" }, { class: "form-control" } %>
             <small id="poster-tip" class="form-text text-muted">
                 治療を開始してから何院目の医療機関か選択してください。
@@ -133,20 +133,139 @@
           </div>
         </div>
 
-        <div class="col-md-6">
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :clinic_selection_criteria, 'このクリニックを選んだ理由', class: "question-matters" %></div>
+        <div class="col-12 form-group border rounded px-1 py-3 itinerary-of-clinic">
+          <p class="px-3">これまでの転院歴を教えてください。</p>
+          <small id="poster-tip" class="form-text text-muted px-2 text-right">
+            <span style="color:red">※</span><bold>CL</bold> = 「クリニック」の略
+          </small>
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col1 text-center align-middle"><small>転院順</small></th>
+                <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col2 text-center align-middle"><small>都道府県選択</small></th>
+                <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col3 text-center align-middle"><small>クリニック選択</small></th>
+                <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col4 text-center align-middle"><small>転出時期</small></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= f.fields_for :itinerary_of_choosing_a_clinics do |clinic| %>
+                <tr>
+                  <td class="itinerary-of-clinic-label text-center align-middle"><%= "#{(clinic.index + 1)}"%>つ<span style="color:red"><bold>前</bold></span>のCL</td>
+                  <td class="text-center align-middle">
+                    <%= select_tag :clinic_prefecture,
+                                    options_from_collection_for_select(Prefecture.all, :id, :name),
+                                    {
+                                      prompt: "選択",
+                                      class: "form-control",
+                                      id: "clinic_prefecture_#{clinic.index}"
+                                    }
+                    %>
+                  </td>
+                  <td class="text-center align-middle"><%= clinic.select :clinic_id, {}, { prompt: "選択"}, { id: "itinerary_of_clinic_#{clinic.index}", class: "form-control" } %></td>
+                  <td class="text-center align-middle"></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <script>
+          $(function() {
+            $('#clinic_prefecture_0').change(function() {
+              $.ajax('/clinic_select',
+                {
+                  type: 'get',
+                  data: { prefecture_id: $(this).val() },
+                }
+              )
+              .done(function(data) {
+                $('#itinerary_of_clinic_0').html(data) 
+              })
+              .fail(function() {
+                window.alert('正しい結果を得られませんでした。');
+              });
+            });
+          });
+          
+          $(function() {
+            $('#clinic_prefecture_1').change(function() {
+              $.ajax('/clinic_select',
+                {
+                  type: 'get',
+                  data: { prefecture_id: $(this).val() },
+                }
+              )
+              .done(function(data) {
+                $('#itinerary_of_clinic_1').html(data) 
+              })
+              .fail(function() {
+                window.alert('正しい結果を得られませんでした。');
+              });
+            });
+          });
+
+          $(function() {
+            $('#clinic_prefecture_2').change(function() {
+              $.ajax('/clinic_select',
+                {
+                  type: 'get',
+                  data: { prefecture_id: $(this).val() },
+                }
+              )
+              .done(function(data) {
+                $('#itinerary_of_clinic_2').html(data) 
+              })
+              .fail(function() {
+                window.alert('正しい結果を得られませんでした。');
+              });
+            });
+          });
+
+          $(function() {
+            $('#clinic_prefecture_3').change(function() {
+              $.ajax('/clinic_select',
+                {
+                  type: 'get',
+                  data: { prefecture_id: $(this).val() },
+                }
+              )
+              .done(function(data) {
+                $('#itinerary_of_clinic_3').html(data) 
+              })
+              .fail(function() {
+                window.alert('正しい結果を得られませんでした。');
+              });
+            });
+          });
+
+          $(function() {
+            $('#clinic_prefecture_4').change(function() {
+              $.ajax('/clinic_select',
+                {
+                  type: 'get',
+                  data: { prefecture_id: $(this).val() },
+                }
+              )
+              .done(function(data) {
+                $('#itinerary_of_clinic_4').html(data) 
+              })
+              .fail(function() {
+                window.alert('正しい結果を得られませんでした。');
+              });
+            });
+          });
+          </script>
+
+        </div>
+
+        <div class="col-md-12 border rounded px-2 mt-5">
+          <div class="form-group pt-0 mt-4 px-1">
+            <div class="label"><%= f.label :clinic_selection_criteria, 'このクリニックを選んだ理由', class: "question-matters" %></div>
             <%= f.select :clinic_selection_criteria, Report::HASH_CLINIC_SELECTION_CRITERIA.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
             <small id="poster-tip" class="form-text text-muted">
                 当てはまるものを選択してください。
             </small>
           </div> 
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
+          <div class="form-group px-1">
             <div class="label p-1"><%= f.label :reasons_for_choosing_this_clinic, 'このクリニックを選んだ理由について更に詳しく(自由記述)', class: "question-matters" %></div>
             <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):信頼する〇〇医師がいたから/ 〇〇治療を実施できるクリニックだったから など" %>
             <small id="poster-tip" class="form-text text-muted">
@@ -155,7 +274,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="form-group">
         <div class="label p-1"><%= f.label :year_of_treatment_end, 'このクリニックでの治療を終了した年を教えてください', class: "question-matters" %></div>
@@ -526,14 +644,14 @@
                 <label for="hormone01"></label>
                 <div class="hormone_container">
                   <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
-                  <table class="table table-sm table-bordered">
+                  <table class="table table-sm table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th scope="col">Day</th>
-                        <th scope="col">E2</th>
-                        <th scope="col">FSH</th>
-                        <th scope="col">LH</th>
-                        <th scope="col">P4</th>
+                        <th scope="col" class="hormon-label">Day</th>
+                        <th scope="col" class="hormon-label">E2</th>
+                        <th scope="col" class="hormon-label">FSH</th>
+                        <th scope="col" class="hormon-label">LH</th>
+                        <th scope="col" class="hormon-label">P4</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -644,19 +762,19 @@
         function init(embryo_stage) {
           if (embryo_stage === "1") {
             $(".early_embryo_grade").show();
-            $(".shinsenhaiishoku-hormone").show();
+            $(".shokihaiishoku-hormone").show();
             $(".blastocyst_grade1").hide();
             $(".blastocyst_grade2").hide();
             $(".haibanhoishoku-hormone").hide();
           } else if (embryo_stage === "2") {
             $(".early_embryo_grade").hide();
-            $(".shinsenhaiishoku-hormone").hide();
+            $(".shokihaiishoku-hormone").hide();
             $(".blastocyst_grade1").show();
             $(".blastocyst_grade2").show();
             $(".haibanhoishoku-hormone").show();
           } else {
             $(".early_embryo_grade").hide();
-            $(".shinsenhaiishoku-hormone").hide();
+            $(".shokihaiishoku-hormone").hide();
             $(".blastocyst_grade1").hide();
             $(".blastocyst_grade2").hide();
             $(".haibanhoishoku-hormone").hide();
@@ -687,8 +805,8 @@
           </div>
         </div>
 
-        <div class="form-group border rounded px-0 py-3 shinsenhaiishoku-hormone">
-          <p class="px-3">最新の新鮮胚移植周期における各ホルモン値を入力してください。</p>
+        <div class="form-group border rounded px-0 py-3 shokihaiishoku-hormone">
+          <p class="px-3">最新の初期胚移植周期における各ホルモン値を入力してください。</p>
           <small id="poster-tip" class="form-text text-danger px-3">
             Dayを選択して各種ホルモン値を半角数字で入力してください。ホルモン値が判明しているDayを若い順に上から詰めて入力してください。Day選択は上段の行のDayよりも大きくならないようご注意ください。全ての行を埋める必要はありません。
           </small>
@@ -696,28 +814,30 @@
             例: D3・D10しか覚えていない場合は1行目でD3を2行目でD10を選択し、各数値を入力する。あとは空白のまま。
           </small><br>
           <div class="m-0 mt-2 p-0">
-            <div class="shinsenhai_box">
-              <input id="shinsenhai01" type="checkbox">
-              <label for="shinsenhai01"></label>
-              <div class="shinsenhai_container">
-                <%= f.fields_for :shinsenhaiishoku_hormones do |shinsenhaiishoku_hormone| %>
-                <table class="table table-sm table-bordered">
+            <div class="shokihai_box">
+              <input id="shokihai01" type="checkbox">
+              <label for="shokihai01"></label>
+              <div class="shokihai_container">
+                <%= f.fields_for :shokihaiishoku_hormones do |shokihaiishoku_hormone| %>
+                <table class="table table-sm table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">Day</th>
-                      <th scope="col">E2</th>
-                      <th scope="col">FSH</th>
-                      <th scope="col">LH</th>
-                      <th scope="col">P4</th>
+                      <th scope="col" class="hormon-label">ET</th>
+                      <th scope="col" class="hormon-label">E2</th>
+                      <th scope="col" class="hormon-label">FSH</th>
+                      <th scope="col" class="hormon-label">LH</th>
+                      <th scope="col" class="hormon-label">P4</th>
+                      <th scope="col" class="hormon-label">hCG</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row" class="day-column"><%= shinsenhaiishoku_hormone.select :day, Report.make_select_shinsenhaiishoku_hormone_day, { prompt: "選択" }, { class: "form-control text-muted" } %></th>
-                      <td class="hormon-column"><%= shinsenhaiishoku_hormone.number_field :e2, { step: "0.1", class: "form-control" } %></td>
-                      <td class="hormon-column"><%= shinsenhaiishoku_hormone.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
-                      <td class="hormon-column"><%= shinsenhaiishoku_hormone.number_field :lh, { step: "0.1", class: "form-control" } %></td>
-                      <td class="hormon-column"><%= shinsenhaiishoku_hormone.number_field :p4, { step: "0.1", class: "form-control" } %></td>
+                      <th scope="row" class="et-bt-column"><%= shokihaiishoku_hormone.select :et, Report.make_select_shokihaiishoku_hormone_day, { prompt: "選択" }, { class: "form-control text-muted" } %></th>
+                      <td class="et-bt-hormone-column"><%= shokihaiishoku_hormone.number_field :e2, { step: "0.1", class: "form-control" } %></td>
+                      <td class="et-bt-hormone-column"><%= shokihaiishoku_hormone.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
+                      <td class="et-bt-hormone-column"><%= shokihaiishoku_hormone.number_field :lh, { step: "0.1", class: "form-control" } %></td>
+                      <td class="et-bt-hormone-column"><%= shokihaiishoku_hormone.number_field :p4, { step: "0.1", class: "form-control" } %></td>
+                      <td class="et-bt-hormone-column"><%= shokihaiishoku_hormone.number_field :hcg, { step: "0.1", class: "form-control" } %></td>
                     </tr>
                   </tbody>
                 </table>
@@ -774,20 +894,22 @@
                 <table class="table table-sm table-bordered">
                   <thead>
                     <tr>
-                      <th scope="col">Day</th>
-                      <th scope="col">E2</th>
-                      <th scope="col">FSH</th>
-                      <th scope="col">LH</th>
-                      <th scope="col">P4</th>
+                      <th scope="col" class="hormon-label">BT</th>
+                      <th scope="col" class="hormon-label">E2</th>
+                      <th scope="col" class="hormon-label">FSH</th>
+                      <th scope="col" class="hormon-label">LH</th>
+                      <th scope="col" class="hormon-label">P4</th>
+                      <th scope="col" class="hormon-label">hCG</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row" class="day-column"><%= haibanhoishoku_hormone.select :day, Report.make_select_haibanhoishoku_hormone_day, { prompt: "選択" }, { class: "form-control text-muted" } %></th>
-                      <td class="hormon-column"><%= haibanhoishoku_hormone.number_field :e2, { step: "0.1", class: "form-control" } %></td>
-                      <td class="hormon-column"><%= haibanhoishoku_hormone.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
-                      <td class="hormon-column"><%= haibanhoishoku_hormone.number_field :lh, { step: "0.1", class: "form-control" } %></td>
-                      <td class="hormon-column"><%= haibanhoishoku_hormone.number_field :p4, { step: "0.1", class: "form-control" } %></td>
+                      <th scope="row" class="et-bt-column"><%= haibanhoishoku_hormone.select :bt, Report.make_select_haibanhoishoku_hormone_day, { prompt: "選択" }, { class: "form-control text-muted" } %></th>
+                      <td class="et-bt-hormone-column"><%= haibanhoishoku_hormone.number_field :e2, { step: "0.1", class: "form-control" } %></td>
+                      <td class="et-bt-hormone-column"><%= haibanhoishoku_hormone.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
+                      <td class="et-bt-hormone-column"><%= haibanhoishoku_hormone.number_field :lh, { step: "0.1", class: "form-control" } %></td>
+                      <td class="et-bt-hormone-column"><%= haibanhoishoku_hormone.number_field :p4, { step: "0.1", class: "form-control" } %></td>
+                      <td class="et-bt-hormone-column"><%= haibanhoishoku_hormone.number_field :hcg, { step: "0.1", class: "form-control" } %></td>
                     </tr>
                   </tbody>
                 </table>
@@ -1011,10 +1133,25 @@
       </div>
 
       <div class="form-group">
-        <div class="label p-1"><%= f.label :credit_card_validity, 'クレジットカードは使えましたか？', class: "question-matters" %></div>
+        <div class="label p-1"><%= f.label :credit_card_validity, 'クレジットカードは使えましたか', class: "question-matters" %></div>
         <%= f.select :credit_card_validity, Report::HASH_CREDIT_CARD_VALIDITY.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
         <small id="poster-tip" class="form-text text-muted">
             当てはまるものを選択してください。
+        </small>
+      </div>
+
+      <div class="form-group">
+        <div class="label p-1"><%= f.label :creditcards_can_be_used_from_more_than, 'クレジットカードが使える金額はいくら以上でしたか', class: "question-matters" %></div>
+        <div class="row p-0 m-0">
+          <div class="col-8 p-0 m-0">
+            <%= f.number_field :creditcards_can_be_used_from_more_than, { class: "form-control" } %>
+          </div>
+          <div class="col-4 p-0 m-0">
+            円以上
+          </div>
+        </div>
+        <small id="poster-tip" class="form-text text-muted">
+            半角数字で金額を入力してください。
         </small>
       </div>
 
@@ -1215,10 +1352,10 @@
         </small>
       </div>
       <div class="form-group">
-        <div class="pb-2"><%= f.label :content, '妊娠した/治療を断念したクリニックの詳しい治療内容を書き残してください', class: "question-matters" %></div>
+        <div class="pb-2"><%= f.label :content, 'このクリニックでの詳しい治療内容を書き残してください', class: "question-matters" %></div>
         <%= f.rich_text_area :content, placeholder: "治療内容、数値、費用、CLの雰囲気や感想など(文字制限無し)" %>
         <small id="poster-tip" class="form-text text-muted">
-          左の質問を答えてから、または質問を見ながら綴ることで、より詳しいあなた独自のレポートを作成することができます。
+          左の質問を答えてから、または質問を見ながら綴ることで、より詳しいあなた独自のレポートを作成することができます。左の記述式回答内容と重複しても構いません。多くの情報を載せてください。
         </small>
       </div>
 

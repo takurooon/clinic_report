@@ -10,6 +10,11 @@ class ClinicsController < ApplicationController
       render partial: 'address/clinics'
   end
 
+  def clinic_select
+      @clinics = Clinic.where(prefecture_id: params[:prefecture_id])
+      render partial: 'address/clinics'
+  end
+
   def index
   end
 end

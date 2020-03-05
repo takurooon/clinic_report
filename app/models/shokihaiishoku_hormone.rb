@@ -1,15 +1,16 @@
-class ShinsenhaiishokuHormone < ApplicationRecord
+class ShokihaiishokuHormone < ApplicationRecord
   belongs_to :report
 end
 
 # == Schema Information
 #
-# Table name: shinsenhaiishoku_hormones
+# Table name: shokihaiishoku_hormones
 #
 #  id         :bigint           not null, primary key
-#  day        :integer
 #  e2         :integer
+#  et         :integer
 #  fsh        :integer
+#  hcg        :integer
 #  lh         :integer
 #  p4         :integer
 #  created_at :datetime         not null
@@ -18,8 +19,8 @@ end
 #
 # Indexes
 #
-#  index_shinsenhaiishoku_hormones_on_report_id          (report_id)
-#  index_shinsenhaiishoku_hormones_on_report_id_and_day  (report_id,day) UNIQUE
+#  index_shokihaiishoku_hormones_on_report_id         (report_id)
+#  index_shokihaiishoku_hormones_on_report_id_and_et  (report_id,et) UNIQUE
 #
 # Foreign Keys
 #

@@ -23,6 +23,7 @@
 #  content                                      :text
 #  cost                                         :integer
 #  credit_card_validity                         :integer
+#  creditcards_can_be_used_from_more_than       :integer
 #  current_state                                :integer
 #  department                                   :integer
 #  domestic_or_foreign_capital                  :integer

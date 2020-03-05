@@ -122,12 +122,16 @@ class Report < ApplicationRecord
     if self.embryo_stage == 1
       self.blastocyst_grade1 = nil
       self.blastocyst_grade2 = nil
+      # HaibanhoishokuHormone.bt = nil
     elsif self.embryo_stage == 2
       self.early_embryo_grade = nil
+      # ShokihaiishokuHormone.et = nil
     else
       self.early_embryo_grade = nil
       self.blastocyst_grade1 = nil
       self.blastocyst_grade2 = nil
+      # ShokihaiishokuHormone.et = nil
+      # HaibanhoishokuHormone.bt = nil
     end
   end
 
@@ -147,6 +151,10 @@ class Report < ApplicationRecord
   belongs_to :city, optional: true
 
   # ---子---
+    # 転院遍歴
+    has_many :itinerary_of_choosing_a_clinics, dependent: :destroy
+    accepts_nested_attributes_for :itinerary_of_choosing_a_clinics
+
     # コメント
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -155,9 +163,9 @@ class Report < ApplicationRecord
   has_many :sairan_hormones, dependent: :destroy
   accepts_nested_attributes_for :sairan_hormones
 
-    # 新鮮胚移植のホルモン
-  has_many :shinsenhaiishoku_hormones, dependent: :destroy
-  accepts_nested_attributes_for :shinsenhaiishoku_hormones
+    # 初期胚移植のホルモン
+  has_many :shokihaiishoku_hormones, dependent: :destroy
+  accepts_nested_attributes_for :shokihaiishoku_hormones
 
     # 胚盤胞移植のホルモン
   has_many :haibanhoishoku_hormones, dependent: :destroy
@@ -1425,20 +1433,20 @@ class Report < ApplicationRecord
     hash
   end
 
-  # shinsenhaiishoku_hormoneのday区分値(新鮮胚移植のホルモン値)別モデル
-  def self.make_select_shinsenhaiishoku_hormone_day
+  # shokihaiishoku_hormoneのet区分値(初期胚移植のホルモン値)別モデル
+  def self.make_select_shokihaiishoku_hormone_day
     hash = {}
     (1..50).each do |i|
-      hash["D#{i}"] = i
+      hash["ET#{i}"] = i
     end
     hash
   end
 
-  # haibanhoishoku_hormoneのday区分値(胚盤胞移植のホルモン値)別モデル
+  # haibanhoishoku_hormoneのbt区分値(胚盤胞移植のホルモン値)別モデル
   def self.make_select_haibanhoishoku_hormone_day
     hash = {}
     (1..50).each do |i|
-      hash["D#{i}"] = i
+      hash["BT#{i}"] = i
     end
     hash
   end
@@ -1970,6 +1978,7 @@ end
 #  content                                      :text
 #  cost                                         :integer
 #  credit_card_validity                         :integer
+#  creditcards_can_be_used_from_more_than       :integer
 #  current_state                                :integer
 #  department                                   :integer
 #  domestic_or_foreign_capital                  :integer

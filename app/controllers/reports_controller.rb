@@ -40,16 +40,16 @@ class ReportsController < ApplicationController
     @report.sairan_hormones.build
     @report.sairan_hormones.build
     @report.sairan_hormones.build
-    @report.shinsenhaiishoku_hormones.build
-    @report.shinsenhaiishoku_hormones.build
-    @report.shinsenhaiishoku_hormones.build
-    @report.shinsenhaiishoku_hormones.build
-    @report.shinsenhaiishoku_hormones.build
-    @report.shinsenhaiishoku_hormones.build
-    @report.shinsenhaiishoku_hormones.build
-    @report.shinsenhaiishoku_hormones.build
-    @report.shinsenhaiishoku_hormones.build
-    @report.shinsenhaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
     @report.haibanhoishoku_hormones.build
     @report.haibanhoishoku_hormones.build
     @report.haibanhoishoku_hormones.build
@@ -60,43 +60,48 @@ class ReportsController < ApplicationController
     @report.haibanhoishoku_hormones.build
     @report.haibanhoishoku_hormones.build
     @report.haibanhoishoku_hormones.build
-    
+    @report.itinerary_of_choosing_a_clinics.build
+    @report.itinerary_of_choosing_a_clinics.build
+    @report.itinerary_of_choosing_a_clinics.build
+    @report.itinerary_of_choosing_a_clinics.build
+    @report.itinerary_of_choosing_a_clinics.build
   end
 
-  def confirm
-    flash[:alert] = "まだ投稿は完了していません。必須項目の「クリニック」と「お住まい(非公開設定可)」は選択済みですか？"
-    if params[:id].blank?
-      @report = Report.new(report_params_for_confirm)
-    else
-      @report = Report.find(params[:id])
-      @report.attributes = report_params_for_confirm
-    end
+  
+  # def confirm
+  #   flash[:alert] = "まだ投稿は完了していません。必須項目の「クリニック」と「お住まい(非公開設定可)」は選択済みですか？"
+  #   if params[:id].blank?
+  #     @report = Report.new(report_params_for_confirm)
+  #   else
+  #     @report = Report.find(params[:id])
+  #     @report.attributes = report_params_for_confirm
+  #   end
 
-    if params[:temp].blank?
-      @report.status = params[:status2]
-    else
-      @report.status = params[:status1]
-    end
+  #   if params[:temp].blank?
+  #     @report.status = params[:status2]
+  #   else
+  #     @report.status = params[:status1]
+  #   end
 
-    if @report.status.blank?
-      @report.status = "released"
-    end
+  #   if @report.status.blank?
+  #     @report.status = "released"
+  #   end
 
-    @i_name = params[:i_name]
-    @fif_name = params[:fif_name]
-    @mif_name = params[:mif_name]
-    @fd_name = params[:fd_name]
-    @md_name = params[:md_name]
-    @fs_name = params[:fs_name]
-    @ms_name = params[:ms_name] 
-    @sm_name = params[:sm_name] 
-    @tm_name = params[:tm_name]
-    @to_name = params[:to_name]
-    @oe_name = params[:oe_name]
-    @supplement_name = params[:supplement_name]
-    @sod_scope = params[:sod_scope]
-    @tag_name = params[:tag_name]
-  end
+  #   @i_name = params[:i_name]
+  #   @fif_name = params[:fif_name]
+  #   @mif_name = params[:mif_name]
+  #   @fd_name = params[:fd_name]
+  #   @md_name = params[:md_name]
+  #   @fs_name = params[:fs_name]
+  #   @ms_name = params[:ms_name] 
+  #   @sm_name = params[:sm_name] 
+  #   @tm_name = params[:tm_name]
+  #   @to_name = params[:to_name]
+  #   @oe_name = params[:oe_name]
+  #   @supplement_name = params[:supplement_name]
+  #   @sod_scope = params[:sod_scope]
+  #   @tag_name = params[:tag_name]
+  # end
 
   def molding(materials)
     list = materials.map do |material|
@@ -609,6 +614,7 @@ class ReportsController < ApplicationController
         :cost,
         :all_cost,
         :credit_card_validity,
+        :creditcards_can_be_used_from_more_than,
         :average_waiting_time,
         :reservation_method,
         :period_of_time_spent_traveling,
@@ -649,8 +655,9 @@ class ReportsController < ApplicationController
         scope_of_disclosure_ids: [],
         tag_ids: [],
         sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
-        shinsenhaiishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
-        haibanhoishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
+        shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg],
+        haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg],
+        itinerary_of_choosing_a_clinic: [:id]
       )
     end
 
@@ -709,6 +716,7 @@ class ReportsController < ApplicationController
         :cost,
         :all_cost,
         :credit_card_validity,
+        :creditcards_can_be_used_from_more_than,
         :average_waiting_time,
         :reservation_method,
         :period_of_time_spent_traveling,
@@ -735,8 +743,9 @@ class ReportsController < ApplicationController
         :annual_income_status,
         :household_net_income_status,
         sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
-        shinsenhaiishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
-        haibanhoishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
+        shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg],
+        haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg],
+        itinerary_of_choosing_a_clinic: [:id]
       )
     end
 end
