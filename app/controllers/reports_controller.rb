@@ -115,21 +115,27 @@ class ReportsController < ApplicationController
 
     @report.normalize
 
+    if params[:temp].blank?
+      @report.status = params[:status2]
+    else
+      @report.status = params[:status1]
+    end
+
     if @report.status.blank?
       @report.status = "released"
     end
 
-    i_name = params[:i_name].split(",")
-    i_list = molding(i_name)
-    i_ids = params[:report][:inspection_ids]
-    i_ids.each do |i_id|
-      if i_id.blank?
-        next
-      end
-      i = Inspection.find(i_id)
-      i_list << i.name
-    end
-    i_list = i_list.uniq
+    # i_name = params[:i_name].split(",")
+    # i_list = molding(i_name)
+    # i_ids = params[:report][:inspection_ids]
+    # i_ids.each do |i_id|
+    #   if i_id.blank?
+    #     next
+    #   end
+    #   i = Inspection.find(i_id)
+    #   i_list << i.name
+    # end
+    # i_list = i_list.uniq
 
     fif_name = params[:fif_name].split(",")
     fif_list = molding(fif_name)
@@ -291,7 +297,7 @@ class ReportsController < ApplicationController
       if params[:back]
         format.html { render :new }
       elsif @report.save
-        @report.save_i(i_list)
+        # @report.save_i(i_list)
         @report.save_fifs(fif_list)
         @report.save_mifs(mif_list)
         @report.save_fds(fd_list)
@@ -319,20 +325,55 @@ class ReportsController < ApplicationController
       redirect_to root_path, alert: '編集権限がありません' 
       return
     end
+
     @tag_list = @report.tags.pluck(:tag_name).join(",")
     @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.sairan_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+    @report.itinerary_of_choosing_a_clinics.build
+    @report.itinerary_of_choosing_a_clinics.build
+    @report.itinerary_of_choosing_a_clinics.build
+    @report.itinerary_of_choosing_a_clinics.build
+    @report.itinerary_of_choosing_a_clinics.build
   end
 
   def release
     report =  Report.find(params[:id])
     report.released! unless report.released?
-    redirect_to edit_report_path(report), notice: 'このレポートを公開しました'
+    redirect_to report_path(report), notice: 'このレポートを公開しました'
   end
 
   def nonrelease
     report =  Report.find(params[:id])
     report.nonreleased! unless report.nonreleased?
-    redirect_to edit_report_path(report), notice: 'このレポートを非公開にしました'
+    redirect_to report_path(report), notice: 'このレポートを非公開にしました'
   end
 
   def update
@@ -342,17 +383,29 @@ class ReportsController < ApplicationController
     end
     @report = Report.find(params[:id])
 
-    i_name = params[:i_name].split(",")
-    i_list = molding(i_name)
-    i_ids = params[:report][:inspection_ids]
-    i_ids.each do |i_id|
-      if i_id.blank?
-        next
-      end
-      i = Inspection.find(i_id)
-      i_list << i.name
+    @report.normalize
+
+    if params[:temp].blank?
+      @report.status = params[:status2]
+    else
+      @report.status = params[:status1]
     end
-    i_list = i_list.uniq
+
+    if @report.status.blank?
+      @report.status = "nonreleased"
+    end
+
+    # i_name = params[:i_name].split(",")
+    # i_list = molding(i_name)
+    # i_ids = params[:report][:inspection_ids]
+    # i_ids.each do |i_id|
+    #   if i_id.blank?
+    #     next
+    #   end
+    #   i = Inspection.find(i_id)
+    #   i_list << i.name
+    # end
+    # i_list = i_list.uniq
 
     fif_name = params[:fif_name].split(",")
     fif_list = molding(fif_name)
@@ -514,7 +567,7 @@ class ReportsController < ApplicationController
       if params[:back]
         format.html { render :edit }
       elsif @report.update(report_params_for_create)
-        @report.save_i(i_list)
+        # @report.save_i(i_list)
         @report.save_fifs(fif_list)
         @report.save_mifs(mif_list)
         @report.save_fds(fd_list)
@@ -528,7 +581,7 @@ class ReportsController < ApplicationController
         @report.save_supplements(supplement_list)
         @report.save_sods(sod_list)
         @report.save_tags(tag_list)
-        format.html { redirect_to report_path(@report), notice: 'レポートを作成しました。' }
+        format.html { redirect_to report_path(@report), notice: 'レポートを更新しました。' }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new }

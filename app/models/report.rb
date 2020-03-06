@@ -184,22 +184,22 @@ class Report < ApplicationRecord
   has_many :report_inspections, dependent: :destroy
   has_many :inspections, through: :report_inspections
 
-  def save_i(i_list)
-    current_is = self.inspections.pluck(:name) unless self.inspections.nil?
-    old_is = current_is - i_list
-    new_is = i_list - current_is
+  # def save_i(i_list)
+  #   current_is = self.inspections.pluck(:name) unless self.inspections.nil?
+  #   old_is = current_is - i_list
+  #   new_is = i_list - current_is
 
     # Destroy old inspections:
-    old_is.each do |old_name|
-      self.inspections.delete Tag.find_by(name: old_name)
-    end
+    # old_is.each do |old_name|
+    #   self.inspections.delete Tag.find_by(name: old_name)
+    # end
 
     # Create new inspections:
-    new_is.each do |new_name|
-      report_i = Inspection.find_or_create_by(name: new_name)
-      self.inspections << report_i
-    end
-  end
+  #   new_is.each do |new_name|
+  #     report_i = Inspection.find_or_create_by(name: new_name)
+  #     self.inspections << report_i
+  #   end
+  # end
   
   # 不妊原因(男女それぞれ)
   has_many :report_f_infertility_factors, dependent: :destroy

@@ -1,11 +1,13 @@
 
+<% if false %>
   <% if is_new
-  url = confirm_reports_path
+    url = confirm_reports_path
   else
-  url = confirm_report_path(report.id)
+    url = confirm_report_path(report.id)
   end %>
+<% end %>
 
-<%= form_with(model: report, local: true, url: url) do |f| %>
+<%= form_with(model: report, local: true) do |f| %>
   <% if report.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(report.errors.count, "error") %> 件の未入力または誤った入力があります</h2>
@@ -1330,15 +1332,14 @@
       <div class="mt-5">
         <div class="draft-published-btn">
           <p><strong>下書き</strong> か、<strong>公開</strong>かを選択して<span style="color:#03A9F4"><strong>青ボタン</strong></span>を押してください</p>
-          <%= radio_button_tag :status2, :nonreleased %>下書き
-          <%= radio_button_tag :status2, :released %>公開
+          <%= radio_button_tag :status1, :nonreleased %>下書き
+          <%= radio_button_tag :status1, :released %>公開
         </div>
-        <%= f.submit '保存 / 投稿確認', class: 'btn btn-raised btn-info w-50 mx-auto d-block' %>
-          <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
-            クリックすると確認画面に遷移します
+        <%= f.submit '保存 / 投稿確認', name: "temp", class: 'btn btn-raised btn-info w-50 mx-auto d-block' %>
+          <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block mt-3">
+            よろしければクリックしてください。
           </small>
       </div>
-
   </div>
 
   <div class="split-right-box right-box px-3 pt-5 pb-5">
@@ -1357,18 +1358,18 @@
         </small>
       </div>
 
-
       <div class="mt-5">
         <div class="draft-published-btn">
           <p><strong>下書き</strong> か、<strong>公開</strong>かを選択して<span style="color:#03A9F4"><strong>青ボタン</strong></span>を押してください</p>
-          <%= radio_button_tag :status1, :nonreleased %>下書き
-          <%= radio_button_tag :status1, :released %>公開
+          <%= radio_button_tag :status2, :nonreleased %>下書き
+          <%= radio_button_tag :status2, :released %>公開
         </div>
-        <%= f.submit '保存 / 投稿確認', name: "temp", class: 'btn btn-raised btn-info w-50 mx-auto d-block' %>
-          <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block mt-3">
+        <%= f.submit '保存 / 投稿確認', class: 'btn btn-raised btn-info w-50 mx-auto d-block' %>
+          <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
             あなたのレポートを見つけてもらいやすくする為に左の質問にも是非お答えください。
           </small>
       </div>
+
       <div class="float-right">
         <%= link_to '戻る', @report, class:"btn btn-outline-info button" %>
         <%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>

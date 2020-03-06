@@ -18,8 +18,15 @@
       <% end %>
 
       <% if current_user %>
-        <%= link_to 'レポの削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
-        <%= link_to 'レポの編集', edit_report_path(@report), class:"btn btn-secondary btn-sm float-right mx-1" %>
+        <div class="py-3">
+        <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '本当に削除してもよろしいですか？'}, class:"btn btn-warning float-right" %>
+        <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary float-right mx-1" %>
+        <% if @report.released? %>
+          <%= link_to '非公開にする', nonrelease_report_path(@report), method: :patch, data: { confirm: '非公開にして良いですか？'}, class:"btn btn-secondary float-right" %>
+        <% else %>
+          <%= link_to '公開する', release_report_path(@report), method: :patch, data: { confirm: '公開して良いですか？'}, class:"btn btn-secondary btn-info float-right" %>
+        <% end %>
+        </div>
       <% end %>
 
       <div class="d-flex align-items-center mt-5">
