@@ -144,7 +144,6 @@
                 <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col1 text-center align-middle"><small>転院順</small></th>
                 <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col2 text-center align-middle"><small>都道府県選択</small></th>
                 <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col3 text-center align-middle"><small>クリニック選択</small></th>
-                <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col4 text-center align-middle"><small>転出時期</small></th>
               </tr>
             </thead>
             <tbody>
@@ -161,8 +160,7 @@
                                     }
                     %>
                   </td>
-                  <td class="text-center align-middle"><%= clinic.select :clinic_id, {}, { prompt: "選択"}, { id: "itinerary_of_clinic_#{clinic.index}", class: "form-control" } %></td>
-                  <td class="text-center align-middle"></td>
+                  <td class="text-center align-middle"><%= clinic.select :clinic_id, {}, { prompt: "←先に都道府県を選択"}, { id: "itinerary_of_clinic_#{clinic.index}", class: "form-control" } %></td>
                 </tr>
               <% end %>
             </tbody>
