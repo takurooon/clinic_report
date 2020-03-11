@@ -1,5 +1,7 @@
 class SairanHormone < ApplicationRecord
-  belongs_to :report
+  belongs_to :report, inverse_of: :sairan_hormones
+
+  
 end
 
 # == Schema Information
@@ -7,7 +9,7 @@ end
 # Table name: sairan_hormones
 #
 #  id         :bigint           not null, primary key
-#  day        :integer
+#  day        :integer          not null
 #  e2         :integer
 #  fsh        :integer
 #  lh         :integer

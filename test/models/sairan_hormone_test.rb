@@ -3,7 +3,7 @@
 # Table name: sairan_hormones
 #
 #  id         :bigint           not null, primary key
-#  day        :integer
+#  day        :integer          not null
 #  e2         :integer
 #  fsh        :integer
 #  lh         :integer

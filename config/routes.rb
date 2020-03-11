@@ -136,6 +136,7 @@ end
 #                         cities_select GET    /cities_select(.:format)                                                                 clinics#cities_select
 #                        clinics_select GET    /clinics_select(.:format)                                                                clinics#clinics_select
 #                 address_cities_select GET    /address_cities_select(.:format)                                                         reports#address_cities_select
+#                         clinic_select GET    /clinic_select(.:format)                                                                 clinics#clinic_select
 #                              comments POST   /comments(.:format)                                                                      comments#create
 #                               comment DELETE /comments/:id(.:format)                                                                  comments#destroy
 #                     letter_opener_web        /letter_opener                                                                           LetterOpenerWeb::Engine

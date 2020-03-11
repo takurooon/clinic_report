@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  e2         :integer
-#  et         :integer
+#  et         :integer          not null
 #  fsh        :integer
 #  hcg        :integer
 #  lh         :integer

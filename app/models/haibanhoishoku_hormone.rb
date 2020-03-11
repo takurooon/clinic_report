@@ -1,5 +1,5 @@
 class HaibanhoishokuHormone < ApplicationRecord
-  belongs_to :report
+  belongs_to :report, inverse_of: :haibanhoishoku_hormones
 end
 
 # == Schema Information
@@ -7,7 +7,7 @@ end
 # Table name: haibanhoishoku_hormones
 #
 #  id         :bigint           not null, primary key
-#  bt         :integer
+#  bt         :integer          not null
 #  e2         :integer
 #  fsh        :integer
 #  hcg        :integer

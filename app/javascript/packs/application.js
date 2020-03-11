@@ -8,12 +8,16 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-
+require("chartkick")
+require("chart.js")
 
 // import "bootstrap"
 import "../stylesheets/application"
 import 'bootstrap-material-design'
 import "@fortawesome/fontawesome-free/js/all";
+
+// import "cocoon"
+import "cocoon";
 
 document.addEventListener("turblinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()

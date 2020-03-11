@@ -76,6 +76,7 @@
             <div class="col-md-2 pocket-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/pocket_bar_brandcolor_icon.png", alt: "pocket_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
           </div>
         </div>
+
         <div class="report-info">
           <div class="cp_box">
             <input id="cp01" type="checkbox">
@@ -92,6 +93,25 @@
                   <tr>
                     <th scope="row">現在の状況</th>
                     <td class="pl-4 result-column"><%= @report.str_current_state %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">何人目不妊</th>
+                    <td class="pl-4 result-column"><%= @report.str_fertility_treatment_number %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">治療当時の住まい</th>
+                    <td class="pl-4 result-column">
+                      <% if @report.prefecture_at_the_time_status == "hide"%>
+                        <%= "非公開" %>
+                      <% else %>
+                        <%= @report.prefecture.name %>
+                      <% end %>
+                      <% if @report.city_at_the_time_status == "hide"%>
+                        <%= "非公開" %>
+                      <% else %>
+                        <%= @report.city.name %>
+                      <% end %>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">クリニック</th>
@@ -116,10 +136,6 @@
                     <% else %>
                       <td class="pl-4 result-column">未回答</td>
                     <% end %>
-                  </tr>
-                  <tr>
-                    <th scope="row">何人目不妊</th>
-                    <td class="pl-4 result-column"><%= @report.str_fertility_treatment_number %></td>
                   </tr>
                   <tr>
                     <th scope="row">治療の種類</th>
@@ -361,21 +377,6 @@
                   <tr>
                     <th scope="row">診察の予約方法について</th>
                     <td class="pl-4 result-column"><%= @report.str_reservation_method %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">治療中の住まい</th>
-                    <td class="pl-4 result-column">
-                      <% if @report.prefecture_at_the_time_status == "hide"%>
-                        <%= "非公開" %>
-                      <% else %>
-                        <%= @report.prefecture.name %>
-                      <% end %>
-                      <% if @report.city_at_the_time_status == "hide"%>
-                        <%= "非公開" %>
-                      <% else %>
-                        <%= @report.city.name %>
-                      <% end %>
-                    </td>
                   </tr>
                   <tr>
                     <th scope="row">クリニックの通院にかかる平均所要時間</th>

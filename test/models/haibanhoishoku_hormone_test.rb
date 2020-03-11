@@ -3,7 +3,7 @@
 # Table name: haibanhoishoku_hormones
 #
 #  id         :bigint           not null, primary key
-#  bt         :integer
+#  bt         :integer          not null
 #  e2         :integer
 #  fsh        :integer
 #  hcg        :integer

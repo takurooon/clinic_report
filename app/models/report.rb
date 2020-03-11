@@ -122,16 +122,16 @@ class Report < ApplicationRecord
     if self.embryo_stage == 1
       self.blastocyst_grade1 = nil
       self.blastocyst_grade2 = nil
-      # HaibanhoishokuHormone.bt = nil
+      self.haibanhoishoku_hormones = []
     elsif self.embryo_stage == 2
       self.early_embryo_grade = nil
-      # ShokihaiishokuHormone.et = nil
+      self.shokihaiishoku_hormones = []
     else
       self.early_embryo_grade = nil
       self.blastocyst_grade1 = nil
       self.blastocyst_grade2 = nil
-      # ShokihaiishokuHormone.et = nil
-      # HaibanhoishokuHormone.bt = nil
+      self.shokihaiishoku_hormones = []
+      self.haibanhoishoku_hormones = []
     end
   end
 
@@ -153,23 +153,23 @@ class Report < ApplicationRecord
   # ---子---
     # 転院遍歴
     has_many :itinerary_of_choosing_a_clinics, dependent: :destroy
-    accepts_nested_attributes_for :itinerary_of_choosing_a_clinics
+    accepts_nested_attributes_for :itinerary_of_choosing_a_clinics, allow_destroy: true, update_only: true
 
     # コメント
-  has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
+    has_many :comments, dependent: :destroy
+    has_many :likes, dependent: :destroy
 
     # 採卵時のホルモン
-  has_many :sairan_hormones, dependent: :destroy
-  accepts_nested_attributes_for :sairan_hormones
+    has_many :sairan_hormones, inverse_of: :report, dependent: :destroy
+    accepts_nested_attributes_for :sairan_hormones, allow_destroy: true, update_only: true
 
     # 初期胚移植のホルモン
-  has_many :shokihaiishoku_hormones, dependent: :destroy
-  accepts_nested_attributes_for :shokihaiishoku_hormones
+    has_many :shokihaiishoku_hormones, inverse_of: :report, dependent: :destroy
+    accepts_nested_attributes_for :shokihaiishoku_hormones, allow_destroy: true, update_only: true
 
     # 胚盤胞移植のホルモン
-  has_many :haibanhoishoku_hormones, dependent: :destroy
-  accepts_nested_attributes_for :haibanhoishoku_hormones
+    has_many :haibanhoishoku_hormones, inverse_of: :report, dependent: :destroy
+    accepts_nested_attributes_for :haibanhoishoku_hormones, allow_destroy: true, update_only: true
 
   # 検索
   def self.search(search)
@@ -855,6 +855,48 @@ class Report < ApplicationRecord
     return HASH_OVA_WITH_IVM[self.ova_with_ivm]
   end
 
+  # other_effort_costの区分値(CL治療以外に行なったこと/月間平均投資額)
+  HASH_OTHER_EFFORT_COST = {
+    1 => "3,000円未満",
+    2 => "5,000円未満",
+    3 => "1万円未満",
+    4 => "3万円未満",
+    5 => "5万円未満",
+    6 => "10万円未満",
+    99 => "10万円以上",
+    100 => "不明",
+  }
+
+  # supplement_costの区分値(サプリ月間平均購入額)
+  HASH_SUPPLEMENT_COST = {
+    1 => "1,000円未満",
+    2 => "2,000円未満",
+    3 => "3,000円未満",
+    4 => "4,000円未満",
+    5 => "5,000円未満",
+    6 => "6,000円未満",
+    7 => "7,000円未満",
+    8 => "8,000円未満",
+    9 => "9,000円未満",
+    10 => "1万円未満",
+    11 => "1.5万円未満",
+    12 => "2万円未満",
+    13 => "3万円未満",
+    14 => "4万円未満",
+    15 => "5万円未満",
+    16 => "6万円未満",
+    17 => "7万円未満",
+    18 => "8万円未満",
+    19 => "9万円未満",
+    20 => "10万円未満",
+    21 => "10万円未満",
+    22 => "15万円未満",
+    23 => "20万円未満",
+    24 => "25万円未満",
+    25 => "30万円未満",
+    99 => "30万円以上",
+    100 => "不明",
+  }
 
   # costの区分値(CLでの費用総額)
   HASH_COST = {
@@ -1424,10 +1466,19 @@ class Report < ApplicationRecord
   STR_UNKNOWN = "不明"
   LESS_YEN = "円未満"
 
+  # itinerary_of_choosing_a_clinicsのorder_of_transfer区分値(転院履歴)別モデル
+  def self.make_select_itinerary_of_choosing_a_clinics_order_of_transfer
+    hash = {}
+    (1..20).each do |i|
+      hash["#{i}つ前のCL"] = i
+    end
+    hash
+  end
+
   # sairan_hormoneのday区分値(採卵時のホルモン値)別モデル
   def self.make_select_sairan_hormone_day
     hash = {}
-    (1..50).each do |i|
+    (1..100).each do |i|
       hash["D#{i}"] = i
     end
     hash
@@ -1436,7 +1487,7 @@ class Report < ApplicationRecord
   # shokihaiishoku_hormoneのet区分値(初期胚移植のホルモン値)別モデル
   def self.make_select_shokihaiishoku_hormone_day
     hash = {}
-    (1..50).each do |i|
+    (1..100).each do |i|
       hash["ET#{i}"] = i
     end
     hash
@@ -1445,7 +1496,7 @@ class Report < ApplicationRecord
   # haibanhoishoku_hormoneのbt区分値(胚盤胞移植のホルモン値)別モデル
   def self.make_select_haibanhoishoku_hormone_day
     hash = {}
-    (1..50).each do |i|
+    (1..100).each do |i|
       hash["BT#{i}"] = i
     end
     hash
@@ -1987,9 +2038,10 @@ end
 #  egg_maturity                                 :integer
 #  embryo_culture_days                          :integer
 #  embryo_stage                                 :integer
+#  explanation_of_frozen_embryo_storage_cost    :text
 #  fertility_treatment_number                   :integer
 #  first_age_to_start                           :integer
-#  frozen_embryo_storage_cost                   :text
+#  frozen_embryo_storage_cost                   :integer
 #  fuiku                                        :integer
 #  fuiku_supplementary_explanation              :text
 #  household_net_income                         :integer
@@ -2006,6 +2058,8 @@ end
 #  number_of_miscarriages                       :integer
 #  number_of_stillbirths                        :integer
 #  number_of_transferable_embryos               :integer
+#  other_effort_cost                            :integer
+#  other_effort_supplementary_explanation       :text
 #  ova_with_ivm                                 :integer
 #  period_of_time_spent_traveling               :integer
 #  pgt1                                         :integer
@@ -2020,6 +2074,7 @@ end
 #  smoking                                      :integer
 #  special_inspection_supplementary_explanation :text
 #  status                                       :integer          default("released"), not null
+#  supplement_cost                              :integer
 #  supplement_supplementary_explanation         :text
 #  suspended_or_retirement_job                  :integer
 #  title                                        :string

@@ -46,12 +46,16 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :total_number_of_transplants
       t.integer :all_number_of_transplants
       t.integer :number_of_eggs_stored
-      t.text :frozen_embryo_storage_cost
+      t.integer :frozen_embryo_storage_cost
+      t.text :explanation_of_frozen_embryo_storage_cost
       t.integer :number_of_miscarriages
       t.integer :number_of_stillbirths
       t.integer :fuiku
       t.text :fuiku_supplementary_explanation
       t.integer :adoption
+      t.integer :other_effort_cost
+      t.text :other_effort_supplementary_explanation
+      t.integer :supplement_cost
       t.text :supplement_supplementary_explanation
       t.integer :cost
       t.integer :all_cost

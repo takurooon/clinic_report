@@ -25,46 +25,16 @@ class ReportsController < ApplicationController
 
     @annual_income_status = Report.find(params[:id]).annual_income_status
     @household_net_income_status = Report.find(params[:id]).household_net_income_status
+    # @itinerary_of_clinic = ItineraryOfChoosingAClinics.find(params[:id])
   end
 
   def new
     @report = Report.new
     @all_tag_list = Tag.all.pluck(:tag_name)
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
     @report.itinerary_of_choosing_a_clinics.build
-    @report.itinerary_of_choosing_a_clinics.build
-    @report.itinerary_of_choosing_a_clinics.build
-    @report.itinerary_of_choosing_a_clinics.build
-    @report.itinerary_of_choosing_a_clinics.build
+    @report.sairan_hormones.build
+    @report.shokihaiishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
   end
 
   
@@ -327,41 +297,18 @@ class ReportsController < ApplicationController
     end
 
     @tag_list = @report.tags.pluck(:tag_name).join(",")
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.sairan_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.shokihaiishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.haibanhoishoku_hormones.build
-    @report.itinerary_of_choosing_a_clinics.build
-    @report.itinerary_of_choosing_a_clinics.build
-    @report.itinerary_of_choosing_a_clinics.build
-    @report.itinerary_of_choosing_a_clinics.build
-    @report.itinerary_of_choosing_a_clinics.build
+
+    if @report.sairan_hormones.count == 0
+      @report.sairan_hormones.build
+    end
+
+    if @report.shokihaiishoku_hormones.count == 0
+      @report.shokihaiishoku_hormones.build
+    end
+
+    if @report.haibanhoishoku_hormones.count == 0
+      @report.haibanhoishoku_hormones.build
+    end
   end
 
   def release
@@ -628,7 +575,9 @@ class ReportsController < ApplicationController
         :treatment_period,
         :number_of_aih,
         :special_inspection_supplementary_explanation,
-        :pgt,
+        :pgt1,
+        :pgt2,
+        :pgt_supplementary_explanation,
         :amh,
         :bmi,
         :smoking,
@@ -660,9 +609,15 @@ class ReportsController < ApplicationController
         :all_number_of_transplants,
         :number_of_eggs_stored,
         :frozen_embryo_storage_cost,
+        :explanation_of_frozen_embryo_storage_cost,
         :number_of_miscarriages,
         :number_of_stillbirths,
+        :fuiku,
+        :fuiku_supplementary_explanation,
         :adoption,
+        :other_effort_cost,
+        :other_effort_supplementary_explanation,
+        :supplement_cost,
         :supplement_supplementary_explanation,
         :cost,
         :all_cost,
@@ -707,10 +662,10 @@ class ReportsController < ApplicationController
         supplement_ids: [],
         scope_of_disclosure_ids: [],
         tag_ids: [],
-        sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
-        shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg],
-        haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg],
-        itinerary_of_choosing_a_clinic: [:id]
+        sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
+        shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
+        haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
+        itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id]
       )
     end
 
@@ -730,7 +685,9 @@ class ReportsController < ApplicationController
         :treatment_period,
         :number_of_aih,
         :special_inspection_supplementary_explanation,
-        :pgt,
+        :pgt1,
+        :pgt2,
+        :pgt_supplementary_explanation,
         :amh,
         :bmi,
         :smoking,
@@ -762,9 +719,15 @@ class ReportsController < ApplicationController
         :all_number_of_transplants,
         :number_of_eggs_stored,
         :frozen_embryo_storage_cost,
+        :explanation_of_frozen_embryo_storage_cost,
         :number_of_miscarriages,
         :number_of_stillbirths,
+        :fuiku,
+        :fuiku_supplementary_explanation,
         :adoption,
+        :other_effort_cost,
+        :other_effort_supplementary_explanation,
+        :supplement_cost,
         :supplement_supplementary_explanation,
         :cost,
         :all_cost,
@@ -795,10 +758,24 @@ class ReportsController < ApplicationController
         :status,
         :annual_income_status,
         :household_net_income_status,
-        sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4],
-        shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg],
-        haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg],
-        itinerary_of_choosing_a_clinic: [:id]
+        inspection_ids: [],
+        f_infertility_factor_ids: [],
+        m_infertility_factor_ids: [],
+        f_disease_ids: [],
+        m_disease_ids: [],
+        f_surgery_ids: [],
+        m_surgery_ids: [],
+        sairan_medicine_ids: [],
+        transfer_medicine_ids: [],
+        transfer_option_ids: [],
+        other_effort_ids: [],
+        supplement_ids: [],
+        scope_of_disclosure_ids: [],
+        tag_ids: [],
+        sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
+        shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
+        haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
+        itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy]
       )
     end
 end

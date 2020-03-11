@@ -32,9 +32,10 @@
 #  egg_maturity                                 :integer
 #  embryo_culture_days                          :integer
 #  embryo_stage                                 :integer
+#  explanation_of_frozen_embryo_storage_cost    :text
 #  fertility_treatment_number                   :integer
 #  first_age_to_start                           :integer
-#  frozen_embryo_storage_cost                   :text
+#  frozen_embryo_storage_cost                   :integer
 #  fuiku                                        :integer
 #  fuiku_supplementary_explanation              :text
 #  household_net_income                         :integer
@@ -51,6 +52,8 @@
 #  number_of_miscarriages                       :integer
 #  number_of_stillbirths                        :integer
 #  number_of_transferable_embryos               :integer
+#  other_effort_cost                            :integer
+#  other_effort_supplementary_explanation       :text
 #  ova_with_ivm                                 :integer
 #  period_of_time_spent_traveling               :integer
 #  pgt1                                         :integer
@@ -65,6 +68,7 @@
 #  smoking                                      :integer
 #  special_inspection_supplementary_explanation :text
 #  status                                       :integer          default("released"), not null
+#  supplement_cost                              :integer
 #  supplement_supplementary_explanation         :text
 #  suspended_or_retirement_job                  :integer
 #  title                                        :string

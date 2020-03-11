@@ -1,0 +1,30 @@
+<div class="nested-fields well well-compact">
+  <table class="table table-sm table-bordered table-hover mb-0">
+    <thead>
+      <tr>
+        <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col1 text-center align-middle">転院歴&nbsp;<span><font size="1" color="#FF0000">(必須)</font></span></th>
+        <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col2 text-center align-middle"><small>都道府県</small></th>
+        <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col3 text-center align-middle">クリニック</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-center align-middle"><%= f.select :order_of_transfer, Report.make_select_itinerary_of_choosing_a_clinics_order_of_transfer, { prompt: "選択必須" }, { class: "form-control text-muted" } %></td>
+        <td class="text-center align-middle">
+          <%= select_tag :clinic_prefecture,
+                          options_from_collection_for_select(Prefecture.all, :id, :name),
+                          {
+                            prompt: "選択",
+                            class: "form-control",
+                            id: "clinic_prefecture_#{f.index}"
+                          }
+          %>
+        </td>
+        <td class="text-center align-middle"><%= f.select :clinic_id, {}, { prompt: "←先に都道府県を選択"}, { id: "itinerary_of_clinic_#{f.index}", class: "form-control" } %></td>
+      </tr>
+    </tbody>
+  </table>
+  <small class="float-right pr-2">
+    <%= link_to_remove_association "削除", f, class: "text-secondary" %>
+  </small>
+</div>

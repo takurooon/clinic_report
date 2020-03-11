@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
 
   create_table "haibanhoishoku_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "bt"
+    t.integer "bt", null: false
     t.integer "e2"
     t.integer "fsh"
     t.integer "lh"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
   create_table "itinerary_of_choosing_a_clinics", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.bigint "clinic_id", null: false
+    t.integer "order_of_transfer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["clinic_id"], name: "index_itinerary_of_choosing_a_clinics_on_clinic_id"
@@ -367,12 +368,16 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
     t.integer "total_number_of_transplants"
     t.integer "all_number_of_transplants"
     t.integer "number_of_eggs_stored"
-    t.text "frozen_embryo_storage_cost"
+    t.integer "frozen_embryo_storage_cost"
+    t.text "explanation_of_frozen_embryo_storage_cost"
     t.integer "number_of_miscarriages"
     t.integer "number_of_stillbirths"
     t.integer "fuiku"
     t.text "fuiku_supplementary_explanation"
     t.integer "adoption"
+    t.integer "other_effort_cost"
+    t.text "other_effort_supplementary_explanation"
+    t.integer "supplement_cost"
     t.text "supplement_supplementary_explanation"
     t.integer "cost"
     t.integer "all_cost"
@@ -415,7 +420,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
 
   create_table "sairan_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "day"
+    t.integer "day", null: false
     t.integer "e2"
     t.integer "fsh"
     t.integer "lh"
@@ -440,7 +445,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
 
   create_table "shokihaiishoku_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "et"
+    t.integer "et", null: false
     t.integer "e2"
     t.integer "fsh"
     t.integer "lh"

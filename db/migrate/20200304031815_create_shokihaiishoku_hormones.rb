@@ -2,7 +2,7 @@ class CreateShokihaiishokuHormones < ActiveRecord::Migration[6.0]
   def change
     create_table :shokihaiishoku_hormones do |t|
       t.references :report, null: false, foreign_key: true
-      t.integer :et
+      t.integer :et, null: false
       t.integer :e2
       t.integer :fsh
       t.integer :lh

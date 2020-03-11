@@ -1,17 +1,18 @@
 class ItineraryOfChoosingAClinic < ApplicationRecord
   belongs_to :report
-  belongs_to :clinic
+  belongs_to :clinic, optional: true
 end
 
 # == Schema Information
 #
 # Table name: itinerary_of_choosing_a_clinics
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  clinic_id  :bigint           not null
-#  report_id  :bigint           not null
+#  id                :bigint           not null, primary key
+#  order_of_transfer :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  clinic_id         :bigint           not null
+#  report_id         :bigint           not null
 #
 # Indexes
 #
