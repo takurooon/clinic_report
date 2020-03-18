@@ -135,6 +135,12 @@ class Report < ApplicationRecord
     end
   end
 
+  def normalize2
+    unless self.credit_card_validity == 3
+      self.creditcards_can_be_used_from_more_than = nil
+    end
+  end
+
   # like判定メソッド
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
@@ -153,7 +159,13 @@ class Report < ApplicationRecord
   # ---子---
     # 転院遍歴
     has_many :itinerary_of_choosing_a_clinics, dependent: :destroy
-    accepts_nested_attributes_for :itinerary_of_choosing_a_clinics, allow_destroy: true, update_only: true
+    accepts_nested_attributes_for :itinerary_of_choosing_a_clinics, reject_if: :reject_itinerary_of_choosing_a_clinics, allow_destroy: true, update_only: true
+    def reject_itinerary_of_choosing_a_clinics(attributes)
+      exists = attributes[:id].present?
+      empty = attributes[:email].blank?
+      attributes.merge!(_destroy: 1) if exists && empty
+      !exists && empty
+    end
 
     # コメント
     has_many :comments, dependent: :destroy
@@ -495,7 +507,7 @@ class Report < ApplicationRecord
   # current_stateの区分値(現在の状況)
   HASH_CURRENT_STATE = {
     1 => "妊娠中",
-    2 => "出産した",
+    2 => "出産済み",
     3 => "治療を断念(継続しない)"
   }
 
@@ -769,7 +781,7 @@ class Report < ApplicationRecord
 
   # number_of_miscarriagesの区分値(流産回数)
   HASH_NUMBER_OF_MISCARRIAGES = {
-    1 => "0回",
+    1 => "なし",
     2 => "1回",
     3 => "2回",
     4 => "3回以上",
@@ -782,7 +794,7 @@ class Report < ApplicationRecord
 
   # number_of_stillbirthsの区分値(死産回数)
   HASH_NUMBER_OF_STILLBIRTHS = {
-    1 => "0回",
+    1 => "なし",
     2 => "1回",
     3 => "2回",
     4 => "3回以上",
@@ -795,8 +807,8 @@ class Report < ApplicationRecord
 
   # fuikuの区分値(不育症の診断有無)
   HASH_FUIKU = {
-    1 => "あり",
-    2 => "なし",
+    1 => "なし",
+    2 => "あり",
     99 => "答えたくない",
     100 => "不明",
   }
@@ -813,6 +825,7 @@ class Report < ApplicationRecord
     4 => "実施していなかった",
     5 => "おそらく実施していなかった",
     6 => "答えたくない",
+    7 => "わからない",
   }
 
   def str_pgt1
@@ -833,11 +846,12 @@ class Report < ApplicationRecord
 
   # adoptionの区分値(養子縁組について)
   HASH_ADOPTION = {
-    1 => "検討したことがある/している",
-    2 => "申請をしたことがある/している",
-    3 => "養子は考えなかった/考えない",
-    4 => "養子を迎え入れた",
-    5 => "答えたくない",
+    1 => "全く考えなかった/考えない",
+    2 => "考えたことはある",
+    3 => "具体的に検討した/している",
+    4 => "申請をした/している",
+    5 => "養子を迎え入れた",
+    6 => "答えたくない",
   }
 
   def str_adoption
@@ -846,8 +860,8 @@ class Report < ApplicationRecord
 
   # ova_with_ivmの区分値(妊娠に至った卵子へのIVMの有無)
   HASH_OVA_WITH_IVM = {
-    1 => "あり",
-    2 => "なし",
+    1 => "なし",
+    2 => "あり",
     100 => "不明"
   }
 

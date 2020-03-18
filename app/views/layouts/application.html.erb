@@ -11,18 +11,19 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
 
   <body>
-  <%= render 'header' %>
-  
-  <div class="base">
-    <div class="container px-0">
-      <%= render 'layouts/flash' %>
-      <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-      <%= yield %>
+    <%= render 'header' %>
+    
+    <div class="base">
+      <div class="container px-0">
+        <%= render 'layouts/flash' %>
+        <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+        <%= yield %>
+      </div>
     </div>
-  </div>
-  <%= render 'footer' %>
+    <%= render 'footer' %>
   </body>
 </html>

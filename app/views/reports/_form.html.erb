@@ -1,26 +1,25 @@
-
-<% if false %>
-  <% if is_new
-    url = confirm_reports_path
-  else
-    url = confirm_report_path(report.id)
-  end %>
-<% end %>
-
-<%= form_with(model: report, local: true) do |f| %>
-  <% if report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(report.errors.count, "error") %> 件の未入力または誤った入力があります</h2>
-      <ul>
-        <% report.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+<div class="container">
+  <% if false %>
+    <% if is_new
+      url = confirm_reports_path
+    else
+      url = confirm_report_path(report.id)
+    end %>
   <% end %>
 
-  <div class="split-left-box left-box px-3 pt-5 pb-5">
+  <%= form_with(model: report, local: true) do |f| %>
+    <% if report.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(report.errors.count, "error") %> 件の未入力または誤った入力があります</h2>
+        <ul>
+          <% report.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
+    <div class="split-left-box left-box px-3 pt-5 pb-5">
       <div class="form-group">
         <div class="label"><%= f.label :current_state, '投稿時点(現在)の状況', class: "question-matters" %></div>
         <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, { prompt: "選択してください" }, { class: "form-control" } %>
@@ -35,59 +34,76 @@
             <small class="text-danger float-right">※必須</small>
             <div class="label p-1"><%= f.label :clinic_id, 'クリニックを選択', class: "question-matters" %></div>
             <div>
+              <% if report.clinic.blank? %>
+                <% prefecture_id = nil %>
+              <% else %>
+                <% prefecture_id = report.clinic.prefecture_id %>
+              <% end %>
               <%= select_tag :select_prefecture,
-                              options_from_collection_for_select(Prefecture.all, :id, :name),
+                              options_from_collection_for_select(Prefecture.all, :id, :name, selected: prefecture_id),
                               {
                                 prompt: "都道府県を選択する",
-                                class: "form-control"
+                                class: "form-control",
                               }
               %>
             </div><br>
 
             <div>
-              <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control" } %>
+              <% if report.clinic.blank? %>
+                <% city_id = nil %>
+                <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control" } %>
+              <% else %>
+                <% city_id = report.clinic.city_id %>
+                <% cities = City.where(prefecture_id: prefecture_id).order(:id).joins(:clinics).distinct %>
+                <%= collection_select :prefecture, :city, cities, :id, :name, { prompt: "選択してください", selected: city_id }, { class: "form-control" } %>
+              <% end %>
             </div><br>
             <div>
-              <%= f.select :clinic_id, {}, { prompt: "クリニックを選択する"}, { class: "form-control" } %>
+              <% if report.clinic.blank? %>
+                <%= f.select :clinic_id, {}, { prompt: "クリニックを選択する"}, { class: "form-control" } %>
+              <% else %>
+                <% clinics = Clinic.where(city_id: city_id) %>
+                <%= collection_select :report, :clinic_id, clinics, :id, :name, {prompt: "選択"}, { class: "form-control" } %>
+              <% end %>
               <small id="poster-tip" class="form-text text-muted">
-                  最新周期のクリニックを選んでください。
+                最新周期のクリニックを選んでください。
               </small>
             </div>
           </div>
           <script>
-          $(function() {
-            $('#select_prefecture').change(function() {
-              $.ajax('/cities_select',
-                {
-                  type: 'get',
-                  data: { prefecture_id: $(this).val() },
-                }
-              )
-              .done(function(data) {
-                $('#city').html(data) 
-              })
-              .fail(function() {
-                window.alert('正しい結果を得られませんでした。');
-              });
-              $('#report_clinic_id').val('');
-            });
-          });
-          $(function() {
-            $('#city').change(function() {
-              $.ajax('/clinics_select',
-                {
-                  type: 'get',
-                  data: { city_id: $(this).val() },
-                }
-              )
-              .done(function(data) {
-                $('#report_clinic_id').html(data) 
-              })
-              .fail(function() {
-                window.alert('正しい結果を得られませんでした。');
+            $(function() {
+              $('#select_prefecture').change(function() {
+                $.ajax('/cities_select',
+                  {
+                    type: 'get',
+                    data: { prefecture_id: $(this).val() },
+                  }
+                )
+                .done(function(data) {
+                  $('#city').html(data) 
+                })
+                .fail(function() {
+                  window.alert('正しい結果を得られませんでした。');
+                });
+                $('#report_clinic_id').val('');
               });
             });
-          });
+            $(function() {
+              $('#city').change(function() {
+                $.ajax('/clinics_select',
+                  {
+                    type: 'get',
+                    data: { city_id: $(this).val() },
+                  }
+                )
+                .done(function(data) {
+                  $('#report_clinic_id').html(data) 
+                })
+                .fail(function() {
+                  window.alert('正しい結果を得られませんでした。');
+                });
+              });
+            });
           </script>
         </div>
 
@@ -98,9 +114,18 @@
             <div>
               <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "都道府県を選択してください"}, {class: "form-control"}) %>
             </div>
-            <small id="poster-tip" class="form-text text-muted"><%= f.check_box :prefecture_at_the_time_status, {}, "hide", "show" %>非公開</small><br>
+            <small id="poster-tip" class="form-text text-muted">
+              <%= f.check_box :prefecture_at_the_time_status, {}, "hide", "show" %>非公開
+            </small><br>
             <div>
-              <%= f.select :city_id, {}, { prompt: "市区町村を選択してください"}, { class: "form-control" } %>
+            <% if report.city.blank? %>
+              <%= f.select :city_id, {}, { prompt: "市区町村を選択してください" }, { class: "form-control" } %>
+            <% else %>
+              <% city = report.city_id %>
+              <% prefecture_id = report.prefecture_id %>
+              <% cities = City.where(prefecture_id: prefecture_id) %>
+              <%= collection_select :report, :city_id, cities, :id, :name, { prompt: "選択してください", selected: city }, { class: "form-control" } %>
+            <% end %>
             </div>
             <small id="poster-tip" class="form-text text-muted"><%= f.check_box :city_at_the_time_status, {}, "hide", "show" %>非公開</small>
           </div>
@@ -137,8 +162,9 @@
 
         <div class="col-12 form-group border rounded px-1 py-3 itinerary-of-clinic">
           <p class="px-3">これまでの転院歴を教えてください。</p>
-          <small id="poster-tip" class="form-text text-muted px-2">
-            行が足りない場合は「追加」してください。
+          <small id="poster-tip" class="form-text text-muted px-3" style="line-height: 170%">
+            行が足りない場合は「追加」してください。<br>
+            この質問は必須ではありませんが、回答される場合には各行必ず&nbsp;<font color="#3DBAF5">必須</font>&nbsp;と書かれた「転院歴」列を選択してください。
           </small>
           <small id="poster-tip" class="form-text text-muted px-2 text-right">
             <span style="color:red">※</span><bold>CL</bold> = 「クリニック」の略
@@ -149,93 +175,6 @@
           <div class="links pt-2 pl-2">
             <%= link_to_add_association "+ 追加", f, :itinerary_of_choosing_a_clinics %>
           </div>
-        
-          <script>
-            $(function() {
-              $('#clinic_prefecture_0').change(function() {
-                $.ajax('/clinic_select',
-                  {
-                    type: 'get',
-                    data: { prefecture_id: $(this).val() },
-                  }
-                )
-                .done(function(data) {
-                  $('#itinerary_of_clinic_0').html(data) 
-                })
-                .fail(function() {
-                  window.alert('正しい結果を得られませんでした。');
-                });
-              });
-            });
-            
-            $(function() {
-              $('#clinic_prefecture_1').change(function() {
-                $.ajax('/clinic_select',
-                  {
-                    type: 'get',
-                    data: { prefecture_id: $(this).val() },
-                  }
-                )
-                .done(function(data) {
-                  $('#itinerary_of_clinic_1').html(data) 
-                })
-                .fail(function() {
-                  window.alert('正しい結果を得られませんでした。');
-                });
-              });
-            });
-
-            $(function() {
-              $('#clinic_prefecture_2').change(function() {
-                $.ajax('/clinic_select',
-                  {
-                    type: 'get',
-                    data: { prefecture_id: $(this).val() },
-                  }
-                )
-                .done(function(data) {
-                  $('#itinerary_of_clinic_2').html(data) 
-                })
-                .fail(function() {
-                  window.alert('正しい結果を得られませんでした。');
-                });
-              });
-            });
-
-            $(function() {
-              $('#clinic_prefecture_3').change(function() {
-                $.ajax('/clinic_select',
-                  {
-                    type: 'get',
-                    data: { prefecture_id: $(this).val() },
-                  }
-                )
-                .done(function(data) {
-                  $('#itinerary_of_clinic_3').html(data) 
-                })
-                .fail(function() {
-                  window.alert('正しい結果を得られませんでした。');
-                });
-              });
-            });
-
-            $(function() {
-              $('#clinic_prefecture_4').change(function() {
-                $.ajax('/clinic_select',
-                  {
-                    type: 'get',
-                    data: { prefecture_id: $(this).val() },
-                  }
-                )
-                .done(function(data) {
-                  $('#itinerary_of_clinic_4').html(data) 
-                })
-                .fail(function() {
-                  window.alert('正しい結果を得られませんでした。');
-                });
-              });
-            });
-          </script>
         </div>
 
         <div class="col-md-12 border rounded px-2 mt-5">
@@ -329,7 +268,7 @@
       </div>
 
       <div class="form-group">
-        <div class="label p-1"><%= f.label :treatment_period, 'お休み期間をのぞくと正味このクリニックにはどれくらいの期間通院しましたか', class: "question-matters" %></div>
+        <div class="label p-1"><%= f.label :treatment_period, 'このクリニックにはどれくらいの期間通院しましたか', class: "question-matters" %></div>
         <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
         <small id="poster-tip" class="form-text text-muted">
             おおよその期間を選択ください。
@@ -706,33 +645,33 @@
         </div>
 
         <script>
-        $(function() {
-          init($('#report_embryo_stage option:selected').val());
-          $("#report_embryo_stage").change(function() {
-            init($(this).val());
-          });
-        })
-        function init(embryo_stage) {
-          if (embryo_stage === "1") {
-            $(".early_embryo_grade").show();
-            $(".shokihaiishoku-hormone").show();
-            $(".blastocyst_grade1").hide();
-            $(".blastocyst_grade2").hide();
-            $(".haibanhoishoku-hormone").hide();
-          } else if (embryo_stage === "2") {
-            $(".early_embryo_grade").hide();
-            $(".shokihaiishoku-hormone").hide();
-            $(".blastocyst_grade1").show();
-            $(".blastocyst_grade2").show();
-            $(".haibanhoishoku-hormone").show();
-          } else {
-            $(".early_embryo_grade").hide();
-            $(".shokihaiishoku-hormone").hide();
-            $(".blastocyst_grade1").hide();
-            $(".blastocyst_grade2").hide();
-            $(".haibanhoishoku-hormone").hide();
+          $(function() {
+            init($('#report_embryo_stage option:selected').val());
+            $("#report_embryo_stage").change(function() {
+              init($(this).val());
+            });
+          })
+          function init(embryo_stage) {
+            if (embryo_stage === "1") {
+              $(".early_embryo_grade").show();
+              $(".shokihaiishoku-hormone").show();
+              $(".blastocyst_grade1").hide();
+              $(".blastocyst_grade2").hide();
+              $(".haibanhoishoku-hormone").hide();
+            } else if (embryo_stage === "2") {
+              $(".early_embryo_grade").hide();
+              $(".shokihaiishoku-hormone").hide();
+              $(".blastocyst_grade1").show();
+              $(".blastocyst_grade2").show();
+              $(".haibanhoishoku-hormone").show();
+            } else {
+              $(".early_embryo_grade").hide();
+              $(".shokihaiishoku-hormone").hide();
+              $(".blastocyst_grade1").hide();
+              $(".blastocyst_grade2").hide();
+              $(".haibanhoishoku-hormone").hide();
+            }
           }
-        }
         </script>
 
         <div class="form-group">
@@ -817,13 +756,13 @@
         </div>
 
         <div class="form-group border rounded px-3 py-3">
-          <div class="label p-1"><%= f.label :number_of_miscarriages, 'これまでの流産回数', class: "question-matters" %></div>
+          <div class="label p-1"><%= f.label :number_of_miscarriages, 'これまでの流産経験', class: "question-matters" %></div>
           <%= f.select :number_of_miscarriages, Report::HASH_NUMBER_OF_MISCARRIAGES.invert, { prompt: "選択してください" }, { class: "form-control" } %>
           <small id="poster-tip" class="form-text text-muted">
             このクリニックや治療に関係なく可能であれば選択ください。
           </small>
           <div class="form-group">
-            <div class="label p-1"><%= f.label :number_of_stillbirths, 'これまでの死産回数', class: "question-matters" %></div>
+            <div class="label p-1"><%= f.label :number_of_stillbirths, 'これまでの死産経験', class: "question-matters" %></div>
             <%= f.select :number_of_stillbirths, Report::HASH_NUMBER_OF_MISCARRIAGES.invert, { prompt: "選択してください" }, { class: "form-control" } %>
             <small id="poster-tip" class="form-text text-muted">
               このクリニックや治療に関係なく可能であれば選択ください。
@@ -895,7 +834,7 @@
 
         <div class="form-group">
           <div class="border rounded px-3 py-3 ">
-            <div class="label p-1"><%= f.label :transfer_option, '移植オプション（複数選択可）', class: "question-matters" %></div><br>
+            <div class="label p-1"><%= f.label :transfer_option, '移植オプション(複数選択可)', class: "question-matters" %></div><br>
             <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
               <div class="form-check form-check-inline">
                 <%= b.label class: "form-check-label" do %>
@@ -943,7 +882,7 @@
             <div class="label p-1"><%= f.label :frozen_embryo_storage_cost, '凍結胚1個あたりの年間保存費用(わかれば)', class: "question-matters" %></div>
             <%= f.number_field :frozen_embryo_storage_cost, { step: "1", class: "form-control" }  %>
             <small id="poster-tip" class="form-text text-muted">
-              諸々の年間保存コスト&nbsp;÷&nbsp;凍結胚の個数
+              例) 諸々の年間保存コスト&nbsp;÷&nbsp;凍結胚の個数
             </small>
           </div>
           <div class="form-group mt-2">
@@ -954,7 +893,6 @@
             </small>
           </div>
         </div>
-
       </div>
 
       <div class="form-group">
@@ -967,7 +905,7 @@
 
       <div class="form-group">
         <div class="border rounded px-3 py-3 ">
-          <div class="label p-1"><%= f.label :other_effort, 'クリニックでの治療以外に行ったこと（複数選択可）', class: "question-matters" %></div><br>
+          <div class="label p-1"><%= f.label :other_effort, 'クリニックでの治療以外に行ったこと(複数選択可)', class: "question-matters" %></div><br>
           <%= f.collection_check_boxes(:other_effort_ids, OtherEffort.all, :id, :name) do |b| %>
             <div class="form-check form-check-inline">
               <%= b.label class: "form-check-label" do %>
@@ -1002,7 +940,7 @@
 
       <div class="form-group">
         <div class="border rounded px-3 py-3 ">
-          <div class="label p-1"><%= f.label :supplement, '治療中サプリを使用しましたか（複数選択可）', class: "question-matters" %></div><br>
+          <div class="label p-1"><%= f.label :supplement, '治療中サプリを使用しましたか(複数選択可)', class: "question-matters" %></div><br>
           <%= f.collection_check_boxes(:supplement_ids, Supplement.all, :id, :name) do |b| %>
             <div class="form-check form-check-inline">
               <%= b.label class: "form-check-label" do %>
@@ -1053,12 +991,12 @@
 
       <script>
         $(function() {
-          init($('#report_credit_card_validity option:selected').val());
+          cost($('#report_credit_card_validity option:selected').val());
           $("#report_credit_card_validity").change(function() {
-            init($(this).val());
+            cost($(this).val());
           });
         })
-        function init(credit_card_validity) {
+        function cost(credit_card_validity) {
           if (credit_card_validity === "3") {
             $(".amount_that_can_be_activated").show();
           } else {
@@ -1216,7 +1154,7 @@
 
       <div class="form-group">
         <div class="border rounded px-3 py-3">
-          <div class="label p-1"><%= f.label :scope_of_disclosure, '治療のことをどこまでオープンにしましたか（複数選択可）', class: "question-matters" %></div><br>
+          <div class="label p-1"><%= f.label :scope_of_disclosure, '治療のことをどこまでオープンにしましたか(複数選択可)', class: "question-matters" %></div><br>
           <%= f.collection_check_boxes(:scope_of_disclosure_ids, ScopeOfDisclosure.all, :id, :scope) do |b| %>
             <div class="form-check form-check-inline">
               <%= b.label class: "form-check-label" do %>
@@ -1242,7 +1180,7 @@
         <div class="row">
           <div class="col-12">
             <h3>タグ</h3>
-            <%= f.label :tag_ids, 'タグをつけることができます（複数選択可）', class: "question-matters" %>
+            <%= f.label :tag_ids, 'タグをつけることができます(複数選択可)', class: "question-matters" %>
           </div>
           <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
             <div class="col-md-4">
@@ -1275,9 +1213,9 @@
             よろしければクリックしてください。
           </small>
       </div>
-  </div>
+    </div>
 
-  <div class="split-right-box right-box px-3 pt-5 pb-5">
+    <div class="split-right-box right-box px-3 pt-5 pb-5">
       <div class="form-group">
         <div><%= f.label :title, 'あなたの治療レポートのタイトル', class: "question-matters" %></div>
         <%= f.text_field :title, class: "form-control", placeholder: "レポートのタイトル" %>
@@ -1309,7 +1247,6 @@
         <%= link_to '戻る', @report, class:"btn btn-outline-info button" %>
         <%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>
       </div>
-
-  </div>
-
-<% end %>
+    </div>
+  <% end %>
+</div>

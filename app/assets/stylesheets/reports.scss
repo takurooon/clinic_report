@@ -82,6 +82,12 @@
   height: 30px;
 }
 
+// 質問の行間・文字間隔
+.form-group .question-matters {
+	line-height: 170%;
+	letter-spacing: 0.05em
+}
+
 // 質問項目
 #main-report .question-matters {
   background: linear-gradient(transparent 50%, #90F7EC 100%);
@@ -104,6 +110,10 @@
 // showのinfoのresultカラム
 .result-column {
   background-color: #E8FEFC;
+}
+
+.result-column:hover {
+  background-color: #ECECEC;
 }
 
 // SNSシェアバー
@@ -223,21 +233,21 @@
 
 // form画面のスプリットスクリーンのブレイクポイント(1000px以下は縦縦並び)
 @media screen and (min-width: 1000px) {
-.split-left-box{
+.split-left-box {
 	position:absolute;
-	width:40%;
-	height:100%;
+	width: 40%;
+	height: 85%;
 }
 
-.split-right-box{
+.split-right-box {
 	position:absolute;
 	width:60%;
-	height:100%;
+	height: 85%;
 }
  
 .left-box {
   left:0;
-  overflow-y:scroll;
+	overflow-y:scroll;
 }
  
 .right-box {
@@ -245,6 +255,7 @@
 	overflow-y:scroll;
 }
 }
+
 
 // 続きをよむ
 .cp_box *, .cp_box *:before, .cp_box *:after {
@@ -531,4 +542,10 @@
 
 .itinerary-of-clinic-col3 {
 	width: 50%;
+}
+
+// 一覧画面の記事「続きを読む」
+.lead-content {
+	background-color: rgba(147,224,224,0.4);
+	border-radius: 5px;
 }

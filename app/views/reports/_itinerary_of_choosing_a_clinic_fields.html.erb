@@ -2,7 +2,7 @@
   <table class="table table-sm table-bordered table-hover mb-0">
     <thead>
       <tr>
-        <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col1 text-center align-middle">転院歴&nbsp;<span><font size="1" color="#FF0000">(必須)</font></span></th>
+        <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col1 text-center align-middle">転院歴&nbsp;<span><small class="text-info">(必須)</small></span></th>
         <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col2 text-center align-middle"><small>都道府県</small></th>
         <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col3 text-center align-middle">クリニック</th>
       </tr>
@@ -11,16 +11,39 @@
       <tr>
         <td class="text-center align-middle"><%= f.select :order_of_transfer, Report.make_select_itinerary_of_choosing_a_clinics_order_of_transfer, { prompt: "選択必須" }, { class: "form-control text-muted" } %></td>
         <td class="text-center align-middle">
+          
           <%= select_tag :clinic_prefecture,
                           options_from_collection_for_select(Prefecture.all, :id, :name),
                           {
                             prompt: "選択",
-                            class: "form-control",
-                            id: "clinic_prefecture_#{f.index}"
+                            class: "form-control clinic_prefecture"
                           }
           %>
         </td>
-        <td class="text-center align-middle"><%= f.select :clinic_id, {}, { prompt: "←先に都道府県を選択"}, { id: "itinerary_of_clinic_#{f.index}", class: "form-control" } %></td>
+        <td class="text-center align-middle"><%= f.select :clinic_id, {}, { prompt: "←先に都道府県を選択"}, { class: "form-control itinerary_of_clinic" } %></td>
+
+        <script>
+          $(function() {
+            $('.clinic_prefecture').change(function() {
+              
+              console.log ($(this).parent().next().children("select"));
+              let clinic = $(this).parent().next().children("select");
+              $.ajax('/clinic_select',
+                {
+                  type: 'get',
+                  data: { prefecture_id: $(this).val() },
+                }
+              )
+              .done(function(data) {
+                clinic.html(data) 
+              })
+              .fail(function() {
+                window.alert('正しい結果を得られませんでした。');
+              });
+            });
+          });
+        </script>
+        
       </tr>
     </tbody>
   </table>

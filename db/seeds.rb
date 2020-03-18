@@ -167,10 +167,10 @@ OtherEffort.create([
 ])
 
 Inspection.create([
-  { name: "エラ(ERA)検査" },
-  { name: "エマ(EMMA)検査" },
-  { name: "アリス(ALICE)検査" },
-  { name: "トリオ(TORIO)検査" },
-  { name: "慢性子宮内膜炎（CD138/BCE）検査" },
-  { name: "エラピーク(ERPEAK)検査" },
+  { name: "エラ(ERA)" },
+  { name: "エマ(EMMA)" },
+  { name: "アリス(ALICE)" },
+  { name: "トリオ(TORIO)" },
+  { name: "慢性子宮内膜炎(CD138/BCE)" },
+  { name: "ERPeak" },
 ])

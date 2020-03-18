@@ -1,23 +1,17 @@
-<div class="d-flex align-items-center mt-5">
-
-  <div class="ml-auto reports_button">
-    <%= form_tag reports_path, method: :get, class: 'reports__searchForm' do %>
-      <%= select_tag :tag_id,
-                    options_from_collection_for_select(@toptags, :id, :tag_name, params[:tag_id]),
-                    {
-                      prompt: '主要タグで絞る',
-                      class: 'form-control reports__select',
-                      onchange: 'submit(this.form);'
-                    }
-      %>
-    <% end %>
-      <%= link_to "レポートを作成", new_report_path, class:"btn btn-raised btn-info" %>
+<div class="row mt-5 mb-5 pr-3 d-none d-md-block">
+  <div class="col-lg-10 offset-lg-1 mr-5 pr-5">
+      <%= link_to "レポートを作成", new_report_path, class:"btn btn-raised btn-primary float-right" %>
+  </div>
+</div>
+<div class="row mt-5 mb-5 d-sm d-md-none mr-2">
+  <div class="col-lg-10 offset-lg-1">
+      <%= link_to "レポートを作成", new_report_path, class:"btn btn-raised btn-primary float-right" %>
   </div>
 </div>
 
-<h3 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-4 lead">カテゴリから探す</h3>
+<h3 class="d-none d-md-block col-lg-10 offset-lg-1 offset-md-0 pl-5 mt-4 mb-4 lead">&nbsp;&nbsp;カテゴリから探す</h3>
 <h3 class="d-sm d-md-none mt-4 text-center mb-4 lead">カテゴリから探す</h3>
-<div class="form-group  mt-4 text-center mb-4 pl-4 pr-4">
+<div class="form-group mt-4 text-center mb-4 pl-4 pr-4">
   <div class="form-group d-sm d-md-none mt-4 text-center mb-4">
     <select id="select1a" class="form-control" onChange="top.location.href=value">
       <option value="#">選択してください</option>
@@ -32,11 +26,11 @@
 </div>
 
 <div class="row category">
-  <div class="col-md-8 offset-md-2">
-    <div class="row category-inner mb-5">
+  <div class="col-lg-10 offset-lg-1 col-md-12 px-5">
+    <div class="row category-inner mb-5 px-3">
       <div class="col-md-6 col-lg-4 d-none d-md-block">
         <%= link_to category_amh_path do %>
-          <div class="row category-list">
+          <div class="row category-list px-5">
             <div class="col-xs-6 col-sm-6 col-md-6 text-center">
               <%= fa_icon "chart-bar", class: 'mx-2', size: '3x', color: "#485460" %>
             </div>
