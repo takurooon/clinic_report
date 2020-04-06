@@ -11,16 +11,31 @@
       <tr>
         <td class="text-center align-middle"><%= f.select :order_of_transfer, Report.make_select_itinerary_of_choosing_a_clinics_order_of_transfer, { prompt: "選択必須" }, { class: "form-control text-muted" } %></td>
         <td class="text-center align-middle">
-          
+          <% if f.object.clinic.blank? %>
+            <% prefecture_id = nil %>
+          <% else %>
+            <% prefecture_id = f.object.clinic.prefecture_id %>
+          <% end %>
           <%= select_tag :clinic_prefecture,
-                          options_from_collection_for_select(Prefecture.all, :id, :name),
+                          options_from_collection_for_select(Prefecture.all, :id, :name, selected: prefecture_id),
                           {
                             prompt: "選択",
                             class: "form-control clinic_prefecture"
                           }
           %>
         </td>
-        <td class="text-center align-middle"><%= f.select :clinic_id, {}, { prompt: "←先に都道府県を選択"}, { class: "form-control itinerary_of_clinic" } %></td>
+        <td class="text-center align-middle">
+          <% if f.object.clinic.blank? %>
+            <%= f.select :clinic_id, {}, { prompt: "←先に都道府県を選択"}, { class: "form-control itinerary_of_clinic" } %>
+          <% else %>
+            <% clinics = Clinic.where(prefecture_id: prefecture_id).order(id: "ASC") %>
+            <% options = {} %>
+            <% clinics.each do |clinic| %>
+              <% options[clinic.name] = clinic.id %>
+            <% end %>
+            <%= f.select :clinic_id, options, {prompt: "選択"}, { class: "form-control" } %>
+          <% end %>
+        </td>
 
         <script>
           $(function() {

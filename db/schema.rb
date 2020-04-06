@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_152057) do
+ActiveRecord::Schema.define(version: 2020_04_05_010754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,19 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "before_ishoku_hormones", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "day", null: false
+    t.integer "e2"
+    t.integer "fsh"
+    t.integer "lh"
+    t.integer "p4"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id", "day"], name: "index_before_ishoku_hormones_on_report_id_and_day", unique: true
+    t.index ["report_id"], name: "index_before_ishoku_hormones_on_report_id"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -101,6 +114,45 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id"], name: "index_comments_on_report_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "day_of_haibanhoishokus", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "bt", default: 0, null: false
+    t.integer "e2"
+    t.integer "fsh"
+    t.integer "lh"
+    t.integer "p4"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id", "bt"], name: "index_day_of_haibanhoishokus_on_report_id_and_bt", unique: true
+    t.index ["report_id"], name: "index_day_of_haibanhoishokus_on_report_id"
+  end
+
+  create_table "day_of_sairans", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "day", null: false
+    t.integer "e2"
+    t.integer "fsh"
+    t.integer "lh"
+    t.integer "p4"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id", "day"], name: "index_day_of_sairans_on_report_id_and_day", unique: true
+    t.index ["report_id"], name: "index_day_of_sairans_on_report_id"
+  end
+
+  create_table "day_of_shokihaiishokus", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "et", default: 0, null: false
+    t.integer "e2"
+    t.integer "fsh"
+    t.integer "lh"
+    t.integer "p4"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id", "et"], name: "index_day_of_shokihaiishokus_on_report_id_and_et", unique: true
+    t.index ["report_id"], name: "index_day_of_shokihaiishokus_on_report_id"
   end
 
   create_table "f_diseases", force: :cascade do |t|
@@ -327,12 +379,13 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
     t.integer "current_state"
     t.date "year_of_treatment_end"
     t.integer "fertility_treatment_number"
+    t.integer "transplant_method"
     t.integer "number_of_clinics"
     t.integer "clinic_selection_criteria"
-    t.integer "treatment_type"
     t.integer "treatment_start_age"
     t.integer "first_age_to_start"
     t.integer "treatment_end_age"
+    t.integer "age_of_partner_at_end_of_treatment"
     t.integer "treatment_period"
     t.integer "number_of_aih"
     t.text "special_inspection_supplementary_explanation"
@@ -366,6 +419,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
     t.integer "blastocyst_grade2"
     t.text "blastocyst_grade2_supplementary_explanation"
     t.integer "total_number_of_transplants"
+    t.integer "total_number_of_eggs_transplanted"
     t.integer "all_number_of_transplants"
     t.integer "number_of_eggs_stored"
     t.integer "frozen_embryo_storage_cost"
@@ -381,6 +435,9 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
     t.text "supplement_supplementary_explanation"
     t.integer "cost"
     t.integer "all_cost"
+    t.integer "number_of_times_the_grant_was_received"
+    t.integer "all_grant_amount"
+    t.integer "supplementary_explanation_of_grant"
     t.integer "credit_card_validity"
     t.integer "creditcards_can_be_used_from_more_than"
     t.integer "average_waiting_time"
@@ -514,6 +571,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "before_ishoku_hormones", "reports"
   add_foreign_key "cities", "prefectures"
   add_foreign_key "clinic_reviews", "clinics"
   add_foreign_key "clinic_reviews", "users"
@@ -521,6 +579,9 @@ ActiveRecord::Schema.define(version: 2020_03_04_152057) do
   add_foreign_key "clinics", "prefectures"
   add_foreign_key "comments", "reports"
   add_foreign_key "comments", "users"
+  add_foreign_key "day_of_haibanhoishokus", "reports"
+  add_foreign_key "day_of_sairans", "reports"
+  add_foreign_key "day_of_shokihaiishokus", "reports"
   add_foreign_key "haibanhoishoku_hormones", "reports"
   add_foreign_key "itinerary_of_choosing_a_clinics", "clinics"
   add_foreign_key "itinerary_of_choosing_a_clinics", "reports"

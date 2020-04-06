@@ -1,12 +1,6 @@
-class SairanHormone < ApplicationRecord
-  belongs_to :report, inverse_of: :sairan_hormones
-
-  validates :day, presence: true, numericality: true
-end
-
 # == Schema Information
 #
-# Table name: sairan_hormones
+# Table name: day_of_sairans
 #
 #  id         :bigint           not null, primary key
 #  day        :integer          not null
@@ -20,10 +14,17 @@ end
 #
 # Indexes
 #
-#  index_sairan_hormones_on_report_id          (report_id)
-#  index_sairan_hormones_on_report_id_and_day  (report_id,day) UNIQUE
+#  index_day_of_sairans_on_report_id          (report_id)
+#  index_day_of_sairans_on_report_id_and_day  (report_id,day) UNIQUE
 #
 # Foreign Keys
 #
 #  fk_rails_...  (report_id => reports.id)
 #
+require 'test_helper'
+
+class DayOfSairanTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
+end

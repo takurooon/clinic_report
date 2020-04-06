@@ -68,6 +68,8 @@ Supplement.create([
 
 ScopeOfDisclosure.create([
   { scope: "パートナーまで" },
+  { scope: "聞かれたら誰にでもオープン" },
+  { scope: "自ら進んで誰にでも公表" },
   { scope: "両親" },
   { scope: "兄弟/姉妹" },
   { scope: "義理の両親" },
@@ -78,7 +80,6 @@ ScopeOfDisclosure.create([
   { scope: "同僚" },
   { scope: "上司" },
   { scope: "部下" },
-  { scope: "聞かれたら誰にでもオープン" },
 ])
 
 FInfertilityFactor.create([
@@ -104,7 +105,6 @@ FInfertilityFactor.create([
   { name: "卵管(狭窄)癒着" },
   { name: "抗精子抗体" },
   { name: "内分泌ホルモン異常" },
-  { name: "不育症" },
 ])
 
 MInfertilityFactor.create([

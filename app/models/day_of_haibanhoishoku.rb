@@ -1,18 +1,17 @@
-class HaibanhoishokuHormone < ApplicationRecord
-  belongs_to :report, inverse_of: :haibanhoishoku_hormones
+class DayOfHaibanhoishoku < ApplicationRecord
+  belongs_to :report
 
   validates :bt, presence: true, numericality: true
 end
 
 # == Schema Information
 #
-# Table name: haibanhoishoku_hormones
+# Table name: day_of_haibanhoishokus
 #
 #  id         :bigint           not null, primary key
-#  bt         :integer          not null
+#  bt         :integer          default(0), not null
 #  e2         :integer
 #  fsh        :integer
-#  hcg        :integer
 #  lh         :integer
 #  p4         :integer
 #  created_at :datetime         not null
@@ -21,8 +20,8 @@ end
 #
 # Indexes
 #
-#  index_haibanhoishoku_hormones_on_report_id         (report_id)
-#  index_haibanhoishoku_hormones_on_report_id_and_bt  (report_id,bt) UNIQUE
+#  index_day_of_haibanhoishokus_on_report_id         (report_id)
+#  index_day_of_haibanhoishokus_on_report_id_and_bt  (report_id,bt) UNIQUE
 #
 # Foreign Keys
 #

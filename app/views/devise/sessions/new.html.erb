@@ -10,22 +10,22 @@
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
 
-              <div class="form-group mt-0">
+              <div class="form-group mt-0 text-left">
                 <%= f.label :email, 'メール', for: "formGroupInput", class: "bmd-label-floating" %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control validate[required, custom[email], maxSize[20]]', id: "formGroupInput" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control validate[required, custom[email]]', id: "formGroupInput" %>
                 <span class="bmd-help">登録したメールアドレスを入力してください。</span>
               </div>
 
-              <div class="form-group mt-0">
+              <div class="form-group mt-0 text-left">
                 <%= f.label :password, 'パスワード', for: "formGroupInput", class: "bmd-label-floating" %><br />
-                <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', id: "formGroupInput" %>
+                <%= f.password_field :password, autocomplete: "current-password", class: 'form-control validate[required, minSize[6]]', id: "formGroupInput" %>
                 <span class="bmd-help">登録したパスワードを入力してください(6〜16文字)</span>
               </div>
               
               <% if devise_mapping.rememberable? %>
-                <div class="field checkbox">
+                <div class="field checkbox text-left">
                   <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me %>
+                  <%= f.label :remember_me, class: "pl-2" %>
                 </div>
               <% end %>
 

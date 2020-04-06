@@ -8,6 +8,7 @@
     <%= favicon_link_tag('home/repoco.ico') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= Gon::Base.render_data %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,7 +20,6 @@
     
     <div class="base">
       <div class="container px-0">
-        <%= render 'layouts/flash' %>
         <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
         <%= yield %>
       </div>

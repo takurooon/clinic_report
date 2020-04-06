@@ -76,6 +76,22 @@
   text-align: center;
   padding: 10px;
 }
+@media screen and (max-width: 1000px) {
+	.submit-mobile {
+		display: none;
+	}
+}
+// content/submitボタン前後にある注釈内の質問項目を指す方向(文字)のデバイス毎の切り替え
+@media screen and (min-width: 1000px) {
+  .pc-hidden-string {
+		display: none;
+  }
+}
+@media screen and (max-width: 999px) {
+  .mobile-hidden-string {
+		display: none;
+  }
+}
 
 // 質問セクション間
 .spacer {
@@ -88,13 +104,13 @@
 	letter-spacing: 0.05em
 }
 
-// 質問項目
-#main-report .question-matters {
-  background: linear-gradient(transparent 50%, #90F7EC 100%);
-  color: #4d4c4c;
-  font-weight: bold;
-  font-size: 16px;
-}
+// 質問項目下線
+// .question-matters {
+//   background: linear-gradient(transparent 75%, #90F7EC 100%);
+//   color: #4d4c4c;
+//   font-weight: bold;
+//   font-size: 13px;
+// }
 
 // promptの文字色
 #main-report .form-control, .custom-file-control {
@@ -107,9 +123,22 @@
   font-size: 20px;
 }
 
-// showのinfoのresultカラム
-.result-column {
-  background-color: #E8FEFC;
+// showの結果カラム(右)の文字
+.result-text {
+}
+
+// showのresult右カラム
+.result-right-column {
+}
+
+// showのresult左カラム
+.result-left-column {
+	background-color: rgba(232,254,252,0.8);
+}
+
+// showのresultのthead
+.result-thead {
+	background-color: rgba(51,57,64,0.95);
 }
 
 .result-column:hover {
@@ -256,7 +285,6 @@
 }
 }
 
-
 // 続きをよむ
 .cp_box *, .cp_box *:before, .cp_box *:after {
 	-webkit-box-sizing: border-box;
@@ -274,7 +302,7 @@
 	cursor: pointer;
 	text-align: center;
 	/* 以下グラデーションは背景を自身のサイトに合わせて設定してください */
-	background: linear-gradient(to bottom, rgba(250, 252, 252, 0) 0%, rgba(250, 252, 252, 0.95) 90%);
+	background: linear-gradient(to bottom, rgba(250, 252, 252, 0) 0%, rgba(250, 252, 252, 0.99) 95%);
 }
 .cp_box input:checked + label {
 	background: inherit; /* 開いた時にグラデーションを消す */
@@ -287,12 +315,13 @@
 	left: 50%;
 	width: 16rem;
 	font-family: FontAwesome;
-	content: '\f13a'' 治療情報を見る';
+	content: '治療情報一覧を見る';
 	transform: translate(-50%, 0);
 	letter-spacing: 0.05em;
-	color: #ffffff;
+	color: #1A2438;
 	border-radius: 20px;
-	background-color: rgba(27, 37, 56, 1);
+	background-color: rgba(208, 231, 249, 0.5);
+	font-weight: bold;
 }
 .cp_box input {
 	display: none;
@@ -307,7 +336,7 @@
 }
 .cp_box input:checked + label:after {
 	font-family: FontAwesome;
-	content: '\f139'' 閉じる';
+	content: '閉じる';
 }
 .cp_box input:checked ~ .cp_container {
 	height: auto;
@@ -548,4 +577,255 @@
 .lead-content {
 	background-color: rgba(147,224,224,0.4);
 	border-radius: 5px;
+}
+
+// boxいろいろ
+.box1 {
+	position: relative;
+	margin: 2em 0;
+	padding: 0.5em 0em;
+	border: solid 3px #333940;
+}
+.box1 .box-title {
+	position: absolute;
+	display: inline-block;
+	top: -27px;
+	left: -3px;
+	padding: 0 9px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 15px;
+	background: #333940;
+	color: #ffffff;
+	border-radius: 5px 5px 0 0;
+}
+.box1 p {
+	margin: 0; 
+	padding: 0;
+}
+
+.box2 {
+	position: relative;
+	margin: 2em 0;
+	padding: 0.5em 0em;
+	border: solid 3px #92E0E0;
+}
+.box2 .box-title {
+	position: absolute;
+	display: inline-block;
+	top: -27px;
+	left: -3px;
+	padding: 0 9px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 15px;
+	background: #92E0E0;
+	color: #202429;
+	border-radius: 5px 5px 0 0;
+}
+.box2 p {
+	margin: 0; 
+	padding: 0;
+}
+
+.box3 {
+	padding: 0.5em 1em;
+	margin: 2em 0;
+	color: #5d627b;
+	background: white;
+	border-top: solid 4px #5d627b;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+.box3 p {
+	margin: 0; 
+	padding: 0;
+}
+
+.box4 {
+	position: relative;
+	padding: 0.5em 0.7em;
+	margin: 2em 0;
+	background: #e6f4ff;
+	color: #5c98d4;
+	font-weight: bold;
+	border-radius: 4px;
+}
+.box4:after {
+	position: absolute;
+	content: '';
+	top: 100%;
+	left: 30px;
+	border: 15px solid transparent;
+	border-top: 15px solid #e6f4ff;
+	width: 0;
+	height: 0;
+}
+.box4 p {
+	margin: 0; 
+	padding: 0;
+}
+
+
+// showのタブ
+/* 414px幅以上に適用 */
+// @media screen and (min-width: 414px) {
+	.parent-tab {
+		margin: 0 0 2em;
+	}
+
+	.child-tab {
+		margin: 0;
+	}
+
+	.parent-menu {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+	}
+
+	.child-menu {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+	}
+
+	.parent-menu li a {
+		display: inline-block;
+		text-align: center;
+		padding: .3em 1em;
+		margin-right: -1px;
+		margin-bottom: -1px;
+		color: #333;
+		font-size: 12px;
+		border-top: 1px solid #353434;
+		border-right: 1px solid #353434;
+		text-decoration: none;
+		border-radius: 4px 4px 0 0;
+	}
+
+	.child-menu li a {
+		display: inline-block;
+		text-align: center;
+		padding: .3em 1em;
+		margin-right: 0.1em;
+		margin-bottom: -1px;
+		color: #333;
+		font-size: 12px;
+		text-decoration: none;
+		border-radius: 4px 4px 0 0;
+	}
+
+	.parent-menu li a.active {
+		background: rgb(201,239,239);
+		color: #333;
+		font-size: 16px;
+		font-weight: bold;
+		border-top: 1px solid;
+		border-left: 1px solid;
+		border-right: 1px solid;
+	}
+
+	.child-menu li a.active {
+		background: #fff;
+		color: #333;
+		font-size: 16px;
+		font-weight: bold;
+		border-top: 1px solid;
+		border-left: 1px solid;
+		border-right: 1px solid;
+	}
+
+	.parent-menu li a:not(.active):hover {
+		opacity: 0.3;
+		transition: opacity 0.4s;
+	}
+
+	.child-menu li a:not(.active):hover {
+		opacity: 0.3;
+		transition: opacity 0.4s;
+	}
+
+	.parent-tab-content.active {
+		background: rgb(201,239,239);
+		color: #333;
+		min-height: 150px;
+		padding: 2em 12px 12px;
+		border: 1px solid;
+		display: block;
+		border-top-right-radius: 4px;
+	}
+	.parent-tab-content:not(.mostleft-tab) {
+		border-top-left-radius: 4px;
+	}
+
+	.child-tab-content.active {
+		background: #fff;
+		color: #333;
+		min-height: 150px;
+		padding: 12px;
+		border: 1px solid;
+		display: block;
+		border-top-right-radius: 4px;
+	}
+
+	.parent-tab-content {
+		display: none;
+	}
+
+	.child-tab-content {
+		display: none;
+	}
+
+	.mostleft-tab {
+		border-left: 1px solid;
+	}
+
+	#transfer, #job, #factor, #sairan, #inspections, #jusei, #ishoku, #cost, #supplements, #evaluation {
+		border-top-left-radius: 4px;
+	}
+// }
+
+// フラッシュ
+.flash-bar {
+	padding-top: 1.7em;
+}
+.flash-bar p {
+	margin: 0;
+	padding-bottom: .1em;
+}
+
+// 未ログインでのshow画面のコメント欄(ブラー)
+.comment-blur {
+	width: 100%;
+	position: relative;
+	-ms-filter: blur(6px);
+  filter: blur(6px);
+}
+.commnet-blur-text {
+	position: absolute;
+}
+
+// showの子タブの中のタイトル
+.child-tab-title {
+	padding: .5em 0 1em;
+	text-align: center;
+}
+
+// showのグラフエリア
+.grapharea {
+	padding-bottom: 2.5em;
+}
+
+// 男女アイコン
+.female-icon {
+	color: rgb(254, 97, 131);
+}
+.male-icon {
+	color: rgb(0,188,212);
+}
+
+.matome-title {
+	background-color: rgb(230,244,255);
 }

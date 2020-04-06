@@ -385,3 +385,10 @@ trix-editor .attachment__metadata {
     .trix-content .attachment-gallery.attachment-gallery--2 .attachment, .trix-content .attachment-gallery.attachment-gallery--4 .attachment {
       flex-basis: 50%;
       max-width: 50%; }
+
+      // 独自追加
+      trix-editor {
+        min-height: 20em;
+        max-height: 20em;
+        overflow-y: auto;
+      }

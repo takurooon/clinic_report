@@ -12,3 +12,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# 追加: 外部jsファイルの読み込み設定
+Rails.application.config.assets.precompile += %w( report_form.js )
+Rails.application.config.assets.precompile += %w( report_show.js )

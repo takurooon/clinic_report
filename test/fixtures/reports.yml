@@ -4,7 +4,9 @@
 #
 #  id                                           :bigint           not null, primary key
 #  adoption                                     :integer
+#  age_of_partner_at_end_of_treatment           :integer
 #  all_cost                                     :integer
+#  all_grant_amount                             :integer
 #  all_number_of_sairan                         :integer
 #  all_number_of_transplants                    :integer
 #  amh                                          :integer
@@ -51,6 +53,7 @@
 #  number_of_frozen_eggs                        :integer
 #  number_of_miscarriages                       :integer
 #  number_of_stillbirths                        :integer
+#  number_of_times_the_grant_was_received       :integer
 #  number_of_transferable_embryos               :integer
 #  other_effort_cost                            :integer
 #  other_effort_supplementary_explanation       :text
@@ -70,15 +73,17 @@
 #  status                                       :integer          default("released"), not null
 #  supplement_cost                              :integer
 #  supplement_supplementary_explanation         :text
+#  supplementary_explanation_of_grant           :integer
 #  suspended_or_retirement_job                  :integer
 #  title                                        :string
+#  total_number_of_eggs_transplanted            :integer
 #  total_number_of_sairan                       :integer
 #  total_number_of_transplants                  :integer
+#  transplant_method                            :integer
 #  treatment_end_age                            :integer
 #  treatment_period                             :integer
 #  treatment_start_age                          :integer
 #  treatment_support_system                     :integer
-#  treatment_type                               :integer
 #  type_of_ovarian_stimulation                  :integer
 #  type_of_sairan_cycle                         :integer
 #  types_of_eggs_and_sperm                      :integer

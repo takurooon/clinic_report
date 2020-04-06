@@ -1,12 +1,12 @@
-class SairanHormone < ApplicationRecord
-  belongs_to :report, inverse_of: :sairan_hormones
+class BeforeIshokuHormone < ApplicationRecord
+  belongs_to :report, inverse_of: :before_ishoku_hormones
 
   validates :day, presence: true, numericality: true
 end
 
 # == Schema Information
 #
-# Table name: sairan_hormones
+# Table name: before_ishoku_hormones
 #
 #  id         :bigint           not null, primary key
 #  day        :integer          not null
@@ -20,8 +20,8 @@ end
 #
 # Indexes
 #
-#  index_sairan_hormones_on_report_id          (report_id)
-#  index_sairan_hormones_on_report_id_and_day  (report_id,day) UNIQUE
+#  index_before_ishoku_hormones_on_report_id          (report_id)
+#  index_before_ishoku_hormones_on_report_id_and_day  (report_id,day) UNIQUE
 #
 # Foreign Keys
 #

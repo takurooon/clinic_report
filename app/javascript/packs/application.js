@@ -10,6 +10,9 @@ require("channels")
 require("jquery")
 require("chartkick")
 require("chart.js")
+require("./jquery.validationEngine")
+require("./jquery.validationEngine-ja")
+require("./form_validation")
 
 // import "bootstrap"
 import "../stylesheets/application"
