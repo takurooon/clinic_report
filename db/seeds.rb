@@ -69,7 +69,7 @@ Supplement.create([
 ScopeOfDisclosure.create([
   { scope: "パートナーまで" },
   { scope: "聞かれたら誰にでもオープン" },
-  { scope: "自ら進んで誰にでも公表" },
+  { scope: "自ら進んで誰にでも開示" },
   { scope: "両親" },
   { scope: "兄弟/姉妹" },
   { scope: "義理の両親" },

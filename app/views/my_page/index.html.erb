@@ -32,30 +32,30 @@
 
                 <div class="tab-content" id="publishedindex">
                   <div class="tab-pane fade show active" id="published-reports" role="tabpanel" aria-labelledby="published-reports-tab">
-                    <div class="card border-light mb-3" style="max-width:100%;">
-                      <% @published_reports.each do |published| %>
+                    <% @published_reports.each do |published| %>
+                      <div class="card border-light mb-3" style="max-width:100%;">
                         <%= link_to published do %>
-                          <div class="card-header"><%= published.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                          <div class="card-header"><%= published.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>レポート</div>
                           <div class="card-body">
-                            <h5 class="card-title"><%= published.title %></h5>
+                            <h7 class="card-title"><%= published.title %></h7>
                             <p class="card-text"></p>
                           </div>
                         <% end %>
-                      <% end %>
-                    </div>
+                      </div>
+                    <% end %>
                   </div>
                   <div class="tab-pane fade show" id="draft-reports" role="tabpanel" aria-labelledby="draft-reports-tab">
-                    <div class="card border-light mb-3" style="max-width:100%;">
-                      <% @draft_reports.each do |draft| %>
+                    <% @draft_reports.each do |draft| %>
+                      <div class="card border-light mb-3" style="max-width:100%;">
                         <%= link_to draft do %>
-                          <div class="card-header"><%= draft.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                          <div class="card-header"><%= draft.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>レポート</div>
                           <div class="card-body">
-                            <h5 class="card-title"><%= draft.title %></h5>
+                            <h7 class="card-title"><%= draft.title %></h7>
                             <p class="card-text"></p>
                           </div>
                         <% end %>
-                      <% end %>
-                    </div>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
