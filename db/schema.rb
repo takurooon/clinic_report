@@ -437,7 +437,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
     t.integer "all_cost"
     t.integer "number_of_times_the_grant_was_received"
     t.integer "all_grant_amount"
-    t.integer "supplementary_explanation_of_grant"
+    t.text "supplementary_explanation_of_grant"
     t.integer "credit_card_validity"
     t.integer "creditcards_can_be_used_from_more_than"
     t.integer "average_waiting_time"

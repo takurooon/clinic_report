@@ -2220,7 +2220,7 @@ end
 #  status                                       :integer          default("released"), not null
 #  supplement_cost                              :integer
 #  supplement_supplementary_explanation         :text
-#  supplementary_explanation_of_grant           :integer
+#  supplementary_explanation_of_grant           :text
 #  suspended_or_retirement_job                  :integer
 #  title                                        :string
 #  total_number_of_eggs_transplanted            :integer
