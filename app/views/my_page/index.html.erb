@@ -1,41 +1,38 @@
+<div class="d-none d-md-block py-5">
+  <h2 class="text-center jumbotron-underlayer__title py-3"><%= current_user.name %>さんのマイページ</h2>
+</div>
+<div class="d-sm d-md-none mb-0 pt-3">
+  <h5 class="text-center jumbotron-underlayer__title my-0 py-3"><%= current_user.name %>さんのマイページ</h5>
+</div>
 <div class="container">
-  <div class="jumbotron-underlayer">
-    <div class="jumbotron">
-      <div class="container">
-        <h2 class="text-center jumbotron-underlayer__title"><%= current_user.name %>さんのマイページ</h2>
-      </div>
-    </div>
-  </div>
-
   <div class="mypage c-bg-light c-border-t c-border-r c-border-l d-none d-md-block">
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 pt-4">
           <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">レポート</a>
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">レポコ</a>
             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">プロフィール</a>
           </div>
         </div>
         <div class="col-md-9">
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-reports-list">
-
               <div class="myindex">
                 <ul class="nav nav-tabs" id="myindex-tab" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" id="publised-reports-tab" data-toggle="tab" href="#published-reports" role="tab" aria-controls="published-reports" aria-selected="true">マイレポート</a>
+                    <a class="nav-link active" id="publised-reports-tab" data-toggle="tab" href="#published-reports" role="tab" aria-controls="published-reports" aria-selected="true">公開レポコ</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="draft-reports-tab" data-toggle="tab" href="#draft-reports" role="tab" aria-controls="draft-reports" aria-selected="false">保存中(非公開)レポート</a>
+                    <a class="nav-link" id="draft-reports-tab" data-toggle="tab" href="#draft-reports" role="tab" aria-controls="draft-reports" aria-selected="false">保存中(非公開)レポコ</a>
                   </li>
                 </ul>
 
                 <div class="tab-content" id="publishedindex">
                   <div class="tab-pane fade show active" id="published-reports" role="tabpanel" aria-labelledby="published-reports-tab">
                     <% @published_reports.each do |published| %>
-                      <div class="card border-light mb-3" style="max-width:100%;">
+                      <div class="card border-light mb-3" style="max-width:70%;">
                         <%= link_to published do %>
-                          <div class="card-header"><%= published.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>レポート</div>
+                          <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= published.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>レポート</div>
                           <div class="card-body">
                             <h7 class="card-title"><%= published.title %></h7>
                             <p class="card-text"></p>
@@ -46,9 +43,9 @@
                   </div>
                   <div class="tab-pane fade show" id="draft-reports" role="tabpanel" aria-labelledby="draft-reports-tab">
                     <% @draft_reports.each do |draft| %>
-                      <div class="card border-light mb-3" style="max-width:100%;">
+                      <div class="card border-light mb-3" style="max-width: 70%;">
                         <%= link_to draft do %>
-                          <div class="card-header"><%= draft.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>レポート</div>
+                          <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= draft.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>レポート</div>
                           <div class="card-body">
                             <h7 class="card-title"><%= draft.title %></h7>
                             <p class="card-text"></p>
@@ -61,7 +58,7 @@
               </div>
             </div>
             <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-              <%= link_to ">> プロフィールを編集", edit_user_registration_path, class: "btn btn-primary float-right mb-3" %>
+              <%= link_to " プロフィールを編集", edit_user_registration_path, class: "btn btn-primary float-right mb-3" %>
               <table class="table">
                 <tbody>
                   <tr>
@@ -111,9 +108,9 @@
                     <td>
                       <%= @user.self_introduction %><br>
                       <% if @user.self_introduction.blank? %>
-                        <strong><%= link_to ">>書いていないあなた！ぜひ書きましょう！", edit_user_registration_path %></strong>
+                      <i data-feather="chevron-right" class="feather-icon-style2"></i><strong><%= link_to "書いていないあなた！ぜひ書きましょう！", edit_user_registration_path %></strong>
                       <% else %>
-                        <small><%= link_to ">>もっと詳しい情報を載せるたので編集する！", edit_user_registration_path %></>
+                        <small><%= link_to "もっと詳細情報を載せてみる", edit_user_registration_path %></div>
                       <% end %>
                     </td>
                   </tr>
@@ -131,33 +128,33 @@
   <div class="mypage-sm d-sm d-md-none">
     <ul class="nav nav-tabs" id="mypage-sm-tab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="reports-tab" data-toggle="tab" href="#reports" role="tab" aria-controls="reports" aria-selected="true">マイレポート</a>
+        <a class="nav-link active py-3" id="reports-tab" data-toggle="tab" href="#reports" role="tab" aria-controls="reports" aria-selected="true">レポコ</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">プロフィール</a>
+        <a class="nav-link py-3" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">プロフィール</a>
       </li>
     </ul>
 
     <div class="tab-content" id="myreports">
-      <div class="tab-pane fade show active" id="reports" role="tabpanel" aria-labelledby="reports-tab">
+      <div class="tab-pane fade show active mt-0" id="reports" role="tabpanel" aria-labelledby="reports-tab">
         <div class="border-light mb-3" style="max-width:100%;">
           
           <div class="myindex">
             <ul class="nav nav-tabs" id="myindex-tab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="publised-reports-tab" data-toggle="tab" href="#published-reports" role="tab" aria-controls="published-reports" aria-selected="true">公開済</a>
+                <a class="nav-link active pt-1 pb-0 mb-0" id="publised-reports-tab" data-toggle="tab" href="#sm-published-reports" role="tab" aria-controls="published-reports" aria-selected="true">公開レポコ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="draft-reports-tab" data-toggle="tab" href="#draft-reports" role="tab" aria-controls="draft-reports" aria-selected="false">保存中(非公開)</a>
+                <a class="nav-link pt-1 pb-0 mb-0" id="draft-reports-tab" data-toggle="tab" href="#sm-draft-reports" role="tab" aria-controls="draft-reports" aria-selected="false">保存中(非公開)レポコ</a>
               </li>
             </ul>
 
             <div class="tab-content" id="publishedindex">
-              <div class="tab-pane fade show active" id="published-reports" role="tabpanel" aria-labelledby="published-reports-tab">
+              <div class="tab-pane fade show active mt-3" id="sm-published-reports" role="tabpanel" aria-labelledby="published-reports-tab">
                 <div class="card border-light mb-3" style="max-width:100%;">
                   <% @published_reports.each do |published| %>
                     <%= link_to published do %>
-                      <div class="card-header"><%= published.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                      <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= published.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
                       <div class="card-body">
                         <h5 class="card-title"><%= published.title %></h5>
                         <p class="card-text"></p>
@@ -166,11 +163,11 @@
                   <% end %>
                 </div>
               </div>
-              <div class="tab-pane fade show" id="draft-reports" role="tabpanel" aria-labelledby="draft-reports-tab">
+              <div class="tab-pane fade show mt-3" id="sm-draft-reports" role="tabpanel" aria-labelledby="draft-reports-tab">
                 <div class="card border-light mb-3" style="max-width:100%;">
                   <% @draft_reports.each do |draft| %>
                     <%= link_to draft do %>
-                      <div class="card-header"><%= draft.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                      <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= draft.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
                       <div class="card-body">
                         <h5 class="card-title"><%= draft.title %></h5>
                         <p class="card-text"></p>
@@ -185,66 +182,68 @@
         </div>
       </div>
       <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        
+        <div class="text-right">
+          <%= link_to " プロフィールを編集", edit_user_registration_path, class: "btn btn-primary" %>
+        </div>
         <div class="card border-light mb-3" style="max-width:100%;">
             <h6 class="text-center pt-2">プロフィール</h6>
             <table class="table">
-              <tbody>
-                <tr>
-                  <th class="profile-item-l">ユーザー名</th>
-                  <td class="profile-item-r">
-                    <%= @user.name %>
-                  </td>
-                </tr>
-                <tr>
-                  <th>メール</th>
-                  <td>
-                    <%= @user.email %>
-                  </td>
-                </tr>
-                <tr>
-                  <th>性別</th>
-                  <td>
-                    <% if @user.gender == "female" %>
-                      <%= "女" %>
-                    <% else %>
-                      <%= "男" %>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <th>生年月</th>
-                  <td>
-                    <% if @user.birthday.blank? %>
-                      <span>未登録</span>
-                    <% else %>
-                      <%= @user.birthday.year %>年<%= @user.birthday.month %>月
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <th>リンク</th>
-                  <td>
-                    <% if @user.link.blank? %>
-                    <span>未登録</span>&nbsp;&nbsp;<small class="text-muted">(ブログやSNSのリンクなど)</small>
-                    <% else %>
-                      <%= @user.link %>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <th>自己紹介</th>
-                  <td>
-                    <%= @user.self_introduction %><br>
-                    <% if @user.self_introduction.blank? %>
-                      <strong><%= link_to ">>書いていないあなた！ぜひ書きましょう！", edit_user_registration_path %></strong>
-                    <% else %>
-                      <small><%= link_to ">>もっと詳しい情報を載せるたので編集する！", edit_user_registration_path %></>
-                    <% end %>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                <tbody>
+                  <tr>
+                    <th class="profile-item-l">ユーザー名</th>
+                    <td class="profile-item-r">
+                      <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>メールアドレス</th>
+                    <td>
+                      <%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>性別</th>
+                    <td>
+                      <% if @user.gender == "female" %>
+                        <%= "女" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                      <% else %>
+                        <%= "男" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>生年月</th>
+                    <td>
+                      <% if @user.birthday.blank? %>
+                        <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <% else %>
+                        <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>リンク</th>
+                    <td>
+                      <% if @user.link.blank? %>
+                      <span>未登録</span>&nbsp;&nbsp;<small class="text-muted">(ブログやSNSのリンクなど)</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <% else %>
+                        <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>自己紹介</th>
+                    <td>
+                      <%= @user.self_introduction %><br>
+                      <% if @user.self_introduction.blank? %>
+                      <i data-feather="chevron-right" class="feather-icon-style2"></i><strong><%= link_to "書いていないあなた！ぜひ書きましょう！", edit_user_registration_path %></strong>
+                      <% else %>
+                        <small><%= link_to "もっと詳細情報を載せてみる", edit_user_registration_path %></div>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
           
         </div>
       </div>

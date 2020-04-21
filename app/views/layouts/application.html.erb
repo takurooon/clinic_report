@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="html">
   <head>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,8 +16,11 @@
   </head>
 
   <body>
+    <% if false %>
+      <%= render 'layouts/flash' %>
+    <% end %>
     <%= render 'header' %>
-    
+
     <div class="base">
       <div class="container px-0">
         <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>

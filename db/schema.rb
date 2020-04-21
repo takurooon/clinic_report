@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_05_010754) do
+ActiveRecord::Schema.define(version: 2020_04_08_071630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,14 +118,15 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
 
   create_table "day_of_haibanhoishokus", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "bt", default: 0, null: false
+    t.integer "day", null: false
     t.integer "e2"
     t.integer "fsh"
     t.integer "lh"
     t.integer "p4"
+    t.integer "endometrial_thickness"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["report_id", "bt"], name: "index_day_of_haibanhoishokus_on_report_id_and_bt", unique: true
+    t.index ["report_id", "day"], name: "index_day_of_haibanhoishokus_on_report_id_and_day", unique: true
     t.index ["report_id"], name: "index_day_of_haibanhoishokus_on_report_id"
   end
 
@@ -144,14 +145,15 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
 
   create_table "day_of_shokihaiishokus", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "et", default: 0, null: false
+    t.integer "day", null: false
     t.integer "e2"
     t.integer "fsh"
     t.integer "lh"
     t.integer "p4"
+    t.integer "endometrial_thickness"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["report_id", "et"], name: "index_day_of_shokihaiishokus_on_report_id_and_et", unique: true
+    t.index ["report_id", "day"], name: "index_day_of_shokihaiishokus_on_report_id_and_day", unique: true
     t.index ["report_id"], name: "index_day_of_shokihaiishokus_on_report_id"
   end
 
@@ -226,6 +228,21 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "report_id"
+    t.integer "comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["report_id"], name: "index_notifications_on_report_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "other_efforts", force: :cascade do |t|
@@ -382,6 +399,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
     t.integer "transplant_method"
     t.integer "number_of_clinics"
     t.integer "clinic_selection_criteria"
+    t.integer "briefing_session"
     t.integer "treatment_start_age"
     t.integer "first_age_to_start"
     t.integer "treatment_end_age"
@@ -392,10 +410,20 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
     t.integer "pgt1"
     t.integer "pgt2"
     t.text "pgt_supplementary_explanation"
+    t.text "about_causes_of_infertility"
+    t.integer "semen_volume"
+    t.integer "semen_concentration"
+    t.integer "sperm_advance_rate"
+    t.integer "sperm_motility"
+    t.integer "probability_of_normal_morphology_of_sperm"
+    t.integer "total_amount_of_sperm"
+    t.integer "sperm_selection_method"
+    t.text "sperm_description"
     t.integer "amh"
     t.integer "bmi"
     t.integer "smoking"
     t.integer "types_of_eggs_and_sperm"
+    t.text "description_of_eggs_and_sperm_used"
     t.integer "type_of_ovarian_stimulation"
     t.integer "type_of_sairan_cycle"
     t.text "notes_on_type_of_sairan_cycle"
@@ -418,12 +446,14 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
     t.text "blastocyst_grade1_supplementary_explanation"
     t.integer "blastocyst_grade2"
     t.text "blastocyst_grade2_supplementary_explanation"
+    t.text "explanation_and_impression_about_sairan"
     t.integer "total_number_of_transplants"
     t.integer "total_number_of_eggs_transplanted"
     t.integer "all_number_of_transplants"
     t.integer "number_of_eggs_stored"
     t.integer "frozen_embryo_storage_cost"
     t.text "explanation_of_frozen_embryo_storage_cost"
+    t.text "explanation_and_impression_about_ishoku"
     t.integer "number_of_miscarriages"
     t.integer "number_of_stillbirths"
     t.integer "fuiku"
@@ -434,6 +464,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
     t.integer "supplement_cost"
     t.text "supplement_supplementary_explanation"
     t.integer "cost"
+    t.text "explanation_of_cost"
     t.integer "all_cost"
     t.integer "number_of_times_the_grant_was_received"
     t.integer "all_grant_amount"
@@ -442,6 +473,8 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
     t.integer "creditcards_can_be_used_from_more_than"
     t.integer "average_waiting_time"
     t.integer "reservation_method"
+    t.integer "online_consultation"
+    t.text "online_consultation_details"
     t.integer "period_of_time_spent_traveling"
     t.integer "work_style"
     t.integer "industry_type"
@@ -455,7 +488,13 @@ ActiveRecord::Schema.define(version: 2020_04_05_010754) do
     t.integer "number_of_employees"
     t.integer "treatment_support_system"
     t.integer "suspended_or_retirement_job"
+    t.text "about_work_and_working_style"
     t.text "content"
+    t.integer "staff_quality"
+    t.integer "doctor_quality"
+    t.integer "impression_of_price"
+    t.integer "impression_of_technology"
+    t.integer "comfort_of_space"
     t.text "clinic_review"
     t.text "reasons_for_choosing_this_clinic"
     t.integer "status", default: 0, null: false

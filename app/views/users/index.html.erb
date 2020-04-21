@@ -1,28 +1,81 @@
 <div class="container px-2">
   <div class="row">
-    <div class="col-md-8 offset-md-2 profile text-color my-5">
+    <div class="col-12 col-lg-8 offset-lg-2 profile text-color my-5">
       <% @users.each do |user| %>
-        <div class="card mb-3">
-          <div class="row">
-            <div class="col-3 p-3">
-              <% if user.icon.blank? %>
-                <div class="pl-2 pb-1 pr-0 pt-2 pl-md-2 pt-md-2 pb-md-3 pr-md-1"><%= image_tag("home/noimage_eyecatch.png", class: "card-img-top rounded-circle border", alt: "Card image cap") %></div>
-              <% else %>
-                <img src=<%= user.icon %> class = "icon_image" %>
-              <% end %>
-            </div>
-            <div class="col-9 pt-4">
-              <h4 class="mb-3"><%= user.name %></h4>
-              <small class="text-muted pb-0">
-                <span class="badge badge-pill badge-light"><%= user.gender %></span>
-              </small>
+        <%= link_to user_path(user.id) do %>
+          <div class="card mb-3">
+            <div class="row">
+              <div class="col-3 col-sm-2 m-0 pr-0">
+                <div class="d-none d-md-block pl-3 py-3">
+                  <% if user.icon.blank? %>
+                    <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2", alt: "Card image cap", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag(user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
+                  <% end %>
+                </div>
+                <div class="d-block d-md-none pl-2 pr-0 py-2">
+                  <div>
+                    <% if user.icon.blank? %>
+                      <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2", alt: "Card image cap", loading: "lazy") %>
+                    <% else %>
+                      <%= image_tag(user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
+                    <% end %>
+                  </div>
+                  <div class="text-center small">
+                    <p class="m-0 pt-2 pb-0"><%= user.name %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-9 col-sm-10 col-lg-4 pl-3 pr-0">
+                <div>
+                  <h5 class="pt-3 mb-0 mr-2"><%= user.name %>
+                    <span class="small">
+                      <% if user.gender == "female" %>
+                        <span class="badge badge-pill badge-light text-muted p-0">#女</span>
+                      <% else %>
+                        <span class="badge badge-pill badge-light text-muted p-0">#男</span>
+                      <% end %>
+                    </span>
+                  </h5>
+                </div>
+                <div class="pt-2">
+                  <% if user.reports.present? %>
+                    <h7 class="mb-0"><i data-feather="map-pin" class="feather-icon-style3 ml-0 py-1"></i>&nbsp;<%= user.reports.last.clinic.name %></h7>
+                  <% else %>
+                    <%= user.name %>さんのレポコはまだありません。
+                  <% end %>
+                </div>
+                <div class="pt-2">
+                  <% if user.reports.last.treatment_end_age.present? %>
+                    <i data-feather="bar-chart" class="feather-icon-style3 pb-2 m-0"></i>
+                    <h6 class="d-inline mb-0"><%= user.reports.last.treatment_end_age %>歳</h6>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <% end %>
+                  <i data-feather="home" class="feather-icon-style3 pb-2 m-0"></i>
+                  <% if user.reports.last.prefecture_at_the_time_status == "hide" %>
+                    <span class="small"><span class="d-inline small text-muted"><%= "非公開" %></span></span>
+                  <% else %>
+                    <h6 class="d-inline mb-0"><%= user.reports.last.prefecture.name %></h6>
+                  <% end %>
+                  <% if user.reports.last.city_at_the_time_status == "hide" %>
+                    <span class="small"><span class="d-inline small text-muted"><%= "非公開" %></span></span>
+                  <% else %>
+                    <h6 class="d-inline mb-0"><%= user.reports.last.city.name %></h6>
+                  <% end %>
+                </div>
+              </div>
+              <div class="d-none d-lg-block col-lg-6 pt-3 pl-1">
+                <div>
+                  <i data-feather="hash" class="feather-icon-style3 pb-1 m-0"></i><i><h6 class="d-inline">Profile</h6></i>
+                </div>
+                <div class="px-3 py-1">
+                  <small>
+                    <span class="text-muted"><%= strip_tags(user.self_introduction.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span>
+                  </small>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="card-body pt-0">
-            <h5 class="card-title">#&nbsp;Profile</h5>
-            <p class="card-text"><%= user.self_introduction %></p>
-          </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>

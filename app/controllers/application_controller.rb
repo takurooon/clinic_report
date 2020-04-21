@@ -25,4 +25,16 @@ class ApplicationController < ActionController::Base
   def devise_or_thanks_action?
     devise_controller? || action_name == 'thanks'
   end
+
+  def about
+  end
+
+  def terms
+  end
+
+  def privacy
+  end
+
+  def admin
+  end
 end

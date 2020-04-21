@@ -139,23 +139,6 @@ class Report < ApplicationRecord
     end
   end
 
-  def normalize_for_update_embryo_stage
-    if self.embryo_stage == 1
-      self.blastocyst_grade1 = nil
-      self.blastocyst_grade2 = nil
-      self.haibanhoishoku_hormones.clear
-    elsif self.embryo_stage == 2
-      self.early_embryo_grade = nil
-      self.shokihaiishoku_hormones.clear
-    else
-      self.early_embryo_grade = nil
-      self.blastocyst_grade1 = nil
-      self.blastocyst_grade2 = nil
-      self.shokihaiishoku_hormones.clear
-      self.haibanhoishoku_hormones.clear
-    end
-  end
-
   def normalize_for_credit_card_validity
     unless self.credit_card_validity == 3
       self.creditcards_can_be_used_from_more_than = nil
@@ -190,7 +173,12 @@ class Report < ApplicationRecord
 
     # コメント
     has_many :comments, dependent: :destroy
+
+    # いいね
     has_many :likes, dependent: :destroy
+
+    # 通知モデル
+    has_many :notifications, dependent: :destroy
 
     # 採卵日当日のホルモン
     has_many :day_of_sairans, inverse_of: :report, dependent: :destroy
@@ -635,6 +623,19 @@ class Report < ApplicationRecord
     return HASH_TYPES_OF_EGGS_AND_SPERM[self.types_of_eggs_and_sperm]
   end
 
+  # sperm_selection_methodの区分値(精子の選別方法)
+  HASH_SPERM_SELECTION_METHOD = {
+    1 => "IMSI(イムジー)",
+    2 => "Zymot(ザイモット)",
+    3 => "SpermSlow(スパームスロー)",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_sperm_selection_method
+    return HASH_SPERM_SELECTION_METHOD[self.sperm_selection_method]
+  end
+
   # use_of_anesthesiaの区分値(麻酔の種類)
   HASH_USE_OF_ANESTHESIA = {
     1 => "無麻酔",
@@ -652,11 +653,8 @@ class Report < ApplicationRecord
 
   # selection_of_anesthesia_typeの区分値(麻酔の有無&種類に関しての選択の余地)
   HASH_SELECTION_OF_ANESTHESIA_TYPE = {
-    1 => "麻酔の有無のみ選択可",
-    2 => "麻酔の種類(部位)のみ選択可",
-    3 => "麻酔の有無&種類(部位)どちらも選択可",
-    4 => "麻酔の有無&種類(部位)どちらも選択不可",
-    5 => "確認していない/確認できなかった",
+    1 => "選択できなかった",
+    2 => "選択できた",
     99 => "その他",
     100 => "不明"
   }
@@ -808,7 +806,7 @@ class Report < ApplicationRecord
     2 => "1回",
     3 => "2回",
     4 => "3回以上",
-    100 => "答えたくない",
+    100 => "無回答",
   }
 
   def str_number_of_miscarriages
@@ -821,7 +819,7 @@ class Report < ApplicationRecord
     2 => "1回",
     3 => "2回",
     4 => "3回以上",
-    100 => "答えたくない",
+    100 => "無回答",
   }
 
   def str_number_of_stillbirths
@@ -832,7 +830,7 @@ class Report < ApplicationRecord
   HASH_FUIKU = {
     1 => "なし",
     2 => "あり",
-    99 => "答えたくない",
+    99 => "無回答",
     100 => "不明",
   }
 
@@ -848,7 +846,7 @@ class Report < ApplicationRecord
     4 => "実施していると耳にしたことはある",
     5 => "実施していなかった",
     6 => "おそらく実施していなかった",
-    7 => "答えたくない",
+    7 => "無回答",
     8 => "わからない",
   }
 
@@ -861,7 +859,7 @@ class Report < ApplicationRecord
     1 => "受けていない",
     2 => "このクリニックで受けた",
     3 => "別のクリニックで受けた",
-    4 => "答えたくない",
+    4 => "無回答",
   }
 
   def str_pgt2
@@ -875,7 +873,7 @@ class Report < ApplicationRecord
     3 => "具体的に検討した/している",
     4 => "申請をした/している",
     5 => "養子を迎え入れた",
-    6 => "答えたくない",
+    6 => "無回答",
   }
 
   def str_adoption
@@ -1214,6 +1212,18 @@ class Report < ApplicationRecord
     return HASH_RESERVATION_METHOD[self.reservation_method]
   end
 
+  # online_consultationの区分値(オンライン診療の有無)
+  HASH_ONLINE_CONSULTATION = {
+    1 => "なし",
+    2 => "あり(初診は除く)",
+    3 => "あり(初診もOK)",
+    99 => "不明"
+  }
+
+  def str_online_consultation
+    return HASH_ONLINE_CONSULTATION[self.online_consultation]
+  end
+
   # average_waiting_timeの区分値(クリニックでの平均待ち時間)
   HASH_AVERAGE_WAITING_TIME = {
     1 => "30分前後",
@@ -1261,13 +1271,28 @@ class Report < ApplicationRecord
     5 => "料金が手頃だったから",
     6 => "知人から勧められたから",
     7 => "説明会に参加して決めた",
-    8 => "ホームページが良かった",
-    9 => "広告を見て",
+    8 => "ホームページをみて",
+    9 => "信頼する医師がいたから",
+    10 => "広告を見て",
     99 => "その他"
     }
 
   def str_clinic_selection_criteria
     return HASH_CLINIC_SELECTION_CRITERIA[self.clinic_selection_criteria]
+  end
+
+  # briefing_sessionの区分値(説明会への有無と参加)
+  HASH_BRIEFING_SESSION = {
+    1 => "リアル説明会に参加した",
+    2 => "オンライン説明会に参加した",
+    3 => "どちらにも参加した",
+    4 => "どちらの説明会へも参加しなかった",
+    5 => "説明会自体がなかった",
+    99 => "その他"
+    }
+
+  def str_briefing_session
+    return HASH_BRIEFING_SESSION[self.briefing_session]
   end
 
   # industry_typeの区分値(業種) ※参考→業種コード表（日本標準産業分類）
@@ -1284,14 +1309,14 @@ class Report < ApplicationRecord
     10 => "金融業 保険業",
     11 => "不動産業 物品賃貸業",
     12 => "学術研究 専門サービス業",
-    12 => "宿泊業 飲食サービス業",
-    13 => "生活関連サービス業 娯楽業",
-    14 => "教育 学習支援業",
-    15 => "医療 福祉",
-    16 => "複合サービス事業",
-    17 => "サービス業(他に分類されないもの)",
-    18 => "公務員",
-    19 => "分類不能の産業"
+    13 => "宿泊業 飲食サービス業",
+    14 => "生活関連サービス業 娯楽業",
+    15 => "教育 学習支援業",
+    16 => "医療 福祉",
+    17 => "複合サービス事業",
+    18 => "サービス業(他に分類されないもの)",
+    19 => "公務員",
+    20 => "分類不能の産業"
   }
 
   def str_industry_type
@@ -1472,8 +1497,8 @@ class Report < ApplicationRecord
 
   # treatment_support_systemの区分値(社内の不妊治療のサポート制度有無)
   HASH_TREATMENT_SUPPORT_SYSTEM = {
-    1 => "有る",
-    2 => "無い",
+    1 => "有り",
+    2 => "無し",
     3 => "有るが機能していない(形骸化)",
     4 => "制度導入予定",
     99 => "その他",
@@ -1532,7 +1557,7 @@ class Report < ApplicationRecord
   def self.make_select_day_of_shokihaiishoku
     hash = {}
     (1..100).each do |i|
-      hash["ET#{i}"] = i
+      hash["D#{i}"] = i
     end
     hash
   end
@@ -1541,7 +1566,7 @@ class Report < ApplicationRecord
   def self.make_select_day_of_haibanhoishoku
     hash = {}
     (0..100).each do |i|
-      hash["BT#{i}"] = i
+      hash["D#{i}"] = i
     end
     hash
   end
@@ -2150,6 +2175,8 @@ end
 # Table name: reports
 #
 #  id                                           :bigint           not null, primary key
+#  about_causes_of_infertility                  :text
+#  about_work_and_working_style                 :text
 #  adoption                                     :integer
 #  age_of_partner_at_end_of_treatment           :integer
 #  all_cost                                     :integer
@@ -2165,22 +2192,29 @@ end
 #  blastocyst_grade2                            :integer
 #  blastocyst_grade2_supplementary_explanation  :text
 #  bmi                                          :integer
+#  briefing_session                             :integer
 #  capital_size                                 :integer
 #  city_at_the_time_status                      :integer          default("show"), not null
 #  clinic_review                                :text
 #  clinic_selection_criteria                    :integer
+#  comfort_of_space                             :integer
 #  content                                      :text
 #  cost                                         :integer
 #  credit_card_validity                         :integer
 #  creditcards_can_be_used_from_more_than       :integer
 #  current_state                                :integer
 #  department                                   :integer
+#  description_of_eggs_and_sperm_used           :text
+#  doctor_quality                               :integer
 #  domestic_or_foreign_capital                  :integer
 #  early_embryo_grade                           :integer
 #  early_embryo_grade_supplementary_explanation :text
 #  egg_maturity                                 :integer
 #  embryo_culture_days                          :integer
 #  embryo_stage                                 :integer
+#  explanation_and_impression_about_ishoku      :text
+#  explanation_and_impression_about_sairan      :text
+#  explanation_of_cost                          :text
 #  explanation_of_frozen_embryo_storage_cost    :text
 #  fertility_treatment_number                   :integer
 #  first_age_to_start                           :integer
@@ -2189,6 +2223,8 @@ end
 #  fuiku_supplementary_explanation              :text
 #  household_net_income                         :integer
 #  household_net_income_status                  :integer          default("show"), not null
+#  impression_of_price                          :integer
+#  impression_of_technology                     :integer
 #  industry_type                                :integer
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_aih                                :integer
@@ -2202,6 +2238,8 @@ end
 #  number_of_stillbirths                        :integer
 #  number_of_times_the_grant_was_received       :integer
 #  number_of_transferable_embryos               :integer
+#  online_consultation                          :integer
+#  online_consultation_details                  :text
 #  other_effort_cost                            :integer
 #  other_effort_supplementary_explanation       :text
 #  ova_with_ivm                                 :integer
@@ -2212,17 +2250,26 @@ end
 #  position                                     :integer
 #  prefecture_at_the_time_status                :integer          default("show"), not null
 #  private_or_listed_company                    :integer
+#  probability_of_normal_morphology_of_sperm    :integer
 #  reasons_for_choosing_this_clinic             :text
 #  reservation_method                           :integer
 #  selection_of_anesthesia_type                 :integer
+#  semen_concentration                          :integer
+#  semen_volume                                 :integer
 #  smoking                                      :integer
 #  special_inspection_supplementary_explanation :text
+#  sperm_advance_rate                           :integer
+#  sperm_description                            :text
+#  sperm_motility                               :integer
+#  sperm_selection_method                       :integer
+#  staff_quality                                :integer
 #  status                                       :integer          default("released"), not null
 #  supplement_cost                              :integer
 #  supplement_supplementary_explanation         :text
 #  supplementary_explanation_of_grant           :text
 #  suspended_or_retirement_job                  :integer
 #  title                                        :string
+#  total_amount_of_sperm                        :integer
 #  total_number_of_eggs_transplanted            :integer
 #  total_number_of_sairan                       :integer
 #  total_number_of_transplants                  :integer

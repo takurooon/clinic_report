@@ -29,7 +29,7 @@
         </div>
         <div class="card-body pt-0">
           <h5 class="card-title">#&nbsp;Profile</h5>
-          <p class="card-text"><%= @user.self_introduction %></p>
+          <p class="card-text"><%= safe_join(@user.self_introduction.split("\n"),tag(:br))  %></p>
         </div>
       </div>
     </div>

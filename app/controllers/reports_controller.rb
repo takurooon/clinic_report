@@ -2,9 +2,6 @@ class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
-  def home
-  end
-
   def index
     @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
     @reports = Report.released.order("created_at DESC").page(params[:page]).per(10)
@@ -80,9 +77,9 @@ class ReportsController < ApplicationController
     before_ishoku_hormones_p4 = before_ishoku_hormones.map { |bp4| bp4[:p4] }
 
     day_of_shokihaiishokus = @report.day_of_shokihaiishokus
-    day_of_shokihaiishokus_et = day_of_shokihaiishokus.pluck(:et)
-    day_of_shokihaiishoku_et = day_of_shokihaiishokus_et.map do |day_of_shokihaiishoku_et|
-      "ET" + day_of_shokihaiishoku_et.to_s + "(移植日)"
+    day_of_shokihaiishokus_day = day_of_shokihaiishokus.pluck(:day)
+    day_of_shokihaiishoku_day = day_of_shokihaiishokus_day.map do |day_of_shokihaiishoku_day|
+      "Day" + day_of_shokihaiishoku_day.to_s + "(移植日)"
     end
     day_of_shokihaiishokus_e2 = day_of_shokihaiishokus.pluck(:e2)
     day_of_shokihaiishokus_fsh = day_of_shokihaiishokus.pluck(:fsh)
@@ -90,9 +87,9 @@ class ReportsController < ApplicationController
     day_of_shokihaiishokus_p4 = day_of_shokihaiishokus.pluck(:p4)
 
     day_of_haibanhoishokus = @report.day_of_haibanhoishokus
-    day_of_haibanhoishokus_bt = day_of_haibanhoishokus.pluck(:bt)
-    day_of_haibanhoishoku_bt = day_of_haibanhoishokus_bt.map do |day_of_haibanhoishoku_bt|
-      "BT" + day_of_haibanhoishoku_bt.to_s + "(移植日)"
+    day_of_haibanhoishokus_day = day_of_haibanhoishokus.pluck(:day)
+    day_of_haibanhoishoku_day = day_of_haibanhoishokus_day.map do |day_of_haibanhoishoku_day|
+      "Day" + day_of_haibanhoishoku_day.to_s + "(移植日)"
     end
     day_of_haibanhoishokus_e2 = day_of_haibanhoishokus.pluck(:e2)
     day_of_haibanhoishokus_fsh = day_of_haibanhoishokus.pluck(:fsh)
@@ -106,7 +103,7 @@ class ReportsController < ApplicationController
         "ET" + d.to_s
       end
       gon.ishoku_hormones_et_bt = shokihaiishoku_hormones_et
-      labels = before_ishoku_hormones_day << day_of_shokihaiishoku_et << shokihaiishoku_hormones_et
+      labels = before_ishoku_hormones_day << day_of_shokihaiishoku_day << shokihaiishoku_hormones_et
       gon.labels = labels.flatten
 
       ishoku_hormones_e2 = shokihaiishoku_hormones.map { |e| e[:e2] }
@@ -126,6 +123,7 @@ class ReportsController < ApplicationController
       gon.ishoku_hormones_p4 = ishoku_hormones_bihp4.flatten
 
       gon.ishoku_hormones_hcg = shokihaiishoku_hormones.map { |h| h[:hcg] }
+
     elsif @report.embryo_stage == 2
       haibanhoishoku_hormones = @report.haibanhoishoku_hormones.order(bt: "ASC")
       haibanhoishoku_hormones_bts = haibanhoishoku_hormones.map { |b| b[:bt] }
@@ -133,7 +131,7 @@ class ReportsController < ApplicationController
         "BT" + d.to_s
       end
       gon.ishoku_hormones_et_bt = haibanhoishoku_hormones_bt
-      labels = before_ishoku_hormones_day << day_of_haibanhoishoku_bt << haibanhoishoku_hormones_bt
+      labels = before_ishoku_hormones_day << day_of_haibanhoishoku_day << haibanhoishoku_hormones_bt
       gon.labels = labels.flatten
 
       ishoku_hormones_e2 = haibanhoishoku_hormones.map { |e| e[:e2] }
@@ -155,6 +153,32 @@ class ReportsController < ApplicationController
       gon.ishoku_hormones_hcg = haibanhoishoku_hormones.map { |h| h[:hcg] }
     else
     end
+
+    gon.clinic_name = @report.clinic.name
+    gon.doctor_quality = @report.doctor_quality
+    gon.staff_quality = @report.staff_quality
+    gon.impression_of_technology = @report.impression_of_technology
+    gon.impression_of_price = @report.impression_of_price
+    gon.comfort_of_space = @report.comfort_of_space
+    awt = @report.average_waiting_time
+    @awt = awt
+    if awt.present?
+      if awt <= 2
+        average_waiting_time = 1
+      elsif awt <= 4
+        average_waiting_time = 2
+      elsif awt <= 6
+        average_waiting_time = 3
+      elsif awt <= 8
+        average_waiting_time = 4
+      else
+        average_waiting_time = 5
+      end
+    else
+      average_waiting_time = 0
+    end
+    gon.clinic_evaluation = []
+    gon.clinic_evaluation << @report.doctor_quality << @report.staff_quality << @report.impression_of_technology << @report.impression_of_price << average_waiting_time << @report.comfort_of_space
   end
 
   def new
@@ -213,7 +237,7 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.new(report_params_for_create)
+    @report = Report.new(report_params)
     @report.user_id = current_user.id
 
     @report.normalize_for_create_embryo_stage
@@ -436,6 +460,10 @@ class ReportsController < ApplicationController
 
     @tag_list = @report.tags.pluck(:tag_name).join(",")
 
+    if @report.itinerary_of_choosing_a_clinics.count == 0
+      @report.itinerary_of_choosing_a_clinics.build
+    end
+
     if @report.sairan_hormones.count == 0
       @report.sairan_hormones.build
     end
@@ -482,7 +510,6 @@ class ReportsController < ApplicationController
       redirect_to root_path, alert: '編集権限がありません' 
       return
     end
-    @report = Report.find(params[:id])
 
     # @report.normalize_for_update_embryo_stage
     @report.normalize_for_credit_card_validity
@@ -673,12 +700,36 @@ class ReportsController < ApplicationController
     end
     tag_list = tag_list.uniq
 
-    @report.normalize_for_update_embryo_stage
+    # hash = params[:report][:day_of_haibanhoishokus_attributes]
+    # hash.each{|key, value|
+    #   print(key + "=>", value)
+    #   params[:report][:day_of_haibanhoishokus_attributes][key][:e2] = ""
+    # }
+
+    # 検証必須↓
+    # if params[:report][:embryo_stage] == 1
+    #   params[:report][:blastocyst_grade1] = {}
+    #   params[:report][:blastocyst_grade2] = {}
+    #   params[:report][:day_of_haibanhoishokus_attributes] = {}
+    #   params[:report][:haibanhoishoku_hormones_attributes] = {}
+    # elsif params[:embryo_stage] == 2
+    #   params[:report][:early_embryo_grade] = {}
+    #   params[:report][:day_of_shokihaiishokus] = {}
+    #   params[:report][:shokihaiishoku_hormones] = {}
+    # else
+    #   params[:report][:early_embryo_grade] = {}
+    #   params[:report][:blastocyst_grade1] = {}
+    #   params[:report][:blastocyst_grade2] = {}
+    #   params[:report][:day_of_shokihaiishokus] = {}
+    #   params[:report][:shokihaiishoku_hormones] = {}
+    #   params[:report][:day_of_haibanhoishokus_attributes] = {}
+    #   params[:report][:haibanhoishoku_hormones_attributes] = {}
+    # end
 
     respond_to do |format|
       if params[:back]
         format.html { render :edit }
-      elsif @report.update(report_params_for_create)
+      elsif @report.update(report_params)
         # @report.save_i(i_list)
         @report.save_fifs(fif_list)
         @report.save_mifs(mif_list)
@@ -734,6 +785,7 @@ class ReportsController < ApplicationController
     #     :city_at_the_time_status,
     #     :number_of_clinics,
     #     :clinic_selection_criteria,
+    #     :briefing_session,
     #     :reasons_for_choosing_this_clinic,
     #     :year_of_treatment_end,
     #     :fertility_treatment_number,
@@ -750,6 +802,7 @@ class ReportsController < ApplicationController
     #     :bmi,
     #     :smoking,
     #     :types_of_eggs_and_sperm,
+    #     :description_of_eggs_and_sperm_used,
     #     :type_of_ovarian_stimulation,
     #     :type_of_sairan_cycle,
     #     :notes_on_type_of_sairan_cycle,
@@ -771,6 +824,15 @@ class ReportsController < ApplicationController
     #     :blastocyst_grade1_supplementary_explanation,
     #     :blastocyst_grade2,
     #     :blastocyst_grade2_supplementary_explanation,
+    #     :explanation_and_impression_about_sairan,
+    #     :about_causes_of_infertility,
+    #     :semen_volume,
+    #     :semen_concentration,
+    #     :sperm_advance_rate,
+    #     :sperm_motility,
+    #     :probability_of_normal_morphology_of_sperm,
+    #     :total_amount_of_sperm,
+    #     :sperm_description,
     #     :number_of_miscarriages,
     #     :number_of_stillbirths,
     #     :fuiku,
@@ -784,12 +846,14 @@ class ReportsController < ApplicationController
     #     :number_of_eggs_stored,
     #     :frozen_embryo_storage_cost,
     #     :explanation_of_frozen_embryo_storage_cost,
+    #     :explanation_and_impression_about_ishoku,
     #     :adoption,
     #     :other_effort_cost,
     #     :other_effort_supplementary_explanation,
     #     :supplement_cost,
     #     :supplement_supplementary_explanation,
     #     :cost,
+    #     :explanation_of_cost,
     #     :all_cost,
     #     :number_of_times_the_grant_was_received,
     #     :all_grant_amount,
@@ -798,6 +862,8 @@ class ReportsController < ApplicationController
     #     :creditcards_can_be_used_from_more_than,
     #     :average_waiting_time,
     #     :reservation_method,
+    #     :online_consultation,
+    #     :online_consultation_details,
     #     :period_of_time_spent_traveling,
     #     :work_style,
     #     :industry_type,
@@ -813,10 +879,17 @@ class ReportsController < ApplicationController
     #     :annual_income_status,
     #     :household_net_income,
     #     :household_net_income_status,
+    #     :about_work_and_working_style,
     #     :title,
     #     :content,
     #     :clinic_review,
+    #     :staff_quality,
+    #     :doctor_quality,
+    #     :impression_of_price,
+    #     :impression_of_technology,
+    #     :comfort_of_space,
     #     :status,
+    #     sperm_selection_method: [],
     #     inspection_ids: [],
     #     f_infertility_factor_ids: [],
     #     m_infertility_factor_ids: [],
@@ -831,7 +904,7 @@ class ReportsController < ApplicationController
     #     supplement_ids: [],
     #     scope_of_disclosure_ids: [],
     #     tag_ids: [],
-    #     day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
+    #     day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
     #     day_of_shokihaiishokus_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :_destroy],
     #     day_of_haibanhoishokus_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :_destroy],
     #     sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
@@ -842,7 +915,7 @@ class ReportsController < ApplicationController
     #   )
     # end
 
-    def report_params_for_create
+    def report_params
       params.require(:report).permit(
         :current_state,
         :clinic_id,
@@ -852,6 +925,7 @@ class ReportsController < ApplicationController
         :city_at_the_time_status,
         :number_of_clinics,
         :clinic_selection_criteria,
+        :briefing_session,
         :reasons_for_choosing_this_clinic,
         :year_of_treatment_end,
         :fertility_treatment_number,
@@ -868,6 +942,7 @@ class ReportsController < ApplicationController
         :bmi,
         :smoking,
         :types_of_eggs_and_sperm,
+        :description_of_eggs_and_sperm_used,
         :type_of_ovarian_stimulation,
         :type_of_sairan_cycle,
         :notes_on_type_of_sairan_cycle,
@@ -889,6 +964,15 @@ class ReportsController < ApplicationController
         :blastocyst_grade1_supplementary_explanation,
         :blastocyst_grade2,
         :blastocyst_grade2_supplementary_explanation,
+        :explanation_and_impression_about_sairan,
+        :about_causes_of_infertility,
+        :semen_volume,
+        :semen_concentration,
+        :sperm_advance_rate,
+        :sperm_motility,
+        :probability_of_normal_morphology_of_sperm,
+        :total_amount_of_sperm,
+        :sperm_description,
         :number_of_miscarriages,
         :number_of_stillbirths,
         :fuiku,
@@ -902,12 +986,14 @@ class ReportsController < ApplicationController
         :number_of_eggs_stored,
         :frozen_embryo_storage_cost,
         :explanation_of_frozen_embryo_storage_cost,
+        :explanation_and_impression_about_ishoku,
         :adoption,
         :other_effort_cost,
         :other_effort_supplementary_explanation,
         :supplement_cost,
         :supplement_supplementary_explanation,
         :cost,
+        :explanation_of_cost,
         :all_cost,
         :number_of_times_the_grant_was_received,
         :all_grant_amount,
@@ -916,6 +1002,8 @@ class ReportsController < ApplicationController
         :creditcards_can_be_used_from_more_than,
         :average_waiting_time,
         :reservation_method,
+        :online_consultation,
+        :online_consultation_details,
         :period_of_time_spent_traveling,
         :work_style,
         :industry_type,
@@ -931,10 +1019,17 @@ class ReportsController < ApplicationController
         :annual_income_status,
         :household_net_income,
         :household_net_income_status,
+        :about_work_and_working_style,
         :title,
         :content,
         :clinic_review,
+        :staff_quality,
+        :doctor_quality,
+        :impression_of_price,
+        :impression_of_technology,
+        :comfort_of_space,
         :status,
+        sperm_selection_method: [],
         inspection_ids: [],
         f_infertility_factor_ids: [],
         m_infertility_factor_ids: [],
@@ -950,13 +1045,13 @@ class ReportsController < ApplicationController
         scope_of_disclosure_ids: [],
         tag_ids: [],
         day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
-        day_of_shokihaiishokus_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :_destroy],
-        day_of_haibanhoishokus_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :_destroy],
+        day_of_shokihaiishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
+        day_of_haibanhoishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
         sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
         before_ishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
         shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
         haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
-        itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy]
+        itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy],
       )
     end
 end

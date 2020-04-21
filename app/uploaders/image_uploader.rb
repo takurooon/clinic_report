@@ -30,8 +30,13 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   # version :thumb do
-    process resize_to_fit: [1000, 1000]
+    process resize_to_fit: [300, 200]
   # end
+
+  # 画像サイズを5MBまでに制限
+  def size_range
+    1..5.megabytes
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -44,6 +49,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
 
   def filename
-    "something.jpg" if original_filename
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+    # "something.jpg" if original_filename
+  end
+
+  protected
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
 end

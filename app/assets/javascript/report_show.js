@@ -59,6 +59,26 @@
         data: barChartData5,
         options: complexChartOption5
     });
+    ctx = document.getElementById("clinicEvaluation");
+    window.clinicEvaluation = new Chart(ctx, {
+      type: 'radar',
+      data: radarChartData,
+      options: {
+        maintainAspectRatio: false,
+        scale: {
+          ticks: {
+            label: false,
+            min: 0,
+            max: 5,
+            fixedStepSize: 2,
+            showLabelBackdrop: false,
+            fontSize: 0,
+            color: '#eee',
+            drawOnChartArea: true,
+          }
+        }
+      }
+    });
   };
   var barChartData1 = {
     labels: gon.sairan_hormones_day,
@@ -286,4 +306,19 @@
         },
       }],
     }
+  };
+  var radarChartData = {
+    labels:  ["医師", "スタッフ", "技術", "価格", "待ち時間", "快適さ"],
+    datasets: [
+      {
+        type: 'radar',
+        label: gon.clinic_name,
+        data: gon.clinic_evaluation,
+        borderColor : "rgba(54,164,235,0.3)",
+        pointBackgroundColor: "rgba(54,164,235,1)",
+        borderWidth: 3,
+        backgroundColor: "rgba(236,254,253,0.8)",
+        hitRadius: 10,
+      },
+    ],
   };

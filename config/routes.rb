@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root 'reports#index'
-  get 'home' => 'reports#home'
   get 'my_page' => 'my_page#index'
   get 'my_page/draft' => 'reports#draft'
   get 'thanks' => 'my_page#thanks'
@@ -21,6 +20,10 @@ Rails.application.routes.draw do
   get 'category/area' => 'searches#all_area'
   get 'category/area/prefecture/:value' => 'searches#area_prefecture'
   get 'category/area/city/:value' => 'searches#area_city'
+  get 'about' => 'application#about'
+  get 'terms' => 'application#terms'
+  get 'privacy' => 'application#privacy'
+  get 'admin' => 'application#admin'
   
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -53,7 +56,8 @@ Rails.application.routes.draw do
   get "clinic_select" => "clinics#clinic_select"
   
   resources :comments, only: %i[create destroy]
-  # resources :clinic_reviews, only: %i[index]
+
+  resources :notifications, only: :index
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
@@ -64,7 +68,6 @@ end
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
 #                                  root GET    /                                                                                        reports#index
-#                                  home GET    /home(.:format)                                                                          reports#home
 #                               my_page GET    /my_page(.:format)                                                                       my_page#index
 #                         my_page_draft GET    /my_page/draft(.:format)                                                                 reports#draft
 #                                thanks GET    /thanks(.:format)                                                                        my_page#thanks
@@ -84,6 +87,10 @@ end
 #                         category_area GET    /category/area(.:format)                                                                 searches#all_area
 #                                       GET    /category/area/prefecture/:value(.:format)                                               searches#area_prefecture
 #                                       GET    /category/area/city/:value(.:format)                                                     searches#area_city
+#                                 about GET    /about(.:format)                                                                         application#about
+#                                 terms GET    /terms(.:format)                                                                         application#terms
+#                               privacy GET    /privacy(.:format)                                                                       application#privacy
+#                                 admin GET    /admin(.:format)                                                                         application#admin
 #                      new_user_session GET    /users/sign_in(.:format)                                                                 users/sessions#new
 #                          user_session POST   /users/sign_in(.:format)                                                                 users/sessions#create
 #                  destroy_user_session DELETE /users/sign_out(.:format)                                                                users/sessions#destroy
@@ -139,6 +146,7 @@ end
 #                         clinic_select GET    /clinic_select(.:format)                                                                 clinics#clinic_select
 #                              comments POST   /comments(.:format)                                                                      comments#create
 #                               comment DELETE /comments/:id(.:format)                                                                  comments#destroy
+#                         notifications GET    /notifications(.:format)                                                                 notifications#index
 #                     letter_opener_web        /letter_opener                                                                           LetterOpenerWeb::Engine
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create

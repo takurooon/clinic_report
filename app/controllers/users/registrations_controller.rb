@@ -18,7 +18,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     super
-    @user_icon = current_user.icon
   end
 
   # PUT /resource
@@ -29,7 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   def destroy
     super
-    # @user_icon.destroy
+    # @user.icon.destroyreport.user.icon
     # flash[:notice] = 'レポートを削除しました。'
     # end
   end

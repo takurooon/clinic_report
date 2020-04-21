@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-md border-bottom navbar-light fixed-top">
+  
   <div class="container">
     <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path, class: "navbar-brand" %>
     <button class="btn btn-link d-md-none" type="button" data-toggle="modal" data-target="#menuModal" aria-label="Toggle navigation">
@@ -11,17 +12,18 @@
       </ul>
       <ul class="navbar-nav nav-tabs">
         <li class="nav-item active mx-1">
-          <%=header_link_item('レポート一覧', reports_path) %></<i>
+          <%=header_link_item('レポート', reports_path) %></<i>
         </li>
         <li class="nav-item mx-1">
-          <%=header_link_item('ユーザー一覧', users_path) %>
+          <%=header_link_item('ユーザー', users_path) %>
         </li>
         <li class="nav-item mx-1">
           <%=header_link_item('クリニック', category_clinics_path) %>
         </li>
         <% if current_user %>
           <li class="nav-item dropdown mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ユーザー
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <small><%= current_user.name %></small>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "マイページ", my_page_path, class: 'dropdown-item' %><br>
@@ -49,7 +51,7 @@
   </div>
 </nav>
 
-<%= render 'layouts/flash' %>
+
 
 <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin: auto;">
   <div class="modal-dialog" role="document">

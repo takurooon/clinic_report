@@ -7,3 +7,68 @@
   object-fit: cover;
   //タテヨコ比を変えないままトリミング
 }
+
+.icon_image2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+  border: solid thin #92E0E0;
+}
+
+// アイコン
+#img_field {
+  font-size: 15px;
+  margin-top: 10px;
+  padding: 5px 8px;
+  border: solid 1px #92E0E0;
+  color: #666;
+  position: relative;
+  padding: 0;
+  border-radius: 200px;
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: 0.3s ease-out;
+}
+#img_field .icon-camera {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 90%;
+  height: 4rem;
+}
+#img_field:hover {
+  background-color: #92E0E0;
+  transition: 0.3s ease-out;
+  opacity: 0.9;
+}
+#img_field:hover i {
+  transition: 0.3s ease-out;
+  display: block;
+  color: #fff;
+}
+.img-field-parent {
+  width: 210px;
+  height: 205px;
+  position: relative;
+}
+.capacity-limit-attention {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+}
+
+// リンクの下線を消す
+.profile a:hover {
+  text-decoration: none;
+}

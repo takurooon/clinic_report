@@ -28,14 +28,47 @@
                         <div class="form-group">
                           <th class="profile-item-l"><%= f.label :icon, "アイコン" %><br/></th>
                           <td class="profile-item-r">
-                            <% unless @user.icon.blank? %>
-                              <div><img src=<%= @user.icon %> class = "icon_image" %></div>
-                              <%= link_to '削除', user_registration_path(@user), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
-                            <% end %>
-                            <div><%= f.file_field :icon, class: "form-control" %></div>
+                            <div class="img-field-parent">
+                              <div id="img_field" onClick="$('#file').click()">
+                                <% if @user.icon.present? %>
+                                  <%= image_tag @user.icon.url %>
+                                  <%= link_to '削除', user_registration_path(@user), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
+                                <% else %>
+                                  <i class="fas fa-camera-retro fa-5x icon-camera"></i>
+                                <% end %>
+                              </div>
+                              <small class="capacity-limit-attention"><small class="text-danger">※最大5MB</small></small>
+                            </div><br>
+                            <small class="text-muted">画像をクリックするとアイコン画像の選択ができます。</small>
+                            <%= f.file_field :icon, class: "form-control", style: "display:none;", id: "file" %>
                           </td>
                         </div>
                       </tr>
+                      <script>
+                        $(function(){
+                          $fileField = $('#file')
+                        
+                          // 選択された画像を取得し表示
+                          $($fileField).on('change', $fileField, function(e) {
+                            file = e.target.files[0]
+                            reader = new FileReader(),
+                            $preview = $("#img_field");
+
+                            reader.onload = (function(file) {
+                              return function(e) {
+                                $preview.empty();
+                                $preview.append($('<img>').attr({
+                                  src: e.target.result,
+                                  width: "100%",
+                                  class: "preview",
+                                  title: file.name
+                                }));
+                              };
+                            })(file);
+                            reader.readAsDataURL(file);
+                          });
+                        });
+                      </script>
                       <tr>
                         <div class="form-group">
                           <th><%= f.label :name, "名前" %></th>
@@ -57,13 +90,9 @@
                                 date_separator:    '%s'), # 年月日区切りをそれぞれ指定
                             '年 ') + '月'
                           %><br>
-                          <small>この生年月は非公開(自分のみ閲覧可能)です。この情報は現在の年齢の算出に使用されます。ただ現在の年齢の公開/非公開は次項で設定可能です。</small>
+                          <small class="text-muted">生年月は公開されません。</small>
                           </td>
                         </div>
-                      </tr>
-                      <tr>
-                        <th>現在の年齢の公開設定</th>
-                        <td></td>
                       </tr>
                       <tr>
                         <div class="form-group">
@@ -73,8 +102,8 @@
                       </tr>
                       <tr>
                         <div class="form-group">
-                          <th><p class="d-none d-md-block"><%= f.label :self_introduction, "自己紹介" %></p></th>
-                          <td class="pb-0 d-none d-md-block"><%= f.text_area :self_introduction, class: "form-control border rounded-lg", rows: "20", placeholder: "妊活から不妊治療へ至る経緯や、ご自身の細かい属性を盛り込みましょう！" %></td>
+                          <th><p><%= f.label :self_introduction, "自己紹介" %></p></th>
+                          <td class="px-0"><%= f.text_area :self_introduction, class: "form-control border rounded-lg p-2", rows: "20", placeholder: "妊活から不妊治療へ至る経緯や、ご自身の細かい属性を盛り込みましょう！" %></td>
                         </div>
                       </tr>
                     </tbody>

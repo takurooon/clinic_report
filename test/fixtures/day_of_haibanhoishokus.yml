@@ -2,20 +2,21 @@
 #
 # Table name: day_of_haibanhoishokus
 #
-#  id         :bigint           not null, primary key
-#  bt         :integer          default(0), not null
-#  e2         :integer
-#  fsh        :integer
-#  lh         :integer
-#  p4         :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  report_id  :bigint           not null
+#  id                    :bigint           not null, primary key
+#  day                   :integer          not null
+#  e2                    :integer
+#  endometrial_thickness :integer
+#  fsh                   :integer
+#  lh                    :integer
+#  p4                    :integer
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  report_id             :bigint           not null
 #
 # Indexes
 #
-#  index_day_of_haibanhoishokus_on_report_id         (report_id)
-#  index_day_of_haibanhoishokus_on_report_id_and_bt  (report_id,bt) UNIQUE
+#  index_day_of_haibanhoishokus_on_report_id          (report_id)
+#  index_day_of_haibanhoishokus_on_report_id_and_day  (report_id,day) UNIQUE
 #
 # Foreign Keys
 #

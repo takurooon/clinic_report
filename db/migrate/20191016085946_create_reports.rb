@@ -8,6 +8,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :transplant_method
       t.integer :number_of_clinics
       t.integer :clinic_selection_criteria
+      t.integer :briefing_session
       t.integer :treatment_start_age
       t.integer :first_age_to_start
       t.integer :treatment_end_age
@@ -18,10 +19,20 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :pgt1
       t.integer :pgt2
       t.text :pgt_supplementary_explanation
+      t.text :about_causes_of_infertility
+      t.integer :semen_volume
+      t.integer :semen_concentration
+      t.integer :sperm_advance_rate
+      t.integer :sperm_motility
+      t.integer :probability_of_normal_morphology_of_sperm
+      t.integer :total_amount_of_sperm
+      t.integer :sperm_selection_method
+      t.text :sperm_description
       t.integer :amh
       t.integer :bmi
       t.integer :smoking
       t.integer :types_of_eggs_and_sperm
+      t.text :description_of_eggs_and_sperm_used
       t.integer :type_of_ovarian_stimulation
       t.integer :type_of_sairan_cycle
       t.text :notes_on_type_of_sairan_cycle
@@ -44,12 +55,14 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :blastocyst_grade1_supplementary_explanation
       t.integer :blastocyst_grade2
       t.text :blastocyst_grade2_supplementary_explanation
+      t.text :explanation_and_impression_about_sairan
       t.integer :total_number_of_transplants
       t.integer :total_number_of_eggs_transplanted
       t.integer :all_number_of_transplants
       t.integer :number_of_eggs_stored
       t.integer :frozen_embryo_storage_cost
       t.text :explanation_of_frozen_embryo_storage_cost
+      t.text :explanation_and_impression_about_ishoku
       t.integer :number_of_miscarriages
       t.integer :number_of_stillbirths
       t.integer :fuiku
@@ -60,6 +73,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :supplement_cost
       t.text :supplement_supplementary_explanation
       t.integer :cost
+      t.text :explanation_of_cost
       t.integer :all_cost
       t.integer :number_of_times_the_grant_was_received
       t.integer :all_grant_amount
@@ -68,6 +82,8 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :creditcards_can_be_used_from_more_than
       t.integer :average_waiting_time
       t.integer :reservation_method
+      t.integer :online_consultation
+      t.text :online_consultation_details
       t.integer :period_of_time_spent_traveling
       t.integer :work_style
       t.integer :industry_type
@@ -81,7 +97,13 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :number_of_employees
       t.integer :treatment_support_system
       t.integer :suspended_or_retirement_job
+      t.text :about_work_and_working_style
       t.text :content
+      t.integer :staff_quality
+      t.integer :doctor_quality
+      t.integer :impression_of_price
+      t.integer :impression_of_technology
+      t.integer :comfort_of_space
       t.text :clinic_review
       t.text :reasons_for_choosing_this_clinic
       t.integer :status, default: 0, null: false

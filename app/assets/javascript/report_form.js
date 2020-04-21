@@ -70,11 +70,54 @@ $(function() {
 //   }
 // }
 
+// 用いた卵子と精子の説明
+$(function() {
+  eggsperm($("#report_types_of_eggs_and_sperm option:selected").val());
+  $("#report_types_of_eggs_and_sperm").change(function() {
+    eggsperm($(this).val());
+  });
+})
+function eggsperm(types_of_eggs_and_sperm) {
+  if (types_of_eggs_and_sperm > "1") {
+    $(".description_of_eggs_and_sperm_used").show();
+  } else {
+    $(".description_of_eggs_and_sperm_used").hide();
+  }
+}
+
+// オンライン診療
+$(function() {
+  online($("#report_online_consultation option:selected").val());
+  $("#report_online_consultation").change(function() {
+    online($(this).val());
+  });
+})
+function online(online_consultation) {
+  if (online_consultation > "1") {
+    $(".online_consultation_details").show();
+  } else {
+    $(".online_consultation_details").hide();
+  }
+}
+
+// BMI計算
+function calc(){
+  var h = Number(document.getElementById("bmi_height").value);
+  var w = Number(document.getElementById("bmi_weight").value);
+  bmi = Math.round((w / ( (h / 100) * (h / 100) )) * 10);
+  bmi = bmi / 10;
+  if (isNaN(bmi)) {
+    alert("身長と体重を入力してください");
+  } else {
+    alert("あなたのBMIは" + "「" + bmi + "」です。");
+  }
+}
+
 // 胚のステージへの移植方法表示(凍結or新鮮胚移植)
 $(function() {
   $('#report_transplant_method').change(function() {
-    var discription1 = "(ちなみに移植方法は「";
-    var discription2 = "」を選択されています)";
+    var discription1 = "(移植方法は「";
+    var discription2 = "」が選択されています)";
     var val = $(this).val();
     if (val == "1") {
       var val = "凍結胚移植";
@@ -157,3 +200,14 @@ $(function() {
     }
   });
 });
+
+// ラジオボタンチェック外し
+var remove = 0;
+function radioDeselection(already, numeric) {
+  if(remove == numeric) {
+    already.checked = false;
+    remove = 0;
+  } else {
+    remove = numeric;
+  }
+}

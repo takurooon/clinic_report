@@ -1,117 +1,131 @@
 <div class="row mt-5 mb-5 pr-3 d-none d-md-block">
-  <div class="col-lg-10 offset-lg-1 mr-5 pr-5">
+  <div class="col-lg-10 offset-lg-1 mr-1 pr-4">
       <%= link_to "レポートを作成", new_report_path, class:"btn btn-raised btn-primary float-right" %>
   </div>
 </div>
-<div class="row mt-5 mb-5 d-sm d-md-none mr-2">
-  <div class="col-lg-10 offset-lg-1">
+<div class="row mt-5 mb-5 d-sm d-md-none mr-0 pr-0">
+  <div class="col-lg-10 offset-lg-1 pr-2">
       <%= link_to "レポートを作成", new_report_path, class:"btn btn-raised btn-primary float-right" %>
   </div>
 </div>
 
 <% if false %>
-<h3 class="d-none d-md-block col-lg-10 offset-lg-1 offset-md-0 pl-5 mt-4 mb-4 lead">&nbsp;&nbsp;カテゴリから探す</h3>
-<h3 class="d-sm d-md-none mt-4 text-center mb-4 lead">カテゴリから探す</h3>
-<div class="form-group mt-4 text-center mb-4 pl-4 pr-4">
-  <div class="form-group d-sm d-md-none mt-4 text-center mb-4">
-    <select id="select1a" class="form-control" onChange="top.location.href=value">
-      <option value="#">選択してください</option>
-      <option value="category/amh">AMH</option>
-      <option value="category/tags">タグ</option>
-      <option value="category/age">年齢</option>
-      <option value="category/clinics">クリニック</option>
-      <option value="category/factors">不妊原因</option>
-      <option value="category/area">エリア</option>
-    </select>
+  <h3 class="d-none d-md-block col-lg-10 offset-lg-1 offset-md-0 pl-5 mt-4 mb-4 lead">&nbsp;&nbsp;カテゴリから探す</h3>
+  <h3 class="d-sm d-md-none mt-4 text-center mb-4 lead">カテゴリから探す</h3>
+  <div class="form-group mt-4 text-center mb-4 pl-4 pr-4">
+    <div class="form-group d-sm d-md-none mt-4 text-center mb-4">
+      <select id="select1a" class="form-control" onChange="top.location.href=value">
+        <option value="#">選択してください</option>
+        <option value="category/amh">AMH</option>
+        <option value="category/tags">タグ</option>
+        <option value="category/age">年齢</option>
+        <option value="category/clinics">クリニック</option>
+        <option value="category/factors">不妊原因</option>
+        <option value="category/area">エリア</option>
+      </select>
+    </div>
   </div>
-</div>
 
-<div class="row category">
-  <div class="col-lg-10 offset-lg-1 col-md-12 px-5">
-    <div class="row category-inner mb-5 px-3">
-      <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <%= link_to category_amh_path do %>
-          <div class="row category-list px-5">
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-              
+  <div class="row category">
+    <div class="col-lg-10 offset-lg-1 col-md-12 px-5">
+      <div class="row category-inner mb-5 px-3">
+        <div class="col-md-6 col-lg-4 d-none d-md-block">
+          <%= link_to category_amh_path do %>
+            <div class="row category-list px-5">
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+                
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                  AMH
+              </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-                AMH
+          <% end %>
+        </div>
+        <div class="col-md-6 col-lg-4 d-none d-md-block">
+          <%= link_to category_tags_path do %>
+            <div class="row category-list">
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+                
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                  タグ
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <%= link_to category_tags_path do %>
-          <div class="row category-list">
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-              
+          <% end %>
+        </div>
+        <div class="col-md-6 col-lg-4 d-none d-md-block">
+          <%= link_to category_age_path do %>
+            <div class="row category-list">
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+                
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                  年齢
+              </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-                タグ
+          <% end %>
+        </div>
+        <div class="col-md-6 col-lg-4 d-none d-md-block">
+          <%= link_to category_clinics_path do %>
+            <div class="row category-list">
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+                
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                  クリニック
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <%= link_to category_age_path do %>
-          <div class="row category-list">
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-              
+          <% end %>
+        </div>
+        <div class="col-md-6 col-lg-4 d-none d-md-block">
+          <%= link_to category_factors_path do %>
+            <div class="row category-list">
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+                
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                  不妊原因
+              </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-                年齢
+          <% end %>
+        </div>
+        <div class="col-md-6 col-lg-4 d-none d-md-block">
+          <%= link_to category_area_path do %>
+            <div class="row category-list">
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center">
+                
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
+                  住まい
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <%= link_to category_clinics_path do %>
-          <div class="row category-list">
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-              
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-                クリニック
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <%= link_to category_factors_path do %>
-          <div class="row category-list">
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-              
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-                不妊原因
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-md-6 col-lg-4 d-none d-md-block">
-        <%= link_to category_area_path do %>
-          <div class="row category-list">
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center">
-              
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 text-center category-title">
-                住まい
-            </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
 
-      
-      <div class="col-12 d-none d-md-block">
-        <small class="float-right">全てのカテゴリを見る></small>
-      </div>
+        
+        <div class="col-12 d-none d-md-block">
+          <small class="float-right">全てのカテゴリを見る></small>
+        </div>
 
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="container-fluid px-2">
+  <h3 class="d-none d-md-block col-lg-7 offset-lg-1 col-md-9 offset-md-0 pl-5 mt-4 mb-5 lead"><i data-feather="hash" class="feather-icon-style2"></i>最新レポート</h3>
+  <h3 class="d-sm d-md-none mt-4 mb-5 text-center lead"><i data-feather="hash" class="feather-icon-style2"></i>最新レポート</h3>
+
+  <div class="container-fluid main-index">
+    <div class="row px-0">
+      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color">
+        <%= render 'center' %>
+      </div>
+      <div class="col-lg-3 col-md-3 d-none d-md-block">
+        <%= render 'right' %>
+      </div>
     </div>
   </div>
 </div>
-<% end %>
-
-<%= render 'center' %>
 
 <%= paginate @reports %>
