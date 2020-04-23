@@ -26,7 +26,7 @@
                         <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% end %>
                     <% else %>
-                      <img src=<%= report.user.icon %> class = "icon_image">
+                      <%= image_tag(report.user.icon.url, class:"icon_image") %>
                     <% end %>
                   </div>
                 <% end %>
@@ -92,7 +92,7 @@
                         <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% end %>
                     <% else %>
-                      <img src=<%= report.user.icon %> class = "icon_image">
+                      <%= image_tag(report.user.icon.url, class:"icon_image") %>
                     <% end %>
                   </div>
                 <% end %>
@@ -184,18 +184,18 @@
               </div>
               <div class="d-none d-sm-block justify-content-start mr-2">
                 <div class="personaldata-badge pr-2">
-                  <span class="badge badge-primary"><%= report.str_cost %></span>
+                  <span class="badge badge-light text-muted"><%= report.str_cost %></span>
                   <% inspections = report.inspections.shuffle.sample(1) %>
                   <% inspections.each do |inspection| %>
-                    <span class="badge badge-primary"><%= inspection.name %></span>
+                    <span class="badge badge-light text-muted"><%= inspection.name %></span>
                   <% end %>
                   <% supplements = report.supplements.shuffle.sample(1) %>
                   <% supplements.each do |supplement| %>
-                    <span class="badge badge-primary"><%= supplement.name %></span>
+                    <span class="badge badge-light text-muted"><%= supplement.name %></span>
                   <% end %>
                   <% tags = report.tags.shuffle.sample(1) %>
                   <% tags.each do |tag| %>
-                    <span class="badge badge-primary"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}" %></span>
+                    <span class="badge badge-light"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class:"text-muted" %></span>
                   <% end %>
                 </div>
               </div>
@@ -203,7 +203,7 @@
               <div>
                 <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
                   <div class="d-none d-sm-block my-0 mr-2 clinic_address">
-                    <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "text-muted small" %>&nbsp;&nbsp;<span class="badge badge-dark"><%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}" %></span>&nbsp;<span class="badge badge-dark"><%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}" %></span>
+                    <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}", class:"text-muted" %></span>
                   </div>
                   <div class="d-block d-sm-none mb-0 mr-2 clinic_address">
                     <div class="col-12 pl-0">
