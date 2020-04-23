@@ -519,9 +519,11 @@ class Report < ApplicationRecord
 
   # current_stateの区分値(現在の状況)
   HASH_CURRENT_STATE = {
-    1 => "妊娠中",
+    1 => "現在妊娠中",
     2 => "出産済み",
-    3 => "治療を断念(継続しない)"
+    3 => "転院した",
+    4 => "治療自体をやめた",
+    5 => "その他"
   }
 
   def str_current_state
@@ -717,6 +719,19 @@ class Report < ApplicationRecord
 
   def str_transplant_method
     return HASH_TRANSPLANT_METHOD[self.transplant_method]
+  end
+
+  # number_of_eggs_transferredの区分値(何個戻し)
+  HASH_NUMBER_OF_EGGS_TRANSFERRED = {
+    1 => "1個戻し",
+    2 => "2個戻し",
+    3 => "3個以上",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_number_of_eggs_transferred
+    return HASH_NUMBER_OF_EGGS_TRANSFERRED[self.number_of_eggs_transferred]
   end
 
   # egg_maturityの区分値(妊娠に至った卵子の成熟度)
@@ -2231,6 +2246,7 @@ end
 #  number_of_clinics                            :integer
 #  number_of_eggs_collected                     :integer
 #  number_of_eggs_stored                        :integer
+#  number_of_eggs_transferred                   :integer
 #  number_of_employees                          :integer
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer

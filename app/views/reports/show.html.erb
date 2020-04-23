@@ -25,11 +25,12 @@
         </div>
       <% end %>
 
-      <div class="d-flex align-items-center mt-5 mb-5">
-        <h4><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>での治療レポート</h4>
+      <div class="d-flex align-items-center mt-5 mb-5 px-2">
+        <h4 class="d-none d-sm-block"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>での治療レポート</h4>
+        <h5 class="d-block d-sm-none"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>での治療レポート</h5>
       </div>
 
-      <div class="mb-1">
+      <div class="mb-1 px-2">
         <% unless @report.treatment_end_age.blank? %>
           <span class="badge badge-light"><%= link_to @report.treatment_end_age, "/category/age/#{@report.treatment_end_age}", class: "text-dark" %>歳</span>
         <% end %>
@@ -61,13 +62,13 @@
         </div>
 
         <% if @report.year_of_treatment_end.present? && Time.now.year - @report.year_of_treatment_end.year > 0 %>
-          <div class="alert alert-info small" role="alert">
+          <div class="alert alert-info small my-3 py-1" role="alert">
             こちらのレポートは&nbsp;<%= Time.now.year - @report.year_of_treatment_end.year %>年以上前&nbsp;<span class="small text-muted">(<%= @report.year_of_treatment_end.year %>年)</span>&nbsp;の治療情報です。
           </div>
         <% end %>
 
         <div class="parent-tab">
-          <p class="d-xs-block d-md-none float-right text-success mb-0" style="font-size:8px">※&nbsp;CL&nbsp;=&nbsp;クリニック(Clinic)</p><br>
+          <p class="d-xs-block d-md-none float-right text-success mb-0 px-2" style="font-size:8px">※&nbsp;CL&nbsp;=&nbsp;クリニック(Clinic)</p><br>
           <p class="d-none d-md-block float-right text-success" style="font-size:8px">※&nbsp;CL&nbsp;=&nbsp;クリニック(Clinic)</p>
           <ul class="nav nav-tabs parent-menu">
             <li><a href="#treatment-info" class="active mostleft-tab" data-toggle="tab">レポ</a></li>
@@ -1719,9 +1720,12 @@
             </div>
           </div>
 
-          <div class="content pt-4">
-            <h4 class="pb-5 px-3 report_title"><%= @report.title %></h4>
-            <%= @report.content %>
+          <div class="report-content mx-2 mt-5 pt-4">
+            <h4 class="mb-0 pb-4 px-2 report_title d-none d-sm-block"><%= @report.title %></h4>
+            <h5 class="pb-3 px-2 report_title d-block d-sm-none"><%= @report.title %></h5>
+            <div class="px-0 pt-3 report-content-inner">
+              <%= @report.content %>
+            </div>
           </div>
 
         <div class="cp_box mt-5">
@@ -2334,6 +2338,24 @@
                     </td>
                   </tr>
                 <% end %>
+
+
+
+                <% if false %>
+                <tr>
+                  <td class="result-left-column small">何個戻し？</td>
+                  <td class="pl-4 result-right-column">
+                    <% unless @report.number_of_eggs_transferred.blank? %>
+                      <span class="result-text"><%= @report.str_number_of_eggs_transferred %></span>
+                    <% else %>
+                      <span class="text-muted small">未回答</span>
+                    <% end %>
+                  </td>
+                </tr>
+                <% end %>
+
+
+
                 <tr>
                   <% unless @report.explanation_and_impression_about_sairan.blank? %>
                     <td class="result-left-column small">採卵メモ</td>

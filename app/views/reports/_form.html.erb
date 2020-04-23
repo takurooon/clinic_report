@@ -21,8 +21,8 @@
       </div>
     <% end %>
 
-    <div class="split-left-box left-box px-3 pb-5">
-      <div class="form-group mt-0">
+    <div class="split-left-box left-box px-1 pb-5">
+      <div class="form-group mt-0 px-1">
         <div class="label"><%= f.label :current_state, '投稿時点(現在)の状況', class: "question-matters" %></div>
         <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, { prompt: "選択してください" }, { class: "form-control" } %>
         <small id="poster-tip" class="form-text text-muted">
@@ -30,7 +30,7 @@
         </small>
       </div>
 
-      <div class="form-group">
+      <div class="form-group px-1">
         <div class="label p-1"><%= f.label :fertility_treatment_number, '何人目の不妊治療ですか?（何人目不妊ですか）', class: "question-matters" %></div>
         <%= f.select :fertility_treatment_number, Report.make_select_options_fertility_treatment_number, { prompt: "選択してください" }, { class: "form-control" } %>
         <small id="poster-tip" class="form-text text-muted">
@@ -38,8 +38,8 @@
         </small>
       </div>
 
-      <div class="row mt-0">
-        <div class="col-md-6 px-1">
+      <div class="row mt-0 px-1">
+        <div class="col-md-6">
           <div class="form-group border border-danger rounded-lg p-3">
             <small class="text-danger float-right">※必須</small>
             <div class="label p-1"><%= f.label :clinic_id, 'クリニックを選択', class: "question-matters" %></div>
@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <div class="col-md-6 px-1">
+        <div class="col-md-6">
           <div class="form-group border border-danger rounded-lg p-3">
             <small class="text-danger float-right">※必須</small>
             <div class="label p-1"><%= f.label :address_at_the_time_of_treatment, '治療当時のお住まい', class: "question-matters" %></div>
@@ -109,51 +109,51 @@
             </small>
           </div>
         </div>
+      </div>
 
-        <div class="col-12 form-group border rounded py-3 itinerary-of-clinic">
-          <div class="form-group pt-0 mt-1 px-1">
-            <div class="label"><%= f.label :clinic_selection_criteria, 'このクリニックを選んだ理由', class: "question-matters" %></div>
-              <%= f.select :clinic_selection_criteria, Report::HASH_CLINIC_SELECTION_CRITERIA.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-            <small id="poster-tip" class="form-text text-muted">
-              当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group pt-2 px-1">
-            <div class="label"><%= f.label :briefing_session, '説明会へは参加されましたか', class: "question-matters" %></div>
-            <%= f.select :briefing_session, Report::HASH_BRIEFING_SESSION.invert, { prompt: "選択してください" }, { class: "form-control" } %>
-            <small id="poster-tip" class="form-text text-muted">
-              当てはまるものを選択してください。
-            </small>
-          </div>
-          <div class="form-group pt-3 px-1">
-            <div class="label p-1"><%= f.label :reasons_for_choosing_this_clinic, 'このクリニックを選んだ理由について更に詳しく(自由記述)', class: "question-matters" %></div>
-            <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):信頼する〇〇医師がいたから/ 〇〇治療を実施できるクリニックだったから など" %>
-            <small id="poster-tip" class="form-text text-muted">
-              どういう基準でクリニックを選ばれたかを教えてください。
-            </small>
-          </div>
-          <div class="form-group px-1 pb-3">
-            <div class="label"><%= f.label :number_of_clinics, 'このクリニックは何院目ですか', class: "question-matters" %></div>
-            <%= f.select :number_of_clinics, Report.make_select_options_number_of_clinics, { prompt: "選択してください" }, { class: "form-control" } %>
-            <small id="poster-tip" class="form-text text-muted">
-                治療を開始してから何院目の医療機関か選択してください。
-            </small>
-          </div> 
-          <div class="form-group pt-1 px-1">
-            <p>これまでの転院歴を教えてください。</p>
-            <small id="poster-tip" class="form-text text-muted" style="line-height: 170%">
-              行が足りない場合は「追加」してください。<br>
-              この質問は必須ではありませんが、回答される場合には各行必ず&nbsp;<font color="#3DBAF5">必須</font>&nbsp;と書かれた「転院歴」列を選択してください。
-            </small>
-            <small id="poster-tip" class="form-text text-muted px-2 text-right">
-              <span style="color:red">※</span>CL = 「クリニック」の略
-            </small>
-            <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
-              <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>
-            <% end %>
-            <div class="links pt-2 pl-2">
-              <%= link_to_add_association "+ 追加", f, :itinerary_of_choosing_a_clinics %>
-            </div>
+      <div class="form-group border rounded px-2 py-3 itinerary-of-clinic">
+        <div class="form-group pt-0 mt-1 px-1">
+          <div class="label"><%= f.label :clinic_selection_criteria, 'このクリニックを選んだ理由', class: "question-matters" %></div>
+            <%= f.select :clinic_selection_criteria, Report::HASH_CLINIC_SELECTION_CRITERIA.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
+          <small id="poster-tip" class="form-text text-muted">
+            当てはまるものを選択してください。
+          </small>
+        </div>
+        <div class="form-group pt-2 px-1">
+          <div class="label"><%= f.label :briefing_session, '説明会へは参加されましたか', class: "question-matters" %></div>
+          <%= f.select :briefing_session, Report::HASH_BRIEFING_SESSION.invert, { prompt: "選択してください" }, { class: "form-control" } %>
+          <small id="poster-tip" class="form-text text-muted">
+            当てはまるものを選択してください。
+          </small>
+        </div>
+        <div class="form-group pt-3 px-1">
+          <div class="label p-1"><%= f.label :reasons_for_choosing_this_clinic, 'このクリニックを選んだ理由について更に詳しく(自由記述)', class: "question-matters" %></div>
+          <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):信頼する〇〇医師がいたから/ 〇〇治療を実施できるクリニックだったから など" %>
+          <small id="poster-tip" class="form-text text-muted">
+            どういう基準でクリニックを選ばれたかを教えてください。
+          </small>
+        </div>
+        <div class="form-group px-1 pb-3">
+          <div class="label"><%= f.label :number_of_clinics, 'このクリニックは何院目ですか', class: "question-matters" %></div>
+          <%= f.select :number_of_clinics, Report.make_select_options_number_of_clinics, { prompt: "選択してください" }, { class: "form-control" } %>
+          <small id="poster-tip" class="form-text text-muted">
+              治療を開始してから何院目の医療機関か選択してください。
+          </small>
+        </div> 
+        <div class="form-group pt-1 px-1">
+          <p>これまでの転院歴を教えてください。</p>
+          <small id="poster-tip" class="form-text text-muted" style="line-height: 170%">
+            行が足りない場合は「追加」してください。<br>
+            この質問は必須ではありませんが、回答される場合には各行必ず&nbsp;<font color="#3DBAF5">必須</font>&nbsp;と書かれた「転院歴」列を選択してください。
+          </small>
+          <small id="poster-tip" class="form-text text-muted px-2 text-right">
+            <span style="color:red">※</span>CL = 「クリニック」の略
+          </small>
+          <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
+            <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>
+          <% end %>
+          <div class="links pt-2 pl-2">
+            <%= link_to_add_association "+ 追加", f, :itinerary_of_choosing_a_clinics %>
           </div>
         </div>
       </div>
@@ -658,6 +658,14 @@
       </div>
 
       <div class="form-group">
+        <div class="label p-1"><%= f.label :number_of_eggs_transferred, '妊娠に至った移植は何個戻しでしたか', class: "question-matters" %></div>
+        <%= f.select :number_of_eggs_transferred, Report::HASH_NUMBER_OF_EGGS_TRANSFERRED.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
+        <small id="poster-tip" class="form-text text-muted">
+            当てはまるものを選択してください。
+        </small>
+      </div>
+
+      <div class="form-group">
         <div class="label p-1"><%= f.label :egg_maturity, 'その中で妊娠に至った卵子(受精前)の成熟度', class: "question-matters" %></div>
         <%= f.select :egg_maturity, Report::HASH_EGG_MATURITY.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
         <small id="poster-tip" class="form-text text-muted">
@@ -666,7 +674,7 @@
       </div>
 
       <div class="form-group">
-        <div class="label p-1"><%= f.label :ova_with_ivm, '妊娠した卵子へのIVM実施の有無', class: "question-matters" %></div>
+        <div class="label p-1"><%= f.label :ova_with_ivm, '妊娠に至った卵子へのIVM実施の有無', class: "question-matters" %></div>
         <%= f.select :ova_with_ivm, Report::HASH_OVA_WITH_IVM.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
         <small id="poster-tip" class="form-text text-muted">
             当てはまるものを選択してください。
@@ -1487,7 +1495,7 @@
 
     </div>
 
-    <div class="split-right-box right-box px-3 pb-5">
+    <div class="split-right-box right-box px-1 pb-5">
       <div class="form-group mt-0">
         <div><%= f.label :title, 'あなたの治療レポートのタイトル', class: "question-matters" %></div>
         <%= f.text_field :title, class: "form-control", placeholder: "最大64文字" %>

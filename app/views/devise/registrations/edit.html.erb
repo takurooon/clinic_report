@@ -32,7 +32,6 @@
                               <div id="img_field" onClick="$('#file').click()">
                                 <% if @user.icon.present? %>
                                   <%= image_tag @user.icon.url %>
-                                  <%= link_to '削除', user_registration_path(@user), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
                                 <% else %>
                                   <i class="fas fa-camera-retro fa-5x icon-camera"></i>
                                 <% end %>

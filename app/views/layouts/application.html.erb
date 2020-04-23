@@ -3,7 +3,7 @@
   <head>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0" />
     <%= display_meta_tags(default_meta_tags) %>
     <%= favicon_link_tag('home/repoco.ico') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -16,17 +16,19 @@
   </head>
 
   <body>
-    <% if false %>
-      <%= render 'layouts/flash' %>
-    <% end %>
-    <%= render 'header' %>
+    <div class="all-wrap">
+      <% if false %>
+        <%= render 'layouts/flash' %>
+      <% end %>
+      <%= render 'header' %>
 
-    <div class="base">
-      <div class="container px-0">
-        <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-        <%= yield %>
+      <div class="base">
+        <div class="container px-0">
+          <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+          <%= yield %>
+        </div>
       </div>
+      <%= render 'footer' %>
     </div>
-    <%= render 'footer' %>
   </body>
 </html>

@@ -187,13 +187,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">×</span>
-       </button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
       </div>
       <div class="modal-body">
         <ul style="list-style-type:none;">
-          <li><%= link_to "レポート一覧", root_path %></li>
+          <li><%= link_to "レポート", root_path %></li>
+          <li><%= link_to "ユーザー", users_path %></li>
           <li><%= link_to "クリニック", category_clinics_path %></li>
           <% if current_user %>
             <li><%= link_to "マイページ", my_page_path %></li>
