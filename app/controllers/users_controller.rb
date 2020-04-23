@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reports = @user.reports
-    @tags = @reports.last.tags
     @like_reports = @user.like_reports
   end
 

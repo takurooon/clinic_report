@@ -26,8 +26,8 @@
       <% end %>
 
       <div class="d-flex align-items-center mt-5 mb-5 px-2">
-        <h4 class="d-none d-sm-block"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>での治療レポート</h4>
-        <h5 class="d-block d-sm-none"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>での治療レポート</h5>
+        <h4 class="d-none d-sm-block"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h4>
+        <h5 class="d-block d-sm-none"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h5>
       </div>
 
       <div class="mb-1 px-2">
@@ -63,7 +63,7 @@
 
         <% if @report.year_of_treatment_end.present? && Time.now.year - @report.year_of_treatment_end.year > 0 %>
           <div class="alert alert-info small my-3 py-1" role="alert">
-            こちらのレポートは&nbsp;<%= Time.now.year - @report.year_of_treatment_end.year %>年以上前&nbsp;<span class="small text-muted">(<%= @report.year_of_treatment_end.year %>年)</span>&nbsp;の治療情報です。
+            こちらのレポコは&nbsp;<%= Time.now.year - @report.year_of_treatment_end.year %>年以上前&nbsp;<span class="small text-muted">(<%= @report.year_of_treatment_end.year %>年)</span>&nbsp;の治療情報です。
           </div>
         <% end %>
 
@@ -1724,7 +1724,7 @@
             <h4 class="mb-0 pb-4 px-2 report_title d-none d-sm-block"><%= @report.title %></h4>
             <h5 class="pb-3 px-2 report_title d-block d-sm-none"><%= @report.title %></h5>
             <div class="px-0 pt-3 report-content-inner">
-              <%= @report.content %>
+              <%= text_url_to_link(h(@report.content)).html_safe %>
             </div>
           </div>
 

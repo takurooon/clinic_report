@@ -443,7 +443,7 @@ class ReportsController < ApplicationController
         @report.save_supplements(supplement_list)
         @report.save_sods(sod_list)
         @report.save_tags(tag_list)
-        format.html { redirect_to report_path(@report), notice: 'レポートを作成しました。' }
+        format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new }
@@ -496,13 +496,13 @@ class ReportsController < ApplicationController
   def release
     report =  Report.find(params[:id])
     report.released! unless report.released?
-    redirect_to report_path(report), notice: 'このレポートを公開しました'
+    redirect_to report_path(report), notice: 'このレポコを公開しました'
   end
 
   def nonrelease
     report =  Report.find(params[:id])
     report.nonreleased! unless report.nonreleased?
-    redirect_to report_path(report), notice: 'このレポートを非公開にしました'
+    redirect_to report_path(report), notice: 'このレポコを非公開にしました'
   end
 
   def update
@@ -744,7 +744,7 @@ class ReportsController < ApplicationController
         @report.save_supplements(supplement_list)
         @report.save_sods(sod_list)
         @report.save_tags(tag_list)
-        format.html { redirect_to report_path(@report), notice: 'レポートを更新しました。' }
+        format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new }
@@ -760,7 +760,7 @@ class ReportsController < ApplicationController
     end
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to reports_url, notice: 'レポートを削除しました。' }
+      format.html { redirect_to reports_url, notice: 'レポコを削除しました。' }
     end
   end
 

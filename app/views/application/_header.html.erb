@@ -12,7 +12,7 @@
       </ul>
       <ul class="navbar-nav nav-tabs">
         <li class="nav-item active mx-1">
-          <%=header_link_item('レポート', reports_path) %></<i>
+          <%=header_link_item('レポコ', reports_path) %></<i>
         </li>
         <li class="nav-item mx-1">
           <%=header_link_item('ユーザー', users_path) %>
@@ -193,7 +193,7 @@
       </div>
       <div class="modal-body">
         <ul style="list-style-type:none;">
-          <li><%= link_to "レポート", root_path %></li>
+          <li><%= link_to "レポコ", root_path %></li>
           <li><%= link_to "ユーザー", users_path %></li>
           <li><%= link_to "クリニック", category_clinics_path %></li>
           <% if current_user %>

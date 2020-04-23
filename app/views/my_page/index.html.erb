@@ -32,7 +32,7 @@
                     <% @published_reports.each do |published| %>
                       <div class="card border-light mb-3" style="max-width:70%;">
                         <%= link_to published do %>
-                          <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= published.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>レポート</div>
+                          <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= published.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>レポコ</div>
                           <div class="card-body">
                             <h7 class="card-title"><%= published.title %></h7>
                             <p class="card-text"></p>
@@ -45,7 +45,7 @@
                     <% @draft_reports.each do |draft| %>
                       <div class="card border-light mb-3" style="max-width: 70%;">
                         <%= link_to draft do %>
-                          <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= draft.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>レポート</div>
+                          <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= draft.created_at.to_s(:datetime_jp) %>投稿&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>レポコ</div>
                           <div class="card-body">
                             <h7 class="card-title"><%= draft.title %></h7>
                             <p class="card-text"></p>
@@ -154,7 +154,7 @@
                 <div class="card border-light mb-3" style="max-width:100%;">
                   <% @published_reports.each do |published| %>
                     <%= link_to published do %>
-                      <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= published.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                      <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= published.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= published.str_fertility_treatment_number %></strong>&nbsp;のレポコ</div>
                       <div class="card-body">
                         <h5 class="card-title"><%= published.title %></h5>
                         <p class="card-text"></p>
@@ -167,7 +167,7 @@
                 <div class="card border-light mb-3" style="max-width:100%;">
                   <% @draft_reports.each do |draft| %>
                     <%= link_to draft do %>
-                      <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= draft.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>&nbsp;のレポート</div>
+                      <div class="card-header py-2" style="background:rgba(169,230,230,0.4)"><%= draft.created_at.to_s(:datetime_jp) %>&nbsp;に投稿した&nbsp;<strong><%= draft.str_fertility_treatment_number %></strong>&nbsp;のレポコ</div>
                       <div class="card-body">
                         <h5 class="card-title"><%= draft.title %></h5>
                         <p class="card-text"></p>

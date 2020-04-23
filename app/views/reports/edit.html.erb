@@ -1,13 +1,13 @@
 <div class="row show">
   <div class="col-md-8 offset-md-2 d-flex align-items-center">
-    <h1>レポートの編集</h1>
+    <h1>レポコの編集</h1>
     <div class="ml-auto posts_button">
       <% if @report.released? %>
         <%= link_to '非公開にする', nonrelease_report_path(@report), method: :patch, class:"btn btn-outline-info" %>
       <% else %>
         <%= link_to '公開する', release_report_path(@report), method: :patch, class:"btn btn-outline-info" %>
       <% end %>
-      <%= link_to "レポート一覧", reports_path, class:"btn btn-outline-info" %>
+      <%= link_to "レポコ一覧", reports_path, class:"btn btn-outline-info" %>
       <%= link_to '戻る', @report, class:"btn btn-outline-info button" %>
     </div><br>
   </div>
