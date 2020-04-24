@@ -721,19 +721,6 @@ class Report < ApplicationRecord
     return HASH_TRANSPLANT_METHOD[self.transplant_method]
   end
 
-  # number_of_eggs_transferredの区分値(何個戻し)
-  HASH_NUMBER_OF_EGGS_TRANSFERRED = {
-    1 => "1個戻し",
-    2 => "2個戻し",
-    3 => "3個以上",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_number_of_eggs_transferred
-    return HASH_NUMBER_OF_EGGS_TRANSFERRED[self.number_of_eggs_transferred]
-  end
-
   # egg_maturityの区分値(妊娠に至った卵子の成熟度)
   HASH_EGG_MATURITY =  {
     1 => "成熟卵(M2)",
@@ -2246,7 +2233,6 @@ end
 #  number_of_clinics                            :integer
 #  number_of_eggs_collected                     :integer
 #  number_of_eggs_stored                        :integer
-#  number_of_eggs_transferred                   :integer
 #  number_of_employees                          :integer
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer

@@ -40,8 +40,8 @@
             <div class="px-1 pb-3">
               <i data-feather="hash" class="feather-icon-style3 pb-2 pl-0 pr-0 mx-0"></i><h4 class="d-inline">Profile</h4>&nbsp;&nbsp;
               <div class="d-inline">
-                <i data-feather="home" class="feather-icon-style3 pl-2 pr-0 pt-1 pb-2 m-0"></i>
                 <% if @user.reports.present? %>
+                  <i data-feather="home" class="feather-icon-style3 pl-2 pr-0 pt-1 pb-2 m-0"></i>
                   <% if @user.reports.last.prefecture_at_the_time_status == "hide" %>
                     <span class="small"><span class="d-inline small text-muted"><%= "非公開" %></span></span>
                   <% else %>
@@ -55,11 +55,13 @@
                 <% end %>
               </div>
               <div class="px-2 py-1 small">
-                <i data-feather="link" class="feather-icon-style1 pr-1"></i><%= text_url_to_link(h(@user.link)).html_safe %>
+                <% if @user.link.present? %>
+                  <i data-feather="link" class="feather-icon-style1 pr-1"></i><%= text_url_to_link(h(@user.link)).html_safe %>
+                <% end %>
               </div>
             </div>
             <div class="py-3 pl-2 pr-4">
-              <% if @user.reports.present? %>
+              <% if @user.self_introduction.present? %>
                 <%= safe_join(@user.self_introduction.split("\n"),tag(:br)) %>
               <% end %>
             </div>
@@ -78,8 +80,8 @@
               </small>
             </div>
             <div class="d-block d-sm-none pt-2 pb-0">
-              <i data-feather="home" class="feather-icon-style3 pb-2 m-0"></i>
               <% if @user.reports.present? %>
+                <i data-feather="home" class="feather-icon-style3 pb-2 m-0"></i>
                 <% if @user.reports.last.prefecture_at_the_time_status == "hide" %>
                   <span class="small"><span class="d-inline small text-muted"><%= "非公開" %></span></span>
                 <% else %>
@@ -93,7 +95,9 @@
               <% end %>
             </div>
             <div class="px-1 py-0 mt-0 small">
-              <i data-feather="link" class="feather-icon-style1 pl-0 pr-1"></i><%= text_url_to_link(h(@user.link)).html_safe %>
+              <% if @user.link.present? %>
+                <i data-feather="link" class="feather-icon-style1 pl-0 pr-1"></i><%= text_url_to_link(h(@user.link)).html_safe %>
+              <% end %>
             </div>
           </div>
           <div class="d-block d-sm-none col-12 pt-3 pb-2">
@@ -101,7 +105,7 @@
               <i data-feather="hash" class="feather-icon-style3 pb-2 pl-0 pr-0 mx-0"></i><h5 class="d-inline">Profile</h5>
             </div>
             <div class="p-2">
-              <% if @user.reports.present? %>
+              <% if @user.self_introduction.present? %>
                 <%= safe_join(@user.self_introduction.split("\n"),tag(:br)) %>
               <% end %>
             </div>

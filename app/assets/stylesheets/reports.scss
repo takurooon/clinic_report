@@ -1,12 +1,3 @@
-// レポートのcontentエリア
-.report-content {
-	border-top: solid thin #92E0E0;
-}
-// レポートの記事本文エリア
-.report-content-inner {
-	border-top: solid thin #92E0E0;
-}
-
 .reports_button {
   a {
       margin: 0 8px;
@@ -49,6 +40,9 @@
 .report_title {
 	line-height: 1.7;
 	letter-spacing: 0.1em;
+	background: rgba(146,224,224,0.1);
+	border-top: solid thin #92E0E0;
+	border-bottom: solid thin #92E0E0;
 }
 
 // アクションテキスト
@@ -770,7 +764,7 @@
 	}
 
 	.parent-menu li a.active {
-		background: rgb(201,239,239);
+		background: rgb(196,244,244);
 		color: #333;
 		font-size: 16px;
 		font-weight: bold;
@@ -800,7 +794,7 @@
 	}
 
 	.parent-tab-content.active {
-		background: rgb(201,239,239);
+		background: rgb(196,244,244);
 		color: #333;
 		min-height: 150px;
 		padding: 2em 12px 12px;
@@ -882,10 +876,10 @@
 
 // 男女アイコン
 .female-icon {
-	color: rgb(254, 97, 131);
+	color: rgba(137, 234, 234, 0.8);
 }
 .male-icon {
-	color: rgb(0,188,212);
+	color: rgba(137, 234, 234, 0.8);
 }
 
 .matome-title {

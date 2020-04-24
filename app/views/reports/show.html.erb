@@ -87,7 +87,7 @@
                 <h4 class="child-tab-title">治療データ分析</h4>
                 <table class="table table-hover p-0">
                   <tr>
-                    <td class="result-left-column small" style="width:30%">移植あたりの妊娠率</td>
+                    <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% unless @report.type_of_ovarian_stimulation.blank? %>
                         <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
@@ -97,7 +97,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small" style="width:30%">採卵あたりの妊娠率</td>
+                    <td class="result-left-column small" style="width:30%">採卵あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% unless @report.type_of_ovarian_stimulation.blank? %>
                         <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
@@ -107,7 +107,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small" style="width:30%">受精率</td>
+                    <td class="result-left-column small" style="width:30%">受精率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% unless @report.type_of_ovarian_stimulation.blank? %>
                         <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
@@ -117,7 +117,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small" style="width:30%">移植可能胚到達率</td>
+                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% unless @report.type_of_ovarian_stimulation.blank? %>
                         <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
@@ -1720,10 +1720,12 @@
             </div>
           </div>
 
-          <div class="report-content mx-2 mt-5 pt-4">
-            <h4 class="mb-0 pb-4 px-2 report_title d-none d-sm-block"><%= @report.title %></h4>
-            <h5 class="pb-3 px-2 report_title d-block d-sm-none"><%= @report.title %></h5>
-            <div class="px-0 pt-3 report-content-inner">
+          <div class="mx-0 mt-5 pt-4">
+            <% if @report.title.present? %>
+                <h4 class="d-none d-sm-block mb-0 py-4 px-2 report_title"><%= @report.title %></h4>
+                <h5 class="d-block d-sm-none mx-1 py-3 px-2 report_title"><%= @report.title %></h5>
+            <% end %>
+            <div class="px-2 pt-3">
               <%= text_url_to_link(h(@report.content)).html_safe %>
             </div>
           </div>
@@ -1903,22 +1905,22 @@
                     <% end %>
                   </td>
                 </tr>
-                <tr>
-                  <% if @report.number_of_miscarriages != 1 %>
+                <% if @report.number_of_miscarriages != 1 && @report.number_of_miscarriages.present? %>
+                  <tr>
                     <td class="result-left-column small">流産経験</td>
                     <td class="pl-3">
                       <span class="result-text"><%= @report.str_number_of_miscarriages %></span>
                     </td>
-                  <% end %>
-                </tr>
-                <tr>
-                  <% if @report.number_of_stillbirths != 1 %>
+                  </tr>
+                <% end %>
+                <% if @report.number_of_stillbirths != 1 && @report.number_of_stillbirths.present? %>
+                  <tr>
                     <td class="result-left-column small">死産経験</td>
                     <td class="pl-3">
                       <span class="result-text"><%= @report.str_number_of_stillbirths %></span>
                     </td>
-                  <% end %>
-                </tr>
+                  </tr>
+                <% end %>
                 <tr>
                   <td class="result-left-column small">不育症診断</td>
                   <td class="pl-3">
@@ -2115,6 +2117,7 @@
                 <tr>
                   <td class="result-left-column small">採卵日とホルモン値</td>
                   <td class="pl-3">
+                  <% if @report.day_of_sairans.present? %>
                     <% @report.day_of_sairans.each do |day_of_sairan| %>
                       <table class="table-borderless">
                         <tr>
@@ -2171,6 +2174,9 @@
                         </tr>
                       </table>
                     <% end %>
+                  <% else %>
+                    <span class="text-muted small">未回答</span>
+                  <% end %>
                   </td>
                 </tr>
                 <tr>
@@ -2338,24 +2344,6 @@
                     </td>
                   </tr>
                 <% end %>
-
-
-
-                <% if false %>
-                <tr>
-                  <td class="result-left-column small">何個戻し？</td>
-                  <td class="pl-4 result-right-column">
-                    <% unless @report.number_of_eggs_transferred.blank? %>
-                      <span class="result-text"><%= @report.str_number_of_eggs_transferred %></span>
-                    <% else %>
-                      <span class="text-muted small">未回答</span>
-                    <% end %>
-                  </td>
-                </tr>
-                <% end %>
-
-
-
                 <tr>
                   <% unless @report.explanation_and_impression_about_sairan.blank? %>
                     <td class="result-left-column small">採卵メモ</td>

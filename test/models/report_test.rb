@@ -59,7 +59,6 @@
 #  number_of_clinics                            :integer
 #  number_of_eggs_collected                     :integer
 #  number_of_eggs_stored                        :integer
-#  number_of_eggs_transferred                   :integer
 #  number_of_employees                          :integer
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer

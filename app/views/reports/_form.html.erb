@@ -659,14 +659,6 @@
       </div>
 
       <div class="form-group">
-        <div class="label p-1"><%= f.label :number_of_eggs_transferred, '妊娠に至った移植は何個戻しでしたか', class: "question-matters" %></div>
-        <%= f.select :number_of_eggs_transferred, Report::HASH_NUMBER_OF_EGGS_TRANSFERRED.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
-        <small id="poster-tip" class="form-text text-muted">
-            当てはまるものを選択してください。
-        </small>
-      </div>
-
-      <div class="form-group">
         <div class="label p-1"><%= f.label :egg_maturity, 'その中で妊娠に至った卵子(受精前)の成熟度', class: "question-matters" %></div>
         <%= f.select :egg_maturity, Report::HASH_EGG_MATURITY.invert, { prompt: "選択してください" }, { class: "form-control" }  %>
         <small id="poster-tip" class="form-text text-muted">

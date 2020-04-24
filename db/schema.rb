@@ -438,7 +438,6 @@ ActiveRecord::Schema.define(version: 2020_04_08_071630) do
     t.integer "number_of_fertilized_eggs"
     t.integer "number_of_transferable_embryos"
     t.integer "number_of_frozen_eggs"
-    t.integer "number_of_eggs_transferred"
     t.integer "embryo_culture_days"
     t.integer "embryo_stage"
     t.integer "early_embryo_grade"

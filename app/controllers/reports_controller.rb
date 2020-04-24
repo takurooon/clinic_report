@@ -23,7 +23,7 @@ class ReportsController < ApplicationController
     @annual_income_status = Report.find(params[:id]).annual_income_status
     @household_net_income_status = Report.find(params[:id]).household_net_income_status
 
-    itinerary_of_choosing_a_clinics = @report.itinerary_of_choosing_a_clinics.order(order_of_transfer: "ASC")
+    itinerary_of_choosing_a_clinics = @report.itinerary_of_choosing_a_clinics.order(order_of_transfer: "desc")
     clinics = itinerary_of_choosing_a_clinics.map { |i| i[:clinic_id] }
     @clinics = clinics.map do |c|
       Clinic.find(c).name
@@ -814,7 +814,6 @@ class ReportsController < ApplicationController
     #     :number_of_fertilized_eggs,
     #     :number_of_transferable_embryos,
     #     :number_of_frozen_eggs,
-    #     :number_of_eggs_transferred,
     #     :egg_maturity,
     #     :ova_with_ivm,
     #     :embryo_culture_days,
@@ -955,7 +954,6 @@ class ReportsController < ApplicationController
         :number_of_fertilized_eggs,
         :number_of_transferable_embryos,
         :number_of_frozen_eggs,
-        :number_of_eggs_transferred,
         :egg_maturity,
         :ova_with_ivm,
         :embryo_culture_days,
