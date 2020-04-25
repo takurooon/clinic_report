@@ -26,7 +26,7 @@
               <small><%= current_user.name %></small>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "マイページ", my_page_path, class: 'dropdown-item' %><br>
+              <%= link_to "マイページ", my_page_path, class: 'dropdown-item pt-5' %><br>
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               <% if notice %>
                 <p class="alert alert-notice"><%= notice %></p>
@@ -154,7 +154,7 @@
             </label>
           </div>
 
-          <div class="form-group mt-2 pt-0 mb-5">
+          <div class="form-group mt-2 pt-0 mb-3">
             生年月
               <%= raw sprintf(
                 f.date_select(
@@ -169,6 +169,15 @@
                 '年 ') + '月'
               %><br>
               <span class="bmd-help">この生年月は非公開です。</span>
+          </div>
+
+          <div class="text-left pt-1">
+            <button type="button" class="btn btn-primary px-2" data-toggle="modal" data-target="#terms_of_service">
+              <small><span class="small text-muted">利用規約</span></small>
+            </button>
+            <button type="button" class="btn btn-primary px-2" data-toggle="modal" data-target="#privacy_policy">
+              <small><span class="small text-muted">プライバシーボリシー</span></small>
+            </button>
           </div>
 
           <div class="actions pt-3">

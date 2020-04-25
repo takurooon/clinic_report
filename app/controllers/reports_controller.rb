@@ -249,11 +249,9 @@ class ReportsController < ApplicationController
     #   @report.status = params[:status1]
     # end
 
-    # if params[:status1] || params[:status2]
-    #   @report.status = "nonreleased"
-    # end
-
-    if @report.status.blank?
+    if params[:status1] || params[:status2]
+      @report.status = "nonreleased"
+    else
       @report.status = "released"
     end
 
@@ -526,10 +524,6 @@ class ReportsController < ApplicationController
 
     if @report.status.blank?
       @report.status = "released"
-    end
-
-    if @report.status.blank?
-      @report.status = "nonreleased"
     end
 
     # i_name = params[:i_name].split(",")
@@ -889,7 +883,6 @@ class ReportsController < ApplicationController
     #     :impression_of_technology,
     #     :comfort_of_space,
     #     :status,
-    #     sperm_selection_method: [],
     #     inspection_ids: [],
     #     f_infertility_factor_ids: [],
     #     m_infertility_factor_ids: [],
@@ -1029,7 +1022,6 @@ class ReportsController < ApplicationController
         :impression_of_technology,
         :comfort_of_space,
         :status,
-        sperm_selection_method: [],
         inspection_ids: [],
         f_infertility_factor_ids: [],
         m_infertility_factor_ids: [],

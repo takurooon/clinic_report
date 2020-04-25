@@ -211,3 +211,8 @@ function radioDeselection(already, numeric) {
     remove = numeric;
   }
 }
+
+// 保存ボタンを押す時のリマインドアラート
+function reportsave() {
+  alert("必須項目のクリニックと、お住まい(都道府県&市区町村)は選択されましたか？");
+}

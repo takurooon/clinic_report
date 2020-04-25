@@ -157,8 +157,8 @@ class Report < ApplicationRecord
     # ユーザー
   belongs_to :user
   belongs_to :clinic
-  belongs_to :prefecture, optional: true
-  belongs_to :city, optional: true
+  belongs_to :prefecture
+  belongs_to :city
 
   # ---子---
     # 転院遍歴
@@ -623,19 +623,6 @@ class Report < ApplicationRecord
 
   def str_types_of_eggs_and_sperm
     return HASH_TYPES_OF_EGGS_AND_SPERM[self.types_of_eggs_and_sperm]
-  end
-
-  # sperm_selection_methodの区分値(精子の選別方法)
-  HASH_SPERM_SELECTION_METHOD = {
-    1 => "IMSI(イムジー)",
-    2 => "Zymot(ザイモット)",
-    3 => "SpermSlow(スパームスロー)",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_sperm_selection_method
-    return HASH_SPERM_SELECTION_METHOD[self.sperm_selection_method]
   end
 
   # use_of_anesthesiaの区分値(麻酔の種類)

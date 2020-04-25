@@ -87,9 +87,20 @@
                 <h4 class="child-tab-title">治療データ分析</h4>
                 <table class="table table-hover p-0">
                   <tr>
-                    <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="result-left-column small" style="width:30%">受精率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.type_of_ovarian_stimulation.blank? %>
+                      <% if @report.number_of_eggs_collected.present? && @report.number_of_fertilized_eggs.present? %>
+                        <% juseiritsu = (@report.number_of_fertilized_eggs.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
+                        <span class="result-text"><%= sprintf("%.2f", juseiritsu) %>%&nbsp;&nbsp;&nbsp;<small><span class="small text-muted">(&nbsp;採卵数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;/&nbsp;受精卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;)</span></small></span>
+                      <% else %>
+                        <span class="text-muted small">計測不能</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.type_of_ovarian_stimulation.present? && @report.type_of_ovarian_stimulation.present? %>
                         <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
                       <% else %>
                         <span class="text-muted small">計測不能</span>
@@ -107,17 +118,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small" style="width:30%">受精率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
-                    <td class="pl-3" style="width:70%">
-                      <% unless @report.type_of_ovarian_stimulation.blank? %>
-                        <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
-                      <% else %>
-                        <span class="text-muted small">計測不能</span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% unless @report.type_of_ovarian_stimulation.blank? %>
                         <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
@@ -610,10 +611,10 @@
                   <% end %>
                   <tr>
                     <td class="result-left-column small">精液検査</td>
-                    <td class="pl-3">
+                    <td class="pl-2">
                       <table class="table-borderless">
                         <tr>
-                          <td class="small text-muted text-right">精液量&nbsp;:</td>
+                          <td class="small text-muted text-right pr-0 pl-1">精液量&nbsp;:</td>
                           <% if @report.semen_volume.blank? %>
                           <td class="font-weight-bold">
                             <span class="text-muted small">未回答</span>
@@ -625,7 +626,7 @@
                           <% end %>
                         </tr>
                         <tr>
-                          <td class="small text-muted text-right">総精子数&nbsp;:</td>
+                          <td class="small text-muted text-right pr-0 pl-1">総精子数&nbsp;:</td>
                           <% if @report.total_amount_of_sperm.blank? %>
                             <td class="font-weight-bold">
                               <span class="text-muted small">未回答</span>
@@ -637,7 +638,7 @@
                           <% end %>
                         </tr>
                         <tr>
-                          <td class="small text-muted text-right">精子濃度&nbsp;:</td>
+                          <td class="small text-muted text-right pr-0 pl-1">精子濃度&nbsp;:</td>
                           <% if @report.semen_concentration.blank? %>
                             <td class="font-weight-bold">
                               <span class="text-muted small">未回答</span>
@@ -649,7 +650,7 @@
                           <% end %>
                         </tr>
                         <tr>
-                          <td class="small text-muted text-right">運動率&nbsp;:</td>
+                          <td class="small text-muted text-right pr-0 pl-1">運動率&nbsp;:</td>
                           <% if @report.sperm_motility.blank? %>
                             <td class="font-weight-bold">
                               <span class="text-muted small">未回答</span>
@@ -660,7 +661,7 @@
                           <% end %>
                         </tr>
                         <tr>
-                          <td class="small text-muted text-right">前進運動率&nbsp;:</td>
+                          <td class="small text-muted text-right pr-0 pl-1">前進運動率&nbsp;:</td>
                           <% if @report.sperm_advance_rate.blank? %>
                             <td class="font-weight-bold">
                               <span class="text-muted small">未回答</span>
@@ -671,7 +672,7 @@
                           <% end %>
                         </tr>
                         <tr>
-                          <td class="small text-muted text-right">正常形態率&nbsp;:</td>
+                          <td class="small text-muted text-right pr-0 pl-1">正常形態率&nbsp;:</td>
                           <% if @report.probability_of_normal_morphology_of_sperm.blank? %>
                             <td class="font-weight-bold">
                               <span class="text-muted small">未回答</span>
@@ -701,9 +702,8 @@
                   <% end %>
                   <% if @report.transplant_method == 1 || 2 %>
                     <%= @report.str_transplant_method %>
-                  <% else %>
-                    移植
                   <% end %>
+                    移植
                 </h4>
                 <% unless @report.explanation_and_impression_about_ishoku.blank? %>
                   <div class="box27">
@@ -1680,7 +1680,7 @@
                           </tr>
                           <tr>
                             <td class="text-right small text-muted">
-                              快適さ
+                              快適さ&nbsp;:
                             </td>
                             <td>
                               <% unless @report.comfort_of_space.blank? %>

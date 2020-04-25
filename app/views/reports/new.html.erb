@@ -1,13 +1,13 @@
 <% if false %>
-<div class="row show">
-  <div class="col-md-2"></div>
-  <div class="col-md-8 d-flex align-items-center">
-    <h1>レポコ作成</h1>
-    <div class="ml-auto posts_button">
-      <%= link_to "レポコ一覧", reports_path, class:"btn btn-outline-info" %>
+  <div class="row show">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 d-flex align-items-center">
+      <h1>レポコ作成</h1>
+      <div class="ml-auto posts_button">
+        <%= link_to "レポコ一覧", reports_path, class:"btn btn-outline-info" %>
+      </div>
     </div>
   </div>
-</div>
 <% end %>
 
 <%= render 'form', report: @report, is_new: true %><br>

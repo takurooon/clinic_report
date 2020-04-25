@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-12 col-lg-8 offset-lg-2 profile text-color">
       <% if @user == current_user %>
-        <div class="pt-4">
-          <%= link_to 'プロフィールを編集', edit_user_registration_path, class:"btn btn-secondary float-right mx-0" %>
+        <div class="pt-4 text-right">
+          <i data-feather="edit-3" class="feather-icon-style1 pb-1"></i><%= link_to 'プロフィールを編集', edit_user_registration_path, class:"btn btn-secondary pl-1 pr-0" %>
         </div>
       <% end %>
-      <div class="card mt-5">
+      <div class="card mt-2">
         <div class="row">
           <div class="d-none d-sm-block col-3 pl-4 py-4">
             <div class="pt-4 pl-4">
@@ -114,268 +114,271 @@
       </div>
 
       <div class="mt-5 pt-5 px-1 user-repoco-list">
-        <i data-feather="hash" class="feather-icon-style4 pb-2 pl-0 pr-0 mx-0"></i><h5 class="py-4 d-inline lead"><%= @user.name %>さんのレポコ一覧</h5>
-        <div class="pt-4">
-          <% @user.reports.each do |report| %>
-            <div class="row">
-              <div class="card col-12 mb-4 pb-0 px-0 shadow-none">
-                <div class="card-body px-2">
-                  <div class="media-body px-2">
-                    <div class="row">
-                      <div class="col-3 pl-0 text-center px-0">
-                        <div class="d-none d-lg-block px-0">
-                          <%= link_to user_path(report.user_id) do %>
-                            <div class="icon-field px-4 py-0">
-                              <% if report.user.icon.blank? %>
-                                <% if report.treatment_end_age == nil %>
-                                  <%= image_tag("icon/g_blank.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 24 %>
-                                  <%= image_tag("icon/g_10_24.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 29 %>
-                                  <%= image_tag("icon/g_25_29.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 34 %>
-                                  <%= image_tag("icon/g_30_34.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 39 %>
-                                  <%= image_tag("icon/g_35_39.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 44 %>
-                                  <%= image_tag("icon/g_40_44.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% else %>
-                                  <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+        <i data-feather="hash" class="feather-icon-style4 pb-2 pl-0 pr-0 mx-0"></i><h5 class="py-4 d-inline lead"><%= @user.name %>さんのレポコ</h5>
+        <div class="tab-pane fade show active mt-0 pt-0" id="repoco-released" role="tabpanel" aria-labelledby="repoco-released-tab">
+          <div class="pt-5">
+            <% @user.reports.each do |report| %>
+              <% if report.status == "released" %>
+                <div class="row">
+                  <div class="card col-12 mb-4 pb-0 px-0 shadow-none">
+                    <div class="card-body px-2">
+                      <div class="media-body px-2">
+                        <div class="row">
+                          <div class="col-3 pl-0 text-center px-0">
+                            <div class="d-none d-lg-block px-0">
+                              <%= link_to user_path(report.user_id) do %>
+                                <div class="icon-field px-4 py-0">
+                                  <% if report.user.icon.blank? %>
+                                    <% if report.treatment_end_age == nil %>
+                                      <%= image_tag("icon/g_blank.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 24 %>
+                                      <%= image_tag("icon/g_10_24.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 29 %>
+                                      <%= image_tag("icon/g_25_29.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 34 %>
+                                      <%= image_tag("icon/g_30_34.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 39 %>
+                                      <%= image_tag("icon/g_35_39.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 44 %>
+                                      <%= image_tag("icon/g_40_44.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% else %>
+                                      <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% end %>
+                                  <% else %>
+                                    <%= image_tag(report.user.icon.url, class:"icon_image") %>
+                                  <% end %>
+                                </div>
+                              <% end %>
+                              <div class="align-items-center text-center pt-2">
+                                <p class="mb-0 pb-1">
+                                  <% if report.treatment_end_age == nil %>
+                                    <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 24 %>
+                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 29 %>
+                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation20", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 34 %>
+                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 39 %>
+                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation40", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 44 %>
+                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation50", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% else %>
+                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation_over_60", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% end %>
+                                  <%= link_to report.user.name, user_path(report.user_id) %>
+                                </p>
+                                <p class="text-center">
+                                  <% if report.user.gender == "female" %>
+                                    <span class="badge badge-pill badge-light text-muted p-0">女</span>
+                                  <% else %>
+                                    <span class="badge badge-pill badge-light text-muted p-0">男</span>
+                                  <% end %>
+                                  <% unless report.treatment_end_age.blank? %>
+                                    <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}", class: "text-muted" %>歳</span>
+                                  <% end %>
+                                  <% if report.prefecture_at_the_time_status == "hide" %>
+                                    <span class="small text-muted"><small><%= "非公開" %></small></span>
+                                  <% else %>
+                                    <span class="badge badge-pill badge-light p-0"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.id}", class: "text-muted" %></span>
+                                  <% end %>
+                                  <% if report.city_at_the_time_status == "hide" %>
+                                    <span class="small text-muted"><small><%= "非公開" %></small></span>
+                                  <% else %>
+                                  <span class="badge badge-pill badge-light p-0"><%= link_to report.city.name, "/category/area/city/#{report.city.id}", class: "text-muted" %></span>
+                                  <% end %>
+                                  <span class="badge badge-pill badge-light p-0 text-muted"><%= report.str_work_style %></span>
+                                </p>
+                              </div>
+                            </div>
+                            <div class="d-sm d-lg-none px-2">
+                              <%= link_to user_path(report.user_id) do %>
+                                <div class="icon-field px-1 pt-0 mb-1">
+                                  <% if report.user.icon.blank? %>
+                                    <% if report.treatment_end_age == nil %>
+                                      <%= image_tag("icon/g_blank.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 24 %>
+                                      <%= image_tag("icon/g_10_24.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 29 %>
+                                      <%= image_tag("icon/g_25_29.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 34 %>
+                                      <%= image_tag("icon/g_30_34.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 39 %>
+                                      <%= image_tag("icon/g_35_39.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% elsif report.treatment_end_age < 44 %>
+                                      <%= image_tag("icon/g_40_44.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% else %>
+                                      <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                    <% end %>
+                                  <% else %>
+                                    <%= image_tag(report.user.icon.url, class:"icon_image") %>
+                                  <% end %>
+                                </div>
+                              <% end %>
+                              <div class="small align-items-center text-center pt-0">
+                                <p class="mb-0">
+                                  <% if report.treatment_end_age == nil %>
+                                    <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 24 %>
+                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 29 %>
+                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation20", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 34 %>
+                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 39 %>
+                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation40", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% elsif report.treatment_end_age < 44 %>
+                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation50", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% else %>
+                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation_over_60", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                  <% end %>
+                                  <%= link_to report.user.name, user_path(report.user_id) %>
+                                </p>
+                                <p class="text-center mb-2">
+                                  <% if report.user.gender == "female" %>
+                                    <span class="badge badge-pill badge-light text-muted p-0"><%= "女" %></span>
+                                  <% else %>
+                                    <span class="badge badge-pill badge-light text-muted p-0"><%= "男" %></span>
+                                  <% end %>
+                                  <% unless report.treatment_end_age.blank? %>
+                                    <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}", class: "text-muted" %>歳</span>
+                                  <% end %>
+              
+                                  <% if report.prefecture_at_the_time_status == "hide" %>
+                                    <span class="small text-muted"><small><%= "非公開" %></small></span>
+                                  <% else %>
+                                    <span class="badge badge-pill badge-light p-0 d-none d-sm-block"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.id}", class: "text-muted" %></span>
+                                  <% end %>
+                                  <% if report.city_at_the_time_status == "hide" %>
+                                    <span class="small text-muted"><small><%= "非公開" %></small></span>
+                                  <% else %>
+                                  <span class="badge badge-pill badge-light p-0 d-none d-sm-block"><%= link_to report.city.name, "/category/area/city/#{report.city.id}", class: "text-muted" %></span>
+                                  <% end %>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-9 pl-0">
+                            <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
+                              <small class="text-muted d-none d-sm-block">
+                                <% unless report.current_state.blank? %>
+                                  <%= report.str_current_state %>&nbsp;&nbsp;
                                 <% end %>
-                              <% else %>
-                                <%= image_tag(report.user.icon.url, class:"icon_image") %>
-                              <% end %>
-                            </div>
-                          <% end %>
-                          <div class="align-items-center text-center pt-2">
-                            <p class="mb-0 pb-1">
-                              <% if report.treatment_end_age == nil %>
-                                <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 24 %>
-                                <%= link_to image_tag("icon/g_10_24.png", alt: "generation10", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 29 %>
-                                <%= link_to image_tag("icon/g_25_29.png", alt: "generation20", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 34 %>
-                                <%= link_to image_tag("icon/g_30_34.png", alt: "generation30", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 39 %>
-                                <%= link_to image_tag("icon/g_35_39.png", alt: "generation40", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 44 %>
-                                <%= link_to image_tag("icon/g_40_44.png", alt: "generation50", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% else %>
-                                <%= link_to image_tag("icon/g_45_.png", alt: "generation_over_60", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% end %>
-                              <%= link_to report.user.name, user_path(report.user_id) %>
-                            </p>
-                            <p class="text-center">
-                              <% if report.user.gender == "female" %>
-                                <span class="badge badge-pill badge-light text-muted p-0">女</span>
-                              <% else %>
-                                <span class="badge badge-pill badge-light text-muted p-0">男</span>
-                              <% end %>
-                              <% unless report.treatment_end_age.blank? %>
-                                <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}", class: "text-muted" %>歳</span>
-                              <% end %>
-                              <% if report.prefecture_at_the_time_status == "hide" %>
-                                <span class="small text-muted"><small><%= "非公開" %></small></span>
-                              <% else %>
-                                <span class="badge badge-pill badge-light p-0"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.id}", class: "text-muted" %></span>
-                              <% end %>
-                              <% if report.city_at_the_time_status == "hide" %>
-                                <span class="small text-muted"><small><%= "非公開" %></small></span>
-                              <% else %>
-                              <span class="badge badge-pill badge-light p-0"><%= link_to report.city.name, "/category/area/city/#{report.city.id}", class: "text-muted" %></span>
-                              <% end %>
-                              <span class="badge badge-pill badge-light p-0 text-muted"><%= report.str_work_style %></span>
-                            </p>
-                          </div>
-                        </div>
-                        <div class="d-sm d-lg-none px-2">
-                          <%= link_to user_path(report.user_id) do %>
-                            <div class="icon-field px-1 pt-0 mb-1">
-                              <% if report.user.icon.blank? %>
-                                <% if report.treatment_end_age == nil %>
-                                  <%= image_tag("icon/g_blank.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 24 %>
-                                  <%= image_tag("icon/g_10_24.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 29 %>
-                                  <%= image_tag("icon/g_25_29.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 34 %>
-                                  <%= image_tag("icon/g_30_34.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 39 %>
-                                  <%= image_tag("icon/g_35_39.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% elsif report.treatment_end_age < 44 %>
-                                  <%= image_tag("icon/g_40_44.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                                <% else %>
-                                  <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                <% unless report.year_of_treatment_end.blank? %>
+                                  <%= report.year_of_treatment_end.year %>年終了
                                 <% end %>
-                              <% else %>
-                                <%= image_tag(report.user.icon.url, class:"icon_image") %>
+                                <% unless report.fertility_treatment_number.blank? %>
+                                  <%= report.str_fertility_treatment_number %>&nbsp;&nbsp;
+                                <% end %>
+                              </small>
+                              <small class="text-muted d-block d-sm-none">
+                                <% unless report.current_state.blank? %>
+                                  <%= report.str_current_state %>&nbsp;&nbsp;
+                                <% end %>
+                                <% unless report.year_of_treatment_end.blank? %>
+                                  <%= report.year_of_treatment_end.year %>年終了
+                                <% end %>
+                              </small>
+                              <small class="text-muted">
+                                <%= report.created_at.to_s(:datetime_jp) %>
+                              </small>
+                            </div>
+                            <div class="d-none d-sm-block">
+                              <%= link_to report, data: { "turbolinks" => false } do %>
+                                <h5 class="mb-0 mt-2 mx-0 mb-1">
+                                  <% if report.treatment_end_age %>
+                                    <%= report.treatment_end_age %>歳&nbsp;
+                                  <% end %>
+                                  <%= report.clinic.name %>のレポコ</h5>
                               <% end %>
                             </div>
-                          <% end %>
-                          <div class="small align-items-center text-center pt-0">
-                            <p class="mb-0">
-                              <% if report.treatment_end_age == nil %>
-                                <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 24 %>
-                                <%= link_to image_tag("icon/g_10_24.png", alt: "generation10", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 29 %>
-                                <%= link_to image_tag("icon/g_25_29.png", alt: "generation20", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 34 %>
-                                <%= link_to image_tag("icon/g_30_34.png", alt: "generation30", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 39 %>
-                                <%= link_to image_tag("icon/g_35_39.png", alt: "generation40", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% elsif report.treatment_end_age < 44 %>
-                                <%= link_to image_tag("icon/g_40_44.png", alt: "generation50", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
-                              <% else %>
-                                <%= link_to image_tag("icon/g_45_.png", alt: "generation_over_60", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                            <div class="d-block d-sm-none">
+                              <%= link_to report, data: { "turbolinks" => false } do %>
+                                <h6 class="mb-0 mt-2 mx-0 mb-1">
+                                  <% if report.treatment_end_age %>
+                                    <%= report.treatment_end_age %>歳&nbsp;
+                                  <% end %>
+                                  <%= report.clinic.name %>のレポコ</h6>
                               <% end %>
-                              <%= link_to report.user.name, user_path(report.user_id) %>
-                            </p>
-                            <p class="text-center mb-2">
-                              <% if report.user.gender == "female" %>
-                                <span class="badge badge-pill badge-light text-muted p-0"><%= "女" %></span>
-                              <% else %>
-                                <span class="badge badge-pill badge-light text-muted p-0"><%= "男" %></span>
-                              <% end %>
-                              <% unless report.treatment_end_age.blank? %>
-                                <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}", class: "text-muted" %>歳</span>
-                              <% end %>
-          
-                              <% if report.prefecture_at_the_time_status == "hide" %>
-                                <span class="small text-muted"><small><%= "非公開" %></small></span>
-                              <% else %>
-                                <span class="badge badge-pill badge-light p-0 d-none d-sm-block"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.id}", class: "text-muted" %></span>
-                              <% end %>
-                              <% if report.city_at_the_time_status == "hide" %>
-                                <span class="small text-muted"><small><%= "非公開" %></small></span>
-                              <% else %>
-                              <span class="badge badge-pill badge-light p-0 d-none d-sm-block"><%= link_to report.city.name, "/category/area/city/#{report.city.id}", class: "text-muted" %></span>
-                              <% end %>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-9 pl-0">
-                        <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
-                          <small class="text-muted d-none d-sm-block">
-                            <% unless report.current_state.blank? %>
-                              <%= report.str_current_state %>&nbsp;&nbsp;
-                            <% end %>
-                            <% unless report.year_of_treatment_end.blank? %>
-                              <%= report.year_of_treatment_end.year %>年終了
-                            <% end %>
-                            <% unless report.fertility_treatment_number.blank? %>
-                              <%= report.str_fertility_treatment_number %>&nbsp;&nbsp;
-                            <% end %>
-                          </small>
-                          <small class="text-muted d-block d-sm-none">
-                            <% unless report.current_state.blank? %>
-                              <%= report.str_current_state %>&nbsp;&nbsp;
-                            <% end %>
-                            <% unless report.year_of_treatment_end.blank? %>
-                              <%= report.year_of_treatment_end.year %>年終了
-                            <% end %>
-                          </small>
-                          <small class="text-muted">
-                            <%= report.created_at.to_s(:datetime_jp) %>
-                          </small>
-                        </div>
-                        <div class="d-none d-sm-block">
-                          <%= link_to report, data: { "turbolinks" => false } do %>
-                            <h5 class="mb-0 mt-2 mx-0 mb-1">
-                              <% if report.treatment_end_age %>
-                                <%= report.treatment_end_age %>歳&nbsp;
-                              <% end %>
-                              <%= report.clinic.name %>のレポコ</h5>
-                          <% end %>
-                        </div>
-                        <div class="d-block d-sm-none">
-                          <%= link_to report, data: { "turbolinks" => false } do %>
-                            <h6 class="mb-0 mt-2 mx-0 mb-1">
-                              <% if report.treatment_end_age %>
-                                <%= report.treatment_end_age %>歳&nbsp;
-                              <% end %>
-                              <%= report.clinic.name %>のレポコ</h6>
-                          <% end %>
-                        </div>
-                        <div class="d-none d-sm-block justify-content-start mr-2">
-                          <div class="personaldata-badge pr-2">
-                            <span class="badge badge-light text-muted"><%= report.str_cost %></span>
-                            <% inspections = report.inspections.shuffle.sample(1) %>
-                            <% inspections.each do |inspection| %>
-                              <span class="badge badge-light text-muted"><%= inspection.name %></span>
-                            <% end %>
-                            <% supplements = report.supplements.shuffle.sample(1) %>
-                            <% supplements.each do |supplement| %>
-                              <span class="badge badge-light text-muted"><%= supplement.name %></span>
-                            <% end %>
-                            <% tags = report.tags.shuffle.sample(1) %>
-                            <% tags.each do |tag| %>
-                              <span class="badge badge-light"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class:"text-muted" %></span>
-                            <% end %>
-                          </div>
-                        </div>
-          
-                        <div>
-                          <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
-                            <div class="d-none d-sm-block my-0 mr-2 clinic_address">
-                              <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}", class:"text-muted" %></span>
                             </div>
-                            <div class="d-block d-sm-none mb-0 mr-2 clinic_address">
-                              <div class="col-12 pl-0">
-                                <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "text-muted small" %>
+                            <div class="d-none d-sm-block justify-content-start mr-2">
+                              <div class="personaldata-badge pr-2">
+                                <span class="badge badge-light text-muted"><%= report.str_cost %></span>
+                                <% inspections = report.inspections.shuffle.sample(1) %>
+                                <% inspections.each do |inspection| %>
+                                  <span class="badge badge-light text-muted"><%= inspection.name %></span>
+                                <% end %>
+                                <% supplements = report.supplements.shuffle.sample(1) %>
+                                <% supplements.each do |supplement| %>
+                                  <span class="badge badge-light text-muted"><%= supplement.name %></span>
+                                <% end %>
+                                <% tags = report.tags.shuffle.sample(1) %>
+                                <% tags.each do |tag| %>
+                                  <span class="badge badge-light"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class:"text-muted" %></span>
+                                <% end %>
+                              </div>
+                            </div>
+              
+                            <div>
+                              <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
+                                <div class="d-none d-sm-block my-0 mr-2 clinic_address">
+                                  <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}", class:"text-muted" %></span>
+                                </div>
+                                <div class="d-block d-sm-none mb-0 mr-2 clinic_address">
+                                  <div class="col-12 pl-0">
+                                    <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "text-muted small" %>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="d-none d-sm-block col-12 px-0">
+                                <%= link_to report, data: { "turbolinks" => false } do %>
+                                  <div class="pt-2 pb-1 px-1">
+                                    <h6><%= report.title %></h6>
+                                  </div>
+                                <% end %>
+                                <%= link_to report, data: { "turbolinks" => false } do %>
+                                  <div class="lead-content px-2 py-1">
+                                    <small><span class="text-muted"><%= strip_tags(report.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                                  </div>
+                                <% end %>
                               </div>
                             </div>
                           </div>
-                          <div class="d-none d-sm-block col-12 px-0">
+                          <div class="d-block d-sm-none col-12 px-0">
                             <%= link_to report, data: { "turbolinks" => false } do %>
-                              <div class="pt-2 pb-1 px-1">
-                                <h6><%= report.title %></h6>
+                              <div class="py-2 px-3">
+                                <h7><%= report.title %></h7>
                               </div>
                             <% end %>
                             <%= link_to report, data: { "turbolinks" => false } do %>
-                              <div class="lead-content px-2 py-1">
-                                <small><span class="text-muted"><%= strip_tags(report.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                              <div  class="lead-content px-2 py-1">
+                                <small><%= strip_tags(report.content.to_s).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                               </div>
                             <% end %>
                           </div>
                         </div>
-                      </div>
-                      <div class="d-block d-sm-none col-12 px-0">
-                        <%= link_to report, data: { "turbolinks" => false } do %>
-                          <div class="py-2 px-3">
-                            <h7><%= report.title %></h7>
-                          </div>
-                        <% end %>
-                        <%= link_to report, data: { "turbolinks" => false } do %>
-                          <div  class="lead-content px-2 py-1">
-                            <small><%= strip_tags(report.content.to_s).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                          </div>
-                        <% end %>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              <% end %>
+            <% end %>
+          </div>
+          <% if @user.reports.blank? %>
+            <div class="px-0 py-5 text-center">
+              <h4 class="text-muted">レポコはまだありません。</h4>
+              <% if @user == current_user %>
+                <div class="py-5 text-center">
+                  <button class="btn btn-outline-primary btn-raised">
+                    <%= link_to "早速レポコを作成してみる！", new_report_path %>
+                    <i data-feather="edit" class="feather-icon-style4 mx-0 py-1 px-0"></i>
+                  </button>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>
-        <% if @user.reports.blank? %>
-          <div class="px-0 py-5 text-center">
-            <h4 class="text-muted">レポコはまだありません。</h4>
-            <% if @user == current_user %>
-              <div class="py-5 text-center">
-                <button class="btn btn-outline-primary btn-raised">
-                  <%= link_to "早速レポコを作成してみる！", new_report_path %>
-                  <i data-feather="edit" class="feather-icon-style4 mx-0 py-1 px-0"></i>
-                </button>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
       </div>
-
     </div>
   </div>
 </div>

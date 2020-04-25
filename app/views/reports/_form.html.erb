@@ -49,7 +49,7 @@
               <% else %>
                 <% city_id = report.clinic.city_id %>
                 <% cities = City.where(prefecture_id: prefecture_id).order(:id).joins(:clinics).distinct %>
-                <%= collection_select :prefecture, :city, cities, :id, :name, { prompt: "市区町村", selected: city_id }, { class: "form-control" } %>
+                <%= collection_select :prefecture, :city, cities, :id, :name, { prompt: "市区町村", selected: city_id }, { class: "form-control", id: "city" } %>
               <% end %>
             </div><br>
             <div>
@@ -1370,19 +1370,19 @@
           <div class="label p-1 mb-3"><%= f.label :doctor_quality, '医師の対応や雰囲気', class: "question-matters" %></div>
           <span class="small text-muted">低</span>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[doctor_quality]" value="1" onclick="radioDeselection(this, 1)"> 1
+            <%= f.radio_button :doctor_quality, 1, onclick: "radioDeselection(this, 1)" %>1
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[doctor_quality]" value="2" onclick="radioDeselection(this, 2)"> 2
+            <%= f.radio_button :doctor_quality, 2, onclick: "radioDeselection(this, 2)" %>2
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[doctor_quality]" value="3" onclick="radioDeselection(this, 3)"> 3
+            <%= f.radio_button :doctor_quality, 3, onclick: "radioDeselection(this, 3)" %>3
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[doctor_quality]" value="4" onclick="radioDeselection(this, 4)"> 4
+            <%= f.radio_button :doctor_quality, 4, onclick: "radioDeselection(this, 4)" %>4
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[doctor_quality]" value="5" onclick="radioDeselection(this, 5)"> 5
+            <%= f.radio_button :doctor_quality, 5, onclick: "radioDeselection(this, 5)" %>5
           </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
         </div>
 
@@ -1390,19 +1390,19 @@
           <div class="label p-1 mb-3"><%= f.label :staff_quality, 'スタッフの対応や雰囲気', class: "question-matters" %></div>
           <span class="small text-muted">低</span>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[staff_quality]" value="1" onclick="radioDeselection(this, 1)"> 1
+            <%= f.radio_button :staff_quality, 1, onclick: "radioDeselection(this, 1)" %>1
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[staff_quality]" value="2" onclick="radioDeselection(this, 2)"> 2
+            <%= f.radio_button :staff_quality, 2, onclick: "radioDeselection(this, 2)" %>2
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[staff_quality]" value="3" onclick="radioDeselection(this, 3)"> 3
+            <%= f.radio_button :staff_quality, 3, onclick: "radioDeselection(this, 3)" %>3
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[staff_quality]" value="4" onclick="radioDeselection(this, 4)"> 4
+            <%= f.radio_button :staff_quality, 4, onclick: "radioDeselection(this, 4)" %>4
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[staff_quality]" value="5" onclick="radioDeselection(this, 5)"> 5
+            <%= f.radio_button :staff_quality, 5, onclick: "radioDeselection(this, 5)" %>5
           </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
         </div>
 
@@ -1410,19 +1410,19 @@
           <div class="label p-1 mb-3"><%= f.label :impression_of_technology, '技術の納得度', class: "question-matters" %></div>
           <span class="small text-muted">低</span>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_technology]" value="1" onclick="radioDeselection(this, 1)"> 1
+            <%= f.radio_button :impression_of_technology, 1, onclick: "radioDeselection(this, 1)" %>1
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_technology]" value="2" onclick="radioDeselection(this, 2)"> 2
+            <%= f.radio_button :impression_of_technology, 2, onclick: "radioDeselection(this, 2)" %>2
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_technology]" value="3" onclick="radioDeselection(this, 3)"> 3
+            <%= f.radio_button :impression_of_technology, 3, onclick: "radioDeselection(this, 3)" %>3
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_technology]" value="4" onclick="radioDeselection(this, 4)"> 4
+            <%= f.radio_button :impression_of_technology, 4, onclick: "radioDeselection(this, 4)" %>4
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_technology]" value="5" onclick="radioDeselection(this, 5)"> 5
+            <%= f.radio_button :impression_of_technology, 5, onclick: "radioDeselection(this, 5)" %>5
           </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
         </div>
 
@@ -1430,19 +1430,19 @@
           <div class="label p-1 mb-3"><%= f.label :impression_of_price, '価格の納得度', class: "question-matters" %></div>
           <span class="small text-muted">低</span>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_price]" value="1" onclick="radioDeselection(this, 1)"> 1
+            <%= f.radio_button :impression_of_price, 1, onclick: "radioDeselection(this, 1)" %>1
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_price]" value="2" onclick="radioDeselection(this, 2)"> 2
+            <%= f.radio_button :impression_of_price, 2, onclick: "radioDeselection(this, 2)" %>2
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_price]" value="3" onclick="radioDeselection(this, 3)"> 3
+            <%= f.radio_button :impression_of_price, 3, onclick: "radioDeselection(this, 3)" %>3
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_price]" value="4" onclick="radioDeselection(this, 4)"> 4
+            <%= f.radio_button :impression_of_price, 4, onclick: "radioDeselection(this, 4)" %>4
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[impression_of_price]" value="5" onclick="radioDeselection(this, 5)"> 5
+            <%= f.radio_button :impression_of_price, 5, onclick: "radioDeselection(this, 5)" %>5
           </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
         </div>
 
@@ -1450,19 +1450,19 @@
           <div class="label p-1 mb-3"><%= f.label :comfort_of_space, '院内の快適さ', class: "question-matters" %></div>
           <span class="small text-muted">低</span>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[comfort_of_space]" value="1" onclick="radioDeselection(this, 1)"> 1
+            <%= f.radio_button :comfort_of_space, 1, onclick: "radioDeselection(this, 1)" %>1
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[comfort_of_space]" value="2" onclick="radioDeselection(this, 2)"> 2
+            <%= f.radio_button :comfort_of_space, 2, onclick: "radioDeselection(this, 2)" %>2
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[comfort_of_space]" value="3" onclick="radioDeselection(this, 3)"> 3
+            <%= f.radio_button :comfort_of_space, 3, onclick: "radioDeselection(this, 3)" %>3
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[comfort_of_space]" value="4" onclick="radioDeselection(this, 4)"> 4
+            <%= f.radio_button :comfort_of_space, 4, onclick: "radioDeselection(this, 4)" %>4
           </label>&nbsp;&nbsp;
           <label class="radio-inline">
-            <input type="radio" name="report[comfort_of_space]" value="5" onclick="radioDeselection(this, 5)"> 5
+            <%= f.radio_button :comfort_of_space, 5, onclick: "radioDeselection(this, 5)" %>5
           </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
         </div>
         <div class="form-group mt-2">
@@ -1485,7 +1485,6 @@
           </small>
         </div>
       <% end %>
-
     </div>
 
     <div class="split-right-box right-box px-1 pb-5">
@@ -1501,22 +1500,48 @@
         </small>
       </div>
 
-      <div class="draft-published-btn">
-        <div class="switch">
-          <label>
-            <input type="checkbox" name="status2" value="nonreleased" class="draft-switch-btn">
-              下書き
-          </label>
-      </div>
-        <%= f.submit '投稿', class: 'post-btn btn btn-raised btn-info w-50 mx-auto d-block mt-3' %>
-        <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
-          あなたのレポコを見つけてもらいやすくする為に<span class="mobile-hidden-string">左</span><span class="pc-hidden-string">上</span>の質問にも是非お答えください。
-        </small>
-      </div>
+      <% if is_new %>
+        <div class="report-post-btn-area">
+          <div class="report-post-btn-area-inner">
+            <%= f.submit '投稿', class: "report-post-btn-area-btn", data: { confirm: "\n【注意!!!】 (最初にある赤枠で囲われた) 必須項目の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから投稿してください!" } %>
+            <%= f.submit '保存', class: "report-post-btn-area-btn2", name: "status1", data: { confirm: "\n【注意!!!】 (最初にある赤枠で囲われた) 必須項目の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから保存してください!" } %>
+          </div>
+        </div>
+      <% else %>
+        <div class="report-post-btn-area">
+          <div class="report-post-btn-area-inner">
+            <button class="report-post-btn-area-btn">更新</button>
+            <% if @report.released? %>
+              <%= link_to nonrelease_report_path(@report), method: :patch, data: { confirm: '非公開にして良いですか？'} do %>
+                <button class="report-post-btn-area-btn2">非公開</button>
+              <% end %>
+            <% else %>
+              <%= link_to release_report_path(@report), method: :patch, data: { confirm: '公開して良いですか？'} do %>
+                <button class="report-post-btn-area-btn2">公開</button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if false %>  
+        <div class="draft-published-btn">
+          <div class="switch">
+            <label>
+              <input type="checkbox" name="status2" value="nonreleased" class="draft-switch-btn">
+                下書き
+            </label>
+        </div>
+          <%= f.submit '投稿', class: 'post-btn btn btn-raised btn-info w-50 mx-auto d-block mt-3' %>
+          <small id="submit-tip" class="form-text text-muted w-50 mx-auto d-block">
+            あなたのレポコを見つけてもらいやすくする為に<span class="mobile-hidden-string">左</span><span class="pc-hidden-string">上</span>の質問にも是非お答えください。
+          </small>
+        </div>
+      <% end %>
 
       <div class="float-right">
-        <%= link_to '戻る', @report, class:"btn btn-outline-info button" %>
-        <%= link_to 'ホーム', reports_path, class:"btn btn-outline-info button" %>
+        <%= link_to '戻る', @report, class:"btn btn-primary" %>
+        <%= link_to 'ホーム', reports_path, class:"btn btn-primary" %>
       </div>
     </div>
   <% end %>

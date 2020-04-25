@@ -1,35 +1,17 @@
-<div class="row show">
-  <div class="col-md-8 offset-md-2 d-flex align-items-center">
-    <h1>レポコの編集</h1>
-    <div class="ml-auto posts_button">
-      <% if @report.released? %>
-        <%= link_to '非公開にする', nonrelease_report_path(@report), method: :patch, class:"btn btn-outline-info" %>
-      <% else %>
-        <%= link_to '公開する', release_report_path(@report), method: :patch, class:"btn btn-outline-info" %>
-      <% end %>
-      <%= link_to '戻る', @report, class:"btn btn-outline-info button" %>
-    </div><br>
-  </div>
-</div>
-
 <% if false %>
-<div class="row mt-5">
-  <div class="col-md-8 offset-md-2">
-    <div class="card border-danger mb-3 bg-secondary" style="max-width: 199%;">
-      <div class="card-header text-white"><h4>注意 !!</h4></div>
-      <div class="card-body bg-secondary text-white">
-        <p class="card-text">変更(更新)する場合、以下項目がブランクになっているため、お手数ですが再度選択の上更新してください</p>
-        <ul class="pt-3">
-          <li><h5>クリニック名</h5></li>
-          <li><h5>治療当時のお住まい</h5></li>
-          <li><h5>初期胚又は胚盤胞のグレード</h5></li>
-          <li><h5>年収ならびに世帯年収</h5></li>
-        </ul>
-      </div>
+  <div class="row show">
+    <div class="col-md-8 offset-md-2 d-flex align-items-center">
+      <h5>編集</h5>
+      <div class="ml-auto posts_button">
+        <% if @report.released? %>
+          <%= link_to '非公開にする', nonrelease_report_path(@report), method: :patch, class:"btn btn-outline-primary" %>
+        <% else %>
+          <%= link_to '公開する', release_report_path(@report), method: :patch, class:"btn btn-outline-info" %>
+        <% end %>
+        <%= link_to '戻る', @report, class:"btn btn-outline-primary button" %>
+      </div><br>
     </div>
   </div>
-</div>
-<% end 
-%>
+<% end %>
 
 <%= render 'form', report: @report, is_new: false %><br>
