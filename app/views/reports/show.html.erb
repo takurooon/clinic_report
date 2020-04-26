@@ -85,23 +85,38 @@
               <section class="child-tab-content active" id="data-summary">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title">治療データ分析</h4>
+                <div class="box4">
+                  &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんの&nbsp;<%= @report.clinic.name %>&nbsp;でのデータ分析</small>
+                </div>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small" style="width:30%">受精率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.number_of_eggs_collected.present? && @report.number_of_fertilized_eggs.present? %>
                         <% juseiritsu = (@report.number_of_fertilized_eggs.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
-                        <span class="result-text"><%= sprintf("%.2f", juseiritsu) %>%&nbsp;&nbsp;&nbsp;<small><span class="small text-muted">(&nbsp;採卵数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;/&nbsp;受精卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;)</span></small></span>
+                        <span class="result-text"><%= sprintf("%.2f", juseiritsu) %>%<small><br><span class="small text-muted">=&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
                       <% else %>
                         <span class="text-muted small">計測不能</span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(採卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
-                      <% if @report.type_of_ovarian_stimulation.present? && @report.type_of_ovarian_stimulation.present? %>
-                        <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
+                      <% if @report.number_of_eggs_collected.present? && @report.number_of_transferable_embryos.present? %>
+                        <% ishokukanouhai_sairan = (@report.number_of_transferable_embryos.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
+                        <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_sairan) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+                      <% else %>
+                        <span class="text-muted small">計測不能</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(受精卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.number_of_fertilized_eggs.present? && @report.number_of_transferable_embryos.present? %>
+                        <% ishokukanouhai_juseiran = (@report.number_of_transferable_embryos.to_f / @report.number_of_fertilized_eggs.to_f) * 100 %>
+                        <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_juseiran) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></small></span>
                       <% else %>
                         <span class="text-muted small">計測不能</span>
                       <% end %>
@@ -110,18 +125,36 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">採卵あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.type_of_ovarian_stimulation.blank? %>
-                        <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
+                      <% if @report.number_of_eggs_collected.present? %>
+                        <% if @report.number_of_eggs_stored.blank? %>
+                          <% number_of_eggs_stored = 0 %>
+                        <% else %>
+                          <% number_of_eggs_stored = @report.number_of_eggs_stored %>
+                        <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
+                        <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;or&nbsp;不明&nbsp;)</span></small></span>
+                        <% end %>
                       <% else %>
                         <span class="text-muted small">計測不能</span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<span class="small text-muted">(回数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.type_of_ovarian_stimulation.blank? %>
-                        <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
+                      <% if @report.total_number_of_transplants.present? %>
+                        <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_transplants.to_f) * 100 %>
+                        <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植回数&nbsp;<%= @report.str_total_number_of_transplants %></span></small></span>
+                      <% else %>
+                        <span class="text-muted small">計測不能</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<span class="small text-muted">(個数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.total_number_of_eggs_transplanted.present? %>
+                        <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
+                        <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %></span></small></span>
                       <% else %>
                         <span class="text-muted small">計測不能</span>
                       <% end %>
@@ -1430,7 +1463,7 @@
                           <span class="result-text"><%= f_infertility_factor.name %><br></span>
                         <% end %>
                       <% else %>
-                          <span class="text-muted small">未回答</span>
+                          <span class="text-muted small">なし</span>
                       <% end %>
                     </td>
                   </tr>
@@ -1442,7 +1475,7 @@
                           <span class="result-text"><%= m_infertility_factor.name %></span>
                         <% end %>
                       <% else %>
-                          <span class="text-muted small">未回答</span>
+                          <span class="text-muted small">なし</span>
                       <% end %>
                     </td>
                   </tr>
@@ -1454,7 +1487,7 @@
                           <span class="result-text"><%= f_disease.name %><br></span>
                         <% end %>
                       <% else %>
-                          <span class="text-muted small">未回答</span>
+                          <span class="text-muted small">なし</span>
                       <% end %>
                     </td>
                   </tr>
@@ -1466,7 +1499,7 @@
                           <span class="result-text"><%= m_disease.name %><br></span>
                         <% end %>
                       <% else %>
-                          <span class="text-muted small">未回答</span>
+                          <span class="text-muted small">なし</span>
                       <% end %>
                     </td>
                   </tr>
@@ -1478,7 +1511,7 @@
                           <span class="result-text"><%= f_surgery.name %></span>
                         <% end %>
                       <% else %>
-                          <span class="text-muted small">未回答</span>
+                          <span class="text-muted small">なし</span>
                       <% end %>
                     </td>
                   </tr>
@@ -1490,7 +1523,7 @@
                           <span class="result-text"><%= m_surgery.name %></span>
                         <% end %>
                       <% else %>
-                          <span class="text-muted small">未回答</span>
+                          <span class="text-muted small">なし</span>
                       <% end %>
                     </td>
                   </tr>
@@ -1987,7 +2020,7 @@
                         <span class="result-text"><%= f_infertility_factor.name %><br></span>
                       <% end %>
                     <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="text-muted small">なし</span>
                     <% end %>
                   </td>
                 </tr>
@@ -1999,7 +2032,7 @@
                         <span class="result-text"><%= m_infertility_factor.name %><br></span>
                       <% end %>
                     <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="text-muted small">なし</span>
                     <% end %>
                   </td>
                 </tr>
@@ -2011,7 +2044,7 @@
                         <span class="result-text"><%= f_disease.name %><br></span>
                       <% end %>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="text-muted small">なし</span>
                     <% end %>
                   </td>
                 </tr>
@@ -2023,7 +2056,7 @@
                         <span class="result-text"><%= m_disease.name %><br></span>
                       <% end %>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="text-muted small">なし</span>
                     <% end %>
                   </td>
                 </tr>
@@ -2035,7 +2068,7 @@
                         <span class="result-text"><%= f_surgery.name %></span>
                       <% end %>
                     <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="text-muted small">なし</span>
                     <% end %>
                   </td>
                 </tr>
@@ -2047,7 +2080,7 @@
                         <span class="result-text"><%= m_surgery.name %></span>
                       <% end %>
                     <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="text-muted small">なし</span>
                     <% end %>
                   </td>
                 </tr>

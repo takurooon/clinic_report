@@ -10,15 +10,12 @@
       <ul class="navbar-nav mr-auto">
         
       </ul>
-      <ul class="navbar-nav nav-tabs">
+      <ul class="navbar-nav nav-tabs small">
         <li class="nav-item active mx-1">
-          <%=header_link_item('レポコ', reports_path) %></<i>
+          <%=header_link_item('最新', reports_path) %></<i>
         </li>
         <li class="nav-item mx-1">
-          <%=header_link_item('ユーザー', users_path) %>
-        </li>
-        <li class="nav-item mx-1">
-          <%=header_link_item('クリニック', category_clinics_path) %>
+          <%=header_link_item('クリニック別', category_clinics_path) %>
         </li>
         <% if current_user %>
           <li class="nav-item dropdown mx-1">
@@ -202,9 +199,8 @@
       </div>
       <div class="modal-body">
         <ul style="list-style-type:none;">
-          <li><%= link_to "レポコ", root_path %></li>
-          <li><%= link_to "ユーザー", users_path %></li>
-          <li><%= link_to "クリニック", category_clinics_path %></li>
+          <li><%= link_to "レポコ一覧", root_path %></li>
+          <li><%= link_to "クリニックからレポコを探す", category_clinics_path %></li>
           <% if current_user %>
             <li><%= link_to "マイページ", my_page_path %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path %></li>
