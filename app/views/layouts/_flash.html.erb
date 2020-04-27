@@ -4,17 +4,18 @@
   });
 </script>
 
-  <div class="flash-bar text-center">
-    <% if alert %>
-      <div class="alert alert-danger" role="alert">
-        <p class="alert alert-error"><%= alert %></p>
-      </div>
-    <% end %>
-  </div>
-  <div class="flash-bar text-center">
-    <% if notice %>
-      <div class="alert alert-success" role="alert">
-        <p class="alert alert-success"><%= notice %></p>
-      </div>
-    <% end %>
-  </div>
+<div class="flash-bar text-center">
+  <% if alert %>
+    <div class="alert alert-danger" role="alert">
+      <p class="alert alert-error"><%= alert %></p>
+    </div>
+  <% end %>
+</div>
+<div class="flash-bar text-center">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <p class="alert alert-success"><%= notice %></p>
+    </div>
+  <% end %>
+</div>
+</div>

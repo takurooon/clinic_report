@@ -1209,12 +1209,12 @@
                     <td class="result-left-column small">住まい</td>
                     <td class="pl-3">
                       <% if @report.prefecture_at_the_time_status == "hide" %>
-                        <span class="small text-muted">&nbsp;&nbsp;<%= "非公開 (都道府県)" %></span>
+                        <span class="small text-muted">&nbsp;&nbsp;非公開 <span class="small">(都道府県)</span></span>
                       <% else %>
                         <span class="result-text"><%= @report.prefecture.name %></span>&nbsp;&nbsp;
                       <% end %>
                       <% if @report.city_at_the_time_status == "hide" %>
-                        <span class="small text-muted">&nbsp;&nbsp;<%= "非公開 (市区町村)" %></span>
+                        <span class="small text-muted">&nbsp;&nbsp;非公開 <span class="small">(市区町村)</span></span>
                       <% else %>
                         <span class="result-text"><%= @report.city.name %></span>
                       <% end %>
@@ -1839,7 +1839,7 @@
           <input id="cp01" type="checkbox">
           <label for="cp01"></label>
           <div class="cp_container">
-            <table class="table table-hover">
+            <table class="table table-hover treatment-all-list">
               <thead>
                 <tr>
                   <th class="text-center matome-title" colspan="2" style="color:#1A2438"><%= @report.user.name %>&nbsp;<span class="text-muted">さんの</span>&nbsp;<%= @report.clinic.name %>&nbsp;<span class="text-muted">での</span>&nbsp;<span class="font-weight-bold">治療情報一覧</span></th>
@@ -1866,12 +1866,12 @@
                   <td class="result-left-column small">治療当時の住まい</td>
                   <td class="pl-4 result-right-column">
                     <% if @report.prefecture_at_the_time_status == "hide" %>
-                      <span class="small text-muted">&nbsp;&nbsp;<%= "非公開 (都道府県)" %></span>
+                      <span class="small text-muted">&nbsp;&nbsp;非公開 <span class="small">(都道府県)</span></span>
                     <% else %>
                       <span class="result-text"><%= @report.prefecture.name %></span>&nbsp;&nbsp;
                     <% end %>
                     <% if @report.city_at_the_time_status == "hide" %>
-                      <span class="small text-muted">&nbsp;&nbsp;<%= "非公開 (市区町村)" %></span>
+                      <span class="small text-muted">&nbsp;&nbsp;非公開 <span class="small">(市区町村)</span></span>
                     <% else %>
                       <span class="result-text"><%= @report.city.name %></span>
                     <% end %>
