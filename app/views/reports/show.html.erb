@@ -300,7 +300,7 @@
                   </tr>
                   <% if @report.types_of_fertilization_methods = 2 || 3 %>
                     <tr>
-                      <td class="result-left-column small">受精方法</td>
+                      <td class="result-left-column small">顕微授精の種類</td>
                       <td class="pl-3">
                         <% unless @report.details_of_icsi.blank? %>
                           <span class="result-text"><%= @report.str_details_of_icsi %></span>
@@ -1934,6 +1934,18 @@
                     <% end %>
                   </td>
                 </tr>
+                <% if @report.types_of_fertilization_methods = 2 || 3 %>
+                  <tr>
+                    <td class="result-left-column small">顕微授精の種類</td>
+                    <td class="pl-3">
+                      <% unless @report.details_of_icsi.blank? %>
+                        <span class="result-text"><%= @report.str_details_of_icsi %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
                 <tr>
                   <td class="result-left-column small">移植方法</td>
                   <td class="pl-4 result-right-column"><% unless @report.transplant_method.blank? %>
