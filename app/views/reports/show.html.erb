@@ -1864,7 +1864,18 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">治療当時の住まい</td>
-                  <td class="pl-4 result-right-column"><%= @report.prefecture.name %>&nbsp;&nbsp;<%= @report.city.name %></td>
+                  <td class="pl-4 result-right-column">
+                    <% if @report.prefecture_at_the_time_status == "hide" %>
+                      <span class="small text-muted">&nbsp;&nbsp;<%= "非公開 (都道府県)" %></span>
+                    <% else %>
+                      <span class="result-text"><%= @report.prefecture.name %></span>&nbsp;&nbsp;
+                    <% end %>
+                    <% if @report.city_at_the_time_status == "hide" %>
+                      <span class="small text-muted">&nbsp;&nbsp;<%= "非公開 (市区町村)" %></span>
+                    <% else %>
+                      <span class="result-text"><%= @report.city.name %></span>
+                    <% end %>
+                  </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">何院目</td>
