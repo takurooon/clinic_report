@@ -53,23 +53,43 @@ CSV.foreach('db/csv/clinics.csv', headers: true) do |row|
   )
 end
 
+SSelectionMethod.create([
+  { name: "不明" },
+  { name: "IMSI(イムジー)" },
+  { name: "Zymot(ザイモット)"},
+  { name: "SpermSlow(スパムスロー)"},
+])
+
 Tag.create([
   { tag_name: "自然周期" },
   { tag_name: "アンタゴニスト法" },
   { tag_name: "ショート法" },
-  { tag_name: "ロング法" }
+  { tag_name: "ロング法" },
 ])
 
 Supplement.create([
-  { name: "ビタミン" },
+  { name: "特になし" },
   { name: "葉酸" },
-  { name: "カルニチン" },
+  { name: "ビタミンC" },
+  { name: "ビタミンD" },
+  { name: "ビタミンE" },
+  { name: "鉄分" },
+  { name: "亜鉛" },
+  { name: "DHEA" },
+  { name: "マカ" },
+  { name: "コエンザイム" },
+  { name: "L-カルニチン" },
+  { name: "イノシトール" },
+  { name: "ミトコンドリア" },
+  { name: "ラクトフェリン" },
+  { name: "プラセンタ" },
+  { name: "アルギニン" },
 ])
 
 ScopeOfDisclosure.create([
-  { scope: "パートナーまで" },
+  { scope: "自ら進んで誰にでもオープン" },
   { scope: "聞かれたら誰にでもオープン" },
-  { scope: "自ら進んで誰にでも開示" },
+  { scope: "パートナー" },
   { scope: "両親" },
   { scope: "兄弟/姉妹" },
   { scope: "義理の両親" },
@@ -83,6 +103,7 @@ ScopeOfDisclosure.create([
 ])
 
 FInfertilityFactor.create([
+  { name: "特になし" },
   { name: "原因不明" },
   { name: "多嚢胞性卵巣症候群(PCOS)" },
   { name: "視床下部排卵障害(中枢性の排卵障害)" },
@@ -108,6 +129,7 @@ FInfertilityFactor.create([
 ])
 
 MInfertilityFactor.create([
+  { name: "特になし" },
   { name: "原因不明" },
   { name: "勃起障害(ED)" },
   { name: "膣内射精障害" },
@@ -125,48 +147,94 @@ MInfertilityFactor.create([
 ])
 
 FDisease.create([
+  { name: "特になし" },
   { name: "バセドウ病" },
   { name: "橋本病" },
 ])
 
 MDisease.create([
+  { name: "特になし" },
   { name: "糖尿病" },
   { name: "痛風" },
 ])
 
 FSurgery.create([
+  { name: "特になし" },
   { name: "子宮筋腫" },
+  { name: "子宮内膜症" },
+  { name: "卵巣嚢腫" },
   { name: "卵管切除" },
 ])
 
 MSurgery.create([
+  { name: "特になし" },
   { name: "精索静脈瘤" },
 ])
 
 SairanMedicine.create([
   { name: "クロミッド(クロミフェン/セロフェン)" },
-  { name: "フェマーラ" },
+  { name: "hMGフェリング" },
+  { name: "hMGフジ" },
+  { name: "hMGテイゾー" },
+  { name: "フェマーラ(レトロゾール)" },
+  { name: "ナサニール" },
+  { name: "ブセレキュア" },
+  { name: "スプレキュア" },
+  { name: "オビドレル" },
+  { name: "セキソビット" },
+  { name: "ゴナピュール" },
+  { name: "フォリルモン" },
+  { name: "フォリスチム" },
+  { name: "ガニレスト" },
+  { name: "セトロタイド" },
+  { name: "レルミナ" },
+  { name: "ボルタレン" },
 ])
 
 TransferMedicine.create([
   { name: "hCG" },
   { name: "プラノバール" },
+  { name: "エストラーナテープ" },
+  { name: "ジュリナ" },
+  { name: "ディビゲル" },
+  { name: "プレマリン" },
+  { name: "プロゲストン" },
+  { name: "ルトラール" },
+  { name: "デュファストン" },
+  { name: "プロベラ" },
+  { name: "ルティナス" },
+  { name: "ワンクリノン" },
+  { name: "ルテウム" },
+  { name: "ウトロゲスタン" },
 ])
 
 TransferOption.create([
-  { name: "エンブリオグルー" },
+  { name: "特になし" },
+  { name: "二個移植" },
   { name: "二段階移植" },
-  { name: "シート法" },
+  { name: "エンブリオグルー" },
+  { name: "AHA(アシステッドハッチング)" },
+  { name: "シート法(SEET)" },
+  { name: "スクラッチング法" },
 ])
 
 OtherEffort.create([
-  { name: "漢方" },
+  { name: "特になし" },
+  { name: "漢方(煎じ薬)" },
+  { name: "漢方(エキス剤等)" },
+  { name: "鍼" },
   { name: "鍼灸" },
+  { name: "整体" },
+  { name: "骨盤矯正" },
   { name: "ヨガ" },
+  { name: "ホットヨガ" },
   { name: "よもぎ蒸し" },
+  { name: "岩盤浴" },
+  { name: "ファスティング" },
 ])
 
 Inspection.create([
+  { name: "受けていない" },
   { name: "エラ(ERA)" },
   { name: "エマ(EMMA)" },
   { name: "アリス(ALICE)" },

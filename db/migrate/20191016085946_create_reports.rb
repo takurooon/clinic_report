@@ -17,8 +17,11 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :number_of_aih
       t.text :special_inspection_supplementary_explanation
       t.integer :pgt1
+      t.integer :pgt1_status
       t.integer :pgt2
+      t.integer :pgt2_status
       t.text :pgt_supplementary_explanation
+      t.integer :pgt_supplementary_explanation_status
       t.text :about_causes_of_infertility
       t.integer :semen_volume
       t.integer :semen_concentration
@@ -26,7 +29,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :sperm_motility
       t.integer :probability_of_normal_morphology_of_sperm
       t.integer :total_amount_of_sperm
-      t.integer :sperm_selection_method
       t.text :sperm_description
       t.integer :amh
       t.integer :bmi
@@ -44,6 +46,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :egg_maturity
       t.integer :ova_with_ivm
       t.integer :types_of_fertilization_methods
+      t.integer :details_of_icsi
       t.integer :number_of_fertilized_eggs
       t.integer :number_of_transferable_embryos
       t.integer :number_of_frozen_eggs
@@ -86,15 +89,23 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :online_consultation_details
       t.integer :period_of_time_spent_traveling
       t.integer :work_style
+      t.integer :work_style_status
       t.integer :industry_type
+      t.integer :industry_type_status
       t.integer :private_or_listed_company
+      t.integer :private_or_listed_company_status
       t.integer :domestic_or_foreign_capital
+      t.integer :domestic_or_foreign_capital_status
       t.integer :capital_size
+      t.integer :capital_size_status
       t.integer :department
+      t.integer :department_status
       t.integer :position
+      t.integer :position_status
       t.integer :annual_income
       t.integer :household_net_income
       t.integer :number_of_employees
+      t.integer :number_of_employees_status
       t.integer :treatment_support_system
       t.integer :suspended_or_retirement_job
       t.text :about_work_and_working_style

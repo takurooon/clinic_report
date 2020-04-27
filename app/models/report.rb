@@ -3,13 +3,27 @@ class Report < ApplicationRecord
   # レポートの公開状況 参考:https://qiita.com/tomoharutt/items/f1a70babaddcf7ab47be
   enum status: { released: 0, nonreleased: 1 }
 
-  # 年収/世帯合算所得の公開状況 参考:https://qiita.com/emacs_hhkb/items/fce19f443e5770ad2e13
+  # 仕事セクションの(年収などの項目）公開状況 参考:https://qiita.com/emacs_hhkb/items/fce19f443e5770ad2e13
+  enum work_style_status: { show: 0, hide: 1 }, _prefix: true
+  enum industry_type_status: { show: 0, hide: 1 }, _prefix: true
+  enum private_or_listed_company_status: { show: 0, hide: 1 }, _prefix: true
+  enum domestic_or_foreign_capital_status: { show: 0, hide: 1 }, _prefix: true
+  enum capital_size_status: { show: 0, hide: 1 }, _prefix: true
+  enum department_status: { show: 0, hide: 1 }, _prefix: true
+  enum position_status: { show: 0, hide: 1 }, _prefix: true
+  enum number_of_employees_status: { show: 0, hide: 1 }, _prefix: true
   enum annual_income_status: { show: 0, hide: 1 }, _prefix: true
   enum household_net_income_status: { show: 0, hide: 1 }, _prefix: true
 
   # 治療当時の住まいの公開状況 参考:http://mnmandahalf.hatenablog.com/entry/2017/08/20/164442
   enum prefecture_at_the_time_status: { show: 0, hide: 1 }, _prefix: true
   enum city_at_the_time_status: { show: 0, hide: 1 }, _prefix: true
+
+  # PGT-Aの公開状況
+  enum pgt1_status: { show: 0, hide: 1 }, _prefix: true
+  enum pgt2_status: { show: 0, hide: 1 }, _prefix: true
+  enum pgt_supplementary_explanation_status: { show: 0, hide: 1 }, _prefix: true
+
 
   # バリデーション
   validates :title, length: { maximum: 64 }
@@ -214,6 +228,27 @@ class Report < ApplicationRecord
       where(['name LIKE ?', "%#{search}%"])
     else
       all
+    end
+  end
+
+  # 精子選抜方法
+  has_many :report_s_selection_methods, dependent: :destroy
+  has_many :s_selection_methods, through: :report_s_selection_methods
+
+  def save_ssms(ssm_list)
+    current_ssms = self.s_selection_methods.pluck(:name) unless self.s_selection_methods.nil?
+    old_ssms = current_ssms - ssm_list
+    new_ssms = ssm_list - current_ssms
+
+    # Destroy old s_selection_methods:
+    old_ssms.each do |old_name|
+      self.s_selection_methods.delete SSelectionMethod.find_by(name: old_name)
+    end
+
+    # Create new s_selection_methods:
+    new_ssms.each do |new_name|
+      report_ssm = SSelectionMethod.find_or_create_by(name: new_name)
+      self.s_selection_methods << report_ssm
     end
   end
 
@@ -673,8 +708,9 @@ class Report < ApplicationRecord
     3 => "hMG/rFSH法",
     4 => "クロミフェン+hMG/rFSH法",
     5 => "ロング法",
-    6 => "ショート法",
-    7 => "アンタゴニスト法",
+    6 => "ウルトラロング法",
+    7 => "ショート法",
+    8 => "アンタゴニスト法",
     99 => "その他",
     100 => "不明"
   }
@@ -686,14 +722,26 @@ class Report < ApplicationRecord
   # types_of_fertilization_methodsの区分値(受精方法)
   HASH_TYPES_OF_FERTILIZATION_METHODS = {
     1 => "体外受精（ふりかけ）",
-    2 => "顕微授精(ICSI)",
-    3 => "顕微授精(IMSI)",
+    2 => "顕微授精",
+    3 => "スプリット(体外･顕微両方)",
     99 => "その他",
     100 => "不明"
   }
 
   def str_types_of_fertilization_methods
     return HASH_TYPES_OF_FERTILIZATION_METHODS[self.types_of_fertilization_methods]
+  end
+
+  # details_of_icsiの区分値(顕微授精の詳細)
+  HASH_DETAILS_OF_ICSI = {
+    1 => "IMSI",
+    2 => "ピエゾICSI",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_details_of_icsi
+    return HASH_DETAILS_OF_ICSI[self.details_of_icsi]
   end
 
   # transplant_methodの区分値(移植方法)
@@ -2183,6 +2231,7 @@ end
 #  bmi                                          :integer
 #  briefing_session                             :integer
 #  capital_size                                 :integer
+#  capital_size_status                          :integer
 #  city_at_the_time_status                      :integer          default("show"), not null
 #  clinic_review                                :text
 #  clinic_selection_criteria                    :integer
@@ -2193,9 +2242,12 @@ end
 #  creditcards_can_be_used_from_more_than       :integer
 #  current_state                                :integer
 #  department                                   :integer
+#  department_status                            :integer
 #  description_of_eggs_and_sperm_used           :text
+#  details_of_icsi                              :integer
 #  doctor_quality                               :integer
 #  domestic_or_foreign_capital                  :integer
+#  domestic_or_foreign_capital_status           :integer
 #  early_embryo_grade                           :integer
 #  early_embryo_grade_supplementary_explanation :text
 #  egg_maturity                                 :integer
@@ -2215,12 +2267,14 @@ end
 #  impression_of_price                          :integer
 #  impression_of_technology                     :integer
 #  industry_type                                :integer
+#  industry_type_status                         :integer
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_aih                                :integer
 #  number_of_clinics                            :integer
 #  number_of_eggs_collected                     :integer
 #  number_of_eggs_stored                        :integer
 #  number_of_employees                          :integer
+#  number_of_employees_status                   :integer
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer
 #  number_of_miscarriages                       :integer
@@ -2234,11 +2288,16 @@ end
 #  ova_with_ivm                                 :integer
 #  period_of_time_spent_traveling               :integer
 #  pgt1                                         :integer
+#  pgt1_status                                  :integer
 #  pgt2                                         :integer
+#  pgt2_status                                  :integer
 #  pgt_supplementary_explanation                :text
+#  pgt_supplementary_explanation_status         :integer
 #  position                                     :integer
+#  position_status                              :integer
 #  prefecture_at_the_time_status                :integer          default("show"), not null
 #  private_or_listed_company                    :integer
+#  private_or_listed_company_status             :integer
 #  probability_of_normal_morphology_of_sperm    :integer
 #  reasons_for_choosing_this_clinic             :text
 #  reservation_method                           :integer
@@ -2250,7 +2309,6 @@ end
 #  sperm_advance_rate                           :integer
 #  sperm_description                            :text
 #  sperm_motility                               :integer
-#  sperm_selection_method                       :integer
 #  staff_quality                                :integer
 #  status                                       :integer          default("released"), not null
 #  supplement_cost                              :integer
@@ -2273,6 +2331,7 @@ end
 #  types_of_fertilization_methods               :integer
 #  use_of_anesthesia                            :integer
 #  work_style                                   :integer
+#  work_style_status                            :integer
 #  year_of_treatment_end                        :date
 #  created_at                                   :datetime         not null
 #  updated_at                                   :datetime         not null

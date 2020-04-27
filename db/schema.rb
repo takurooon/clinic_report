@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_071630) do
+ActiveRecord::Schema.define(version: 2020_04_27_054157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -337,6 +337,15 @@ ActiveRecord::Schema.define(version: 2020_04_08_071630) do
     t.index ["report_id"], name: "index_report_other_efforts_on_report_id"
   end
 
+  create_table "report_s_selection_methods", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "s_selection_method_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_report_s_selection_methods_on_report_id"
+    t.index ["s_selection_method_id"], name: "index_report_s_selection_methods_on_s_selection_method_id"
+  end
+
   create_table "report_sairan_medicines", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.bigint "sairan_medicine_id", null: false
@@ -408,8 +417,11 @@ ActiveRecord::Schema.define(version: 2020_04_08_071630) do
     t.integer "number_of_aih"
     t.text "special_inspection_supplementary_explanation"
     t.integer "pgt1"
+    t.integer "pgt1_status"
     t.integer "pgt2"
+    t.integer "pgt2_status"
     t.text "pgt_supplementary_explanation"
+    t.integer "pgt_supplementary_explanation_status"
     t.text "about_causes_of_infertility"
     t.integer "semen_volume"
     t.integer "semen_concentration"
@@ -417,7 +429,6 @@ ActiveRecord::Schema.define(version: 2020_04_08_071630) do
     t.integer "sperm_motility"
     t.integer "probability_of_normal_morphology_of_sperm"
     t.integer "total_amount_of_sperm"
-    t.integer "sperm_selection_method"
     t.text "sperm_description"
     t.integer "amh"
     t.integer "bmi"
@@ -435,6 +446,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_071630) do
     t.integer "egg_maturity"
     t.integer "ova_with_ivm"
     t.integer "types_of_fertilization_methods"
+    t.integer "details_of_icsi"
     t.integer "number_of_fertilized_eggs"
     t.integer "number_of_transferable_embryos"
     t.integer "number_of_frozen_eggs"
@@ -477,15 +489,23 @@ ActiveRecord::Schema.define(version: 2020_04_08_071630) do
     t.text "online_consultation_details"
     t.integer "period_of_time_spent_traveling"
     t.integer "work_style"
+    t.integer "work_style_status"
     t.integer "industry_type"
+    t.integer "industry_type_status"
     t.integer "private_or_listed_company"
+    t.integer "private_or_listed_company_status"
     t.integer "domestic_or_foreign_capital"
+    t.integer "domestic_or_foreign_capital_status"
     t.integer "capital_size"
+    t.integer "capital_size_status"
     t.integer "department"
+    t.integer "department_status"
     t.integer "position"
+    t.integer "position_status"
     t.integer "annual_income"
     t.integer "household_net_income"
     t.integer "number_of_employees"
+    t.integer "number_of_employees_status"
     t.integer "treatment_support_system"
     t.integer "suspended_or_retirement_job"
     t.text "about_work_and_working_style"
@@ -512,6 +532,12 @@ ActiveRecord::Schema.define(version: 2020_04_08_071630) do
     t.index ["clinic_id"], name: "index_reports_on_clinic_id"
     t.index ["prefecture_id"], name: "index_reports_on_prefecture_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
+  create_table "s_selection_methods", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sairan_hormones", force: :cascade do |t|
@@ -641,6 +667,8 @@ ActiveRecord::Schema.define(version: 2020_04_08_071630) do
   add_foreign_key "report_m_surgeries", "reports"
   add_foreign_key "report_other_efforts", "other_efforts"
   add_foreign_key "report_other_efforts", "reports"
+  add_foreign_key "report_s_selection_methods", "reports"
+  add_foreign_key "report_s_selection_methods", "s_selection_methods"
   add_foreign_key "report_sairan_medicines", "reports"
   add_foreign_key "report_sairan_medicines", "sairan_medicines"
   add_foreign_key "report_scope_of_disclosures", "reports"

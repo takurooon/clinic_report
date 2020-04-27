@@ -70,6 +70,23 @@ $(function() {
 //   }
 // }
 
+// 顕微授精の詳細
+$(function() {
+  icsi($("#report_types_of_fertilization_methods option:selected").val());
+  $("#report_types_of_fertilization_methods").change(function() {
+    icsi($(this).val());
+  });
+})
+function icsi(types_of_fertilization_methods) {
+  if (types_of_fertilization_methods == "2") {
+    $(".detail-of-icsi").show();
+  } else if (types_of_fertilization_methods == "3") {
+    $(".detail-of-icsi").show();
+  } else {
+    $(".detail-of-icsi").hide();
+  }
+}
+
 // 用いた卵子と精子の説明
 $(function() {
   eggsperm($("#report_types_of_eggs_and_sperm option:selected").val());
@@ -210,9 +227,4 @@ function radioDeselection(already, numeric) {
   } else {
     remove = numeric;
   }
-}
-
-// 保存ボタンを押す時のリマインドアラート
-function reportsave() {
-  alert("必須項目のクリニックと、お住まい(都道府県&市区町村)は選択されましたか？");
 }

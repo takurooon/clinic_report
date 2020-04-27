@@ -86,7 +86,7 @@
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title">治療データ分析</h4>
                 <div class="box4">
-                  &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんの&nbsp;<%= @report.clinic.name %>&nbsp;でのデータ分析</small>
+                  &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんの&nbsp;<%= @report.clinic.name %>&nbsp;での治療データ分析</small>
                 </div>
                 <table class="table table-hover p-0">
                   <tr>
@@ -96,29 +96,29 @@
                         <% juseiritsu = (@report.number_of_fertilized_eggs.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
                         <span class="result-text"><%= sprintf("%.2f", juseiritsu) %>%<small><br><span class="small text-muted">=&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
                       <% else %>
-                        <span class="text-muted small">計測不能</span>
+                        <span class="text-muted small">算出不可</span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(採卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(対 採卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.number_of_eggs_collected.present? && @report.number_of_transferable_embryos.present? %>
                         <% ishokukanouhai_sairan = (@report.number_of_transferable_embryos.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
                         <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_sairan) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
                       <% else %>
-                        <span class="text-muted small">計測不能</span>
+                        <span class="text-muted small">算出不可</span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(受精卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(対 受精卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.number_of_fertilized_eggs.present? && @report.number_of_transferable_embryos.present? %>
                         <% ishokukanouhai_juseiran = (@report.number_of_transferable_embryos.to_f / @report.number_of_fertilized_eggs.to_f) * 100 %>
                         <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_juseiran) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></small></span>
                       <% else %>
-                        <span class="text-muted small">計測不能</span>
+                        <span class="text-muted small">算出不可</span>
                       <% end %>
                     </td>
                   </tr>
@@ -131,10 +131,10 @@
                         <% else %>
                           <% number_of_eggs_stored = @report.number_of_eggs_stored %>
                         <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
-                        <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;or&nbsp;不明&nbsp;)</span></small></span>
+                        <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
                         <% end %>
                       <% else %>
-                        <span class="text-muted small">計測不能</span>
+                        <span class="text-muted small">算出不可</span>
                       <% end %>
                     </td>
                   </tr>
@@ -145,7 +145,7 @@
                         <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_transplants.to_f) * 100 %>
                         <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植回数&nbsp;<%= @report.str_total_number_of_transplants %></span></small></span>
                       <% else %>
-                        <span class="text-muted small">計測不能</span>
+                        <span class="text-muted small">算出不可</span>
                       <% end %>
                     </td>
                   </tr>
@@ -156,7 +156,7 @@
                         <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
                         <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %></span></small></span>
                       <% else %>
-                        <span class="text-muted small">計測不能</span>
+                        <span class="text-muted small">算出不可</span>
                       <% end %>
                     </td>
                   </tr>
@@ -298,6 +298,18 @@
                       <% end %>
                     </td>
                   </tr>
+                  <% if @report.types_of_fertilization_methods = 2 || 3 %>
+                    <tr>
+                      <td class="result-left-column small">受精方法</td>
+                      <td class="pl-3">
+                        <% unless @report.details_of_icsi.blank? %>
+                          <span class="result-text"><%= @report.str_details_of_icsi %></span>
+                        <% else %>
+                          <span class="text-muted small">未回答</span>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
                   <tr>
                     <td class="result-left-column small">卵子と精子</td>
                     <td class="pl-3">
@@ -422,6 +434,7 @@
                   <tr>
                     <td class="result-left-column small">採卵日とホルモン値</td>
                     <td class="pl-3">
+                    <% if @report.day_of_sairans.present? %>
                       <% @report.day_of_sairans.each do |day_of_sairan| %>
                         <table class="table-borderless">
                           <tr>
@@ -478,6 +491,9 @@
                           </tr>
                         </table>
                       <% end %>
+                    <% else %>
+                      <span class="text-muted small">未回答</span>
+                    <% end %>
                     </td>
                   </tr>
                 </table>
@@ -736,7 +752,7 @@
                   <% if @report.transplant_method == 1 || 2 %>
                     <%= @report.str_transplant_method %>
                   <% end %>
-                    移植
+                    移植 / 着床前スクリーニング
                 </h4>
                 <% unless @report.explanation_and_impression_about_ishoku.blank? %>
                   <div class="box27">
@@ -744,6 +760,7 @@
                     <p><%= safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)) %></p>
                   </div>
                 <% end %>
+                <h6 class="child-tab-title">移植</h6>
                 <table class="table table-hover p-0">
                   <% if @report.inspections || @report.special_inspection_supplementary_explanation %>
                     <tr>
@@ -977,6 +994,45 @@
                   </div>
                   <canvas id="ishokuhcg"></canvas>
                 </div>
+                <h6 class="child-tab-title">着床前スクリーニング</h6>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.pgt1_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.pgt1.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
+                      <% else %>
+                        <span class="result-text"><%= @report.str_pgt1 %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small">着床前スクリーニング実施有無</td>
+                    <td class="pl-3">
+                      <% if @report.pgt2_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.pgt2.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
+                      <% else %>
+                        <span class="result-text"><%= @report.str_pgt2 %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% if @report.pgt_supplementary_explanation.present? %>
+                    <tr>
+                      <td class="result-left-column small">着床前スクリーニングのメモ</td>
+                      <td class="pl-3">
+                        <% if @report.pgt_supplementary_explanation_status == "hide" %>
+                          <span class="small text-muted"><%= "非公開" %></span>
+                        <% else %>
+                          <span class="result-text"><%= @report.pgt_supplementary_explanation %></span>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
               </section>
               <section class="child-tab-content" id="cost">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
@@ -1038,14 +1094,14 @@
                       <% end %>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="result-left-column small">メモ</td>
-                    <td class="pl-3">
-                      <% unless @report.explanation_of_cost.blank? %>
+                  <% unless @report.explanation_of_cost.blank? %>
+                    <tr>
+                      <td class="result-left-column small">メモ</td>
+                      <td class="pl-3">
                         <span class="result-text"><%= safe_join(@report.explanation_of_cost.split("\n"),tag(:br)) %></span>
-                      <% end %>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
+                  <% end %>
                 </table>
               </section>
               <section class="child-tab-content" id="supplements">
@@ -1320,80 +1376,96 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">働き方</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.work_style.blank? %>
-                        <span class="result-text"><%= @report.str_work_style %></span>
+                      <% if @report.work_style_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.work_style.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="result-text"><%= @report.str_work_style %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">業種</td>
                     <td class="pl-3">
-                      <% unless @report.industry_type.blank? %>
-                        <span class="result-text"><%= @report.str_industry_type %></span>
+                      <% if @report.industry_type_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.industry_type.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="result-text"><%= @report.str_industry_type %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">上場の有無</td>
                     <td class="pl-3">
-                      <% unless @report.private_or_listed_company.blank? %>
-                        <span class="result-text"><%= @report.str_private_or_listed_company %></span>
+                      <% if @report.private_or_listed_company_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.private_or_listed_company.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="result-text"><%= @report.str_private_or_listed_company %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">日系or外資</td>
                     <td class="pl-3">
-                      <% unless @report.domestic_or_foreign_capital.blank? %>
-                        <span class="result-text"><%= @report.str_domestic_or_foreign_capital %></span>
+                      <% if @report.domestic_or_foreign_capital_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.domestic_or_foreign_capital.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="result-text"><%= @report.str_domestic_or_foreign_capital %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">会社の規模<span class="text-muted">&nbsp;(資本)</span></td>
                     <td class="pl-3">
-                      <% unless @report.capital_size.blank? %>
-                        <span class="result-text"><%= @report.str_capital_size %></span>
+                      <% if @report.capital_size_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.capital_size.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="result-text"><%= @report.str_capital_size %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">部署</td>
                     <td class="pl-3">
-                      <% unless @report.department.blank? %>
-                        <span class="result-text"><%= @report.str_department %></span>
+                      <% if @report.department_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.department.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="result-text"><%= @report.str_department %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">役職</td>
                     <td class="pl-3">
-                      <% unless @report.position.blank? %>
-                        <span class="result-text"><%= @report.str_position %></span>
+                      <% if @report.position_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.position.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="result-text"><%= @report.str_position %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">従業員数</td>
                     <td class="pl-3">
-                      <% unless @report.number_of_employees.blank? %>
-                        <span class="result-text"><%= @report.str_number_of_employees %></span>
+                      <% if @report.number_of_employees_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.number_of_employees.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="result-text"><%= @report.str_number_of_employees %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -1441,14 +1513,14 @@
                       <% end %>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="result-left-column small">メモ</td>
-                    <td class="pl-3">
-                      <% unless @report.about_work_and_working_style.blank? %>
+                  <% unless @report.about_work_and_working_style.blank? %>
+                    <tr>
+                      <td class="result-left-column small">メモ</td>
+                      <td class="pl-3">
                         <span class="result-text"><%= safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)) %></span>
-                      <% end %>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
+                  <% end %>
                 </table>
               </section>
               <section class="child-tab-content" id="factor">
@@ -1537,14 +1609,14 @@
                       <% end %>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="result-left-column small">メモ</td>
-                    <td class="pl-3">
-                      <% unless @report.about_causes_of_infertility.blank? %>
+                  <% unless @report.about_causes_of_infertility.blank? %>
+                    <tr>
+                      <td class="result-left-column small">メモ</td>
+                      <td class="pl-3">
                         <span class="result-text"><%= safe_join(@report.about_causes_of_infertility.split("\n"),tag(:br)) %></span>
-                      <% end %>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
+                  <% end %>
                 </table>
               </section>
             </div>
@@ -2498,6 +2570,42 @@
                     <% end %>
                   </td>
                 </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
+                  <td class="pl-3" style="width:70%">
+                    <% if @report.pgt1_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.pgt1.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
+                    <% else %>
+                      <span class="result-text"><%= @report.str_pgt1 %></span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small">着床前スクリーニング実施有無</td>
+                  <td class="pl-3">
+                    <% if @report.pgt2_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.pgt2.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
+                    <% else %>
+                      <span class="result-text"><%= @report.str_pgt2 %></span>
+                    <% end %>
+                  </td>
+                </tr>
+                <% if @report.pgt_supplementary_explanation.present? %>
+                  <tr>
+                    <td class="result-left-column small">着床前スクリーニングのメモ</td>
+                    <td class="pl-3">
+                      <% if @report.pgt_supplementary_explanation_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% else %>
+                        <span class="result-text"><%= @report.pgt_supplementary_explanation %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
                 <% if @report.embryo_stage == 1 %>
                   <tr>
                     <td class="result-left-column small">移植日のホルモン値&nbsp;<span class="small text-muted">(ET)</span></td>
@@ -2870,80 +2978,96 @@
                 <tr>
                   <td class="result-left-column small">治療中の働き方</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.work_style.blank? %>
-                      <span class="result-text"><%= @report.str_work_style %></span>
+                    <% if @report.work_style_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.work_style.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="result-text"><%= @report.str_work_style %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">業種</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.industry_type.blank? %>
-                      <span class="result-text"><%= @report.str_industry_type %></span>
+                    <% if @report.industry_type_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.industry_type.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="result-text"><%= @report.str_industry_type %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">上場の有無</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.private_or_listed_company.blank? %>
-                      <span class="result-text"><%= @report.str_private_or_listed_company %></span>
+                    <% if @report.private_or_listed_company_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.private_or_listed_company.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="result-text"><%= @report.str_private_or_listed_company %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">日系 or 外資</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.domestic_or_foreign_capital.blank? %>
-                      <span class="result-text"><%= @report.str_domestic_or_foreign_capital %></span>
+                    <% if @report.domestic_or_foreign_capital_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.domestic_or_foreign_capital.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="result-text"><%= @report.str_domestic_or_foreign_capital %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">資本金規模</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.capital_size.blank? %>
-                      <span class="result-text"><%= @report.str_capital_size %></span>
+                    <% if @report.capital_size_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.capital_size.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="result-text"><%= @report.str_capital_size %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">部署</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.department.blank? %>
-                      <span class="result-text"><%= @report.str_department %></span>
+                    <% if @report.department_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.department.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="result-text"><%= @report.str_department %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">役職</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.position.blank? %>
-                      <span class="result-text"><%= @report.str_position %></span>
+                    <% if @report.position_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.position.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="result-text"><%= @report.str_position %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">従業員数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.number_of_employees.blank? %>
-                      <span class="result-text"><%= @report.str_number_of_employees %></span>
+                    <% if @report.number_of_employees_status == "hide" %>
+                      <span class="small text-muted"><%= "非公開" %></span>
+                    <% elsif @report.number_of_employees.blank? %>
+                      <span class="small text-muted"><%= "未回答" %></span>
                     <% else %>
-                      <span class="text-muted small">未回答</span>
+                      <span class="result-text"><%= @report.str_number_of_employees %></span>
                     <% end %>
                   </td>
                 </tr>

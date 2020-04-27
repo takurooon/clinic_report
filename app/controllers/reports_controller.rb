@@ -255,6 +255,18 @@ class ReportsController < ApplicationController
       @report.status = "released"
     end
 
+    # ssm_name = params[:ssm_name].split(",")
+    # ssm_list = molding(ssm_name)
+    # ssm_ids = params[:report][:s_selection_method_ids]
+    # ssm_ids.each do |ssm_id|
+    #   if ssm_id.blank?
+    #     next
+    #   end
+    #   ssm = SSelectionMethod.find(ssm_id)
+    #   ssm_list << ssm.name
+    # end
+    # ssm_list = ssm_list.uniq
+
     # i_name = params[:i_name].split(",")
     # i_list = molding(i_name)
     # i_ids = params[:report][:inspection_ids]
@@ -526,6 +538,18 @@ class ReportsController < ApplicationController
       @report.status = "released"
     end
 
+    # ssm_name = params[:ssm_name].split(",")
+    # ssm_list = molding(ssm_name)
+    # ssm_ids = params[:report][:s_selection_method_ids]
+    # ssm_ids.each do |ssm_id|
+    #   if ssm_id.blank?
+    #     next
+    #   end
+    #   ssm = SSelectionMethod.find(ssm_id)
+    #   ssm_list << ssm.name
+    # end
+    # ssm_list = ssm_list.uniq
+
     # i_name = params[:i_name].split(",")
     # i_list = molding(i_name)
     # i_ids = params[:report][:inspection_ids]
@@ -784,6 +808,7 @@ class ReportsController < ApplicationController
     #     :year_of_treatment_end,
     #     :fertility_treatment_number,
     #     :types_of_fertilization_methods,
+    #     :details_of_icsi,
     #     :transplant_method,
     #     :treatment_start_age,
     #     :first_age_to_start,
@@ -832,8 +857,11 @@ class ReportsController < ApplicationController
     #     :fuiku,
     #     :fuiku_supplementary_explanation,
     #     :pgt1,
+    #     :pgt1_status,
     #     :pgt2,
+    #     :pgt2_status,
     #     :pgt_supplementary_explanation,
+    #     :pgt_supplementary_explanation_status,
     #     :total_number_of_transplants,
     #     :total_number_of_eggs_transplanted,
     #     :all_number_of_transplants,
@@ -860,13 +888,21 @@ class ReportsController < ApplicationController
     #     :online_consultation_details,
     #     :period_of_time_spent_traveling,
     #     :work_style,
+    #     :work_style_status,
     #     :industry_type,
+    #     :industry_type_status,
     #     :private_or_listed_company,
+    #     :private_or_listed_company_status,
     #     :domestic_or_foreign_capital,
+    #     :domestic_or_foreign_capital_status,
     #     :capital_size,
+    #     :capital_size_status,
     #     :department,
+    #     :department_status,
     #     :position,
+    #     :position_status,
     #     :number_of_employees,
+    #     :number_of_employees_status,
     #     :treatment_support_system,
     #     :suspended_or_retirement_job,
     #     :annual_income,
@@ -883,6 +919,7 @@ class ReportsController < ApplicationController
     #     :impression_of_technology,
     #     :comfort_of_space,
     #     :status,
+    #     s_selection_method_ids: [],
     #     inspection_ids: [],
     #     f_infertility_factor_ids: [],
     #     m_infertility_factor_ids: [],
@@ -923,6 +960,7 @@ class ReportsController < ApplicationController
         :year_of_treatment_end,
         :fertility_treatment_number,
         :types_of_fertilization_methods,
+        :details_of_icsi,
         :transplant_method,
         :treatment_start_age,
         :first_age_to_start,
@@ -971,8 +1009,11 @@ class ReportsController < ApplicationController
         :fuiku,
         :fuiku_supplementary_explanation,
         :pgt1,
+        :pgt1_status,
         :pgt2,
+        :pgt2_status,
         :pgt_supplementary_explanation,
+        :pgt_supplementary_explanation_status,
         :total_number_of_transplants,
         :total_number_of_eggs_transplanted,
         :all_number_of_transplants,
@@ -999,13 +1040,21 @@ class ReportsController < ApplicationController
         :online_consultation_details,
         :period_of_time_spent_traveling,
         :work_style,
+        :work_style_status,
         :industry_type,
+        :industry_type_status,
         :private_or_listed_company,
+        :private_or_listed_company_status,
         :domestic_or_foreign_capital,
+        :domestic_or_foreign_capital_status,
         :capital_size,
+        :capital_size_status,
         :department,
+        :department_status,
         :position,
+        :position_status,
         :number_of_employees,
+        :number_of_employees_status,
         :treatment_support_system,
         :suspended_or_retirement_job,
         :annual_income,
@@ -1022,6 +1071,7 @@ class ReportsController < ApplicationController
         :impression_of_technology,
         :comfort_of_space,
         :status,
+        s_selection_method_ids: [],
         inspection_ids: [],
         f_infertility_factor_ids: [],
         m_infertility_factor_ids: [],
