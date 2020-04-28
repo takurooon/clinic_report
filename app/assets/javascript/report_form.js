@@ -133,20 +133,51 @@ function calc(){
 // 胚のステージへの移植方法表示(凍結or新鮮胚移植)
 $(function() {
   $('#report_transplant_method').change(function() {
-    var discription1 = "(移植方法は「";
-    var discription2 = "」が選択されています)";
+    var discription1 = "移植方法は「";
+    var discription2 = "」が選択されています。";
+    var discription3 = "以降の項目(採卵/移植周期のホルモン値・グレード等)は、「初期胚」か「胚盤胞」のどちらか一方の胚の情報についてのみ選択&入力して下さい。";
+    var discription4 = "以降の項目(採卵/移植周期のホルモン値・グレード等)は、2個の胚のうちどちらか一方の胚の情報についてのみ選択&入力して下さい。";
     var val = $(this).val();
     if (val == "1") {
-      var val = "凍結胚移植";
+      var val = "凍結胚移植(1個戻し)";
+      $(".stage-alert-none").show();
+      $(".stage-alert").hide();
       $('.transplant_method').text(val);
       $('.transplant_method_dis1').text(discription1);
       $('.transplant_method_dis2').text(discription2);
     } else if (val == "2") {
-      var val = "新鮮胚移植";
+      var val = "新鮮胚移植(2個戻し)";
+      $(".stage-alert-none").show();
+      $(".stage-alert").hide();
       $('.transplant_method').text(val);
       $('.transplant_method_dis1').text(discription1);
       $('.transplant_method_dis2').text(discription2);
+    } else if (val == "3") {
+      var val = "シート(SEET)法";
+      $(".stage-alert-none").show();
+      $(".stage-alert").hide();
+      $('.transplant_method').text(val);
+      $('.transplant_method_dis1').text(discription1);
+      $('.transplant_method_dis2').text(discription2);
+    } else if (val == "4") {
+      var val = "2段階移植(初期胚&胚盤胞)";
+      $(".stage-alert-none").hide();
+      $(".stage-alert").show();
+      $('.transplant_method2').text(val);
+      $('.transplant_method_dis3').text(discription1);
+      $('.transplant_method_dis4').text(discription2);
+      $('.transplant_method_dis5').text(discription3);
+    } else if (val == "5") {
+      var val = "凍結胚移植(2個戻し)";
+      $(".stage-alert-none").hide();
+      $(".stage-alert").show();
+      $('.transplant_method2').text(val);
+      $('.transplant_method_dis3').text(discription1);
+      $('.transplant_method_dis4').text(discription2);
+      $('.transplant_method_dis5').text(discription4);
     } else {
+      $(".stage-alert-none").hide();
+      $(".stage-alert").hide();
     }
   });
 });
