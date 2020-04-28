@@ -2747,6 +2747,7 @@ class Report < ApplicationRecord
 
   # number_of_eggs_storedの区分値(凍結胚の在庫数/CL単位)
   HASH_NUMBER_OF_EGGS_STORED = {
+    0 => "0個",
     1 => "1個",
     2 => "2個",
     3 => "3個",
