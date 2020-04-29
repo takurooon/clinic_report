@@ -456,6 +456,7 @@ class ReportsController < ApplicationController
         format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
         format.json { render :show, status: :created, location: @report }
       else
+        @report = Report.new(report_params)
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
@@ -765,6 +766,7 @@ class ReportsController < ApplicationController
         format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
         format.json { render :show, status: :created, location: @report }
       else
+        @report.attributes(report_params)
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end

@@ -27,10 +27,10 @@ class Report < ApplicationRecord
 
   # バリデーション
   validates :title, length: { maximum: 64 }
-  validate :validate_treatment_age
-  validate :validate_all_treatment_age
-  validate :validate_all_number_of_sairan
-  validate :validate_all_number_of_transplants
+  # validate :validate_treatment_age
+  # validate :validate_all_treatment_age
+  # validate :validate_all_number_of_sairan
+  # validate :validate_all_number_of_transplants
   validate :validate_content_length
   validate :validate_content_attachment_byte_size
   validate :validate_content_attachments_count
@@ -42,49 +42,49 @@ class Report < ApplicationRecord
   MAX_CONTENT_ATTACHMENT_BYTE_SIZE = MEGA_BYTES * 1_000 * ONE_KILOBYTE
   MAX_CONTENT_ATTACHMENTS_COUNT = 4
 
-  def validate_treatment_age
-    return "" if self.treatment_start_age.nil?
-    return "" if self.treatment_end_age.nil?
-    if treatment_start_age > treatment_end_age
-      errors.add(
-        :base,
-        :treatment_end_age_is_earlier_than_treatment_start_age
-      )
-    end
-  end
+  # def validate_treatment_age
+  #   return "" if self.treatment_start_age.nil?
+  #   return "" if self.treatment_end_age.nil?
+  #   if treatment_start_age > treatment_end_age
+  #     errors.add(
+  #       :base,
+  #       :treatment_end_age_is_earlier_than_treatment_start_age
+  #     )
+  #   end
+  # end
 
-  def validate_all_treatment_age
-    return "" if self.first_age_to_start.nil?
-    return "" if self.treatment_start_age.nil?
-    if first_age_to_start > treatment_start_age
-      errors.add(
-        :base,
-        :cl_treatment_start_age_is_earlier_than_first_start_age
-      )
-    end
-  end
+  # def validate_all_treatment_age
+  #   return "" if self.first_age_to_start.nil?
+  #   return "" if self.treatment_start_age.nil?
+  #   if first_age_to_start > treatment_start_age
+  #     errors.add(
+  #       :base,
+  #       :cl_treatment_start_age_is_earlier_than_first_start_age
+  #     )
+  #   end
+  # end
 
-  def validate_all_number_of_sairan
-    return "" if self.total_number_of_sairan.nil?
-    return "" if self.all_number_of_sairan.nil?
-    if total_number_of_sairan > all_number_of_sairan
-      errors.add(
-        :base,
-        :the_number_of_sairan_at_this_clinic_exceeds_the_cumulative_total
-      )
-    end
-  end
+  # def validate_all_number_of_sairan
+  #   return "" if self.total_number_of_sairan.nil?
+  #   return "" if self.all_number_of_sairan.nil?
+  #   if total_number_of_sairan > all_number_of_sairan
+  #     errors.add(
+  #       :base,
+  #       :the_number_of_sairan_at_this_clinic_exceeds_the_cumulative_total
+  #     )
+  #   end
+  # end
 
-  def validate_all_number_of_transplants
-    return "" if self.total_number_of_transplants.nil?
-    return "" if self.all_number_of_transplants.nil?
-    if total_number_of_transplants > all_number_of_transplants
-      errors.add(
-        :base,
-        :number_of_transplants_at_this_clinic_exceeds_cumulative_total
-      )
-    end
-  end
+  # def validate_all_number_of_transplants
+  #   return "" if self.total_number_of_transplants.nil?
+  #   return "" if self.all_number_of_transplants.nil?
+  #   if total_number_of_transplants > all_number_of_transplants
+  #     errors.add(
+  #       :base,
+  #       :number_of_transplants_at_this_clinic_exceeds_cumulative_total
+  #     )
+  #   end
+  # end
 
   def validate_content_length
     length = content.to_plain_text.length
