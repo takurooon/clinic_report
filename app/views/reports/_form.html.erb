@@ -600,17 +600,17 @@
       <div class="form-group">
         <div class="label p-1 mb-3">
           <%= f.label :embryo_stage, '妊娠に至った胚のステージ', class: "question-matters mb-0" %><br>
-            <div class="stage-alert-none">
-              <span class="transplant_method_dis1 small text-muted"></span>
-              <span class="transplant_method small text-danger"></span>
-              <span class="transplant_method_dis2 small text-muted"></span>
-            </div>
-            <div class="alert alert-info stage-alert" role="alert">
-              <span class="transplant_method_dis3 small text-muted"></span>
-              <span class="transplant_method2 small text-danger"></span>
-              <span class="transplant_method_dis4 small text-muted"></span>
-              <span class="transplant_method_dis5 small text-muted"></span>
-            </div>
+          <div class="stage-alert-none">
+            <span class="transplant_method_dis1 small text-muted"></span>
+            <span class="transplant_method small text-danger"></span>
+            <span class="transplant_method_dis2 small text-muted"></span>
+          </div>
+          <div class="alert alert-info stage-alert" role="alert">
+            <span class="transplant_method_dis3 small text-muted"></span>
+            <span class="transplant_method2 small text-danger"></span>
+            <span class="transplant_method_dis4 small text-muted"></span>
+            <span class="transplant_method_dis5 small text-muted"></span>
+          </div>
         </div>
         <%= f.select :embryo_stage, Report::HASH_EMBRYO_STAGE.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
       </div>

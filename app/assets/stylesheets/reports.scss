@@ -588,7 +588,7 @@
 
 // 一覧画面の記事「続きを読む」
 .lead-content {
-	background-color: rgba(147,224,224,0.4);
+	background-color: rgb(196,244,244);
 	border-radius: 5px;
 }
 
@@ -835,15 +835,6 @@
 	}
 // }
 
-// フラッシュ
-.flash-bar {
-	padding-top: 1.7em;
-}
-.flash-bar p {
-	margin: 0;
-	padding-bottom: .1em;
-}
-
 // 未ログインでのshow画面のコメント欄(ブラー)
 .comment-blur {
 	width: 100%;
@@ -859,6 +850,11 @@
 .child-tab-title {
 	padding: .5em 0 1em;
 	text-align: center;
+}
+
+// マーカー風アンダーライン
+.marker-underline {
+	background:linear-gradient(transparent 60%, #C4F4F4 0%);
 }
 
 // showのグラフエリア
@@ -918,12 +914,7 @@
     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);/*浮き上がるように*/
 }
 
-
-
-
-
 // 参考:https://incloop.com/%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%AE%E7%94%BB%E9%9D%A2%E3%81%AE%E5%9B%BA%E5%AE%9A%E4%BD%8D%E7%BD%AE%E3%81%AB%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%82%92%E5%B8%B8%E3%81%AB%E8%A1%A8%E7%A4%BA/
-
 /*767以下で適用*/
 @media screen and (max-width:767px){
 .report-post-btn-area {

@@ -153,7 +153,7 @@
                     <tr>
                       <td class="result-left-column small" style="width:30%">採卵あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                       <td class="pl-3" style="width:70%">
-                        <% if @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 %>
+                        <% if @report.current_state == 1 || @report.current_state == 3 %>
                           <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
                             <% number_of_eggs_stored = @report.number_of_eggs_stored %>
                             <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
@@ -168,6 +168,42 @@
                               <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
                             <% else %>
                               <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                            <% end %>
+                          <% end %>
+                        <% elsif @report.current_state == 2 || @report.current_state == 4 %>
+                          <% if @report.transplant_method == 3 || @report.transplant_method == 4 %>
+                            <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
+                              <% number_of_eggs_stored = @report.number_of_eggs_stored %>
+                              <% ninshinritsu_sairan = ( 2 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
+                                <% if ninshinritsu_sairan <= 100.00 %>
+                                  <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
+                                <% else %>
+                                  <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                                <% end %>
+                            <% else %>
+                              <% ninshinritsu_sairan = ( 2 / @report.number_of_eggs_collected.to_f) * 100 %>
+                              <% if ninshinritsu_sairan <= 100.00 %>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+                              <% else %>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                              <% end %>
+                            <% end %>
+                          <% else %>
+                            <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
+                              <% number_of_eggs_stored = @report.number_of_eggs_stored %>
+                              <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
+                                <% if ninshinritsu_sairan <= 100.00 %>
+                                  <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
+                                <% else %>
+                                  <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                                <% end %>
+                            <% else %>
+                              <% ninshinritsu_sairan = ( 1 / @report.number_of_eggs_collected.to_f) * 100 %>
+                              <% if ninshinritsu_sairan <= 100.00 %>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+                              <% else %>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                              <% end %>
                             <% end %>
                           <% end %>
                         <% else %>
@@ -195,27 +231,27 @@
                       <td class="pl-3" style="width:70%">
                         <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted <= 50 %>
                           <% if @report.current_state == 2 || @report.current_state == 4 %>
-                            <% if @report.transplant_method == 4 || @report.transplant_method == 5 %>
+                            <% if @report.transplant_method == 3 || @report.transplant_method == 4 %>
                               <% ninshinritsu_ishoku_kaisu = ( 2 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
                               <% if ninshinritsu_ishoku_kaisu < 100.00 %>
-                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %></span></small></span>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
                               <% else %>
-                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %></span></span>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
                               <% end %>
                             <% else %>
                               <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
                               <% if ninshinritsu_ishoku_kaisu < 100.00 %>
-                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %></span></small></span>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
                               <% else %>
-                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %></span></span>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
                               <% end %>
                             <% end %>
                           <% elsif @report.current_state == 1 || @report.current_state == 3 %>
                             <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
                             <% if ninshinritsu_ishoku_kaisu <= 100.00 %>
-                              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %></span></small></span>
+                              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
                             <% else %>
-                              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %></span></span>
+                              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
                             <% end %>
                           <% else %>
                           <% end %>
@@ -383,8 +419,8 @@
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.online_consultation_details.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.online_consultation_details %></span>
+                      <% unless @report.description_of_eggs_and_sperm_used.blank? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.description_of_eggs_and_sperm_used.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -409,7 +445,7 @@
                     <p><%= safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)) %></p>
                   </div>
                 <% end %>
-                <h6 class="child-tab-title">採卵</h6>
+                <h5 class="child-tab-title"><span class="marker-underline">採卵</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small" style="width:30%">誘発タイプ</td>
@@ -430,7 +466,7 @@
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% unless @report.notes_on_type_of_sairan_cycle.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.notes_on_type_of_sairan_cycle.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.notes_on_type_of_sairan_cycle.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -574,7 +610,7 @@
                   </div>
                   <canvas id="sairanE2P4"></canvas>
                 </div>
-                <h6 class="child-tab-title">受精･培養･精液検査</h6>
+                <h5 class="child-tab-title"><span class="marker-underline">受精･培養･精液検査</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small" style="width:30%">受精個数</td>
@@ -684,7 +720,7 @@
                           <span class="text-muted small">未回答</span>
                         <% end %><br><br>
                         <% unless @report.early_embryo_grade_supplementary_explanation.blank? %>
-                          <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.early_embryo_grade_supplementary_explanation %></span>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.early_embryo_grade_supplementary_explanation.split("\n"),tag(:br)) %></span>
                         <% end %>
                       </td>
                     </tr>
@@ -698,7 +734,7 @@
                           <span class="text-muted small">未回答</span>
                         <% end %><br><br>
                         <% unless @report.blastocyst_grade1_supplementary_explanation.blank? %>
-                          <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.blastocyst_grade1_supplementary_explanation %></span>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.blastocyst_grade1_supplementary_explanation.split("\n"),tag(:br)) %></span>
                         <% end %>
                       </td>
                     </tr>
@@ -711,7 +747,7 @@
                           <span class="text-muted small">未回答</span>
                         <% end %><br><br>
                         <% unless @report.blastocyst_grade2_supplementary_explanation.blank? %>
-                          <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.blastocyst_grade2_supplementary_explanation %></span>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.blastocyst_grade2_supplementary_explanation.split("\n"),tag(:br)) %></span>
                         <% end %>
                       </td>
                     </tr>
@@ -814,10 +850,12 @@
                     <% end %>
                   <% else %>
                   <% end %>
-                  <% if @report.transplant_method == 1 || 2 %>
+                  <% if @report.transplant_method < 5 %>
                     <%= @report.str_transplant_method %>
+                  <% else %>
+                    移植
                   <% end %>
-                    移植 / 着床前スクリーニング
+                    &nbsp;&&nbsp;&nbsp;着床前スクリーニング
                 </h4>
                 <% unless @report.explanation_and_impression_about_ishoku.blank? %>
                   <div class="box27">
@@ -825,7 +863,7 @@
                     <p><%= safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)) %></p>
                   </div>
                 <% end %>
-                <h6 class="child-tab-title">移植</h6>
+                <h5 class="child-tab-title"><span class="marker-underline">移植</span></h5>
                 <table class="table table-hover p-0">
                   <% if @report.inspections || @report.special_inspection_supplementary_explanation %>
                     <tr>
@@ -839,7 +877,7 @@
                           <span class="text-muted small">未回答</span>
                         <% end %><br><br>
                         <% unless @report.special_inspection_supplementary_explanation.blank? %>
-                          <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)) %></span>
                         <% end %>
                       </td>
                     </tr>
@@ -1059,7 +1097,7 @@
                   </div>
                   <canvas id="ishokuhcg"></canvas>
                 </div>
-                <h6 class="child-tab-title">着床前スクリーニング</h6>
+                <h5 class="child-tab-title"><span class="marker-underline">着床前スクリーニング</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
@@ -1142,7 +1180,7 @@
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% unless @report.supplementary_explanation_of_grant.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.supplementary_explanation_of_grant.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.supplementary_explanation_of_grant.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -1155,7 +1193,7 @@
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% unless @report.explanation_of_frozen_embryo_storage_cost.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.explanation_of_frozen_embryo_storage_cost.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.explanation_of_frozen_embryo_storage_cost.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -1163,7 +1201,7 @@
                     <tr>
                       <td class="result-left-column small">メモ</td>
                       <td class="pl-3">
-                        <span class="result-text"><%= safe_join(@report.explanation_of_cost.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.explanation_of_cost.split("\n"),tag(:br)) %></span>
                       </td>
                     </tr>
                   <% end %>
@@ -1184,7 +1222,7 @@
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% unless @report.supplement_supplementary_explanation.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -1209,7 +1247,7 @@
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% unless @report.other_effort_supplementary_explanation.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -1355,7 +1393,7 @@
                     <% unless @report.fuiku_supplementary_explanation.blank? %>
                       <td class="result-left-column small">習慣流産や不育症について</td>
                       <td class="pl-3">
-                        <span class="result-text"><%= safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)) %></span>
                       </td>
                     <% end %>
                   </tr>
@@ -1426,7 +1464,7 @@
                     <td class="pl-3">
                       <% unless @report.clinic_selection_criteria.blank? || @report.reasons_for_choosing_this_clinic.blank? %>
                         <span class="result-text"><%= @report.str_clinic_selection_criteria %></span><br>
-                        <span class="result-text"><%= safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)) %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %>
@@ -1582,7 +1620,7 @@
                     <tr>
                       <td class="result-left-column small">メモ</td>
                       <td class="pl-3">
-                        <span class="result-text"><%= safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)) %></span>
                       </td>
                     </tr>
                   <% end %>
@@ -1678,7 +1716,7 @@
                     <tr>
                       <td class="result-left-column small">メモ</td>
                       <td class="pl-3">
-                        <span class="result-text"><%= safe_join(@report.about_causes_of_infertility.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.about_causes_of_infertility.split("\n"),tag(:br)) %></span>
                       </td>
                     </tr>
                   <% end %>
@@ -1760,12 +1798,12 @@
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% unless @report.online_consultation_details.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.online_consultation_details %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.online_consultation_details.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">クレジットカードの使用可否</td>
+                    <td class="result-left-column small">クレジットカードの利用</td>
                     <td class="pl-3">
                       <% unless @report.credit_card_validity.blank? %>
                         <span class="result-text"><%= @report.str_credit_card_validity %></span>
@@ -1774,7 +1812,7 @@
                       <% end %><br><br>
                       <% if @report.credit_card_validity == 3 %>
                         <% unless @report.creditcards_can_be_used_from_more_than.blank? %>
-                          <span class="result-text"><span class="text-muted small">(クレジットカード使用は)</span><br><%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から</span>
+                          <span class="result-text"><span class="text-muted small">(クレジットカードの利用は)</span><br><%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から</span>
                         <% else %>
                           <span class="text-muted small">未回答</span>
                         <% end %>
@@ -1783,11 +1821,14 @@
                   </tr>
                 </table>
                 <div class="box27 mt-5">
-                  <span class="box-title">クリニックの評価</span>
+                  <span class="box-title">クリニックの満足度</span>
                   <div class="row">
                     <div class="d-none d-sm-block col-md-4">
                       <div class="box16">
                         <table class="clinic-scoring">
+                          <tr>
+                            <td colspan="2" class="text-muted small"><small>※&nbsp;<%= @report.user.name %>さんによる満足度評価</small></td>
+                          </tr>
                           <tr>
                             <td class="text-right small text-muted">
                               医師&nbsp;:
@@ -1868,7 +1909,7 @@
                     </div>
                     <% unless @report.clinic_review.blank? %>
                       <div class="p-3">
-                        <i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;感想<br>
+                        <i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;感想<br>
                         <div class="small pt-3"><%= safe_join(@report.clinic_review.split("\n"),tag(:br)) %></div>
                       </div>
                     <% end %>
@@ -1963,7 +2004,7 @@
                   <td class="pl-4 result-right-column">
                     <% unless @report.clinic_selection_criteria.blank? || @report.reasons_for_choosing_this_clinic.blank? %>
                       <span class="result-text"><%= @report.str_clinic_selection_criteria %></span><br>
-                      <span class="result-text"><%= safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)) %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
                     <% end %>
@@ -1995,8 +2036,8 @@
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.online_consultation_details.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.online_consultation_details %></span>
+                      <% unless @report.description_of_eggs_and_sperm_used.blank? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.description_of_eggs_and_sperm_used.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -2128,7 +2169,7 @@
                   <% unless @report.fuiku_supplementary_explanation.blank? %>
                     <td class="result-left-column small">習慣流産や不育症について</td>
                     <td class="pl-3">
-                      <span class="result-text"><%= safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)) %></span>
                     </td>
                   <% end %>
                 </tr>
@@ -2248,7 +2289,7 @@
                   <tr>
                     <td class="result-left-column small">不妊原因/疾患/手術などについて</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text"><%= safe_join(@report.about_causes_of_infertility.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.about_causes_of_infertility.split("\n"),tag(:br)) %></span>
                     </td>
                   </tr>
                 <% end %>
@@ -2271,7 +2312,7 @@
                       <span class="text-muted small">未回答</span>
                     <% end %><br><br>
                     <% unless @report.notes_on_type_of_sairan_cycle.blank? %>
-                      <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.notes_on_type_of_sairan_cycle.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.notes_on_type_of_sairan_cycle.split("\n"),tag(:br)) %></span>
                     <% end %>
                   </td>
                 </tr>
@@ -2541,7 +2582,7 @@
                   <% unless @report.explanation_and_impression_about_sairan.blank? %>
                     <td class="result-left-column small">採卵メモ</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text"><%= safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)) %></span>
                     </td>
                   <% end %>
                 </tr>
@@ -2595,7 +2636,7 @@
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% unless @report.early_embryo_grade_supplementary_explanation.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.early_embryo_grade_supplementary_explanation %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.early_embryo_grade_supplementary_explanation.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -2609,7 +2650,7 @@
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% unless @report.blastocyst_grade1_supplementary_explanation.blank? %>
-                        <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.blastocyst_grade1_supplementary_explanation %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.blastocyst_grade1_supplementary_explanation.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -2622,7 +2663,7 @@
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% unless @report.blastocyst_grade2_supplementary_explanation.blank? %>
-                          <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.blastocyst_grade2_supplementary_explanation %></span>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.blastocyst_grade2_supplementary_explanation.split("\n"),tag(:br)) %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -2875,7 +2916,7 @@
                       <span class="text-muted small">未回答<br></span>
                     <% end %><br>
                     <% unless @report.explanation_of_frozen_embryo_storage_cost.blank? %>
-                      <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.explanation_of_frozen_embryo_storage_cost.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.explanation_of_frozen_embryo_storage_cost.split("\n"),tag(:br)) %></span>
                     <% end %>
                   </td>
                 </tr>
@@ -2890,7 +2931,7 @@
                       <span class="text-muted small">未回答</span>
                     <% end %><br>
                     <% unless @report.special_inspection_supplementary_explanation.blank? %>
-                      <span class="result-text">&nbsp;<%= safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)) %></span>
                     <% end %>
                   </td>
                 </tr>
@@ -2898,7 +2939,7 @@
                   <% unless @report.explanation_and_impression_about_ishoku.blank? %>
                     <td class="result-left-column small">移植メモ</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text"><%= safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)) %></span>
                     </td>
                   <% end %>
                 </tr>
@@ -2913,7 +2954,7 @@
                       <span class="text-muted small">未回答<br></span>
                     <% end %><br>
                     <% unless @report.other_effort_supplementary_explanation.blank? %>
-                      <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)) %></span>
                     <% end %>
                   </td>
                 </tr>
@@ -2938,7 +2979,7 @@
                       <span class="text-muted small">未回答<br></span>
                     <% end %><br>
                     <% unless @report.supplement_supplementary_explanation.blank? %>
-                      <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)) %></span>
                     <% end %>
                   </td>
                 </tr>
@@ -2961,7 +3002,7 @@
                       <span class="text-muted small">未回答<br></span>
                     <% end %><br>
                     <% unless @report.online_consultation_details.blank? %>
-                      <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= @report.online_consultation_details %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.online_consultation_details.split("\n"),tag(:br)) %></span>
                     <% end %>
                   </td>
                 </tr>
@@ -2989,7 +3030,7 @@
                   <% unless @report.explanation_of_cost.blank? %>
                     <td class="result-left-column small">費用メモ</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text"><%= safe_join(@report.explanation_of_cost.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.explanation_of_cost.split("\n"),tag(:br)) %></span>
                     </td>
                   <% end %>
                 </tr>
@@ -3012,12 +3053,12 @@
                       <span class="text-muted small">未回答</span>
                     <% end %><br><br>
                     <% unless @report.supplementary_explanation_of_grant.blank? %>
-                      <span class="result-text"><i class="fas fa-pencil-alt pen-icon"></i>&nbsp;&nbsp;<%= safe_join(@report.supplementary_explanation_of_grant.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.supplementary_explanation_of_grant.split("\n"),tag(:br)) %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">クレジットカードの使用可否</td>
+                  <td class="result-left-column small">クレジットカードの利用</td>
                   <td class="pl-4 result-right-column">
                     <% unless @report.credit_card_validity.blank? %>
                       <span class="result-text"><%= @report.str_credit_card_validity %></span>
@@ -3026,7 +3067,7 @@
                     <% end %><br><br>
                     <% if @report.credit_card_validity == 3 %>
                       <% unless @report.creditcards_can_be_used_from_more_than.blank? %>
-                        <span class="result-text"><span class="text-muted small">(クレジットカード使用は)</span><br><%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から</span>
+                        <span class="result-text"><span class="text-muted small">(クレジットカードの利用は)</span><br><%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から</span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %>
@@ -3207,7 +3248,7 @@
                   <% unless @report.about_work_and_working_style.blank? %>
                     <td class="result-left-column small">仕事についてのメモ</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text"><%= safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)) %></span>
                     </td>
                   <% end %>
                 </tr>
@@ -3256,10 +3297,8 @@
               <%= render partial: 'comments/form', locals: { comment: @comment } %>
             <% else %>
             <div class="comment-blur">
-              ソースコードからこのコメントを読みに来たあなた。さすがです。こんにちは。<br><br>
-              Repocoは素人が0からプログラミングを勉強しながら作り上げたwebサービスです。<br><br>
-              情報取得が難しい不妊治療の現状を少しでも改善したいとの思いから作りました。<br>
-              もっともっと良いサービスにしていくため、このサービスを一緒に成長させてくれる方(特にエンジニアの方)を絶賛大募集中です。<br><br>
+              Repocoは、情報取得が難しい不妊治療の現状を少しでも改善したいとの思いから、0からプログラミングを勉強して作ったwebサービスです。<br>
+              もっともっと良いサービスにしていくため、このサービスを一緒に成長させてくれる方(特にエンジニアの方)を絶賛大募集中です。
               まずは、お気軽にお問い合わせください！
             </div>
             <div class="card text-center mb-5 commnet-blur-text">
@@ -3277,5 +3316,6 @@
     <div class="col-lg-3 side-column d-none d-lg-block">
       <%= render 'right' %>
     </div>
+    <%= render 'layouts/sns_bar' %>
   </div>
 </div>

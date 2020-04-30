@@ -210,11 +210,9 @@ TransferMedicine.create([
 
 TransferOption.create([
   { name: "特になし" },
-  { name: "二個移植" },
-  { name: "二段階移植" },
+  { name: "シート法(SEET)" },
   { name: "エンブリオグルー" },
   { name: "AHA(アシステッドハッチング)" },
-  { name: "シート法(SEET)" },
   { name: "スクラッチング法" },
 ])
 

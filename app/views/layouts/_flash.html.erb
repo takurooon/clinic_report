@@ -1,21 +1,23 @@
 <script>
   $(function() {
-    setTimeout("$('.flash-bar').fadeOut('slow')", 2000);
+    setTimeout("$('.flash_message').fadeOut('slow')", 2000);
   });
 </script>
 
-<div class="flash-bar text-center">
-  <% if alert %>
-    <div class="alert alert-danger" role="alert">
-      <p class="alert alert-error"><%= alert %></p>
-    </div>
-  <% end %>
+<div class="flash_area">
+  <div class="flash_bar">
+    <% if alert %>
+      <div class="flash_message alert alert-danger text-center">
+        <%= alert %>
+      </div>
+    <% end %>
+    <% if notice %>
+      <div class="flash_message alert alert-success text-center">
+        <%= notice %>
+      </div>
+    <% end %>
+  </div>
 </div>
-<div class="flash-bar text-center">
-  <% if notice %>
-    <div class="alert alert-success" role="alert">
-      <p class="alert alert-success"><%= notice %></p>
-    </div>
-  <% end %>
-</div>
-</div>
+
+
+

@@ -249,3 +249,37 @@ h2{
 .terms-h h3 {
   text-align: center;
 }
+
+
+// フラッシュエリアのスタイル
+.flash_area {
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 10000;
+}
+.flash_area .flash_bar {
+    position: relative;
+    width: 100%;
+}
+
+// 画面下のSNSボタン
+@media screen and (min-width:768px){
+	.sns_area {
+    display: none;
+  }
+}
+@media screen and (max-width:767px){
+  .sns_area {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 10000;
+  }
+  .sns_area .sns_bar {
+    position: relative;
+    width: 35%;
+  }
+}
