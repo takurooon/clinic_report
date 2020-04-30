@@ -91,17 +91,72 @@
                 <div class="spacer my-0 py-0" style="height:3px;"></div>
                 <div class="box27">
                   <span class="box-title">情報</span>
-                    <p class="pt-3 pb-4 small text-muted">※以下情報は&nbsp;<b><u><%= @report.str_current_state %></u></b>&nbsp;という現ステータスに至った周期の情報です。</p>
+                    <% if @report.str_current_state.present? %>
+                      <p class="pt-3 pb-4 small text-muted">※&nbsp;現ステータス:&nbsp;<b><u><%= @report.str_current_state %></u></b>&nbsp;に至った周期の以下情報をもとに分析しています。</p>
+                    <% else %>
+                      <div class="py-2"></div>
+                    <% end %>
                     <ul class="list-unstyled">
-                      <li><span class="text-muted small">　　　現状</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_current_state %></span></li>
-                      <li><span class="text-muted small">　移植方法</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_transplant_method %></span></li>
-                      <li><span class="text-muted small">　採卵個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_eggs_collected %></span></li>
-                      <li><span class="text-muted small">　受精個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_fertilized_eggs %></span></li>
-                      <li><span class="text-muted small">移植可能数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_transferable_embryos %></span></li>
-                      <li><span class="text-muted small">　移植回数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_total_number_of_transplants %></span></li>
-                      <li><span class="text-muted small">　移植個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_total_number_of_eggs_transplanted %></span></li>
-                      <li><span class="text-muted small">　貯卵個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_eggs_stored %></span></li>
-                    </li>
+                      <li>
+                        <% if @report.current_state.present? %>
+                          <span class="text-muted small">　　　現状</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_current_state %></span>
+                        <% else %>
+                          <span class="text-muted small">　　　現状</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.transplant_method.present? %>
+                          <span class="text-muted small">　移植方法</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_transplant_method %></span>
+                        <% else %>
+                          <span class="text-muted small">　移植方法</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.number_of_eggs_collected.present? %>
+                          <span class="text-muted small">　採卵個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_eggs_collected %></span>
+                        <% else %>
+                          <span class="text-muted small">　採卵個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.number_of_fertilized_eggs.present? %>
+                          <span class="text-muted small">　受精個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_fertilized_eggs %></span>
+                        <% else %>
+                          <span class="text-muted small">　受精個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.number_of_transferable_embryos.present? %>
+                          <span class="text-muted small">移植可能数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_transferable_embryos %></span>
+                        <% else %>
+                          <span class="text-muted small">移植可能数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.total_number_of_transplants.present? %>
+                          <span class="text-muted small">　移植回数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_total_number_of_transplants %></span>
+                        <% else %>
+                          <span class="text-muted small">　移植回数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.total_number_of_transplants.present? %>
+                          <span class="text-muted small">　移植個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_total_number_of_eggs_transplanted %></span>
+                        <% else %>
+                          <span class="text-muted small">　移植個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.number_of_eggs_stored.present? %>
+                          <span class="text-muted small">　貯卵個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_eggs_stored %></span>
+                        <% else %>
+                          <span class="text-muted small">　貯卵個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                    </ui>
+                </div>
+                <div>
+                  <p class="small text-muted pt-4"><small>以下は上記情報をもとに算出した結果です。</small></p>
                 </div>
                 <table class="table table-hover p-0">
                   <tr>
@@ -149,7 +204,7 @@
                       <% end %>
                     </td>
                   </tr>
-                  <% if @report.current_state < 5 %>
+                  <% if @report.current_state.present? && @report.current_state < 5 %>
                     <tr>
                       <td class="result-left-column small" style="width:30%">採卵あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                       <td class="pl-3" style="width:70%">
@@ -616,7 +671,7 @@
                     <td class="result-left-column small" style="width:30%">受精個数</td>
                     <td class="pl-3" style="width:70%">
                       <% unless @report.number_of_fertilized_eggs.blank? %>
-                        <span class="result-text"><%= @report.str_number_of_fertilized_eggs %><span class="small text-muted">（&nbsp;<%= @report.str_number_of_eggs_collected %>採卵中）</span></span>
+                        <span class="result-text"><%= @report.str_number_of_fertilized_eggs %><span class="small text-muted">（&nbsp;<%= @report.str_number_of_eggs_collected %>採卵）</span></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %>
@@ -839,24 +894,24 @@
               </section>
               <section class="child-tab-content" id="ishoku">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
-                <h4 class="child-tab-title">
+                <h5 class="child-tab-title">
                   <% if @report.embryo_stage == 1 %>
                     <%= @report.str_embryo_stage %>
                     <%= @report.str_early_embryo_grade %>&nbsp;の
                   <% elsif @report.embryo_stage == 2 %>
                     <% if @report.str_blastocyst_grade1.present? || @report.str_blastocyst_grade2.present? %>
-                      <%= @report.str_blastocyst_grade1 %>&nbsp;&nbsp;<%= @report.str_blastocyst_grade2 %>&nbsp;の
+                      <%= @report.str_blastocyst_grade1 %>&nbsp;&nbsp;<%= @report.str_blastocyst_grade2 %>&nbsp;の<br>
                     <% else %>
                     <% end %>
                   <% else %>
                   <% end %>
-                  <% if @report.transplant_method < 5 %>
+                  <% if @report.transplant_method.present? && @report.transplant_method < 5 %>
                     <%= @report.str_transplant_method %>
                   <% else %>
                     移植
                   <% end %>
-                    &nbsp;&&nbsp;&nbsp;着床前スクリーニング
-                </h4>
+                    &&nbsp;着床前スクリーニング
+                </h5>
                 <% unless @report.explanation_and_impression_about_ishoku.blank? %>
                   <div class="box27">
                     <span class="box-title">移植まとめ</span>
@@ -2524,7 +2579,7 @@
                   <td class="result-left-column small">その内受精に至った個数</td>
                   <td class="pl-4 result-right-column">
                     <% unless @report.number_of_fertilized_eggs.blank? %>
-                      <span class="result-text"><%= @report.str_number_of_fertilized_eggs %><span class="small text-muted">（&nbsp;<%= @report.str_number_of_eggs_collected %>採卵中）</span></span>
+                      <span class="result-text"><%= @report.str_number_of_fertilized_eggs %><span class="small text-muted">（&nbsp;<%= @report.str_number_of_eggs_collected %>採卵）</span></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
                     <% end %>
