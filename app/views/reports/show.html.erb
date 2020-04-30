@@ -2030,7 +2030,7 @@
                 </tr>
                 <tr>
                     <td class="result-left-column small">卵子と精子</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <% unless @report.types_of_eggs_and_sperm.blank? %>
                         <span class="result-text"><%= @report.str_types_of_eggs_and_sperm %></span>
                       <% else %>
@@ -2054,7 +2054,7 @@
                 <% if @report.types_of_fertilization_methods = 2 || 3 %>
                   <tr>
                     <td class="result-left-column small">顕微授精の種類</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <% unless @report.details_of_icsi.blank? %>
                         <span class="result-text"><%= @report.str_details_of_icsi %></span>
                       <% else %>
@@ -2142,7 +2142,7 @@
                 <% if @report.number_of_miscarriages != 1 && @report.number_of_miscarriages.present? %>
                   <tr>
                     <td class="result-left-column small">流産経験</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="result-text"><%= @report.str_number_of_miscarriages %></span>
                     </td>
                   </tr>
@@ -2150,14 +2150,14 @@
                 <% if @report.number_of_stillbirths != 1 && @report.number_of_stillbirths.present? %>
                   <tr>
                     <td class="result-left-column small">死産経験</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="result-text"><%= @report.str_number_of_stillbirths %></span>
                     </td>
                   </tr>
                 <% end %>
                 <tr>
                   <td class="result-left-column small">不育症診断</td>
-                  <td class="pl-3">
+                  <td class="pl-4">
                     <% unless @report.fuiku.blank? %>
                       <span class="result-text"><%= @report.str_fuiku %></span>
                     <% else %>
@@ -2168,7 +2168,7 @@
                 <tr>
                   <% unless @report.fuiku_supplementary_explanation.blank? %>
                     <td class="result-left-column small">習慣流産や不育症について</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)) %></span>
                     </td>
                   <% end %>
@@ -2350,7 +2350,7 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">採卵日とホルモン値</td>
-                  <td class="pl-3">
+                  <td class="pl-4">
                   <% if @report.day_of_sairans.present? %>
                     <% @report.day_of_sairans.each do |day_of_sairan| %>
                       <table class="table-borderless">
@@ -2415,7 +2415,7 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">精液検査</td>
-                  <td class="pl-3">
+                  <td class="pl-4">
                     <table class="table-borderless">
                       <tr>
                         <td class="small text-muted text-right">精液量&nbsp;:</td>
@@ -2533,7 +2533,7 @@
                 <% if @report.number_of_transferable_embryos && @report.number_of_frozen_eggs %>
                   <tr>
                     <td class="result-left-column small">移植可能胚数</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="result-text"><%= @report.str_number_of_transferable_embryos %></span>
                       <span class="small result-text text-muted">（その内&nbsp;凍結胚は<%= @report.str_number_of_frozen_eggs %>）</span>
                     </td>
@@ -2541,39 +2541,39 @@
                 <% elsif @report.number_of_transferable_embryos && @report.number_of_frozen_eggs.blank? %>
                   <tr>
                     <td class="result-left-column small">移植可能胚数</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="result-text"><%= @report.str_number_of_transferable_embryos %></span>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">凍結胚数</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="text-muted small">未回答</span>
                     </td>
                   </tr>
                 <% elsif @report.number_of_transferable_embryos.blank? && @report.number_of_frozen_eggs %>
                   <tr>
                     <td class="result-left-column small">移植可能胚数</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="text-muted small">未回答</span>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">凍結胚数</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="result-text"><%= @report.str_number_of_frozen_eggs %></span>
                     </td>
                   </tr>
                 <% else %>
                   <tr>
                     <td class="result-left-column small">移植可能胚数</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="text-muted small">未回答</span>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">凍結胚数</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="text-muted small">未回答</span>
                     </td>
                   </tr>
@@ -2629,7 +2629,7 @@
                 <% if @report.embryo_stage == 1 %>
                   <tr>
                     <td class="result-left-column small">初期胚のグレード</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <% unless @report.early_embryo_grade.blank? %>
                         <span class="result-text"><%= @report.str_early_embryo_grade %></span>
                       <% else %>
@@ -2643,7 +2643,7 @@
                 <% elsif @report.embryo_stage == 2 %>
                   <tr>
                     <td class="result-left-column small">胚盤胞のグレード</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <% unless @report.blastocyst_grade1.blank? %>
                         <span class="result-text"><%= @report.str_blastocyst_grade1 %></span>
                       <% else %>
@@ -2656,7 +2656,7 @@
                   </tr>
                   <tr>
                     <td class="result-left-column small">胚盤胞の評価</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <% unless @report.blastocyst_grade2.blank? %>
                         <span class="result-text"><%= @report.str_blastocyst_grade2 %></span>
                       <% else %>
@@ -2670,7 +2670,7 @@
                 <% else %>
                   <tr>
                     <td class="result-left-column small">胚のグレード</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <span class="text-muted small">未回答</span>
                     </td>
                   </tr>
@@ -2701,7 +2701,7 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
-                  <td class="pl-3" style="width:70%">
+                  <td class="pl-4" style="width:70%">
                     <% if @report.pgt1_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
                     <% elsif @report.pgt1.blank? %>
@@ -2713,7 +2713,7 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">着床前スクリーニング実施有無</td>
-                  <td class="pl-3">
+                  <td class="pl-4">
                     <% if @report.pgt2_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
                     <% elsif @report.pgt2.blank? %>
@@ -2726,7 +2726,7 @@
                 <% if @report.pgt_supplementary_explanation.present? %>
                   <tr>
                     <td class="result-left-column small">着床前スクリーニングのメモ</td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <% if @report.pgt_supplementary_explanation_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
                       <% else %>
@@ -2738,7 +2738,7 @@
                 <% if @report.embryo_stage == 1 %>
                   <tr>
                     <td class="result-left-column small">移植日のホルモン値&nbsp;<span class="small text-muted">(ET)</span></td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <% @report.day_of_shokihaiishokus.each do |day_of_shokihaiishoku| %>
                         <table class="table-borderless">
                           <tr>
@@ -2808,7 +2808,7 @@
                 <% elsif @report.embryo_stage == 2 %>
                   <tr>
                     <td class="result-left-column small">移植日のホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
-                    <td class="pl-3">
+                    <td class="pl-4">
                       <% @report.day_of_haibanhoishokus.each do |day_of_haibanhoishoku| %>
                         <table class="table-borderless">
                           <tr>
@@ -3222,7 +3222,7 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">治療当時の年収</td>
-                  <td class="pl-3">
+                  <td class="pl-4">
                     <% if @report.annual_income_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
                     <% elsif @report.annual_income.blank? %>
@@ -3234,7 +3234,7 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">夫婦合算所得</td>
-                  <td class="pl-3">
+                  <td class="pl-4">
                     <% if @report.household_net_income_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
                     <% elsif @report.household_net_income.blank? %>
