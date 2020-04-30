@@ -1126,7 +1126,7 @@
               <div class="label p-1"><%= f.label :household_net_income, '治療当時の前年の「夫婦合算所得」', class: "question-matters" %></div>
               <%= f.select :household_net_income, Report::HASH_HOUSEHOLD_NET_INCOME.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
               <small id="poster-tip" class="form-text text-muted">
-                <span class="small text-warning">所得は、収入から経費を引いたもの。</span>
+                <span class="small text-warning">所得&nbsp;=&nbsp;収入&nbsp;-&nbsp;経費</span>
               </small>
               <small id="poster-tip" class="switch form-text text-muted"><%= f.check_box :household_net_income_status, {}, "hide", "show" %>非公開</small>
             </div>
