@@ -31,13 +31,13 @@
       </div>
 
       <div class="mb-1 px-2">
-        <% unless @report.treatment_end_age.blank? %>
+        <% if @report.treatment_end_age.present? %>
           <span class="badge badge-light"><%= link_to @report.treatment_end_age, "/category/age/#{@report.treatment_end_age}", class: "text-dark" %>歳</span>
         <% end %>
-        <% unless @report.city.prefecture.blank? %>
+        <% if @report.city.prefecture.present? %>
           <span class="badge badge-pill badge-primary"><%= link_to @report.city.prefecture.name, "/category/area/prefecture/#{@report.city.prefecture.id}", class: "text-light" %></span>
         <% end %>
-        <% unless @report.city.blank? %>
+        <% if @report.city.present? %>
           <span class="badge badge-pill badge-primary"><%= link_to @report.city.name, "/category/area/city/#{@report.city.id}",  class: "text-light" %></span>
         <% end %>
         <% @report.tags.each do |tag| %>
@@ -387,7 +387,7 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%"><span class="small text-muted">(このCL以前も含んだ)</span><br>妊活開始年齢</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.first_age_to_start.blank? %>
+                      <% if @report.first_age_to_start.present? %>
                         <span class="result-text"><%= @report.str_first_age_to_start %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -397,7 +397,7 @@
                   <tr>
                     <td class="result-left-column small">治療開始年齢</td>
                     <td class="pl-3">
-                      <% unless @report.treatment_start_age.blank? %>
+                      <% if @report.treatment_start_age.present? %>
                         <span class="result-text"><%= @report.str_treatment_start_age %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -407,7 +407,7 @@
                   <tr>
                     <td class="result-left-column small">治療終了年</td>
                     <td class="pl-3">
-                      <% unless @report.year_of_treatment_end.blank? %>
+                      <% if @report.year_of_treatment_end.present? %>
                         <span class="result-text"><%= @report.year_of_treatment_end.year %>年</span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -417,7 +417,7 @@
                   <tr>
                     <td class="result-left-column small">治療終了年齢</td>
                     <td class="pl-3">
-                      <% unless @report.treatment_end_age.blank? %>
+                      <% if @report.treatment_end_age.present? %>
                         <span class="result-text"><%= @report.str_treatment_end_age %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -427,7 +427,7 @@
                   <tr>
                     <td class="result-left-column small">治療終了時のパートナーの年齢</td>
                     <td class="pl-3">
-                      <% unless @report.age_of_partner_at_end_of_treatment.blank? %>
+                      <% if @report.age_of_partner_at_end_of_treatment.present? %>
                         <span class="result-text"><%= @report.str_age_of_partner_at_end_of_treatment %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -437,7 +437,7 @@
                   <tr>
                     <td class="result-left-column small">通院期間</td>
                     <td class="pl-3">
-                      <% unless @report.treatment_period.blank? %>
+                      <% if @report.treatment_period.present? %>
                         <span class="result-text"><%= @report.str_treatment_period %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -447,7 +447,7 @@
                   <tr>
                     <td class="result-left-column small">受精方法</td>
                     <td class="pl-3">
-                      <% unless @report.types_of_fertilization_methods.blank? %>
+                      <% if @report.types_of_fertilization_methods.present? %>
                         <span class="result-text"><%= @report.str_types_of_fertilization_methods %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -458,7 +458,7 @@
                     <tr>
                       <td class="result-left-column small">顕微授精の種類</td>
                       <td class="pl-3">
-                        <% unless @report.details_of_icsi.blank? %>
+                        <% if @report.details_of_icsi.present? %>
                           <span class="result-text"><%= @report.str_details_of_icsi %></span>
                         <% else %>
                           <span class="text-muted small">未回答</span>
@@ -469,20 +469,20 @@
                   <tr>
                     <td class="result-left-column small">卵子と精子</td>
                     <td class="pl-3">
-                      <% unless @report.types_of_eggs_and_sperm.blank? %>
+                      <% if @report.types_of_eggs_and_sperm.present? %>
                         <span class="result-text"><%= @report.str_types_of_eggs_and_sperm %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.description_of_eggs_and_sperm_used.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.description_of_eggs_and_sperm_used.split("\n"),tag(:br)) %></span>
+                      <% if @report.description_of_eggs_and_sperm_used.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.description_of_eggs_and_sperm_used.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">移植方法</td>
                     <td class="pl-3">
-                      <% unless @report.transplant_method.blank? %>
+                      <% if @report.transplant_method.present? %>
                         <span class="result-text"><%= @report.str_transplant_method %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -494,10 +494,10 @@
               <section class="child-tab-content" id="sairan">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title">採卵 / 受精･培養･精液検査</h4>
-                <% unless @report.explanation_and_impression_about_sairan.blank? %>
+                <% if @report.explanation_and_impression_about_sairan.present? %>
                   <div class="box27">
                     <span class="box-title">採卵まとめ</span>
-                    <p><%= safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)) %></p>
+                    <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)))).html_safe %></p>
                   </div>
                 <% end %>
                 <h5 class="child-tab-title"><span class="marker-underline">採卵</span></h5>
@@ -505,7 +505,7 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">誘発タイプ</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.type_of_ovarian_stimulation.blank? %>
+                      <% if @report.type_of_ovarian_stimulation.present? %>
                         <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -515,20 +515,20 @@
                   <tr>
                     <td class="result-left-column small">誘発方法</td>
                     <td class="pl-3">
-                      <% unless @report.type_of_sairan_cycle.blank? %>
+                      <% if @report.type_of_sairan_cycle.present? %>
                           <span class="result-text"><%= @report.str_type_of_sairan_cycle %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.notes_on_type_of_sairan_cycle.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.notes_on_type_of_sairan_cycle.split("\n"),tag(:br)) %></span>
+                      <% if @report.notes_on_type_of_sairan_cycle.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.notes_on_type_of_sairan_cycle.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">使用した薬剤</td>
                     <td class="pl-3">
-                      <% unless @report.sairan_medicines.blank? %>
+                      <% if @report.sairan_medicines.present? %>
                         <% @report.sairan_medicines.each do |sairan_medicine| %>
                           <span class="result-text"><%= sairan_medicine.name %>&nbsp;&nbsp;</span>
                         <% end %>
@@ -540,7 +540,7 @@
                   <tr>
                     <td class="result-left-column small">麻酔の有無と種類</td>
                     <td class="pl-3">
-                      <% unless @report.use_of_anesthesia.blank? %>
+                      <% if @report.use_of_anesthesia.present? %>
                         <span class="result-text"><%= @report.str_use_of_anesthesia %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -550,7 +550,7 @@
                   <tr>
                     <td class="result-left-column small">麻酔の選択可否</td>
                     <td class="pl-3">
-                      <% unless @report.selection_of_anesthesia_type.blank? %>
+                      <% if @report.selection_of_anesthesia_type.present? %>
                         <span class="result-text"><%= @report.str_selection_of_anesthesia_type %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -560,7 +560,7 @@
                   <tr>
                     <td class="result-left-column small">全採卵回数</td>
                     <td class="pl-3">
-                      <% unless @report.total_number_of_sairan.blank? %>
+                      <% if @report.total_number_of_sairan.present? %>
                         <span class="result-text"><%= @report.str_total_number_of_sairan %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -570,7 +570,7 @@
                   <tr>
                     <td class="result-left-column small"><%= @report.clinic.name %>以外も含む全採卵回数</td>
                     <td class="pl-3">
-                      <% unless @report.all_number_of_sairan.blank? %>
+                      <% if @report.all_number_of_sairan.present? %>
                         <span class="result-text"><%= @report.str_all_number_of_sairan %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -580,7 +580,7 @@
                   <tr>
                     <td class="result-left-column small">最新周期での全採卵個数</td>
                     <td class="pl-3">
-                      <% unless @report.number_of_eggs_collected.blank? %>
+                      <% if @report.number_of_eggs_collected.present? %>
                         <span class="result-text"><%= @report.str_number_of_eggs_collected %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -670,7 +670,7 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">受精個数</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.number_of_fertilized_eggs.blank? %>
+                      <% if @report.number_of_fertilized_eggs.present? %>
                         <span class="result-text"><%= @report.str_number_of_fertilized_eggs %><span class="small text-muted">（&nbsp;<%= @report.str_number_of_eggs_collected %>採卵）</span></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -728,7 +728,7 @@
                   <tr>
                     <td class="result-left-column small">胚の成熟度</td>
                     <td class="pl-3">
-                      <% unless @report.egg_maturity.blank? %>
+                      <% if @report.egg_maturity.present? %>
                         <span class="result-text"><%= @report.str_egg_maturity %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -738,7 +738,7 @@
                   <tr>
                     <td class="result-left-column small">IVMの有無</td>
                     <td class="pl-3">
-                      <% unless @report.ova_with_ivm.blank? %>
+                      <% if @report.ova_with_ivm.present? %>
                         <span class="result-text"><%= @report.str_ova_with_ivm %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -748,7 +748,7 @@
                   <tr>
                     <td class="result-left-column small">培養日数</td>
                     <td class="pl-3">
-                      <% unless @report.embryo_culture_days.blank? %>
+                      <% if @report.embryo_culture_days.present? %>
                         <span class="result-text"><%= @report.str_embryo_culture_days %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -758,7 +758,7 @@
                   <tr>
                     <td class="result-left-column small">胚のステージ</td>
                     <td class="pl-3">
-                      <% unless @report.embryo_stage.blank? %>
+                      <% if @report.embryo_stage.present? %>
                         <span class="result-text"><%= @report.str_embryo_stage %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -769,13 +769,13 @@
                     <tr>
                       <td class="result-left-column small">初期胚のグレード</td>
                       <td class="pl-3">
-                        <% unless @report.early_embryo_grade.blank? %>
+                        <% if @report.early_embryo_grade.present? %>
                           <span class="result-text"><%= @report.str_early_embryo_grade %></span>
                         <% else %>
                           <span class="text-muted small">未回答</span>
                         <% end %><br><br>
-                        <% unless @report.early_embryo_grade_supplementary_explanation.blank? %>
-                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.early_embryo_grade_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                        <% if @report.early_embryo_grade_supplementary_explanation.present? %>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.early_embryo_grade_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                         <% end %>
                       </td>
                     </tr>
@@ -783,26 +783,26 @@
                     <tr>
                       <td class="result-left-column small">胚盤胞のグレード</td>
                       <td class="pl-3">
-                        <% unless @report.blastocyst_grade1.blank? %>
+                        <% if @report.blastocyst_grade1.present? %>
                           <span class="result-text"><%= @report.str_blastocyst_grade1 %></span>
                         <% else %>
                           <span class="text-muted small">未回答</span>
                         <% end %><br><br>
-                        <% unless @report.blastocyst_grade1_supplementary_explanation.blank? %>
-                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.blastocyst_grade1_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                        <% if @report.blastocyst_grade1_supplementary_explanation.present? %>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.blastocyst_grade1_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                         <% end %>
                       </td>
                     </tr>
                     <tr>
                       <td class="result-left-column small">胚盤胞の評価</td>
                       <td class="pl-3">
-                        <% unless @report.blastocyst_grade2.blank? %>
+                        <% if @report.blastocyst_grade2.present? %>
                           <span class="result-text"><%= @report.str_blastocyst_grade2 %></span>
                         <% else %>
                           <span class="text-muted small">未回答</span>
                         <% end %><br><br>
-                        <% unless @report.blastocyst_grade2_supplementary_explanation.blank? %>
-                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.blastocyst_grade2_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                        <% if @report.blastocyst_grade2_supplementary_explanation.present? %>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.blastocyst_grade2_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                         <% end %>
                       </td>
                     </tr>
@@ -912,10 +912,10 @@
                   <% end %>
                     &&nbsp;着床前スクリーニング
                 </h5>
-                <% unless @report.explanation_and_impression_about_ishoku.blank? %>
+                <% if @report.explanation_and_impression_about_ishoku.present? %>
                   <div class="box27">
                     <span class="box-title">移植まとめ</span>
-                    <p><%= safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)) %></p>
+                    <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)))).html_safe %></p>
                   </div>
                 <% end %>
                 <h5 class="child-tab-title"><span class="marker-underline">移植</span></h5>
@@ -924,15 +924,15 @@
                     <tr>
                       <td class="result-left-column small" style="width:30%">受けた検査</td>
                       <td class="pl-3" style="width:70%">
-                        <% unless @report.inspections.blank? %>
+                        <% if @report.inspections.present? %>
                           <% @report.inspections.each do |inspection| %>
                             <span class="result-text"><%= inspection.name %>&nbsp;&nbsp;</span>
                           <% end %>
                         <% else %>
                           <span class="text-muted small">未回答</span>
                         <% end %><br><br>
-                        <% unless @report.special_inspection_supplementary_explanation.blank? %>
-                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                        <% if @report.special_inspection_supplementary_explanation.present? %>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                         <% end %>
                       </td>
                     </tr>
@@ -940,7 +940,7 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">使用薬剤</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.transfer_medicines.blank? %>
+                      <% if @report.transfer_medicines.present? %>
                         <% @report.transfer_medicines.each do |transfer_medicine| %>
                           <span class="result-text"><%= transfer_medicine.name %>&nbsp;&nbsp;</span>
                         <% end %>
@@ -952,7 +952,7 @@
                   <tr>
                     <td class="result-left-column small">移植オプション</td>
                     <td class="pl-3">
-                      <% unless @report.transfer_options.blank? %>
+                      <% if @report.transfer_options.present? %>
                         <% @report.transfer_options.each do |transfer_option| %>
                           <span class="result-text"><%= transfer_option.name %>&nbsp;&nbsp;</span>
                         <% end %>
@@ -964,7 +964,7 @@
                   <tr>
                     <td class="result-left-column small">移植全「個」数</td>
                     <td class="pl-3">
-                      <% unless @report.total_number_of_eggs_transplanted.blank? %>
+                      <% if @report.total_number_of_eggs_transplanted.present? %>
                         <span class="result-text"><%= @report.str_total_number_of_eggs_transplanted %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -974,7 +974,7 @@
                   <tr>
                     <td class="result-left-column small">全移植「回」数</td>
                     <td class="pl-3">
-                      <% unless @report.total_number_of_transplants.blank? %>
+                      <% if @report.total_number_of_transplants.present? %>
                         <span class="result-text"><%= @report.str_total_number_of_transplants %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -984,7 +984,7 @@
                   <tr>
                     <td class="result-left-column small"><%= @report.clinic.name %>以外も含めた全移植「回」数</td>
                     <td class="pl-3">
-                      <% unless @report.all_number_of_transplants.blank? %>
+                      <% if @report.all_number_of_transplants.present? %>
                         <span class="result-text"><%= @report.str_all_number_of_transplants %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -994,7 +994,7 @@
                   <tr>
                     <td class="result-left-column small">貯卵数</td>
                     <td class="pl-3">
-                      <% unless @report.number_of_eggs_stored.blank? %>
+                      <% if @report.number_of_eggs_stored.present? %>
                         <span class="result-text"><%= @report.str_number_of_eggs_stored %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1199,7 +1199,7 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">治療費総額</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.cost.blank? %>
+                      <% if @report.cost.present? %>
                         <span class="result-text"><%= @report.str_cost %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1209,7 +1209,7 @@
                   <tr>
                     <td class="result-left-column small"><%= @report.clinic.name %>以外も含めたこれまでの治療費総額</td>
                     <td class="pl-3">
-                      <% unless @report.all_cost.blank? %>
+                      <% if @report.all_cost.present? %>
                         <span class="result-text"><%= @report.str_all_cost %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1219,7 +1219,7 @@
                   <tr>
                     <td class="result-left-column small">助成金の受給回数</td>
                     <td class="pl-3">
-                      <% unless @report.number_of_times_the_grant_was_received.blank? %>
+                      <% if @report.number_of_times_the_grant_was_received.present? %>
                         <span class="result-text"><%= @report.str_number_of_times_the_grant_was_received %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1229,34 +1229,34 @@
                   <tr>
                     <td class="result-left-column small">助成金の受給額合計</td>
                     <td class="pl-3">
-                      <% unless @report.all_grant_amount.blank? %>
+                      <% if @report.all_grant_amount.present? %>
                         <span class="result-text"><%= @report.all_grant_amount.to_s(:delimited) %>円</span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.supplementary_explanation_of_grant.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.supplementary_explanation_of_grant.split("\n"),tag(:br)) %></span>
+                      <% if @report.supplementary_explanation_of_grant.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.supplementary_explanation_of_grant.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">凍結胚年間保管料<br><span class="text-muted">(1個あたり)</span></td>
                     <td class="pl-3">
-                      <% unless @report.frozen_embryo_storage_cost.blank? %>
+                      <% if @report.frozen_embryo_storage_cost.present? %>
                         <span class="result-text"><span class="small text-muted">年間&nbsp;</span><%= @report.frozen_embryo_storage_cost.to_s(:delimited) %>円<span class="small text-muted">&nbsp;/個</span></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.explanation_of_frozen_embryo_storage_cost.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.explanation_of_frozen_embryo_storage_cost.split("\n"),tag(:br)) %></span>
+                      <% if @report.explanation_of_frozen_embryo_storage_cost.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.explanation_of_frozen_embryo_storage_cost.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
-                  <% unless @report.explanation_of_cost.blank? %>
+                  <% if @report.explanation_of_cost.present? %>
                     <tr>
                       <td class="result-left-column small">メモ</td>
                       <td class="pl-3">
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.explanation_of_cost.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.explanation_of_cost.split("\n"),tag(:br)))).html_safe %></span>
                       </td>
                     </tr>
                   <% end %>
@@ -1269,22 +1269,22 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">治療中に服用していたサプリ</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.supplements.blank? %>
+                      <% if @report.supplements.present? %>
                         <% @report.supplements.each do |supplement| %>
                           <span class="result-text"><%= supplement.name %>&nbsp;&nbsp;</span>
                         <% end %>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.supplement_supplementary_explanation.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <% if @report.supplement_supplementary_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">月のサプリ代</td>
                     <td class="pl-3">
-                      <% unless @report.supplement_cost.blank? %>
+                      <% if @report.supplement_cost.present? %>
                           <span class="result-text"><%= @report.str_supplement_cost %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1294,22 +1294,22 @@
                   <tr>
                     <td class="result-left-column small">クリニックでの治療以外に行なったこと</td>
                     <td class="pl-3">
-                      <% unless @report.other_efforts.blank? %>
+                      <% if @report.other_efforts.present? %>
                         <% @report.other_efforts.each do |other_effort| %>
                           <span class="result-text"><%= other_effort.name %>&nbsp;&nbsp;</span>
                         <% end %>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.other_effort_supplementary_explanation.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <% if @report.other_effort_supplementary_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">クリニックでの治療以外の月額コスト</td>
                     <td class="pl-3">
-                      <% unless @report.other_effort_cost.blank? %>
+                      <% if @report.other_effort_cost.present? %>
                           <span class="result-text"><%= @report.str_other_effort_cost %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1346,7 +1346,7 @@
                   <tr>
                     <td class="result-left-column small">ステータス</td>
                     <td class="pl-3">
-                      <% unless @report.current_state.blank? %>
+                      <% if @report.current_state.present? %>
                         <span class="result-text"><%= @report.str_current_state %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1356,7 +1356,7 @@
                   <tr>
                     <td class="result-left-column small">何人目</td>
                     <td class="pl-3">
-                      <% unless @report.fertility_treatment_number.blank? %>
+                      <% if @report.fertility_treatment_number.present? %>
                         <span class="result-text"><%= @report.str_fertility_treatment_number %>治療</span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1381,7 +1381,7 @@
                   <tr>
                     <td class="result-left-column small">人工授精</td>
                     <td class="pl-3">
-                      <% unless @report.number_of_aih.blank? %>
+                      <% if @report.number_of_aih.present? %>
                         <span class="result-text"><%= @report.str_number_of_aih %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1391,7 +1391,7 @@
                   <tr>
                     <td class="result-left-column small">AMH値</td>
                     <td class="pl-3">
-                      <% unless @report.amh.blank? %>
+                      <% if @report.amh.present? %>
                         <span class="result-text"><%= @report.str_amh %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1401,7 +1401,7 @@
                   <tr>
                     <td class="result-left-column small">BMI値</td>
                     <td class="pl-3">
-                      <% unless @report.bmi.blank? %>
+                      <% if @report.bmi.present? %>
                         <span class="result-text"><%= @report.str_bmi %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1411,7 +1411,7 @@
                   <tr>
                     <td class="result-left-column small">喫煙の有無</td>
                     <td class="pl-3">
-                      <% unless @report.smoking.blank? %>
+                      <% if @report.smoking.present? %>
                         <span class="result-text"><%= @report.str_smoking %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1437,7 +1437,7 @@
                   <tr>
                     <td class="result-left-column small">不育症診断</td>
                     <td class="pl-3">
-                      <% unless @report.fuiku.blank? %>
+                      <% if @report.fuiku.present? %>
                         <span class="result-text"><%= @report.str_fuiku %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1445,15 +1445,15 @@
                     </td>
                   </tr>
                   <tr>
-                    <% unless @report.fuiku_supplementary_explanation.blank? %>
+                    <% if @report.fuiku_supplementary_explanation.present? %>
                       <td class="result-left-column small">習慣流産や不育症について</td>
                       <td class="pl-3">
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                       </td>
                     <% end %>
                   </tr>
                   <tr>
-                    <% unless @report.adoption.blank? %>
+                    <% if @report.adoption.present? %>
                       <td class="result-left-column small">養子縁組について</td>
                       <td class="pl-3">
                         <span class="result-text"><%= @report.str_adoption %></span>
@@ -1463,7 +1463,7 @@
                   <tr>
                     <td class="result-left-column small">治療の開示範囲</td>
                     <td class="pl-3">
-                      <% unless @report.scope_of_disclosures.blank? %>
+                      <% if @report.scope_of_disclosures.present? %>
                         <% @report.scope_of_disclosures.each do |scope_of_disclosure| %>
                           <span class="result-text"><%= scope_of_disclosure.scope %>&nbsp;&nbsp;</span>
                         <% end %>
@@ -1481,12 +1481,12 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">何院目</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.number_of_clinics.blank? %>
+                      <% if @report.number_of_clinics.present? %>
                         <span class="result-text"><%= @report.str_number_of_clinics %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br>
-                      <% unless @clinics.blank? %><span class="small text-muted">(</span>
+                      <% if @clinics.present? %><span class="small text-muted">(</span>
                         <% @clinics.each do |c| %>
                           <span class="result-text small"><%= c %></span>&nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
                         <% end %>
@@ -1497,7 +1497,7 @@
                   <tr>
                     <td class="result-left-column small">説明会への参加有無</td>
                     <td class="pl-3">
-                      <% unless @report.briefing_session.blank? %>
+                      <% if @report.briefing_session.present? %>
                         <span class="result-text"><%= @report.str_briefing_session %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1507,7 +1507,7 @@
                   <tr>
                     <td class="result-left-column small"><%= @report.clinic.name %>への通院(移動)に要した平均通院時間</td>
                     <td class="pl-3">
-                      <% unless @report.period_of_time_spent_traveling.blank? %>
+                      <% if @report.period_of_time_spent_traveling.present? %>
                         <span class="result-text"><%= @report.str_period_of_time_spent_traveling %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1517,9 +1517,9 @@
                   <tr>
                     <td class="result-left-column small"><%= @report.clinic.name %>を選んだ理由</td>
                     <td class="pl-3">
-                      <% unless @report.clinic_selection_criteria.blank? || @report.reasons_for_choosing_this_clinic.blank? %>
+                      <% if @report.clinic_selection_criteria.present? || @report.reasons_for_choosing_this_clinic.present? %>
                         <span class="result-text"><%= @report.str_clinic_selection_criteria %></span><br>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %>
@@ -1630,7 +1630,7 @@
                   <tr>
                     <td class="result-left-column small">支援制度</td>
                     <td class="pl-3">
-                      <% unless @report.treatment_support_system.blank? %>
+                      <% if @report.treatment_support_system.present? %>
                         <span class="result-text"><%= @report.str_treatment_support_system %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1640,7 +1640,7 @@
                   <tr>
                     <td class="result-left-column small">働き方の変化</td>
                     <td class="pl-3">
-                      <% unless @report.suspended_or_retirement_job.blank? %>
+                      <% if @report.suspended_or_retirement_job.present? %>
                         <span class="result-text"><%= @report.str_suspended_or_retirement_job %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1671,11 +1671,11 @@
                       <% end %>
                     </td>
                   </tr>
-                  <% unless @report.about_work_and_working_style.blank? %>
+                  <% if @report.about_work_and_working_style.present? %>
                     <tr>
                       <td class="result-left-column small">メモ</td>
                       <td class="pl-3">
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)))).html_safe %></span>
                       </td>
                     </tr>
                   <% end %>
@@ -1688,7 +1688,7 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">女性側の不妊原因</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.f_infertility_factors.blank? %>
+                      <% if @report.f_infertility_factors.present? %>
                         <% @report.f_infertility_factors.each do |f_infertility_factor| %>
                           <span class="result-text"><%= f_infertility_factor.name %><br></span>
                         <% end %>
@@ -1700,7 +1700,7 @@
                   <tr>
                     <td class="result-left-column small">男性側の不妊原因</td>
                     <td class="pl-3">
-                      <% unless @report.m_infertility_factors.blank? %>
+                      <% if @report.m_infertility_factors.present? %>
                         <% @report.m_infertility_factors.each do |m_infertility_factor| %>
                           <span class="result-text"><%= m_infertility_factor.name %></span>
                         <% end %>
@@ -1712,7 +1712,7 @@
                   <tr>
                     <td class="result-left-column small">女性側の疾患</td>
                     <td class="pl-3">
-                      <% unless @report.f_diseases.blank? %>
+                      <% if @report.f_diseases.present? %>
                         <% @report.f_diseases.each do |f_disease| %>
                           <span class="result-text"><%= f_disease.name %><br></span>
                         <% end %>
@@ -1724,7 +1724,7 @@
                   <tr>
                     <td class="result-left-column small">男性側の疾患</td>
                     <td class="pl-3">
-                      <% unless @report.m_diseases.blank? %>
+                      <% if @report.m_diseases.present? %>
                         <% @report.m_diseases.each do |m_disease| %>
                           <span class="result-text"><%= m_disease.name %><br></span>
                         <% end %>
@@ -1736,7 +1736,7 @@
                   <tr>
                     <td class="result-left-column small">女性側の手術歴</td>
                     <td class="pl-3">
-                      <% unless @report.f_surgeries.blank? %>
+                      <% if @report.f_surgeries.present? %>
                         <% @report.f_surgeries.each do |f_surgery| %>
                           <span class="result-text"><%= f_surgery.name %></span>
                         <% end %>
@@ -1748,7 +1748,7 @@
                   <tr>
                     <td class="result-left-column small">男性側の手術歴</td>
                     <td class="pl-3">
-                      <% unless @report.m_surgeries.blank? %>
+                      <% if @report.m_surgeries.present? %>
                         <% @report.m_surgeries.each do |m_surgery| %>
                           <span class="result-text"><%= m_surgery.name %></span>
                         <% end %>
@@ -1760,18 +1760,18 @@
                   <tr>
                     <td class="result-left-column small">不育症診断</td>
                     <td class="pl-3">
-                      <% unless @report.fuiku.blank? %>
+                      <% if @report.fuiku.present? %>
                         <span class="result-text"><%= @report.str_fuiku %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %>
                     </td>
                   </tr>
-                  <% unless @report.about_causes_of_infertility.blank? %>
+                  <% if @report.about_causes_of_infertility.present? %>
                     <tr>
                       <td class="result-left-column small">メモ</td>
                       <td class="pl-3">
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.about_causes_of_infertility.split("\n"),tag(:br)) %></span>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.about_causes_of_infertility.split("\n"),tag(:br)))).html_safe %></span>
                       </td>
                     </tr>
                   <% end %>
@@ -1833,7 +1833,7 @@
                   <tr>
                     <td class="result-left-column small" style="width:30%">予約方法</td>
                     <td class="pl-3" style="width:70%">
-                      <% unless @report.reservation_method.blank? %>
+                      <% if @report.reservation_method.present? %>
                         <span class="result-text"><%= @report.str_reservation_method %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1843,7 +1843,7 @@
                   <tr>
                     <td class="result-left-column small">平均待ち時間</td>
                     <td class="pl-3">
-                      <% unless @report.average_waiting_time.blank? %>
+                      <% if @report.average_waiting_time.present? %>
                         <span class="result-text"><%= @report.str_average_waiting_time %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1853,26 +1853,26 @@
                   <tr>
                     <td class="result-left-column small">オンライン診療の実施</td>
                     <td class="pl-3">
-                      <% unless @report.online_consultation.blank? %>
+                      <% if @report.online_consultation.present? %>
                         <span class="result-text"><%= @report.str_online_consultation %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.online_consultation_details.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.online_consultation_details.split("\n"),tag(:br)) %></span>
+                      <% if @report.online_consultation_details.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.online_consultation_details.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">クレジットカードの利用</td>
                     <td class="pl-3">
-                      <% unless @report.credit_card_validity.blank? %>
+                      <% if @report.credit_card_validity.present? %>
                         <span class="result-text"><%= @report.str_credit_card_validity %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
                       <% if @report.credit_card_validity == 3 %>
-                        <% unless @report.creditcards_can_be_used_from_more_than.blank? %>
+                        <% if @report.creditcards_can_be_used_from_more_than.present? %>
                           <span class="result-text"><span class="text-muted small">(クレジットカードの利用は)</span><br><%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から</span>
                         <% else %>
                           <span class="text-muted small">未回答</span>
@@ -1895,7 +1895,7 @@
                               医師&nbsp;:
                             </td>
                             <td>
-                              <% unless @report.doctor_quality.blank? %>
+                              <% if @report.doctor_quality.present? %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.doctor_quality %>
                               <% else %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
@@ -1907,7 +1907,7 @@
                               スタッフ&nbsp;:
                             </td>
                             <td>
-                              <% unless @report.staff_quality.blank? %>
+                              <% if @report.staff_quality.present? %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.staff_quality %>
                               <% else %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
@@ -1919,7 +1919,7 @@
                               技術&nbsp;:
                             </td>
                             <td>
-                              <% unless @report.impression_of_technology.blank? %>
+                              <% if @report.impression_of_technology.present? %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.impression_of_technology %>
                               <% else %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
@@ -1931,7 +1931,7 @@
                               価格&nbsp;:
                             </td>
                             <td>
-                              <% unless @report.impression_of_price.blank? %>
+                              <% if @report.impression_of_price.present? %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.impression_of_price %>
                               <% else %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
@@ -1943,7 +1943,7 @@
                               待ち時間&nbsp;:
                             </td>
                             <td>
-                              <% unless @awt.blank? %>
+                              <% if @awt.present? %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<%= @awt %>
                               <% else %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
@@ -1955,7 +1955,7 @@
                               快適さ&nbsp;:
                             </td>
                             <td>
-                              <% unless @report.comfort_of_space.blank? %>
+                              <% if @report.comfort_of_space.present? %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.comfort_of_space %>
                               <% else %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
@@ -1968,10 +1968,10 @@
                     <div class="col-md-8 chart-container px-auto">
                       <canvas id="clinicEvaluation"></canvas>
                     </div>
-                    <% unless @report.clinic_review.blank? %>
+                    <% if @report.clinic_review.present? %>
                       <div class="p-3">
                         <i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;感想<br>
-                        <div class="small pt-3"><%= safe_join(@report.clinic_review.split("\n"),tag(:br)) %></div>
+                        <div class="small pt-3"><%= text_url_to_link(h(safe_join(@report.clinic_review.split("\n"),tag(:br)))).html_safe %></div>
                       </div>
                     <% end %>
                   </div>
@@ -2019,7 +2019,7 @@
               <tbody>
                 <tr>
                   <td class="result-left-column small">投稿時の状況</td>
-                  <% unless @report.current_state.blank? %>
+                  <% if @report.current_state.present? %>
                     <td class="pl-4 result-right-column"><%= @report.str_current_state %></td>
                   <% else %>
                     <td class="pl-4 result-right-column"><small class="text-muted">未回答</small></td>
@@ -2047,12 +2047,12 @@
                 <tr>
                   <td class="result-left-column small">何院目</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.number_of_clinics.blank? %>
+                    <% if @report.number_of_clinics.present? %>
                       <span class="result-text"><%= @report.str_number_of_clinics %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
                     <% end %><br>
-                    <% unless @clinics.blank? %><span class="small text-muted">(</span>
+                    <% if @clinics.present? %><span class="small text-muted">(</span>
                       <% @clinics.each do |c| %>
                         <span class="result-text small"><%= c %></span>&nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
                       <% end %>
@@ -2063,9 +2063,9 @@
                 <tr>
                   <td class="result-left-column small">CL選定理由</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.clinic_selection_criteria.blank? || @report.reasons_for_choosing_this_clinic.blank? %>
+                    <% if @report.clinic_selection_criteria.present? || @report.reasons_for_choosing_this_clinic.present? %>
                       <span class="result-text"><%= @report.str_clinic_selection_criteria %></span><br>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
                     <% end %>
@@ -2073,7 +2073,7 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">説明会への参加有無</td>
-                  <% unless @report.briefing_session.blank? %>
+                  <% if @report.briefing_session.present? %>
                     <td class="pl-4 result-right-column"><%= @report.str_briefing_session %></td>
                   <% else %>
                     <td class="pl-4 result-right-column"><small class="text-muted">未回答</small></td>
@@ -2082,7 +2082,7 @@
                 <tr>
                   <td class="result-left-column small">何人目治療</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.fertility_treatment_number.blank? %>
+                    <% if @report.fertility_treatment_number.present? %>
                       <span class="result-text"><%= @report.str_fertility_treatment_number %>治療</span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2092,20 +2092,20 @@
                 <tr>
                     <td class="result-left-column small">卵子と精子</td>
                     <td class="pl-4">
-                      <% unless @report.types_of_eggs_and_sperm.blank? %>
+                      <% if @report.types_of_eggs_and_sperm.present? %>
                         <span class="result-text"><%= @report.str_types_of_eggs_and_sperm %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.description_of_eggs_and_sperm_used.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.description_of_eggs_and_sperm_used.split("\n"),tag(:br)) %></span>
+                      <% if @report.description_of_eggs_and_sperm_used.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.description_of_eggs_and_sperm_used.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
                 <tr>
                   <td class="result-left-column small">受精方法</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.types_of_fertilization_methods.blank? %>
+                    <% if @report.types_of_fertilization_methods.present? %>
                       <span class="result-text"><%= @report.str_types_of_fertilization_methods %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2116,7 +2116,7 @@
                   <tr>
                     <td class="result-left-column small">顕微授精の種類</td>
                     <td class="pl-4">
-                      <% unless @report.details_of_icsi.blank? %>
+                      <% if @report.details_of_icsi.present? %>
                         <span class="result-text"><%= @report.str_details_of_icsi %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -2126,7 +2126,8 @@
                 <% end %>
                 <tr>
                   <td class="result-left-column small">移植方法</td>
-                  <td class="pl-4 result-right-column"><% unless @report.transplant_method.blank? %>
+                  <td class="pl-4 result-right-column">
+                    <% if @report.transplant_method.present? %>
                       <span class="result-text"><%= @report.str_transplant_method %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2135,7 +2136,8 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">妊活/不妊治療の開始年齢</td>
-                  <td class="pl-4 result-right-column"><% unless @report.first_age_to_start.blank? %>
+                  <td class="pl-4 result-right-column">
+                    <% if @report.first_age_to_start.present? %>
                       <span class="result-text"><%= @report.str_first_age_to_start %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2144,7 +2146,8 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">このCLでの治療開始時年齢</td>
-                  <td class="pl-4 result-right-column"><% unless @report.first_age_to_start.blank? %>
+                  <td class="pl-4 result-right-column">
+                    <% if @report.first_age_to_start.present? %>
                       <span class="result-text"><%= @report.str_first_age_to_start %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2154,7 +2157,7 @@
                 <tr>
                   <td class="result-left-column small">このCLでの治療終了時年齢</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.first_age_to_start.blank? %>
+                    <% if @report.first_age_to_start.present? %>
                       <span class="result-text"><%= @report.str_first_age_to_start %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2164,7 +2167,7 @@
                 <tr>
                   <td class="result-left-column small">このCLでの治療終了時のパートナーの年齢</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.age_of_partner_at_end_of_treatment.blank? %>
+                    <% if @report.age_of_partner_at_end_of_treatment.present? %>
                       <span class="result-text"><%= @report.str_age_of_partner_at_end_of_treatment %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2173,7 +2176,8 @@
                 </tr>
                 <tr>
                   <td class="result-left-column small">このCLでの治療終了年</td>
-                  <td class="pl-4 result-right-column"><% unless @report.year_of_treatment_end.blank? %>
+                  <td class="pl-4 result-right-column">
+                    <% if @report.year_of_treatment_end.present? %>
                       <span class="result-text"><%= @report.year_of_treatment_end.year %>年</span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2183,7 +2187,7 @@
                 <tr>
                   <td class="result-left-column small">通院期間</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.treatment_period.blank? %>
+                    <% if @report.treatment_period.present? %>
                       <span class="result-text"><%= @report.str_treatment_period %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2193,7 +2197,7 @@
                 <tr>
                   <td class="result-left-column small">人工授精の回数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.number_of_aih.blank? %>
+                    <% if @report.number_of_aih.present? %>
                       <span class="result-text"><%= @report.str_number_of_aih %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2219,7 +2223,7 @@
                 <tr>
                   <td class="result-left-column small">不育症診断</td>
                   <td class="pl-4">
-                    <% unless @report.fuiku.blank? %>
+                    <% if @report.fuiku.present? %>
                       <span class="result-text"><%= @report.str_fuiku %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2227,17 +2231,17 @@
                   </td>
                 </tr>
                 <tr>
-                  <% unless @report.fuiku_supplementary_explanation.blank? %>
+                  <% if @report.fuiku_supplementary_explanation.present? %>
                     <td class="result-left-column small">習慣流産や不育症について</td>
                     <td class="pl-4">
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                     </td>
                   <% end %>
                 </tr>
                 <tr>
                   <td class="result-left-column small">養子縁組について</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.adoption.blank? %>
+                    <% if @report.adoption.present? %>
                       <span class="result-text"><%= @report.str_adoption %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2247,7 +2251,7 @@
                 <tr>
                   <td class="result-left-column small">AMH</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.amh.blank? %>
+                    <% if @report.amh.present? %>
                       <span class="result-text"><%= @report.str_amh %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2257,7 +2261,7 @@
                 <tr>
                   <td class="result-left-column small">BMI</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.bmi.blank? %>
+                    <% if @report.bmi.present? %>
                       <span class="result-text"><%= @report.str_bmi %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2267,7 +2271,7 @@
                 <tr>
                   <td class="result-left-column small">喫煙有無</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.smoking.blank? %>
+                    <% if @report.smoking.present? %>
                       <span class="result-text"><%= @report.str_smoking %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2277,7 +2281,7 @@
                 <tr>
                   <td class="result-left-column small">女性側の不妊原因</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.f_infertility_factors.blank? %>
+                    <% if @report.f_infertility_factors.present? %>
                       <% @report.f_infertility_factors.each do |f_infertility_factor| %>
                         <span class="result-text"><%= f_infertility_factor.name %><br></span>
                       <% end %>
@@ -2289,7 +2293,7 @@
                 <tr>
                   <td class="result-left-column small">男性側の不妊原因</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.m_infertility_factors.blank? %>
+                    <% if @report.m_infertility_factors.present? %>
                       <% @report.m_infertility_factors.each do |m_infertility_factor| %>
                         <span class="result-text"><%= m_infertility_factor.name %><br></span>
                       <% end %>
@@ -2301,7 +2305,7 @@
                 <tr>
                   <td class="result-left-column small">女性側の疾患</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.f_diseases.blank? %>
+                    <% if @report.f_diseases.present? %>
                       <% @report.f_diseases.each do |f_disease| %>
                         <span class="result-text"><%= f_disease.name %><br></span>
                       <% end %>
@@ -2313,7 +2317,7 @@
                 <tr>
                   <td class="result-left-column small">男性側の疾患</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.m_diseases.blank? %>
+                    <% if @report.m_diseases.present? %>
                       <% @report.m_diseases.each do |m_disease| %>
                         <span class="result-text"><%= m_disease.name %><br></span>
                       <% end %>
@@ -2325,7 +2329,7 @@
                 <tr>
                   <td class="result-left-column small">女性側の手術既往歴</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.f_surgeries.blank? %>
+                    <% if @report.f_surgeries.present? %>
                       <% @report.f_surgeries.each do |f_surgery| %>
                         <span class="result-text"><%= f_surgery.name %></span>
                       <% end %>
@@ -2337,7 +2341,7 @@
                 <tr>
                   <td class="result-left-column small">男性側の手術既往歴</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.m_surgeries.blank? %>
+                    <% if @report.m_surgeries.present? %>
                       <% @report.m_surgeries.each do |m_surgery| %>
                         <span class="result-text"><%= m_surgery.name %></span>
                       <% end %>
@@ -2346,18 +2350,18 @@
                     <% end %>
                   </td>
                 </tr>
-                <% unless @report.about_causes_of_infertility.blank? %>
+                <% if @report.about_causes_of_infertility.present? %>
                   <tr>
                     <td class="result-left-column small">不妊原因/疾患/手術などについて</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.about_causes_of_infertility.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.about_causes_of_infertility.split("\n"),tag(:br)))).html_safe %></span>
                     </td>
                   </tr>
                 <% end %>
                 <tr>
                   <td class="result-left-column small">採卵誘発タイプ</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.type_of_ovarian_stimulation.blank? %>
+                    <% if @report.type_of_ovarian_stimulation.present? %>
                       <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2367,20 +2371,20 @@
                 <tr>
                   <td class="result-left-column small">採卵誘発方法</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.type_of_sairan_cycle.blank? %>
+                    <% if @report.type_of_sairan_cycle.present? %>
                       <span class="result-text"><%= @report.str_type_of_sairan_cycle %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
                     <% end %><br><br>
-                    <% unless @report.notes_on_type_of_sairan_cycle.blank? %>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.notes_on_type_of_sairan_cycle.split("\n"),tag(:br)) %></span>
+                    <% if @report.notes_on_type_of_sairan_cycle.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.notes_on_type_of_sairan_cycle.split("\n"),tag(:br)))).html_safe %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">卵巣刺激(〜採卵周期)での使用薬剤</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.sairan_medicines.blank? %>
+                    <% if @report.sairan_medicines.present? %>
                       <% @report.sairan_medicines.each do |sairan_medicine| %>
                         <span class="result-text"><%= sairan_medicine.name %><br></span>
                       <% end %>
@@ -2392,7 +2396,7 @@
                 <tr>
                   <td class="result-left-column small">採卵時の麻酔の種類</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.use_of_anesthesia.blank? %>
+                    <% if @report.use_of_anesthesia.present? %>
                       <span class="result-text"><%= @report.str_use_of_anesthesia %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2402,7 +2406,7 @@
                 <tr>
                   <td class="result-left-column small">麻酔の有無や種類の選択</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.selection_of_anesthesia_type.blank? %>
+                    <% if @report.selection_of_anesthesia_type.present? %>
                       <span class="result-text"><%= @report.str_selection_of_anesthesia_type %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2553,7 +2557,7 @@
                 <tr>
                   <td class="result-left-column small">このCLでの全採卵「回」数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.total_number_of_sairan.blank? %>
+                    <% if @report.total_number_of_sairan.present? %>
                       <span class="result-text"><%= @report.str_total_number_of_sairan %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2563,7 +2567,7 @@
                 <tr>
                   <td class="result-left-column small">このCL以外も含めた全採卵「回」数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.all_number_of_sairan.blank? %>
+                    <% if @report.all_number_of_sairan.present? %>
                       <span class="result-text"><%= @report.str_all_number_of_sairan %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2574,7 +2578,7 @@
                 <tr>
                   <td class="result-left-column small">至妊娠の最新周期の採卵「個」数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.number_of_eggs_collected.blank? %>
+                    <% if @report.number_of_eggs_collected.present? %>
                       <span class="result-text"><%= @report.str_number_of_eggs_collected %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2584,7 +2588,7 @@
                 <tr>
                   <td class="result-left-column small">その内受精に至った個数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.number_of_fertilized_eggs.blank? %>
+                    <% if @report.number_of_fertilized_eggs.present? %>
                       <span class="result-text"><%= @report.str_number_of_fertilized_eggs %><span class="small text-muted">（&nbsp;<%= @report.str_number_of_eggs_collected %>採卵）</span></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2640,17 +2644,17 @@
                   </tr>
                 <% end %>
                 <tr>
-                  <% unless @report.explanation_and_impression_about_sairan.blank? %>
+                  <% if @report.explanation_and_impression_about_sairan.present? %>
                     <td class="result-left-column small">採卵メモ</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)))).html_safe %></span>
                     </td>
                   <% end %>
                 </tr>
                 <tr>
                   <td class="result-left-column small">胚の成熟度</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.egg_maturity.blank? %>
+                    <% if @report.egg_maturity.present? %>
                       <span class="result-text"><%= @report.str_egg_maturity %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2660,7 +2664,7 @@
                 <tr>
                   <td class="result-left-column small">IVM実施の有無</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.ova_with_ivm.blank? %>
+                    <% if @report.ova_with_ivm.present? %>
                       <span class="result-text"><%= @report.str_ova_with_ivm %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2670,7 +2674,7 @@
                 <tr>
                   <td class="result-left-column small">胚の培養日数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.embryo_culture_days.blank? %>
+                    <% if @report.embryo_culture_days.present? %>
                       <span class="result-text"><%= @report.str_embryo_culture_days %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2680,7 +2684,7 @@
                 <tr>
                   <td class="result-left-column small">胚のステージ</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.embryo_stage.blank? %>
+                    <% if @report.embryo_stage.present? %>
                       <span class="result-text"><%= @report.str_embryo_stage %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2691,13 +2695,13 @@
                   <tr>
                     <td class="result-left-column small">初期胚のグレード</td>
                     <td class="pl-4">
-                      <% unless @report.early_embryo_grade.blank? %>
+                      <% if @report.early_embryo_grade.present? %>
                         <span class="result-text"><%= @report.str_early_embryo_grade %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.early_embryo_grade_supplementary_explanation.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.early_embryo_grade_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <% if @report.early_embryo_grade_supplementary_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.early_embryo_grade_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -2705,26 +2709,26 @@
                   <tr>
                     <td class="result-left-column small">胚盤胞のグレード</td>
                     <td class="pl-4">
-                      <% unless @report.blastocyst_grade1.blank? %>
+                      <% if @report.blastocyst_grade1.present? %>
                         <span class="result-text"><%= @report.str_blastocyst_grade1 %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.blastocyst_grade1_supplementary_explanation.blank? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.blastocyst_grade1_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <% if @report.blastocyst_grade1_supplementary_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.blastocyst_grade1_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small">胚盤胞の評価</td>
                     <td class="pl-4">
-                      <% unless @report.blastocyst_grade2.blank? %>
+                      <% if @report.blastocyst_grade2.present? %>
                         <span class="result-text"><%= @report.str_blastocyst_grade2 %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br><br>
-                      <% unless @report.blastocyst_grade2_supplementary_explanation.blank? %>
-                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.blastocyst_grade2_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                      <% if @report.blastocyst_grade2_supplementary_explanation.present? %>
+                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.blastocyst_grade2_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
@@ -2739,7 +2743,7 @@
                 <tr>
                   <td class="result-left-column small">移植周期の使用薬剤</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.transfer_medicines.blank? %>
+                    <% if @report.transfer_medicines.present? %>
                       <% @report.transfer_medicines.each do |transfer_medicine| %>
                         <span class="result-text"><%= transfer_medicine.name %><br></span>
                       <% end %>
@@ -2751,7 +2755,7 @@
                 <tr>
                   <td class="result-left-column small">移植オプション</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.transfer_options.blank? %>
+                    <% if @report.transfer_options.present? %>
                       <% @report.transfer_options.each do |transfer_option| %>
                         <span class="result-text"><%= transfer_option.name %><br></span>
                       <% end %>
@@ -2931,7 +2935,7 @@
                 <tr>
                   <td class="result-left-column small">このCLでの全移植「回」数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.total_number_of_transplants.blank? %>
+                    <% if @report.total_number_of_transplants.present? %>
                       <span class="result-text"><%= @report.str_total_number_of_transplants %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2941,7 +2945,7 @@
                 <tr>
                   <td class="result-left-column small">このCL以外も含めた全移植「回」数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.all_number_of_transplants.blank? %>
+                    <% if @report.all_number_of_transplants.present? %>
                       <span class="result-text"><%= @report.str_all_number_of_transplants %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2951,7 +2955,7 @@
                 <tr>
                   <td class="result-left-column small">このCLでの移植全「個」数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.total_number_of_eggs_transplanted.blank? %>
+                    <% if @report.total_number_of_eggs_transplanted.present? %>
                       <span class="result-text"><%= @report.str_total_number_of_eggs_transplanted %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2961,7 +2965,7 @@
                 <tr>
                   <td class="result-left-column small">このCLでの貯卵数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.number_of_eggs_stored.blank? %>
+                    <% if @report.number_of_eggs_stored.present? %>
                       <span class="result-text"><%= @report.str_number_of_eggs_stored %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -2971,58 +2975,58 @@
                 <tr>
                   <td class="result-left-column small">凍結胚1個あたりの年間保存料</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.frozen_embryo_storage_cost.blank? %>
+                    <% if @report.frozen_embryo_storage_cost.present? %>
                       <span class="result-text"><span class="small text-muted">年間&nbsp;</span><%= @report.frozen_embryo_storage_cost.to_s(:delimited) %>円<span class="small text-muted">&nbsp;/個</span><br></span>
                     <% else %>
                       <span class="text-muted small">未回答<br></span>
                     <% end %><br>
-                    <% unless @report.explanation_of_frozen_embryo_storage_cost.blank? %>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.explanation_of_frozen_embryo_storage_cost.split("\n"),tag(:br)) %></span>
+                    <% if @report.explanation_of_frozen_embryo_storage_cost.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.explanation_of_frozen_embryo_storage_cost.split("\n"),tag(:br)))).html_safe %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">検査</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.inspections.blank? %>
+                    <% if @report.inspections.present? %>
                       <% @report.inspections.each do |inspection| %>
                         <span class="result-text"><%= inspection.name %><br></span>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答</span>
                     <% end %><br>
-                    <% unless @report.special_inspection_supplementary_explanation.blank? %>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                    <% if @report.special_inspection_supplementary_explanation.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
-                  <% unless @report.explanation_and_impression_about_ishoku.blank? %>
+                  <% if @report.explanation_and_impression_about_ishoku.present? %>
                     <td class="result-left-column small">移植メモ</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)))).html_safe %></span>
                     </td>
                   <% end %>
                 </tr>
                 <tr>
                   <td class="result-left-column small">CLでの治療以外に行ったこと</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.other_efforts.blank? %>
+                    <% if @report.other_efforts.present? %>
                       <% @report.other_efforts.each do |other_effort| %>
                         <span class="result-text"><%= other_effort.name %><br></span>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答<br></span>
                     <% end %><br>
-                    <% unless @report.other_effort_supplementary_explanation.blank? %>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                    <% if @report.other_effort_supplementary_explanation.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">CLでの治療以外にかけた月額コスト</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.other_effort_cost.blank? %>
+                    <% if @report.other_effort_cost.present? %>
                       <span class="result-text"><%= @report.str_other_effort_cost %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3032,22 +3036,22 @@
                 <tr>
                   <td class="result-left-column small">治療中に服用していたサプリ</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.supplements.blank? %>
+                    <% if @report.supplements.present? %>
                       <% @report.supplements.each do |supplement| %>
                         <span class="result-text"><%= supplement.name %><br></span>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答<br></span>
                     <% end %><br>
-                    <% unless @report.supplement_supplementary_explanation.blank? %>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)) %></span>
+                    <% if @report.supplement_supplementary_explanation.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">サプリにかけた月額コスト</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.supplement_cost.blank? %>
+                    <% if @report.supplement_cost.present? %>
                       <span class="result-text"><%= @report.str_supplement_cost %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3057,20 +3061,20 @@
                 <tr>
                   <td class="result-left-column small">オンライン診療の有無</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.online_consultation.blank? %>
+                    <% if @report.online_consultation.present? %>
                       <span class="result-text"><%= @report.str_online_consultation %><br></span>
                     <% else %>
                       <span class="text-muted small">未回答<br></span>
                     <% end %><br>
-                    <% unless @report.online_consultation_details.blank? %>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.online_consultation_details.split("\n"),tag(:br)) %></span>
+                    <% if @report.online_consultation_details.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.online_consultation_details.split("\n"),tag(:br)))).html_safe %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">このCLの治療費総額</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.cost.blank? %>
+                    <% if @report.cost.present? %>
                       <span class="result-text"><%= @report.str_cost %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3080,7 +3084,7 @@
                 <tr>
                   <td class="result-left-column small">このCL以外も含めたこれまでの治療費の総額</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.all_cost.blank? %>
+                    <% if @report.all_cost.present? %>
                       <span class="result-text"><%= @report.str_all_cost %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3088,17 +3092,17 @@
                   </td>
                 </tr>
                 <tr>
-                  <% unless @report.explanation_of_cost.blank? %>
+                  <% if @report.explanation_of_cost.present? %>
                     <td class="result-left-column small">費用メモ</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.explanation_of_cost.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.explanation_of_cost.split("\n"),tag(:br)))).html_safe %></span>
                     </td>
                   <% end %>
                 </tr>
                 <tr>
                   <td class="result-left-column small">助成金受給回数</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.number_of_times_the_grant_was_received.blank? %>
+                    <% if @report.number_of_times_the_grant_was_received.present? %>
                       <span class="result-text"><%= @report.str_number_of_times_the_grant_was_received %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3108,26 +3112,26 @@
                 <tr>
                   <td class="result-left-column small">助成金受給総額</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.all_grant_amount.blank? %>
+                    <% if @report.all_grant_amount.present? %>
                       <span class="result-text"><%= @report.all_grant_amount.to_s(:delimited) %>円</span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
                     <% end %><br><br>
-                    <% unless @report.supplementary_explanation_of_grant.blank? %>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= safe_join(@report.supplementary_explanation_of_grant.split("\n"),tag(:br)) %></span>
+                    <% if @report.supplementary_explanation_of_grant.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.supplementary_explanation_of_grant.split("\n"),tag(:br)))).html_safe %></span>
                     <% end %>
                   </td>
                 </tr>
                 <tr>
                   <td class="result-left-column small">クレジットカードの利用</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.credit_card_validity.blank? %>
+                    <% if @report.credit_card_validity.present? %>
                       <span class="result-text"><%= @report.str_credit_card_validity %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
                     <% end %><br><br>
                     <% if @report.credit_card_validity == 3 %>
-                      <% unless @report.creditcards_can_be_used_from_more_than.blank? %>
+                      <% if @report.creditcards_can_be_used_from_more_than.present? %>
                         <span class="result-text"><span class="text-muted small">(クレジットカードの利用は)</span><br><%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から</span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -3138,7 +3142,7 @@
                 <tr>
                   <td class="result-left-column small">CLでの平均待ち時間</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.average_waiting_time.blank? %>
+                    <% if @report.average_waiting_time.present? %>
                       <span class="result-text"><%= @report.str_average_waiting_time %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3148,7 +3152,7 @@
                 <tr>
                   <td class="result-left-column small">予約方法</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.reservation_method.blank? %>
+                    <% if @report.reservation_method.present? %>
                       <span class="result-text"><%= @report.str_reservation_method %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3158,7 +3162,7 @@
                 <tr>
                   <td class="result-left-column small">通院に要する平均通院時間</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.period_of_time_spent_traveling.blank? %>
+                    <% if @report.period_of_time_spent_traveling.present? %>
                       <span class="result-text"><%= @report.str_period_of_time_spent_traveling %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3264,7 +3268,7 @@
                 <tr>
                   <td class="result-left-column small">支援制度の有無</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.treatment_support_system.blank? %>
+                    <% if @report.treatment_support_system.present? %>
                       <span class="result-text"><%= @report.str_treatment_support_system %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3274,7 +3278,7 @@
                 <tr>
                   <td class="result-left-column small">治療に際しての働き方の変化</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.suspended_or_retirement_job.blank? %>
+                    <% if @report.suspended_or_retirement_job.present? %>
                       <span class="result-text"><%= @report.str_suspended_or_retirement_job %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3306,17 +3310,17 @@
                   </td>
                 </tr>
                 <tr>
-                  <% unless @report.about_work_and_working_style.blank? %>
+                  <% if @report.about_work_and_working_style.present? %>
                     <td class="result-left-column small">仕事についてのメモ</td>
                     <td class="pl-4 result-right-column">
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)) %></span>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)))).html_safe %></span>
                     </td>
                   <% end %>
                 </tr>
                 <tr>
                   <td class="result-left-column small">治療の開示範囲</td>
                   <td class="pl-4 result-right-column">
-                    <% unless @report.scope_of_disclosures.blank? %>
+                    <% if @report.scope_of_disclosures.present? %>
                       <% @report.scope_of_disclosures.each do |scope_of_disclosure| %>
                         <span class="result-text"><%= scope_of_disclosure.scope %><br></span>
                       <% end %>
