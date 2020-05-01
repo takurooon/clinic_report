@@ -60,6 +60,11 @@ module ApplicationHelper
       sub_text << "<a href=" << url << " target=\"_blank\">" << url << "</a>"
       text.gsub!(url, sub_text)
     end
+    URI.extract(text, ['http']).uniq.each do |url_2|
+      sub_text_2 = ""
+      sub_text_2 << "<a href=" << url_2 << " target=\"_blank\">" << url_2 << "</a>"
+      text.gsub!(url_2, sub_text_2)
+    end
     return text
   end
 end

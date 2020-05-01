@@ -63,7 +63,7 @@
 
         <% if @report.year_of_treatment_end.present? && Time.now.year - @report.year_of_treatment_end.year > 0 %>
           <div class="alert alert-info small my-3 py-1" role="alert">
-            こちらのレポコは&nbsp;<%= Time.now.year - @report.year_of_treatment_end.year %>年以上前&nbsp;<span class="small text-muted">(<%= @report.year_of_treatment_end.year %>年)</span>&nbsp;の治療情報です。
+            こちらのレポコは&nbsp;<%= @report.year_of_treatment_end.year %>年&nbsp;<span class="small text-muted">(<%= Time.now.year - @report.year_of_treatment_end.year %>年前)</span>&nbsp;の治療情報です。
           </div>
         <% end %>
 

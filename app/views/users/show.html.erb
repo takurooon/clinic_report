@@ -13,7 +13,9 @@
               <% if @user.icon.blank? %>
                 <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2", alt: "Card image cap", loading: "lazy") %>
               <% else %>
-                <%= image_tag(@user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
+                <%=  link_to @user.icon.url, 'data-lightbox': @user.icon do %>
+                  <%= image_tag(@user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
+                <% end %>
               <% end %>
             </div>
             <div class="pt-2 text-center pt-3 pl-4">
@@ -33,7 +35,9 @@
             <% if @user.icon.blank? %>
               <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2", alt: "Card image cap", loading: "lazy") %>
             <% else %>
-              <%= image_tag(@user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
+              <%=  link_to @user.icon.url, 'data-lightbox': @user.icon do %>
+                <%= image_tag(@user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
+              <% end %>
             <% end %>
           </div>
           <div class="d-none d-sm-block col-9 pt-5 pb-4">
@@ -62,7 +66,7 @@
             </div>
             <div class="py-3 pl-2 pr-4">
               <% if @user.self_introduction.present? %>
-                <%= safe_join(@user.self_introduction.split("\n"),tag(:br)) %>
+                <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
               <% else %>
                 <h6 class="text-muted">プロフィールはまだ登録されていません。
                   <% if @user == current_user %>
@@ -112,7 +116,7 @@
             </div>
             <div class="p-2">
               <% if @user.self_introduction.present? %>
-                <%= safe_join(@user.self_introduction.split("\n"),tag(:br)) %>
+                <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
               <% end %>
             </div>
           </div>
