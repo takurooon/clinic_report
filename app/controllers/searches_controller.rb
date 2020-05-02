@@ -59,7 +59,7 @@ class SearchesController < ApplicationController
   end
 
   def all_age
-    age = Report.make_select_options_treatment_end_age.invert
+    age = Report::HASH_TREATMENT_END_AGE
     reports = Report.group(:treatment_end_age).where.not(treatment_end_age: nil).distinct.count
     c = age.keys - reports.keys
     c.each do |d|
@@ -69,7 +69,7 @@ class SearchesController < ApplicationController
   end
 
   def age
-    age = Report.make_select_options_treatment_end_age.invert
+    age = Report::HASH_TREATMENT_END_AGE
     age_value = params[:value].to_i
     @selected_age = age[age_value]
     @reports = Report.where(treatment_end_age: age_value)
