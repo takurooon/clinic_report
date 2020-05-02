@@ -48,7 +48,7 @@
                     <% end %>
                     <%= link_to report.user.name, user_path(report.user_id) %>
                   </p>
-                  <p class="text-center">
+                  <p class="text-center mb-0 pb-0">
                     <% if report.user.gender == "female" %>
                       <span class="badge badge-pill badge-light text-muted p-0">女</span>
                     <% else %>
@@ -67,6 +67,8 @@
                     <% else %>
                       <span class="small text-muted"><%= link_to report.city.name, "/category/area/city/#{report.city.id}", class: "text-muted" %></span>
                     <% end %>
+                  </p>
+                  <p class="text-center m-0 py-0 small">
                     <span class="small text-muted text-muted"><%= report.str_work_style %></span>
                   </p>
                 </div>
@@ -124,7 +126,7 @@
                       <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}", class: "text-muted" %>歳</span>
                     <% end %>
                   </p>
-                  <p class="text-center m-0 py-0>
+                  <p class="text-center m-0 py-0">
                     <% if report.prefecture_at_the_time_status == "hide" %>
                       <span class="small text-muted">−</span>
                     <% else %>
