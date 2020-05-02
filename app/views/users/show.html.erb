@@ -11,7 +11,41 @@
           <div class="d-none d-sm-block col-3 pl-4 py-4">
             <div class="pt-4 pl-4">
               <% if @user.icon.blank? %>
-                <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2", alt: "Card image cap", loading: "lazy") %>
+                <% if @user.birthday == nil %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% elsif Time.now.year - @user.birthday.year <= 25 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 30 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 35 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 40 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 45 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% else %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
               <% else %>
                 <%=  link_to @user.icon.url, 'data-lightbox': @user.icon do %>
                   <%= image_tag(@user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
@@ -19,7 +53,44 @@
               <% end %>
             </div>
             <div class="pt-2 text-center pt-3 pl-4">
-              <h6><%= @user.name %></h6>
+              <h6>
+                <% if @user.birthday == nil %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy") %>
+                <% elsif Time.now.year - @user.birthday.year <= 25 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 30 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 35 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 40 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 45 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% else %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy") %>
+                <% end %>
+                <%= @user.name %>
+              </h6>
               <small>
                 <span class="small">
                   <% if @user.gender == "female" %>
@@ -33,7 +104,41 @@
           </div>
           <div class="d-block d-sm-none col-3 py-3 pl-4 pr-0">
             <% if @user.icon.blank? %>
-              <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2", alt: "Card image cap", loading: "lazy") %>
+              <% if @user.birthday == nil %>
+                <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+              <% elsif Time.now.year - @user.birthday.year <= 25 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year <= 30 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year <= 35 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year <= 40 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year <= 45 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% else %>
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+              <% end %>
             <% else %>
               <%=  link_to @user.icon.url, 'data-lightbox': @user.icon do %>
                 <%= image_tag(@user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
@@ -78,7 +183,44 @@
           </div>
           <div class="d-block d-sm-none col-9 pt-3">
             <div>
-              <h5 class="d-inline">&nbsp;<%= @user.name %></5>
+              <h5 class="d-inline">
+                <% if @user.birthday == nil %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy") %>
+                <% elsif Time.now.year - @user.birthday.year <= 25 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 30 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 35 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 40 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @user.birthday.year <= 45 %>
+                  <% if Time.now.month < @user.birthday.month %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <% end %>
+                <% else %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy") %>
+                <% end %>
+                <%= @user.name %>
+              </5>
               <small>
                 <span class="small">
                   <% if @user.gender == "female" %>
@@ -140,19 +282,19 @@
                                 <div class="icon-field px-4 py-0">
                                   <% if report.user.icon.blank? %>
                                     <% if report.treatment_end_age == nil %>
-                                      <%= image_tag("icon/g_blank.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 24 %>
-                                      <%= image_tag("icon/g_10_24.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 29 %>
-                                      <%= image_tag("icon/g_25_29.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 34 %>
-                                      <%= image_tag("icon/g_30_34.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 39 %>
-                                      <%= image_tag("icon/g_35_39.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 44 %>
-                                      <%= image_tag("icon/g_40_44.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% else %>
-                                      <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% end %>
                                   <% else %>
                                     <%= image_tag(report.user.icon.url, class:"icon_image") %>
@@ -164,17 +306,17 @@
                                   <% if report.treatment_end_age == nil %>
                                     <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 24 %>
-                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 29 %>
-                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation20", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 34 %>
-                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 39 %>
-                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation40", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 44 %>
-                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation50", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% else %>
-                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation_over_60", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% end %>
                                   <%= link_to report.user.name, user_path(report.user_id) %>
                                 </p>
@@ -206,19 +348,19 @@
                                 <div class="icon-field px-1 pt-0 mb-1">
                                   <% if report.user.icon.blank? %>
                                     <% if report.treatment_end_age == nil %>
-                                      <%= image_tag("icon/g_blank.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 24 %>
-                                      <%= image_tag("icon/g_10_24.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 29 %>
-                                      <%= image_tag("icon/g_25_29.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 34 %>
-                                      <%= image_tag("icon/g_30_34.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 39 %>
-                                      <%= image_tag("icon/g_35_39.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 44 %>
-                                      <%= image_tag("icon/g_40_44.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% else %>
-                                      <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% end %>
                                   <% else %>
                                     <%= image_tag(report.user.icon.url, class:"icon_image") %>
@@ -230,17 +372,17 @@
                                   <% if report.treatment_end_age == nil %>
                                     <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 24 %>
-                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 29 %>
-                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation20", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 34 %>
-                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 39 %>
-                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation40", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 44 %>
-                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation50", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% else %>
-                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation_over_60", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                   <% end %>
                                   <%= link_to report.user.name, user_path(report.user_id) %>
                                 </p>

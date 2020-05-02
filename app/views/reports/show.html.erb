@@ -3355,7 +3355,7 @@
 
           <div class="comment-area mt-5">
             <div class="p-comment__list">
-              <h4 class="p-comment__listTitle"><i class="far fa-comments", color="#4BAAF3"></i>&nbsp;&nbsp;コメント</h4>
+              <h4 class="p-comment__listTitle"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメント</h4>
               <%= render @report.comments %>
             </div>
             <% if current_user %>
@@ -3368,7 +3368,7 @@
             </div>
             <div class="card text-center mb-5 commnet-blur-text">
               <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-pencil-alt", color="#4BAAF3"></i>&nbsp;&nbsp;ログインしてコメントしよう！</h5>
+                <h5 class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;ログインしてコメントしよう！</h5>
                 <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
                 <%=link_to 'ログイン', new_user_session_path, class: "btn btn-raised btn-info mr-2" %>
                 <%=link_to '新規登録',  new_user_registration_path, class: "btn btn-info border ml-2" %>

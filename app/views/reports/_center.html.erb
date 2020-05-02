@@ -10,19 +10,19 @@
                   <div class="icon-field px-4 py-0">
                     <% if report.user.icon.blank? %>
                       <% if report.treatment_end_age == nil %>
-                        <%= image_tag("icon/g_blank.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 24 %>
-                        <%= image_tag("icon/g_10_24.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 29 %>
-                        <%= image_tag("icon/g_25_29.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 34 %>
-                        <%= image_tag("icon/g_30_34.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 39 %>
-                        <%= image_tag("icon/g_35_39.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 44 %>
-                        <%= image_tag("icon/g_40_44.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% else %>
-                        <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% end %>
                     <% else %>
                       <%= image_tag(report.user.icon.url, class:"icon_image") %>
@@ -34,17 +34,17 @@
                     <% if report.treatment_end_age == nil %>
                       <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 24 %>
-                      <%= link_to image_tag("icon/g_10_24.png", alt: "generation10", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 29 %>
-                      <%= link_to image_tag("icon/g_25_29.png", alt: "generation20", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 34 %>
-                      <%= link_to image_tag("icon/g_30_34.png", alt: "generation30", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 39 %>
-                      <%= link_to image_tag("icon/g_35_39.png", alt: "generation40", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 44 %>
-                      <%= link_to image_tag("icon/g_40_44.png", alt: "generation50", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% else %>
-                      <%= link_to image_tag("icon/g_45_.png", alt: "generation_over_60", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% end %>
                     <%= link_to report.user.name, user_path(report.user_id) %>
                   </p>
@@ -76,19 +76,19 @@
                   <div class="icon-field px-1 pt-0 mb-1">
                     <% if report.user.icon.blank? %>
                       <% if report.treatment_end_age == nil %>
-                        <%= image_tag("icon/g_blank.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 24 %>
-                        <%= image_tag("icon/g_10_24.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 29 %>
-                        <%= image_tag("icon/g_25_29.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 34 %>
-                        <%= image_tag("icon/g_30_34.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 39 %>
-                        <%= image_tag("icon/g_35_39.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 44 %>
-                        <%= image_tag("icon/g_40_44.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% else %>
-                        <%= image_tag("icon/g_45_.png", alt: "Card image cap", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                        <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% end %>
                     <% else %>
                       <%= image_tag(report.user.icon.url, class:"icon_image") %>
@@ -100,17 +100,17 @@
                     <% if report.treatment_end_age == nil %>
                       <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 24 %>
-                      <%= link_to image_tag("icon/g_10_24.png", alt: "generation10", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 29 %>
-                      <%= link_to image_tag("icon/g_25_29.png", alt: "generation20", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 34 %>
-                      <%= link_to image_tag("icon/g_30_34.png", alt: "generation30", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 39 %>
-                      <%= link_to image_tag("icon/g_35_39.png", alt: "generation40", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% elsif report.treatment_end_age < 44 %>
-                      <%= link_to image_tag("icon/g_40_44.png", alt: "generation50", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% else %>
-                      <%= link_to image_tag("icon/g_45_.png", alt: "generation_over_60", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                      <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                     <% end %>
                     <%= link_to report.user.name, user_path(report.user_id) %>
                   </p>
