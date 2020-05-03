@@ -618,10 +618,47 @@
       <div class="form-group border rounded px-0 py-3">
         <p class="px-3"><span class="text-danger font-weight-bold">採卵日以前</span>の各ホルモン値を入力してください。</p>
         <small id="poster-tip" class="form-text px-3">
-          必ず「Day」を選択の上、各種ホルモン値を「半角数字」で入力ください。<br>
-          必要なだけ行を追加することができます。<br>
-          採卵後の移植周期(移植前･移植後)は同様の入力欄が別途あります。
-        </small><br>
+          <span class="small text-muted">
+            <span class="text-danger"><u>入力される場合は「<strong>D</strong>&nbsp;<span class="text-muted">(Day)</span>」だけは必ず選択してください。</u></span><br>D以外は空でも問題ありません。
+            各種ホルモン値は「半角数字」で入力ください。必要なだけ行を追加できます。
+            採卵後の移植周期(移植前･後)も同様の入力欄が以降にあります。
+          </span>
+        </small>
+        <div class="box16 small text-muted my-0">
+          <table>
+            <tbody>
+              <tr>
+                <th colspan="2" class="text-center">
+                  単位
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  E2&nbsp;:
+                </td>
+                <td>
+                  <strong>pg/ml</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  P4&nbsp;:
+                </td>
+                <td>
+                  <strong>ng/ml</strong>
+                </td>
+              <tr>
+              <tr>
+                <td>
+                  他&nbsp;&nbsp;:
+                </td>
+                <td>
+                  <strong>mIU/ml</strong>
+                </td>
+              <tr>
+            </tbody>
+          </table>
+        </div>
         <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
           <%= render "sairan_hormone_fields", f: sairan_hormone %>
         <% end %>
@@ -633,14 +670,52 @@
       <div class="form-group border rounded px-0 py-3">
         <p class="px-3"><span class="text-danger font-weight-bold">採卵日当日</span>の各ホルモン値を入力してください。</p>
         <small id="poster-tip" class="form-text px-3">
-          入力される際には「Day」を必ず選択し、各種ホルモン値は「半角数字」で入力ください。<br>
-          採卵日当日以前のホルモン値については次の項目に入力欄があります。
-        </small><br>
+          <span class="small text-muted">
+            <span class="text-danger"><u>入力される場合は「<strong>D</strong>&nbsp;<span class="text-muted">(Day)</span>」だけは必ず選択してください。</u></span><br>D以外は空でも問題ありません。
+            各種ホルモン値は「半角数字」で入力ください。必要なだけ行を追加できます。
+            採卵後の移植周期(移植前･後)も同様の入力欄が以降にあります。
+          </span>
+        </small>
+        <div class="box16 small text-muted my-0">
+          <table>
+            <tbody>
+              <tr>
+                <th colspan="2" class="text-center">
+                  単位
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  E2&nbsp;:
+                </td>
+                <td>
+                  <strong>pg/ml</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  P4&nbsp;:
+                </td>
+                <td>
+                  <strong>ng/ml</strong>
+                </td>
+              <tr>
+              <tr>
+                <td>
+                  他&nbsp;&nbsp;:
+                </td>
+                <td>
+                  <strong>mIU/ml</strong>
+                </td>
+              <tr>
+            </tbody>
+          </table>
+        </div>
         <%= f.fields_for :day_of_sairans do |day_of_sairan| %>
           <table class="table table-sm table-bordered table-hover mb-0">
             <thead>
               <tr>
-                <th scope="col" class="hormon-label">Day&nbsp;<span><font size="1" color="#FF0000">(必須)</font></span></th>
+                <th scope="col" class="hormon-label">Day&nbsp;<span class="small"><small class="text-info">(必須)</small></span></th>
                 <th scope="col" class="hormon-label">E2</th>
                 <th scope="col" class="hormon-label">FSH</th>
                 <th scope="col" class="hormon-label">LH</th>
@@ -661,11 +736,49 @@
       </div>
 
       <div class="form-group border rounded px-0 py-3 before_ishoku-hormone">
-        <p class="px-3">採卵後の移植周期における「移植<span class="font-weight-bold text-danger">前</span>」の各ホルモン値を入力してください。</p>
+        <p class="px-3">採卵後の移植周期における「<span class="font-weight-bold text-danger">移植前</span>」の各ホルモン値を入力してください。</p>
         <small id="poster-tip" class="form-text px-3">
-          必ず「Day」を選択の上、各種ホルモン値を「半角数字」で入力ください。<br>
-          必要なだけ行を追加することができます。
-        </small><br>
+          <span class="small text-muted">
+            <span class="text-danger"><u>入力される場合は「<strong>D</strong>&nbsp;<span class="text-muted">(Day)</span>」だけは必ず選択してください。</u></span><br>D以外は空でも問題ありません。
+            各種ホルモン値は「半角数字」で入力ください。必要なだけ行を追加できます。
+            移植日当日･移植後も同様の入力欄が以降にあります。
+          </span>
+        </small>
+        <div class="box16 small text-muted my-0">
+          <table>
+            <tbody>
+              <tr>
+                <th colspan="2" class="text-center">
+                  単位
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  E2&nbsp;:
+                </td>
+                <td>
+                  <strong>pg/ml</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  P4&nbsp;:
+                </td>
+                <td>
+                  <strong>ng/ml</strong>
+                </td>
+              <tr>
+              <tr>
+                <td>
+                  他&nbsp;&nbsp;:
+                </td>
+                <td>
+                  <strong>mIU/ml</strong>
+                </td>
+              <tr>
+            </tbody>
+          </table>
+        </div>
         <%= f.fields_for :before_ishoku_hormones do |before_ishoku_hormone| %>
           <%= render "before_ishoku_hormone_fields", f: before_ishoku_hormone %>
         <% end %>
@@ -673,14 +786,55 @@
           <%= link_to_add_association "+ 追加", f, :before_ishoku_hormones %>
         </div>
       </div>
-
       <div class="form-group border rounded px-0 py-3 day_of_shokihaiishoku">
-        <p class="px-3">初期胚の「移植<span class="text-danger font-weight-bold">当日</span>」の各ホルモン値を入力してください。</p>
+        <p class="px-3">初期胚の「<span class="text-danger font-weight-bold">移植当日</span>」の各ホルモン値を入力してください。</p>
+        <small id="poster-tip" class="form-text px-3">
+          <span class="small text-muted">
+            <span class="text-danger"><u>入力される場合は「<strong>D</strong>&nbsp;<span class="text-muted">(Day)</span>」だけは必ず選択してください。</u></span><br>D以外は空でも問題ありません。
+            各種ホルモン値は「半角数字」で入力ください。
+            移植後も同様の入力欄が以降にあります。
+          </span>
+        </small>
+        <div class="box16 small text-muted my-0">
+          <table>
+            <tbody>
+              <tr>
+                <th colspan="2" class="text-center">
+                  単位
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  E2&nbsp;:
+                </td>
+                <td>
+                  <strong>pg/ml</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  P4&nbsp;:
+                </td>
+                <td>
+                  <strong>ng/ml</strong>
+                </td>
+              <tr>
+              <tr>
+                <td>
+                  他&nbsp;&nbsp;:
+                </td>
+                <td>
+                  <strong>mIU/ml</strong>
+                </td>
+              <tr>
+            </tbody>
+          </table>
+        </div>
         <%= f.fields_for :day_of_shokihaiishokus do |day_of_shokihaiishoku| %>
           <table class="table table-sm table-bordered table-hover mb-0">
             <thead>
               <tr>
-                <th scope="col" class="hormon-label">Day&nbsp;<span><font size="1" color="#FF0000">(必須)</font></span></th>
+                <th scope="col" class="hormon-label">Day&nbsp;<span class="small"><small class="text-info">(必須)</small></span></th>
                 <th scope="col" class="hormon-label">E2</th>
                 <th scope="col" class="hormon-label">FSH</th>
                 <th scope="col" class="hormon-label">LH</th>
@@ -703,12 +857,54 @@
       </div>
 
       <div class="form-group border rounded px-0 py-3 day_of_haibanhoishoku">
-        <p class="px-3">胚盤胞の「移植<span class="text-danger font-weight-bold">当日</span>」の各ホルモン値を入力してください。</p>
+        <p class="px-3">胚盤胞の「<span class="text-danger font-weight-bold">移植当日</span>」の各ホルモン値を入力してください。</p>
+        <small id="poster-tip" class="form-text px-3">
+          <span class="small text-muted">
+            <span class="text-danger"><u>入力される場合は「<strong>D</strong>&nbsp;<span class="text-muted">(Day)</span>」だけは必ず選択してください。</u></span><br>D以外は空でも問題ありません。
+            各種ホルモン値は「半角数字」で入力ください。
+            移植後も同様の入力欄が以降にあります。
+          </span>
+        </small>
+        <div class="box16 small text-muted my-0">
+          <table>
+            <tbody>
+              <tr>
+                <th colspan="2" class="text-center">
+                  単位
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  E2&nbsp;:
+                </td>
+                <td>
+                  <strong>pg/ml</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  P4&nbsp;:
+                </td>
+                <td>
+                  <strong>ng/ml</strong>
+                </td>
+              <tr>
+              <tr>
+                <td>
+                  他&nbsp;&nbsp;:
+                </td>
+                <td>
+                  <strong>mIU/ml</strong>
+                </td>
+              <tr>
+            </tbody>
+          </table>
+        </div>
         <%= f.fields_for :day_of_haibanhoishokus do |day_of_haibanhoishoku| %>
           <table class="table table-sm table-bordered table-hover mb-0">
             <thead>
               <tr>
-                <th scope="row" class="day-column">Day&nbsp;<span><font size="1" color="#FF0000">(必須)</font></span></th>
+                <th scope="row" class="day-column">Day&nbsp;<span class="small"><small class="text-info">(必須)</small></span></th>
                 <th scope="col" class="hormon-label">E2</th>
                 <th scope="col" class="hormon-label">FSH</th>
                 <th scope="col" class="hormon-label">LH</th>
@@ -731,11 +927,48 @@
       </div>
 
       <div class="form-group border rounded px-0 py-3 shokihaiishoku-hormone">
-        <p class="px-3">初期胚移植周期における「移植<span class="font-weight-bold text-danger">後</span>」の各ホルモン値を入力してください。</p>
+        <p class="px-3">初期胚移植周期における「<span class="font-weight-bold text-danger">移植後</span>」の各ホルモン値を入力してください。</p>
         <small id="poster-tip" class="form-text px-3">
-          必ず「ET」を選択の上、各種ホルモン値を「半角数字」で入力ください。<br>
-          必要なだけ行を追加することができます。
-        </small><br>
+          <span class="small text-muted">
+            <span class="text-danger"><u>入力される場合は「ET」だけは必ず選択してください。</u></span><br>ET以外は空でも問題ありません。
+            各種ホルモン値は「半角数字」で入力ください。必要なだけ行を追加できます。
+          </span>
+        </small>
+        <div class="box16 small text-muted my-0">
+          <table>
+            <tbody>
+              <tr>
+                <th colspan="2" class="text-center">
+                  単位
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  E2&nbsp;:
+                </td>
+                <td>
+                  <strong>pg/ml</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  P4&nbsp;:
+                </td>
+                <td>
+                  <strong>ng/ml</strong>
+                </td>
+              <tr>
+              <tr>
+                <td>
+                  他&nbsp;&nbsp;:
+                </td>
+                <td>
+                  <strong>mIU/ml</strong>
+                </td>
+              <tr>
+            </tbody>
+          </table>
+        </div>
         <%= f.fields_for :shokihaiishoku_hormones do |shokihaiishoku_hormone| %>
           <%= render "shokihaiishoku_hormone_fields", f: shokihaiishoku_hormone %>
         <% end %>
@@ -754,11 +987,48 @@
       </div>
 
       <div class="form-group border rounded px-0 py-3 haibanhoishoku-hormone">
-        <p class="px-3">胚盤胞移植周期における「移植<span class="font-weight-bold text-danger">後</span>」の各ホルモン値を入力してください。</p>
+        <p class="px-3">胚盤胞移植周期における「<span class="font-weight-bold text-danger">移植後</span>」の各ホルモン値を入力してください。</p>
         <small id="poster-tip" class="form-text px-3">
-          必ず「BT」を選択の上、各種ホルモン値を「半角数字」で入力ください。<br>
-          必要なだけ行を追加することができます。
-        </small><br>
+          <span class="small text-muted">
+            <span class="text-danger"><u>入力される場合は「BT」だけは必ず選択してください。</u></span><br>BT以外は空でも問題ありません。
+            各種ホルモン値は「半角数字」で入力ください。必要なだけ行を追加できます。
+          </span>
+        </small>
+        <div class="box16 small text-muted my-0">
+          <table>
+            <tbody>
+              <tr>
+                <th colspan="2" class="text-center">
+                  単位
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  E2&nbsp;:
+                </td>
+                <td>
+                  <strong>pg/ml</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  P4&nbsp;:
+                </td>
+                <td>
+                  <strong>ng/ml</strong>
+                </td>
+              <tr>
+              <tr>
+                <td>
+                  他&nbsp;&nbsp;:
+                </td>
+                <td>
+                  <strong>mIU/ml</strong>
+                </td>
+              <tr>
+            </tbody>
+          </table>
+        </div>
         <%= f.fields_for :haibanhoishoku_hormones do |haibanhoishoku_hormone| %>
           <%= render "haibanhoishoku_hormone_fields", f: haibanhoishoku_hormone %>
         <% end %>
