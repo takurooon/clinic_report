@@ -607,7 +607,7 @@
                               </td>
                             <% else %>
                               <td class="font-weight-bold">
-                                <%= day_of_sairan.e2 %>
+                                <%= day_of_sairan.e2 %>&nbsp;pg/ml
                               </td>
                             <% end %>
                           </tr>
@@ -619,7 +619,7 @@
                               </td>
                             <% else %>
                               <td class="font-weight-bold">
-                                <%= day_of_sairan.fsh %>
+                                <%= day_of_sairan.fsh %>&nbsp;mIU/ml
                               </td>
                             <% end %>
                           </tr>
@@ -630,7 +630,7 @@
                                 <span class="text-muted small">未回答</span>
                             <% else %>
                               <td class="font-weight-bold">
-                                <%= day_of_sairan.lh %>
+                                <%= day_of_sairan.lh %>&nbsp;mIU/ml
                               </td>
                             <% end %>
                           </tr>
@@ -641,7 +641,7 @@
                                 <span class="text-muted small">未回答</span>
                             <% else %>
                               <td class="font-weight-bold">
-                                <%= day_of_sairan.p4 %>
+                                <%= day_of_sairan.p4 %>&nbsp;ng/ml
                               </td>
                             <% end %>
                           </tr>
@@ -655,13 +655,15 @@
                 </table>
                 <div class="grapharea pt-3">
                   <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span></h6><h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span></h6>
+                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                    <h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
                   </div>
                   <canvas id="sairanFshLh"></canvas>
                 </div>
                 <div class="grapharea pt-3">
                   <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span></h6><h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span></h6>
+                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
+                    <h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(ng/ml)</small></span></h6>
                   </div>
                   <canvas id="sairanE2P4"></canvas>
                 </div>
@@ -1003,7 +1005,7 @@
                   </tr>
                   <% if @report.embryo_stage == 1 %>
                     <tr>
-                      <td class="result-left-column small">移植日のホルモン値&nbsp;<span class="small text-muted">(ET)</span></td>
+                      <td class="result-left-column small">移植日とホルモン値&nbsp;<span class="small text-muted">(ET)</span></td>
                       <td class="pl-3">
                         <% @report.day_of_shokihaiishokus.each do |day_of_shokihaiishoku| %>
                           <table class="table-borderless">
@@ -1015,7 +1017,7 @@
                                 </td>
                               <% else %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_shokihaiishoku.e2 %>
+                                  <%= day_of_shokihaiishoku.e2 %>&nbsp;<span class="small text-muted">pg/ml</span>
                                 </td>
                               <% end %>
                             </tr>
@@ -1027,7 +1029,7 @@
                                 </td>
                               <% else %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_shokihaiishoku.fsh %>
+                                  <%= day_of_shokihaiishoku.fsh %>&nbsp;<span class="small text-muted">mIU/ml</span>
                                 </td>
                               <% end %>
                             </tr>
@@ -1039,7 +1041,7 @@
                                 </td>
                               <% else %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_shokihaiishoku.lh %>
+                                  <%= day_of_shokihaiishoku.lh %>&nbsp;<span class="small text-muted">mIU/ml</span>
                                 </td>
                               <% end %>
                             </tr>
@@ -1051,7 +1053,7 @@
                                 </td>
                               <% else %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_shokihaiishoku.p4 %>
+                                  <%= day_of_shokihaiishoku.p4 %>&nbsp;<span class="small text-muted">ng/ml</span>
                                 </td>
                               <% end %>
                             </tr>
@@ -1063,7 +1065,7 @@
                                 </td>
                               <% else %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_shokihaiishoku.endometrial_thickness %>
+                                  <%= day_of_shokihaiishoku.endometrial_thickness %>&nbsp;<span class="small text-muted">mm</span>
                                 </td>
                               <% end %>
                             </tr>
@@ -1073,7 +1075,7 @@
                     </tr>
                   <% elsif @report.embryo_stage == 2 %>
                     <tr>
-                      <td class="result-left-column small">移植日のホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
+                      <td class="result-left-column small">移植日とホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
                       <td class="pl-3">
                         <% @report.day_of_haibanhoishokus.each do |day_of_haibanhoishoku| %>
                           <table class="table-borderless">
@@ -1081,7 +1083,7 @@
                               <td class="small text-muted text-right">E2&nbsp;:</td>
                               <% if day_of_haibanhoishoku.e2 %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_haibanhoishoku.e2 %>
+                                  <%= day_of_haibanhoishoku.e2 %>&nbsp;<span class="small text-muted">pg/ml</span>
                               <% else %>
                                   <span class="text-muted small">未回答</span>
                                 </td>
@@ -1091,7 +1093,7 @@
                               <td class="small text-muted text-right">FSH&nbsp;:</td>
                               <% if day_of_haibanhoishoku.fsh %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_haibanhoishoku.fsh %>
+                                  <%= day_of_haibanhoishoku.fsh %>&nbsp;<span class="small text-muted">mIU/ml</span>
                               <% else %>
                                   <span class="text-muted small">未回答</span>
                                 </td>
@@ -1101,7 +1103,7 @@
                               <td class="small text-muted text-right">LH&nbsp;:</td>
                               <% if day_of_haibanhoishoku.lh %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_haibanhoishoku.lh %>
+                                  <%= day_of_haibanhoishoku.lh %>&nbsp;<span class="small text-muted">mIU/ml</span>
                               <% else %>
                                   <span class="text-muted small">未回答</span>
                                 </td>
@@ -1111,7 +1113,7 @@
                               <td class="small text-muted text-right">P4&nbsp;:</td>
                               <% if day_of_haibanhoishoku.p4 %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_haibanhoishoku.p4 %>
+                                  <%= day_of_haibanhoishoku.p4 %>&nbsp;<span class="small text-muted">ng/ml</span>
                               <% else %>
                                   <span class="text-muted small">未回答</span>
                                 </td>
@@ -1121,7 +1123,7 @@
                               <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
                               <% if day_of_haibanhoishoku.endometrial_thickness %>
                                 <td class="font-weight-bold">
-                                  <%= day_of_haibanhoishoku.endometrial_thickness %>
+                                  <%= day_of_haibanhoishoku.endometrial_thickness %>&nbsp;<span class="small text-muted">mm</span>
                               <% else %>
                                   <span class="text-muted small">未回答</span>
                                 </td>
@@ -1132,23 +1134,31 @@
                       </td>
                     </tr>
                   <% else %>
+                    <tr>
+                      <td class="result-left-column small">移植日とホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
+                      <td class="pl-3">
+                        <span class="text-muted small">未回答</span>
+                      </td>
+                    </tr>
                   <% end %>
                 </table>
                 <div class="grapharea pt-3">
                   <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span></h6><h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span></h6>
+                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                    <h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
                   </div>
                   <canvas id="ishokuFshLh"></canvas>
                 </div>
                 <div class="grapharea pt-3">
                   <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span></h6><h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span></h6>
+                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
+                    <h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(ng/ml)</small></span></h6>
                   </div>
                   <canvas id="ishokuE2P4"></canvas>
                 </div>
                 <div class="grapharea pt-3 pt-3">
                   <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;hCG</h6>
+                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;hCG&nbsp;<span class="small text-muted"><small>(移植後)</small></span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
                   </div>
                   <canvas id="ishokuhcg"></canvas>
                 </div>
@@ -2802,7 +2812,7 @@
                 <% end %>
                 <% if @report.embryo_stage == 1 %>
                   <tr>
-                    <td class="result-left-column small">移植日のホルモン値&nbsp;<span class="small text-muted">(ET)</span></td>
+                    <td class="result-left-column small">移植日とホルモン値&nbsp;<span class="small text-muted">(ET)</span></td>
                     <td class="pl-4">
                       <% @report.day_of_shokihaiishokus.each do |day_of_shokihaiishoku| %>
                         <table class="table-borderless">
@@ -2814,7 +2824,7 @@
                               </td>
                             <% else %>
                               <td class="font-weight-bold">
-                                <%= day_of_shokihaiishoku.e2 %>
+                                <%= day_of_shokihaiishoku.e2 %>&nbsp;<span class="small text-muted">pg/ml</span>
                               </td>
                             <% end %>
                           </tr>
@@ -2826,7 +2836,7 @@
                               </td>
                             <% else %>
                               <td class="font-weight-bold">
-                                <%= day_of_shokihaiishoku.fsh %>
+                                <%= day_of_shokihaiishoku.fsh %>&nbsp;<span class="small text-muted">mIU/ml</span>
                               </td>
                             <% end %>
                           </tr>
@@ -2838,7 +2848,7 @@
                               </td>
                             <% else %>
                               <td class="font-weight-bold">
-                                <%= day_of_shokihaiishoku.lh %>
+                                <%= day_of_shokihaiishoku.lh %>&nbsp;<span class="small text-muted">mIU/ml</span>
                               </td>
                             <% end %>
                           </tr>
@@ -2850,7 +2860,7 @@
                               </td>
                             <% else %>
                               <td class="font-weight-bold">
-                                <%= day_of_shokihaiishoku.p4 %>
+                                <%= day_of_shokihaiishoku.p4 %>&nbsp;<span class="small text-muted">ng/ml</span>
                               </td>
                             <% end %>
                           </tr>
@@ -2862,7 +2872,7 @@
                               </td>
                             <% else %>
                               <td class="font-weight-bold">
-                                <%= day_of_shokihaiishoku.endometrial_thickness %>
+                                <%= day_of_shokihaiishoku.endometrial_thickness %>&nbsp;<span class="small text-muted">mm</span>
                               </td>
                             <% end %>
                           </tr>
@@ -2872,7 +2882,7 @@
                   </tr>
                 <% elsif @report.embryo_stage == 2 %>
                   <tr>
-                    <td class="result-left-column small">移植日のホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
+                    <td class="result-left-column small">移植日とホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
                     <td class="pl-4">
                       <% @report.day_of_haibanhoishokus.each do |day_of_haibanhoishoku| %>
                         <table class="table-borderless">
@@ -2880,7 +2890,7 @@
                             <td class="small text-muted text-right">E2&nbsp;:</td>
                             <% if day_of_haibanhoishoku.e2 %>
                               <td class="font-weight-bold">
-                                <%= day_of_haibanhoishoku.e2 %>
+                                <%= day_of_haibanhoishoku.e2 %>&nbsp;<span class="small text-muted">pg/ml</span>
                             <% else %>
                                 <span class="text-muted small">未回答</span>
                               </td>
@@ -2890,7 +2900,7 @@
                             <td class="small text-muted text-right">FSH&nbsp;:</td>
                             <% if day_of_haibanhoishoku.fsh %>
                               <td class="font-weight-bold">
-                                <%= day_of_haibanhoishoku.fsh %>
+                                <%= day_of_haibanhoishoku.fsh %>&nbsp;<span class="small text-muted">mIU/ml</span>
                             <% else %>
                                 <span class="text-muted small">未回答</span>
                               </td>
@@ -2900,7 +2910,7 @@
                             <td class="small text-muted text-right">LH&nbsp;:</td>
                             <% if day_of_haibanhoishoku.lh %>
                               <td class="font-weight-bold">
-                                <%= day_of_haibanhoishoku.lh %>
+                                <%= day_of_haibanhoishoku.lh %>&nbsp;<span class="small text-muted">mIU/ml</span>
                             <% else %>
                                 <span class="text-muted small">未回答</span>
                               </td>
@@ -2910,7 +2920,7 @@
                             <td class="small text-muted text-right">P4&nbsp;:</td>
                             <% if day_of_haibanhoishoku.p4 %>
                               <td class="font-weight-bold">
-                                <%= day_of_haibanhoishoku.p4 %>
+                                <%= day_of_haibanhoishoku.p4 %>&nbsp;<span class="small text-muted">ng/ml</span>
                             <% else %>
                                 <span class="text-muted small">未回答</span>
                               </td>
@@ -2920,7 +2930,7 @@
                             <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
                             <% if day_of_haibanhoishoku.endometrial_thickness %>
                               <td class="font-weight-bold">
-                                <%= day_of_haibanhoishoku.endometrial_thickness %>
+                                <%= day_of_haibanhoishoku.endometrial_thickness %>&nbsp;<span class="small text-muted">mm</span>
                             <% else %>
                                 <span class="text-muted small">未回答</span>
                               </td>
@@ -2931,6 +2941,12 @@
                     </td>
                   </tr>
                 <% else %>
+                  <tr>
+                    <td class="result-left-column small">移植日とホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
+                    <td class="pl-4">
+                      <span class="text-muted small">未回答</span>
+                    </td>
+                  </tr>
                 <% end %>
                 <tr>
                   <td class="result-left-column small">このCLでの全移植「回」数</td>
