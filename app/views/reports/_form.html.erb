@@ -1147,19 +1147,20 @@
       </div>
 
       <div class="form-group">
-        <div class="border rounded px-3 py-3">
-          <div class="label p-1"><span class="question-matters"><%= f.label :inspection, '以下検査で受けられた検査はありますか' %></span></div><br>
-          <%= f.collection_check_boxes(:inspection_ids, Inspection.all, :id, :name) do |b| %>
-            <div class="form-check checkbox">
-              <%= b.label class: "form-check-label" do %>
-                <%= b.check_box class: "form-check-input" %>
-                <%= b.text %>
-              <% end %>
-            </div>
+        <div class="border rounded px-0 py-3">
+          <p class="px-3">初期検査以外に以下検査を受けましたか？</p>
+          <small id="poster-tip" class="form-text px-3 pb-0 mb-0">
+            受けた検査があれば選択&入力してください。<br>
+            <span class="small text-muted">
+              <span class="text-danger"><u>入力される場合は「検査」だけは必ず選択してください。</u></span><br>
+              費用は「半角数字」で入力して下さい。必要なだけ行を追加できます。
+            </span>
+          </small>
+          <%= f.fields_for :special_inspections do |special_inspection| %>
+            <%= render "special_inspection_fields", f: special_inspection %>
           <% end %>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :special_inspection_supplementary_explanation, '受けた検査の補足説明', class: "question-matters" %></div>
-            <%= f.text_area :special_inspection_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)ERA検査を受けたタイミングや費用、受けた感想など" %>
+          <div class="links pt-2 pl-2">
+            <%= link_to_add_association "+ 追加", f, :special_inspections %>
           </div>
         </div>
       </div>

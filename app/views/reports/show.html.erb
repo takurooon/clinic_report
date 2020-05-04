@@ -897,6 +897,8 @@
               <section class="child-tab-content" id="ishoku">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h5 class="child-tab-title">
+                    &nbsp;特殊検査
+                    /&nbsp;着床前スクリーニング<br><br>
                   <% if @report.embryo_stage == 1 %>
                     <%= @report.str_embryo_stage %>
                     <%= @report.str_early_embryo_grade %>&nbsp;の
@@ -912,7 +914,6 @@
                   <% else %>
                     移植
                   <% end %>
-                    &&nbsp;着床前スクリーニング
                 </h5>
                 <% if @report.explanation_and_impression_about_ishoku.present? %>
                   <div class="box27">
@@ -920,25 +921,387 @@
                     <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)))).html_safe %></p>
                   </div>
                 <% end %>
-                <h5 class="child-tab-title"><span class="marker-underline">移植</span></h5>
+                <h5 class="child-tab-title"><span class="marker-underline">特殊検査</span></h5>
                 <table class="table table-hover p-0">
-                  <% if @report.inspections || @report.special_inspection_supplementary_explanation %>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">エラ<br><span class="small text-muted">(ERA)</span></td>
+                    <td class="pl-1 pr-0 py-1" style="width:70%">
+                      <% if @special_inspection_era.present? %>
+                        <% @special_inspection_era.each do |era| %>
+                          <div class="mb-0 mt-1 p-0 box5">
+                            <table class="table table-hover p-0 mb-0">
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">受検</td>
+                                <% if era.place.present? %>
+                                  <% place = era.place %>
+                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">費用</td>
+                                <% if era.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= era.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">時期</td>
+                                <% if era.timing.present? %>
+                                  <td class="pl-3 small" style="width:80%">D<%= era.timing %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">補足</td>
+                                <% if era.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(era.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                                <td></td>
+                              </tr>
+                            </table>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <div class="pl-3 pt-3 pb-0 m-0">
+                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">エマ<br><span class="small text-muted">(EMMA)</span></td>
+                    <td class="pl-1 pr-0 py-1" style="width:70%">
+                      <% if @special_inspection_emma.present? %>
+                        <% @special_inspection_emma.each do |emma| %>
+                          <div class="mb-0 mt-1 p-0 box5">
+                            <table class="table table-hover p-0 mb-0">
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">受検</td>
+                                <% if emma.place.present? %>
+                                  <% place = emma.place %>
+                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">費用</td>
+                                <% if emma.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= emma.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">時期</td>
+                                <% if emma.timing.present? %>
+                                  <td class="pl-3 small" style="width:80%">D<%= emma.timing %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">補足</td>
+                                <% if emma.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(emma.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                                <td></td>
+                              </tr>
+                            </table>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <div class="pl-3 pt-3 pb-0 m-0">
+                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">アリス<br><span class="small text-muted">(ALICE)</span></td>
+                    <td class="pl-1 pr-0 py-1" style="width:70%">
+                      <% if @special_inspection_alice.present? %>
+                        <% @special_inspection_alice.each do |alice| %>
+                          <div class="mb-0 mt-1 p-0 box5">
+                            <table class="table table-hover p-0 mb-0">
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">受検</td>
+                                <% if alice.place.present? %>
+                                  <% place = alice.place %>
+                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">費用</td>
+                                <% if alice.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= alice.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">時期</td>
+                                <% if alice.timing.present? %>
+                                  <td class="pl-3 small" style="width:80%">D<%= alice.timing %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">補足</td>
+                                <% if alice.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(alice.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                                <td></td>
+                              </tr>
+                            </table>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <div class="pl-3 pt-3 pb-0 m-0">
+                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">トリオ<br><span class="small text-muted">(TRIO)</span></td>
+                    <td class="pl-1 pr-0 py-1" style="width:70%">
+                      <% if @special_inspection_trio.present? %>
+                        <% @special_inspection_trio.each do |trio| %>
+                          <div class="mb-0 mt-1 p-0 box5">
+                            <table class="table table-hover p-0 mb-0">
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">受検</td>
+                                <% if trio.place.present? %>
+                                  <% place = trio.place %>
+                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">費用</td>
+                                <% if trio.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= trio.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">時期</td>
+                                <% if trio.timing.present? %>
+                                  <td class="pl-3 small" style="width:80%">D<%= trio.timing %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">補足</td>
+                                <% if trio.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(trio.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                                <td></td>
+                              </tr>
+                            </table>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <div class="pl-3 pt-3 pb-0 m-0">
+                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">慢性子宮内膜炎<br><span class="small text-muted">(CD138/BCE)</span></td>
+                    <td class="pl-1 pr-0 py-1" style="width:70%">
+                      <% if @special_inspection_bce.present? %>
+                        <% @special_inspection_bce.each do |bce| %>
+                          <div class="mb-0 mt-1 p-0 box5">
+                            <table class="table table-hover p-0 mb-0">
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">受検</td>
+                                <% if bce.place.present? %>
+                                  <% place = bce.place %>
+                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">費用</td>
+                                <% if bce.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= bce.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">時期</td>
+                                <% if bce.timing.present? %>
+                                  <td class="pl-3 small" style="width:80%">D<%= bce.timing %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">補足</td>
+                                <% if bce.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(bce.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                                <td></td>
+                              </tr>
+                            </table>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <div class="pl-3 pt-3 pb-0 m-0">
+                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">エラピーク<br><span class="small text-muted">(ERPeak)</span></td>
+                    <td class="pl-1 pr-0 py-1" style="width:70%">
+                      <% if @special_inspection_erpeak.present? %>
+                        <% @special_inspection_erpeak.each do |erpeak| %>
+                          <div class="mb-0 mt-1 p-0 box5">
+                            <table class="table table-hover p-0 mb-0">
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">受検</td>
+                                <% if erpeak.place.present? %>
+                                  <% place = erpeak.place %>
+                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">費用</td>
+                                <% if erpeak.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= erpeak.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">時期</td>
+                                <% if erpeak.timing.present? %>
+                                  <td class="pl-3 small" style="width:80%">D<%= erpeak.timing %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small" style="width:20%">補足</td>
+                                <% if erpeak.cost.present? %>
+                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(erpeak.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                <% else %>
+                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                                <% end %>
+                                <td></td>
+                              </tr>
+                            </table>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <div class="pl-3 pt-3 pb-0 m-0">
+                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                <h5 class="child-tab-title"><span class="marker-underline">着床前スクリーニング</span></h5>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.pgt1_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.pgt1.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
+                      <% else %>
+                        <span class="result-text"><%= @report.str_pgt1 %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small">着床前スクリーニング実施有無</td>
+                    <td class="pl-3">
+                      <% if @report.pgt2_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.pgt2.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
+                      <% else %>
+                        <span class="result-text"><%= @report.str_pgt2 %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% if @report.pgt_supplementary_explanation.present? %>
                     <tr>
-                      <td class="result-left-column small" style="width:30%">受けた検査</td>
-                      <td class="pl-3" style="width:70%">
-                        <% if @report.inspections.present? %>
-                          <% @report.inspections.each do |inspection| %>
-                            <span class="result-text"><%= inspection.name %>&nbsp;&nbsp;</span>
-                          <% end %>
+                      <td class="result-left-column small">着床前スクリーニングのメモ</td>
+                      <td class="pl-3">
+                        <% if @report.pgt_supplementary_explanation_status == "hide" %>
+                          <span class="small text-muted"><%= "非公開" %></span>
                         <% else %>
-                          <span class="text-muted small">未回答</span>
-                        <% end %><br><br>
-                        <% if @report.special_inspection_supplementary_explanation.present? %>
-                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
+                          <span class="result-text"><%= @report.pgt_supplementary_explanation %></span>
                         <% end %>
                       </td>
                     </tr>
                   <% end %>
+                </table>
+                <h5 class="child-tab-title"><span class="marker-underline">
+                  <% if @report.embryo_stage == 1 %>
+                    <%= @report.str_embryo_stage %>
+                    <%= @report.str_early_embryo_grade %>&nbsp;の
+                  <% elsif @report.embryo_stage == 2 %>
+                    <% if @report.str_blastocyst_grade1.present? || @report.str_blastocyst_grade2.present? %>
+                      <%= @report.str_blastocyst_grade1 %>&nbsp;&nbsp;<%= @report.str_blastocyst_grade2 %>&nbsp;の<br>
+                    <% else %>
+                    <% end %>
+                  <% else %>
+                  <% end %>
+                  <% if @report.transplant_method.present? && @report.transplant_method < 5 %>
+                    <%= @report.str_transplant_method %>
+                  <% else %>
+                    移植
+                  <% end %>
+                </span></h5>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">初期検査</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.inspections.present? %>
+                        <% @report.inspections.each do |inspection| %>
+                          <span class="result-text"><%= inspection.name %>&nbsp;&nbsp;</span>
+                        <% end %>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %><br><br>
+                      <% if @report.inspection_supplementary_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
                   <tr>
                     <td class="result-left-column small" style="width:30%">使用薬剤</td>
                     <td class="pl-3" style="width:70%">
@@ -1162,45 +1525,6 @@
                   </div>
                   <canvas id="ishokuhcg"></canvas>
                 </div>
-                <h5 class="child-tab-title"><span class="marker-underline">着床前スクリーニング</span></h5>
-                <table class="table table-hover p-0">
-                  <tr>
-                    <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.pgt1_status == "hide" %>
-                        <span class="small text-muted"><%= "非公開" %></span>
-                      <% elsif @report.pgt1.blank? %>
-                        <span class="small text-muted"><%= "未回答" %></span>
-                      <% else %>
-                        <span class="result-text"><%= @report.str_pgt1 %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small">着床前スクリーニング実施有無</td>
-                    <td class="pl-3">
-                      <% if @report.pgt2_status == "hide" %>
-                        <span class="small text-muted"><%= "非公開" %></span>
-                      <% elsif @report.pgt2.blank? %>
-                        <span class="small text-muted"><%= "未回答" %></span>
-                      <% else %>
-                        <span class="result-text"><%= @report.str_pgt2 %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <% if @report.pgt_supplementary_explanation.present? %>
-                    <tr>
-                      <td class="result-left-column small">着床前スクリーニングのメモ</td>
-                      <td class="pl-3">
-                        <% if @report.pgt_supplementary_explanation_status == "hide" %>
-                          <span class="small text-muted"><%= "非公開" %></span>
-                        <% else %>
-                          <span class="result-text"><%= @report.pgt_supplementary_explanation %></span>
-                        <% end %>
-                      </td>
-                    </tr>
-                  <% end %>
-                </table>
               </section>
               <section class="child-tab-content" id="cost">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
@@ -2775,6 +3099,312 @@
                   </td>
                 </tr>
                 <tr>
+                  <td class="result-left-column small" style="width:30%">エラ<br><span class="small text-muted">(ERA)</span></td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_era.present? %>
+                      <% @special_inspection_era.each do |era| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <% if era.place.present? %>
+                                <% place = era.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if era.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= era.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if era.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= era.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <% if era.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(era.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">エマ<br><span class="small text-muted">(EMMA)</span></td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_emma.present? %>
+                      <% @special_inspection_emma.each do |emma| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <% if emma.place.present? %>
+                                <% place = emma.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if emma.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= emma.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if emma.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= emma.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <% if emma.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(emma.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">アリス<br><span class="small text-muted">(ALICE)</span></td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_alice.present? %>
+                      <% @special_inspection_alice.each do |alice| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <% if alice.place.present? %>
+                                <% place = alice.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if alice.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= alice.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if alice.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= alice.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <% if alice.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(alice.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">トリオ<br><span class="small text-muted">(TRIO)</span></td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_trio.present? %>
+                      <% @special_inspection_trio.each do |trio| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <% if trio.place.present? %>
+                                <% place = trio.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if trio.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= trio.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if trio.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= trio.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <% if trio.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(trio.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">慢性子宮内膜炎<br><span class="small text-muted">(CD138/BCE)</span></td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_bce.present? %>
+                      <% @special_inspection_bce.each do |bce| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <% if bce.place.present? %>
+                                <% place = bce.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if bce.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= bce.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if bce.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= bce.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <% if bce.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(bce.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">エラピーク<br><span class="small text-muted">(ERPeak)</span></td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_erpeak.present? %>
+                      <% @special_inspection_erpeak.each do |erpeak| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <% if erpeak.place.present? %>
+                                <% place = erpeak.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if erpeak.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= erpeak.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if erpeak.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= erpeak.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <% if erpeak.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(erpeak.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
                   <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
                   <td class="pl-4" style="width:70%">
                     <% if @report.pgt1_status == "hide" %>
@@ -3002,7 +3632,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">検査</td>
+                  <td class="result-left-column small">初期検査</td>
                   <td class="pl-4 result-right-column">
                     <% if @report.inspections.present? %>
                       <% @report.inspections.each do |inspection| %>
@@ -3011,8 +3641,8 @@
                     <% else %>
                       <span class="text-muted small">未回答</span>
                     <% end %><br>
-                    <% if @report.special_inspection_supplementary_explanation.present? %>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.special_inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
+                    <% if @report.inspection_supplementary_explanation.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                     <% end %>
                   </td>
                 </tr>

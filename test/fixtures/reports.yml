@@ -59,6 +59,7 @@
 #  impression_of_technology                     :integer
 #  industry_type                                :integer
 #  industry_type_status                         :integer
+#  inspection_supplementary_explanation         :text
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_aih                                :integer
 #  number_of_clinics                            :integer
@@ -96,7 +97,6 @@
 #  semen_concentration                          :integer
 #  semen_volume                                 :integer
 #  smoking                                      :integer
-#  special_inspection_supplementary_explanation :text
 #  sperm_advance_rate                           :integer
 #  sperm_description                            :text
 #  sperm_motility                               :integer

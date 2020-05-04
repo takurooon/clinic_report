@@ -222,6 +222,10 @@ class Report < ApplicationRecord
     has_many :haibanhoishoku_hormones, inverse_of: :report, dependent: :destroy
     accepts_nested_attributes_for :haibanhoishoku_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
 
+    # 特殊検査（ERAなど）
+    has_many :special_inspections, inverse_of: :report, dependent: :destroy
+    accepts_nested_attributes_for :special_inspections, reject_if: :all_blank, allow_destroy: true, update_only: true
+
   # 検索
   def self.search(search)
     if search
@@ -1644,7 +1648,42 @@ class Report < ApplicationRecord
     end
     hash
   end
-  
+
+  # special_inspectionの区分値(特殊検査)別モデル
+    # name
+    HASH_SPECIAL_INSPECTION_NAME = {
+      1 => "エラ(ERA)",
+      2 => "エマ(EMMA)",
+      3 => "アリス(ALICE)",
+      4 => "トリオ(TORIO)",
+      5 => "慢性子宮内膜炎(CD138/BCE)",
+      6 => "ERPeak",
+    }
+
+    def str_special_inspection_name
+      return HASH_SPECIAL_INSPECTION_NAME[SpecialInspection.name]
+    end
+
+    # place
+    HASH_SPECIAL_INSPECTION_PLACE = {
+      1 => "このクリニックで",
+      2 => "別のクリニックで",
+    }
+
+    def str_special_inspection_place
+      return HASH_SPECIAL_INSPECTION_PLACE[a]
+    end
+
+    # timing
+    def self.make_select_special_inspection_timing
+      hash = {}
+      (1..100).each do |i|
+        hash["D#{i}"] = i
+      end
+      hash
+    end
+
+
   # fertility_treatment_numberの区分値(何人目か)
   HASH_FERTILITY_TREATMENT_NUMBER = {
     1 => "1人目",
@@ -2940,6 +2979,7 @@ end
 #  impression_of_technology                     :integer
 #  industry_type                                :integer
 #  industry_type_status                         :integer
+#  inspection_supplementary_explanation         :text
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_aih                                :integer
 #  number_of_clinics                            :integer
@@ -2977,7 +3017,6 @@ end
 #  semen_concentration                          :integer
 #  semen_volume                                 :integer
 #  smoking                                      :integer
-#  special_inspection_supplementary_explanation :text
 #  sperm_advance_rate                           :integer
 #  sperm_description                            :text
 #  sperm_motility                               :integer

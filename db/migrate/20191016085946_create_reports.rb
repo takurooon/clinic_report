@@ -15,7 +15,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :age_of_partner_at_end_of_treatment
       t.integer :treatment_period
       t.integer :number_of_aih
-      t.text :special_inspection_supplementary_explanation
+      t.text :inspection_supplementary_explanation
       t.integer :pgt1
       t.integer :pgt1_status
       t.integer :pgt2

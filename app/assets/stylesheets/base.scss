@@ -1,3 +1,8 @@
+// ナビバーの前面指定
+.navbar {
+  z-index: 15000;
+}
+
 // モーダルの最前面指定
 #menuModal {
   z-index: 20000;

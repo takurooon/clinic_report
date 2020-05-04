@@ -29,6 +29,14 @@ class ReportsController < ApplicationController
       Clinic.find(c).name
     end
 
+    special_inspections = @report.special_inspections
+    @special_inspection_era = SpecialInspection.where(name: 1)
+    @special_inspection_emma = SpecialInspection.where(name: 2)
+    @special_inspection_alice = SpecialInspection.where(name: 3)
+    @special_inspection_trio = SpecialInspection.where(name: 4)
+    @special_inspection_bce = SpecialInspection.where(name: 5)
+    @special_inspection_erpeak = SpecialInspection.where(name: 6)
+
     day_of_sairans = @report.day_of_sairans
     sairan_days = @report.day_of_sairans.pluck(:day)
     if sairan_days
@@ -192,6 +200,7 @@ class ReportsController < ApplicationController
     @report.day_of_haibanhoishokus.build
     @report.shokihaiishoku_hormones.build
     @report.haibanhoishoku_hormones.build
+    @report.special_inspections.build
   end
 
   
@@ -501,6 +510,10 @@ class ReportsController < ApplicationController
 
     if @report.haibanhoishoku_hormones.count == 0
       @report.haibanhoishoku_hormones.build
+    end
+
+    if @report.special_inspections.count == 0
+      @report.special_inspections.build
     end
   end
 
@@ -818,7 +831,7 @@ class ReportsController < ApplicationController
     #     :age_of_partner_at_end_of_treatment,
     #     :treatment_period,
     #     :number_of_aih,
-    #     :special_inspection_supplementary_explanation,
+    #     :inspection_supplementary_explanation,
     #     :amh,
     #     :bmi,
     #     :smoking,
@@ -943,7 +956,8 @@ class ReportsController < ApplicationController
     #     before_ishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
     #     shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
     #     haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
-    #     itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy]
+    #     itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy],
+    #     special_inspections_attributes: [:id, :name, :place, :cost, :timing, :explanation, :_destroy],
     #   )
     # end
 
@@ -970,7 +984,7 @@ class ReportsController < ApplicationController
         :age_of_partner_at_end_of_treatment,
         :treatment_period,
         :number_of_aih,
-        :special_inspection_supplementary_explanation,
+        :inspection_supplementary_explanation,
         :amh,
         :bmi,
         :smoking,
@@ -1096,6 +1110,7 @@ class ReportsController < ApplicationController
         shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
         haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
         itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy],
+        special_inspections_attributes: [:id, :name, :place, :cost, :timing, :explanation, :_destroy],
       )
     end
 end

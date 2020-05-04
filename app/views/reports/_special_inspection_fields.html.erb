@@ -1,0 +1,26 @@
+<div class="nested-fields well well-compact pt-4">
+  <table class="table table-sm table-bordered table-hover mb-0 special_inspections_table">
+    <thead>
+      <tr>
+        <th scope="col" class="hormon-label">検査&nbsp;<span class="small"><small class="text-info">(必須)</small></span></th>
+        <th scope="col" class="hormon-label">受診</th>
+        <th scope="col" class="hormon-label">費用&nbsp;<span class="small"><small class="text-muted">(円)</small></span></th>
+        <th scope="col" class="hormon-label">時期</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" class="et-bt-column"><%= f.select :name, Report::HASH_SPECIAL_INSPECTION_NAME.invert, { prompt: "必須" }, { class: "form-control text-muted" } %></th>
+        <td class="et-bt-hormone-column"><%= f.select :place, Report::HASH_SPECIAL_INSPECTION_PLACE.invert, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
+        <td class="et-bt-hormone-column"><%= f.number_field :cost, { step: "1", class: "form-control" } %></td>
+        <td class="et-bt-hormone-column"><%= f.select :timing, Report.make_select_special_inspection_timing, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
+      </tr>
+      <tr>
+        <td colspan="4"><%= f.text_area :explanation, class: "form-control text-muted", style: "background: rgb(232, 254, 252)", rows: 3, placeholder: "例)金額は端数まで覚えていないので正確ではありません。" %></td>
+      </tr>
+    </tbody>
+  </table>
+  <small class="float-right pr-2">
+    <%= link_to_remove_association "削除", f, class: "text-secondary" %>
+  </small>
+</div>

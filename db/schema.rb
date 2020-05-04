@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_054157) do
+ActiveRecord::Schema.define(version: 2020_05_03_050123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -415,7 +415,7 @@ ActiveRecord::Schema.define(version: 2020_04_27_054157) do
     t.integer "age_of_partner_at_end_of_treatment"
     t.integer "treatment_period"
     t.integer "number_of_aih"
-    t.text "special_inspection_supplementary_explanation"
+    t.text "inspection_supplementary_explanation"
     t.integer "pgt1"
     t.integer "pgt1_status"
     t.integer "pgt2"
@@ -579,6 +579,18 @@ ActiveRecord::Schema.define(version: 2020_04_27_054157) do
     t.index ["report_id"], name: "index_shokihaiishoku_hormones_on_report_id"
   end
 
+  create_table "special_inspections", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "name", null: false
+    t.integer "place"
+    t.integer "cost"
+    t.integer "timing"
+    t.text "explanation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_special_inspections_on_report_id"
+  end
+
   create_table "supplements", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -687,4 +699,5 @@ ActiveRecord::Schema.define(version: 2020_04_27_054157) do
   add_foreign_key "reports", "users"
   add_foreign_key "sairan_hormones", "reports"
   add_foreign_key "shokihaiishoku_hormones", "reports"
+  add_foreign_key "special_inspections", "reports"
 end
