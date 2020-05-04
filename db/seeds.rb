@@ -232,11 +232,18 @@ OtherEffort.create([
 ])
 
 Inspection.create([
-  { name: "受けていない" },
-  { name: "エラ(ERA)" },
-  { name: "エマ(EMMA)" },
-  { name: "アリス(ALICE)" },
-  { name: "トリオ(TORIO)" },
-  { name: "慢性子宮内膜炎(CD138/BCE)" },
-  { name: "ERPeak" },
+  { name: "基礎体温" },
+  { name: "AMH検査" },
+  { name: "ホルモン値検査(E2/FSH/LH/P)" },
+  { name: "テストステロン検査" },
+  { name: "プロラクチンホルモン検査" },
+  { name: "子宮卵管造影" },
+  { name: "卵管通水検査" },
+  { name: "超音波検査" },
+  { name: "頚管粘液検査" },
+  { name: "フーナーテスト" },
+  { name: "子宮頸がん検査" },
+  { name: "抗精子抗体検査" },
+  { name: "クラミジア抗原" },
+  { name: "甲状腺機能検査" },
 ])

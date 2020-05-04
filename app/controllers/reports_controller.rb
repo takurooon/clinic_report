@@ -29,13 +29,22 @@ class ReportsController < ApplicationController
       Clinic.find(c).name
     end
 
-    special_inspections = @report.special_inspections
-    @special_inspection_era = SpecialInspection.where(name: 1)
-    @special_inspection_emma = SpecialInspection.where(name: 2)
-    @special_inspection_alice = SpecialInspection.where(name: 3)
-    @special_inspection_trio = SpecialInspection.where(name: 4)
-    @special_inspection_bce = SpecialInspection.where(name: 5)
-    @special_inspection_erpeak = SpecialInspection.where(name: 6)
+    @special_inspection_era = @report.special_inspections.where(name: 1)
+    @special_inspection_emma = @report.special_inspections.where(name: 2)
+    @special_inspection_alice = @report.special_inspections.where(name: 3)
+    @special_inspection_trio = @report.special_inspections.where(name: 4)
+    @special_inspection_erpeak = @report.special_inspections.where(name: 5)
+    @special_inspection_endometrial_biopsy = @report.special_inspections.where(name: 6)
+    @special_inspection_intrauterine_flora = @report.special_inspections.where(name: 7)
+    @special_inspection_bce = @report.special_inspections.where(name: 8)
+    @special_inspection_hysteroscopy = @report.special_inspections.where(name: 9)
+    @special_inspection_chromosome = @report.special_inspections.where(name: 10)
+    @special_inspection_ca125 = @report.special_inspections.where(name: 11)
+    @special_inspection_mri = @report.special_inspections.where(name: 12)
+    @special_inspection_vitamin_d = @report.special_inspections.where(name: 13)
+    @special_inspection_copper_zinc = @report.special_inspections.where(name: 14)
+    @special_inspection_kruger = @report.special_inspections.where(name: 15)
+    @special_inspection_other_inspection = @report.special_inspections.where(name: 99)
 
     day_of_sairans = @report.day_of_sairans
     sairan_days = @report.day_of_sairans.pluck(:day)
@@ -420,17 +429,17 @@ class ReportsController < ApplicationController
     end
     supplement_list = supplement_list.uniq
 
-    sod_name = params[:sod_scope].split(",")
-    sod_list = molding(sod_name)
-    sod_ids = params[:report][:scope_of_disclosure_ids]
-    sod_ids.each do |sod_id|
-      if sod_id.blank?
-        next
-      end
-      sod = ScopeOfDisclosure.find(sod_id)
-      sod_list << sod.scope
-    end
-    sod_list = sod_list.uniq
+    # sod_name = params[:sod_scope].split(",")
+    # sod_list = molding(sod_name)
+    # sod_ids = params[:report][:scope_of_disclosure_ids]
+    # sod_ids.each do |sod_id|
+    #   if sod_id.blank?
+    #     next
+    #   end
+    #   sod = ScopeOfDisclosure.find(sod_id)
+    #   sod_list << sod.scope
+    # end
+    # sod_list = sod_list.uniq
 
     tag_name = params[:tag_name].split(",")
     tag_list = molding(tag_name)
@@ -460,7 +469,7 @@ class ReportsController < ApplicationController
         @report.save_tos(to_list)
         @report.save_oes(oe_list)
         @report.save_supplements(supplement_list)
-        @report.save_sods(sod_list)
+        # @report.save_sods(sod_list)
         @report.save_tags(tag_list)
         format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
         format.json { render :show, status: :created, location: @report }
@@ -708,17 +717,17 @@ class ReportsController < ApplicationController
     end
     supplement_list = supplement_list.uniq
 
-    sod_name = params[:sod_scope].split(",")
-    sod_list = molding(sod_name)
-    sod_ids = params[:report][:scope_of_disclosure_ids]
-    sod_ids.each do |sod_id|
-      if sod_id.blank?
-        next
-      end
-      sod = ScopeOfDisclosure.find(sod_id)
-      sod_list << sod.scope
-    end
-    sod_list = sod_list.uniq
+    # sod_name = params[:sod_scope].split(",")
+    # sod_list = molding(sod_name)
+    # sod_ids = params[:report][:scope_of_disclosure_ids]
+    # sod_ids.each do |sod_id|
+    #   if sod_id.blank?
+    #     next
+    #   end
+    #   sod = ScopeOfDisclosure.find(sod_id)
+    #   sod_list << sod.scope
+    # end
+    # sod_list = sod_list.uniq
 
     tag_name = params[:tag_name].split(",")
     tag_list = molding(tag_name)
@@ -774,7 +783,7 @@ class ReportsController < ApplicationController
         @report.save_tos(to_list)
         @report.save_oes(oe_list)
         @report.save_supplements(supplement_list)
-        @report.save_sods(sod_list)
+        # @report.save_sods(sod_list)
         @report.save_tags(tag_list)
         format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
         format.json { render :show, status: :created, location: @report }

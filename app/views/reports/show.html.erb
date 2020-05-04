@@ -77,258 +77,14 @@
             <li><a href="#data-analysis" data-toggle="tab">分析</a></li>
           </ul>
 
-          <section class="parent-tab-content" id="data-analysis">
-            <div class="child-tab">
-              <ul class="nav nav-tabs child-menu">
-                <li><a href="#data-summary" class="active" data-toggle="tab">データ</a></li>
-              </ul>
-              <section class="child-tab-content active" id="data-summary">
-                <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
-                <h4 class="child-tab-title">治療データ分析</h4>
-                <div class="box4">
-                  &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんの&nbsp;<%= @report.clinic.name %>&nbsp;での治療データ分析</small>
-                </div>
-                <div class="spacer my-0 py-0" style="height:3px;"></div>
-                <div class="box27">
-                  <span class="box-title">情報</span>
-                    <% if @report.str_current_state.present? %>
-                      <p class="pt-3 pb-4 small text-muted">※&nbsp;現ステータス:&nbsp;<b><u><%= @report.str_current_state %></u></b>&nbsp;に至った周期の以下情報をもとに分析しています。</p>
-                    <% else %>
-                      <div class="py-2"></div>
-                    <% end %>
-                    <ul class="list-unstyled">
-                      <li>
-                        <% if @report.current_state.present? %>
-                          <span class="text-muted small">　　　現状</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_current_state %></span>
-                        <% else %>
-                          <span class="text-muted small">　　　現状</span>&nbsp;：&nbsp;<span class="small">未回答</span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <% if @report.transplant_method.present? %>
-                          <span class="text-muted small">　移植方法</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_transplant_method %></span>
-                        <% else %>
-                          <span class="text-muted small">　移植方法</span>&nbsp;：&nbsp;<span class="small">未回答</span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <% if @report.number_of_eggs_collected.present? %>
-                          <span class="text-muted small">　採卵個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_eggs_collected %></span>
-                        <% else %>
-                          <span class="text-muted small">　採卵個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <% if @report.number_of_fertilized_eggs.present? %>
-                          <span class="text-muted small">　受精個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_fertilized_eggs %></span>
-                        <% else %>
-                          <span class="text-muted small">　受精個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <% if @report.number_of_transferable_embryos.present? %>
-                          <span class="text-muted small">移植可能数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_transferable_embryos %></span>
-                        <% else %>
-                          <span class="text-muted small">移植可能数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <% if @report.total_number_of_transplants.present? %>
-                          <span class="text-muted small">　移植回数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_total_number_of_transplants %></span>
-                        <% else %>
-                          <span class="text-muted small">　移植回数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <% if @report.total_number_of_transplants.present? %>
-                          <span class="text-muted small">　移植個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_total_number_of_eggs_transplanted %></span>
-                        <% else %>
-                          <span class="text-muted small">　移植個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <% if @report.number_of_eggs_stored.present? %>
-                          <span class="text-muted small">　貯卵個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_eggs_stored %></span>
-                        <% else %>
-                          <span class="text-muted small">　貯卵個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
-                        <% end %>
-                      </li>
-                    </ui>
-                </div>
-                <div>
-                  <p class="small text-muted pt-4"><small>以下は上記情報をもとに算出した結果。</small></p>
-                </div>
-                <table class="table table-hover p-0">
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">受精率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 %>
-                        <% juseiritsu = (@report.number_of_fertilized_eggs.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
-                          <% if juseiritsu <= 100.00 %>
-                            <span class="result-text"><%= sprintf("%.2f", juseiritsu) %>%<small><br><span class="small text-muted">=&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
-                          <% else %>
-                            <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></span>
-                          <% end %>
-                      <% else %>
-                        <span class="text-muted small">算出不可</span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(対 採卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>
-                        <% ishokukanouhai_sairan = (@report.number_of_transferable_embryos.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
-                        <% if ishokukanouhai_sairan <= 100.00 %>
-                          <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_sairan) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
-                        <% else %>
-                          <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></span>
-                        <% end %>
-                      <% else %>
-                        <span class="text-muted small">算出不可</span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(対 受精卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>
-                        <% ishokukanouhai_juseiran = (@report.number_of_transferable_embryos.to_f / @report.number_of_fertilized_eggs.to_f) * 100 %>
-                        <% if ishokukanouhai_juseiran <= 100.00 %>
-                          <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_juseiran) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></small></span>
-                        <% else %>
-                          <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></span>
-                        <% end %>
-                      <% else %>
-                        <span class="text-muted small">算出不可</span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <% if @report.current_state.present? && @report.current_state < 5 %>
-                    <tr>
-                      <td class="result-left-column small" style="width:30%">採卵あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
-                      <td class="pl-3" style="width:70%">
-                        <% if @report.current_state == 1 || @report.current_state == 3 %>
-                          <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
-                            <% number_of_eggs_stored = @report.number_of_eggs_stored %>
-                            <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
-                              <% if ninshinritsu_sairan <= 100.00 %>
-                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
-                              <% else %>
-                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                              <% end %>
-                          <% else %>
-                            <% ninshinritsu_sairan = ( 1 / @report.number_of_eggs_collected.to_f) * 100 %>
-                            <% if ninshinritsu_sairan <= 100.00 %>
-                              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
-                            <% else %>
-                              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                            <% end %>
-                          <% end %>
-                        <% elsif @report.current_state == 2 || @report.current_state == 4 %>
-                          <% if @report.transplant_method == 3 || @report.transplant_method == 4 %>
-                            <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
-                              <% number_of_eggs_stored = @report.number_of_eggs_stored %>
-                              <% ninshinritsu_sairan = ( 2 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
-                                <% if ninshinritsu_sairan <= 100.00 %>
-                                  <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
-                                <% else %>
-                                  <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                                <% end %>
-                            <% else %>
-                              <% ninshinritsu_sairan = ( 2 / @report.number_of_eggs_collected.to_f) * 100 %>
-                              <% if ninshinritsu_sairan <= 100.00 %>
-                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
-                              <% else %>
-                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                              <% end %>
-                            <% end %>
-                          <% else %>
-                            <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
-                              <% number_of_eggs_stored = @report.number_of_eggs_stored %>
-                              <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
-                                <% if ninshinritsu_sairan <= 100.00 %>
-                                  <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
-                                <% else %>
-                                  <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                                <% end %>
-                            <% else %>
-                              <% ninshinritsu_sairan = ( 1 / @report.number_of_eggs_collected.to_f) * 100 %>
-                              <% if ninshinritsu_sairan <= 100.00 %>
-                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
-                              <% else %>
-                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                              <% end %>
-                            <% end %>
-                          <% end %>
-                        <% else %>
-                          <span class="text-muted small">算出不可</span>
-                        <% end %>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<span class="small text-muted">(回数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
-                      <td class="pl-3" style="width:70%">
-                        <% if @report.total_number_of_transplants.present? && @report.total_number_of_transplants <= 50 %>
-                          <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_transplants.to_f) * 100 %>
-                          <% if ninshinritsu_ishoku_kaisu < 100.00 %>
-                            <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">移植回数&nbsp;<%= @report.str_total_number_of_transplants %></span></small></span>
-                          <% else %>
-                            <span class="text-muted small">算出不可<br><span class="small text-muted">移植回数&nbsp;<%= @report.str_total_number_of_transplants %></span></span>
-                          <% end %>
-                        <% else %>
-                          <span class="text-muted small">算出不可</span>
-                        <% end %>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<span class="small text-muted">(個数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
-                      <td class="pl-3" style="width:70%">
-                        <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted <= 50 %>
-                          <% if @report.current_state == 2 || @report.current_state == 4 %>
-                            <% if @report.transplant_method == 3 || @report.transplant_method == 4 %>
-                              <% ninshinritsu_ishoku_kaisu = ( 2 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
-                              <% if ninshinritsu_ishoku_kaisu < 100.00 %>
-                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
-                              <% else %>
-                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
-                              <% end %>
-                            <% else %>
-                              <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
-                              <% if ninshinritsu_ishoku_kaisu < 100.00 %>
-                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
-                              <% else %>
-                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
-                              <% end %>
-                            <% end %>
-                          <% elsif @report.current_state == 1 || @report.current_state == 3 %>
-                            <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
-                            <% if ninshinritsu_ishoku_kaisu <= 100.00 %>
-                              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
-                            <% else %>
-                              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
-                            <% end %>
-                          <% else %>
-                          <% end %>
-                        <% else %>
-                          <span class="text-muted small">算出不可</span>
-                        <% end %>
-                      </td>
-                    </tr>
-                  <% end %>
-                </table>
-              </section>
-            </div>
-          </section>
-
           <section class="parent-tab-content active mostleft-tab" id="treatment-info">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li><a href="#summary" class="active" data-toggle="tab">概要</a></li>
+                <li><a href="#supplements" data-toggle="tab">検査</a></li>
                 <li><a href="#sairan" data-toggle="tab">採卵</a></li>
                 <li><a href="#ishoku" data-toggle="tab">移植</a></li>
                 <li><a href="#cost" data-toggle="tab">費用</a></li>
-                <li><a href="#supplements" data-toggle="tab">その他</a></li>
               </ul>
               <section class="child-tab-content active" id="summary">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
@@ -491,9 +247,803 @@
                   </tr>
                 </table>
               </section>
+              <section class="child-tab-content" id="supplements">
+                <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
+                <h4 class="child-tab-title">検査</h4>
+                <h5 class="child-tab-title"><span class="marker-underline">初期･基礎検査</span></h5>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">初期検査</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.inspections.present? %>
+                        <% @report.inspections.each do |inspection| %>
+                          <span class="result-text"><%= inspection.name %>&nbsp;&nbsp;</span>
+                        <% end %>
+                      <% else %>
+                        <span class="text-muted small">未検&nbsp;<span class="small">(未回答)</span></span>
+                      <% end %><br><br>
+                      <% if @report.inspection_supplementary_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                <h5 class="child-tab-title"><span class="marker-underline">特殊検査</span></h5>
+                <table class="table table-hover p-0">
+                  <% if @report.special_inspections.present? %>
+                    <% if @special_inspection_era.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">エラ<br><span class="small text-muted">(ERA)</span></td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_era.each do |era| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if era.place.present? %>
+                                    <% place = era.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if era.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= era.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if era.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= era.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if era.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(era.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_emma.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">エマ<br><span class="small text-muted">(EMMA)</span></td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_emma.each do |emma| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if emma.place.present? %>
+                                    <% place = emma.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if emma.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= emma.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if emma.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= emma.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if emma.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(emma.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_alice.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">アリス<br><span class="small text-muted">(ALICE)</span></td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_alice.each do |alice| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if alice.place.present? %>
+                                    <% place = alice.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if alice.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= alice.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if alice.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= alice.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if alice.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(alice.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_trio.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">トリオ<br><span class="small text-muted">(TRIO)</span></td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_trio.each do |trio| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if trio.place.present? %>
+                                    <% place = trio.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if trio.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= trio.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if trio.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= trio.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if trio.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(trio.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_erpeak.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">エラピーク<br><span class="small text-muted">(ERPeak)</span></td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_erpeak.each do |erpeak| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if erpeak.place.present? %>
+                                    <% place = erpeak.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if erpeak.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= erpeak.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if erpeak.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= erpeak.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if erpeak.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(erpeak.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_endometrial_biopsy.present? %>1
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">子宮内膜組織診</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_endometrial_biopsy.each do |endometrial_biopsy| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if endometrial_biopsy.place.present? %>
+                                    <% place = endometrial_biopsy.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if endometrial_biopsy.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= endometrial_biopsy.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if endometrial_biopsy.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= endometrial_biopsy.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if endometrial_biopsy.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(endometrial_biopsy.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_intrauterine_flora.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">子宮内フローラ</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_intrauterine_flora.each do |intrauterine_flora| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if intrauterine_flora.place.present? %>
+                                    <% place = intrauterine_flora.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if intrauterine_flora.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= intrauterine_flora.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if intrauterine_flora.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= intrauterine_flora.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if intrauterine_flora.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(intrauterine_flora.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_bce.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">慢性子宮内膜炎<br><span class="small text-muted">(CD138/BCE)</span></td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_bce.each do |bce| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if bce.place.present? %>
+                                    <% place = bce.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if bce.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= bce.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if bce.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= bce.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if bce.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(bce.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_hysteroscopy.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">子宮鏡検査</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_hysteroscopy.each do |hysteroscopy| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if hysteroscopy.place.present? %>
+                                    <% place = hysteroscopy.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if hysteroscopy.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= hysteroscopy.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if hysteroscopy.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= hysteroscopy.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if hysteroscopy.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(hysteroscopy.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_chromosome.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">染色体検査</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_chromosome.each do |chromosome| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if chromosome.place.present? %>
+                                    <% place = chromosome.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if chromosome.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= chromosome.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if chromosome.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= chromosome.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if chromosome.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(chromosome.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_ca125.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">CA125</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_ca125.each do |ca125| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if ca125.place.present? %>
+                                    <% place = ca125.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if ca125.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= ca125.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if ca125.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= ca125.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if ca125.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(ca125.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_mri.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">MRI</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_mri.each do |mri| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if mri.place.present? %>
+                                    <% place = mri.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if mri.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= mri.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if mri.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= mri.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if mri.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(mri.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_vitamin_d.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">ビタミンD検査</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_vitamin_d.each do |vitamin_d| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if vitamin_d.place.present? %>
+                                    <% place = vitamin_d.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if vitamin_d.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= vitamin_d.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if vitamin_d.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= vitamin_d.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if vitamin_d.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(vitamin_d.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_copper_zinc.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">銅亜鉛検査</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_copper_zinc.each do |copper_zinc| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if copper_zinc.place.present? %>
+                                    <% place = copper_zinc.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if copper_zinc.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= copper_zinc.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if copper_zinc.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= copper_zinc.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if copper_zinc.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(copper_zinc.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_kruger.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">精子検査<br><span class="small text-muted">(クルーガーテスト)</span></td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_kruger.each do |kruger| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if kruger.place.present? %>
+                                    <% place = kruger.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if kruger.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= kruger.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if kruger.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= kruger.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if kruger.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(kruger.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_other_inspection.present? %>
+                      <tr>
+                        <td class="result-left-column small" style="width:30%">その他</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_other_inspection.each do |other_inspection| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table table-hover p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">どこで</td>
+                                  <% if other_inspection.place.present? %>
+                                    <% place = other_inspection.place %>
+                                    <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">費用</td>
+                                  <% if other_inspection.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= other_inspection.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">時期</td>
+                                  <% if other_inspection.timing.present? %>
+                                    <td class="pl-3 small" style="width:80%">D<%= other_inspection.timing %></td>
+                                  <% end %>
+                                </tr>
+                                <tr>
+                                  <td class="result-left-column small" style="width:20%">備考</td>
+                                  <% if other_inspection.cost.present? %>
+                                    <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(other_inspection.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                                  <% end %>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% else %>
+                    <tr>
+                      <td class="result-left-column small table-left-column">
+                        <ul class="small list-unstyled">
+                          <li>・エラ(ERA)</li>
+                          <li>・エマ(EMMA)</li>
+                          <li>・アリス(ALICE)</li>
+                          <li>・トリオ(TORIO)</li>
+                          <li>・ERPeak</li>
+                          <li>・子宮内膜組織診</li>
+                          <li>・子宮内フロー</li>
+                          <li>・慢性子宮内膜炎</li>
+                          <li>・子宮鏡検査</li>
+                          <li>・染色体検査</li>
+                          <li>・CA125</li>
+                          <li>・MRI</li>
+                          <li>・ビタミンD検査</li>
+                          <li>・銅亜鉛検査</li>
+                          <li>・クルーガーテスト</li>
+                          <li>・その他</li>
+                      </td>
+                      <td class="pl-3 table-right-column">
+                        <span class="text-muted small">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+                <h5 class="child-tab-title"><span class="marker-underline">着床前スクリーニング</span></h5>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.pgt1_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.pgt1.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
+                      <% else %>
+                        <span class="result-text"><%= @report.str_pgt1 %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small">着床前スクリーニング実施有無</td>
+                    <td class="pl-3">
+                      <% if @report.pgt2_status == "hide" %>
+                        <span class="small text-muted"><%= "非公開" %></span>
+                      <% elsif @report.pgt2.blank? %>
+                        <span class="small text-muted"><%= "未回答" %></span>
+                      <% else %>
+                        <span class="result-text"><%= @report.str_pgt2 %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% if @report.pgt_supplementary_explanation.present? %>
+                    <tr>
+                      <td class="result-left-column small">着床前スクリーニングのメモ</td>
+                      <td class="pl-3">
+                        <% if @report.pgt_supplementary_explanation_status == "hide" %>
+                          <span class="small text-muted"><%= "非公開" %></span>
+                        <% else %>
+                          <span class="result-text"><%= @report.pgt_supplementary_explanation %></span>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+                <h5 class="child-tab-title"><span class="marker-underline">精液検査</span></h5>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small">精液検査</td>
+                    <td class="pl-2">
+                      <table class="table-borderless">
+                        <tr>
+                          <td class="small text-muted text-right pr-0 pl-1">精液量&nbsp;:</td>
+                          <% if @report.semen_volume.blank? %>
+                          <td class="font-weight-bold">
+                            <span class="text-muted small">未回答</span>
+                            </td>
+                          <% else %>
+                            <td class="font-weight-bold">
+                              <%= @report.semen_volume %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
+                            </td>
+                          <% end %>
+                        </tr>
+                        <tr>
+                          <td class="small text-muted text-right pr-0 pl-1">総精子数&nbsp;:</td>
+                          <% if @report.total_amount_of_sperm.blank? %>
+                            <td class="font-weight-bold">
+                              <span class="text-muted small">未回答</span>
+                            </td>
+                          <% else %>
+                            <td class="font-weight-bold">
+                              <%= @report.total_amount_of_sperm.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
+                            </td>
+                          <% end %>
+                        </tr>
+                        <tr>
+                          <td class="small text-muted text-right pr-0 pl-1">精子濃度&nbsp;:</td>
+                          <% if @report.semen_concentration.blank? %>
+                            <td class="font-weight-bold">
+                              <span class="text-muted small">未回答</span>
+                            </td>
+                          <% else %>
+                            <td class="font-weight-bold">
+                              <%= @report.semen_concentration.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
+                            </td>
+                          <% end %>
+                        </tr>
+                        <tr>
+                          <td class="small text-muted text-right pr-0 pl-1">運動率&nbsp;:</td>
+                          <% if @report.sperm_motility.blank? %>
+                            <td class="font-weight-bold">
+                              <span class="text-muted small">未回答</span>
+                          <% else %>
+                            <td class="font-weight-bold">
+                              <%= @report.sperm_motility %>&nbsp;&nbsp;<span class="small text-muted"><small>%</small></span>
+                            </td>
+                          <% end %>
+                        </tr>
+                        <tr>
+                          <td class="small text-muted text-right pr-0 pl-1">前進運動率&nbsp;:</td>
+                          <% if @report.sperm_advance_rate.blank? %>
+                            <td class="font-weight-bold">
+                              <span class="text-muted small">未回答</span>
+                          <% else %>
+                            <td class="font-weight-bold">
+                              <%= @report.sperm_advance_rate %>&nbsp;&nbsp;<span class="small text-muted"><small>%</small></span>
+                            </td>
+                          <% end %>
+                        </tr>
+                        <tr>
+                          <td class="small text-muted text-right pr-0 pl-1">正常形態率&nbsp;:</td>
+                          <% if @report.probability_of_normal_morphology_of_sperm.blank? %>
+                            <td class="font-weight-bold">
+                              <span class="text-muted small">未回答</span>
+                          <% else %>
+                            <td class="font-weight-bold">
+                              <%= @report.probability_of_normal_morphology_of_sperm %>&nbsp;&nbsp;<span class="small text-muted"><small>%</small></span>
+                            </td>
+                          <% end %>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </section>
               <section class="child-tab-content" id="sairan">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
-                <h4 class="child-tab-title">採卵 / 受精･培養･精液検査</h4>
+                <h4 class="child-tab-title">採卵 / 受精･培養</h4>
                 <% if @report.explanation_and_impression_about_sairan.present? %>
                   <div class="box27">
                     <span class="box-title">採卵まとめ</span>
@@ -816,89 +1366,11 @@
                       </td>
                     </tr>
                   <% end %>
-                  <tr>
-                    <td class="result-left-column small">精液検査</td>
-                    <td class="pl-2">
-                      <table class="table-borderless">
-                        <tr>
-                          <td class="small text-muted text-right pr-0 pl-1">精液量&nbsp;:</td>
-                          <% if @report.semen_volume.blank? %>
-                          <td class="font-weight-bold">
-                            <span class="text-muted small">未回答</span>
-                            </td>
-                          <% else %>
-                            <td class="font-weight-bold">
-                              <%= @report.semen_volume %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
-                            </td>
-                          <% end %>
-                        </tr>
-                        <tr>
-                          <td class="small text-muted text-right pr-0 pl-1">総精子数&nbsp;:</td>
-                          <% if @report.total_amount_of_sperm.blank? %>
-                            <td class="font-weight-bold">
-                              <span class="text-muted small">未回答</span>
-                            </td>
-                          <% else %>
-                            <td class="font-weight-bold">
-                              <%= @report.total_amount_of_sperm.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
-                            </td>
-                          <% end %>
-                        </tr>
-                        <tr>
-                          <td class="small text-muted text-right pr-0 pl-1">精子濃度&nbsp;:</td>
-                          <% if @report.semen_concentration.blank? %>
-                            <td class="font-weight-bold">
-                              <span class="text-muted small">未回答</span>
-                            </td>
-                          <% else %>
-                            <td class="font-weight-bold">
-                              <%= @report.semen_concentration.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
-                            </td>
-                          <% end %>
-                        </tr>
-                        <tr>
-                          <td class="small text-muted text-right pr-0 pl-1">運動率&nbsp;:</td>
-                          <% if @report.sperm_motility.blank? %>
-                            <td class="font-weight-bold">
-                              <span class="text-muted small">未回答</span>
-                          <% else %>
-                            <td class="font-weight-bold">
-                              <%= @report.sperm_motility %>&nbsp;&nbsp;<span class="small text-muted"><small>%</small></span>
-                            </td>
-                          <% end %>
-                        </tr>
-                        <tr>
-                          <td class="small text-muted text-right pr-0 pl-1">前進運動率&nbsp;:</td>
-                          <% if @report.sperm_advance_rate.blank? %>
-                            <td class="font-weight-bold">
-                              <span class="text-muted small">未回答</span>
-                          <% else %>
-                            <td class="font-weight-bold">
-                              <%= @report.sperm_advance_rate %>&nbsp;&nbsp;<span class="small text-muted"><small>%</small></span>
-                            </td>
-                          <% end %>
-                        </tr>
-                        <tr>
-                          <td class="small text-muted text-right pr-0 pl-1">正常形態率&nbsp;:</td>
-                          <% if @report.probability_of_normal_morphology_of_sperm.blank? %>
-                            <td class="font-weight-bold">
-                              <span class="text-muted small">未回答</span>
-                          <% else %>
-                            <td class="font-weight-bold">
-                              <%= @report.probability_of_normal_morphology_of_sperm %>&nbsp;&nbsp;<span class="small text-muted"><small>%</small></span>
-                            </td>
-                          <% end %>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
                 </table>
               </section>
               <section class="child-tab-content" id="ishoku">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h5 class="child-tab-title">
-                    &nbsp;特殊検査
-                    /&nbsp;着床前スクリーニング<br><br>
                   <% if @report.embryo_stage == 1 %>
                     <%= @report.str_embryo_stage %>
                     <%= @report.str_early_embryo_grade %>&nbsp;の
@@ -921,387 +1393,8 @@
                     <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)))).html_safe %></p>
                   </div>
                 <% end %>
-                <h5 class="child-tab-title"><span class="marker-underline">特殊検査</span></h5>
-                <table class="table table-hover p-0">
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">エラ<br><span class="small text-muted">(ERA)</span></td>
-                    <td class="pl-1 pr-0 py-1" style="width:70%">
-                      <% if @special_inspection_era.present? %>
-                        <% @special_inspection_era.each do |era| %>
-                          <div class="mb-0 mt-1 p-0 box5">
-                            <table class="table table-hover p-0 mb-0">
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">受検</td>
-                                <% if era.place.present? %>
-                                  <% place = era.place %>
-                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">費用</td>
-                                <% if era.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= era.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">時期</td>
-                                <% if era.timing.present? %>
-                                  <td class="pl-3 small" style="width:80%">D<%= era.timing %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">補足</td>
-                                <% if era.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(era.explanation.split("\n"),tag(:br)))).html_safe %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                                <td></td>
-                              </tr>
-                            </table>
-                          </div>
-                        <% end %>
-                      <% else %>
-                        <div class="pl-3 pt-3 pb-0 m-0">
-                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
-                        </div>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">エマ<br><span class="small text-muted">(EMMA)</span></td>
-                    <td class="pl-1 pr-0 py-1" style="width:70%">
-                      <% if @special_inspection_emma.present? %>
-                        <% @special_inspection_emma.each do |emma| %>
-                          <div class="mb-0 mt-1 p-0 box5">
-                            <table class="table table-hover p-0 mb-0">
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">受検</td>
-                                <% if emma.place.present? %>
-                                  <% place = emma.place %>
-                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">費用</td>
-                                <% if emma.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= emma.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">時期</td>
-                                <% if emma.timing.present? %>
-                                  <td class="pl-3 small" style="width:80%">D<%= emma.timing %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">補足</td>
-                                <% if emma.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(emma.explanation.split("\n"),tag(:br)))).html_safe %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                                <td></td>
-                              </tr>
-                            </table>
-                          </div>
-                        <% end %>
-                      <% else %>
-                        <div class="pl-3 pt-3 pb-0 m-0">
-                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
-                        </div>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">アリス<br><span class="small text-muted">(ALICE)</span></td>
-                    <td class="pl-1 pr-0 py-1" style="width:70%">
-                      <% if @special_inspection_alice.present? %>
-                        <% @special_inspection_alice.each do |alice| %>
-                          <div class="mb-0 mt-1 p-0 box5">
-                            <table class="table table-hover p-0 mb-0">
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">受検</td>
-                                <% if alice.place.present? %>
-                                  <% place = alice.place %>
-                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">費用</td>
-                                <% if alice.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= alice.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">時期</td>
-                                <% if alice.timing.present? %>
-                                  <td class="pl-3 small" style="width:80%">D<%= alice.timing %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">補足</td>
-                                <% if alice.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(alice.explanation.split("\n"),tag(:br)))).html_safe %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                                <td></td>
-                              </tr>
-                            </table>
-                          </div>
-                        <% end %>
-                      <% else %>
-                        <div class="pl-3 pt-3 pb-0 m-0">
-                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
-                        </div>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">トリオ<br><span class="small text-muted">(TRIO)</span></td>
-                    <td class="pl-1 pr-0 py-1" style="width:70%">
-                      <% if @special_inspection_trio.present? %>
-                        <% @special_inspection_trio.each do |trio| %>
-                          <div class="mb-0 mt-1 p-0 box5">
-                            <table class="table table-hover p-0 mb-0">
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">受検</td>
-                                <% if trio.place.present? %>
-                                  <% place = trio.place %>
-                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">費用</td>
-                                <% if trio.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= trio.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">時期</td>
-                                <% if trio.timing.present? %>
-                                  <td class="pl-3 small" style="width:80%">D<%= trio.timing %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">補足</td>
-                                <% if trio.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(trio.explanation.split("\n"),tag(:br)))).html_safe %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                                <td></td>
-                              </tr>
-                            </table>
-                          </div>
-                        <% end %>
-                      <% else %>
-                        <div class="pl-3 pt-3 pb-0 m-0">
-                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
-                        </div>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">慢性子宮内膜炎<br><span class="small text-muted">(CD138/BCE)</span></td>
-                    <td class="pl-1 pr-0 py-1" style="width:70%">
-                      <% if @special_inspection_bce.present? %>
-                        <% @special_inspection_bce.each do |bce| %>
-                          <div class="mb-0 mt-1 p-0 box5">
-                            <table class="table table-hover p-0 mb-0">
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">受検</td>
-                                <% if bce.place.present? %>
-                                  <% place = bce.place %>
-                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">費用</td>
-                                <% if bce.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= bce.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">時期</td>
-                                <% if bce.timing.present? %>
-                                  <td class="pl-3 small" style="width:80%">D<%= bce.timing %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">補足</td>
-                                <% if bce.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(bce.explanation.split("\n"),tag(:br)))).html_safe %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                                <td></td>
-                              </tr>
-                            </table>
-                          </div>
-                        <% end %>
-                      <% else %>
-                        <div class="pl-3 pt-3 pb-0 m-0">
-                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
-                        </div>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">エラピーク<br><span class="small text-muted">(ERPeak)</span></td>
-                    <td class="pl-1 pr-0 py-1" style="width:70%">
-                      <% if @special_inspection_erpeak.present? %>
-                        <% @special_inspection_erpeak.each do |erpeak| %>
-                          <div class="mb-0 mt-1 p-0 box5">
-                            <table class="table table-hover p-0 mb-0">
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">受検</td>
-                                <% if erpeak.place.present? %>
-                                  <% place = erpeak.place %>
-                                  <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">費用</td>
-                                <% if erpeak.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= erpeak.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">時期</td>
-                                <% if erpeak.timing.present? %>
-                                  <td class="pl-3 small" style="width:80%">D<%= erpeak.timing %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                              </tr>
-                              <tr>
-                                <td class="result-left-column small" style="width:20%">補足</td>
-                                <% if erpeak.cost.present? %>
-                                  <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(erpeak.explanation.split("\n"),tag(:br)))).html_safe %></td>
-                                <% else %>
-                                  <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                                <% end %>
-                                <td></td>
-                              </tr>
-                            </table>
-                          </div>
-                        <% end %>
-                      <% else %>
-                        <div class="pl-3 pt-3 pb-0 m-0">
-                          <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
-                        </div>
-                      <% end %>
-                    </td>
-                  </tr>
-                </table>
-                <h5 class="child-tab-title"><span class="marker-underline">着床前スクリーニング</span></h5>
-                <table class="table table-hover p-0">
-                  <tr>
-                    <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.pgt1_status == "hide" %>
-                        <span class="small text-muted"><%= "非公開" %></span>
-                      <% elsif @report.pgt1.blank? %>
-                        <span class="small text-muted"><%= "未回答" %></span>
-                      <% else %>
-                        <span class="result-text"><%= @report.str_pgt1 %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small">着床前スクリーニング実施有無</td>
-                    <td class="pl-3">
-                      <% if @report.pgt2_status == "hide" %>
-                        <span class="small text-muted"><%= "非公開" %></span>
-                      <% elsif @report.pgt2.blank? %>
-                        <span class="small text-muted"><%= "未回答" %></span>
-                      <% else %>
-                        <span class="result-text"><%= @report.str_pgt2 %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <% if @report.pgt_supplementary_explanation.present? %>
-                    <tr>
-                      <td class="result-left-column small">着床前スクリーニングのメモ</td>
-                      <td class="pl-3">
-                        <% if @report.pgt_supplementary_explanation_status == "hide" %>
-                          <span class="small text-muted"><%= "非公開" %></span>
-                        <% else %>
-                          <span class="result-text"><%= @report.pgt_supplementary_explanation %></span>
-                        <% end %>
-                      </td>
-                    </tr>
-                  <% end %>
-                </table>
-                <h5 class="child-tab-title"><span class="marker-underline">
-                  <% if @report.embryo_stage == 1 %>
-                    <%= @report.str_embryo_stage %>
-                    <%= @report.str_early_embryo_grade %>&nbsp;の
-                  <% elsif @report.embryo_stage == 2 %>
-                    <% if @report.str_blastocyst_grade1.present? || @report.str_blastocyst_grade2.present? %>
-                      <%= @report.str_blastocyst_grade1 %>&nbsp;&nbsp;<%= @report.str_blastocyst_grade2 %>&nbsp;の<br>
-                    <% else %>
-                    <% end %>
-                  <% else %>
-                  <% end %>
-                  <% if @report.transplant_method.present? && @report.transplant_method < 5 %>
-                    <%= @report.str_transplant_method %>
-                  <% else %>
-                    移植
-                  <% end %>
                 </span></h5>
                 <table class="table table-hover p-0">
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">初期検査</td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.inspections.present? %>
-                        <% @report.inspections.each do |inspection| %>
-                          <span class="result-text"><%= inspection.name %>&nbsp;&nbsp;</span>
-                        <% end %>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
-                      <% end %><br><br>
-                      <% if @report.inspection_supplementary_explanation.present? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
-                      <% end %>
-                    </td>
-                  </tr>
                   <tr>
                     <td class="result-left-column small" style="width:30%">使用薬剤</td>
                     <td class="pl-3" style="width:70%">
@@ -1528,7 +1621,7 @@
               </section>
               <section class="child-tab-content" id="cost">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
-                <h4 class="child-tab-title">費用</h4>
+                <h4 class="child-tab-title">費用&nbsp;/&nbsp;その他&nbsp;<span class="small text-muted">(サプリ等)</span></h4>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small" style="width:30%">治療費総額</td>
@@ -1595,10 +1688,7 @@
                     </tr>
                   <% end %>
                 </table>
-              </section>
-              <section class="child-tab-content" id="supplements">
-                <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
-                <h4 class="child-tab-title">サプリなど</h4>
+                <h5 class="child-tab-title"><span class="marker-underline">サプリなど</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small" style="width:30%">治療中に服用していたサプリ</td>
@@ -1661,7 +1751,7 @@
                 <li><a href="#profile" class="active" data-toggle="tab">基本情報</a></li>
                 <li><a href="#transfer" data-toggle="tab">転院歴</a></li>
                 <li><a href="#job" data-toggle="tab">仕事</a></li>
-                <li><a href="#factor" data-toggle="tab">不妊原因など</a></li>
+                <li><a href="#factor" data-toggle="tab">不妊原因</a></li>
               </ul>
               <section class="child-tab-content active" id="profile">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
@@ -2113,6 +2203,7 @@
               </section>
             </div>
           </section>
+
           <section class="parent-tab-content" id="clinic-info">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
@@ -2310,6 +2401,250 @@
                     <% end %>
                   </div>
                 </div>
+              </section>
+            </div>
+          </section>
+
+          <section class="parent-tab-content" id="data-analysis">
+            <div class="child-tab">
+              <ul class="nav nav-tabs child-menu">
+                <li><a href="#data-summary" class="active" data-toggle="tab">データ</a></li>
+              </ul>
+              <section class="child-tab-content active" id="data-summary">
+                <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
+                <h4 class="child-tab-title">治療データ分析</h4>
+                <div class="box4">
+                  &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんの&nbsp;<%= @report.clinic.name %>&nbsp;での治療データ分析</small>
+                </div>
+                <div class="spacer my-0 py-0" style="height:3px;"></div>
+                <div class="box27">
+                  <span class="box-title">情報</span>
+                    <% if @report.str_current_state.present? %>
+                      <p class="pt-3 pb-4 small text-muted">※&nbsp;現ステータス:&nbsp;<b><u><%= @report.str_current_state %></u></b>&nbsp;に至った周期の以下情報をもとに分析しています。</p>
+                    <% else %>
+                      <div class="py-2"></div>
+                    <% end %>
+                    <ul class="list-unstyled">
+                      <li>
+                        <% if @report.current_state.present? %>
+                          <span class="text-muted small">　　　現状</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_current_state %></span>
+                        <% else %>
+                          <span class="text-muted small">　　　現状</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.transplant_method.present? %>
+                          <span class="text-muted small">　移植方法</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_transplant_method %></span>
+                        <% else %>
+                          <span class="text-muted small">　移植方法</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.number_of_eggs_collected.present? %>
+                          <span class="text-muted small">　採卵個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_eggs_collected %></span>
+                        <% else %>
+                          <span class="text-muted small">　採卵個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.number_of_fertilized_eggs.present? %>
+                          <span class="text-muted small">　受精個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_fertilized_eggs %></span>
+                        <% else %>
+                          <span class="text-muted small">　受精個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.number_of_transferable_embryos.present? %>
+                          <span class="text-muted small">移植可能数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_transferable_embryos %></span>
+                        <% else %>
+                          <span class="text-muted small">移植可能数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.total_number_of_transplants.present? %>
+                          <span class="text-muted small">　移植回数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_total_number_of_transplants %></span>
+                        <% else %>
+                          <span class="text-muted small">　移植回数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.total_number_of_transplants.present? %>
+                          <span class="text-muted small">　移植個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_total_number_of_eggs_transplanted %></span>
+                        <% else %>
+                          <span class="text-muted small">　移植個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @report.number_of_eggs_stored.present? %>
+                          <span class="text-muted small">　貯卵個数</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_number_of_eggs_stored %></span>
+                        <% else %>
+                          <span class="text-muted small">　貯卵個数</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                        <% end %>
+                      </li>
+                    </ui>
+                </div>
+                <div>
+                  <p class="small text-muted pt-4"><small>以下は上記情報をもとに算出した結果。</small></p>
+                </div>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">受精率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 %>
+                        <% juseiritsu = (@report.number_of_fertilized_eggs.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
+                          <% if juseiritsu <= 100.00 %>
+                            <span class="result-text"><%= sprintf("%.2f", juseiritsu) %>%<small><br><span class="small text-muted">=&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+                          <% else %>
+                            <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></span>
+                          <% end %>
+                      <% else %>
+                        <span class="text-muted small">算出不可</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(対 採卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>
+                        <% ishokukanouhai_sairan = (@report.number_of_transferable_embryos.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
+                        <% if ishokukanouhai_sairan <= 100.00 %>
+                          <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_sairan) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+                        <% else %>
+                          <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></span>
+                        <% end %>
+                      <% else %>
+                        <span class="text-muted small">算出不可</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">移植可能胚到達率<span class="small text-muted">(対 受精卵)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>
+                        <% ishokukanouhai_juseiran = (@report.number_of_transferable_embryos.to_f / @report.number_of_fertilized_eggs.to_f) * 100 %>
+                        <% if ishokukanouhai_juseiran <= 100.00 %>
+                          <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_juseiran) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></small></span>
+                        <% else %>
+                          <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;/&nbsp;受精卵&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></span>
+                        <% end %>
+                      <% else %>
+                        <span class="text-muted small">算出不可</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% if @report.current_state.present? && @report.current_state < 5 %>
+                    <tr>
+                      <td class="result-left-column small" style="width:30%">採卵あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                      <td class="pl-3" style="width:70%">
+                        <% if @report.current_state == 1 || @report.current_state == 3 %>
+                          <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
+                            <% number_of_eggs_stored = @report.number_of_eggs_stored %>
+                            <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
+                              <% if ninshinritsu_sairan <= 100.00 %>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
+                              <% else %>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                              <% end %>
+                          <% else %>
+                            <% ninshinritsu_sairan = ( 1 / @report.number_of_eggs_collected.to_f) * 100 %>
+                            <% if ninshinritsu_sairan <= 100.00 %>
+                              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+                            <% else %>
+                              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                            <% end %>
+                          <% end %>
+                        <% elsif @report.current_state == 2 || @report.current_state == 4 %>
+                          <% if @report.transplant_method == 3 || @report.transplant_method == 4 %>
+                            <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
+                              <% number_of_eggs_stored = @report.number_of_eggs_stored %>
+                              <% ninshinritsu_sairan = ( 2 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
+                                <% if ninshinritsu_sairan <= 100.00 %>
+                                  <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
+                                <% else %>
+                                  <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                                <% end %>
+                            <% else %>
+                              <% ninshinritsu_sairan = ( 2 / @report.number_of_eggs_collected.to_f) * 100 %>
+                              <% if ninshinritsu_sairan <= 100.00 %>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+                              <% else %>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                              <% end %>
+                            <% end %>
+                          <% else %>
+                            <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
+                              <% number_of_eggs_stored = @report.number_of_eggs_stored %>
+                              <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
+                                <% if ninshinritsu_sairan <= 100.00 %>
+                                  <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
+                                <% else %>
+                                  <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                                <% end %>
+                            <% else %>
+                              <% ninshinritsu_sairan = ( 1 / @report.number_of_eggs_collected.to_f) * 100 %>
+                              <% if ninshinritsu_sairan <= 100.00 %>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+                              <% else %>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          <span class="text-muted small">算出不可</span>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<span class="small text-muted">(回数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                      <td class="pl-3" style="width:70%">
+                        <% if @report.total_number_of_transplants.present? && @report.total_number_of_transplants <= 50 %>
+                          <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_transplants.to_f) * 100 %>
+                          <% if ninshinritsu_ishoku_kaisu < 100.00 %>
+                            <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">移植回数&nbsp;<%= @report.str_total_number_of_transplants %></span></small></span>
+                          <% else %>
+                            <span class="text-muted small">算出不可<br><span class="small text-muted">移植回数&nbsp;<%= @report.str_total_number_of_transplants %></span></span>
+                          <% end %>
+                        <% else %>
+                          <span class="text-muted small">算出不可</span>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="result-left-column small" style="width:30%">移植あたりの妊娠率<span class="small text-muted">(個数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                      <td class="pl-3" style="width:70%">
+                        <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted <= 50 %>
+                          <% if @report.current_state == 2 || @report.current_state == 4 %>
+                            <% if @report.transplant_method == 3 || @report.transplant_method == 4 %>
+                              <% ninshinritsu_ishoku_kaisu = ( 2 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
+                              <% if ninshinritsu_ishoku_kaisu < 100.00 %>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
+                              <% else %>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
+                              <% end %>
+                            <% else %>
+                              <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
+                              <% if ninshinritsu_ishoku_kaisu < 100.00 %>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
+                              <% else %>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
+                              <% end %>
+                            <% end %>
+                          <% elsif @report.current_state == 1 || @report.current_state == 3 %>
+                            <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
+                            <% if ninshinritsu_ishoku_kaisu <= 100.00 %>
+                              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
+                            <% else %>
+                              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
+                            <% end %>
+                          <% else %>
+                          <% end %>
+                        <% else %>
+                          <span class="text-muted small">算出不可</span>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
               </section>
             </div>
           </section>
@@ -3106,7 +3441,7 @@
                         <div class="mb-0 mt-1 p-0 box5">
                           <table class="table table-hover p-0 mb-0">
                             <tr>
-                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
                               <% if era.place.present? %>
                                 <% place = era.place %>
                                 <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
@@ -3131,7 +3466,7 @@
                               <% end %>
                             </tr>
                             <tr>
-                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <td class="result-left-column small" style="width:20%">備考</td>
                               <% if era.cost.present? %>
                                 <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(era.explanation.split("\n"),tag(:br)))).html_safe %></td>
                               <% else %>
@@ -3157,7 +3492,7 @@
                         <div class="mb-0 mt-1 p-0 box5">
                           <table class="table table-hover p-0 mb-0">
                             <tr>
-                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
                               <% if emma.place.present? %>
                                 <% place = emma.place %>
                                 <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
@@ -3182,7 +3517,7 @@
                               <% end %>
                             </tr>
                             <tr>
-                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <td class="result-left-column small" style="width:20%">備考</td>
                               <% if emma.cost.present? %>
                                 <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(emma.explanation.split("\n"),tag(:br)))).html_safe %></td>
                               <% else %>
@@ -3208,7 +3543,7 @@
                         <div class="mb-0 mt-1 p-0 box5">
                           <table class="table table-hover p-0 mb-0">
                             <tr>
-                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
                               <% if alice.place.present? %>
                                 <% place = alice.place %>
                                 <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
@@ -3233,7 +3568,7 @@
                               <% end %>
                             </tr>
                             <tr>
-                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <td class="result-left-column small" style="width:20%">備考</td>
                               <% if alice.cost.present? %>
                                 <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(alice.explanation.split("\n"),tag(:br)))).html_safe %></td>
                               <% else %>
@@ -3259,7 +3594,7 @@
                         <div class="mb-0 mt-1 p-0 box5">
                           <table class="table table-hover p-0 mb-0">
                             <tr>
-                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
                               <% if trio.place.present? %>
                                 <% place = trio.place %>
                                 <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
@@ -3284,60 +3619,9 @@
                               <% end %>
                             </tr>
                             <tr>
-                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <td class="result-left-column small" style="width:20%">備考</td>
                               <% if trio.cost.present? %>
                                 <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(trio.explanation.split("\n"),tag(:br)))).html_safe %></td>
-                              <% else %>
-                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                              <% end %>
-                              <td></td>
-                            </tr>
-                          </table>
-                        </div>
-                      <% end %>
-                    <% else %>
-                      <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
-                      </div>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="result-left-column small" style="width:30%">慢性子宮内膜炎<br><span class="small text-muted">(CD138/BCE)</span></td>
-                  <td class="pl-1 pr-0 py-1" style="width:70%">
-                    <% if @special_inspection_bce.present? %>
-                      <% @special_inspection_bce.each do |bce| %>
-                        <div class="mb-0 mt-1 p-0 box5">
-                          <table class="table table-hover p-0 mb-0">
-                            <tr>
-                              <td class="result-left-column small" style="width:20%">受検</td>
-                              <% if bce.place.present? %>
-                                <% place = bce.place %>
-                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
-                              <% else %>
-                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                              <% end %>
-                            </tr>
-                            <tr>
-                              <td class="result-left-column small" style="width:20%">費用</td>
-                              <% if bce.cost.present? %>
-                                <td class="pl-3 small" style="width:80%"><%= bce.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
-                              <% else %>
-                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                              <% end %>
-                            </tr>
-                            <tr>
-                              <td class="result-left-column small" style="width:20%">時期</td>
-                              <% if bce.timing.present? %>
-                                <td class="pl-3 small" style="width:80%">D<%= bce.timing %></td>
-                              <% else %>
-                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
-                              <% end %>
-                            </tr>
-                            <tr>
-                              <td class="result-left-column small" style="width:20%">補足</td>
-                              <% if bce.cost.present? %>
-                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(bce.explanation.split("\n"),tag(:br)))).html_safe %></td>
                               <% else %>
                                 <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
                               <% end %>
@@ -3361,7 +3645,7 @@
                         <div class="mb-0 mt-1 p-0 box5">
                           <table class="table table-hover p-0 mb-0">
                             <tr>
-                              <td class="result-left-column small" style="width:20%">受検</td>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
                               <% if erpeak.place.present? %>
                                 <% place = erpeak.place %>
                                 <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
@@ -3386,9 +3670,570 @@
                               <% end %>
                             </tr>
                             <tr>
-                              <td class="result-left-column small" style="width:20%">補足</td>
+                              <td class="result-left-column small" style="width:20%">備考</td>
                               <% if erpeak.cost.present? %>
                                 <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(erpeak.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">子宮内膜組織診</td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_endometrial_biopsy.present? %>
+                      <% @special_inspection_endometrial_biopsy.each do |endometrial_biopsy| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if endometrial_biopsy.place.present? %>
+                                <% place = endometrial_biopsy.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if endometrial_biopsy.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= endometrial_biopsy.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if endometrial_biopsy.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= endometrial_biopsy.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if endometrial_biopsy.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(endometrial_biopsy.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">子宮内フローラ</td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_intrauterine_flora.present? %>
+                      <% @special_inspection_intrauterine_flora.each do |intrauterine_flora| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if intrauterine_flora.place.present? %>
+                                <% place = intrauterine_flora.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if intrauterine_flora.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= intrauterine_flora.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if intrauterine_flora.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= intrauterine_flora.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if intrauterine_flora.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(intrauterine_flora.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">慢性子宮内膜炎<br><span class="small text-muted">(CD138/BCE)</span></td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_bce.present? %>
+                      <% @special_inspection_bce.each do |bce| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if bce.place.present? %>
+                                <% place = bce.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if bce.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= bce.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if bce.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= bce.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if bce.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(bce.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">子宮鏡検査</td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_hysteroscopy.present? %>
+                      <% @special_inspection_hysteroscopy.each do |hysteroscopy| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if hysteroscopy.place.present? %>
+                                <% place = hysteroscopy.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if hysteroscopy.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= hysteroscopy.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if hysteroscopy.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= hysteroscopy.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if hysteroscopy.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(hysteroscopy.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">染色体検査</td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_chromosome.present? %>
+                      <% @special_inspection_chromosome.each do |chromosome| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if chromosome.place.present? %>
+                                <% place = chromosome.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if chromosome.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= chromosome.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if chromosome.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= chromosome.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if chromosome.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(chromosome.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">CA125</td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_ca125.present? %>
+                      <% @special_inspection_ca125.each do |ca125| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if ca125.place.present? %>
+                                <% place = ca125.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if ca125.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= ca125.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if ca125.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= ca125.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if ca125.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(ca125.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">MRI</td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_mri.present? %>
+                      <% @special_inspection_mri.each do |mri| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if mri.place.present? %>
+                                <% place = mri.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if mri.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= mri.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if mri.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= mri.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if mri.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(mri.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">ビタミンD検査</td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_vitamin_d.present? %>
+                      <% @special_inspection_vitamin_d.each do |vitamin_d| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if vitamin_d.place.present? %>
+                                <% place = vitamin_d.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if vitamin_d.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= vitamin_d.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if vitamin_d.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= vitamin_d.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if vitamin_d.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(vitamin_d.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">銅亜鉛検査</td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_copper_zinc.present? %>
+                      <% @special_inspection_copper_zinc.each do |copper_zinc| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if copper_zinc.place.present? %>
+                                <% place = copper_zinc.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if copper_zinc.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= copper_zinc.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if copper_zinc.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= copper_zinc.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if copper_zinc.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(copper_zinc.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">精子検査<br><span class="small text-muted">(クルーガーテスト)</span></td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_kruger.present? %>
+                      <% @special_inspection_kruger.each do |kruger| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if kruger.place.present? %>
+                                <% place = kruger.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if kruger.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= kruger.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if kruger.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= kruger.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if kruger.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(kruger.explanation.split("\n"),tag(:br)))).html_safe %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="pl-3 pt-3 pb-0 m-0">
+                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">その他</td>
+                  <td class="pl-1 pr-0 py-1" style="width:70%">
+                    <% if @special_inspection_other_inspection.present? %>
+                      <% @special_inspection_other_inspection.each do |other_inspection| %>
+                        <div class="mb-0 mt-1 p-0 box5">
+                          <table class="table table-hover p-0 mb-0">
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">どこで</td>
+                              <% if other_inspection.place.present? %>
+                                <% place = other_inspection.place %>
+                                <td class="pl-3 small" style="width:80%"><%= Report::HASH_SPECIAL_INSPECTION_PLACE[place] %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">費用</td>
+                              <% if other_inspection.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= other_inspection.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">時期</td>
+                              <% if other_inspection.timing.present? %>
+                                <td class="pl-3 small" style="width:80%">D<%= other_inspection.timing %></td>
+                              <% else %>
+                                <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
+                              <% end %>
+                            </tr>
+                            <tr>
+                              <td class="result-left-column small" style="width:20%">備考</td>
+                              <% if other_inspection.cost.present? %>
+                                <td class="pl-3 small" style="width:80%"><%= text_url_to_link(h(safe_join(other_inspection.explanation.split("\n"),tag(:br)))).html_safe %></td>
                               <% else %>
                                 <td class="pl-3 text-muted small" style="width:80%"><span class="small">未回答</span></td>
                               <% end %>

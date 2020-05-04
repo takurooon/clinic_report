@@ -22,9 +22,14 @@
     <% end %>
 
     <div class="split-left-box left-box pb-5">
+      <div class="p-1">
+      </div>
+      <div class="alert alert-danger mt-5 mb-4 small" role="alert">
+        以下赤枠の「クリニック」「住まい(都道府県)」「住まい(市区町村)」を必ず選択してください。選択せずに投稿〜保存するとその他の選択または入力したデータがリセットされる場合があります。
+      </div>
       <div class="row mt-0 px-1">
         <div class="col-md-6">
-          <div class="form-group border border-danger rounded-lg p-3">
+          <div class="form-group border border-danger rounded-lg p-3 mt-0">
             <small class="text-danger float-right">※必須</small>
             <div class="label p-1"><%= f.label :clinic_id, 'クリニックを選択', class: "question-matters" %></div>
             <div>
@@ -67,7 +72,7 @@
         </div>
 
         <div class="col-md-6">
-          <div class="form-group border border-danger rounded-lg p-3">
+          <div class="form-group border border-danger rounded-lg p-3 mt-0">
             <small class="text-danger float-right">※必須</small>
             <div class="label p-1"><%= f.label :address_at_the_time_of_treatment, '治療当時のお住まい', class: "question-matters" %></div>
             <div>
@@ -234,7 +239,7 @@
           <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
         </div>
         <div class="form-group">
-          <div class="label p-1"><%= f.label :fuiku_supplementary_explanation, '流死産産経験(習慣流産など)や不育症についての一口メモ', class: "question-matters" %></div>
+          <div class="label p-1"><%= f.label :fuiku_supplementary_explanation, '流死産経験(習慣流産など)や不育症についての一口メモ', class: "question-matters" %></div>
           <%= f.text_area :fuiku_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)不育症は〇〇クリニックで検査を受けてわかりました" %>
         </div>
         <div class="form-group">
@@ -501,6 +506,25 @@
         <div class="form-group pt-2">
           <div class="label p-1"><%= f.label :sperm_description, '精液検査について一口メモ', class: "question-matters" %></div>
             <%= f.text_area :sperm_description, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)精液検査は毎回結果の変動が激しかったです" %>
+        </div>
+      </div>
+
+      <div class="border rounded px-3 py-3 mt-5">
+        <p>最新周期の精液検査の結果について</p>
+        <div class="form-group mt-1">
+          <div class="label p-1"><span class="question-matters"><%= f.label :inspection, 'このクリニックで受けた初期検査について' %></span></div><br>
+          <%= f.collection_check_boxes(:inspection_ids, Inspection.all, :id, :name) do |b| %>
+            <div class="form-check form-check-inline checkbox">
+              <%= b.label class: "form-check-label" do %>
+                <%= b.check_box class: "form-check-input" %>
+                <%= b.text %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <div class="label p-1"><%= f.label :inspection_supplementary_explanation, '初期検査についての一口メモ', class: "question-matters" %></div>
+          <%= f.text_area :inspection_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "補足情報があれば入力してください。" %>
         </div>
       </div>
 
@@ -1423,13 +1447,6 @@
           <small id="poster-tip" class="form-text text-muted">
             開示範囲を選択して下さい。
           </small>
-          <div class="form-group">
-            <div class="label p-1"><%= f.label :scope_of_disclosure, "開示範囲を追加する", class: "question-matters" %></div>
-            <%= text_field_tag :sod_scope, "", class: "form-control", placeholder: "半角カンマ区切り" %>
-            <small id="poster-tip" class="form-text text-warning">
-              <span class="small">複数ある場合は「半角カンマ」で区切ってください。</span>
-            </small>
-          </div>
         </div>
       </div>
 

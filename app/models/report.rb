@@ -518,22 +518,22 @@ class Report < ApplicationRecord
   has_many :scope_of_disclosures, through: :report_scope_of_disclosures
   accepts_nested_attributes_for :scope_of_disclosures
 
-  def save_sods(sod_list)
-    current_sods = self.scope_of_disclosures.pluck(:scope) unless self.scope_of_disclosures.nil?
-    old_sods = current_sods - sod_list
-    new_sods = sod_list - current_sods
+  # def save_sods(sod_list)
+  #   current_sods = self.scope_of_disclosures.pluck(:scope) unless self.scope_of_disclosures.nil?
+  #   old_sods = current_sods - sod_list
+  #   new_sods = sod_list - current_sods
 
     # Destroy old scope_of_disclosures:
-    old_sods.each do |old_scope|
-      self.scope_of_disclosures.delete ScopeOfDisclosure.find_by(scope: old_scope)
-    end
+    # old_sods.each do |old_scope|
+    #   self.scope_of_disclosures.delete ScopeOfDisclosure.find_by(scope: old_scope)
+    # end
 
     # Create new scope_of_disclosures:
-    new_sods.each do |new_scope|
-      report_sod = ScopeOfDisclosure.find_or_create_by(scope: new_scope)
-      self.scope_of_disclosures << report_sod
-    end
-  end
+  #   new_sods.each do |new_scope|
+  #     report_sod = ScopeOfDisclosure.find_or_create_by(scope: new_scope)
+  #     self.scope_of_disclosures << report_sod
+  #   end
+  # end
 
   # タグ
   has_many :report_tags, dependent: :destroy
@@ -737,8 +737,9 @@ class Report < ApplicationRecord
 
   # details_of_icsiの区分値(顕微授精の詳細)
   HASH_DETAILS_OF_ICSI = {
-    1 => "IMSI",
+    1 => "ICSI",
     2 => "ピエゾICSI",
+    3 => "IMSI",
     99 => "その他",
     100 => "不明"
   }
@@ -1656,8 +1657,18 @@ class Report < ApplicationRecord
       2 => "エマ(EMMA)",
       3 => "アリス(ALICE)",
       4 => "トリオ(TORIO)",
-      5 => "慢性子宮内膜炎(CD138/BCE)",
-      6 => "ERPeak",
+      5 => "ERPeak",
+      6 => "子宮内膜組織診",
+      7 => "子宮内フローラ",
+      8 => "慢性子宮内膜炎(CD138/BCE)",
+      9 => "子宮鏡検査",
+      10 => "染色体検査",
+      11 => "CA125",
+      12 => "MRI",
+      13 => "ビタミンD検査",
+      14 => "銅亜鉛検査",
+      15 => "精子検査(クルーガーテスト)",
+      99 => "その他",
     }
 
     def str_special_inspection_name

@@ -16,7 +16,7 @@
         <td class="et-bt-hormone-column"><%= f.select :timing, Report.make_select_special_inspection_timing, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
       </tr>
       <tr>
-        <td colspan="4"><%= f.text_area :explanation, class: "form-control text-muted", style: "background: rgb(232, 254, 252)", rows: 3, placeholder: "例)金額は端数まで覚えていないので正確ではありません。" %></td>
+        <td colspan="4"><%= f.text_area :explanation, class: "form-control text-muted", style: "background: rgb(232, 254, 252)", rows: 3, placeholder: "例)このクリニックではなく、○○クリニックで受けました。また金額はおおよそでです。" %></td>
       </tr>
     </tbody>
   </table>
