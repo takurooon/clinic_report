@@ -37,14 +37,14 @@ class SearchesController < ApplicationController
   end
 
   def clinic
-    clinic = params[:name]
-    @clinics = Clinic.find(clinic)
-    @reports = Report.where(clinic_id: clinic)
+    clinic = params[:value]
+    @clinics = Clinic.find_by(name: clinic)
+    @reports = Report.where(clinic_id: @clinics.id)
     @clinic_reports = Report.where(activated: true).search(params[:search])
   end
 
   def clinic_prefecture
-    prefecture = params[:name]
+    prefecture = params[:value]
     @prefecture = Prefecture.find_by(name: prefecture)
     cities = City.where(prefecture_id: @prefecture)
     clinics = Clinic.where(city_id: cities.ids)
@@ -52,7 +52,7 @@ class SearchesController < ApplicationController
   end
   
   def clinic_city
-    city = params[:name]
+    city = params[:value]
     @city = City.find_by(name: city)
     clinics = Clinic.where(city_id: @city.id)
     @reports = Report.where(clinic_id: clinics.ids)
@@ -105,13 +105,12 @@ class SearchesController < ApplicationController
   end
 
   def area_prefecture
-    @prefecture = Prefecture.find_by(id: params[:value])
-    @reports= Report.joins(prefecture: :cities).where(prefecture_id: params[:value]).distinct
+    @prefecture = Prefecture.find_by(name: params[:value])
+    @reports = Report.where(prefecture_id: @prefecture.id)
   end
 
   def area_city
-    city = params[:value]
-    @cities = City.find(city)
-    @reports = Report.where(city_id: city)
+    @city = City.find_by(name: params[:value])
+    @reports = Report.where(city_id: @city.id)
   end
 end

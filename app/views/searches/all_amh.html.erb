@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container pb-5 mb-5">
   <h4 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>AMH</strong>&nbsp;からレポコを探す</h4>
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong>AMH</strong>&nbsp;からレポコを探す</h4>
-  <div class="container all_amh">
+  <div class="container all_amh pb-5 mb-5">
     <div class="row">
       <div class="col-md-8 offset-md-2 main-column">
         <%= select "report", :amh, @amhs.invert, { prompt: "選択してください" }, { class: "form-control", onchange: "location = 'amh/' + this.value" } %>

@@ -245,6 +245,56 @@
                       <% end %>
                     </td>
                   </tr>
+                  <tr>
+                    <td class="result-left-column small">治療中に服用していたサプリ</td>
+                    <td class="pl-3">
+                      <% if @report.supplements.present? %>
+                        <% @report.supplements.each do |supplement| %>
+                          <span class="result-text"><%= supplement.name %>&nbsp;&nbsp;</span>
+                        <% end %>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %><br><br>
+                      <% if @report.supplement_supplementary_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small">月のサプリ代</td>
+                    <td class="pl-3">
+                      <% if @report.supplement_cost.present? %>
+                          <span class="result-text"><%= @report.str_supplement_cost %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small">クリニックでの治療以外に行なったこと</td>
+                    <td class="pl-3">
+                      <% if @report.other_efforts.present? %>
+                        <% @report.other_efforts.each do |other_effort| %>
+                          <span class="result-text"><%= other_effort.name %>&nbsp;&nbsp;</span>
+                        <% end %>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %><br><br>
+                      <% if @report.other_effort_supplementary_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small">クリニックでの治療以外の月額コスト</td>
+                    <td class="pl-3">
+                      <% if @report.other_effort_cost.present? %>
+                          <span class="result-text"><%= @report.str_other_effort_cost %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %>
+                    </td>
+                  </tr>
                 </table>
               </section>
               <section class="child-tab-content" id="supplements">
@@ -268,7 +318,7 @@
                     </td>
                   </tr>
                 </table>
-                <h5 class="child-tab-title"><span class="marker-underline">特殊検査</span></h5>
+                <h5 class="child-tab-title mt-5"><span class="marker-underline">特殊検査</span></h5>
                 <table class="table table-hover p-0">
                   <% if @report.special_inspections.present? %>
                     <% if @special_inspection_era.present? %>
@@ -922,7 +972,7 @@
                     </tr>
                   <% end %>
                 </table>
-                <h5 class="child-tab-title"><span class="marker-underline">着床前スクリーニング</span></h5>
+                <h5 class="child-tab-title mt-5"><span class="marker-underline">着床前スクリーニング</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
@@ -961,7 +1011,7 @@
                     </tr>
                   <% end %>
                 </table>
-                <h5 class="child-tab-title"><span class="marker-underline">精液検査</span></h5>
+                <h5 class="child-tab-title mt-5"><span class="marker-underline">精液検査</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small">精液検査</td>
@@ -1621,7 +1671,7 @@
               </section>
               <section class="child-tab-content" id="cost">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
-                <h4 class="child-tab-title">費用&nbsp;/&nbsp;その他&nbsp;<span class="small text-muted">(サプリ等)</span></h4>
+                <h4 class="child-tab-title">費用</h4>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small" style="width:30%">治療費総額</td>
@@ -1687,59 +1737,6 @@
                       </td>
                     </tr>
                   <% end %>
-                </table>
-                <h5 class="child-tab-title"><span class="marker-underline">サプリなど</span></h5>
-                <table class="table table-hover p-0">
-                  <tr>
-                    <td class="result-left-column small" style="width:30%">治療中に服用していたサプリ</td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.supplements.present? %>
-                        <% @report.supplements.each do |supplement| %>
-                          <span class="result-text"><%= supplement.name %>&nbsp;&nbsp;</span>
-                        <% end %>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
-                      <% end %><br><br>
-                      <% if @report.supplement_supplementary_explanation.present? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.supplement_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small">月のサプリ代</td>
-                    <td class="pl-3">
-                      <% if @report.supplement_cost.present? %>
-                          <span class="result-text"><%= @report.str_supplement_cost %></span>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small">クリニックでの治療以外に行なったこと</td>
-                    <td class="pl-3">
-                      <% if @report.other_efforts.present? %>
-                        <% @report.other_efforts.each do |other_effort| %>
-                          <span class="result-text"><%= other_effort.name %>&nbsp;&nbsp;</span>
-                        <% end %>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
-                      <% end %><br><br>
-                      <% if @report.other_effort_supplementary_explanation.present? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.other_effort_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small">クリニックでの治療以外の月額コスト</td>
-                    <td class="pl-3">
-                      <% if @report.other_effort_cost.present? %>
-                          <span class="result-text"><%= @report.str_other_effort_cost %></span>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
-                      <% end %>
-                    </td>
-                  </tr>
                 </table>
               </section>
             </div>
