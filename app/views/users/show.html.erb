@@ -1,8 +1,10 @@
 <div class="container mb-5 pb-5">
   <div class="row">
     <div class="col-12 col-lg-8 offset-lg-2 profile text-color">
+      <div class="py-3">
+      </div>
       <% if @user == current_user %>
-        <div class="pt-4 text-right">
+        <div class="pt-0 text-right">
           <i data-feather="edit-3" class="feather-icon-style1 pb-1"></i><%= link_to 'プロフィールを編集', edit_user_registration_path, class:"btn btn-secondary pl-1 pr-0" %>
         </div>
       <% end %>

@@ -34,10 +34,10 @@
         <% if @report.treatment_end_age.present? %>
           <span class="badge badge-light"><%= link_to @report.treatment_end_age, "/category/age/#{@report.treatment_end_age}", class: "text-dark" %>歳</span>
         <% end %>
-        <% if @report.city.prefecture.present? %>
+        <% if @report.city.prefecture.present? && @report.prefecture_at_the_time_status == "show" %>
           <span class="badge badge-pill badge-primary"><%= link_to @report.city.prefecture.name, "/category/area/prefecture/#{@report.city.prefecture.id}", class: "text-light" %></span>
         <% end %>
-        <% if @report.city.present? %>
+        <% if @report.city.present? && @report.city_at_the_time_status == "show" %>
           <span class="badge badge-pill badge-primary"><%= link_to @report.city.name, "/category/area/city/#{@report.city.id}",  class: "text-light" %></span>
         <% end %>
         <% @report.tags.each do |tag| %>
