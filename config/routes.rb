@@ -77,9 +77,9 @@ end
 #                         category_tags GET    /category/tags(.:format)                                                                 searches#tags
 #                                       GET    /category/tags/:tag_name(.:format)                                                       searches#tag
 #                      category_clinics GET    /category/clinics(.:format)                                                              searches#clinics
-#                                       GET    /category/clinics/:name(.:format)                                                        searches#clinic
-#                                       GET    /category/clinics/prefecture/:name(.:format)                                             searches#clinic_prefecture
-#                                       GET    /category/clinics/city/:name(.:format)                                                   searches#clinic_city
+#                                       GET    /category/clinics/:value(.:format)                                                       searches#clinic
+#                                       GET    /category/clinics/prefecture/:value(.:format)                                            searches#clinic_prefecture
+#                                       GET    /category/clinics/city/:value(.:format)                                                  searches#clinic_city
 #                          category_age GET    /category/age(.:format)                                                                  searches#all_age
 #                                       GET    /category/age/:value(.:format)                                                           searches#age
 #                      category_factors GET    /category/factors(.:format)                                                              searches#factors
