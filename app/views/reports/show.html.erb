@@ -35,10 +35,10 @@
           <span class="badge badge-light"><%= link_to @report.treatment_end_age, "/category/age/#{@report.treatment_end_age}", class: "text-dark" %>歳</span>
         <% end %>
         <% if @report.city.prefecture.present? && @report.prefecture_at_the_time_status == "show" %>
-          <span class="badge badge-pill badge-primary"><%= link_to @report.city.prefecture.name, "/category/area/prefecture/#{@report.city.prefecture.id}", class: "text-light" %></span>
+          <span class="badge badge-pill badge-primary"><%= link_to @report.city.prefecture.name, "/category/area/prefecture/#{@report.city.prefecture.name}", class: "text-light" %></span>
         <% end %>
         <% if @report.city.present? && @report.city_at_the_time_status == "show" %>
-          <span class="badge badge-pill badge-primary"><%= link_to @report.city.name, "/category/area/city/#{@report.city.id}",  class: "text-light" %></span>
+          <span class="badge badge-pill badge-primary"><%= link_to @report.city.name, "/category/area/city/#{@report.city.name}",  class: "text-light" %></span>
         <% end %>
         <% @report.tags.each do |tag| %>
           <span class="badge badge-info"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class: "text-light" %></span>

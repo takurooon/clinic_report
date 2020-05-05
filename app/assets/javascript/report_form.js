@@ -21,7 +21,7 @@ $(function() {
     $.ajax('/clinics_select',
       {
         type: 'get',
-        data: { city_id: $(this).val() },
+        data: { city_name: $(this).val() },
       }
     )
     .done(function(data) {
