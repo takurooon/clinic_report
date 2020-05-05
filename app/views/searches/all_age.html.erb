@@ -5,7 +5,7 @@
   <div class="container all_age pb-5 mb-5">
     <div class="row">
       <div class="col-md-8 offset-md-2 main-column">
-        <%= select "report", :treatment_end_age, @age.invert, { prompt: "選択してください" }, { class: "form-control", onchange: "location = 'age/' + this.value" } %>
+        <%= select "report", :treatment_end_age, @age.invert, { prompt: "選択してください" }, { class: "form-control", onchange: "location = 'age/' + this.value + '歳'" } %>
       </div>
     <div>
   </div>

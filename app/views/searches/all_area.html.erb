@@ -17,7 +17,7 @@
       <div class="col-md-8 offset-md-2 main-column tab-pane active" id="area_prefecture">
         <div>
           <%= select_tag :area_prefecture,
-                          options_from_collection_for_select(Prefecture.all, :id, :name),
+                          options_from_collection_for_select(Prefecture.all, :name, :name),
                           {
                             prompt: "都道府県を選択する",
                             class: "form-control",
