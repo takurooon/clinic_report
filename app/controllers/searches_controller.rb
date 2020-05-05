@@ -106,11 +106,11 @@ class SearchesController < ApplicationController
 
   def area_prefecture
     @prefecture = Prefecture.find_by(name: params[:value])
-    @reports = Report.where(prefecture_id: @prefecture.id)
+    @reports = Report.where(prefecture_id: @prefecture.id, status: 0, prefecture_at_the_time_status: 0)
   end
 
   def area_city
     @city = City.find_by(name: params[:value])
-    @reports = Report.where(city_id: @city.id)
+    @reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0)
   end
 end
