@@ -14,12 +14,14 @@ class User < ApplicationRecord
 
   has_many :reports, dependent: :destroy
   has_many :comments
+  has_one_attached :icon
   has_many :likes, dependent: :destroy
   has_many :like_reports, through: :likes, source: :report
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
-  mount_uploader :icon, ImageUploader
+  # carrierwave→activestrage変更に伴いmount解除(user/iconカラムも削除済み)↓
+  # mount_uploader :icon, ImageUploader
 
   enum gender: { female: 0, male: 1 }
 
@@ -52,7 +54,6 @@ end
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  gender                 :integer          default("female"), not null
-#  icon                   :string
 #  image_url              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :inet

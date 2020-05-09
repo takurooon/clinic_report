@@ -12,7 +12,11 @@
         <div class="row">
           <div class="d-none d-sm-block col-3 pl-4 py-4">
             <div class="pt-4 pl-4">
-              <% if @user.icon.blank? %>
+              <% if @user.icon.attached? %>
+                <%=  link_to @user.icon, 'data-lightbox': @user.icon do %>
+                  <%= image_tag(@user.icon, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
+                <% end %>
+              <% else %>
                 <% if @user.birthday == nil %>
                   <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                 <% elsif Time.now.year - @user.birthday.year <= 25 %>
@@ -47,10 +51,6 @@
                   <% end %>
                 <% else %>
                   <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                <% end %>
-              <% else %>
-                <%=  link_to @user.icon.url, 'data-lightbox': @user.icon do %>
-                  <%= image_tag(@user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
                 <% end %>
               <% end %>
             </div>
@@ -105,7 +105,11 @@
             </div>
           </div>
           <div class="d-block d-sm-none col-3 py-3 pl-4 pr-0">
-            <% if @user.icon.blank? %>
+            <% if @user.icon.attached? %>
+              <%=  link_to @user.icon, 'data-lightbox': @user.icon do %>
+                <%= image_tag(@user.icon, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
+              <% end %>
+            <% else %>
               <% if @user.birthday == nil %>
                 <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
               <% elsif Time.now.year - @user.birthday.year <= 25 %>
@@ -140,10 +144,6 @@
                 <% end %>
               <% else %>
                 <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-              <% end %>
-            <% else %>
-              <%=  link_to @user.icon.url, 'data-lightbox': @user.icon do %>
-                <%= image_tag(@user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
               <% end %>
             <% end %>
           </div>
@@ -288,7 +288,9 @@
                             <div class="d-none d-lg-block px-0">
                               <%= link_to user_path(report.user_id) do %>
                                 <div class="icon-field px-4 py-0">
-                                  <% if report.user.icon.blank? %>
+                                  <% if report.user.icon.attached? %>
+                                    <%= image_tag(report.user.icon, class:"icon_image") %>
+                                  <% else %>
                                     <% if report.treatment_end_age == nil %>
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 24 %>
@@ -304,8 +306,6 @@
                                     <% else %>
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% end %>
-                                  <% else %>
-                                    <%= image_tag(report.user.icon.url, class:"icon_image") %>
                                   <% end %>
                                 </div>
                               <% end %>
@@ -354,7 +354,9 @@
                             <div class="d-sm d-lg-none px-2">
                               <%= link_to user_path(report.user_id) do %>
                                 <div class="icon-field px-1 pt-0 mb-1">
-                                  <% if report.user.icon.blank? %>
+                                  <% if report.user.icon.attached? %>
+                                    <%= image_tag(report.user.icon, class:"icon_image") %>
+                                  <% else %>
                                     <% if report.treatment_end_age == nil %>
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 24 %>
@@ -370,8 +372,6 @@
                                     <% else %>
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                                     <% end %>
-                                  <% else %>
-                                    <%= image_tag(report.user.icon.url, class:"icon_image") %>
                                   <% end %>
                                 </div>
                               <% end %>

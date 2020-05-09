@@ -30,14 +30,15 @@
                           <td class="profile-item-r">
                             <div class="img-field-parent">
                               <div id="img_field" onClick="$('#file').click()">
-                                <% if @user.icon.present? %>
-                                  <%= image_tag @user.icon.url %>
+                                <% if @user.icon.attached? %>
+                                  <%= image_tag(@user.icon, class:"icon_image") %>
                                 <% else %>
                                   <i class="fas fa-camera-retro fa-5x icon-camera"></i>
                                 <% end %>
                               </div>
                               <small class="capacity-limit-attention"><small class="text-danger">※最大5MB</small></small>
                             </div><br>
+                            <p class="text-muted"><span class="text-primary filesize1"></span><span class="text-danger filesize2"></span></p>
                             <small class="text-muted">画像をクリックするとアイコン画像の選択ができます。</small>
                             <%= f.file_field :icon, class: "form-control", style: "display:none;", id: "file" %>
                           </td>
@@ -52,6 +53,15 @@
                             file = e.target.files[0]
                             reader = new FileReader(),
                             $preview = $("#img_field");
+                            var imgSize1 = this.files[0].size;
+                            var imgSize = imgSize1 / 1000000
+                            if(imgSize <= 5) {
+                              $('span.filesize1').text("ファイルサイズ: " + imgSize.toFixed(2) + "MB").show();
+                              $('span.filesize2').hide();
+                            } else {
+                              $('span.filesize2').text("ファイルサイズ: " + imgSize.toFixed(2) + "MB！  上限容量の5MBを超えています。").show();
+                              $('span.filesize1').hide();
+                            }
 
                             reader.onload = (function(file) {
                               return function(e) {

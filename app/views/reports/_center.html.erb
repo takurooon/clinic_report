@@ -8,7 +8,9 @@
               <div class="d-none d-lg-block px-0">
                 <%= link_to user_path(report.user_id) do %>
                   <div class="icon-field px-4 py-0">
-                    <% if report.user.icon.blank? %>
+                    <% if report.user.icon.attached? %>
+                      <%= image_tag(report.user.icon, class:"icon_image") %>
+                    <% else %>
                       <% if report.treatment_end_age == nil %>
                         <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 24 %>
@@ -24,8 +26,6 @@
                       <% else %>
                         <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% end %>
-                    <% else %>
-                      <%= image_tag(report.user.icon.url, class:"icon_image") %>
                     <% end %>
                   </div>
                 <% end %>
@@ -76,7 +76,9 @@
               <div class="d-sm d-lg-none px-2">
                 <%= link_to user_path(report.user_id) do %>
                   <div class="icon-field px-1 pt-0 mb-1">
-                    <% if report.user.icon.blank? %>
+                    <% if report.user.icon.attached? %>
+                      <%= image_tag(report.user.icon, class:"icon_image") %>
+                    <% else %>
                       <% if report.treatment_end_age == nil %>
                         <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% elsif report.treatment_end_age < 24 %>
@@ -92,8 +94,6 @@
                       <% else %>
                         <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
                       <% end %>
-                    <% else %>
-                      <%= image_tag(report.user.icon.url, class:"icon_image") %>
                     <% end %>
                   </div>
                 <% end %>

@@ -635,7 +635,6 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.string "name"
     t.integer "gender", default: 0, null: false
     t.datetime "birthday"
-    t.string "icon"
     t.string "link"
     t.text "self_introduction"
     t.string "provider"
