@@ -364,26 +364,23 @@
 	<div class="post right"></div>
 	<div class="pane">
 		<div class="headline sign-text-color">
-			404エラー
+			503エラー
 		</div>
 		<div class="context sign-text-color">
-			お探しのページが見つかりません。
+			サーバーで問題が発生しています。
 		</div>
 	</div>
 </div>
 <div class="text-container">
 	<div class="headline secondary-text-color">
-		404エラー
+		503エラー
 	</div>
-	<div class="context primary-text-color">
-		<p>
-			お探しのページは削除されたか、移動した可能性がございます。
-		</p>
-	</div>
-	<div class="buttons-container">
-		<a class="border-button" href="https://repoco.net" target="_blank"><span class="fa fa-home"></span>トップページに戻る</a>
-		<a class="border-button" href="https://forms.gle/ZJW7qnkX4PLN7Lkc9" target="_blank"><span class="fa fa-warning"></span>問題を報告する</a>
-	</div>
+  <div class="context primary-text-color">
+    <p>
+      前のページに戻ってアクセスし直してください。<br>
+      問題がある場合には<a class="border-button" href="https://forms.gle/ZJW7qnkX4PLN7Lkc9" target="_blank">REPOCOサポート</a>までお問い合わせ下さい。
+    </p>
+  </div>
 </div>
 
 
@@ -491,7 +488,7 @@
        });
 
      };
-     var ep = new ErrorPage('body', "404", "sign");
+     var ep = new ErrorPage('body', "503", "sign");
      ep.initialize();
 
      // hack to make sure content stays centered >_<

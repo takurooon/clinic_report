@@ -1155,18 +1155,34 @@
           </small>
         </div>
         <div class="form-group">
-          <div class="label p-1"><%= f.label :explanation_of_frozen_embryo_storage_cost, '凍結胚(貯卵)の保管コストなどの補足説明', class: "question-matters" %></div>
-          <%= f.text_area :explanation_of_frozen_embryo_storage_cost, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)私の通ったクリニックでは年間◯万円の保管コストがかかります。" %>
+          <div class="label p-1"><%= f.label :explanation_of_frozen_embryo_storage_cost, '凍結胚(貯卵)保管コストの補足説明', class: "question-matters" %></div>
+          <%= f.text_area :explanation_of_frozen_embryo_storage_cost, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 2, placeholder: "例)私の通ったクリニックでは年間◯万円の保管コストがかかります。" %>
+        </div>
+        <div class="form-group">
+          <div class="label p-1"><%= f.label :sairan_cost, '採卵1回あたりのおおよその費用(料金)', class: "question-matters" %></div>
+          <%= f.select :sairan_cost, Report::HASH_SAIRAN_COST.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
+        </div>
+        <div class="form-group">
+          <div class="label p-1"><%= f.label :sairan_cost_explanation, '採卵1回あたりの費用(料金)の補足説明', class: "question-matters" %></div>
+          <%= f.text_area :sairan_cost_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 2, placeholder: "例)" %>
+        </div>
+        <div class="form-group">
+          <div class="label p-1"><%= f.label :ishoku_cost, '移植1回あたりのおおよその費用(料金)', class: "question-matters" %></div>
+          <%= f.select :ishoku_cost, Report::HASH_ISHOKU_COST.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
+        </div>
+        <div class="form-group">
+          <div class="label p-1"><%= f.label :ishoku_cost_explanation, '移植1回あたりの費用(料金)の補足説明', class: "question-matters" %></div>
+          <%= f.text_area :ishoku_cost_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 2, placeholder: "例)" %>
         </div>
       </div>
 
       <div class="form-group">
-        <div class="label p-1"><%= f.label :explanation_and_impression_about_sairan, '採卵総括メモ', class: "question-matters" %></div>
+        <div class="label p-1"><%= f.label :explanation_and_impression_about_sairan, '採卵メモまとめ', class: "question-matters" %></div>
         <%= f.text_area :explanation_and_impression_about_sairan, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "採卵に関しての感想や情報を載せてください" %>
       </div>
 
       <div class="form-group">
-        <div class="label p-1"><%= f.label :explanation_and_impression_about_ishoku, '移植総括メモ', class: "question-matters" %></div>
+        <div class="label p-1"><%= f.label :explanation_and_impression_about_ishoku, '移植メモまとめ', class: "question-matters" %></div>
         <%= f.text_area :explanation_and_impression_about_ishoku, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "移植に関しての感想や情報を載せてください" %>
       </div>
 
@@ -1283,7 +1299,7 @@
             <%= f.select :all_cost, Report::HASH_ALL_COST.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
           </div>
           <div class="form-group mt-2">
-            <div class="label p-1"><%= f.label :explanation_of_cost, '治療費用についてのメモ', class: "question-matters" %></div>
+            <div class="label p-1"><%= f.label :explanation_of_cost, '治療費用一言メモ', class: "question-matters" %></div>
             <%= f.text_area :explanation_of_cost, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)〇〇検査など他のクリニックと比べるととても高かったです" %>
           </div>
         </div>

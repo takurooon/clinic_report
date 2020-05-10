@@ -7,6 +7,10 @@
     <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" />
     <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+      <script src="https://cdn.statuspage.io/vendor/moment-timezone-with-data.js"></script>
+      <script src="https://cdn.statuspage.io/vendor/jstz.js"></script>
+      <script src="https://cdn.statuspage.io/vendor/localtimes.js"></script>
 
     <style>
      * {
@@ -362,27 +366,20 @@
 	<div class="nob"></div>
 	<div class="post left"></div>
 	<div class="post right"></div>
-	<div class="pane">
+	<div class="pane just-header">
 		<div class="headline sign-text-color">
-			404エラー
-		</div>
-		<div class="context sign-text-color">
-			お探しのページが見つかりません。
+			メンテナンス中
 		</div>
 	</div>
 </div>
 <div class="text-container">
 	<div class="headline secondary-text-color">
-		404エラー
+		メンテナンスをしております。
 	</div>
 	<div class="context primary-text-color">
-		<p>
-			お探しのページは削除されたか、移動した可能性がございます。
-		</p>
-	</div>
-	<div class="buttons-container">
-		<a class="border-button" href="https://repoco.net" target="_blank"><span class="fa fa-home"></span>トップページに戻る</a>
-		<a class="border-button" href="https://forms.gle/ZJW7qnkX4PLN7Lkc9" target="_blank"><span class="fa fa-warning"></span>問題を報告する</a>
+    
+    <p>現在メンテナンス中です。ご不便をおかけして申し訳ございません。もうしばらくお待ち下さい。</p>
+
 	</div>
 </div>
 
@@ -491,7 +488,7 @@
        });
 
      };
-     var ep = new ErrorPage('body', "404", "sign");
+     var ep = new ErrorPage('body', "maintenance", "sign");
      ep.initialize();
 
      // hack to make sure content stays centered >_<

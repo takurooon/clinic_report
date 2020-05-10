@@ -985,6 +985,66 @@ class Report < ApplicationRecord
     return HASH_SUPPLEMENT_COST[self.supplement_cost]
   end
 
+  # sairan_costの区分値(CLでの1回あたりの採卵費用)
+  HASH_SAIRAN_COST = {
+    1 => "10万円未満",
+    2 => "20万円未満",
+    3 => "30万円未満",
+    4 => "40万円未満",
+    5 => "50万円未満",
+    6 => "60万円未満",
+    7 => "70万円未満",
+    8 => "80万円未満",
+    9 => "90万円未満",
+    10 => "100万円未満",
+    11 => "110万円未満",
+    12 => "120万円未満",
+    13 => "130万円未満",
+    14 => "140万円未満",
+    15 => "150万円未満",
+    16 => "160万円未満",
+    17 => "170万円未満",
+    18 => "180万円未満",
+    19 => "190万円未満",
+    20 => "200万円未満",
+    99 => "それ以上",
+    100 => "不明"
+  }
+
+  def str_sairan_cost
+    return HASH_SAIRAN_COST[self.sairan_cost]
+  end
+
+  # ishoku_costの区分値(CLでの1回あたりの移植費用)
+  HASH_ISHOKU_COST = {
+    1 => "10万円未満",
+    2 => "20万円未満",
+    3 => "30万円未満",
+    4 => "40万円未満",
+    5 => "50万円未満",
+    6 => "60万円未満",
+    7 => "70万円未満",
+    8 => "80万円未満",
+    9 => "90万円未満",
+    10 => "100万円未満",
+    11 => "110万円未満",
+    12 => "120万円未満",
+    13 => "130万円未満",
+    14 => "140万円未満",
+    15 => "150万円未満",
+    16 => "160万円未満",
+    17 => "170万円未満",
+    18 => "180万円未満",
+    19 => "190万円未満",
+    20 => "200万円未満",
+    99 => "それ以上",
+    100 => "不明"
+  }
+
+  def str_ishoku_cost
+    return HASH_ISHOKU_COST[self.ishoku_cost]
+  end
+
   # costの区分値(CLでの費用総額)
   HASH_COST = {
     1 => "10万円未満",
@@ -2991,6 +3051,8 @@ end
 #  industry_type                                :integer
 #  industry_type_status                         :integer
 #  inspection_supplementary_explanation         :text
+#  ishoku_cost                                  :integer
+#  ishoku_cost_explanation                      :text
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_aih                                :integer
 #  number_of_clinics                            :integer
@@ -3024,6 +3086,8 @@ end
 #  probability_of_normal_morphology_of_sperm    :integer
 #  reasons_for_choosing_this_clinic             :text
 #  reservation_method                           :integer
+#  sairan_cost                                  :integer
+#  sairan_cost_explanation                      :text
 #  selection_of_anesthesia_type                 :integer
 #  semen_concentration                          :integer
 #  semen_volume                                 :integer

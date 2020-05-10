@@ -14,6 +14,8 @@ class ReportsController < ApplicationController
   end
 
   def show
+    ActiveStorage::Blob.unattached.find_each(&:purge)
+    binding.pry
     @comment = Comment.new(report_id: @report.id)
 
     if @report.nonreleased? && @report.user != current_user
@@ -898,6 +900,10 @@ class ReportsController < ApplicationController
     #     :other_effort_supplementary_explanation,
     #     :supplement_cost,
     #     :supplement_supplementary_explanation,
+    #     :sairan_cost,
+    #     :sairan_cost_explanation,
+    #     :ishoku_cost,
+    #     :ishoku_cost_explanation,
     #     :cost,
     #     :explanation_of_cost,
     #     :all_cost,
@@ -1051,6 +1057,10 @@ class ReportsController < ApplicationController
         :other_effort_supplementary_explanation,
         :supplement_cost,
         :supplement_supplementary_explanation,
+        :sairan_cost,
+        :sairan_cost_explanation,
+        :ishoku_cost,
+        :ishoku_cost_explanation,
         :cost,
         :explanation_of_cost,
         :all_cost,

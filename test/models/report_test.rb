@@ -60,6 +60,8 @@
 #  industry_type                                :integer
 #  industry_type_status                         :integer
 #  inspection_supplementary_explanation         :text
+#  ishoku_cost                                  :integer
+#  ishoku_cost_explanation                      :text
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_aih                                :integer
 #  number_of_clinics                            :integer
@@ -93,6 +95,8 @@
 #  probability_of_normal_morphology_of_sperm    :integer
 #  reasons_for_choosing_this_clinic             :text
 #  reservation_method                           :integer
+#  sairan_cost                                  :integer
+#  sairan_cost_explanation                      :text
 #  selection_of_anesthesia_type                 :integer
 #  semen_concentration                          :integer
 #  semen_volume                                 :integer

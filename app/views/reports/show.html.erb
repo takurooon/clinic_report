@@ -1103,6 +1103,19 @@
                 <h5 class="child-tab-title"><span class="marker-underline">採卵</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
+                    <td class="result-left-column small" style="width:30%">1回あたりの採卵費用</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.sairan_cost.present? %>
+                        <span class="result-text"><%= @report.str_sairan_cost %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %><br><br>
+                      <% if @report.sairan_cost_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.sairan_cost_explanation.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
                     <td class="result-left-column small" style="width:30%">誘発タイプ</td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.type_of_ovarian_stimulation.present? %>
@@ -1445,6 +1458,19 @@
                 <% end %>
                 </span></h5>
                 <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small" style="width:30%">移植1回あたりの費用</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.ishoku_cost.present? %>
+                        <span class="result-text"><%= @report.str_ishoku_cost %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %><br><br>
+                      <% if @report.ishoku_cost_explanation.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.ishoku_cost_explanation.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
                   <tr>
                     <td class="result-left-column small" style="width:30%">使用薬剤</td>
                     <td class="pl-3" style="width:70%">
@@ -4556,6 +4582,32 @@
                     <% end %><br>
                     <% if @report.online_consultation_details.present? %>
                       <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.online_consultation_details.split("\n"),tag(:br)))).html_safe %></span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">採卵1回あたりの費用</td>
+                  <td class="pl-3" style="width:70%">
+                    <% if @report.sairan_cost.present? %>
+                      <span class="result-text"><%= @report.str_sairan_cost %></span>
+                    <% else %>
+                      <span class="text-muted small">未回答</span>
+                    <% end %><br><br>
+                    <% if @report.sairan_cost_explanation.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.sairan_cost_explanation.split("\n"),tag(:br)))).html_safe %></span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small" style="width:30%">移植1回あたりの費用</td>
+                  <td class="pl-3" style="width:70%">
+                    <% if @report.ishoku_cost.present? %>
+                      <span class="result-text"><%= @report.str_ishoku_cost %></span>
+                    <% else %>
+                      <span class="text-muted small">未回答</span>
+                    <% end %><br><br>
+                    <% if @report.ishoku_cost_explanation.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.ishoku_cost_explanation.split("\n"),tag(:br)))).html_safe %></span>
                     <% end %>
                   </td>
                 </tr>

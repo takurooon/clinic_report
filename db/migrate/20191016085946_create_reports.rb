@@ -75,6 +75,10 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :other_effort_supplementary_explanation
       t.integer :supplement_cost
       t.text :supplement_supplementary_explanation
+      t.integer :sairan_cost
+      t.text :sairan_cost_explanation
+      t.integer :ishoku_cost
+      t.text :ishoku_cost_explanation
       t.integer :cost
       t.text :explanation_of_cost
       t.integer :all_cost
