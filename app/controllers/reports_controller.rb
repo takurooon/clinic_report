@@ -14,8 +14,6 @@ class ReportsController < ApplicationController
   end
 
   def show
-    ActiveStorage::Blob.unattached.find_each(&:purge)
-    binding.pry
     @comment = Comment.new(report_id: @report.id)
 
     if @report.nonreleased? && @report.user != current_user
