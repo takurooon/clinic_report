@@ -1,5 +1,5 @@
 <div class="container">
-  <h4 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>クリニック</strong>&nbsp;からレポコを探す</h4>
+  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>クリニック</strong>&nbsp;からレポコを探す</h5>
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong>クリニック</strong>&nbsp;からレポコを探す</h4>
 
   <div class="row">
@@ -16,7 +16,8 @@
         </div><br>
 
         <div>
-          <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control" } %></div><br>
+          <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control" } %>
+        </div><br>
         <div>
           <%= select 'report', :clinic_id, @clinics, { prompt: "クリニックを選択する"}, { class: "form-control", onchange: "location = 'clinics/' + this.value" } %>
         </div>
@@ -44,7 +45,7 @@
           $.ajax('/clinics_select',
             {
               type: 'get',
-              data: { city_id: $(this).val() },
+              data: { city_name: $(this).val() },
             }
           )
           .done(function(data) {

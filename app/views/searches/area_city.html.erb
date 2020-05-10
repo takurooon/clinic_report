@@ -1,11 +1,11 @@
 <div class="container-fluid px-2">
-  <h4 class="d-sm d-md-none mt-4 text-center"><%= @city.prefecture.name %>&nbsp;「<strong><%= @city.name %></strong>&nbsp;」<br>にお住まいの方のレポコ一覧</h4>
+  <h5 class="d-sm d-md-none mt-4 text-center"><%= @city.prefecture.name %>&nbsp;「<strong><%= @city.name %></strong>&nbsp;」<br>にお住まいの方のレポコ一覧</h5>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-5">
-    <%= link_to @city.prefecture.name, "/category/area/prefecture/#{@city.prefecture.name}" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= @city.name %></b></strong>
+      <%= link_to @city.prefecture.name, "/category/area/prefecture/#{@city.prefecture.name}" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= @city.name %></b></strong>&nbsp;&nbsp;<span class="small">&nbsp;※治療当時の住まい</span>
   </small>
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4"><%= @city.prefecture.name %>「<strong><%= @city.name %></strong>」にお住まいの方のレポコ一覧</h4>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
-    <%= link_to @city.prefecture.name, "/category/area/prefecture/#{@city.prefecture.name}" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= @city.name %></b></strong>
+    <%= link_to @city.prefecture.name, "/category/area/prefecture/#{@city.prefecture.name}" %> &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; <strong><b><%= @city.name %></b></strong>&nbsp;&nbsp;<span class="small">※治療当時の住まい</span>
   </small>
   <div class="container-fluid main-index">
     <div class="row px-0">

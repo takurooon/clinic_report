@@ -21,12 +21,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # PUT /resource
-  def update
-    super
-    if account_update_params[:avatar].present?
-      resource.avatar.attach(account_update_params[:avatar])    
-    end
-  end
+  # def update
+  #   super
+      # ↓はupdate_resourceに移動
+  #   if account_update_params[:icon].present?
+  #     resource.icon.attach(account_update_params[:icon])
+  #   end
+  # end
 
   # DELETE /resource
   def destroy
@@ -50,6 +51,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # 追加：パスワードの入力無しでuser情報を更新する(https://kossy-web-engineer.hatenablog.com/entry/2018/11/06/102047)
   def update_resource(resource, params)
     resource.update_without_current_password(params)
+
+    if account_update_params[:icon].present?
+      resource.icon.attach(account_update_params[:icon])
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
