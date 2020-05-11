@@ -481,11 +481,11 @@
                             <div>
                               <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
                                 <div class="d-none d-sm-block my-0 mr-2 clinic_address">
-                                  <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.name}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}", class:"text-muted" %></span>
+                                  <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}", class:"text-muted" %></span>
                                 </div>
                                 <div class="d-block d-sm-none mb-0 mr-2 clinic_address">
                                   <div class="col-12 pl-0">
-                                    <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.name}", class: "text-muted small" %>
+                                    <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "text-muted small" %>
                                   </div>
                                 </div>
                               </div>
