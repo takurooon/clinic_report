@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @reports = @user.reports
     @like_reports = @user.like_reports
+    # ↓紐づいていない画像を削除
+    ActiveStorage::Blob.unattached.find_each(&:purge)
   end
 
   def thanks

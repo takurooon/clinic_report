@@ -13,19 +13,110 @@
     <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
       <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん(#{@report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
 
-      <% if @report.user == current_user %>
-        <div class="py-3">
-          <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '本当に削除してもよろしいですか？'}, class:"btn btn-warning float-right" %>
-          <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary float-right mx-1" %>
-          <% if @report.released? %>
-            <%= link_to '非公開にする', nonrelease_report_path(@report), method: :patch, data: { confirm: '非公開にして良いですか？'}, class:"btn btn-secondary float-right" %>
-          <% else %>
-            <%= link_to '公開する', release_report_path(@report), method: :patch, data: { confirm: '公開して良いですか？'}, class:"btn btn-secondary btn-info float-right" %>
+      
+        <div class="row py-3">
+          <div class="d-none d-sm-block col-2">
+            <div class="py-0 pl-3">
+              <% if @report.user.icon.attached? %>
+                <%=  link_to @report.user.icon, 'data-lightbox': @report.user.icon do %>
+                  <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
+                <% end %>
+              <% else %>
+                <% if @report.user.birthday == nil %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% elsif Time.now.year - @report.user.birthday.year <= 25 %>
+                  <% if Time.now.month < @report.user.birthday.month %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @report.user.birthday.year <= 30 %>
+                  <% if Time.now.month < @report.user.birthday.month %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @report.user.birthday.year <= 35 %>
+                  <% if Time.now.month < @report.user.birthday.month %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @report.user.birthday.year <= 40 %>
+                  <% if Time.now.month < @report.user.birthday.month %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% elsif Time.now.year - @report.user.birthday.year <= 45 %>
+                  <% if Time.now.month < @report.user.birthday.month %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <% end %>
+                <% else %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-block d-sm-none col-2 offset-1 pl-0">
+            <% if @report.user.icon.attached? %>
+              <%=  link_to @report.user.icon, 'data-lightbox': @report.user.icon do %>
+                <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+              <% end %>
+            <% else %>
+              <% if @report.user.birthday == nil %>
+                <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+              <% elsif Time.now.year - @report.user.birthday.year <= 25 %>
+                <% if Time.now.month < @report.user.birthday.month %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% elsif Time.now.year - @report.user.birthday.year <= 30 %>
+                <% if Time.now.month < @report.user.birthday.month %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% elsif Time.now.year - @report.user.birthday.year <= 35 %>
+                <% if Time.now.month < @report.user.birthday.month %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% elsif Time.now.year - @report.user.birthday.year <= 40 %>
+                <% if Time.now.month < @report.user.birthday.month %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% elsif Time.now.year - @report.user.birthday.year <= 45 %>
+                <% if Time.now.month < @report.user.birthday.month %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <% end %>
+              <% else %>
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+              <% end %>
+            <% end %>
+          </div>
+          <% if @report.user == current_user %>
+            <div class="col-8 offset-1 offset-sm-2">
+              <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '本当に削除してもよろしいですか？'}, class:"btn btn-warning float-right" %>
+              <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary float-right mx-1" %>
+              <% if @report.released? %>
+                <%= link_to '非公開', nonrelease_report_path(@report), method: :patch, data: { confirm: '非公開にして良いですか？'}, class:"btn btn-secondary float-right" %>
+              <% else %>
+                <%= link_to '公開', release_report_path(@report), method: :patch, data: { confirm: '公開して良いですか？'}, class:"btn btn-secondary btn-info float-right" %>
+              <% end %>
+            </div>
           <% end %>
         </div>
-      <% end %>
 
-      <div class="d-flex align-items-center mt-5 mb-5 px-2">
+      <div class="d-flex align-items-center mt-1 mb-5 px-2">
         <h4 class="d-none d-sm-block"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h4>
         <h5 class="d-block d-sm-none"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h5>
       </div>
@@ -210,7 +301,7 @@
                       <% end %>
                     </td>
                   </tr>
-                  <% if @report.types_of_fertilization_methods = 2 || 3 %>
+                  <% if @report.types_of_fertilization_methods != 1 %>
                     <tr>
                       <td class="result-left-column small">顕微授精の種類</td>
                       <td class="pl-3">
@@ -1037,7 +1128,7 @@
                             </td>
                           <% else %>
                             <td class="font-weight-bold">
-                              <%= @report.total_amount_of_sperm.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
+                              <%= @report.total_amount_of_sperm.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>/&nbsp;ml</small></span>
                             </td>
                           <% end %>
                         </tr>
@@ -1049,7 +1140,7 @@
                             </td>
                           <% else %>
                             <td class="font-weight-bold">
-                              <%= @report.semen_concentration.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
+                              <%= @report.semen_concentration.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>/&nbsp;ml</small></span>
                             </td>
                           <% end %>
                         </tr>
@@ -2804,7 +2895,7 @@
                     <% end %>
                   </td>
                 </tr>
-                <% if @report.types_of_fertilization_methods = 2 || 3 %>
+                <% if @report.types_of_fertilization_methods != 1 %>
                   <tr>
                     <td class="result-left-column small">顕微授精の種類</td>
                     <td class="pl-4">
@@ -3194,7 +3285,7 @@
                           </td>
                         <% else %>
                           <td class="font-weight-bold">
-                            <%= @report.total_amount_of_sperm.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
+                            <%= @report.total_amount_of_sperm.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>/&nbsp;ml</small></span>
                           </td>
                         <% end %>
                       </tr>
@@ -3206,7 +3297,7 @@
                           </td>
                         <% else %>
                           <td class="font-weight-bold">
-                            <%= @report.semen_concentration.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>ml</small></span>
+                            <%= @report.semen_concentration.to_s(:delimited) %>&nbsp;&nbsp;<span class="small text-muted"><small>/&nbsp;ml</small></span>
                           </td>
                         <% end %>
                       </tr>

@@ -54,7 +54,6 @@ CSV.foreach('db/csv/clinics.csv', headers: true) do |row|
 end
 
 SSelectionMethod.create([
-  { name: "不明" },
   { name: "IMSI(イムジー)" },
   { name: "Zymot(ザイモット)"},
   { name: "SpermSlow(スパムスロー)"},
@@ -68,7 +67,6 @@ Tag.create([
 ])
 
 Supplement.create([
-  { name: "特になし" },
   { name: "葉酸" },
   { name: "ビタミンC" },
   { name: "ビタミンD" },
@@ -103,7 +101,6 @@ ScopeOfDisclosure.create([
 ])
 
 FInfertilityFactor.create([
-  { name: "特になし" },
   { name: "原因不明" },
   { name: "多嚢胞性卵巣症候群(PCOS)" },
   { name: "視床下部排卵障害(中枢性の排卵障害)" },
@@ -129,7 +126,6 @@ FInfertilityFactor.create([
 ])
 
 MInfertilityFactor.create([
-  { name: "特になし" },
   { name: "原因不明" },
   { name: "勃起障害(ED)" },
   { name: "膣内射精障害" },
@@ -147,19 +143,16 @@ MInfertilityFactor.create([
 ])
 
 FDisease.create([
-  { name: "特になし" },
   { name: "バセドウ病" },
   { name: "橋本病" },
 ])
 
 MDisease.create([
-  { name: "特になし" },
   { name: "糖尿病" },
   { name: "痛風" },
 ])
 
 FSurgery.create([
-  { name: "特になし" },
   { name: "子宮筋腫" },
   { name: "子宮内膜症" },
   { name: "卵巣嚢腫" },
@@ -167,7 +160,6 @@ FSurgery.create([
 ])
 
 MSurgery.create([
-  { name: "特になし" },
   { name: "精索静脈瘤" },
 ])
 
@@ -209,7 +201,6 @@ TransferMedicine.create([
 ])
 
 TransferOption.create([
-  { name: "特になし" },
   { name: "シート法(SEET)" },
   { name: "エンブリオグルー" },
   { name: "AHA(アシステッドハッチング)" },
@@ -217,7 +208,6 @@ TransferOption.create([
 ])
 
 OtherEffort.create([
-  { name: "特になし" },
   { name: "漢方(煎じ薬)" },
   { name: "漢方(エキス剤等)" },
   { name: "鍼" },
