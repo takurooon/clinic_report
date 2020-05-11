@@ -13,7 +13,6 @@
     <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
       <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん(#{@report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
 
-      
         <div class="row py-3">
           <div class="d-none d-sm-block col-2">
             <div class="py-0 pl-3">
@@ -23,39 +22,39 @@
                 <% end %>
               <% else %>
                 <% if @report.user.birthday == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image3", loading: "lazy") %>
                 <% elsif Time.now.year - @report.user.birthday.year <= 25 %>
                   <% if Time.now.month < @report.user.birthday.month %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image3", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image3", loading: "lazy") %>
                   <% end %>
                 <% elsif Time.now.year - @report.user.birthday.year <= 30 %>
                   <% if Time.now.month < @report.user.birthday.month %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image3", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image3", loading: "lazy") %>
                   <% end %>
                 <% elsif Time.now.year - @report.user.birthday.year <= 35 %>
                   <% if Time.now.month < @report.user.birthday.month %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image3", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image3", loading: "lazy") %>
                   <% end %>
                 <% elsif Time.now.year - @report.user.birthday.year <= 40 %>
                   <% if Time.now.month < @report.user.birthday.month %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image3", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image3", loading: "lazy") %>
                   <% end %>
                 <% elsif Time.now.year - @report.user.birthday.year <= 45 %>
                   <% if Time.now.month < @report.user.birthday.month %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image3", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image3", loading: "lazy") %>
                   <% end %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "5px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image3", loading: "lazy") %>
                 <% end %>
               <% end %>
             </div>
@@ -67,39 +66,39 @@
               <% end %>
             <% else %>
               <% if @report.user.birthday == nil %>
-                <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2", loading: "lazy") %>
               <% elsif Time.now.year - @report.user.birthday.year <= 25 %>
                 <% if Time.now.month < @report.user.birthday.month %>
-                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2", loading: "lazy") %>
                 <% end %>
               <% elsif Time.now.year - @report.user.birthday.year <= 30 %>
                 <% if Time.now.month < @report.user.birthday.month %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2", loading: "lazy") %>
                 <% end %>
               <% elsif Time.now.year - @report.user.birthday.year <= 35 %>
                 <% if Time.now.month < @report.user.birthday.month %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2", loading: "lazy") %>
                 <% end %>
               <% elsif Time.now.year - @report.user.birthday.year <= 40 %>
                 <% if Time.now.month < @report.user.birthday.month %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2", loading: "lazy") %>
                 <% end %>
               <% elsif Time.now.year - @report.user.birthday.year <= 45 %>
                 <% if Time.now.month < @report.user.birthday.month %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2", loading: "lazy") %>
                 <% end %>
               <% else %>
-                <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "3px", class: "card-img-top rounded-circle border", loading: "lazy") %>
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2", loading: "lazy") %>
               <% end %>
             <% end %>
           </div>
