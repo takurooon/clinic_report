@@ -43,9 +43,9 @@
           <% end %>
         </div>
 
-      <div class="d-flex align-items-center mt-1 mb-5 px-2">
-        <h4 class="d-none d-sm-block"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h4>
-        <h5 class="d-block d-sm-none"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h5>
+      <div class="d-flex align-items-center mt-1 mb-0 px-2">
+        <h4 class="d-none d-sm-block mb-5"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h4>
+        <h5 class="d-block d-sm-none mb-3"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h5>
       </div>
 
       <div class="mb-1 px-2">
@@ -2708,7 +2708,7 @@
                 <h5 class="d-block d-sm-none mx-1 py-3 px-2 report_title"><%= @report.title %></h5>
             <% end %>
             <div class="px-2 pt-3">
-              <%= text_url_to_link(h(@report.content)).html_safe %>
+              <%= @report.content %>
             </div>
           </div>
 
