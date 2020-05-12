@@ -1,0 +1,33 @@
+<div class="under-nav-area">
+  <div class="under-navbar row pt-2">
+    <div class="col-1">
+    </div>
+    <div class="col-3">
+      <%= link_to root_path do %>
+        <i data-feather="home" class="text-muted"></i>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <%= link_to new_report_path do %>
+        <i data-feather="edit" class="text-muted"></i>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <%= link_to notifications_path do %>
+        <% if unchecked_notifications.any? %>
+          <span class="fa-stack">
+            <i data-feather="bell" class="text-muted"></i>
+            <i class="fas fa-circle n-circle fa-stack-1x"></i>
+          </span>
+        <% else %> 
+          <i data-feather="bell" class="text-muted"></i>
+        <% end %> 
+      <% end %>
+    </div>
+    <%= link_to category_search_path do %>
+      <div class="col-2">
+        <i data-feather="search" class="text-muted"></i>
+      </div>
+    <% end %> 
+  </div>
+</div>

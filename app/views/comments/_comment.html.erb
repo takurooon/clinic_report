@@ -1,5 +1,5 @@
 <div class="p-comment__item">
-  <p><%= simple_format(comment.comment) %></p>
+  <p><%= simple_format(text_url_to_link(h(safe_join((comment.comment).split("\n"),tag(:br)))).html_safe) %></p>
   <div class="p-comment__bottomLine">
     <span class="mr-0"><strong><%= comment.user.name %></strong></span>
     <span class="mr-0"><%= comment.created_at.to_s(:datetime_jp) %></span>

@@ -1,10 +1,10 @@
 <div class="container">
-  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>クリニック</strong>&nbsp;からレポコを探す</h5>
+  <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><strong>クリニック</strong>&nbsp;からレポコを探す</h5>
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong>クリニック</strong>&nbsp;からレポコを探す</h4>
 
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <div class="form-group">
+      <div class="form-group pt-0">
         <div>
           <%= select_tag :select_prefecture,
                           options_from_collection_for_select(Prefecture.all, :id, :name),

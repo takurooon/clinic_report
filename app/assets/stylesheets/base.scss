@@ -18,6 +18,10 @@
   padding: 30px 0;
   bottom: 0; /*下に固定*/
 }
+// フッターのフィードバック
+.feedback-area {
+  padding-bottom: 2.3rem;
+}
 
 h1 {
   margin: 50px 0;
@@ -233,6 +237,17 @@ h2{
   margin: 0 2px;
   color: #329D9F;
 }
+.feather-icon-style5 {
+  width:100%;
+  margin: 0 0;
+  padding: 0;
+  color: #329D9F;
+}
+.feather-icon-style6 {
+  width:25px;
+  margin: 0 2px;
+  color: rgba(108, 108, 108, 0.7);
+}
 
 // 右サイドバー追尾型
 .sticky-area {
@@ -255,7 +270,6 @@ h2{
   text-align: center;
 }
 
-
 // フラッシュエリアのスタイル
 .flash_area {
     position: fixed;
@@ -269,21 +283,37 @@ h2{
     width: 100%;
 }
 
-// 画面下のSNSボタン
+// 画面下のSNSボタン・ナビゲーションバー
 @media screen and (min-width:768px){
 	.sns_area {
+    display: none;
+  }
+  .under-nav-area {
     display: none;
   }
 }
 @media screen and (max-width:767px){
   .sns_area {
     position: fixed;
-    bottom: 10px;
+    bottom: 3.5rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 0);
     z-index: 10000;
   }
   .sns_area .sns_bar {
+    position: relative;
+    width: 100%;
+  }
+  .under-nav-area {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 2.7rem;
+    background-color: rgb(255, 255, 255);
+    border-top: solid thin rgba(146,224,224,0.3);
+    z-index: 50000;
+  }
+  .under-nav-area .under-navbar {
     position: relative;
     width: 100%;
   }

@@ -1,41 +1,123 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 
-<div class="col-md-6.mx-auto">
-  <div class="div-inline">
-    <span>
-      <%= link_to user_path(visitor) do %>
-        <strong><%= visitor.name %></strong>
-      <% end %>
-      さんが
-
-      <% case notification.action %>
-      <% when 'follow' then %>
-        あなたをフォローしました
-      <% when 'like' then %>
-        <%= link_to 'あなたの投稿', notification.report, style: "font-weight: bold;" %>
-        にいいねしました
-      <% when 'comment' then %>
-        <% if notification.report.user_id == visited.id %>
-          <%= link_to "あなたの投稿", notification.report, style: "font-weight: bold;" %>
-        <% else %>
-          <span>
-            <%= link_to report_path(notification.post) do %>
-              <%= image_tag avatar_url(notification.report.user).to_s, class: "icon_mini" %>
-              <strong><%= notification.report.user.name + 'さんの投稿' %></strong>
+<div class="col-md-6 mx-auto my-5">
+  <div class="row">
+    <div class="col-2 px-0">
+      <i data-feather="message-circle" class="feather-icon-style5"></i>
+    </div>
+    <div class="col-10 pl-0">
+      <span>
+        <%= link_to user_path(visitor) do %>
+          <% if visitor.icon.attached? %>
+            <%= image_tag(visitor.icon, alt: "icon", class: "icon_image4", loading: "lazy") %>
+          <% else %>
+            <% if visitor.birthday == nil %>
+              <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image4", loading: "lazy") %>
+            <% elsif Time.now.year - visitor.birthday.year <= 25 %>
+              <% if Time.now.month < visitor.birthday.month %>
+                <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image4", loading: "lazy") %>
+              <% else %>
+                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image4", loading: "lazy") %>
+              <% end %>
+            <% elsif Time.now.year - visitor.birthday.year <= 30 %>
+              <% if Time.now.month < visitor.birthday.month %>
+                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image4", loading: "lazy") %>
+              <% else %>
+                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image4", loading: "lazy") %>
+              <% end %>
+            <% elsif Time.now.year - visitor.birthday.year <= 35 %>
+              <% if Time.now.month < visitor.birthday.month %>
+                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image4", loading: "lazy") %>
+              <% else %>
+                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image4", loading: "lazy") %>
+              <% end %>
+            <% elsif Time.now.year - visitor.birthday.year <= 40 %>
+              <% if Time.now.month < visitor.birthday.month %>
+                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image4", loading: "lazy") %>
+              <% else %>
+                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image4", loading: "lazy") %>
+              <% end %>
+            <% elsif Time.now.year - visitor.birthday.year <= 45 %>
+              <% if Time.now.month < visitor.birthday.month %>
+                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image4", loading: "lazy") %>
+              <% else %>
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image4", loading: "lazy") %>
+              <% end %>
+            <% else %>
+              <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image4", loading: "lazy") %>
             <% end %>
-          </span>
+          <% end %>
+          <strong><%= visitor.name %></strong>
         <% end %>
-        にコメントしました
-        <p class="text-muted mb-0">
-          <%= Comment.find_by(id: notification.comment_id)&.comment %>
-        </p>
-      <% end %>
-    </span>
-  </form>
+        さんが
 
-  <small class="text-muted text-right">
-    <%= time_ago_in_words(notification.created_at).upcase %>
-  </small>
+        <% case notification.action %>
+        <% when 'like' then %>
+          <%= link_to 'あなたのレポコ', notification.report, style: "font-weight: bold;" %>
+          にいいねしました。
+        <% when 'comment' then %>
+          <% if notification.report.user_id == visited.id %>
+            <%= link_to "あなたのレポコ", notification.report, style: "font-weight: bold;" %>
+          <% else %>
+            <span>
+              <%= link_to report_path(notification.report) do %>
+                <% if notification.report.user.icon.attached? %>
+                  <%= image_tag(notification.report.user.icon, alt: "icon", class: "icon_image4", loading: "lazy") %>
+                <% else %>
+                  <% if notification.report.user.birthday == nil %>
+                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image4", loading: "lazy") %>
+                  <% elsif Time.now.year - visitor.birthday.year <= 25 %>
+                    <% if Time.now.month < notification.report.user.birthday.month %>
+                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image4", loading: "lazy") %>
+                    <% else %>
+                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image4", loading: "lazy") %>
+                    <% end %>
+                  <% elsif Time.now.year - notification.report.user.birthday.year <= 30 %>
+                    <% if Time.now.month < notification.report.user.birthday.month %>
+                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image4", loading: "lazy") %>
+                    <% else %>
+                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image4", loading: "lazy") %>
+                    <% end %>
+                  <% elsif Time.now.year - notification.report.user.birthday.year <= 35 %>
+                    <% if Time.now.month < notification.report.user.birthday.month %>
+                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image4", loading: "lazy") %>
+                    <% else %>
+                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image4", loading: "lazy") %>
+                    <% end %>
+                  <% elsif Time.now.year - notification.report.user.birthday.year <= 40 %>
+                    <% if Time.now.month < notification.report.user.birthday.month %>
+                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image4", loading: "lazy") %>
+                    <% else %>
+                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image4", loading: "lazy") %>
+                    <% end %>
+                  <% elsif Time.now.year - notification.report.user.birthday.year <= 45 %>
+                    <% if Time.now.month < notification.report.user.birthday.month %>
+                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image4", loading: "lazy") %>
+                    <% else %>
+                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image4", loading: "lazy") %>
+                    <% end %>
+                  <% else %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image4", loading: "lazy") %>
+                  <% end %>
+                <% end %>
+                <strong><%= notification.report.user.name + 'さんのレポコ' %></strong>
+              <% end %>
+            </span>
+          <% end %>
+          にコメントしました。
+          <%= link_to notification.report do %>
+            <p class="text-muted mb-0 mt-3">
+              <% comment = Comment.find_by(id: notification.comment_id)&.comment %>
+              <%= strip_tags(comment.to_s).gsub(/[\n]/,"").strip.truncate(30) %>&nbsp;&nbsp;&nbsp;…
+            </p>
+          <% end %>
+        <% end %>
+      </span>
+      <small class="text-muted text-right">
+        <%= time_ago_in_words(notification.created_at).upcase %>
+      </small>
+    </div>
+  </div>
   <hr>
 </div>

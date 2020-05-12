@@ -7,7 +7,6 @@
   object-fit: cover;
   //タテヨコ比を変えないままトリミング
 }
-
 .icon_image2 {
   width: 100%;
   height: 100%;
@@ -15,10 +14,15 @@
   object-fit: cover;
   border: solid thin #92E0E0;
 }
-
 .icon_image3 {
   width: 80%;
   height: 80%;
+  border-radius: 100%;
+  object-fit: cover;
+  border: solid thin #92E0E0;
+}
+.icon_image4 {
+  width: 6%;
   border-radius: 100%;
   object-fit: cover;
   border: solid thin #92E0E0;

@@ -1,5 +1,8 @@
 class SearchesController < ApplicationController
 
+  def search
+  end
+
   def all_amh
     amhs = Report::HASH_AMH
     reports = Report.group(:amh).where.not(amh: nil).distinct.count
