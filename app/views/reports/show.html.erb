@@ -13,14 +13,15 @@
     <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
       <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん(#{@report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
 
-        <div class="row py-3">
+        <div class="row pt-3 pb-0">
           <div class="d-none d-sm-block col-2">
-            <div class="py-0 pl-3">
+            <div class="py-0 pl-0 author-info">
               <% if @report.user.icon.attached? %>
                 <%=  link_to @report.user.icon, 'data-lightbox': @report.user.icon do %>
                   <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
                 <% end %>
               <% end %>
+              <%= link_to @report.user.name, user_path(@report.user_id), class: "small" %>
             </div>
           </div>
           <div class="d-block d-sm-none col-2 offset-1 pl-0">
@@ -31,7 +32,7 @@
             <% end %>
           </div>
           <% if @report.user == current_user %>
-            <div class="col-8 offset-1 offset-sm-2">
+            <div class="col-8 offset-1 offset-sm-2 pl-0">
               <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '本当に削除してもよろしいですか？'}, class:"btn btn-warning float-right" %>
               <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary float-right mx-1" %>
               <% if @report.released? %>
@@ -43,9 +44,14 @@
           <% end %>
         </div>
 
-      <div class="d-flex align-items-center mt-1 mb-0 px-2">
-        <h4 class="d-none d-sm-block mb-5"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h4>
-        <h5 class="d-block d-sm-none mb-3"><%= link_to @report.user.name, user_path(@report.user_id) %>さんの&nbsp;&nbsp;<%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h5>
+      <div class="d-block d-sm-none small mx-1 px-4">
+        <%= link_to @report.user.name, user_path(@report.user_id), class: "small" %>
+      </div>
+      <div class="mt-4 mb-0 pt-2 px-0 d-none d-sm-block">
+        <h4 class="d-none d-sm-block mb-5"><%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h4>
+      </div>
+      <div class="mt-2 mb-0 px-2 d-block d-sm-none">
+        <h5 class="d-block d-sm-none mb-3"><%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h5>
       </div>
 
       <div class="mb-1 px-2">

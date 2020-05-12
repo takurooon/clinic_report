@@ -33,21 +33,26 @@
     </div>
   <% else %>
     <div class="under-navbar row pt-2">
-      <div class="col-3">
+      <div class="col-1">
       </div>
-      <div class="col-3 pl-0">
+      <div class="col-3">
         <%= link_to root_path do %>
           <i data-feather="home" class="text-muted"></i>
         <% end %>
       </div>
-      <div class="col-3 pl-0">
+      <div class="col-3">
         <%= link_to new_report_path do %>
           <i data-feather="edit" class="text-muted"></i>
         <% end %>
       </div>
-      <div class="col-3 pl-0">
+      <div class="col-3">
         <%= link_to category_search_path do %>
           <i data-feather="search" class="text-muted"></i>
+        <% end %> 
+      </div>
+      <div class="col-2">
+        <%= link_to user_session_path do %>
+          <i data-feather="log-in" class="text-muted"></i>
         <% end %> 
       </div>
     </div>
