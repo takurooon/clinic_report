@@ -143,36 +143,35 @@ h2{
   min-height: 100%;
   padding: 0;;
 }
- 
+
 .fullscreen .modal-content {
   height: 100%;
   min-height: 100%;
   border-radius: 0;
-  background: rgba(146,224,224,1);
-  opacity: 0.9;
+  background: rgba(146,224,224,0.9);
   overflow:auto;
 }
- 
+
 .fullscreen .modal-content .modal-header{
   border: 0px;
 }
- 
+
 .fullscreen .modal-content button{
   opacity: 1;
 }
- 
+
 .fullscreen .modal-content button span{
   color: #fff;
   font-weight: 1;
   font-size: 26px;
   text-shadow: none;
 }
- 
+
 .fullscreen .modal-body .modal-logo img {
   width: 158px;
   padding-bottom: 84px;
 }
- 
+
 .fullscreen .modal-body ul {
   padding: 0 0 0 0;
 }
@@ -180,10 +179,11 @@ h2{
   padding-bottom: 43px;
 }
 .fullscreen .modal-body a {
-  color: #fff;
-  font-size: 16px;
+  color: rgb(79, 79, 79);
+  font-size: 20px;
+  font-weight: bold;
 }
- 
+
 .fullscreen .modal-body .social img {
   width: 56px;
   margin: 8px;
@@ -276,7 +276,7 @@ h2{
     top: 60px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0);
-    z-index: 10000;
+    z-index: 30000;
 }
 .flash_area .flash_bar {
     position: relative;

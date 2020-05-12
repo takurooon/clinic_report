@@ -273,10 +273,10 @@
         </div>
       </div>
 
-      <div class="mt-5 pt-5 px-1 user-repoco-list">
+      <div class="mt-5 pt-0 px-1 user-repoco-list">
         <i data-feather="hash" class="feather-icon-style4 pb-2 pl-0 pr-0 mx-0"></i><h5 class="py-4 d-inline lead"><%= @user.name %>さんのレポコ</h5>
         <div class="tab-pane fade show active mt-0 pt-0" id="repoco-released" role="tabpanel" aria-labelledby="repoco-released-tab">
-          <div class="pt-5">
+          <div class="pt-3">
             <% @user.reports.each do |report| %>
               <% if report.status == "released" %>
                 <div class="row">
