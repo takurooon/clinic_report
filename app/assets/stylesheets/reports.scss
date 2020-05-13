@@ -77,6 +77,11 @@
   align-items: center; /* 垂直方向 */
 }
 
+i .fa-edit {
+	font-size: 1.3em;
+  color: rgb(96, 96, 96);
+}
+
 // 記事の左右padding(md以上で切り替え)
 .trix-content {
   padding: 20px 5px;
