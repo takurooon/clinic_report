@@ -1,6 +1,10 @@
 <div class="row mt-5 mb-5 pr-3 d-none d-md-block">
   <div class="col-lg-10 offset-lg-1 mr-1 pr-4">
+    <% if current_user %>
+      <btton class="btn btn-raised btn-outline-primary float-right", data-toggle="modal" data-target="#reportPost">レポコを作成</button>
+    <% else %>
       <%= link_to "レポコを作成", new_report_path, class:"btn btn-raised btn-outline-primary float-right" %>
+    <% end %>
   </div>
 </div>
 

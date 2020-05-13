@@ -9,9 +9,7 @@
         <% end %>
       </div>
       <div class="col-3">
-        <%= link_to new_report_path do %>
-          <i data-feather="edit" class="text-muted"></i>
-        <% end %>
+        <i data-feather="edit" class="text-muted" type="button" data-toggle="modal" data-target="#reportPost"></i>
       </div>
       <div class="col-3">
         <%= link_to notifications_path do %>
@@ -57,4 +55,26 @@
       </div>
     </div>
   <% end %>
+</div>
+
+<div class="modal fade fullscreen" id="reportPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-center mt-5 pt-5">
+        <div>
+          <%= link_to "新規に作成", new_report_path, class: "btn btn-outline-dark" %>
+        </div>
+        <div class="py-4">
+          <p class="m-0">または</p>
+        </div>
+        <div>
+          <%= link_to "更新 ･ 下書き", my_page_path, class: "btn btn-outline-dark" %>
+        </div>
+    </div>
+  </div>
 </div>
