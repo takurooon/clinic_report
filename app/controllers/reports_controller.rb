@@ -47,6 +47,7 @@ class ReportsController < ApplicationController
     @special_inspection_other_inspection = @report.special_inspections.where(name: 99)
 
     day_of_sairans = @report.day_of_sairans
+    @day_of_sairans = day_of_sairans.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
     sairan_days = @report.day_of_sairans.pluck(:day)
     if sairan_days
       sairan_day = sairan_days.map do |sairan_day|
@@ -56,6 +57,7 @@ class ReportsController < ApplicationController
       sairan_day = "採卵日:未回答"
     end
     sairan_hormones = @report.sairan_hormones.order(day: "ASC")
+    @sairan_hormones = sairan_hormones.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
     sairan_hormones_days = sairan_hormones.map { |d| d[:day] }
     sairan_hormones_day = sairan_hormones_days.map do |d|
       "D" + d.to_s
@@ -84,6 +86,7 @@ class ReportsController < ApplicationController
     gon.sairan_hormones_p4 = sairan_hormones_p4_dp4.flatten
 
     before_ishoku_hormones = @report.before_ishoku_hormones.order(day: "ASC")
+    @before_ishoku_hormones = before_ishoku_hormones.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
     before_ishoku_hormones_days = before_ishoku_hormones.map { |bd| bd[:day] }
     before_ishoku_hormones_day = before_ishoku_hormones_days.map do |bd|
       "D" + bd.to_s
@@ -94,6 +97,8 @@ class ReportsController < ApplicationController
     before_ishoku_hormones_p4 = before_ishoku_hormones.map { |bp4| bp4[:p4] }
 
     day_of_shokihaiishokus = @report.day_of_shokihaiishokus
+    @day_of_shokihaiishokus = day_of_shokihaiishokus.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
+    @shokihaiishokus_endometrial_thickness = day_of_shokihaiishokus.pluck(:endometrial_thickness)
     day_of_shokihaiishokus_day = day_of_shokihaiishokus.pluck(:day)
     day_of_shokihaiishoku_day = day_of_shokihaiishokus_day.map do |day_of_shokihaiishoku_day|
       "Day" + day_of_shokihaiishoku_day.to_s + "(移植日)"
@@ -104,6 +109,8 @@ class ReportsController < ApplicationController
     day_of_shokihaiishokus_p4 = day_of_shokihaiishokus.pluck(:p4)
 
     day_of_haibanhoishokus = @report.day_of_haibanhoishokus
+    @day_of_haibanhoishokus = day_of_haibanhoishokus.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
+    @haibanhoishokus_endometrial_thickness = day_of_haibanhoishokus.pluck(:endometrial_thickness)
     day_of_haibanhoishokus_day = day_of_haibanhoishokus.pluck(:day)
     day_of_haibanhoishoku_day = day_of_haibanhoishokus_day.map do |day_of_haibanhoishoku_day|
       "Day" + day_of_haibanhoishoku_day.to_s + "(移植日)"
@@ -115,6 +122,7 @@ class ReportsController < ApplicationController
 
     if @report.embryo_stage == 1
       shokihaiishoku_hormones = @report.shokihaiishoku_hormones.order(et: "ASC")
+      @shokihaiishoku_hormones = shokihaiishoku_hormones.pluck(:et, :hcg, :e2, :fsh, :lh, :p4).flatten!
       shokihaiishoku_hormones_ets = shokihaiishoku_hormones.map { |et| et[:et] }
       shokihaiishoku_hormones_et = shokihaiishoku_hormones_ets.map do |d|
         "ET" + d.to_s
@@ -143,6 +151,7 @@ class ReportsController < ApplicationController
 
     elsif @report.embryo_stage == 2
       haibanhoishoku_hormones = @report.haibanhoishoku_hormones.order(bt: "ASC")
+      @haibanhoishoku_hormones = haibanhoishoku_hormones.pluck(:bt, :hcg, :e2, :fsh, :lh, :p4).flatten!
       haibanhoishoku_hormones_bts = haibanhoishoku_hormones.map { |b| b[:bt] }
       haibanhoishoku_hormones_bt = haibanhoishoku_hormones_bts.map do |d|
         "BT" + d.to_s

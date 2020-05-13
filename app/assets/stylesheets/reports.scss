@@ -238,11 +238,8 @@ i .fa-edit {
 
 // md未満ではmain-columnの左マージンを消す
 @media screen and (max-width: 768px) {
-  .main-column{
-		margin-left: 0;
-		margin-right: 0;
-		padding-left: 0;
-		padding-right: 0;
+  .main-column {
+		margin: 0 0;
   }
 }
 
