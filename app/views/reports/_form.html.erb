@@ -188,17 +188,17 @@
 
       <div class="form-group">
         <div class="label p-1"><%= f.label :transplant_method, '移植方法を選択して下さい', class: "question-matters" %></div>
-        <%= f.select :transplant_method, Report::HASH_TRANSPLANT_METHOD.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
+        <%= f.select :transplant_method, Report::HASH_TRANSPLANT_METHOD.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
       </div>
 
       <div class="form-group">
         <div class="label p-1"><%= f.label :treatment_start_age, 'このクリニックで治療を開始したのは何歳の時ですか', class: "question-matters" %></div>
-        <%= f.select :treatment_start_age, Report::HASH_TREATMENT_START_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
+        <%= f.select :treatment_start_age, Report::HASH_TREATMENT_START_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
       </div>
 
       <div class="form-group">
         <div class="label p-1"><%= f.label :first_age_to_start, '不妊治療自体(妊活含む)を始めたのは何歳の時ですか', class: "question-matters" %></div>
-        <%= f.select :first_age_to_start, Report::HASH_FIRST_AGE_TO_START.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
+        <%= f.select :first_age_to_start, Report::HASH_FIRST_AGE_TO_START.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
         <small id="poster-tip" class="form-text text-danger">
           前問より高い年齢を選択しないように注意して下さい。
         </small>
@@ -206,7 +206,7 @@
 
       <div class="form-group">
         <div class="label p-1"><%= f.label :treatment_end_age, 'このクリニックで治療を終了したのは何歳の時ですか', class: "question-matters" %></div>
-        <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
+        <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
         <small id="poster-tip" class="form-text text-danger">
           前々問・前問より低い年齢を選択しないように注意して下さい。
         </small>
