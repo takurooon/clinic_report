@@ -10,7 +10,7 @@
       <div class="py-2"><%= link_to image_tag("icon/hatena_side_brandcolor_icon.png", alt: "hatena_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
       <span class="py-2"><%= link_to image_tag("icon/pocket_side_brandcolor_icon.png", alt: "pocket_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
     </div>
-    <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
+    <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column px-0">
       <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん(#{@report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
 
         <div class="row pt-3 pb-0">
@@ -21,22 +21,22 @@
                   <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
                 <% end %>
               <% else %>
-              <span class="pl-0 pr-2">
-                <% if @report.treatment_end_age == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 24 %>
-                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 29 %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 34 %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 39 %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 44 %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image6", loading: "lazy") %>
-                <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image6", loading: "lazy") %>
-                <% end %>&nbsp;
+                <span class="pl-0">
+                  <% if @report.treatment_end_age == nil %>
+                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 24 %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 29 %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 34 %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 39 %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 44 %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image6", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image6", loading: "lazy") %>
+                  <% end %>&nbsp;
               <% end %>
               <%= link_to @report.user.name, user_path(@report.user_id), class: "small" %>
               </span>
