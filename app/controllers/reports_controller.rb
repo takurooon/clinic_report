@@ -58,6 +58,7 @@ class ReportsController < ApplicationController
     end
     sairan_hormones = @report.sairan_hormones.order(day: "ASC")
     @sairan_hormones = sairan_hormones.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
+   
     sairan_hormones_days = sairan_hormones.map { |d| d[:day] }
     sairan_hormones_day = sairan_hormones_days.map do |d|
       "D" + d.to_s

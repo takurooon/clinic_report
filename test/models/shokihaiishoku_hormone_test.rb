@@ -3,12 +3,12 @@
 # Table name: shokihaiishoku_hormones
 #
 #  id         :bigint           not null, primary key
-#  e2         :integer
+#  e2         :float
 #  et         :integer          not null
-#  fsh        :integer
-#  hcg        :integer
-#  lh         :integer
-#  p4         :integer
+#  fsh        :float
+#  hcg        :float
+#  lh         :float
+#  p4         :float
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  report_id  :bigint           not null

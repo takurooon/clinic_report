@@ -23,11 +23,11 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :pgt_supplementary_explanation
       t.integer :pgt_supplementary_explanation_status
       t.text :about_causes_of_infertility
-      t.integer :semen_volume
+      t.float :semen_volume
       t.integer :semen_concentration
-      t.integer :sperm_advance_rate
-      t.integer :sperm_motility
-      t.integer :probability_of_normal_morphology_of_sperm
+      t.float :sperm_advance_rate
+      t.float :sperm_motility
+      t.float :probability_of_normal_morphology_of_sperm
       t.integer :total_amount_of_sperm
       t.text :sperm_description
       t.integer :amh

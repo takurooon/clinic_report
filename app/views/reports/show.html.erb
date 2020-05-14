@@ -1402,20 +1402,22 @@
                     <% end %>
                   <% end %>
                 </table>
-                <div class="grapharea pt-3">
-                  <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
-                    <h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(ng/ml)</small></span></h6>
+                <% if @sairan_hormones.present? || @day_of_sairans.present? %>
+                  <div class="grapharea pt-3">
+                    <div class="mb-0">
+                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
+                      <h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(ng/ml)</small></span></h6>
+                    </div>
+                    <canvas id="sairanE2P4"></canvas>
                   </div>
-                  <canvas id="sairanE2P4"></canvas>
-                </div>
-                <div class="grapharea pt-3">
-                  <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
-                    <h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
+                  <div class="grapharea pt-3">
+                    <div class="mb-0">
+                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                      <h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
+                    </div>
+                    <canvas id="sairanFshLh"></canvas>
                   </div>
-                  <canvas id="sairanFshLh"></canvas>
-                </div>
+                <% end %>
                 <h5 class="child-tab-title"><span class="marker-underline">受精･培養</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
@@ -1959,34 +1961,6 @@
                       </tr>
                     <% end %>
                   <% else %>
-                    <tr>
-                      <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">移植日</h6></td>
-                    </tr>
-                    <tr class="test-muted small">
-                      <th class="result-left-column small text-center" style="width:20%">
-                        ET&nbsp;or&nbsp;BT
-                      </th>
-                      <th class="result-left-column small text-center" style="width:20%">
-                        E2
-                      </th>
-                      <th class="result-left-column small text-center" style="width:20%">
-                        FSH
-                      </th>
-                      <th class="result-left-column small text-center" style="width:20%">
-                        LH
-                      </th>
-                      <th class="result-left-column small text-center" style="width:20%">
-                        P4
-                      </th>
-                    </tr>
-                    <tr style="background-color:rgba(152,152,152,0.2);">
-                      <td class="small text-center">
-                        <span class="small">内膜</span>
-                      </td>
-                      <td class="small text-center" colspan="4">
-                        <span class="text-muted small">未回答</span>
-                      </td>
-                    </tr>
                   <% end %>
                 </table>
                 <table class="table table-hover table-bordered p-0 mt-0" style="border-top:solid;">
@@ -2063,7 +2037,7 @@
                               <% if hormone.nil? %>
                                 <small class="text-muted">未回答</small>
                               <% elsif i == 0 %>
-                                <span class="font-weight-bold">ET<%= hormone %></span>
+                                <span class="font-weight-bold">BT<%= hormone %></span>
                               <% else %>
                                 <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
                               <% end %>
@@ -2073,56 +2047,32 @@
                       <% end %>
                     <% end %>
                   <% else %>
-                    <tr>
-                      <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">移植後</h6></td>
-                    </tr>
-                    <tr class="test-muted small">
-                      <th class="result-left-column small text-center" style="width:15%">
-                        ET&nbsp;or&nbsp;BT
-                      </th>
-                      <th class="result-left-column small text-center" style="width:17%">
-                        hCG
-                      </th>
-                      <th class="result-left-column small text-center" style="width:17%">
-                        E2
-                      </th>
-                      <th class="result-left-column small text-center" style="width:17%">
-                        FSH
-                      </th>
-                      <th class="result-left-column small text-center" style="width:17%">
-                        LH
-                      </th>
-                      <th class="result-left-column small text-center" style="width:17%">
-                        P4
-                      </th>
-                    </tr>
-                    <tr>
-                      <td class="small text-center" colspan="6">
-                        <span class="text-muted small">未回答</span>
-                      </td>
-                    </tr>
                   <% end %>
                 </table>
-                <div class="grapharea pt-3">
-                  <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
-                    <h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(ng/ml)</small></span></h6>
+                <% if @before_ishoku_hormones.present? || @day_of_shokihaiishokus.present? || @day_of_haibanhoishokus.present? || @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
+                  <div class="grapharea pt-3">
+                    <div class="mb-0">
+                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
+                      <h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(ng/ml)</small></span></h6>
+                    </div>
+                    <canvas id="ishokuE2P4"></canvas>
                   </div>
-                  <canvas id="ishokuE2P4"></canvas>
-                </div>
-                <div class="grapharea pt-3">
-                  <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
-                    <h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
+                  <div class="grapharea pt-3">
+                    <div class="mb-0">
+                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                      <h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
+                    </div>
+                    <canvas id="ishokuFshLh"></canvas>
                   </div>
-                  <canvas id="ishokuFshLh"></canvas>
-                </div>
-                <div class="grapharea pt-3 pt-3">
-                  <div class="mb-0">
-                    <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;hCG&nbsp;<span class="small text-muted"><small>(移植後)</small></span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                <% end %>
+                <% if @haibanhoishokus_endometrial_thickness.present? %>
+                  <div class="grapharea pt-3 pt-3">
+                    <div class="mb-0">
+                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;hCG&nbsp;<span class="small text-muted"><small>(移植後)</small></span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                    </div>
+                    <canvas id="ishokuhcg"></canvas>
                   </div>
-                  <canvas id="ishokuhcg"></canvas>
-                </div>
+                <% end %>
               </section>
               <section class="child-tab-content" id="cost">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
@@ -2872,7 +2822,7 @@
                 <div class="box27">
                   <span class="box-title">情報</span>
                     <% if @report.str_current_state.present? %>
-                      <p class="pt-3 pb-4 small text-muted">※&nbsp;現ステータス:&nbsp;<b><u><%= @report.str_current_state %></u></b>&nbsp;に至った周期の以下情報をもとに分析しています。</p>
+                      <p class="pt-3 pb-4 small text-muted">※&nbsp;現ステータス:&nbsp;<b><u><%= @report.str_current_state %></u></b>&nbsp;に至った最新周期における以下情報をもとに算出しています。</p>
                     <% else %>
                       <div class="py-2"></div>
                     <% end %>
@@ -4915,6 +4865,32 @@
                             <% end %>
                           </tr>
                         <% end %>
+                      <% else %>
+                        <tr>
+                          <td class="text-center result-left-column" colspan="5"><h6 class="p-0 m-0">採卵前&nbsp;〜</h6></td>
+                        </tr>
+                        <tr class="test-muted small">
+                          <th class="result-left-column small text-center" style="width:20%">
+                            Day
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            E2
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            FSH
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            LH
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            P4
+                          </th>
+                        </tr>
+                        <tr>
+                          <td class="small text-center" colspan="5">
+                            <small class="text-muted">未回答</small>
+                          </td>
+                        </tr>
                       <% end %>
                       <% if @day_of_sairans.present? %>
                         <tr>
@@ -4939,19 +4915,45 @@
                         </tr>
                         <% @day_of_sairans.in_groups_of(5) do |row| %>
                           <tr>
-                          <% row.each_with_index do |hormone, i| %>
-                            <td class="small text-center">
-                              <% if hormone.nil? %>
-                                <small class="text-muted">未回答</small>
-                              <% elsif i == 0 %>
-                                <span class="font-weight-bold">D<%= hormone %></span>
-                              <% else %>
-                                <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                              <% end %>
-                            </td>
-                          <% end %>
+                            <% row.each_with_index do |hormone, i| %>
+                              <td class="small text-center">
+                                <% if hormone.nil? %>
+                                  <small class="text-muted">未回答</small>
+                                <% elsif i == 0 %>
+                                  <span class="font-weight-bold">D<%= hormone %></span>
+                                <% else %>
+                                  <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                <% end %>
+                              </td>
+                            <% end %>
                           </tr>
                         <% end %>
+                      <% else %>
+                        <tr>
+                          <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">採卵日</h6></td>
+                        </tr>
+                        <tr class="test-muted small">
+                          <th class="result-left-column small text-center" style="width:20%">
+                            Day
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            E2
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            FSH
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            LH
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            P4
+                          </th>
+                        </tr>
+                        <tr>
+                          <td class="small text-center" colspan="5">
+                            <small class="text-muted">未回答</small>
+                          </td>
+                        </tr>
                       <% end %>
                     </table>
                     <table class="table table-hover table-bordered p-0 mt-0 mb-0" style="border-top:solid;">
@@ -4999,9 +5001,43 @@
                           <% end %>
                           </tr>
                         <% end %>
+                      <% else %>
+                        <tr>
+                          <td class="text-center result-left-column" colspan="5" style="border-top:solid">
+                            <% if @report.embryo_stage == 1 %>
+                              <h6 class="p-0 m-0">初期胚移植日前&nbsp;〜</h6>
+                            <% elsif @report.embryo_stage == 2 %>
+                              <h6 class="p-0 m-0">胚盤胞移植日前&nbsp;〜</h6>
+                            <% else %>
+                              <h6 class="p-0 m-0">移植日前&nbsp;〜</h6>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr class="test-muted small">
+                          <th class="result-left-column small text-center" style="width:20%">
+                            Day
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            E2
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            FSH
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            LH
+                          </th>
+                          <th class="result-left-column small text-center" style="width:20%">
+                            P4
+                          </th>
+                        </tr>
+                        <tr>
+                          <td class="small text-center" colspan="5">
+                            <small class="text-muted">未回答</small>
+                          </td>
+                        </tr>
                       <% end %>
-                      <% if @report.embryo_stage == 1 %>
-                        <% if @day_of_shokihaiishokus.present? %>
+                      <% if @day_of_shokihaiishokus.present? || @day_of_haibanhoishokus.present? %>
+                        <% if @report.embryo_stage == 1 %>
                           <tr>
                             <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">初期胚移植日</h6></td>
                           </tr>
@@ -5045,9 +5081,7 @@
                               <span class="font-weight-bold"><%= @shokihaiishokus_endometrial_thickness[0] %></span>&nbsp;mm
                             </td>
                           </tr>
-                        <% end %>
-                      <% elsif @report.embryo_stage == 2 %>
-                        <% if @day_of_haibanhoishokus.present? %>
+                        <% elsif @report.embryo_stage == 2 %>
                           <tr>
                             <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">胚盤胞移植日</h6></td>
                           </tr>
@@ -5091,6 +5125,40 @@
                               <span class="font-weight-bold"><%= @haibanhoishokus_endometrial_thickness[0] %></span>&nbsp;<span class="small text-muted">mm</span>
                             </td>
                           </tr>
+                        <% else %>
+                          <tr>
+                            <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">移植日</h6></td>
+                          </tr>
+                          <tr class="test-muted small">
+                            <th class="result-left-column small text-center" style="width:20%">
+                              ET&nbsp;or&nbsp;BT
+                            </th>
+                            <th class="result-left-column small text-center" style="width:20%">
+                              E2
+                            </th>
+                            <th class="result-left-column small text-center" style="width:20%">
+                              FSH
+                            </th>
+                            <th class="result-left-column small text-center" style="width:20%">
+                              LH
+                            </th>
+                            <th class="result-left-column small text-center" style="width:20%">
+                              P4
+                            </th>
+                          </tr>
+                          <tr>
+                            <td class="small text-center" colspan="5">
+                              <span class="text-muted small">未回答</span>
+                            </td>
+                          </tr>
+                          <tr style="background-color:rgba(152,152,152,0.2);">
+                            <td class="small text-center">
+                              <span class="small">内膜</span>
+                            </td>
+                            <td class="small text-center" colspan="4">
+                              <span class="text-muted small">未回答</span>
+                            </td>
+                          </tr>
                         <% end %>
                       <% else %>
                         <tr>
@@ -5113,6 +5181,11 @@
                             P4
                           </th>
                         </tr>
+                        <tr>
+                          <td class="small text-center" colspan="5">
+                            <span class="text-muted small">未回答</span>
+                          </td>
+                        </tr>
                         <tr style="background-color:rgba(152,152,152,0.2);">
                           <td class="small text-center">
                             <span class="small">内膜</span>
@@ -5124,8 +5197,8 @@
                       <% end %>
                     </table>
                     <table class="table table-hover table-bordered p-0 mt-0 mb-1" style="border-top:solid;">
-                      <% if @report.embryo_stage == 1 %>
-                        <% if @shokihaiishoku_hormones.present? %>
+                      <% if @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
+                        <% if @report.embryo_stage == 1 %>
                           <tr>
                             <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">〜&nbsp;初期胚移植後</h6></td>
                           </tr>
@@ -5164,9 +5237,7 @@
                               <% end %>
                             </tr>
                           <% end %>
-                        <% end %>
-                      <% elsif @report.embryo_stage == 2 %>
-                        <% if @haibanhoishoku_hormones.present? %>
+                        <% elsif @report.embryo_stage == 2 %>
                           <tr>
                             <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">〜&nbsp;胚盤胞移植後</h6></td>
                           </tr>
@@ -5197,7 +5268,7 @@
                                   <% if hormone.nil? %>
                                     <small class="text-muted">未回答</small>
                                   <% elsif i == 0 %>
-                                    <span class="font-weight-bold">ET<%= hormone %></span>
+                                    <span class="font-weight-bold">BT<%= hormone %></span>
                                   <% else %>
                                     <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
                                   <% end %>
@@ -5205,6 +5276,35 @@
                               <% end %>
                             </tr>
                           <% end %>
+                        <% else %>
+                          <tr>
+                            <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">移植後</h6></td>
+                          </tr>
+                          <tr class="test-muted small">
+                            <th class="result-left-column small text-center" style="width:15%">
+                              ET&nbsp;or&nbsp;BT
+                            </th>
+                            <th class="result-left-column small text-center" style="width:17%">
+                              hCG
+                            </th>
+                            <th class="result-left-column small text-center" style="width:17%">
+                              E2
+                            </th>
+                            <th class="result-left-column small text-center" style="width:17%">
+                              FSH
+                            </th>
+                            <th class="result-left-column small text-center" style="width:17%">
+                              LH
+                            </th>
+                            <th class="result-left-column small text-center" style="width:17%">
+                              P4
+                            </th>
+                          </tr>
+                          <tr>
+                            <td class="small text-center" colspan="6">
+                              <span class="text-muted small">未回答</span>
+                            </td>
+                          </tr>
                         <% end %>
                       <% else %>
                         <tr>

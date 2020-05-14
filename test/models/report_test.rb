@@ -92,18 +92,18 @@
 #  prefecture_at_the_time_status                :integer          default("show"), not null
 #  private_or_listed_company                    :integer
 #  private_or_listed_company_status             :integer
-#  probability_of_normal_morphology_of_sperm    :integer
+#  probability_of_normal_morphology_of_sperm    :float
 #  reasons_for_choosing_this_clinic             :text
 #  reservation_method                           :integer
 #  sairan_cost                                  :integer
 #  sairan_cost_explanation                      :text
 #  selection_of_anesthesia_type                 :integer
 #  semen_concentration                          :integer
-#  semen_volume                                 :integer
+#  semen_volume                                 :float
 #  smoking                                      :integer
-#  sperm_advance_rate                           :integer
+#  sperm_advance_rate                           :float
 #  sperm_description                            :text
-#  sperm_motility                               :integer
+#  sperm_motility                               :float
 #  staff_quality                                :integer
 #  status                                       :integer          default("released"), not null
 #  supplement_cost                              :integer

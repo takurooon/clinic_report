@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
   create_table "before_ishoku_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.integer "day", null: false
-    t.integer "e2"
-    t.integer "fsh"
-    t.integer "lh"
-    t.integer "p4"
+    t.float "e2"
+    t.float "fsh"
+    t.float "lh"
+    t.float "p4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id", "day"], name: "index_before_ishoku_hormones_on_report_id_and_day", unique: true
@@ -119,11 +119,11 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
   create_table "day_of_haibanhoishokus", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.integer "day", null: false
-    t.integer "e2"
-    t.integer "fsh"
-    t.integer "lh"
-    t.integer "p4"
-    t.integer "endometrial_thickness"
+    t.float "e2"
+    t.float "fsh"
+    t.float "lh"
+    t.float "p4"
+    t.float "endometrial_thickness"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id", "day"], name: "index_day_of_haibanhoishokus_on_report_id_and_day", unique: true
@@ -133,10 +133,10 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
   create_table "day_of_sairans", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.integer "day", null: false
-    t.integer "e2"
-    t.integer "fsh"
-    t.integer "lh"
-    t.integer "p4"
+    t.float "e2"
+    t.float "fsh"
+    t.float "lh"
+    t.float "p4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id", "day"], name: "index_day_of_sairans_on_report_id_and_day", unique: true
@@ -146,11 +146,11 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
   create_table "day_of_shokihaiishokus", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.integer "day", null: false
-    t.integer "e2"
-    t.integer "fsh"
-    t.integer "lh"
-    t.integer "p4"
-    t.integer "endometrial_thickness"
+    t.float "e2"
+    t.float "fsh"
+    t.float "lh"
+    t.float "p4"
+    t.float "endometrial_thickness"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id", "day"], name: "index_day_of_shokihaiishokus_on_report_id_and_day", unique: true
@@ -178,11 +178,11 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
   create_table "haibanhoishoku_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.integer "bt", null: false
-    t.integer "e2"
-    t.integer "fsh"
-    t.integer "lh"
-    t.integer "p4"
-    t.integer "hcg"
+    t.float "e2"
+    t.float "fsh"
+    t.float "lh"
+    t.float "p4"
+    t.float "hcg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id", "bt"], name: "index_haibanhoishoku_hormones_on_report_id_and_bt", unique: true
@@ -423,11 +423,11 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.text "pgt_supplementary_explanation"
     t.integer "pgt_supplementary_explanation_status"
     t.text "about_causes_of_infertility"
-    t.integer "semen_volume"
+    t.float "semen_volume"
     t.integer "semen_concentration"
-    t.integer "sperm_advance_rate"
-    t.integer "sperm_motility"
-    t.integer "probability_of_normal_morphology_of_sperm"
+    t.float "sperm_advance_rate"
+    t.float "sperm_motility"
+    t.float "probability_of_normal_morphology_of_sperm"
     t.integer "total_amount_of_sperm"
     t.text "sperm_description"
     t.integer "amh"
@@ -547,10 +547,10 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
   create_table "sairan_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.integer "day", null: false
-    t.integer "e2"
-    t.integer "fsh"
-    t.integer "lh"
-    t.integer "p4"
+    t.float "e2"
+    t.float "fsh"
+    t.float "lh"
+    t.float "p4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id", "day"], name: "index_sairan_hormones_on_report_id_and_day", unique: true
@@ -572,11 +572,11 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
   create_table "shokihaiishoku_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.integer "et", null: false
-    t.integer "e2"
-    t.integer "fsh"
-    t.integer "lh"
-    t.integer "p4"
-    t.integer "hcg"
+    t.float "e2"
+    t.float "fsh"
+    t.float "lh"
+    t.float "p4"
+    t.float "hcg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id", "et"], name: "index_shokihaiishoku_hormones_on_report_id_and_et", unique: true

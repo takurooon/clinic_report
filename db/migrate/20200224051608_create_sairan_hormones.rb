@@ -3,10 +3,10 @@ class CreateSairanHormones < ActiveRecord::Migration[6.0]
     create_table :sairan_hormones do |t|
       t.references :report, null: false, foreign_key: true
       t.integer :day, null: false
-      t.integer :e2
-      t.integer :fsh
-      t.integer :lh
-      t.integer :p4
+      t.float :e2
+      t.float :fsh
+      t.float :lh
+      t.float :p4
 
       t.timestamps
     end

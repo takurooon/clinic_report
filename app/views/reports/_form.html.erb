@@ -443,7 +443,7 @@
           <div class="label p-1"><%= f.label :semen_concentration, '精子濃度', class: "question-matters" %></div>
           <div class="row p-0 m-0">
             <div class="col-8 p-0 m-0">
-              <%= f.number_field :semen_concentration, { step: "0.1", class: "form-control" } %>
+              <%= f.number_field :semen_concentration, { class: "form-control" } %>
             </div>
             <div class="col-4 p-0 m-0">
               &nbsp;<span class="text-muted">/</span>&nbsp;ml
@@ -457,7 +457,7 @@
           <div class="label p-1"><%= f.label :sperm_motility, '運動率', class: "question-matters" %></div>
           <div class="row p-0 m-0">
             <div class="col-8 p-0 m-0">
-              <%= f.number_field :sperm_motility, { class: "form-control" } %>
+              <%= f.number_field :sperm_motility, { step: "0.1", class: "form-control" } %>
             </div>
             <div class="col-4 p-0 m-0">
               %
@@ -471,7 +471,7 @@
           <div class="label p-1"><%= f.label :sperm_advance_rate, '前進運動率', class: "question-matters" %></div>
           <div class="row p-0 m-0">
             <div class="col-8 p-0 m-0">
-              <%= f.number_field :sperm_advance_rate, { class: "form-control" } %>
+              <%= f.number_field :sperm_advance_rate, { step: "0.1", class: "form-control" } %>
             </div>
             <div class="col-4 p-0 m-0">
               %
@@ -485,7 +485,7 @@
           <div class="label p-1"><%= f.label :probability_of_normal_morphology_of_sperm, '正常形態率', class: "question-matters" %></div>
           <div class="row p-0 m-0">
             <div class="col-8 p-0 m-0">
-              <%= f.number_field :probability_of_normal_morphology_of_sperm, { class: "form-control" } %>
+              <%= f.number_field :probability_of_normal_morphology_of_sperm, { step: "0.1", class: "form-control" } %>
             </div>
             <div class="col-4 p-0 m-0">
               %
@@ -875,10 +875,10 @@
             <tbody>
               <tr>
                 <th scope="row" class="day-column"><%= day_of_shokihaiishoku.select :day, Report.make_select_day_of_shokihaiishoku, { prompt: "まず選択" }, { class: "form-control text-muted" } %></td>
-                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :e2, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :lh, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :p4, { step: "0.1", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :e2, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :fsh, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :lh, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :p4, { step: "0.01", class: "form-control" } %></td>
                 <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :endometrial_thickness, { step: "0.1", class: "form-control" } %></td>
               </tr>
             </tbody>
@@ -945,11 +945,11 @@
             <tbody>
               <tr>
                 <td class="hormon-column"><%= day_of_haibanhoishoku.select :day, Report.make_select_day_of_haibanhoishoku, { prompt: "まず選択" }, { class: "form-control text-muted" } %></td>
-                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :e2, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :lh, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :p4, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :endometrial_thickness, { step: "0.1", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :e2, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :fsh, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :lh, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :p4, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :endometrial_thickness, { step: "0.01", class: "form-control" } %></td>
               </tr>
             </tbody>
           </table>

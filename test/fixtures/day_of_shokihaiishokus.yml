@@ -4,11 +4,11 @@
 #
 #  id                    :bigint           not null, primary key
 #  day                   :integer          not null
-#  e2                    :integer
-#  endometrial_thickness :integer
-#  fsh                   :integer
-#  lh                    :integer
-#  p4                    :integer
+#  e2                    :float
+#  endometrial_thickness :float
+#  fsh                   :float
+#  lh                    :float
+#  p4                    :float
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  report_id             :bigint           not null
