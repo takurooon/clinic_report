@@ -168,6 +168,7 @@
               <span class="bmd-help">この生年月は非公開です。</span>
           </div>
 
+          <% if false %>
           <div class="text-left pt-1">
             <button type="button" class="btn btn-primary px-2" data-toggle="modal" data-target="#terms_of_service">
               <small><span class="small text-muted">利用規約</span></small>
@@ -176,6 +177,7 @@
               <small><span class="small text-muted">プライバシーボリシー</span></small>
             </button>
           </div>
+          <% end %>
 
           <div class="actions pt-3">
             <%= f.submit '登録', class: 'btn btn-raised btn-primary mx-auto d-block w-75' %>

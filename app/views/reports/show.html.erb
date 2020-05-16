@@ -1015,7 +1015,7 @@
                           <li>・トリオ(TORIO)</li>
                           <li>・ERPeak</li>
                           <li>・子宮内膜組織診</li>
-                          <li>・子宮内フロー</li>
+                          <li>・子宮内フローラ</li>
                           <li>・慢性子宮内膜炎</li>
                           <li>・子宮鏡検査</li>
                           <li>・染色体検査</li>
@@ -2822,7 +2822,7 @@
                 <div class="box27">
                   <span class="box-title">情報</span>
                     <% if @report.str_current_state.present? %>
-                      <p class="pt-3 pb-4 small text-muted">※&nbsp;現ステータス:&nbsp;<b><u><%= @report.str_current_state %></u></b>&nbsp;に至った最新周期における以下情報をもとに算出しています。</p>
+                      <p class="pt-3 pb-4 small text-muted">※&nbsp;現ステータス:&nbsp;「<b><u><%= @report.str_current_state %></u></b>」&nbsp;に至った最新周期における以下情報をもとに算出しています。</p>
                     <% else %>
                       <div class="py-2"></div>
                     <% end %>

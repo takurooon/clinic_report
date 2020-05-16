@@ -516,9 +516,7 @@
       </div>
 
       <div class="border rounded px-3 py-3 mt-5">
-        <p>最新周期の精液検査の結果について</p>
-        <div class="form-group mt-1">
-          <div class="label p-1"><span class="question-matters"><%= f.label :inspection, 'このクリニックで受けた初期検査について' %></span></div><br>
+          <div class="label p-1"><span class="question-matters"><%= f.label :inspection, 'これまでに受けた初期検査' %></span></div><br>
           <%= f.collection_check_boxes(:inspection_ids, Inspection.all, :id, :name) do |b| %>
             <div class="form-check form-check-inline checkbox">
               <%= b.label class: "form-check-label" do %>
@@ -527,7 +525,6 @@
               <% end %>
             </div>
           <% end %>
-        </div>
         <div class="form-group">
           <div class="label p-1"><%= f.label :inspection_supplementary_explanation, '初期検査についての一口メモ', class: "question-matters" %></div>
           <%= f.text_area :inspection_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "補足情報があれば入力してください。" %>
@@ -817,7 +814,7 @@
         </div>
       </div>
       <div class="form-group border rounded px-0 py-3 day_of_shokihaiishoku">
-        <p class="px-3">初期胚の「<span class="text-danger font-weight-bold">移植当日</span>」の各ホルモン値を入力してください。</p>
+        <p class="px-3">初期胚の「<span class="text-danger font-weight-bold">移植当日</span>」の各ホルモン値と内膜の厚さを入力してください。</p>
         <small id="poster-tip" class="form-text px-3">
           <span class="small text-muted">
             <span class="text-danger"><u>入力される場合は「<strong>D</strong>&nbsp;<span class="text-muted">(Day)</span>」だけは必ず選択してください。</u></span><br>D以外は空でも問題ありません。
@@ -869,7 +866,7 @@
                 <th scope="col" class="hormon-label">FSH</th>
                 <th scope="col" class="hormon-label">LH</th>
                 <th scope="col" class="hormon-label">P4</th>
-                <th scope="col" class="hormon-label">内膜</th>
+                <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
               </tr>
             </thead>
             <tbody>
@@ -887,7 +884,7 @@
       </div>
 
       <div class="form-group border rounded px-0 py-3 day_of_haibanhoishoku">
-        <p class="px-3">胚盤胞の「<span class="text-danger font-weight-bold">移植当日</span>」の各ホルモン値を入力してください。</p>
+        <p class="px-3">胚盤胞の「<span class="text-danger font-weight-bold">移植当日</span>」の各ホルモン値と内膜の厚さを入力してください。</p>
         <small id="poster-tip" class="form-text px-3">
           <span class="small text-muted">
             <span class="text-danger"><u>入力される場合は「<strong>D</strong>&nbsp;<span class="text-muted">(Day)</span>」だけは必ず選択してください。</u></span><br>D以外は空でも問題ありません。
@@ -939,7 +936,7 @@
                 <th scope="col" class="hormon-label">FSH</th>
                 <th scope="col" class="hormon-label">LH</th>
                 <th scope="col" class="hormon-label">P4</th>
-                <th scope="col" class="hormon-label">内膜</th>
+                <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
               </tr>
             </thead>
             <tbody>

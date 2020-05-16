@@ -1,12 +1,15 @@
-<div class="mainview">
-  <div class="row">
-    <div class="catch col-md">
-      <h1>みんなの治療レポート（レポコ）を参考にしよう</h1>
-        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-        <%= link_to "レポコ一覧", reports_path, class:"btn btn-info rounded-pill home-welcome-btn btn-block disabled w-50 mx-auto" %>
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-lg-6 mb-5">
+      <h1>みんなのレポコを参考にしよう</h1>
+      <p class="mt-5">REPOCOは、不妊治療で妊娠出産に至った方の足跡を 治療レポート（=レポコ）として投稿〜検索できるサービスです。</p>
+      <p>具体的な治療情報はもちろんのこと、心境の変化などの心の機微についても書き記すことで、その決断に至った経緯を立体的かつよりクリアに知る事ができます。ぜひクリニック選びや治療方針を検討する際にお役立て下さい。</p>
+      <div class="text-center">
+        <%= link_to "レポコ一覧", reports_path, class:"btn btn-info btn-raised" %>
+      </div>
     </div>
-    <div class="home-top-img col-md">
-      <%= image_tag "home/home_top_img.png", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
+    <div class="col-lg-6 mb-5">
+      <%= image_tag "home/home_top_img.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
     </div>
   </div>
 </div>
