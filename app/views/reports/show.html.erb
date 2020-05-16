@@ -16,55 +16,52 @@
       <div class="row pt-3 pb-0">
         <div class="d-none d-sm-block col-2">
           <div class="py-0 pl-0 author-info">
-            <% if @report.user.icon.attached? %>
-              <%=  link_to @report.user.icon, 'data-lightbox': @report.user.icon do %>
-                <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
+            <%= link_to user_path do %>
+              <% if @report.user.icon.attached? %>
+                <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image6", loading: "lazy") %>
+              <% else %>
+                  <% if @report.treatment_end_age == nil %>
+                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 24 %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 29 %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 34 %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 39 %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image6", loading: "lazy") %>
+                  <% elsif @report.treatment_end_age < 44 %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image6", loading: "lazy") %>
+                  <% else %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image6", loading: "lazy") %>
+                  <% end %>
               <% end %>
-            <% else %>
-              <span class="pl-0">
-                <% if @report.treatment_end_age == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 24 %>
-                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 29 %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 34 %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 39 %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image6", loading: "lazy") %>
-                <% elsif @report.treatment_end_age < 44 %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image6", loading: "lazy") %>
-                <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image6", loading: "lazy") %>
-                <% end %>&nbsp;
             <% end %>
-            <%= link_to @report.user.name, user_path(@report.user_id), class: "small" %>
-            </span>
           </div>
         </div>
         <div class="d-block d-sm-none col-2 offset-1 pl-0">
-          <% if @report.user.icon.attached? %>
-            <%=  link_to @report.user.icon, 'data-lightbox': @report.user.icon do %>
-              <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+          <%= link_to user_path do %>
+            <% if @report.user.icon.attached? %>
+                <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+            <% else %>
+              <div class="p-0">
+                <% if @report.treatment_end_age == nil %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image3", loading: "lazy") %>
+                <% elsif @report.treatment_end_age < 24 %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image3", loading: "lazy") %>
+                <% elsif @report.treatment_end_age < 29 %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image3", loading: "lazy") %>
+                <% elsif @report.treatment_end_age < 34 %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image3", loading: "lazy") %>
+                <% elsif @report.treatment_end_age < 39 %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image3", loading: "lazy") %>
+                <% elsif @report.treatment_end_age < 44 %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image3", loading: "lazy") %>
+                <% else %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image3", loading: "lazy") %>
+                <% end %>
+              </div>
             <% end %>
-          <% else %>
-            <div class="p-0">
-              <% if @report.treatment_end_age == nil %>
-                <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image3", loading: "lazy") %>
-              <% elsif @report.treatment_end_age < 24 %>
-                <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image3", loading: "lazy") %>
-              <% elsif @report.treatment_end_age < 29 %>
-                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image3", loading: "lazy") %>
-              <% elsif @report.treatment_end_age < 34 %>
-                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image3", loading: "lazy") %>
-              <% elsif @report.treatment_end_age < 39 %>
-                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image3", loading: "lazy") %>
-              <% elsif @report.treatment_end_age < 44 %>
-                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image3", loading: "lazy") %>
-              <% else %>
-                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image3", loading: "lazy") %>
-              <% end %>
-            </div>
           <% end %>
         </div>
         <% if @report.user == current_user %>
@@ -80,9 +77,6 @@
         <% end %>
       </div>
 
-      <div class="d-block d-sm-none small mx-1 px-4">
-        <%= link_to @report.user.name, user_path(@report.user_id), class: "small" %>
-      </div>
       <div class="mt-4 mb-0 pt-2 px-0 d-none d-sm-block">
         <h4 class="d-none d-sm-block mb-5"><%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>でのレポコ</h4>
       </div>
