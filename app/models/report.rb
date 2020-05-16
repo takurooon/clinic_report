@@ -746,7 +746,7 @@ class Report < ApplicationRecord
 
   # types_of_fertilization_methodsの区分値(受精方法)
   HASH_TYPES_OF_FERTILIZATION_METHODS = {
-    1 => "体外受精（ふりかけ）",
+    1 => "体外受精",
     2 => "顕微授精",
     3 => "スプリット(体外･顕微両方)",
     99 => "その他",
