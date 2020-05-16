@@ -307,137 +307,137 @@ class ReportsController < ApplicationController
     # end
     # i_list = i_list.uniq
 
-    fif_name = params[:fif_name].split(",")
-    fif_list = molding(fif_name)
-    fif_ids = params[:report][:f_infertility_factor_ids]
-    fif_ids.each do |fif_id|
-      if fif_id.blank?
-        next
-      end
-      fif = FInfertilityFactor.find(fif_id)
-      fif_list << fif.name
-    end
-    fif_list = fif_list.uniq
+    # fif_name = params[:fif_name].split(",")
+    # fif_list = molding(fif_name)
+    # fif_ids = params[:report][:f_infertility_factor_ids]
+    # fif_ids.each do |fif_id|
+    #   if fif_id.blank?
+    #     next
+    #   end
+    #   fif = FInfertilityFactor.find(fif_id)
+    #   fif_list << fif.name
+    # end
+    # fif_list = fif_list.uniq
 
-    mif_name = params[:mif_name].split(",")
-    mif_list = molding(mif_name)
-    mif_ids = params[:report][:m_infertility_factor_ids]
-    mif_ids.each do |mif_id|
-      if mif_id.blank?
-        next
-      end
-      mif = MInfertilityFactor.find(mif_id)
-      mif_list << mif.name
-    end
-    mif_list = mif_list.uniq
+    # mif_name = params[:mif_name].split(",")
+    # mif_list = molding(mif_name)
+    # mif_ids = params[:report][:m_infertility_factor_ids]
+    # mif_ids.each do |mif_id|
+    #   if mif_id.blank?
+    #     next
+    #   end
+    #   mif = MInfertilityFactor.find(mif_id)
+    #   mif_list << mif.name
+    # end
+    # mif_list = mif_list.uniq
 
-    fd_name = params[:fd_name].split(",")
-    fd_list = molding(fd_name)
-    fd_ids = params[:report][:f_disease_ids]
-    fd_ids.each do |fd_id|
-      if fd_id.blank?
-        next
-      end
-      fd = FDisease.find(fd_id)
-      fd_list << fd.name
-    end
-    fd_list = fd_list.uniq
+    # fd_name = params[:fd_name].split(",")
+    # fd_list = molding(fd_name)
+    # fd_ids = params[:report][:f_disease_ids]
+    # fd_ids.each do |fd_id|
+    #   if fd_id.blank?
+    #     next
+    #   end
+    #   fd = FDisease.find(fd_id)
+    #   fd_list << fd.name
+    # end
+    # fd_list = fd_list.uniq
 
-    md_name = params[:md_name].split(",")
-    md_list = molding(md_name)
-    md_ids = params[:report][:m_disease_ids]
-    md_ids.each do |md_id|
-      if md_id.blank?
-        next
-      end
-      md = MDisease.find(md_id)
-      md_list << md.name
-    end
-    md_list = md_list.uniq
+    # md_name = params[:md_name].split(",")
+    # md_list = molding(md_name)
+    # md_ids = params[:report][:m_disease_ids]
+    # md_ids.each do |md_id|
+    #   if md_id.blank?
+    #     next
+    #   end
+    #   md = MDisease.find(md_id)
+    #   md_list << md.name
+    # end
+    # md_list = md_list.uniq
 
-    fs_name = params[:fs_name].split(",")
-    fs_list = molding(fs_name)
-    fs_ids = params[:report][:f_surgery_ids]
-    fs_ids.each do |fs_id|
-      if fs_id.blank?
-        next
-      end
-      fs = FSurgery.find(fs_id)
-      fs_list << fs.name
-    end
-    fs_list = fs_list.uniq
+    # fs_name = params[:fs_name].split(",")
+    # fs_list = molding(fs_name)
+    # fs_ids = params[:report][:f_surgery_ids]
+    # fs_ids.each do |fs_id|
+    #   if fs_id.blank?
+    #     next
+    #   end
+    #   fs = FSurgery.find(fs_id)
+    #   fs_list << fs.name
+    # end
+    # fs_list = fs_list.uniq
 
-    ms_name = params[:ms_name].split(",")
-    ms_list = molding(ms_name)
-    ms_ids = params[:report][:m_surgery_ids]
-    ms_ids.each do |ms_id|
-      if ms_id.blank?
-        next
-      end
-      ms = MSurgery.find(ms_id)
-      ms_list << ms.name
-    end
-    ms_list = ms_list.uniq
+    # ms_name = params[:ms_name].split(",")
+    # ms_list = molding(ms_name)
+    # ms_ids = params[:report][:m_surgery_ids]
+    # ms_ids.each do |ms_id|
+    #   if ms_id.blank?
+    #     next
+    #   end
+    #   ms = MSurgery.find(ms_id)
+    #   ms_list << ms.name
+    # end
+    # ms_list = ms_list.uniq
 
-    sm_name = params[:sm_name].split(",")
-    sm_list = molding(sm_name)
-    sm_ids = params[:report][:sairan_medicine_ids]
-    sm_ids.each do |sm_id|
-      if sm_id.blank?
-        next
-      end
-      sm = SairanMedicine.find(sm_id)
-      sm_list << sm.name
-    end
-    sm_list = sm_list.uniq
+    # sm_name = params[:sm_name].split(",")
+    # sm_list = molding(sm_name)
+    # sm_ids = params[:report][:sairan_medicine_ids]
+    # sm_ids.each do |sm_id|
+    #   if sm_id.blank?
+    #     next
+    #   end
+    #   sm = SairanMedicine.find(sm_id)
+    #   sm_list << sm.name
+    # end
+    # sm_list = sm_list.uniq
 
-    tm_name = params[:tm_name].split(",")
-    tm_list = molding(tm_name)
-    tm_ids = params[:report][:transfer_medicine_ids]
-    tm_ids.each do |tm_id|
-      if tm_id.blank?
-        next
-      end
-      tm = TransferMedicine.find(tm_id)
-      tm_list << tm.name
-    end
-    tm_list = tm_list.uniq
+    # tm_name = params[:tm_name].split(",")
+    # tm_list = molding(tm_name)
+    # tm_ids = params[:report][:transfer_medicine_ids]
+    # tm_ids.each do |tm_id|
+    #   if tm_id.blank?
+    #     next
+    #   end
+    #   tm = TransferMedicine.find(tm_id)
+    #   tm_list << tm.name
+    # end
+    # tm_list = tm_list.uniq
 
-    to_name = params[:to_name].split(",")
-    to_list = molding(to_name)
-    to_ids = params[:report][:transfer_option_ids]
-    to_ids.each do |to_id|
-      if to_id.blank?
-        next
-      end
-      to = TransferOption.find(to_id)
-      to_list << to.name
-    end
-    to_list = to_list.uniq
+    # to_name = params[:to_name].split(",")
+    # to_list = molding(to_name)
+    # to_ids = params[:report][:transfer_option_ids]
+    # to_ids.each do |to_id|
+    #   if to_id.blank?
+    #     next
+    #   end
+    #   to = TransferOption.find(to_id)
+    #   to_list << to.name
+    # end
+    # to_list = to_list.uniq
 
-    oe_name = params[:oe_name].split(",")
-    oe_list = molding(oe_name)
-    oe_ids = params[:report][:other_effort_ids]
-    oe_ids.each do |oe_id|
-      if oe_id.blank?
-        next
-      end
-      oe = OtherEffort.find(oe_id)
-      oe_list << oe.name
-    end
-    to_list = to_list.uniq
+    # oe_name = params[:oe_name].split(",")
+    # oe_list = molding(oe_name)
+    # oe_ids = params[:report][:other_effort_ids]
+    # oe_ids.each do |oe_id|
+    #   if oe_id.blank?
+    #     next
+    #   end
+    #   oe = OtherEffort.find(oe_id)
+    #   oe_list << oe.name
+    # end
+    # to_list = to_list.uniq
 
-    supplement_name = params[:supplement_name].split(",")
-    supplement_list = molding(supplement_name)
-    supplement_ids = params[:report][:supplement_ids]
-    supplement_ids.each do |supplement_id|
-      if supplement_id.blank?
-        next
-      end
-      supplement = Supplement.find(supplement_id)
-      supplement_list << supplement.name
-    end
-    supplement_list = supplement_list.uniq
+    # supplement_name = params[:supplement_name].split(",")
+    # supplement_list = molding(supplement_name)
+    # supplement_ids = params[:report][:supplement_ids]
+    # supplement_ids.each do |supplement_id|
+    #   if supplement_id.blank?
+    #     next
+    #   end
+    #   supplement = Supplement.find(supplement_id)
+    #   supplement_list << supplement.name
+    # end
+    # supplement_list = supplement_list.uniq
 
     # sod_name = params[:sod_scope].split(",")
     # sod_list = molding(sod_name)
@@ -468,17 +468,17 @@ class ReportsController < ApplicationController
         format.html { render :new }
       elsif @report.save
         # @report.save_i(i_list)
-        @report.save_fifs(fif_list)
-        @report.save_mifs(mif_list)
-        @report.save_fds(fd_list)
-        @report.save_mds(md_list)
-        @report.save_fss(fs_list)
-        @report.save_mss(ms_list)
-        @report.save_sms(sm_list)
-        @report.save_tms(tm_list)
-        @report.save_tos(to_list)
-        @report.save_oes(oe_list)
-        @report.save_supplements(supplement_list)
+        # @report.save_fifs(fif_list)
+        # @report.save_mifs(mif_list)
+        # @report.save_fds(fd_list)
+        # @report.save_mds(md_list)
+        # @report.save_fss(fs_list)
+        # @report.save_mss(ms_list)
+        # @report.save_sms(sm_list)
+        # @report.save_tms(tm_list)
+        # @report.save_tos(to_list)
+        # @report.save_oes(oe_list)
+        # @report.save_supplements(supplement_list)
         # @report.save_sods(sod_list)
         @report.save_tags(tag_list)
         format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
@@ -595,137 +595,137 @@ class ReportsController < ApplicationController
     # end
     # i_list = i_list.uniq
 
-    fif_name = params[:fif_name].split(",")
-    fif_list = molding(fif_name)
-    fif_ids = params[:report][:f_infertility_factor_ids]
-    fif_ids.each do |fif_id|
-      if fif_id.blank?
-        next
-      end
-      fif = FInfertilityFactor.find(fif_id)
-      fif_list << fif.name
-    end
-    fif_list = fif_list.uniq
+    # fif_name = params[:fif_name].split(",")
+    # fif_list = molding(fif_name)
+    # fif_ids = params[:report][:f_infertility_factor_ids]
+    # fif_ids.each do |fif_id|
+    #   if fif_id.blank?
+    #     next
+    #   end
+    #   fif = FInfertilityFactor.find(fif_id)
+    #   fif_list << fif.name
+    # end
+    # fif_list = fif_list.uniq
 
-    mif_name = params[:mif_name].split(",")
-    mif_list = molding(mif_name)
-    mif_ids = params[:report][:m_infertility_factor_ids]
-    mif_ids.each do |mif_id|
-      if mif_id.blank?
-        next
-      end
-      mif = MInfertilityFactor.find(mif_id)
-      mif_list << mif.name
-    end
-    mif_list = mif_list.uniq
+    # mif_name = params[:mif_name].split(",")
+    # mif_list = molding(mif_name)
+    # mif_ids = params[:report][:m_infertility_factor_ids]
+    # mif_ids.each do |mif_id|
+    #   if mif_id.blank?
+    #     next
+    #   end
+    #   mif = MInfertilityFactor.find(mif_id)
+    #   mif_list << mif.name
+    # end
+    # mif_list = mif_list.uniq
 
-    fd_name = params[:fd_name].split(",")
-    fd_list = molding(fd_name)
-    fd_ids = params[:report][:f_disease_ids]
-    fd_ids.each do |fd_id|
-      if fd_id.blank?
-        next
-      end
-      fd = FDisease.find(fd_id)
-      fd_list << fd.name
-    end
-    fd_list = fd_list.uniq
+    # fd_name = params[:fd_name].split(",")
+    # fd_list = molding(fd_name)
+    # fd_ids = params[:report][:f_disease_ids]
+    # fd_ids.each do |fd_id|
+    #   if fd_id.blank?
+    #     next
+    #   end
+    #   fd = FDisease.find(fd_id)
+    #   fd_list << fd.name
+    # end
+    # fd_list = fd_list.uniq
 
-    md_name = params[:md_name].split(",")
-    md_list = molding(md_name)
-    md_ids = params[:report][:m_disease_ids]
-    md_ids.each do |md_id|
-      if md_id.blank?
-        next
-      end
-      md = MDisease.find(md_id)
-      md_list << md.name
-    end
-    md_list = md_list.uniq
+    # md_name = params[:md_name].split(",")
+    # md_list = molding(md_name)
+    # md_ids = params[:report][:m_disease_ids]
+    # md_ids.each do |md_id|
+    #   if md_id.blank?
+    #     next
+    #   end
+    #   md = MDisease.find(md_id)
+    #   md_list << md.name
+    # end
+    # md_list = md_list.uniq
 
-    fs_name = params[:fs_name].split(",")
-    fs_list = molding(fs_name)
-    fs_ids = params[:report][:f_surgery_ids]
-    fs_ids.each do |fs_id|
-      if fs_id.blank?
-        next
-      end
-      fs = FSurgery.find(fs_id)
-      fs_list << fs.name
-    end
-    fs_list = fs_list.uniq
+    # fs_name = params[:fs_name].split(",")
+    # fs_list = molding(fs_name)
+    # fs_ids = params[:report][:f_surgery_ids]
+    # fs_ids.each do |fs_id|
+    #   if fs_id.blank?
+    #     next
+    #   end
+    #   fs = FSurgery.find(fs_id)
+    #   fs_list << fs.name
+    # end
+    # fs_list = fs_list.uniq
 
-    ms_name = params[:ms_name].split(",")
-    ms_list = molding(ms_name)
-    ms_ids = params[:report][:m_surgery_ids]
-    ms_ids.each do |ms_id|
-      if ms_id.blank?
-        next
-      end
-      ms = MSurgery.find(ms_id)
-      ms_list << ms.name
-    end
-    ms_list = ms_list.uniq
+    # ms_name = params[:ms_name].split(",")
+    # ms_list = molding(ms_name)
+    # ms_ids = params[:report][:m_surgery_ids]
+    # ms_ids.each do |ms_id|
+    #   if ms_id.blank?
+    #     next
+    #   end
+    #   ms = MSurgery.find(ms_id)
+    #   ms_list << ms.name
+    # end
+    # ms_list = ms_list.uniq
 
-    sm_name = params[:sm_name].split(",")
-    sm_list = molding(sm_name)
-    sm_ids = params[:report][:sairan_medicine_ids]
-    sm_ids.each do |sm_id|
-      if sm_id.blank?
-        next
-      end
-      sm = SairanMedicine.find(sm_id)
-      sm_list << sm.name
-    end
-    sm_list = sm_list.uniq
+    # sm_name = params[:sm_name].split(",")
+    # sm_list = molding(sm_name)
+    # sm_ids = params[:report][:sairan_medicine_ids]
+    # sm_ids.each do |sm_id|
+    #   if sm_id.blank?
+    #     next
+    #   end
+    #   sm = SairanMedicine.find(sm_id)
+    #   sm_list << sm.name
+    # end
+    # sm_list = sm_list.uniq
 
-    tm_name = params[:tm_name].split(",")
-    tm_list = molding(tm_name)
-    tm_ids = params[:report][:transfer_medicine_ids]
-    tm_ids.each do |tm_id|
-      if tm_id.blank?
-        next
-      end
-      tm = TransferMedicine.find(tm_id)
-      tm_list << tm.name
-    end
-    tm_list = tm_list.uniq
+    # tm_name = params[:tm_name].split(",")
+    # tm_list = molding(tm_name)
+    # tm_ids = params[:report][:transfer_medicine_ids]
+    # tm_ids.each do |tm_id|
+    #   if tm_id.blank?
+    #     next
+    #   end
+    #   tm = TransferMedicine.find(tm_id)
+    #   tm_list << tm.name
+    # end
+    # tm_list = tm_list.uniq
 
-    to_name = params[:to_name].split(",")
-    to_list = molding(to_name)
-    to_ids = params[:report][:transfer_option_ids]
-    to_ids.each do |to_id|
-      if to_id.blank?
-        next
-      end
-      to = TransferOption.find(to_id)
-      to_list << to.name
-    end
-    to_list = to_list.uniq
+    # to_name = params[:to_name].split(",")
+    # to_list = molding(to_name)
+    # to_ids = params[:report][:transfer_option_ids]
+    # to_ids.each do |to_id|
+    #   if to_id.blank?
+    #     next
+    #   end
+    #   to = TransferOption.find(to_id)
+    #   to_list << to.name
+    # end
+    # to_list = to_list.uniq
 
-    oe_name = params[:oe_name].split(",")
-    oe_list = molding(oe_name)
-    oe_ids = params[:report][:other_effort_ids]
-    oe_ids.each do |oe_id|
-      if oe_id.blank?
-        next
-      end
-      oe = OtherEffort.find(oe_id)
-      oe_list << oe.name
-    end
-    to_list = to_list.uniq
+    # oe_name = params[:oe_name].split(",")
+    # oe_list = molding(oe_name)
+    # oe_ids = params[:report][:other_effort_ids]
+    # oe_ids.each do |oe_id|
+    #   if oe_id.blank?
+    #     next
+    #   end
+    #   oe = OtherEffort.find(oe_id)
+    #   oe_list << oe.name
+    # end
+    # to_list = to_list.uniq
 
-    supplement_name = params[:supplement_name].split(",")
-    supplement_list = molding(supplement_name)
-    supplement_ids = params[:report][:supplement_ids]
-    supplement_ids.each do |supplement_id|
-      if supplement_id.blank?
-        next
-      end
-      supplement = Supplement.find(supplement_id)
-      supplement_list << supplement.name
-    end
-    supplement_list = supplement_list.uniq
+    # supplement_name = params[:supplement_name].split(",")
+    # supplement_list = molding(supplement_name)
+    # supplement_ids = params[:report][:supplement_ids]
+    # supplement_ids.each do |supplement_id|
+    #   if supplement_id.blank?
+    #     next
+    #   end
+    #   supplement = Supplement.find(supplement_id)
+    #   supplement_list << supplement.name
+    # end
+    # supplement_list = supplement_list.uniq
 
     # sod_name = params[:sod_scope].split(",")
     # sod_list = molding(sod_name)
@@ -782,17 +782,17 @@ class ReportsController < ApplicationController
         format.html { render :edit }
       elsif @report.update(report_params)
         # @report.save_i(i_list)
-        @report.save_fifs(fif_list)
-        @report.save_mifs(mif_list)
-        @report.save_fds(fd_list)
-        @report.save_mds(md_list)
-        @report.save_fss(fs_list)
-        @report.save_mss(ms_list)
-        @report.save_sms(sm_list)
-        @report.save_tms(tm_list)
-        @report.save_tos(to_list)
-        @report.save_oes(oe_list)
-        @report.save_supplements(supplement_list)
+        # @report.save_fifs(fif_list)
+        # @report.save_mifs(mif_list)
+        # @report.save_fds(fd_list)
+        # @report.save_mds(md_list)
+        # @report.save_fss(fs_list)
+        # @report.save_mss(ms_list)
+        # @report.save_sms(sm_list)
+        # @report.save_tms(tm_list)
+        # @report.save_tos(to_list)
+        # @report.save_oes(oe_list)
+        # @report.save_supplements(supplement_list)
         # @report.save_sods(sod_list)
         @report.save_tags(tag_list)
         format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
