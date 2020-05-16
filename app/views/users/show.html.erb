@@ -258,11 +258,11 @@
             <div class="px-1 pb-2">
               <i data-feather="hash" class="feather-icon-style3 pb-2 pl-0 pr-0 mx-0"></i><h5 class="d-inline">Profile</h5>
             </div>
-            <div class="p-2">
+            <div class="py-2 px-4">
               <% if @user.self_introduction.present? %>
                 <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
               <% else %>
-                <p class="text-muted px-3">プロフィールは未登録です。
+                <p class="text-muted">プロフィールは未登録です。
                   <% if @user == current_user %>
                     <br><br>右上「プロフィールを編集」から登録が可能です。ぜひ詳しいプロフィールを載せましょう！
                   <% end %>
