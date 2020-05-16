@@ -1,7 +1,6 @@
 <%= javascript_include_tag 'report_show' %>
 
 <div class="contaner px-0">
-  <div class="row">
     <div class="d-none d-lg-block position-fixed mt-5 pt-4">
       <div class="py-2"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
       <div class="py-2"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
@@ -10,7 +9,8 @@
       <div class="py-2"><%= link_to image_tag("icon/hatena_side_brandcolor_icon.png", alt: "hatena_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
       <span class="py-2"><%= link_to image_tag("icon/pocket_side_brandcolor_icon.png", alt: "pocket_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
     </div>
-    <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column px-0">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
       <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん(#{@report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
 
       <div class="row pt-3 pb-0">
@@ -1035,7 +1035,7 @@
                 <h5 class="child-tab-title mt-5"><span class="marker-underline">着床前スクリーニング</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
-                    <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
+                    <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.pgt1_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -1047,7 +1047,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">着床前スクリーニング実施有無</td>
+                    <td class="result-left-column small">着床前スクリーニング実施有無&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.pgt2_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -1060,7 +1060,7 @@
                   </tr>
                   <% if @report.pgt_supplementary_explanation.present? %>
                     <tr>
-                      <td class="result-left-column small">着床前スクリーニングのメモ</td>
+                      <td class="result-left-column small">着床前スクリーニングのメモ&nbsp;<sup class="text-success">●</sup></td>
                       <td class="pl-3">
                         <% if @report.pgt_supplementary_explanation_status == "hide" %>
                           <span class="small text-muted"><%= "非公開" %></span>
@@ -2190,7 +2190,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">住まい</td>
+                    <td class="result-left-column small">治療当時の住まい&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.prefecture_at_the_time_status == "hide" %>
                         <span class="small text-muted">&nbsp;&nbsp;非公開 <span class="small">(都道府県)</span></span>
@@ -2358,7 +2358,7 @@
                 <h4 class="child-tab-title">仕事</h4>
                 <table class="table table-hover p-0">
                   <tr>
-                    <td class="result-left-column small" style="width:30%">働き方</td>
+                    <td class="result-left-column small" style="width:30%">働き方&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.work_style_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -2370,7 +2370,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">業種</td>
+                    <td class="result-left-column small">業種&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.industry_type_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -2382,7 +2382,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">上場の有無</td>
+                    <td class="result-left-column small">上場の有無&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.private_or_listed_company_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -2394,7 +2394,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">日系&nbsp;or&nbsp;外資</td>
+                    <td class="result-left-column small">日系&nbsp;or&nbsp;外資&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.domestic_or_foreign_capital_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -2406,7 +2406,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">会社の規模<span class="text-muted small">&nbsp;(資本金)</span></td>
+                    <td class="result-left-column small">会社の規模&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.capital_size_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -2418,7 +2418,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">部署</td>
+                    <td class="result-left-column small">部署&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.department_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -2430,7 +2430,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">役職</td>
+                    <td class="result-left-column small">役職&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.position_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -2442,7 +2442,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">従業員数</td>
+                    <td class="result-left-column small">従業員数&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.number_of_employees_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -2474,7 +2474,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">年収</td>
+                    <td class="result-left-column small">年収&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.annual_income_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -2486,7 +2486,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">夫婦合算所得</td>
+                    <td class="result-left-column small">夫婦合算所得&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.household_net_income_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -3101,7 +3101,7 @@
                   <td class="pl-4 result-right-column"><%= @report.clinic.name %></td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">治療当時の住まい</td>
+                  <td class="result-left-column small">治療当時の住まい&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4 result-right-column">
                     <% if @report.prefecture_at_the_time_status == "hide" %>
                       <span class="small text-muted">&nbsp;&nbsp;非公開 <span class="small">(都道府県)</span></span>
@@ -4652,7 +4652,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況</td>
+                  <td class="result-left-column small" style="width:30%"><%= @report.clinic.name %>の着床前スクリーニングの実施状況&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4" style="width:70%">
                     <% if @report.pgt1_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -4664,7 +4664,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">着床前スクリーニング実施有無</td>
+                  <td class="result-left-column small">着床前スクリーニング実施有無&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4">
                     <% if @report.pgt2_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -4677,7 +4677,7 @@
                 </tr>
                 <% if @report.pgt_supplementary_explanation.present? %>
                   <tr>
-                    <td class="result-left-column small">着床前スクリーニングのメモ</td>
+                    <td class="result-left-column small">着床前スクリーニングのメモ&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-4">
                       <% if @report.pgt_supplementary_explanation_status == "hide" %>
                         <span class="small text-muted"><%= "非公開" %></span>
@@ -5603,7 +5603,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">治療中の働き方</td>
+                  <td class="result-left-column small">治療中の働き方&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4 result-right-column">
                     <% if @report.work_style_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5615,7 +5615,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">業種</td>
+                  <td class="result-left-column small">業種&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4 result-right-column">
                     <% if @report.industry_type_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5627,7 +5627,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">上場の有無</td>
+                  <td class="result-left-column small">上場の有無&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4 result-right-column">
                     <% if @report.private_or_listed_company_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5639,7 +5639,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">日系&nbsp;or&nbsp;外資</td>
+                  <td class="result-left-column small">日系&nbsp;or&nbsp;外資&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4 result-right-column">
                     <% if @report.domestic_or_foreign_capital_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5651,7 +5651,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">資本金規模</td>
+                  <td class="result-left-column small">会社規模&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4 result-right-column">
                     <% if @report.capital_size_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5663,7 +5663,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">部署</td>
+                  <td class="result-left-column small">部署&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4 result-right-column">
                     <% if @report.department_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5675,7 +5675,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">役職</td>
+                  <td class="result-left-column small">役職&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4 result-right-column">
                     <% if @report.position_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5687,7 +5687,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">従業員数</td>
+                  <td class="result-left-column small">従業員数&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4 result-right-column">
                     <% if @report.number_of_employees_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5719,7 +5719,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">治療当時の年収</td>
+                  <td class="result-left-column small">治療当時の年収&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4">
                     <% if @report.annual_income_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5731,7 +5731,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">夫婦合算所得</td>
+                  <td class="result-left-column small">夫婦合算所得&nbsp;<sup class="text-success">●</sup></td>
                   <td class="pl-4">
                     <% if @report.household_net_income_status == "hide" %>
                       <span class="small text-muted"><%= "非公開" %></span>
@@ -5812,7 +5812,7 @@
           </div>
       </div>
     </div>
-    <div class="col-lg-3 side-column d-none d-lg-block">
+    <div class="d-none d-lg-block col-lg-3">
       <%= render 'right' %>
     </div>
     <%= render 'layouts/sns_bar' %>
