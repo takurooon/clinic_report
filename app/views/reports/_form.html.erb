@@ -197,7 +197,7 @@
       </div>
 
       <div class="form-group">
-        <div class="label p-1"><%= f.label :first_age_to_start, '不妊治療自体(妊活含む)を始めたのは何歳の時ですか', class: "question-matters" %></div>
+        <div class="label p-1"><%= f.label :first_age_to_start, '(不妊治療以前の)妊活を始めたのは何歳の時ですか', class: "question-matters" %></div>
         <%= f.select :first_age_to_start, Report::HASH_FIRST_AGE_TO_START.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
         <small id="poster-tip" class="form-text text-danger">
           前問より高い年齢を選択しないように注意して下さい。
@@ -1263,10 +1263,12 @@
               <span class="small">複数ある場合は「半角カンマ」で区切ってください。</span>
             </small>
           </div><br>
+          <% if false %>
           <div class="form-group pt-2">
             <div class="label p-1"><%= f.label :supplement_cost, 'サプリには月平均どれくらい使っていましたか', class: "question-matters" %></div>
             <%= f.select :supplement_cost, Report::HASH_SUPPLEMENT_COST.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
           </div>
+          <% end %>
           <div class="form-group pt-2">
             <div class="label p-1"><%= f.label :supplement_supplementary_explanation, 'サプリについての補足説明', class: "question-matters" %></div>
             <%= f.text_area :supplement_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)最初はネットで調べて買っていましたが、途中からクリニックで販売していた〇〇サプリに切り替えました。お値段は〇〇円位でした。" %>
@@ -1285,6 +1287,7 @@
               <% end %>
             </div>
           <% end %>
+          <% if false %>
           <div class="form-group pt-2">
             <div class="label p-1"><%= f.label :other_effort, "上記選択肢に無いので新たに治療以外に行ったことを追加する", class: "question-matters" %></div>
             <%= text_field_tag :oe_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
@@ -1292,6 +1295,7 @@
               <span class="small">複数ある場合は「半角カンマ」で区切ってください。</span>
             </small>
           </div>
+          <% end %>
           <div class="form-group pt-2">
             <div class="label p-1"><%= f.label :other_effort_cost, 'クリニックでの治療以外に行なったことへは月平均どれくらい使っていましたか', class: "question-matters" %></div>
             <%= f.select :other_effort_cost, Report::HASH_OTHER_EFFORT_COST.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
