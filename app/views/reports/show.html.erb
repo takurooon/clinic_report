@@ -304,7 +304,9 @@
                     <td class="pl-3">
                       <% if @report.supplements.present? %>
                         <% @report.supplements.each do |supplement| %>
-                          <span class="result-text"><%= supplement.name %>&nbsp;&nbsp;</span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= supplement.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -329,7 +331,9 @@
                     <td class="pl-3">
                       <% if @report.other_efforts.present? %>
                         <% @report.other_efforts.each do |other_effort| %>
-                          <span class="result-text"><%= other_effort.name %>&nbsp;&nbsp;</span>
+                          <ul class="list-unstyled">
+                            <li class="result-text"><%= other_effort.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -361,7 +365,9 @@
                     <td class="pl-3" style="width:70%">
                       <% if @report.inspections.present? %>
                         <% @report.inspections.each do |inspection| %>
-                          <span class="result-text"><%= inspection.name %>&nbsp;&nbsp;</span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= inspection.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                         <span class="text-muted small">未検&nbsp;<span class="small">(未回答)</span></span>
@@ -1068,8 +1074,8 @@
                 <h5 class="child-tab-title mt-5"><span class="marker-underline">精液検査</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
-                    <td class="result-left-column small">精液検査</td>
-                    <td class="pl-2">
+                    <td class="result-left-column small" style="width:30%">精液検査</td>
+                    <td class="pl-2" style="width:70%">
                       <table class="table-borderless">
                         <tr>
                           <td class="small text-muted text-right pr-0 pl-1">精液量&nbsp;:</td>
@@ -1143,6 +1149,20 @@
                       </table>
                     </td>
                   </tr>
+                  <tr>
+                    <td class="result-left-column small">精子選別方法</td>
+                    <td class="pl-3">
+                      <% if @report.s_selection_methods.present? %>
+                        <% @report.s_selection_methods.each do |s_selection_method| %>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= s_selection_method.name %></li>
+                          </ul>
+                        <% end %>
+                      <% else %>
+                          <span class="text-muted small">未回答</span>
+                      <% end %>
+                    </td>
+                  </tr>
                 </table>
               </section>
               <section class="child-tab-content" id="sairan">
@@ -1197,7 +1217,9 @@
                     <td class="pl-3">
                       <% if @report.sairan_medicines.present? %>
                         <% @report.sairan_medicines.each do |sairan_medicine| %>
-                          <span class="result-text"><%= sairan_medicine.name %>&nbsp;&nbsp;</span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= sairan_medicine.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1608,7 +1630,9 @@
                     <td class="pl-3" style="width:70%">
                       <% if @report.transfer_medicines.present? %>
                         <% @report.transfer_medicines.each do |transfer_medicine| %>
-                          <span class="result-text"><%= transfer_medicine.name %>&nbsp;&nbsp;</span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= transfer_medicine.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -1620,7 +1644,9 @@
                     <td class="pl-3">
                       <% if @report.transfer_options.present? %>
                         <% @report.transfer_options.each do |transfer_option| %>
-                          <span class="result-text"><%= transfer_option.name %>&nbsp;&nbsp;</span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= transfer_option.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -2285,7 +2311,9 @@
                     <td class="pl-3">
                       <% if @report.scope_of_disclosures.present? %>
                         <% @report.scope_of_disclosures.each do |scope_of_disclosure| %>
-                          <span class="result-text"><%= scope_of_disclosure.scope %>&nbsp;&nbsp;</span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= scope_of_disclosure.scope %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -2510,7 +2538,9 @@
                     <td class="pl-3" style="width:70%">
                       <% if @report.f_infertility_factors.present? %>
                         <% @report.f_infertility_factors.each do |f_infertility_factor| %>
-                          <span class="result-text"><%= f_infertility_factor.name %><br></span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= f_infertility_factor.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                           <span class="text-muted small">なし</span>
@@ -2522,7 +2552,9 @@
                     <td class="pl-3">
                       <% if @report.m_infertility_factors.present? %>
                         <% @report.m_infertility_factors.each do |m_infertility_factor| %>
-                          <span class="result-text"><%= m_infertility_factor.name %></span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= m_infertility_factor.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                           <span class="text-muted small">なし</span>
@@ -2534,7 +2566,9 @@
                     <td class="pl-3">
                       <% if @report.f_diseases.present? %>
                         <% @report.f_diseases.each do |f_disease| %>
-                          <span class="result-text"><%= f_disease.name %><br></span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= f_disease.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                           <span class="text-muted small">なし</span>
@@ -2546,7 +2580,9 @@
                     <td class="pl-3">
                       <% if @report.m_diseases.present? %>
                         <% @report.m_diseases.each do |m_disease| %>
-                          <span class="result-text"><%= m_disease.name %><br></span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= m_disease.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                           <span class="text-muted small">なし</span>
@@ -2558,7 +2594,9 @@
                     <td class="pl-3">
                       <% if @report.f_surgeries.present? %>
                         <% @report.f_surgeries.each do |f_surgery| %>
-                          <span class="result-text"><%= f_surgery.name %></span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= f_surgery.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                           <span class="text-muted small">なし</span>
@@ -2570,7 +2608,9 @@
                     <td class="pl-3">
                       <% if @report.m_surgeries.present? %>
                         <% @report.m_surgeries.each do |m_surgery| %>
-                          <span class="result-text"><%= m_surgery.name %></span>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= m_surgery.name %></li>
+                          </ul>
                         <% end %>
                       <% else %>
                           <span class="text-muted small">なし</span>
@@ -3348,7 +3388,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.f_infertility_factors.present? %>
                       <% @report.f_infertility_factors.each do |f_infertility_factor| %>
-                        <span class="result-text"><%= f_infertility_factor.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= f_infertility_factor.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                         <span class="text-muted small">なし</span>
@@ -3360,7 +3402,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.m_infertility_factors.present? %>
                       <% @report.m_infertility_factors.each do |m_infertility_factor| %>
-                        <span class="result-text"><%= m_infertility_factor.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= m_infertility_factor.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                         <span class="text-muted small">なし</span>
@@ -3372,7 +3416,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.f_diseases.present? %>
                       <% @report.f_diseases.each do |f_disease| %>
-                        <span class="result-text"><%= f_disease.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= f_disease.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">なし</span>
@@ -3384,7 +3430,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.m_diseases.present? %>
                       <% @report.m_diseases.each do |m_disease| %>
-                        <span class="result-text"><%= m_disease.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= m_disease.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">なし</span>
@@ -3396,7 +3444,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.f_surgeries.present? %>
                       <% @report.f_surgeries.each do |f_surgery| %>
-                        <span class="result-text"><%= f_surgery.name %></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= f_surgery.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                         <span class="text-muted small">なし</span>
@@ -3408,7 +3458,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.m_surgeries.present? %>
                       <% @report.m_surgeries.each do |m_surgery| %>
-                        <span class="result-text"><%= m_surgery.name %></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= m_surgery.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                         <span class="text-muted small">なし</span>
@@ -3451,7 +3503,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.sairan_medicines.present? %>
                       <% @report.sairan_medicines.each do |sairan_medicine| %>
-                        <span class="result-text"><%= sairan_medicine.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text<ul class="list-unstyled">"><%= sairan_medicine.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3617,6 +3671,20 @@
                         <% end %>
                       </tr>
                     </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small">精子選別方法</td>
+                  <td class="pl-4">
+                    <% if @report.s_selection_methods.present? %>
+                      <% @report.s_selection_methods.each do |s_selection_method| %>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= s_selection_method.name %></li>
+                        </ul>
+                      <% end %>
+                    <% else %>
+                        <span class="text-muted small">未回答</span>
+                    <% end %>
                   </td>
                 </tr>
                 <tr>
@@ -3810,7 +3878,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.transfer_medicines.present? %>
                       <% @report.transfer_medicines.each do |transfer_medicine| %>
-                        <span class="result-text"><%= transfer_medicine.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= transfer_medicine.name %></li>
+                        <ul>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3822,7 +3892,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.transfer_options.present? %>
                       <% @report.transfer_options.each do |transfer_option| %>
-                        <span class="result-text"><%= transfer_option.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= transfer_option.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -5391,7 +5463,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.inspections.present? %>
                       <% @report.inspections.each do |inspection| %>
-                        <span class="result-text"><%= inspection.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= inspection.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -5414,7 +5488,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.other_efforts.present? %>
                       <% @report.other_efforts.each do |other_effort| %>
-                        <span class="result-text"><%= other_effort.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= other_effort.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答<br></span>
@@ -5439,7 +5515,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.supplements.present? %>
                       <% @report.supplements.each do |supplement| %>
-                        <span class="result-text"><%= supplement.name %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text small"><%= supplement.name %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答<br></span>
@@ -5749,7 +5827,9 @@
                   <td class="pl-4 result-right-column">
                     <% if @report.scope_of_disclosures.present? %>
                       <% @report.scope_of_disclosures.each do |scope_of_disclosure| %>
-                        <span class="result-text"><%= scope_of_disclosure.scope %><br></span>
+                        <ul class="list-unstyled">
+                          <li class="result-text"><%= scope_of_disclosure.scope %></li>
+                        </ul>
                       <% end %>
                     <% else %>
                       <span class="text-muted small">未回答</span>
