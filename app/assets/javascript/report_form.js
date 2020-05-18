@@ -138,14 +138,14 @@ $(function() {
   var discription4 = "以降の項目(採卵/移植周期のホルモン値・グレード等)は、2個の胚のうちどちらか一方の胚の情報についてのみ選択&入力して下さい。";
   var val = $('#report_transplant_method').val();
   if (val == "1") {
-    var val = "凍結胚移植(1個戻し)";
+    var val = "凍結胚移植";
     $('.stage-alert-none').show();
     $('.stage-alert').hide();
     $('.transplant_method').text(val);
     $('.transplant_method_dis1').text(discription1);
     $('.transplant_method_dis2').text(discription2);
   } else if (val == "2") {
-    var val = "新鮮胚移植(2個戻し)";
+    var val = "新鮮胚移植";
     $('.stage-alert-none').show();
     $('.stage-alert').hide();
     $('.transplant_method').text(val);
@@ -178,14 +178,14 @@ $(function() {
     var discription4 = "以降の項目(採卵/移植周期のホルモン値・グレード等)は、2個の胚のうちどちらか一方の胚の情報についてのみ選択&入力して下さい。";
     var val = $(this).val();
     if (val == "1") {
-      var val = "凍結胚移植(1個戻し)";
+      var val = "凍結胚移植";
       $('.stage-alert-none').show();
       $('.stage-alert').hide();
       $('.transplant_method').text(val);
       $('.transplant_method_dis1').text(discription1);
       $('.transplant_method_dis2').text(discription2);
     } else if (val == "2") {
-      var val = "新鮮胚移植(2個戻し)";
+      var val = "新鮮胚移植";
       $('.stage-alert-none').show();
       $('.stage-alert').hide();
       $('.transplant_method').text(val);

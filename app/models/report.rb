@@ -676,8 +676,9 @@ class Report < ApplicationRecord
   HASH_TYPES_OF_EGGS_AND_SPERM = {
     1 => "自身＆パートナーの卵子/精子を用いた",
     2 => "自身＆パートナーの凍結未受精卵を用いた",
-    3 => "提供精子を用いた",
+    3 => "自身＆パートナーの凍結精子を用いた",
     4 => "提供卵子を用いた",
+    5 => "提供精子を用いた",
     99 => "その他",
   }
 
@@ -2793,6 +2794,7 @@ class Report < ApplicationRecord
 
   # number_of_frozen_eggsの区分値(最新周期での凍結できた数/CL単位)
   HASH_NUMBER_OF_FROZEN_EGGS = {
+    0 => "0個",
     1 => "1個",
     2 => "2個",
     3 => "3個",
