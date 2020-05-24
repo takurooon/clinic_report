@@ -5,30 +5,31 @@
         <div class="media-body px-2">
           <div class="row">
             <div class="col-3 pl-0 text-center px-0">
-              <div class="d-none d-lg-block px-0">
-                <%= link_to user_path(report.user_id) do %>
-                  <div class="icon-field px-4 py-0">
-                    <% if report.user.icon.attached? %>
-                      <%= image_tag(report.user.icon, class:"icon_image") %>
+              <%= link_to user_path(report.user_id) do %>
+                <div class="icon-field">
+                  <% if report.user.icon.attached? %>
+                    <%= image_tag(report.user.icon, class:"icon_image") %>
+                  <% else %>
+                    <% if report.treatment_end_age == nil %>
+                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image", loading: "lazy") %>
+                    <% elsif report.treatment_end_age < 24 %>
+                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image", loading: "lazy") %>
+                    <% elsif report.treatment_end_age < 29 %>
+                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image", loading: "lazy") %>
+                    <% elsif report.treatment_end_age < 34 %>
+                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image", loading: "lazy") %>
+                    <% elsif report.treatment_end_age < 39 %>
+                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image", loading: "lazy") %>
+                    <% elsif report.treatment_end_age < 44 %>
+                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image", loading: "lazy") %>
                     <% else %>
-                      <% if report.treatment_end_age == nil %>
-                        <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 24 %>
-                        <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 29 %>
-                        <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 34 %>
-                        <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 39 %>
-                        <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 44 %>
-                        <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% else %>
-                        <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% end %>
+                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image", loading: "lazy") %>
                     <% end %>
-                  </div>
-                <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <div class="d-none d-lg-block px-0">
                 <div class="align-items-center text-center pt-2">
                   <p class="mb-0 pb-1">
                     <% if report.treatment_end_age == nil %>
@@ -74,29 +75,6 @@
                 </div>
               </div>
               <div class="d-sm d-lg-none px-2">
-                <%= link_to user_path(report.user_id) do %>
-                  <div class="icon-field px-1 pt-0 mb-1">
-                    <% if report.user.icon.attached? %>
-                      <%= image_tag(report.user.icon, class:"icon_image") %>
-                    <% else %>
-                      <% if report.treatment_end_age == nil %>
-                        <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 24 %>
-                        <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 29 %>
-                        <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 34 %>
-                        <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 39 %>
-                        <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% elsif report.treatment_end_age < 44 %>
-                        <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% else %>
-                        <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "card-img-top rounded-circle border", loading: "lazy") %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                <% end %>
                 <div class="small align-items-center text-center pt-0">
                   <p class="mb-0">
                     <% if report.treatment_end_age == nil %>

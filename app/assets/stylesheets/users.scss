@@ -1,41 +1,86 @@
-.icon_image {
-  width: 100%;
-  height: 100%;
-  //サイズ指定
-  border-radius: 100%;
-  //画像を丸くする
-  object-fit: cover;
-  //タテヨコ比を変えないままトリミング
+@media screen and (max-width:767px) {
+  .icon-field {
+    padding: 0.4em 0;
+  }
+  .icon_image {
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid thin #92E0E0;
+  }
+  .icon_image2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid thin #92E0E0;
+  }
+  .icon_image3 {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid thin #92E0E0;
+  }
 }
-.icon_image2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  object-fit: cover;
-  border: solid thin #92E0E0;
+
+@media screen and (min-width:768px) {
+  .icon-field {
+    padding-bottom: 0.8em;
+  }
+  .icon_image {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid thin #92E0E0;
+  }
+  .icon_image2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid thin #92E0E0;
+  }
 }
-.icon_image3 {
-  width: 80%;
-  height: 80%;
-  border-radius: 100%;
-  object-fit: cover;
-  border: solid thin #92E0E0;
+
+@media screen and (min-width:992px) {
+  .icon_image {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  .icon_image2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid thin #92E0E0;
+  }
 }
+
+@media screen and (min-width:1200px) {
+  .icon_image {
+    width: 110px;
+    height: 110px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  .icon_image2 {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid thin #92E0E0;
+  }
+}
+
+// 通知画面のアイコン
 .icon_image4 {
-  width: 6%;
-  border-radius: 100%;
-  object-fit: cover;
-  border: solid thin #92E0E0;
-}
-.icon_image5 {
-  width: 40%;
-  height: 40%;
-  border-radius: 100%;
-  object-fit: cover;
-  border: solid thin #92E0E0;
-}
-.icon_image6 {
-  width: 46%;
+  width: 20px;
+  height: 20px;
   border-radius: 100%;
   object-fit: cover;
   border: solid thin #92E0E0;

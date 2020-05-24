@@ -27,7 +27,7 @@ module ApplicationHelper
       title: 'REPOCO',
       reverse: true,
       charset: 'utf-8',
-      description: '不妊治療の通院先と実績をレポートとして投稿しよう！',
+      description: '不妊治療の通院先と実績をレポートとして投稿しよう！#不妊治療戦士達の通院先と実績',
       keywords: '不妊治療,体外受精,顕微受精',
       canonical: request.original_url,
       separator: '-',

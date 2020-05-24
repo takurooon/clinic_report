@@ -2153,7 +2153,6 @@ class Report < ApplicationRecord
   #   hash
   # end
 
-
   # age_of_partner_at_end_of_treatmentの区分値(治療終了時のパートナーの年齢/CL単位)
   HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT = {
     19 => "19歳以下",
@@ -2237,6 +2236,107 @@ class Report < ApplicationRecord
   #   hash
   # end
 
+  # sairan_ageの区分値(採卵時の年齢)
+  HASH_SAIRAN_AGE = {
+    19 => "19歳以下",
+    20 => "20歳",
+    21 => "21歳",
+    22 => "22歳",
+    23 => "23歳",
+    24 => "24歳",
+    25 => "25歳",
+    26 => "26歳",
+    27 => "27歳",
+    28 => "28歳",
+    29 => "29歳",
+    30 => "30歳",
+    31 => "31歳",
+    32 => "32歳",
+    33 => "33歳",
+    34 => "34歳",
+    35 => "35歳",
+    36 => "36歳",
+    37 => "37歳",
+    38 => "38歳",
+    39 => "39歳",
+    40 => "40歳",
+    41 => "41歳",
+    42 => "42歳",
+    43 => "43歳",
+    44 => "44歳",
+    45 => "45歳",
+    46 => "46歳",
+    47 => "47歳",
+    48 => "48歳",
+    49 => "49歳",
+    50 => "50歳",
+    51 => "51歳",
+    52 => "52歳",
+    53 => "53歳",
+    54 => "54歳",
+    55 => "55歳",
+    56 => "56歳",
+    57 => "57歳",
+    58 => "58歳",
+    59 => "59歳",
+    60 => "60歳以上",
+    100 => "不明",
+  }
+
+  def str_sairan_age
+    return HASH_SAIRAN_AGE[self.sairan_age]
+  end
+
+  # ishoku_ageの区分値(移植時の年齢)
+  HASH_ISHOKU_AGE = {
+    19 => "19歳以下",
+    20 => "20歳",
+    21 => "21歳",
+    22 => "22歳",
+    23 => "23歳",
+    24 => "24歳",
+    25 => "25歳",
+    26 => "26歳",
+    27 => "27歳",
+    28 => "28歳",
+    29 => "29歳",
+    30 => "30歳",
+    31 => "31歳",
+    32 => "32歳",
+    33 => "33歳",
+    34 => "34歳",
+    35 => "35歳",
+    36 => "36歳",
+    37 => "37歳",
+    38 => "38歳",
+    39 => "39歳",
+    40 => "40歳",
+    41 => "41歳",
+    42 => "42歳",
+    43 => "43歳",
+    44 => "44歳",
+    45 => "45歳",
+    46 => "46歳",
+    47 => "47歳",
+    48 => "48歳",
+    49 => "49歳",
+    50 => "50歳",
+    51 => "51歳",
+    52 => "52歳",
+    53 => "53歳",
+    54 => "54歳",
+    55 => "55歳",
+    56 => "56歳",
+    57 => "57歳",
+    58 => "58歳",
+    59 => "59歳",
+    60 => "60歳以上",
+    100 => "不明",
+  }
+
+  def str_ishoku_age
+    return HASH_ISHOKU_AGE[self.ishoku_age]
+  end
 
   # total_number_of_sairanの区分値(全採卵回数/CL単位)
   HASH_TOTAL_NUMBER_OF_SAIRAN = {
@@ -3075,6 +3175,7 @@ end
 #  industry_type                                :integer
 #  industry_type_status                         :integer
 #  inspection_supplementary_explanation         :text
+#  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
 #  ishoku_cost_explanation                      :text
 #  notes_on_type_of_sairan_cycle                :text
@@ -3110,6 +3211,7 @@ end
 #  probability_of_normal_morphology_of_sperm    :float
 #  reasons_for_choosing_this_clinic             :text
 #  reservation_method                           :integer
+#  sairan_age                                   :integer
 #  sairan_cost                                  :integer
 #  sairan_cost_explanation                      :text
 #  selection_of_anesthesia_type                 :integer

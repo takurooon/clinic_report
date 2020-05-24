@@ -32,7 +32,9 @@
               <div class="actions mt-5">
                 <%= f.submit "ログイン", class: 'btn btn-raised btn-primary mx-auto d-block w-75' %>
               </div>
-              
+
+              <%= f.hidden_field :url, value: request.fullpath %>
+
             <% end %>
             <%= render "devise/shared/links" %>
           </div>

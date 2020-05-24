@@ -15,25 +15,25 @@
 
       <div class="row pt-3 pb-0">
         <div class="d-none d-sm-block col-2">
-          <div class="py-0 pl-0 author-info">
+          <div class="py-0 pl-0">
             <%= link_to user_path(@report.user_id) do %>
               <% if @report.user.icon.attached? %>
-                <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image6", loading: "lazy") %>
+                <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
               <% else %>
                   <% if @report.treatment_end_age == nil %>
-                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image6", loading: "lazy") %>
+                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 24 %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image6", loading: "lazy") %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 29 %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image6", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 34 %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image6", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 39 %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image6", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 44 %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image6", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image6", loading: "lazy") %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2", loading: "lazy") %>
                   <% end %>
               <% end %>
             <% end %>
@@ -42,7 +42,7 @@
         <div class="d-block d-sm-none col-2 offset-1 pl-0">
           <%= link_to user_path(@report.user_id) do %>
             <% if @report.user.icon.attached? %>
-                <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
             <% else %>
               <div class="p-0">
                 <% if @report.treatment_end_age == nil %>
@@ -1177,8 +1177,18 @@
                 <h5 class="child-tab-title"><span class="marker-underline">採卵</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
-                    <td class="result-left-column small" style="width:30%">1回あたりの採卵費用</td>
+                    <td class="result-left-column small" style="width:30%">採卵時の年齢</td>
                     <td class="pl-3" style="width:70%">
+                      <% if @report.sairan_age.present? %>
+                        <span class="result-text"><%= @report.str_sairan_age %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small">1回あたりの採卵費用</td>
+                    <td class="pl-3">
                       <% if @report.sairan_cost.present? %>
                         <span class="result-text"><%= @report.str_sairan_cost %></span>
                       <% else %>
@@ -1190,8 +1200,8 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small" style="width:30%">誘発タイプ</td>
-                    <td class="pl-3" style="width:70%">
+                    <td class="result-left-column small">誘発タイプ</td>
+                    <td class="pl-3">
                       <% if @report.type_of_ovarian_stimulation.present? %>
                         <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
                       <% else %>
@@ -1613,8 +1623,18 @@
                 </span></h5>
                 <table class="table table-hover p-0">
                   <tr>
-                    <td class="result-left-column small" style="width:30%">移植1回あたりの費用</td>
+                    <td class="result-left-column small" style="width:30%">移植時の年齢</td>
                     <td class="pl-3" style="width:70%">
+                      <% if @report.ishoku_age.present? %>
+                        <span class="result-text"><%= @report.str_ishoku_age %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small">移植1回あたりの費用</td>
+                    <td class="pl-3">
                       <% if @report.ishoku_cost.present? %>
                         <span class="result-text"><%= @report.str_ishoku_cost %></span>
                       <% else %>
@@ -3475,6 +3495,26 @@
                     </td>
                   </tr>
                 <% end %>
+                <tr>
+                  <td class="result-left-column small">採卵時の年齢</td>
+                  <td class="pl-3">
+                    <% if @report.sairan_age.present? %>
+                      <span class="result-text"><%= @report.str_sairan_age %></span>
+                    <% else %>
+                      <span class="text-muted small">未回答</span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small">移植時の年齢</td>
+                  <td class="pl-3">
+                    <% if @report.ishoku_age.present? %>
+                      <span class="result-text"><%= @report.str_ishoku_age %></span>
+                    <% else %>
+                      <span class="text-muted small">未回答</span>
+                    <% end %>
+                  </td>
+                </tr>
                 <tr>
                   <td class="result-left-column small">採卵誘発タイプ</td>
                   <td class="pl-4 result-right-column">

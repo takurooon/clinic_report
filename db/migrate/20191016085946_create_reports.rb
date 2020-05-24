@@ -35,6 +35,8 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :smoking
       t.integer :types_of_eggs_and_sperm
       t.text :description_of_eggs_and_sperm_used
+      t.integer :sairan_age
+      t.integer :ishoku_age
       t.integer :type_of_ovarian_stimulation
       t.integer :type_of_sairan_cycle
       t.text :notes_on_type_of_sairan_cycle
