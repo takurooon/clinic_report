@@ -205,6 +205,22 @@
       </div>
 
       <div class="form-group">
+        <div class="label p-1"><%= f.label :sairan_age, '採卵時の年齢', class: "question-matters" %></div>
+        <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
+        <small id="poster-tip" class="form-text text-danger">
+          現ステータスに至った採卵時における年齢を選択してください。
+        </small>
+      </div>
+
+      <div class="form-group">
+        <div class="label p-1"><%= f.label :ishoku_age, '移植時の年齢', class: "question-matters" %></div>
+        <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
+        <small id="poster-tip" class="form-text text-danger">
+          現ステータスに至った移植時における年齢を選択してください。
+        </small>
+      </div>
+
+      <div class="form-group">
         <div class="label p-1"><%= f.label :treatment_end_age, 'このクリニックで治療を終了したのは何歳の時ですか', class: "question-matters" %></div>
         <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
         <small id="poster-tip" class="form-text text-danger">
@@ -541,22 +557,6 @@
           <div class="label p-1"><%= f.label :inspection_supplementary_explanation, '初期検査についての一口メモ', class: "question-matters" %></div>
           <%= f.text_area :inspection_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "補足情報があれば入力してください。" %>
         </div>
-      </div>
-
-      <div class="form-group">
-        <div class="label p-1"><%= f.label :sairan_age, '採卵時の年齢', class: "question-matters" %></div>
-        <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
-        <small id="poster-tip" class="form-text text-danger">
-          現ステータスに至った採卵時における年齢を選択してください。
-        </small>
-      </div>
-
-      <div class="form-group">
-        <div class="label p-1"><%= f.label :ishoku_age, '移植時の年齢', class: "question-matters" %></div>
-        <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
-        <small id="poster-tip" class="form-text text-danger">
-          現ステータスに至った移植時における年齢を選択してください。
-        </small>
       </div>
 
       <div class="border rounded mt-5 px-2 py-3">
