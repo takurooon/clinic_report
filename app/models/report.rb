@@ -36,11 +36,11 @@ class Report < ApplicationRecord
   validate :validate_content_attachments_count
   # validate :validate_content_report_count
 
-  MAX_CONTENT_LENGTH = 30000
-  MEGA_BYTES = 3
+  MAX_CONTENT_LENGTH = 100000
+  MEGA_BYTES = 5
   ONE_KILOBYTE = 1024
   MAX_CONTENT_ATTACHMENT_BYTE_SIZE = MEGA_BYTES * 1_000 * ONE_KILOBYTE
-  MAX_CONTENT_ATTACHMENTS_COUNT = 4
+  MAX_CONTENT_ATTACHMENTS_COUNT = 10
 
   # def validate_treatment_age
   #   return "" if self.treatment_start_age.nil?
