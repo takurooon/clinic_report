@@ -31,7 +31,7 @@
                             <div class="img-field-parent">
                               <div id="img_field" onClick="$('#file').click()">
                                 <% if @user.icon.attached? %>
-                                  <%= image_tag(@user.icon, class:"icon_image") %>
+                                  <%= image_tag(@user.icon, class:"icon_image_edit") %>
                                 <% else %>
                                   <i class="fas fa-camera-retro fa-5x icon-camera"></i>
                                 <% end %>

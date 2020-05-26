@@ -561,15 +561,15 @@
 
       <div class="border rounded mt-5 px-2 py-3">
         <div class="form-group mt-0 pt-1">
-          <div class="label p-1"><%= f.label :type_of_ovarian_stimulation, '妊娠に至った周期の誘発のタイプ', class: "question-matters" %></div>
+          <div class="label p-1"><%= f.label :type_of_ovarian_stimulation, '妊娠に至った採卵周期の誘発のタイプ', class: "question-matters" %></div>
           <%= f.select :type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
         </div>
         <div class="form-group">
-          <div class="label p-1"><%= f.label :type_of_sairan_cycle, '妊娠に至った周期の誘発方法', class: "question-matters" %></div>
+          <div class="label p-1"><%= f.label :type_of_sairan_cycle, '妊娠に至った採卵周期の誘発方法', class: "question-matters" %></div>
           <%= f.select :type_of_sairan_cycle, Report::HASH_TYPE_OF_SAIRAN_CYCLE.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
         </div>
         <div class="form-group">
-          <div class="label p-1"><%= f.label :notes_on_type_of_sairan_cycle, '誘発方法一口メモ', class: "question-matters" %></div>
+          <div class="label p-1"><%= f.label :notes_on_type_of_sairan_cycle, '採卵誘発方法一口メモ', class: "question-matters" %></div>
           <%= f.text_area :notes_on_type_of_sairan_cycle, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例) 私が通ったクリニックでは「〇〇法」という独自の呼び方でした。ですが内容は〇〇と一緒でした" %>
         </div>
       </div>
@@ -645,8 +645,11 @@
       </div>
 
       <div class="form-group">
-        <div class="label p-1"><%= f.label :ova_with_ivm, '妊娠に至った卵子へのIVM実施の有無', class: "question-matters" %></div>
+        <div class="label p-1"><%= f.label :ova_with_ivm, '妊娠に至った卵子へのIVM(体外成熟培養)実施の有無', class: "question-matters" %></div>
         <%= f.select :ova_with_ivm, Report::HASH_OVA_WITH_IVM.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
+        <small class="text-muted">
+          IVM(体外成熟培養)とは、ホルモン剤などを添加した専用の培養液で1～2日培養し、体外で成熟させる方法。
+        </small>
       </div>
 
       <div class="form-group">
@@ -782,10 +785,10 @@
             <tbody>
               <tr>
                 <th scope="row" class="day-column"><%= day_of_sairan.select :day, Report.make_select_day_of_sairan, { prompt: "まず選択" }, { class: "form-control text-muted" } %></th>
-                <td class="hormon-column"><%= day_of_sairan.number_field :e2, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_sairan.number_field :fsh, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_sairan.number_field :lh, { step: "0.1", class: "form-control" } %></td>
-                <td class="hormon-column"><%= day_of_sairan.number_field :p4, { step: "0.1", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_sairan.number_field :e2, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_sairan.number_field :fsh, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_sairan.number_field :lh, { step: "0.01", class: "form-control" } %></td>
+                <td class="hormon-column"><%= day_of_sairan.number_field :p4, { step: "0.01", class: "form-control" } %></td>
               </tr>
             </tbody>
           </table>
@@ -1187,7 +1190,7 @@
         </div>
         <div class="form-group">
           <div class="label p-1"><%= f.label :frozen_embryo_storage_cost, '凍結胚1個あたりの年間保存費用', class: "question-matters" %></div>
-          <%= f.number_field :frozen_embryo_storage_cost, { step: "1", class: "form-control" }  %>
+          <div><%= f.number_field :frozen_embryo_storage_cost, { step: "1", class: "form-control w-75 d-inline", placeholder: "半角数字" }  %>円</div>
           <small id="poster-tip" class="form-text text-muted">
             例) 諸々の年間保存コスト&nbsp;÷&nbsp;凍結胚の個数
           </small>

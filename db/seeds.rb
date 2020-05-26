@@ -85,14 +85,13 @@ Supplement.create([
 ])
 
 ScopeOfDisclosure.create([
-  { scope: "自ら進んで誰にでもオープン" },
-  { scope: "聞かれたら誰にでもオープン" },
-  { scope: "パートナー" },
+  { scope: "パートナーのみ" },
+  { scope: "聞かれたら基本オープン" },
   { scope: "両親" },
-  { scope: "兄弟/姉妹" },
   { scope: "義理の両親" },
+  { scope: "兄弟/姉妹" },
   { scope: "義理の兄弟/姉妹" },
-  { scope: "その他の親戚" },
+  { scope: "その他親戚" },
   { scope: "親友" },
   { scope: "友人" },
   { scope: "同僚" },
@@ -101,7 +100,6 @@ ScopeOfDisclosure.create([
 ])
 
 FInfertilityFactor.create([
-  { name: "原因不明" },
   { name: "多嚢胞性卵巣症候群(PCOS)" },
   { name: "視床下部排卵障害(中枢性の排卵障害)" },
   { name: "下垂体性排卵障害(中枢性の排卵障害)" },
@@ -126,7 +124,6 @@ FInfertilityFactor.create([
 ])
 
 MInfertilityFactor.create([
-  { name: "原因不明" },
   { name: "勃起障害(ED)" },
   { name: "膣内射精障害" },
   { name: "逆行性射精" },

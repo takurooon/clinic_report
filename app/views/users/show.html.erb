@@ -18,39 +18,39 @@
                 <% end %>
               <% else %>
                 <% if @user.birthday == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
                 <% elsif Time.now.year - @user.birthday.year <= 25 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 30 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 35 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 40 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 45 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image", loading: "lazy") %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
                   <% end %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
                 <% end %>
               <% end %>
             </div>
@@ -111,39 +111,39 @@
               <% end %>
             <% else %>
               <% if @user.birthday == nil %>
-                <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image", loading: "lazy") %>
+                <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
               <% elsif Time.now.year - @user.birthday.year <= 25 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
                 <% end %>
               <% elsif Time.now.year - @user.birthday.year <= 30 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
                 <% end %>
               <% elsif Time.now.year - @user.birthday.year <= 35 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
                 <% end %>
               <% elsif Time.now.year - @user.birthday.year <= 40 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
                 <% end %>
               <% elsif Time.now.year - @user.birthday.year <= 45 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image", loading: "lazy") %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
                 <% end %>
               <% else %>
-                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image", loading: "lazy") %>
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
               <% end %>
             <% end %>
           </div>
@@ -292,19 +292,19 @@
                                     <%= image_tag(report.user.icon, class:"icon_image") %>
                                   <% else %>
                                     <% if report.treatment_end_age == nil %>
-                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 24 %>
-                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 29 %>
-                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 34 %>
-                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 39 %>
-                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 44 %>
-                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
                                     <% else %>
-                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
                                     <% end %>
                                   <% end %>
                                 </div>
@@ -358,19 +358,19 @@
                                     <%= image_tag(report.user.icon, class:"icon_image") %>
                                   <% else %>
                                     <% if report.treatment_end_age == nil %>
-                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 24 %>
-                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 29 %>
-                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 34 %>
-                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 39 %>
-                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
                                     <% elsif report.treatment_end_age < 44 %>
-                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
                                     <% else %>
-                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image", loading: "lazy") %>
+                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
                                     <% end %>
                                   <% end %>
                                 </div>

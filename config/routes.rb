@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'privacy' => 'application#privacy'
   get 'admin' => 'application#admin'
   
+  # https://qiita.com/okamotchan/items/524971f1ae57b917e1ea
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',

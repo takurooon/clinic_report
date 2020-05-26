@@ -8,7 +8,7 @@
               <div class="col-3 col-sm-2 m-0 pr-0">
                 <div class="d-none d-md-block pl-3 py-3">
                   <% if user.icon.blank? %>
-                    <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2", alt: "Card image cap", loading: "lazy") %>
+                    <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2_border", alt: "Card image cap", loading: "lazy") %>
                   <% else %>
                     <%= image_tag(user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
                   <% end %>
@@ -16,7 +16,7 @@
                 <div class="d-block d-md-none pl-2 pr-0 py-2">
                   <div>
                     <% if user.icon.blank? %>
-                      <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2", alt: "Card image cap", loading: "lazy") %>
+                      <%= image_tag("home/noimage_eyecatch.png", class: "icon_image2_border", alt: "Card image cap", loading: "lazy") %>
                     <% else %>
                       <%= image_tag(user.icon.url, alt: "Card image cap", class: "icon_image2", loading: "lazy") %>
                     <% end %>

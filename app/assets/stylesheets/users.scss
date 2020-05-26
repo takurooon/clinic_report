@@ -7,6 +7,12 @@
     height: 65px;
     border-radius: 100%;
     object-fit: cover;
+  }
+  .icon_image_border {
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+    object-fit: cover;
     border: solid thin #92E0E0;
   }
   .icon_image2 {
@@ -14,9 +20,21 @@
     height: 50px;
     border-radius: 100%;
     object-fit: cover;
+  }
+  .icon_image2_border {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
     border: solid thin #92E0E0;
   }
   .icon_image3 {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  .icon_image3_border {
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -34,9 +52,21 @@
     height: 80px;
     border-radius: 100%;
     object-fit: cover;
+  }
+  .icon_image_border {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    object-fit: cover;
     border: solid thin #92E0E0;
   }
   .icon_image2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  .icon_image2_border {
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -52,7 +82,20 @@
     border-radius: 100%;
     object-fit: cover;
   }
+  .icon_image_border {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid thin #92E0E0;
+  }
   .icon_image2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  .icon_image2_border {
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -68,7 +111,20 @@
     border-radius: 100%;
     object-fit: cover;
   }
+  .icon_image_border {
+    width: 110px;
+    height: 110px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid thin #92E0E0;
+  }
   .icon_image2 {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  .icon_image2_border {
     width: 60px;
     height: 60px;
     border-radius: 100%;
@@ -83,7 +139,21 @@
   height: 20px;
   border-radius: 100%;
   object-fit: cover;
+}
+.icon_image4_border {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  object-fit: cover;
   border: solid thin #92E0E0;
+}
+
+// ユーザー編集画面のアイコン
+.icon_image_edit {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  object-fit: cover;
 }
 
 // ユーザー編集画面のアイコン

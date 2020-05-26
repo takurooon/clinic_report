@@ -21,19 +21,19 @@
                 <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
               <% else %>
                   <% if @report.treatment_end_age == nil %>
-                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2", loading: "lazy") %>
+                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 24 %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2", loading: "lazy") %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 29 %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 34 %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 39 %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy") %>
                   <% elsif @report.treatment_end_age < 44 %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2", loading: "lazy") %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy") %>
                   <% end %>
               <% end %>
             <% end %>
@@ -46,19 +46,19 @@
             <% else %>
               <div class="p-0">
                 <% if @report.treatment_end_age == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image3", loading: "lazy") %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image3_border", loading: "lazy") %>
                 <% elsif @report.treatment_end_age < 24 %>
-                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image3", loading: "lazy") %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image3_border", loading: "lazy") %>
                 <% elsif @report.treatment_end_age < 29 %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image3", loading: "lazy") %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image3_border", loading: "lazy") %>
                 <% elsif @report.treatment_end_age < 34 %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image3", loading: "lazy") %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image3_border", loading: "lazy") %>
                 <% elsif @report.treatment_end_age < 39 %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image3", loading: "lazy") %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image3_border", loading: "lazy") %>
                 <% elsif @report.treatment_end_age < 44 %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image3", loading: "lazy") %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image3_border", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image3", loading: "lazy") %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image3_border", loading: "lazy") %>
                 <% end %>
               </div>
             <% end %>
@@ -370,7 +370,7 @@
                           </ul>
                         <% end %>
                       <% else %>
-                        <span class="text-muted small">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
                       <% end %><br><br>
                       <% if @report.inspection_supplementary_explanation.present? %>
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
@@ -1027,7 +1027,7 @@
                           <li>・その他</li>
                       </td>
                       <td class="pl-3 table-right-column">
-                        <span class="text-muted small">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </td>
                     </tr>
                   <% end %>
@@ -1431,15 +1431,15 @@
                 <% if @sairan_hormones.present? || @day_of_sairans.present? %>
                   <div class="grapharea pt-3">
                     <div class="mb-0">
-                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
-                      <h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(ng/ml)</small></span></h6>
+                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
+                      <h6 class="float-right mb-0">P4<br><span class="small text-muted"><small>(ng/ml)</small></span></h6>
                     </div>
                     <canvas id="sairanE2P4"></canvas>
                   </div>
                   <div class="grapharea pt-3">
                     <div class="mb-0">
-                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
-                      <h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
+                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                      <h6 class="float-right mb-0">LH<br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
                     </div>
                     <canvas id="sairanFshLh"></canvas>
                   </div>
@@ -2092,15 +2092,15 @@
                 <% if @before_ishoku_hormones.present? || @day_of_shokihaiishokus.present? || @day_of_haibanhoishokus.present? || @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
                   <div class="grapharea pt-3">
                     <div class="mb-0">
-                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
-                      <h6 class="float-right mb-0">P4<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(ng/ml)</small></span></h6>
+                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
+                      <h6 class="float-right mb-0">P4<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(ng/ml)</small></span></h6>
                     </div>
                     <canvas id="ishokuE2P4"></canvas>
                   </div>
                   <div class="grapharea pt-3">
                     <div class="mb-0">
-                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<span class="small">&nbsp;(左)</span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
-                      <h6 class="float-right mb-0">LH<span class="small">&nbsp;(右)&nbsp;&nbsp;&nbsp;</span><br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
+                      <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                      <h6 class="float-right mb-0">LH<br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
                     </div>
                     <canvas id="ishokuFshLh"></canvas>
                   </div>
@@ -2385,8 +2385,12 @@
                   <tr>
                     <td class="result-left-column small"><%= @report.clinic.name %>を選んだ理由</td>
                     <td class="pl-3">
-                      <% if @report.clinic_selection_criteria.present? || @report.reasons_for_choosing_this_clinic.present? %>
-                        <span class="result-text"><%= @report.str_clinic_selection_criteria %></span><br>
+                      <% if @report.clinic_selection_criteria.present? && @report.reasons_for_choosing_this_clinic.present? %>
+                        <p class="result-text mb-0 pb-0"><%= @report.str_clinic_selection_criteria %></p><br>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
+                      <% elsif @report.clinic_selection_criteria.present? && @report.reasons_for_choosing_this_clinic.blank? %>
+                        <span class="result-text"><%= @report.str_clinic_selection_criteria %></span>
+                      <% elsif @report.clinic_selection_criteria.blank? && @report.reasons_for_choosing_this_clinic.present? %>
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
@@ -3188,8 +3192,12 @@
                 <tr>
                   <td class="result-left-column small">CL選定理由</td>
                   <td class="pl-4 result-right-column">
-                    <% if @report.clinic_selection_criteria.present? || @report.reasons_for_choosing_this_clinic.present? %>
-                      <span class="result-text"><%= @report.str_clinic_selection_criteria %></span><br>
+                    <% if @report.clinic_selection_criteria.present? && @report.reasons_for_choosing_this_clinic.present? %>
+                      <p class="result-text mb-0 pb-0"><%= @report.str_clinic_selection_criteria %></p><br>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
+                    <% elsif @report.clinic_selection_criteria.present? && @report.reasons_for_choosing_this_clinic.blank? %>
+                      <span class="result-text"><%= @report.str_clinic_selection_criteria %></span>
+                    <% elsif @report.clinic_selection_criteria.blank? && @report.reasons_for_choosing_this_clinic.present? %>
                       <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
                     <% else %>
                       <span class="text-muted small">未回答</span>
@@ -3987,7 +3995,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4038,7 +4046,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4089,7 +4097,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4140,7 +4148,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4191,7 +4199,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4242,7 +4250,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4293,7 +4301,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4344,7 +4352,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4395,7 +4403,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4446,7 +4454,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4497,7 +4505,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4548,7 +4556,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4599,7 +4607,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4650,7 +4658,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4701,7 +4709,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>
@@ -4752,7 +4760,7 @@
                       <% end %>
                     <% else %>
                       <div class="pl-3 pt-3 pb-0 m-0">
-                        <span class="small text-muted">未検&nbsp;<span class="small">(未回答)</span></span>
+                        <span class="small text-muted">未検査&nbsp;<span class="small">(未回答)</span></span>
                       </div>
                     <% end %>
                   </td>

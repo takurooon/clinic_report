@@ -9,13 +9,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
       </ul>
-      <span class="mr-3"><%= render 'partial/circle' %></span>
+      <% if user_signed_in? %>
+        <span class="mr-3"><%= render 'partial/circle' %></span>
+      <% end %>
       <ul class="navbar-nav nav-tabs small">
         <li class="nav-item active mx-1">
-          <%= header_link_item('最新', reports_path) %></<i>
+          <%= header_link_item('レポコ', reports_path) %></<i>
         </li>
         <li class="nav-item mx-1">
-          <%= header_link_item('クリニック別', category_clinics_path) %>
+          <%= header_link_item('クリニック', category_clinics_path) %>
+        </li>
+        <li class="nav-item mx-1">
+          <%= header_link_item('カテゴリ', category_search_path) %>
         </li>
         <% if current_user %>
           <li class="nav-item dropdown mx-1">
