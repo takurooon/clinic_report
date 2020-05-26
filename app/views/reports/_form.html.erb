@@ -650,6 +650,9 @@
         <small class="text-muted">
           IVM(体外成熟培養)とは、ホルモン剤などを添加した専用の培養液で1～2日培養し、体外で成熟させる方法。
         </small>
+        <small id="poster-tip" class="form-text text-muted">
+          <span class="small">→&nbsp;&nbsp;<a href="https://www.oakclinic-group.com/funin/ivm.html" rel="nofollow" target="window_name" onClick="disp('https://www.oakclinic-group.com/funin/ivm.html')"><u>IVMとは</u></a>&nbsp;&nbsp;(参考:&nbsp;医療法人オーク会)</span>
+        </small>
       </div>
 
       <div class="form-group">
@@ -1453,9 +1456,6 @@
             <div class="form-group mt-1 pt-1">
               <div class="label p-1"><%= f.label :industry_type, '業種', class: "question-matters" %></div>
               <%= f.select :industry_type, Report::HASH_INDUSTRY_TYPE.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
-              <small id="poster-tip" class="form-text text-muted">
-                  <span class="small">参考:&nbsp;<a href="http://www.pref.mie.lg.jp/common/content/000151581.pdf" target="window_name" onClick="disp('http://www.pref.mie.lg.jp/common/content/000151581.pdf')">業種コード一覧</a></span>
-              </small>
               <small id="poster-tip" class="form-text text-muted"><%= f.check_box :industry_type_status, {}, "hide", "show" %>非公開</small>
             </div>
             <div class="form-group">

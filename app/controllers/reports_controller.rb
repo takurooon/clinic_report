@@ -179,6 +179,11 @@ class ReportsController < ApplicationController
 
       gon.ishoku_hormones_hcg = haibanhoishoku_hormones.map { |h| h[:hcg] }
     else
+      gon.labels = before_ishoku_hormones_day
+      gon.ishoku_hormones_e2 = before_ishoku_hormones_e2
+      gon.ishoku_hormones_fsh = before_ishoku_hormones_fsh
+      gon.ishoku_hormones_lh = before_ishoku_hormones_lh
+      gon.ishoku_hormones_p4 = before_ishoku_hormones_p4
     end
 
     gon.clinic_name = @report.clinic.name
