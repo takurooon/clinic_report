@@ -5,7 +5,7 @@
         <div class="media-body px-2">
           <div class="row">
             <div class="col-3 pl-0 text-center px-0">
-              <%= link_to user_path(report.user_id) do %>
+              <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
                 <div class="icon-field">
                   <% if report.user.icon.attached? %>
                     <%= image_tag(report.user.icon, class:"icon_image") %>
