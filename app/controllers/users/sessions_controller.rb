@@ -8,6 +8,14 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  # ゲストログイン機能(参考: https://qiita.com/take18k_tech/items/35f9b5883f5be4c6e104)
+  def new_guest
+    user = User.guest
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+  # ここまで(ゲストログイン機能)
+
   # POST /resource/sign_in
   # ログイン失敗後は def failed に飛ぶように変更
   def create

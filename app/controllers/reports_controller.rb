@@ -193,24 +193,24 @@ class ReportsController < ApplicationController
     gon.impression_of_price = @report.impression_of_price
     gon.comfort_of_space = @report.comfort_of_space
     awt = @report.average_waiting_time
-    @awt = awt
     if awt.present?
       if awt <= 2
-        average_waiting_time = 1
+        @average_waiting_time = 1
       elsif awt <= 4
-        average_waiting_time = 2
+        @average_waiting_time = 2
       elsif awt <= 6
-        average_waiting_time = 3
+        @average_waiting_time = 3
       elsif awt <= 8
-        average_waiting_time = 4
+        @average_waiting_time = 4
       else
-        average_waiting_time = 5
+        @average_waiting_time = 5
       end
     else
-      average_waiting_time = 0
+      @average_waiting_time = nil
     end
     gon.clinic_evaluation = []
-    gon.clinic_evaluation << @report.doctor_quality << @report.staff_quality << @report.impression_of_technology << @report.impression_of_price << average_waiting_time << @report.comfort_of_space
+    gon.clinic_evaluation << @report.doctor_quality << @report.staff_quality << @report.impression_of_technology << @report.impression_of_price << @average_waiting_time << @report.comfort_of_space
+    @clinic_evaluation = gon.clinic_evaluation.compact
   end
 
   def new

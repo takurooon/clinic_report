@@ -2669,7 +2669,7 @@
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li><a href="#cl-info" class="active" data-toggle="tab">基本情報</a></li>
-                <li><a href="#evaluation" data-toggle="tab">備考</a></li>
+                <li><a href="#evaluation" data-toggle="tab">その他</a></li>
               </ul>
               <section class="child-tab-content active" id="cl-info">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>の</p>
@@ -2705,7 +2705,7 @@
               </section>
               <section class="child-tab-content" id="evaluation">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>の</p>
-                <h4 class="child-tab-title">備考情報</h4>
+                <h4 class="child-tab-title">その他情報</h4>
                 <div class="box4">
                   &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんから寄せられた&nbsp;<%= @report.clinic.name %>&nbsp;の
                     <% if @report.year_of_treatment_end.present? %>
@@ -2774,7 +2774,7 @@
                       <div class="box16">
                         <table class="clinic-scoring">
                           <tr>
-                            <td colspan="2" class="text-muted small"><small>※&nbsp;<%= @report.user.name %>さんによる満足度評価</small></td>
+                            <td colspan="2" class="text-muted small"><small>※&nbsp;<%= @report.user.name %>さんによる満足度評価&nbsp;&nbsp;(1〜5pt)</small></td>
                           </tr>
                           <tr>
                             <td class="text-right small text-muted">
@@ -2829,8 +2829,8 @@
                               待ち時間&nbsp;:
                             </td>
                             <td>
-                              <% if @awt.present? %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<%= @awt %>
+                              <% if @average_waiting_time.present? %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%= @average_waiting_time %>
                               <% else %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                               <% end %>
@@ -2852,7 +2852,11 @@
                       </div>
                     </div>
                     <div class="col-md-8 chart-container px-auto">
-                      <canvas id="clinicEvaluation"></canvas>
+                      <% if @clinic_evaluation.blank? %>
+                        未回答
+                      <% else %>
+                        <canvas id="clinicEvaluation"></canvas>
+                      <% end %>
                     </div>
                     <% if @report.clinic_review.present? %>
                       <div class="p-3">

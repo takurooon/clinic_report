@@ -4,7 +4,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :authenticate_user!
-  
+
+  # ゲストログイン機能(参考: https://qiita.com/take18k_tech/items/35f9b5883f5be4c6e104)
+  before_action :check_guest, only: %i[update destroy]
+  def check_guest
+    if resource.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
+    end
+  end
+  # ここまで(ゲストログイン機能)
+
   # GET /resource/sign_up
   # def new
   #   super

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  validates :name, presence: true, length: { maximum: 20 }
-  validates :email, presence: true, uniqueness: true
+  # 以下のバリデーション(3･4行)はゲストログイン機能を有効にするためコメントアウト。
+  # validates :name, presence: true, length: { maximum: 20 }
+  # validates :email, presence: true, uniqueness: true
   
   VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
   validates :password, format: { with: VALID_PASSWORD_REGEX },
@@ -24,6 +25,15 @@ class User < ApplicationRecord
   # mount_uploader :icon, ImageUploader
 
   enum gender: { female: 0, male: 1 }
+
+  # ゲストログイン機能(参考: https://qiita.com/take18k_tech/items/35f9b5883f5be4c6e104)
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64(10)
+      user.confirmed_at = Time.now
+    end
+  end
+  # ここまで(ゲストログイン機能)
 
   # passwordの入力無しでuser情報を更新する
   def update_without_current_password(params, *options)
