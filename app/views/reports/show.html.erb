@@ -2853,7 +2853,10 @@
                     </div>
                     <div class="col-md-8 chart-container px-auto">
                       <% if @clinic_evaluation.blank? %>
-                        未回答
+                        <p class="text-center py-3" style="color:#6D757D;">
+                          <%= @report.clinic.name %>
+                        </p>
+                        <%= image_tag("home/unrated_graph.png", alt: "unrated_graph", class: "img-fluid py-2 px-3", loading: "lazy") %>
                       <% else %>
                         <canvas id="clinicEvaluation"></canvas>
                       <% end %>

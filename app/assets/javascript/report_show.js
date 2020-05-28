@@ -29,36 +29,51 @@
 
 // 採卵移植グラフ表示
   window.onload = function() {
-    ctx = document.getElementById("sairanFshLh").getContext("2d");
-    window.myBar = new Chart(ctx, {
-      type: 'bar',
-      data: barChartData1,
-      options: complexChartOption1
-    });
-    ctx = document.getElementById("sairanE2P4").getContext("2d");
-    window.myBar = new Chart(ctx, {
-      type: 'bar',
-      data: barChartData2,
-      options: complexChartOption2
-    });
-    ctx = document.getElementById("ishokuFshLh").getContext("2d");
-    window.myBar = new Chart(ctx, {
-      type: 'bar',
-      data: barChartData3,
-      options: complexChartOption3
-    });
-    ctx = document.getElementById("ishokuE2P4").getContext("2d");
-    window.myBar = new Chart(ctx, {
-      type: 'bar',
-      data: barChartData4,
-      options: complexChartOption4
-    });
-    ctx = document.getElementById("ishokuhcg").getContext("2d");
-    window.myBar = new Chart(ctx, {
-      type: 'bar',
-      data: barChartData5,
-      options: complexChartOption5
-    });
+    element = document.getElementById("sairanFshLh");
+    if (element != null) {
+      ctx = element.getContext("2d");
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData1,
+        options: complexChartOption1
+      });
+    };
+    element = document.getElementById("sairanE2P4");
+    if (element != null) {
+      ctx = element.getContext("2d"); 
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData2,
+        options: complexChartOption2
+      });
+    };
+    element = document.getElementById("ishokuFshLh");
+    if (element != null) {
+      ctx = element.getContext("2d");
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData3,
+        options: complexChartOption3
+      });
+    };
+    element = document.getElementById("ishokuE2P4");
+    if (element != null) {
+      ctx = element.getContext("2d");
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData4,
+        options: complexChartOption4
+      });
+    };
+    element = document.getElementById("ishokuhcg");
+    if (element != null) {
+      ctx = element.getContext("2d");
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData5,
+        options: complexChartOption5
+      });
+    };
     ctx = document.getElementById("clinicEvaluation");
     window.clinicEvaluation = new Chart(ctx, {
       type: 'radar',
