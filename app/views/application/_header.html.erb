@@ -41,11 +41,15 @@
                 <%= link_to "ログイン", new_user_session_path, class:"btn btn-outline-secondary", "data-toggle": "modal", "data-target": "#signinModal" %>
               </div>
             </li>
+
+            <% if false %>
             <li class="nav-item">
               <div class="navbar-btn pt-3">
                 <%= link_to "新規登録", new_user_registration_path, class:"btn btn-outline-secondary", "data-toggle": "modal", "data-target": "#signUpModal" %>
               </div>
             </li>
+            <% end %>
+
           </ul>
         <% end %>
       </ul>
@@ -65,7 +69,6 @@
         </button>
       </div>
       <div class="modal-body">
-
         <% if alert %>
           <div class="alert alert-warning" role="alert">
             <p class="alert alert-error"><%= alert %></p>

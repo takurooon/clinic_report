@@ -3,12 +3,12 @@
 class Users::PasswordsController < Devise::PasswordsController
 
   # ゲストログイン機能(参考: https://qiita.com/take18k_tech/items/35f9b5883f5be4c6e104)
-  before_action :check_guest, only: :create
-  def check_guest
-    if params[:user][:email].downcase == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
-    end
-  end
+  # before_action :check_guest, only: :create
+  # def check_guest
+  #   if params[:user][:email].downcase == 'guest@example.com'
+  #     redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
+  #   end
+  # end
   # ここまで(ゲストログイン機能)
 
   # GET /resource/password/new

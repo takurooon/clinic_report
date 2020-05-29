@@ -24,8 +24,7 @@ Rails.application.routes.draw do
   get 'terms' => 'application#terms'
   get 'privacy' => 'application#privacy'
   get 'admin' => 'application#admin'
-  
-  # https://qiita.com/okamotchan/items/524971f1ae57b917e1ea
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
@@ -34,9 +33,9 @@ Rails.application.routes.draw do
   }
 
   # ゲストログイン機能(参考: https://qiita.com/take18k_tech/items/35f9b5883f5be4c6e104)
-  devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
-  end
+  # devise_scope :user do
+  #   post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+  # end
   # ここまで(ゲストログイン機能)
 
   resources :users, shallow: true do
