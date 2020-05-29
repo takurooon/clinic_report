@@ -306,7 +306,7 @@
 
       <div class="border rounded px-3 py-3 mt-5">
         <div class="form-group mt-0">
-          <div class="label p-1"><span class="question-matters"><%= f.label :f_infertility_factor, '女性側の不妊原因と思われるものを教えてください' %></span></div><br>
+          <div class="label p-1"><span class="question-matters"><%= f.label :f_infertility_factor, '女性側の不妊原因と思われるものを教えてください(選択肢準備途中)' %></span></div><br>
           <%= f.collection_check_boxes(:f_infertility_factor_ids, FInfertilityFactor.all, :id, :name) do |b| %>
             <div class="form-check form-check-inline checkbox checkbox">
               <%= b.label class: "form-check-label" do %>
@@ -328,7 +328,7 @@
 
         
         <div class="form-group">
-          <div class="label p-1"><span class="question-matters"><%= f.label :m_infertility_factor, '男性側の不妊原因と思われるものを教えてください' %></span></div><br>
+          <div class="label p-1"><span class="question-matters"><%= f.label :m_infertility_factor, '男性側の不妊原因と思われるものを教えてください(選択肢準備途中)' %></span></div><br>
           <%= f.collection_check_boxes(:m_infertility_factor_ids, MInfertilityFactor.all, :id, :name) do |b| %>
             <div class="form-check form-check-inline checkbox">
               <%= b.label class: "form-check-label" do %>
@@ -348,6 +348,7 @@
           <% end %>
         </div><br>
 
+        <% if false %>
         <div class="form-group">
           <div class="label p-1"><span class="question-matters"><%= f.label :f_disease, '女性側の疾患があれば教えてください' %></span></div><br>
           <%= f.collection_check_boxes(:f_disease_ids, FDisease.all, :id, :name) do |b| %>
@@ -358,7 +359,7 @@
               <% end %>
             </div>
           <% end %>
-          <% if false %>
+
           <div class="form-group pt-2">
             <div class="label p-1"><%= f.label :f_disease, "上記選択肢に無いので新たに疾患を追加する", class: "question-matters" %></div>
             <%= text_field_tag :fd_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
@@ -366,7 +367,6 @@
               <span class="small">複数ある場合は「半角カンマ」で区切ってください。</span>
             </small>
           </div>
-          <% end %>
         </div><br>
 
         <div class="form-group">
@@ -379,7 +379,6 @@
               <% end %>
             </div>
           <% end %>
-          <% if false %>
           <div class="form-group pt-2">
             <div class="label p-1"><%= f.label :m_disease, "上記選択肢に無いので新たに疾患を追加する", class: "question-matters" %></div>
             <%= text_field_tag :md_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
@@ -387,11 +386,11 @@
               <span class="small">複数ある場合は「半角カンマ」で区切ってください。</span>
             </small>
           </div>
-          <% end %>
         </div><br>
+        <% end %>
 
         <div class="form-group">
-          <div class="label p-1"><span class="question-matters"><%= f.label :f_surgery, '女性側の手術の既往歴があれば教えてください' %></span></div><br>
+          <div class="label p-1"><span class="question-matters"><%= f.label :f_surgery, '女性側の手術の既往歴があれば教えてください(選択肢準備途中)' %></span></div><br>
           <%= f.collection_check_boxes(:f_surgery_ids, FSurgery.all, :id, :name) do |b| %>
             <div class="form-check form-check-inline checkbox">
               <%= b.label class: "form-check-label" do %>
@@ -412,7 +411,7 @@
         </div><br>
 
         <div class="form-group">
-          <div class="label p-1"><span class="question-matters"><%= f.label :m_surgery, '男性側の手術の既往歴があれば教えてください' %></span></div><br>
+          <div class="label p-1"><span class="question-matters"><%= f.label :m_surgery, '男性側の手術の既往歴があれば教えてください(選択肢準備途中)' %></span></div><br>
           <%= f.collection_check_boxes(:m_surgery_ids, MSurgery.all, :id, :name) do |b| %>
             <div class="form-check form-check-inline checkbox">
               <%= b.label class: "form-check-label" do %>

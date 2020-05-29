@@ -82,6 +82,9 @@ Supplement.create([
   { name: "ラクトフェリン" },
   { name: "プラセンタ" },
   { name: "アルギニン" },
+  { name: "L-アルギニン" },
+  { name: "レスベラトロール" },
+  { name: "メラトニン" },
 ])
 
 ScopeOfDisclosure.create([
