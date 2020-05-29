@@ -49,15 +49,15 @@
                                     <% else %>
                                       <% if published.treatment_end_age == nil %>
                                         <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 24 %>
+                                      <% elsif published.treatment_end_age < 24 %>
                                         <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 29 %>
+                                      <% elsif published.treatment_end_age < 29 %>
                                         <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 34 %>
+                                      <% elsif published.treatment_end_age < 34 %>
                                         <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 39 %>
+                                      <% elsif published.treatment_end_age < 39 %>
                                         <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 44 %>
+                                      <% elsif published.treatment_end_age < 44 %>
                                         <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
                                       <% else %>
                                         <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
@@ -195,15 +195,15 @@
                                     <% else %>
                                       <% if draft.treatment_end_age == nil %>
                                         <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 24 %>
+                                      <% elsif draft.treatment_end_age < 24 %>
                                         <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 29 %>
+                                      <% elsif draft.treatment_end_age < 29 %>
                                         <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 34 %>
+                                      <% elsif draft.treatment_end_age < 34 %>
                                         <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 39 %>
+                                      <% elsif draft.treatment_end_age < 39 %>
                                         <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif report.treatment_end_age < 44 %>
+                                      <% elsif draft.treatment_end_age < 44 %>
                                         <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
                                       <% else %>
                                         <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
