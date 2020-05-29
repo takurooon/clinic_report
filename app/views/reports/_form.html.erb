@@ -1277,6 +1277,7 @@
             <% end %>
           </div>
           <% end %>
+          <% if false %>
           <div class="form-group pt-3">
             <div class="label p-1"><%= f.label :supplement, "上記選択肢に無いので新たにサプリ名を追加する", class: "question-matters" %></div>
             <%= text_field_tag :supplement_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
@@ -1284,12 +1285,11 @@
               <span class="small">複数ある場合は「半角カンマ」で区切ってください。</span>
             </small>
           </div><br>
-          <% if false %>
+          <% end %>
           <div class="form-group pt-2">
             <div class="label p-1"><%= f.label :supplement_cost, 'サプリには月平均どれくらい使っていましたか', class: "question-matters" %></div>
             <%= f.select :supplement_cost, Report::HASH_SUPPLEMENT_COST.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
           </div>
-          <% end %>
           <div class="form-group pt-2">
             <div class="label p-1"><%= f.label :supplement_supplementary_explanation, 'サプリについての補足説明', class: "question-matters" %></div>
             <%= f.text_area :supplement_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)最初はネットで調べて買っていましたが、途中からクリニックで販売していた〇〇サプリに切り替えました。お値段は〇〇円位でした。" %>
@@ -1407,7 +1407,7 @@
       </div>
 
       <div class="form-group mb-5">
-        <div class="label p-1"><%= f.label :period_of_time_spent_traveling, 'クリニックまでの通院時間はどれくらいかかりましたか', class: "question-matters" %></div>
+        <div class="label p-1"><%= f.label :period_of_time_spent_traveling, '自宅からクリニックまでの通院時間はどれくらいかかりましたか', class: "question-matters" %></div>
         <%= f.select :period_of_time_spent_traveling, Report::HASH_PERIOD_OF_TIME_SPENT_TRAVELING.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
       </div>
 
@@ -1420,7 +1420,7 @@
         <div class="work-style-inner row border rounded px-0 py-3">
           <div class="work-style-item col-6 px-2">
             <div class="form-group mt-1 pt-1">
-              <div class="label p-1"><%= f.label :work_style, '治療時の働き方', class: "question-matters" %></div>
+              <div class="label p-1"><%= f.label :work_style, '治療当時の働き方', class: "question-matters" %></div>
               <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
               <small id="poster-tip" class="form-text text-muted"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
               <div class="d-block d-md-none"><br><br></div>

@@ -17,7 +17,7 @@
       <div class="row pt-3 pb-0">
         <div class="d-none d-sm-block col-2">
           <div class="py-0 pl-0">
-            <%= link_to user_path(@report.user_id) do %>
+            <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
               <% if @report.user.icon.attached? %>
                 <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
               <% else %>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="d-block d-sm-none col-2 offset-1 pl-0">
-          <%= link_to user_path(@report.user_id) do %>
+          <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
             <% if @report.user.icon.attached? %>
                 <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
             <% else %>
@@ -362,7 +362,7 @@
                 <h5 class="child-tab-title"><span class="marker-underline">初期･基礎検査</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
-                    <td class="result-left-column small" style="width:30%">初期検査</td>
+                    <td class="result-left-column small" style="width:30%">受けた初期検査</td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.inspections.present? %>
                         <% @report.inspections.each do |inspection| %>
@@ -5001,7 +5001,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">初期検査</td>
+                  <td class="result-left-column small">受けた初期検査</td>
                   <td class="pl-4 result-right-column">
                     <% if @report.inspections.present? %>
                       <% @report.inspections.each do |inspection| %>
