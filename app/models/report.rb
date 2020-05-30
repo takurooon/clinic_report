@@ -32,8 +32,8 @@ class Report < ApplicationRecord
   # validate :validate_all_number_of_sairan
   # validate :validate_all_number_of_transplants
   validate :validate_content_length
-  validate :validate_content_attachment_byte_size
-  validate :validate_content_attachments_count
+  # validate :validate_content_attachment_byte_size
+  # validate :validate_content_attachments_count
   # validate :validate_content_report_count
 
   MAX_CONTENT_LENGTH = 100000
