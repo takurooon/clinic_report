@@ -1164,6 +1164,14 @@
                       <% end %>
                     </td>
                   </tr>
+                  <tr>
+                    <% if @report.sperm_description.present? %>
+                      <td class="result-left-column small">精液検査メモ</td>
+                      <td class="pl-3">
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.sperm_description.split("\n"),tag(:br)))).html_safe %></span>
+                      </td>
+                    <% end %>
+                  </tr>
                 </table>
               </section>
               <section class="child-tab-content" id="sairan">
@@ -3750,6 +3758,16 @@
                       <% end %>
                     <% else %>
                         <span class="text-muted small">未回答</span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small">精液検査メモ</td>
+                  <td class="pl-3">
+                    <% if @report.sperm_description.present? %>
+                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.sperm_description.split("\n"),tag(:br)))).html_safe %></span>
+                    <% else %>
+                      <span class="text-muted small">未回答</span>
                     <% end %>
                   </td>
                 </tr>
