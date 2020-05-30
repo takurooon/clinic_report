@@ -206,7 +206,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small">治療開始年齢</td>
+                    <td class="result-left-column small">このCLでの治療開始年齢</td>
                     <td class="pl-3">
                       <% if @report.treatment_start_age.present? %>
                         <span class="result-text"><%= @report.str_treatment_start_age %></span>
@@ -1514,7 +1514,7 @@
                     </tr>
                   <% end %>
                   <tr>
-                    <td class="result-left-column small">胚の成熟度</td>
+                    <td class="result-left-column small">妊娠に至った胚の成熟度</td>
                     <td class="pl-3">
                       <% if @report.egg_maturity.present? %>
                         <span class="result-text"><%= @report.str_egg_maturity %></span>
@@ -3869,7 +3869,7 @@
                   <% end %>
                 </tr>
                 <tr>
-                  <td class="result-left-column small">胚の成熟度</td>
+                  <td class="result-left-column small">妊娠に至った胚の成熟度</td>
                   <td class="pl-4 result-right-column">
                     <% if @report.egg_maturity.present? %>
                       <span class="result-text"><%= @report.str_egg_maturity %></span>
