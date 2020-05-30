@@ -2331,7 +2331,7 @@
                   </tr>
                   <tr>
                     <% if @report.fuiku_supplementary_explanation.present? %>
-                      <td class="result-left-column small">習慣流産や不育症について</td>
+                      <td class="result-left-column small">流産や不育症について</td>
                       <td class="pl-3">
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                       </td>
@@ -3391,7 +3391,7 @@
                 </tr>
                 <tr>
                   <% if @report.fuiku_supplementary_explanation.present? %>
-                    <td class="result-left-column small">習慣流産や不育症について</td>
+                    <td class="result-left-column small">流産や不育症について</td>
                     <td class="pl-4">
                       <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                     </td>
