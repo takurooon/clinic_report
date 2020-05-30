@@ -1125,6 +1125,11 @@
 
       <div class="form-group">
         <div class="border rounded px-3 py-3">
+          <div class="label p-1"><%= f.label :ishoku_type, '移植周期のタイプ', class: "question-matters" %></div>
+          <%= f.select :ishoku_type, Report::HASH_ISHOKU_TYPE.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
+          <small id="poster-tip" class="form-text text-muted">
+            当てはまるものを選択して下さい。
+          </small>
           <div class="label p-1"><span class="question-matters"><%= f.label :transfer_medicine, '移植周期で使用した薬剤' %></span></div>
           <%= f.collection_check_boxes(:transfer_medicine_ids, TransferMedicine.all, :id, :name) do |b| %>
             <div class="form-check checkbox">
@@ -1154,7 +1159,6 @@
                 <% end %>
               </div>
             <% end %>
-            <% if false %>
             <div class="form-group pt-2">
               <div class="label p-1"><%= f.label :transfer_option, "上記選択肢に無いので新たに移植オプションを追加する", class: "question-matters" %></div>
               <%= text_field_tag :to_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
@@ -1162,7 +1166,6 @@
                 <span class="small">複数ある場合は「半角カンマ」で区切ってください。</span>
               </small>
             </div>
-            <% end %>
           </div>
         </div>
       </div>

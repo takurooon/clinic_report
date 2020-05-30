@@ -1634,6 +1634,16 @@
                     </td>
                   </tr>
                   <tr>
+                    <td class="result-left-column small">移植周期のタイプ</td>
+                    <td class="pl-3">
+                      <% if @report.ishoku_type.present? %>
+                        <span class="result-text"><%= @report.str_ishoku_type %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
                     <td class="result-left-column small">移植1回あたりの費用</td>
                     <td class="pl-3">
                       <% if @report.ishoku_cost.present? %>

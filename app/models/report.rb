@@ -599,6 +599,7 @@ class Report < ApplicationRecord
 
   # treatment_periodの区分値(休み期間覗く正味治療期間/CL単位)
   HASH_TREATMENT_PERIOD = {
+    100 => "不明",
     1 => "〜1ヵ月",
     2 => "〜3ヵ月",
     3 => "〜半年",
@@ -617,7 +618,6 @@ class Report < ApplicationRecord
     16 => "〜9年",
     17 => "〜10年",
     99 => "それ以上",
-    100 => "不明"
   }
 
   def str_treatment_period
@@ -641,6 +641,7 @@ class Report < ApplicationRecord
 
   # amhの区分値(AMH値)
   HASH_AMH = {
+    100 => "不明",
     1 => "0.1以下",
     2 => "0.3以下",
     3 => "0.5以下",
@@ -665,7 +666,6 @@ class Report < ApplicationRecord
     22 => "9.5以下",
     23 => "10.0以下",
     99 => "10.1以上",
-    100 => "不明"
   }
 
   def str_amh
@@ -843,6 +843,7 @@ class Report < ApplicationRecord
 
   # blastocyst_grade2の区分値(胚盤胞以上の評価/ICM/TE)
   HASH_BLASTOCYST_GRADE2 = {
+    100 => "不明",
     1 => "AA",
     2 => "AB",
     3 => "AC",
@@ -859,7 +860,6 @@ class Report < ApplicationRecord
     14 => "不明B",
     15 => "不明C",
     99 => "その他",
-    100 => "不明"
   }
 
   def str_blastocyst_grade2
@@ -975,6 +975,7 @@ class Report < ApplicationRecord
 
   # supplement_costの区分値(サプリ月間平均購入額)
   HASH_SUPPLEMENT_COST = {
+    100 => "不明",
     1 => "1,000円未満",
     2 => "2,000円未満",
     3 => "3,000円未満",
@@ -1001,7 +1002,6 @@ class Report < ApplicationRecord
     24 => "25万円未満",
     25 => "30万円未満",
     99 => "30万円以上",
-    100 => "不明",
   }
 
   def str_supplement_cost
@@ -1010,6 +1010,7 @@ class Report < ApplicationRecord
 
   # sairan_costの区分値(CLでの1回あたりの採卵費用)
   HASH_SAIRAN_COST = {
+    100 => "不明",
     1 => "10万円未満",
     2 => "20万円未満",
     3 => "30万円未満",
@@ -1031,7 +1032,6 @@ class Report < ApplicationRecord
     19 => "190万円未満",
     20 => "200万円未満",
     99 => "それ以上",
-    100 => "不明"
   }
 
   def str_sairan_cost
@@ -1040,6 +1040,7 @@ class Report < ApplicationRecord
 
   # ishoku_costの区分値(CLでの1回あたりの移植費用)
   HASH_ISHOKU_COST = {
+    100 => "不明",
     1 => "10万円未満",
     2 => "20万円未満",
     3 => "30万円未満",
@@ -1061,7 +1062,6 @@ class Report < ApplicationRecord
     19 => "190万円未満",
     20 => "200万円未満",
     99 => "それ以上",
-    100 => "不明"
   }
 
   def str_ishoku_cost
@@ -1070,6 +1070,7 @@ class Report < ApplicationRecord
 
   # costの区分値(CLでの費用総額)
   HASH_COST = {
+    1000 => "不明",
     1 => "10万円未満",
     2 => "20万円未満",
     3 => "30万円未満",
@@ -1174,7 +1175,6 @@ class Report < ApplicationRecord
     102 => "2,000万円未満",
     103 => "5,000万円未満",
     104 => "5,000万円以上",
-    1000 => "不明"
   }
 
   def str_cost
@@ -1183,6 +1183,7 @@ class Report < ApplicationRecord
 
   # all_costの区分値(不妊治療に関する費用総額)
   HASH_ALL_COST = {
+    1000 => "不明",
     1 => "10万円未満",
     2 => "20万円未満",
     3 => "30万円未満",
@@ -1287,7 +1288,6 @@ class Report < ApplicationRecord
     102 => "2,000万円未満",
     103 => "5,000万円未満",
     104 => "5,000万円以上",
-    1000 => "不明"
   }
 
   def str_all_cost
@@ -1955,10 +1955,11 @@ class Report < ApplicationRecord
   #   hash[STR_NUMBER_OF_AIH_MAXIMUM] = STR_NUMBER_OF_AIH_MAXIMUM
   #   hash
   # end
-
-
+  
+  
   # first_age_to_startの区分値(治療開始年齢/妊活〜不妊治療全体)
   HASH_FIRST_AGE_TO_START = {
+    100 => "不明",
     19 => "19歳以下",
     20 => "20歳",
     21 => "21歳",
@@ -2001,7 +2002,6 @@ class Report < ApplicationRecord
     58 => "58歳",
     59 => "59歳",
     60 => "60歳以上",
-    100 => "不明",
   }
 
   def str_first_age_to_start
@@ -2038,10 +2038,11 @@ class Report < ApplicationRecord
   #   hash[STR_FIRST_AGE_TO_START_MAXIMUM] = STR_FIRST_AGE_TO_START_MAXIMUM
   #   hash
   # end
-
-
+  
+  
   # treatment_start_ageの区分値(治療開始年齢/CL単位)
   HASH_TREATMENT_START_AGE = {
+    100 => "不明",
     19 => "19歳以下",
     20 => "20歳",
     21 => "21歳",
@@ -2084,7 +2085,6 @@ class Report < ApplicationRecord
     58 => "58歳",
     59 => "59歳",
     60 => "60歳以上",
-    100 => "不明",
   }
 
   def str_treatment_start_age
@@ -2124,6 +2124,7 @@ class Report < ApplicationRecord
 
   # treatment_end_ageの区分値(治療終了年齢/CL単位)
   HASH_TREATMENT_END_AGE = {
+    100 => "不明",
     19 => "19歳以下",
     20 => "20歳",
     21 => "21歳",
@@ -2166,7 +2167,6 @@ class Report < ApplicationRecord
     58 => "58歳",
     59 => "59歳",
     60 => "60歳以上",
-    100 => "不明",
   }
 
   def str_treatment_end_age
@@ -2207,6 +2207,7 @@ class Report < ApplicationRecord
 
   # age_of_partner_at_end_of_treatmentの区分値(治療終了時のパートナーの年齢/CL単位)
   HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT = {
+    100 => "不明",
     19 => "19歳以下",
     20 => "20歳",
     21 => "21歳",
@@ -2249,7 +2250,6 @@ class Report < ApplicationRecord
     58 => "58歳",
     59 => "59歳",
     60 => "60歳以上",
-    100 => "不明",
   }
 
   def str_age_of_partner_at_end_of_treatment
@@ -2287,9 +2287,10 @@ class Report < ApplicationRecord
   #   hash[STR_AGE_OF_PARTNER_AT_END_OF_TREATMENT_MAXIMUM] = STR_AGE_OF_PARTNER_AT_END_OF_TREATMENT_MAXIMUM
   #   hash
   # end
-
+  
   # sairan_ageの区分値(採卵時の年齢)
   HASH_SAIRAN_AGE = {
+    100 => "不明",
     19 => "19歳以下",
     20 => "20歳",
     21 => "21歳",
@@ -2332,7 +2333,6 @@ class Report < ApplicationRecord
     58 => "58歳",
     59 => "59歳",
     60 => "60歳以上",
-    100 => "不明",
   }
 
   def str_sairan_age
@@ -2341,6 +2341,7 @@ class Report < ApplicationRecord
 
   # ishoku_ageの区分値(移植時の年齢)
   HASH_ISHOKU_AGE = {
+    100 => "不明",
     19 => "19歳以下",
     20 => "20歳",
     21 => "21歳",
@@ -2383,7 +2384,6 @@ class Report < ApplicationRecord
     58 => "58歳",
     59 => "59歳",
     60 => "60歳以上",
-    100 => "不明",
   }
 
   def str_ishoku_age
@@ -2392,6 +2392,7 @@ class Report < ApplicationRecord
 
   # total_number_of_sairanの区分値(全採卵回数/CL単位)
   HASH_TOTAL_NUMBER_OF_SAIRAN = {
+    100 => "不明",
     1 => "1回",
     2 => "2回",
     3 => "3回",
@@ -2413,7 +2414,6 @@ class Report < ApplicationRecord
     19 => "19回",
     20 => "20回",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_total_number_of_sairan
@@ -2448,6 +2448,7 @@ class Report < ApplicationRecord
 
   # all_number_of_sairanの区分値(全採卵回数/CL単位)
   HASH_ALL_NUMBER_OF_SAIRAN = {
+    100 => "不明",
     1 => "1回",
     2 => "2回",
     3 => "3回",
@@ -2469,7 +2470,6 @@ class Report < ApplicationRecord
     19 => "19回",
     20 => "20回",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_all_number_of_sairan
@@ -2502,9 +2502,21 @@ class Report < ApplicationRecord
   #   hash
   # end
 
+  # ishoku_typeの区分値(移植周期のタイプ)
+  HASH_ISHOKU_TYPE = {
+    1 => "自然周期",
+    2 => "ホルモン補充周期",
+    99 => "その他",
+    100 => "不明",
+  }
+
+  def str_ishoku_type
+    return HASH_ISHOKU_TYPE[self.ishoku_type]
+  end
 
   # total_number_of_transplantsの区分値(全移植回数/CL単位)
   HASH_TOTAL_NUMBER_OF_TRANSPLANTS = {
+    100 => "不明",
     1 => "1回",
     2 => "2回",
     3 => "3回",
@@ -2526,7 +2538,6 @@ class Report < ApplicationRecord
     19 => "19回",
     20 => "20回",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_total_number_of_transplants
@@ -2559,6 +2570,7 @@ class Report < ApplicationRecord
 
   # total_number_of_eggs_transplantedの区分値(全移植個数/CL単位)
   HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED = {
+    100 => "不明",
     1 => "1個",
     2 => "2個",
     3 => "3個",
@@ -2580,7 +2592,6 @@ class Report < ApplicationRecord
     19 => "19個",
     20 => "20個",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_total_number_of_eggs_transplanted
@@ -2614,6 +2625,7 @@ class Report < ApplicationRecord
 
   # all_number_of_transplantsの区分値(全移植回数/CL単位)
   HASH_ALL_NUMBER_OF_TRANSPLANTS = {
+    100 => "不明",
     1 => "1回",
     2 => "2回",
     3 => "3回",
@@ -2635,7 +2647,6 @@ class Report < ApplicationRecord
     19 => "19回",
     20 => "20回",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_all_number_of_transplants
@@ -2669,6 +2680,7 @@ class Report < ApplicationRecord
 
   # number_of_eggs_collectedの区分値(採卵個数/CL単位)
   HASH_NUMBER_OF_EGGS_COLLECTED = {
+    100 => "不明",
     1 => "1個",
     2 => "2個",
     3 => "3個",
@@ -2720,7 +2732,6 @@ class Report < ApplicationRecord
     49 => "49個",
     50 => "50個",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_number_of_eggs_collected
@@ -2776,6 +2787,7 @@ class Report < ApplicationRecord
 
   # number_of_fertilized_eggsの区分値(最新採卵周期での受精した個数/CL単位)
   HASH_NUMBER_OF_FERTILIZED_EGGS = {
+    100 => "不明",
     1 => "1個",
     2 => "2個",
     3 => "3個",
@@ -2827,7 +2839,6 @@ class Report < ApplicationRecord
     49 => "49個",
     50 => "50個",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_number_of_fertilized_eggs
@@ -2861,6 +2872,7 @@ class Report < ApplicationRecord
 
   # number_of_transferable_embryosの区分値(最新採卵周期での受精した個数/CL単位)
   HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS = {
+    100 => "不明",
     1 => "1個",
     2 => "2個",
     3 => "3個",
@@ -2912,7 +2924,6 @@ class Report < ApplicationRecord
     49 => "49個",
     50 => "50個",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_number_of_transferable_embryos
@@ -2946,6 +2957,7 @@ class Report < ApplicationRecord
 
   # number_of_frozen_eggsの区分値(最新周期での凍結できた数/CL単位)
   HASH_NUMBER_OF_FROZEN_EGGS = {
+    100 => "不明",
     0 => "0個",
     1 => "1個",
     2 => "2個",
@@ -2998,7 +3010,6 @@ class Report < ApplicationRecord
     49 => "49個",
     50 => "50個",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_number_of_frozen_eggs
@@ -3032,6 +3043,7 @@ class Report < ApplicationRecord
 
   # number_of_eggs_storedの区分値(凍結胚の在庫数/CL単位)
   HASH_NUMBER_OF_EGGS_STORED = {
+    100 => "不明",
     0 => "0個",
     1 => "1個",
     2 => "2個",
@@ -3084,7 +3096,6 @@ class Report < ApplicationRecord
     49 => "49個",
     50 => "50個",
     99 => "それ以上",
-    100 => "不明",
   }
 
   def str_number_of_eggs_stored
@@ -3230,6 +3241,7 @@ end
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
 #  ishoku_cost_explanation                      :text
+#  ishoku_type                                  :integer
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_aih                                :integer
 #  number_of_clinics                            :integer

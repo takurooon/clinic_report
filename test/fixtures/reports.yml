@@ -63,6 +63,7 @@
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
 #  ishoku_cost_explanation                      :text
+#  ishoku_type                                  :integer
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_aih                                :integer
 #  number_of_clinics                            :integer

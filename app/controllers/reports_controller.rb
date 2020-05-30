@@ -408,17 +408,17 @@ class ReportsController < ApplicationController
     # end
     # tm_list = tm_list.uniq
 
-    # to_name = params[:to_name].split(",")
-    # to_list = molding(to_name)
-    # to_ids = params[:report][:transfer_option_ids]
-    # to_ids.each do |to_id|
-    #   if to_id.blank?
-    #     next
-    #   end
-    #   to = TransferOption.find(to_id)
-    #   to_list << to.name
-    # end
-    # to_list = to_list.uniq
+    to_name = params[:to_name].split(",")
+    to_list = molding(to_name)
+    to_ids = params[:report][:transfer_option_ids]
+    to_ids.each do |to_id|
+      if to_id.blank?
+        next
+      end
+      to = TransferOption.find(to_id)
+      to_list << to.name
+    end
+    to_list = to_list.uniq
 
     # oe_name = params[:oe_name].split(",")
     # oe_list = molding(oe_name)
@@ -430,7 +430,7 @@ class ReportsController < ApplicationController
     #   oe = OtherEffort.find(oe_id)
     #   oe_list << oe.name
     # end
-    # to_list = to_list.uniq
+    # oe_list = oe_list.uniq
 
     # supplement_name = params[:supplement_name].split(",")
     # supplement_list = molding(supplement_name)
@@ -481,7 +481,7 @@ class ReportsController < ApplicationController
         # @report.save_mss(ms_list)
         # @report.save_sms(sm_list)
         # @report.save_tms(tm_list)
-        # @report.save_tos(to_list)
+        @report.save_tos(to_list)
         # @report.save_oes(oe_list)
         # @report.save_supplements(supplement_list)
         # @report.save_sods(sod_list)
@@ -696,17 +696,17 @@ class ReportsController < ApplicationController
     # end
     # tm_list = tm_list.uniq
 
-    # to_name = params[:to_name].split(",")
-    # to_list = molding(to_name)
-    # to_ids = params[:report][:transfer_option_ids]
-    # to_ids.each do |to_id|
-    #   if to_id.blank?
-    #     next
-    #   end
-    #   to = TransferOption.find(to_id)
-    #   to_list << to.name
-    # end
-    # to_list = to_list.uniq
+    to_name = params[:to_name].split(",")
+    to_list = molding(to_name)
+    to_ids = params[:report][:transfer_option_ids]
+    to_ids.each do |to_id|
+      if to_id.blank?
+        next
+      end
+      to = TransferOption.find(to_id)
+      to_list << to.name
+    end
+    to_list = to_list.uniq
 
     # oe_name = params[:oe_name].split(",")
     # oe_list = molding(oe_name)
@@ -718,7 +718,7 @@ class ReportsController < ApplicationController
     #   oe = OtherEffort.find(oe_id)
     #   oe_list << oe.name
     # end
-    # to_list = to_list.uniq
+    # oe_list = oe_list.uniq
 
     # supplement_name = params[:supplement_name].split(",")
     # supplement_list = molding(supplement_name)
@@ -795,7 +795,7 @@ class ReportsController < ApplicationController
         # @report.save_mss(ms_list)
         # @report.save_sms(sm_list)
         # @report.save_tms(tm_list)
-        # @report.save_tos(to_list)
+        @report.save_tos(to_list)
         # @report.save_oes(oe_list)
         # @report.save_supplements(supplement_list)
         # @report.save_sods(sod_list)
@@ -903,6 +903,7 @@ class ReportsController < ApplicationController
     #     :pgt2_status,
     #     :pgt_supplementary_explanation,
     #     :pgt_supplementary_explanation_status,
+    #     :ishoku_type,
     #     :total_number_of_transplants,
     #     :total_number_of_eggs_transplanted,
     #     :all_number_of_transplants,
@@ -1062,6 +1063,7 @@ class ReportsController < ApplicationController
         :pgt2_status,
         :pgt_supplementary_explanation,
         :pgt_supplementary_explanation_status,
+        :ishoku_type,
         :total_number_of_transplants,
         :total_number_of_eggs_transplanted,
         :all_number_of_transplants,

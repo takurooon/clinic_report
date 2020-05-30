@@ -461,6 +461,7 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.integer "blastocyst_grade2"
     t.text "blastocyst_grade2_supplementary_explanation"
     t.text "explanation_and_impression_about_sairan"
+    t.integer "ishoku_type"
     t.integer "total_number_of_transplants"
     t.integer "total_number_of_eggs_transplanted"
     t.integer "all_number_of_transplants"

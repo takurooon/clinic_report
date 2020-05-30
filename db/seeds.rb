@@ -206,6 +206,8 @@ TransferOption.create([
   { name: "エンブリオグルー" },
   { name: "AHA(アシステッドハッチング)" },
   { name: "スクラッチング法" },
+  { name: "ヒアルロン酸胚移植用培養液" },
+  { name: "その他" },
 ])
 
 OtherEffort.create([
