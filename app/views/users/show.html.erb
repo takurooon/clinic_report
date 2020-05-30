@@ -530,10 +530,12 @@
               <h4 class="text-muted">レポコはまだありません。</h4>
               <% if @user == current_user %>
                 <div class="py-5 text-center">
-                  <button class="btn btn-outline-primary btn-raised">
-                    <%= link_to "早速レポコを作成してみる！", new_report_path %>
-                    <i data-feather="edit" class="feather-icon-style4 mx-0 py-1 px-0"></i>
-                  </button>
+                  <%= link_to new_report_path do %>
+                    <button class="btn btn-outline-primary btn-raised">
+                      早速レポコを作成する！
+                      <i data-feather="edit" class="feather-icon-style4 mx-0 py-1 px-0"></i>
+                    </button>
+                  <% end %>
                 </div>
               <% end %>
             </div>
