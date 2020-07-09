@@ -7,22 +7,24 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :fertility_treatment_number
       t.integer :transplant_method
       t.integer :number_of_clinics
-      t.integer :clinic_selection_criteria
       t.integer :briefing_session
       t.integer :treatment_start_age
-      t.integer :first_age_to_start
       t.integer :treatment_end_age
       t.integer :age_of_partner_at_end_of_treatment
       t.integer :treatment_period
-      t.integer :number_of_aih
       t.text :inspection_supplementary_explanation
       t.integer :pgt1
-      t.integer :pgt1_status
+      t.integer :pgt1_status, default: 0, null: false
       t.integer :pgt2
-      t.integer :pgt2_status
+      t.integer :pgt2_status, default: 0, null: false
       t.text :pgt_supplementary_explanation
-      t.integer :pgt_supplementary_explanation_status
-      t.text :about_causes_of_infertility
+      t.integer :pgt_supplementary_explanation_status, default: 0, null: false
+      t.text :f_infertility_memo
+      t.text :m_infertility_memo
+      t.text :f_surgery_memo
+      t.text :m_surgery_memo
+      t.text :f_disease_memo
+      t.text :m_disease_memo
       t.float :semen_volume
       t.integer :semen_concentration
       t.float :sperm_advance_rate
@@ -31,8 +33,8 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :total_amount_of_sperm
       t.text :sperm_description
       t.integer :amh
-      t.integer :bmi
-      t.integer :smoking
+      t.integer :smoking_male
+      t.integer :smoking_female
       t.integer :types_of_eggs_and_sperm
       t.text :description_of_eggs_and_sperm_used
       t.integer :sairan_age
@@ -43,7 +45,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :use_of_anesthesia
       t.integer :selection_of_anesthesia_type
       t.integer :total_number_of_sairan
-      t.integer :all_number_of_sairan
       t.integer :number_of_eggs_collected
       t.integer :egg_maturity
       t.integer :ova_with_ivm
@@ -64,55 +65,37 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :ishoku_type
       t.integer :total_number_of_transplants
       t.integer :total_number_of_eggs_transplanted
-      t.integer :all_number_of_transplants
       t.integer :number_of_eggs_stored
-      t.integer :frozen_embryo_storage_cost
-      t.text :explanation_of_frozen_embryo_storage_cost
       t.text :explanation_and_impression_about_ishoku
-      t.integer :number_of_miscarriages
-      t.integer :number_of_stillbirths
       t.integer :fuiku
       t.text :fuiku_supplementary_explanation
-      t.integer :adoption
-      t.integer :other_effort_cost
-      t.text :other_effort_supplementary_explanation
-      t.integer :supplement_cost
-      t.text :supplement_supplementary_explanation
+      t.integer :f_other_effort_cost
+      t.integer :m_other_effort_cost
+      t.text :f_other_effort_memo
+      t.text :m_other_effort_memo
+      t.integer :f_supplement_cost
+      t.integer :m_supplement_cost
+      t.text :f_supplement_memo
+      t.text :m_supplement_memo
       t.integer :sairan_cost
       t.text :sairan_cost_explanation
       t.integer :ishoku_cost
       t.text :ishoku_cost_explanation
       t.integer :cost
       t.text :explanation_of_cost
-      t.integer :all_cost
-      t.integer :number_of_times_the_grant_was_received
-      t.integer :all_grant_amount
-      t.text :supplementary_explanation_of_grant
       t.integer :credit_card_validity
       t.integer :creditcards_can_be_used_from_more_than
       t.integer :average_waiting_time
+      t.integer :average_waiting_time2
       t.integer :reservation_method
       t.integer :online_consultation
       t.text :online_consultation_details
       t.integer :period_of_time_spent_traveling
       t.integer :work_style
-      t.integer :work_style_status
+      t.integer :work_style_status, default: 0, null: false
       t.integer :industry_type
-      t.integer :industry_type_status
-      t.integer :private_or_listed_company
-      t.integer :private_or_listed_company_status
-      t.integer :domestic_or_foreign_capital
-      t.integer :domestic_or_foreign_capital_status
-      t.integer :capital_size
-      t.integer :capital_size_status
-      t.integer :department
-      t.integer :department_status
-      t.integer :position
-      t.integer :position_status
-      t.integer :annual_income
+      t.integer :industry_type_status, default: 0, null: false
       t.integer :household_net_income
-      t.integer :number_of_employees
-      t.integer :number_of_employees_status
       t.integer :treatment_support_system
       t.integer :suspended_or_retirement_job
       t.text :about_work_and_working_style
@@ -127,8 +110,25 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :status, default: 0, null: false
       t.integer :prefecture_at_the_time_status, default: 0, null: false
       t.integer :city_at_the_time_status, default: 0, null: false
-      t.integer :annual_income_status, default: 0, null: false
       t.integer :household_net_income_status, default: 0, null: false
+      t.integer :rest_period
+      t.text :rest_period_memo
+      t.text :reason_for_transfer
+      t.text :most_sad_thing
+      t.integer :how_long_to_continue_treatment
+      t.text :how_long_to_continue_treatment_memo
+      t.text :inspection_supplementary_explanation_men
+      t.integer :pregnancy_date
+      t.text :pregnancy_date_memo
+      t.text :treatment_policy
+      t.text :cl_female_inspection_memo
+      t.text :cl_male_inspection_memo
+      t.integer :how_long_to_continue_treatment2
+      t.integer :followup_investigation
+      t.text :followup_investigation_memo
+      t.text :treatment_schedule_memo
+      t.text :special_inspection_memo
+
       t.timestamps
     end
   end

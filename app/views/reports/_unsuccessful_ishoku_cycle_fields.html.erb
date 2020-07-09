@@ -1,0 +1,30 @@
+<div class="nested-fields well well-compact">
+  <div class="m-0">
+  &nbsp;
+  <div>
+  <div class="box27 px-1 mb-0">
+    <span class="box-title">1回の移植ごと</span>
+    <table class="table table-sm table-bordered table-hover mb-0">
+      <tbody>
+        <tr>
+          <td><%= f.select :number, UnsuccessfulIshokuCycle::HASH_NUMBER_OF_ISHOKU.invert, { prompt: "何回目の移植？" }, { class: "form-control" } %></td>
+        </tr>
+        <tr>
+          <td><%= f.select :ishoku_age, UnsuccessfulIshokuCycle::HASH_ISHOKU_AGE.invert, { prompt: "移植時の年齢" }, { class: "form-control" } %></td>
+        </tr>
+        <tr>
+          <td><%= f.select :transplant_method, UnsuccessfulIshokuCycle::HASH_TRANSPLANT_METHOD.invert, { prompt: "移植方法" }, { class: "form-control" } %></td>
+        </tr>
+        <tr>
+          <td><%= f.select :ishoku_type, UnsuccessfulIshokuCycle::HASH_ISHOKU_TYPE.invert, { prompt: "移植タイプ" }, { class: "form-control" } %></td>
+        </tr>
+        <tr>
+          <td><%= f.text_area :memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "補足説明" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <small class="float-right pr-2 mt-1">
+    <%= link_to_remove_association "削除", f, class: "text-secondary" %>
+  </small>
+</div>

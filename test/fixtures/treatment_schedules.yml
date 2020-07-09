@@ -1,0 +1,34 @@
+# == Schema Information
+#
+# Table name: treatment_schedules
+#
+#  id            :bigint           not null, primary key
+#  cycle         :integer
+#  day           :integer
+#  exam_headline :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  report_id     :bigint           not null
+#
+# Indexes
+#
+#  index_treatment_schedules_on_report_id  (report_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (report_id => reports.id)
+#
+
+one:
+  day: 1
+  cycle: 1
+  exam_headline: 1
+  memo: MyText
+  report: one
+
+two:
+  day: 1
+  cycle: 1
+  exam_headline: 1
+  memo: MyText
+  report: two

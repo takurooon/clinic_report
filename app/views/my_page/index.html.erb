@@ -4,758 +4,384 @@
 <div class="d-sm d-md-none mb-0 pt-3">
   <h5 class="text-center jumbotron-underlayer__title my-0 py-3"><%= current_user.name %>さんのマイページ</h5>
 </div>
-<div class="container my-page-container">
-  <div class="mypage c-bg-light c-border-t c-border-r c-border-l d-none d-md-block">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 pt-4">
-          <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">レポコ</a>
-            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">プロフィール</a>
-          </div>
-        </div>
-        <div class="col-md-9">
-
-          <div class="row mt-5 mb-5 pr-3 d-none d-md-block">
-            <div class="col-lg-10 offset-lg-1 mr-1 pr-4">
-              <btton class="btn btn-raised btn-outline-primary float-right", data-toggle="modal" data-target="#reportPost">レポコを作成</button>
-            </div>
-          </div>
-
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-reports-list">
-              <div class="myindex">
-                <ul class="nav nav-tabs" id="myindex-tab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="publised-reports-tab" data-toggle="tab" href="#published-reports" role="tab" aria-controls="published-reports" aria-selected="true">公開レポコ</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="draft-reports-tab" data-toggle="tab" href="#draft-reports" role="tab" aria-controls="draft-reports" aria-selected="false">保存中(非公開)レポコ</a>
-                  </li>
-                </ul>
-
-                <div class="tab-content" id="publishedindex">
-                  <div class="tab-pane fade show active" id="published-reports" role="tabpanel" aria-labelledby="published-reports-tab">
-                    <% @published_reports.each do |published| %>
-                      <div class="row">
-                        <div class="card col-9 mb-4 pb-0 px-0 shadow-none">
-                          <div class="card-body px-2">
-                            <div class="media-body px-2">
-                              <div class="row">
-                                <div class="col-3 pl-0 text-center px-0">
-                                  <div class="icon-field">
-                                    <% if published.user.icon.attached? %>
-                                      <%= image_tag(published.user.icon, class:"icon_image") %>
-                                    <% else %>
-                                      <% if published.treatment_end_age == nil %>
-                                        <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif published.treatment_end_age < 24 %>
-                                        <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif published.treatment_end_age < 29 %>
-                                        <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif published.treatment_end_age < 34 %>
-                                        <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif published.treatment_end_age < 39 %>
-                                        <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif published.treatment_end_age < 44 %>
-                                        <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
-                                      <% else %>
-                                        <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
-                                      <% end %>
-                                    <% end %>
-                                  </div>
-                                  <div class="px-0">
-                                    <div class="align-items-center text-center pt-2">
-                                      <p class="mb-0 pb-1">
-                                        <% if published.treatment_end_age == nil %>
-                                          <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                        <% elsif published.treatment_end_age < 24 %>
-                                          <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                        <% elsif published.treatment_end_age < 29 %>
-                                          <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                        <% elsif published.treatment_end_age < 34 %>
-                                          <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                        <% elsif published.treatment_end_age < 39 %>
-                                          <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                        <% elsif published.treatment_end_age < 44 %>
-                                          <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                        <% else %>
-                                          <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                        <% end %>
-                                        <%= link_to published.user.name, user_path(published.user_id) %>
-                                      </p>
-                                      <p class="text-center mb-0 pb-0">
-                                        <% if published.user.gender == "female" %>
-                                          <span class="badge badge-pill badge-light text-muted p-0">女</span>
-                                        <% else %>
-                                          <span class="badge badge-pill badge-light text-muted p-0">男</span>
-                                        <% end %>
-                                        <% unless published.treatment_end_age.blank? %>
-                                          <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to published.treatment_end_age, "/category/age/#{published.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
-                                        <% end %>
-                                        <% if published.prefecture_at_the_time_status == "hide" %>
-                                          <span class="small text-muted">−−</span>
-                                        <% else %>
-                                          <span class="small text-muted"><%= link_to published.city.prefecture.name, "/category/area/prefecture/#{published.city.prefecture.name}", class: "text-muted" %></span>
-                                        <% end %>
-                                        <% if published.city_at_the_time_status == "hide" %>
-                                          <span class="small text-muted">−−</span>
-                                        <% else %>
-                                          <span class="small text-muted"><%= link_to published.city.name, "/category/area/city/#{published.city.name}", class: "text-muted" %></span>
-                                        <% end %>
-                                      </p>
-                                      <p class="text-center m-0 py-0 small">
-                                        <span class="small text-muted text-muted"><%= published.str_work_style %></span>
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-9 pl-0">
-                                  <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
-                                    <small class="text-muted">
-                                      <% unless published.current_state.blank? %>
-                                        <%= published.str_current_state %>&nbsp;&nbsp;
-                                      <% end %>
-                                      <% unless published.year_of_treatment_end.blank? %>
-                                        <%= published.year_of_treatment_end.year %>年終了
-                                      <% end %>
-                                      <% unless published.fertility_treatment_number.blank? %>
-                                        <%= published.str_fertility_treatment_number %>&nbsp;&nbsp;
-                                      <% end %>
-                                    </small>
-                                    <small class="text-muted">
-                                      <%= published.created_at.to_s(:datetime_jp) %>
-                                    </small>
-                                  </div>
-                                  <div>
-                                    <%= link_to published, data: { "turbolinks" => false } do %>
-                                      <h5 class="mb-0 mt-2 mx-0 mb-1">
-                                        <% if published.treatment_end_age %>
-                                          <%= published.treatment_end_age %>歳&nbsp;
-                                        <% end %>
-                                        <%= published.clinic.name %>のレポコ</h5>
-                                    <% end %>
-                                  </div>
-                                  <div class="justify-content-start mr-2">
-                                    <div class="personaldata-badge pr-2">
-                                      <span class="badge badge-light text-muted"><%= published.str_cost %></span>
-                                      <% inspections = published.inspections.shuffle.sample(1) %>
-                                      <% inspections.each do |inspection| %>
-                                        <span class="badge badge-light text-muted"><%= inspection.name %></span>
-                                      <% end %>
-                                      <% supplements = published.supplements.shuffle.sample(1) %>
-                                      <% supplements.each do |supplement| %>
-                                        <span class="badge badge-light text-muted"><%= supplement.name %></span>
-                                      <% end %>
-                                      <% tags = published.tags.shuffle.sample(1) %>
-                                      <% tags.each do |tag| %>
-                                        <span class="badge badge-light"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class:"text-muted" %></span>
-                                      <% end %>
-                                    </div>
-                                  </div>
-
-                                  <div>
-                                    <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
-                                      <div class="my-0 mr-2 clinic_address">
-                                        <%= link_to published.clinic.name, "/category/clinics/#{published.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to published.clinic.city.prefecture.name, "/category/clinics/prefecture/#{published.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to published.clinic.city.name, "/category/clinics/city/#{published.clinic.city.name}", class:"text-muted" %></span>
-                                      </div>
-                                    </div>
-                                    <div class="col-12 px-0">
-                                      <%= link_to published, data: { "turbolinks" => false } do %>
-                                        <div class="pt-2 pb-1 px-1">
-                                          <h6><%= strip_tags(published.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
-                                        </div>
-                                      <% end %>
-                                      <%= link_to published, data: { "turbolinks" => false } do %>
-                                        <div class="lead-content px-2 py-1">
-                                          <small><span class="text-muted"><%= strip_tags(published.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                                        </div>
-                                      <% end %>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+<div class="container p-0 mt-4">
+  <div class="col-md-8 offset-md-2 px-0">
+    <div class="parent-tab">
+      <ul class="nav nav-tabs parent-menu mt-0 pt-0">
+        <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">レポコ</a></li>
+        <li><a href="#tab_2" data-toggle="tab">プロフィール</a></li>
+      </ul>
+      <section class="parent-tab-content active mostleft-tab" id="tab_1">
+        <div class="child-tab">
+          <ul class="nav nav-tabs child-menu">
+            <li><a href="#tab_1_1" class="active" data-toggle="tab">公開</a></li>
+            <li><a href="#tab_1_2" data-toggle="tab">非公開</a></li>
+          </ul>
+          <section class="child-tab-content active px-1" id="tab_1_1">
+            <div class="container p-0 m-0">
+              <div class="text-right px-1">
+                <%= link_to " 新規作成", new_report_path, class: "btn btn-primary" %>
+              </div>
+              <% @published_reports.each do |published| %>
+                <div class="card-body px-2">
+                  <div class="media-body px-2">
+                    <div class="row">
+                      <div class="col-3 pl-0 text-center px-2">
+                        <div class="icon-field">
+                          <% if published.user.icon.attached? %>
+                            <%= image_tag(published.user.icon, class:"icon_image") %>
+                          <% else %>
+                            <% if published.treatment_end_age == nil %>
+                              <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif published.treatment_end_age < 24 %>
+                              <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif published.treatment_end_age < 29 %>
+                              <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif published.treatment_end_age < 34 %>
+                              <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif published.treatment_end_age < 39 %>
+                              <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif published.treatment_end_age < 44 %>
+                              <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
+                            <% else %>
+                              <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                        <div class="px-0">
+                          <div class="align-items-center text-center pt-2">
+                            <p class="mb-0 pb-1">
+                              <% if published.treatment_end_age == nil %>
+                                <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
+                              <% elsif published.treatment_end_age < 24 %>
+                                <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
+                              <% elsif published.treatment_end_age < 29 %>
+                                <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
+                              <% elsif published.treatment_end_age < 34 %>
+                                <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
+                              <% elsif published.treatment_end_age < 39 %>
+                                <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
+                              <% elsif published.treatment_end_age < 44 %>
+                                <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
+                              <% else %>
+                                <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
+                              <% end %>
+                              <%= link_to published.user.name, user_path(published.user_id) %>
+                            </p>
+                            <p class="text-center mb-0 pb-0">
+                              <% if published.user.gender == "female" %>
+                                <span class="badge badge-pill badge-light text-muted p-0">女</span>
+                              <% else %>
+                                <span class="badge badge-pill badge-light text-muted p-0">男</span>
+                              <% end %>
+                              <% unless published.treatment_end_age.blank? %>
+                                <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to published.treatment_end_age, "/category/age/#{published.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
+                              <% end %>
+                              <% if published.prefecture_at_the_time_status == "hide" %>
+                                <span class="small text-muted">−−</span>
+                              <% else %>
+                                <span class="small text-muted"><%= link_to published.city.prefecture.name, "/category/area/prefecture/#{published.city.prefecture.name}", class: "text-muted" %></span>
+                              <% end %>
+                              <% if published.city_at_the_time_status == "hide" %>
+                                <span class="small text-muted">−−</span>
+                              <% else %>
+                                <span class="small text-muted"><%= link_to published.city.name, "/category/area/city/#{published.city.name}", class: "text-muted" %></span>
+                              <% end %>
+                            </p>
+                            <p class="text-center m-0 py-0 small">
+                              <span class="small text-muted text-muted"><%= published.str_work_style %></span>
+                            </p>
                           </div>
                         </div>
                       </div>
-                    <% end %>
-                  </div>
-                  <div class="tab-pane fade show" id="draft-reports" role="tabpanel" aria-labelledby="draft-reports-tab">
-                    <% @draft_reports.each do |draft| %>
-                      <div class="row">
-                        <div class="card col-9 mb-4 pb-0 px-0 shadow-none">
-                          <div class="card-body px-2">
-                            <div class="media-body px-2">
-                              <div class="row">
-                                <div class="col-3 pl-0 text-center px-0">
-                                  <div class="icon-field">
-                                    <% if draft.user.icon.attached? %>
-                                      <%= image_tag(draft.user.icon, class:"icon_image") %>
-                                    <% else %>
-                                      <% if draft.treatment_end_age == nil %>
-                                        <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif draft.treatment_end_age < 24 %>
-                                        <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif draft.treatment_end_age < 29 %>
-                                        <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif draft.treatment_end_age < 34 %>
-                                        <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif draft.treatment_end_age < 39 %>
-                                        <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
-                                      <% elsif draft.treatment_end_age < 44 %>
-                                        <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
-                                      <% else %>
-                                        <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
-                                      <% end %>
-                                    <% end %>
-                                  </div>
-                                  <div class="px-0">
-                                    <div class="align-items-center text-center pt-2">
-                                      <p class="mb-0 pb-1">
-                                        <% if draft.treatment_end_age == nil %>
-                                          <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                        <% elsif draft.treatment_end_age < 24 %>
-                                          <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                        <% elsif draft.treatment_end_age < 29 %>
-                                          <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                        <% elsif draft.treatment_end_age < 34 %>
-                                          <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                        <% elsif draft.treatment_end_age < 39 %>
-                                          <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                        <% elsif draft.treatment_end_age < 44 %>
-                                          <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                        <% else %>
-                                          <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                        <% end %>
-                                        <%= link_to draft.user.name, user_path(draft.user_id) %>
-                                      </p>
-                                      <p class="text-center mb-0 pb-0">
-                                        <% if draft.user.gender == "female" %>
-                                          <span class="badge badge-pill badge-light text-muted p-0">女</span>
-                                        <% else %>
-                                          <span class="badge badge-pill badge-light text-muted p-0">男</span>
-                                        <% end %>
-                                        <% unless draft.treatment_end_age.blank? %>
-                                          <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to draft.treatment_end_age, "/category/age/#{draft.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
-                                        <% end %>
-                                        <% if draft.prefecture_at_the_time_status == "hide" %>
-                                          <span class="small text-muted">−−</span>
-                                        <% else %>
-                                          <span class="small text-muted"><%= link_to draft.city.prefecture.name, "/category/area/prefecture/#{draft.city.prefecture.name}", class: "text-muted" %></span>
-                                        <% end %>
-                                        <% if draft.city_at_the_time_status == "hide" %>
-                                          <span class="small text-muted">−−</span>
-                                        <% else %>
-                                          <span class="small text-muted"><%= link_to draft.city.name, "/category/area/city/#{draft.city.name}", class: "text-muted" %></span>
-                                        <% end %>
-                                      </p>
-                                      <p class="text-center m-0 py-0 small">
-                                        <span class="small text-muted text-muted"><%= draft.str_work_style %></span>
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-9 pl-0">
-                                  <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
-                                    <small class="text-muted">
-                                      <% unless draft.current_state.blank? %>
-                                        <%= draft.str_current_state %>&nbsp;&nbsp;
-                                      <% end %>
-                                      <% unless draft.year_of_treatment_end.blank? %>
-                                        <%= draft.year_of_treatment_end.year %>年終了
-                                      <% end %>
-                                      <% unless draft.fertility_treatment_number.blank? %>
-                                        <%= draft.str_fertility_treatment_number %>&nbsp;&nbsp;
-                                      <% end %>
-                                    </small>
-                                    <small class="text-muted">
-                                      <%= draft.created_at.to_s(:datetime_jp) %>
-                                    </small>
-                                  </div>
-                                  <div>
-                                    <%= link_to draft, data: { "turbolinks" => false } do %>
-                                      <h5 class="mb-0 mt-2 mx-0 mb-1">
-                                        <% if draft.treatment_end_age %>
-                                          <%= draft.treatment_end_age %>歳&nbsp;
-                                        <% end %>
-                                        <%= draft.clinic.name %>のレポコ</h5>
-                                    <% end %>
-                                  </div>
-                                  <div class="justify-content-start mr-2">
-                                    <div class="personaldata-badge pr-2">
-                                      <span class="badge badge-light text-muted"><%= draft.str_cost %></span>
-                                      <% inspections = draft.inspections.shuffle.sample(1) %>
-                                      <% inspections.each do |inspection| %>
-                                        <span class="badge badge-light text-muted"><%= inspection.name %></span>
-                                      <% end %>
-                                      <% supplements = draft.supplements.shuffle.sample(1) %>
-                                      <% supplements.each do |supplement| %>
-                                        <span class="badge badge-light text-muted"><%= supplement.name %></span>
-                                      <% end %>
-                                      <% tags = draft.tags.shuffle.sample(1) %>
-                                      <% tags.each do |tag| %>
-                                        <span class="badge badge-light"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class:"text-muted" %></span>
-                                      <% end %>
-                                    </div>
-                                  </div>
+                      <div class="col-9 pl-2">
+                        <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
+                          <small class="text-muted">
+                            <% unless published.current_state.blank? %>
+                              <%= published.str_current_state %>&nbsp;&nbsp;
+                            <% end %>
+                            <% unless published.year_of_treatment_end.blank? %>
+                              <%= published.year_of_treatment_end.year %>年終了
+                            <% end %>
+                            <% unless published.fertility_treatment_number.blank? %>
+                              <%= published.str_fertility_treatment_number %>&nbsp;&nbsp;
+                            <% end %>
+                          </small>
+                          <small class="text-muted">
+                            <%= published.created_at.to_s(:datetime_jp) %>
+                          </small>
+                        </div>
+                        <div>
+                          <%= link_to published, data: { "turbolinks" => false } do %>
+                            <h5 class="mb-0 mt-2 mx-0 mb-1">
+                              <% if published.treatment_end_age %>
+                                <%= published.treatment_end_age %>歳&nbsp;
+                              <% end %>
+                              <%= published.clinic.name %>のレポコ</h5>
+                          <% end %>
+                        </div>
+                        <div class="justify-content-start mr-2">
+                          <div class="personaldata-badge pr-2">
+                            <span class="badge badge-light text-muted"><%= published.str_cost %></span>
+                            <% inspections = published.inspections.shuffle.sample(1) %>
+                            <% inspections.each do |inspection| %>
+                              <span class="badge badge-light text-muted"><%= inspection.name %></span>
+                            <% end %>
+                            <% supplements = published.supplements.shuffle.sample(1) %>
+                            <% supplements.each do |supplement| %>
+                              <span class="badge badge-light text-muted"><%= supplement.name %></span>
+                            <% end %>
+                            <% tags = published.tags.shuffle.sample(1) %>
+                            <% tags.each do |tag| %>
+                              <span class="badge badge-light"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class:"text-muted" %></span>
+                            <% end %>
+                          </div>
+                        </div>
 
-                                  <div>
-                                    <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
-                                      <div class="my-0 mr-2 clinic_address">
-                                        <%= link_to draft.clinic.name, "/category/clinics/#{draft.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to draft.clinic.city.prefecture.name, "/category/clinics/prefecture/#{draft.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to draft.clinic.city.name, "/category/clinics/city/#{draft.clinic.city.name}", class:"text-muted" %></span>
-                                      </div>
-                                    </div>
-                                    <div class="col-12 px-0">
-                                      <%= link_to draft, data: { "turbolinks" => false } do %>
-                                        <div class="pt-2 pb-1 px-1">
-                                          <h6><%= strip_tags(draft.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
-                                        </div>
-                                      <% end %>
-                                      <%= link_to draft, data: { "turbolinks" => false } do %>
-                                        <div class="lead-content px-2 py-1">
-                                          <small><span class="text-muted"><%= strip_tags(draft.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                                        </div>
-                                      <% end %>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                        <div>
+                          <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
+                            <div class="my-0 mr-2 clinic_address">
+                              <%= link_to published.clinic.name, "/category/clinics/#{published.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to published.clinic.city.prefecture.name, "/category/clinics/prefecture/#{published.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to published.clinic.city.name, "/category/clinics/city/#{published.clinic.city.name}", class:"text-muted" %></span>
                             </div>
+                          </div>
+                          <div class="col-12 px-0">
+                            <%= link_to published, data: { "turbolinks" => false } do %>
+                              <div class="pt-2 pb-1 px-1">
+                                <h6><%= strip_tags(published.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
+                              </div>
+                            <% end %>
+                            <%= link_to published, data: { "turbolinks" => false } do %>
+                              <div class="lead-content px-2 py-1">
+                                <small><span class="text-muted"><%= strip_tags(published.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                              </div>
+                            <% end %>
                           </div>
                         </div>
                       </div>
-                    <% end %>
+                    </div>
                   </div>
                 </div>
+              <% end %>
+            </div>
+          </section>
+          <section class="child-tab-content px-1" id="tab_1_2">
+            <div class="container p-0 m-0">
+              <div class="text-right px-1">
+                <%= link_to " 新規作成", new_report_path, class: "btn btn-primary" %>
               </div>
-            </div>
-
-
-            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-              <%= link_to " プロフィールを編集", edit_user_registration_path, class: "btn btn-primary float-right mb-3" %>
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <th class="profile-item-l">ユーザー名</th>
-                    <td class="profile-item-r">
-                      <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>メールアドレス</th>
-                    <td>
-                      <%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>性別</th>
-                    <td>
-                      <% if @user.gender == "female" %>
-                        <%= "女" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                      <% else %>
-                        <%= "男" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>生年月</th>
-                    <td>
-                      <% if @user.birthday.blank? %>
-                        <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
-                      <% else %>
-                        <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>リンク</th>
-                    <td>
-                      <% if @user.link.blank? %>
-                      <span>未登録</span>&nbsp;&nbsp;<small class="text-muted">(ブログやSNSのリンクなど)</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
-                      <% else %>
-                        <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>自己紹介</th>
-                    <td>
-                      <%= @user.self_introduction %><br>
-                      <% if @user.self_introduction.blank? %>
-                      <i data-feather="chevron-right" class="feather-icon-style2"></i><strong><%= link_to "書いていないあなた！ぜひ書きましょう！", edit_user_registration_path %></strong>
-                      <% else %>
-                        <small><%= link_to "もっと詳細情報を載せてみる", edit_user_registration_path %></div>
-                      <% end %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="mypage-sm d-sm d-md-none">
-    <ul class="nav nav-tabs" id="mypage-sm-tab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active py-3" id="reports-tab" data-toggle="tab" href="#reports" role="tab" aria-controls="reports" aria-selected="true">レポコ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link py-3" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">プロフィール</a>
-      </li>
-    </ul>
-
-    <div class="tab-content" id="myreports">
-      <div class="tab-pane fade show active mt-0" id="reports" role="tabpanel" aria-labelledby="reports-tab">
-        <div class="border-light mb-3" style="max-width:100%;">
-          
-          <div class="myindex">
-            <ul class="nav nav-tabs" id="myindex-tab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active pt-1 pb-0 mb-0" id="publised-reports-tab" data-toggle="tab" href="#sm-published-reports" role="tab" aria-controls="published-reports" aria-selected="true">公開レポコ</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link pt-1 pb-0 mb-0" id="draft-reports-tab" data-toggle="tab" href="#sm-draft-reports" role="tab" aria-controls="draft-reports" aria-selected="false">保存中(非公開)レポコ</a>
-              </li>
-            </ul>
-
-            <div class="tab-content" id="publishedindex">
-              <div class="tab-pane fade show active mt-3" id="sm-published-reports" role="tabpanel" aria-labelledby="published-reports-tab">
-                <% @published_reports.each do |published| %>
-                  <div class="row">
-                    <div class="card col-12 mb-4 pb-0 px-0 shadow-none">
-                      <div class="card-body px-2">
-                        <div class="media-body px-2">
-                          <div class="row">
-                            <div class="col-3 pl-0 text-center px-0">
-                              <%= link_to user_path(published.user_id) do %>
-                                <div class="icon-field">
-                                  <% if published.user.icon.attached? %>
-                                    <%= image_tag(published.user.icon, class:"icon_image") %>
-                                  <% else %>
-                                    <% if published.treatment_end_age == nil %>
-                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif published.treatment_end_age < 24 %>
-                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif published.treatment_end_age < 29 %>
-                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif published.treatment_end_age < 34 %>
-                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif published.treatment_end_age < 39 %>
-                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif published.treatment_end_age < 44 %>
-                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
-                                    <% else %>
-                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
-                                    <% end %>
-                                  <% end %>
-                                </div>
+              <% @draft_reports.each do |draft| %>
+                <div class="card-body px-2">
+                  <div class="media-body px-2">
+                    <div class="row">
+                      <div class="col-3 pl-0 text-center px-2">
+                        <div class="icon-field">
+                          <% if draft.user.icon.attached? %>
+                            <%= image_tag(draft.user.icon, class:"icon_image") %>
+                          <% else %>
+                            <% if draft.treatment_end_age == nil %>
+                              <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif draft.treatment_end_age < 24 %>
+                              <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif draft.treatment_end_age < 29 %>
+                              <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif draft.treatment_end_age < 34 %>
+                              <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif draft.treatment_end_age < 39 %>
+                              <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
+                            <% elsif draft.treatment_end_age < 44 %>
+                              <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
+                            <% else %>
+                              <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                        <div class="px-0">
+                          <div class="align-items-center text-center pt-2">
+                            <p class="mb-0 pb-1">
+                              <% if draft.treatment_end_age == nil %>
+                                <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
+                              <% elsif draft.treatment_end_age < 24 %>
+                                <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
+                              <% elsif draft.treatment_end_age < 29 %>
+                                <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
+                              <% elsif draft.treatment_end_age < 34 %>
+                                <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
+                              <% elsif draft.treatment_end_age < 39 %>
+                                <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
+                              <% elsif draft.treatment_end_age < 44 %>
+                                <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
+                              <% else %>
+                                <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
                               <% end %>
-
-                              <div class="d-sm d-lg-none px-2">
-                                <div class="small align-items-center text-center pt-0">
-                                  <p class="mb-0">
-                                    <% if published.treatment_end_age == nil %>
-                                      <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                    <% elsif published.treatment_end_age < 24 %>
-                                      <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "15px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                    <% elsif published.treatment_end_age < 29 %>
-                                      <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "15px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                    <% elsif published.treatment_end_age < 34 %>
-                                      <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "15px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                    <% elsif published.treatment_end_age < 39 %>
-                                      <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "15px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                    <% elsif published.treatment_end_age < 44 %>
-                                      <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "15px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                    <% else %>
-                                      <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
-                                    <% end %>
-                                    <%= link_to published.user.name, user_path(published.user_id) %>
-                                  </p>
-                                  <p class="text-center m-0 py-0">
-                                    <% if published.user.gender == "female" %>
-                                      <span class="badge badge-pill badge-light text-muted p-0"><%= "女" %></span>
-                                    <% else %>
-                                      <span class="badge badge-pill badge-light text-muted p-0"><%= "男" %></span>
-                                    <% end %>
-                                    <% if published.treatment_end_age.present? %>
-                                      <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to published.treatment_end_age, "/category/age/#{published.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
-                                    <% end %>
-                                  </p>
-                                  <p class="text-center m-0 py-0">
-                                    <% if published.prefecture_at_the_time_status == "hide" %>
-                                      <span class="small text-muted">−</span>
-                                    <% else %>
-                                      <span class="small text-muted"><%= link_to published.city.prefecture.name, "/category/area/prefecture/#{published.city.prefecture.name}", class: "text-muted" %></span>
-                                    <% end %>
-                                    <% if published.city_at_the_time_status == "hide" %>
-                                      <span class="small text-muted">−</span>
-                                    <% else %>
-                                      <span class="small text-muted"><%= link_to published.city.name, "/category/area/city/#{published.city.name}", class: "text-muted" %></span>
-                                    <% end %>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-9 pl-0">
-                              <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
-                                <small class="text-muted">
-                                  <% unless published.current_state.blank? %>
-                                    <%= published.str_current_state %>&nbsp;&nbsp;
-                                  <% end %>
-                                  <% unless published.year_of_treatment_end.blank? %>
-                                    <%= published.year_of_treatment_end.year %>年終了
-                                  <% end %>
-                                </small>
-                                <small class="text-muted">
-                                  <%= published.created_at.to_s(:datetime_jp) %>
-                                </small>
-                              </div>
-                              <div>
-                                <%= link_to published, data: { "turbolinks" => false } do %>
-                                  <h6 class="mb-0 mt-2 mx-0 mb-1">
-                                    <% if published.treatment_end_age %>
-                                      <%= published.treatment_end_age %>歳&nbsp;
-                                    <% end %>
-                                    <%= published.clinic.name %>のレポコ</h6>
-                                <% end %>
-                              </div>
-
-                              <div>
-                                <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
-                                  <div class="mb-0 mr-2 clinic_address">
-                                    <div class="col-12 pl-0">
-                                      <%= link_to published.clinic.name, "/category/clinics/#{published.clinic.id}", class: "text-muted small" %>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-12 px-0">
-                              <%= link_to published, data: { "turbolinks" => false } do %>
-                                <div class="py-2 px-3">
-                                  <h7><%= strip_tags(published.title.to_s).gsub(/[\n]/,"").strip.truncate(30) %></h7>
-                                </div>
+                              <%= link_to draft.user.name, user_path(draft.user_id) %>
+                            </p>
+                            <p class="text-center mb-0 pb-0">
+                              <% if draft.user.gender == "female" %>
+                                <span class="badge badge-pill badge-light text-muted p-0">女</span>
+                              <% else %>
+                                <span class="badge badge-pill badge-light text-muted p-0">男</span>
                               <% end %>
-                              <%= link_to published, data: { "turbolinks" => false } do %>
-                                <div  class="lead-content px-2 py-1">
-                                  <small><%= strip_tags(published.content.to_s).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                                </div>
+                              <% unless draft.treatment_end_age.blank? %>
+                                <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to draft.treatment_end_age, "/category/age/#{draft.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
                               <% end %>
+                              <% if draft.prefecture_at_the_time_status == "hide" %>
+                                <span class="small text-muted">−−</span>
+                              <% else %>
+                                <span class="small text-muted"><%= link_to draft.city.prefecture.name, "/category/area/prefecture/#{draft.city.prefecture.name}", class: "text-muted" %></span>
+                              <% end %>
+                              <% if draft.city_at_the_time_status == "hide" %>
+                                <span class="small text-muted">−−</span>
+                              <% else %>
+                                <span class="small text-muted"><%= link_to draft.city.name, "/category/area/city/#{draft.city.name}", class: "text-muted" %></span>
+                              <% end %>
+                            </p>
+                            <p class="text-center m-0 py-0 small">
+                              <span class="small text-muted text-muted"><%= draft.str_work_style %></span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-9 pl-2">
+                        <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
+                          <small class="text-muted">
+                            <% unless draft.current_state.blank? %>
+                              <%= draft.str_current_state %>&nbsp;&nbsp;
+                            <% end %>
+                            <% unless draft.year_of_treatment_end.blank? %>
+                              <%= draft.year_of_treatment_end.year %>年終了
+                            <% end %>
+                            <% unless draft.fertility_treatment_number.blank? %>
+                              <%= draft.str_fertility_treatment_number %>&nbsp;&nbsp;
+                            <% end %>
+                          </small>
+                          <small class="text-muted">
+                            <%= draft.created_at.to_s(:datetime_jp) %>
+                          </small>
+                        </div>
+                        <div>
+                          <%= link_to draft, data: { "turbolinks" => false } do %>
+                            <h5 class="mb-0 mt-2 mx-0 mb-1">
+                              <% if draft.treatment_end_age %>
+                                <%= draft.treatment_end_age %>歳&nbsp;
+                              <% end %>
+                              <%= draft.clinic.name %>のレポコ</h5>
+                          <% end %>
+                        </div>
+                        <div class="justify-content-start mr-2">
+                          <div class="personaldata-badge pr-2">
+                            <span class="badge badge-light text-muted"><%= draft.str_cost %></span>
+                            <% inspections = draft.inspections.shuffle.sample(1) %>
+                            <% inspections.each do |inspection| %>
+                              <span class="badge badge-light text-muted"><%= inspection.name %></span>
+                            <% end %>
+                            <% supplements = draft.supplements.shuffle.sample(1) %>
+                            <% supplements.each do |supplement| %>
+                              <span class="badge badge-light text-muted"><%= supplement.name %></span>
+                            <% end %>
+                            <% tags = draft.tags.shuffle.sample(1) %>
+                            <% tags.each do |tag| %>
+                              <span class="badge badge-light"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class:"text-muted" %></span>
+                            <% end %>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
+                            <div class="my-0 mr-2 clinic_address">
+                              <%= link_to draft.clinic.name, "/category/clinics/#{draft.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to draft.clinic.city.prefecture.name, "/category/clinics/prefecture/#{draft.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to draft.clinic.city.name, "/category/clinics/city/#{draft.clinic.city.name}", class:"text-muted" %></span>
                             </div>
+                          </div>
+                          <div class="col-12 px-0">
+                            <%= link_to draft, data: { "turbolinks" => false } do %>
+                              <div class="pt-2 pb-1 px-1">
+                                <h6><%= strip_tags(draft.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
+                              </div>
+                            <% end %>
+                            <%= link_to draft, data: { "turbolinks" => false } do %>
+                              <div class="lead-content px-2 py-1">
+                                <small><span class="text-muted"><%= strip_tags(draft.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                              </div>
+                            <% end %>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                <% end %>
-              </div>
-              <div class="tab-pane fade show mt-3" id="sm-draft-reports" role="tabpanel" aria-labelledby="draft-reports-tab">
-                <% @draft_reports.each do |draft| %>
-                  <div class="row">
-                    <div class="card col-12 mb-4 pb-0 px-0 shadow-none">
-                      <div class="card-body px-2">
-                        <div class="media-body px-2">
-                          <div class="row">
-                            <div class="col-3 pl-0 text-center px-0">
-                              <%= link_to user_path(draft.user_id) do %>
-                                <div class="icon-field">
-                                  <% if draft.user.icon.attached? %>
-                                    <%= image_tag(draft.user.icon, class:"icon_image") %>
-                                  <% else %>
-                                    <% if draft.treatment_end_age == nil %>
-                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif draft.treatment_end_age < 24 %>
-                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif draft.treatment_end_age < 29 %>
-                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif draft.treatment_end_age < 34 %>
-                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif draft.treatment_end_age < 39 %>
-                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
-                                    <% elsif draft.treatment_end_age < 44 %>
-                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
-                                    <% else %>
-                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
-                                    <% end %>
-                                  <% end %>
-                                </div>
-                              <% end %>
-
-                              <div class="d-sm d-lg-none px-2">
-                                <div class="small align-items-center text-center pt-0">
-                                  <p class="mb-0">
-                                    <% if draft.treatment_end_age == nil %>
-                                      <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                    <% elsif draft.treatment_end_age < 24 %>
-                                      <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "15px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                    <% elsif draft.treatment_end_age < 29 %>
-                                      <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "15px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                    <% elsif draft.treatment_end_age < 34 %>
-                                      <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "15px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                    <% elsif draft.treatment_end_age < 39 %>
-                                      <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "15px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                    <% elsif draft.treatment_end_age < 44 %>
-                                      <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "15px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                    <% else %>
-                                      <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
-                                    <% end %>
-                                    <%= link_to draft.user.name, user_path(draft.user_id) %>
-                                  </p>
-                                  <p class="text-center m-0 py-0">
-                                    <% if draft.user.gender == "female" %>
-                                      <span class="badge badge-pill badge-light text-muted p-0"><%= "女" %></span>
-                                    <% else %>
-                                      <span class="badge badge-pill badge-light text-muted p-0"><%= "男" %></span>
-                                    <% end %>
-                                    <% if draft.treatment_end_age.present? %>
-                                      <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to draft.treatment_end_age, "/category/age/#{draft.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
-                                    <% end %>
-                                  </p>
-                                  <p class="text-center m-0 py-0">
-                                    <% if draft.prefecture_at_the_time_status == "hide" %>
-                                      <span class="small text-muted">−</span>
-                                    <% else %>
-                                      <span class="small text-muted"><%= link_to draft.city.prefecture.name, "/category/area/prefecture/#{draft.city.prefecture.name}", class: "text-muted" %></span>
-                                    <% end %>
-                                    <% if draft.city_at_the_time_status == "hide" %>
-                                      <span class="small text-muted">−</span>
-                                    <% else %>
-                                      <span class="small text-muted"><%= link_to draft.city.name, "/category/area/city/#{draft.city.name}", class: "text-muted" %></span>
-                                    <% end %>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-9 pl-0">
-                              <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
-                                <small class="text-muted">
-                                  <% unless draft.current_state.blank? %>
-                                    <%= draft.str_current_state %>&nbsp;&nbsp;
-                                  <% end %>
-                                  <% unless draft.year_of_treatment_end.blank? %>
-                                    <%= draft.year_of_treatment_end.year %>年終了
-                                  <% end %>
-                                </small>
-                                <small class="text-muted">
-                                  <%= draft.created_at.to_s(:datetime_jp) %>
-                                </small>
-                              </div>
-                              <div>
-                                <%= link_to draft, data: { "turbolinks" => false } do %>
-                                  <h6 class="mb-0 mt-2 mx-0 mb-1">
-                                    <% if draft.treatment_end_age %>
-                                      <%= draft.treatment_end_age %>歳&nbsp;
-                                    <% end %>
-                                    <%= draft.clinic.name %>のレポコ</h6>
-                                <% end %>
-                              </div>
-
-                              <div>
-                                <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
-                                  <div class="mb-0 mr-2 clinic_address">
-                                    <div class="col-12 pl-0">
-                                      <%= link_to draft.clinic.name, "/category/clinics/#{draft.clinic.id}", class: "text-muted small" %>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-12 px-0">
-                              <%= link_to draft, data: { "turbolinks" => false } do %>
-                                <div class="py-2 px-3">
-                                  <h7><%= strip_tags(draft.title.to_s).gsub(/[\n]/,"").strip.truncate(30) %></h7>
-                                </div>
-                              <% end %>
-                              <%= link_to draft, data: { "turbolinks" => false } do %>
-                                <div  class="lead-content px-2 py-1">
-                                  <small><%= strip_tags(draft.content.to_s).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                                </div>
-                              <% end %>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
+                </div>
+              <% end %>
             </div>
-          </div>
-        
+          </section>
         </div>
-      </div>
-      <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="text-right">
-          <%= link_to " プロフィールを編集", edit_user_registration_path, class: "btn btn-primary" %>
-        </div>
-        <div class="card border-light mb-3" style="max-width:100%;">
-            <h6 class="text-center pt-2">プロフィール</h6>
+      </section>
+      <section class="parent-tab-content" id="tab_2">
+        <div class="child-tab">
+          <ul class="nav nav-tabs child-menu">
+            <li><a href="#tab_2_1" class="active" data-toggle="tab">プロフィール</a></li>
+          </ul>
+          <section class="child-tab-content active px-1" id="tab_2_1">
+            <div class="text-right px-1">
+              <%= link_to " プロフィールを編集", edit_user_registration_path, class: "btn btn-primary" %>
+            </div>
             <table class="table">
-                <tbody>
-                  <tr>
-                    <th class="profile-item-l">ユーザー名</th>
-                    <td class="profile-item-r">
-                      <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>メールアドレス</th>
-                    <td>
-                      <%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>性別</th>
-                    <td>
-                      <% if @user.gender == "female" %>
-                        <%= "女" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                      <% else %>
-                        <%= "男" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>生年月</th>
-                    <td>
-                      <% if @user.birthday.blank? %>
-                        <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
-                      <% else %>
-                        <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>リンク</th>
-                    <td>
-                      <% if @user.link.blank? %>
-                      <span>未登録</span>&nbsp;&nbsp;<small class="text-muted">(ブログやSNSのリンクなど)</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
-                      <% else %>
-                        <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>自己紹介</th>
-                    <td>
-                      <%= @user.self_introduction %><br>
-                      <% if @user.self_introduction.blank? %>
+              <tbody>
+                <tr>
+                  <td class="profile-item-l small text-center">ユーザー</td>
+                  <td class="profile-item-r">
+                    <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="small text-center">メール</td>
+                  <td>
+                    <%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="small text-center">性別</td>
+                  <td>
+                    <% if @user.gender == "female" %>
+                      <%= "女" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                    <% else %>
+                      <%= "男" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="small text-center">生年月</td>
+                  <td>
+                    <% if @user.birthday.blank? %>
+                      <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                    <% else %>
+                      <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="small text-center">リンク</td>
+                  <td>
+                    <% if @user.link.blank? %>
+                    <span>未登録</span>&nbsp;&nbsp;<small class="text-muted">(ブログやSNSのリンクなど)</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                    <% else %>
+                      <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "編集", edit_user_registration_path %></small>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="small text-center">プロフ</td>
+                  <td>
+                    <% if @user.self_introduction.blank? %>
                       <i data-feather="chevron-right" class="feather-icon-style2"></i><strong><%= link_to "書いていないあなた！ぜひ書きましょう！", edit_user_registration_path %></strong>
-                      <% else %>
-                        <small><%= link_to "もっと詳細情報を載せてみる", edit_user_registration_path %></div>
-                      <% end %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-          
-        </div>
-      </div>
+                    <% else %>
+                      <div class="p-0 mb-4"><%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %></div>
+                      <small class="text-muted"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i><%= link_to "もっと詳細情報を載せる", edit_user_registration_path %></small>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        <div>
+      </section>
     </div>
   </div>
 </div>

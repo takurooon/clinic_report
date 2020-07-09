@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: s_selection_methods
+# Table name: cl_male_inspections
 #
 #  id         :bigint           not null, primary key
 #  name       :string

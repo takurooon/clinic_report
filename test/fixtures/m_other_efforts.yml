@@ -1,16 +1,15 @@
 # == Schema Information
 #
-# Table name: s_selection_methods
+# Table name: m_other_efforts
 #
 #  id         :bigint           not null, primary key
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-require 'test_helper'
 
-class SSelectionMethodTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-end
+one:
+  name: MyString
+
+two:
+  name: MyString

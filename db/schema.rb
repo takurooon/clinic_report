@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_050123) do
+ActiveRecord::Schema.define(version: 2020_07_08_222944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,24 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
   end
 
+  create_table "cl_female_inspections", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cl_male_inspections", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cl_selections", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "clinic_reviews", force: :cascade do |t|
     t.bigint "clinic_id", null: false
     t.bigint "user_id", null: false
@@ -114,6 +132,12 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id"], name: "index_comments_on_report_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "cost_burdens", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "day_of_haibanhoishokus", force: :cascade do |t|
@@ -175,6 +199,12 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "fuiku_inspections", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "haibanhoishoku_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.integer "bt", null: false
@@ -224,7 +254,25 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "m_other_efforts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "m_supplements", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "m_surgeries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "male_inspections", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -265,6 +313,42 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "report_cl_female_inspections", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "cl_female_inspection_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cl_female_inspection_id"], name: "index_report_cl_female_inspections_on_cl_female_inspection_id"
+    t.index ["report_id"], name: "index_report_cl_female_inspections_on_report_id"
+  end
+
+  create_table "report_cl_male_inspections", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "cl_male_inspection_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cl_male_inspection_id"], name: "index_report_cl_male_inspections_on_cl_male_inspection_id"
+    t.index ["report_id"], name: "index_report_cl_male_inspections_on_report_id"
+  end
+
+  create_table "report_cl_selections", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "cl_selection_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cl_selection_id"], name: "index_report_cl_selections_on_cl_selection_id"
+    t.index ["report_id"], name: "index_report_cl_selections_on_report_id"
+  end
+
+  create_table "report_cost_burdens", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "cost_burden_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cost_burden_id"], name: "index_report_cost_burdens_on_cost_burden_id"
+    t.index ["report_id"], name: "index_report_cost_burdens_on_report_id"
+  end
+
   create_table "report_f_diseases", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.bigint "f_disease_id", null: false
@@ -290,6 +374,15 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["f_surgery_id"], name: "index_report_f_surgeries_on_f_surgery_id"
     t.index ["report_id"], name: "index_report_f_surgeries_on_report_id"
+  end
+
+  create_table "report_fuiku_inspections", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "fuiku_inspection_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fuiku_inspection_id"], name: "index_report_fuiku_inspections_on_fuiku_inspection_id"
+    t.index ["report_id"], name: "index_report_fuiku_inspections_on_report_id"
   end
 
   create_table "report_inspections", force: :cascade do |t|
@@ -319,6 +412,24 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.index ["report_id"], name: "index_report_m_infertility_factors_on_report_id"
   end
 
+  create_table "report_m_other_efforts", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "m_other_effort_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["m_other_effort_id"], name: "index_report_m_other_efforts_on_m_other_effort_id"
+    t.index ["report_id"], name: "index_report_m_other_efforts_on_report_id"
+  end
+
+  create_table "report_m_supplements", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "m_supplement_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["m_supplement_id"], name: "index_report_m_supplements_on_m_supplement_id"
+    t.index ["report_id"], name: "index_report_m_supplements_on_report_id"
+  end
+
   create_table "report_m_surgeries", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.bigint "m_surgery_id", null: false
@@ -328,6 +439,15 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.index ["report_id"], name: "index_report_m_surgeries_on_report_id"
   end
 
+  create_table "report_male_inspections", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "male_inspection_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["male_inspection_id"], name: "index_report_male_inspections_on_male_inspection_id"
+    t.index ["report_id"], name: "index_report_male_inspections_on_report_id"
+  end
+
   create_table "report_other_efforts", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.bigint "other_effort_id", null: false
@@ -335,15 +455,6 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["other_effort_id"], name: "index_report_other_efforts_on_other_effort_id"
     t.index ["report_id"], name: "index_report_other_efforts_on_report_id"
-  end
-
-  create_table "report_s_selection_methods", force: :cascade do |t|
-    t.bigint "report_id", null: false
-    t.bigint "s_selection_method_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["report_id"], name: "index_report_s_selection_methods_on_report_id"
-    t.index ["s_selection_method_id"], name: "index_report_s_selection_methods_on_s_selection_method_id"
   end
 
   create_table "report_sairan_medicines", force: :cascade do |t|
@@ -407,22 +518,24 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.integer "fertility_treatment_number"
     t.integer "transplant_method"
     t.integer "number_of_clinics"
-    t.integer "clinic_selection_criteria"
     t.integer "briefing_session"
     t.integer "treatment_start_age"
-    t.integer "first_age_to_start"
     t.integer "treatment_end_age"
     t.integer "age_of_partner_at_end_of_treatment"
     t.integer "treatment_period"
-    t.integer "number_of_aih"
     t.text "inspection_supplementary_explanation"
     t.integer "pgt1"
-    t.integer "pgt1_status"
+    t.integer "pgt1_status", default: 0, null: false
     t.integer "pgt2"
-    t.integer "pgt2_status"
+    t.integer "pgt2_status", default: 0, null: false
     t.text "pgt_supplementary_explanation"
-    t.integer "pgt_supplementary_explanation_status"
-    t.text "about_causes_of_infertility"
+    t.integer "pgt_supplementary_explanation_status", default: 0, null: false
+    t.text "f_infertility_memo"
+    t.text "m_infertility_memo"
+    t.text "f_surgery_memo"
+    t.text "m_surgery_memo"
+    t.text "f_disease_memo"
+    t.text "m_disease_memo"
     t.float "semen_volume"
     t.integer "semen_concentration"
     t.float "sperm_advance_rate"
@@ -431,8 +544,8 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.integer "total_amount_of_sperm"
     t.text "sperm_description"
     t.integer "amh"
-    t.integer "bmi"
-    t.integer "smoking"
+    t.integer "smoking_male"
+    t.integer "smoking_female"
     t.integer "types_of_eggs_and_sperm"
     t.text "description_of_eggs_and_sperm_used"
     t.integer "sairan_age"
@@ -443,7 +556,6 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.integer "use_of_anesthesia"
     t.integer "selection_of_anesthesia_type"
     t.integer "total_number_of_sairan"
-    t.integer "all_number_of_sairan"
     t.integer "number_of_eggs_collected"
     t.integer "egg_maturity"
     t.integer "ova_with_ivm"
@@ -464,55 +576,37 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.integer "ishoku_type"
     t.integer "total_number_of_transplants"
     t.integer "total_number_of_eggs_transplanted"
-    t.integer "all_number_of_transplants"
     t.integer "number_of_eggs_stored"
-    t.integer "frozen_embryo_storage_cost"
-    t.text "explanation_of_frozen_embryo_storage_cost"
     t.text "explanation_and_impression_about_ishoku"
-    t.integer "number_of_miscarriages"
-    t.integer "number_of_stillbirths"
     t.integer "fuiku"
     t.text "fuiku_supplementary_explanation"
-    t.integer "adoption"
-    t.integer "other_effort_cost"
-    t.text "other_effort_supplementary_explanation"
-    t.integer "supplement_cost"
-    t.text "supplement_supplementary_explanation"
+    t.integer "f_other_effort_cost"
+    t.integer "m_other_effort_cost"
+    t.text "f_other_effort_memo"
+    t.text "m_other_effort_memo"
+    t.integer "f_supplement_cost"
+    t.integer "m_supplement_cost"
+    t.text "f_supplement_memo"
+    t.text "m_supplement_memo"
     t.integer "sairan_cost"
     t.text "sairan_cost_explanation"
     t.integer "ishoku_cost"
     t.text "ishoku_cost_explanation"
     t.integer "cost"
     t.text "explanation_of_cost"
-    t.integer "all_cost"
-    t.integer "number_of_times_the_grant_was_received"
-    t.integer "all_grant_amount"
-    t.text "supplementary_explanation_of_grant"
     t.integer "credit_card_validity"
     t.integer "creditcards_can_be_used_from_more_than"
     t.integer "average_waiting_time"
+    t.integer "average_waiting_time2"
     t.integer "reservation_method"
     t.integer "online_consultation"
     t.text "online_consultation_details"
     t.integer "period_of_time_spent_traveling"
     t.integer "work_style"
-    t.integer "work_style_status"
+    t.integer "work_style_status", default: 0, null: false
     t.integer "industry_type"
-    t.integer "industry_type_status"
-    t.integer "private_or_listed_company"
-    t.integer "private_or_listed_company_status"
-    t.integer "domestic_or_foreign_capital"
-    t.integer "domestic_or_foreign_capital_status"
-    t.integer "capital_size"
-    t.integer "capital_size_status"
-    t.integer "department"
-    t.integer "department_status"
-    t.integer "position"
-    t.integer "position_status"
-    t.integer "annual_income"
+    t.integer "industry_type_status", default: 0, null: false
     t.integer "household_net_income"
-    t.integer "number_of_employees"
-    t.integer "number_of_employees_status"
     t.integer "treatment_support_system"
     t.integer "suspended_or_retirement_job"
     t.text "about_work_and_working_style"
@@ -527,8 +621,24 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.integer "status", default: 0, null: false
     t.integer "prefecture_at_the_time_status", default: 0, null: false
     t.integer "city_at_the_time_status", default: 0, null: false
-    t.integer "annual_income_status", default: 0, null: false
     t.integer "household_net_income_status", default: 0, null: false
+    t.integer "rest_period"
+    t.text "rest_period_memo"
+    t.text "reason_for_transfer"
+    t.text "most_sad_thing"
+    t.integer "how_long_to_continue_treatment"
+    t.text "how_long_to_continue_treatment_memo"
+    t.text "inspection_supplementary_explanation_men"
+    t.integer "pregnancy_date"
+    t.text "pregnancy_date_memo"
+    t.text "treatment_policy"
+    t.text "cl_female_inspection_memo"
+    t.text "cl_male_inspection_memo"
+    t.integer "how_long_to_continue_treatment2"
+    t.integer "followup_investigation"
+    t.text "followup_investigation_memo"
+    t.text "treatment_schedule_memo"
+    t.text "special_inspection_memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "clinic_id", null: false
@@ -539,12 +649,6 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.index ["clinic_id"], name: "index_reports_on_clinic_id"
     t.index ["prefecture_id"], name: "index_reports_on_prefecture_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
-  end
-
-  create_table "s_selection_methods", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sairan_hormones", force: :cascade do |t|
@@ -592,7 +696,6 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.integer "place"
     t.integer "cost"
     t.integer "timing"
-    t.text "explanation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id"], name: "index_special_inspections_on_report_id"
@@ -622,6 +725,43 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "treatment_schedules", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "day"
+    t.integer "cycle"
+    t.integer "exam_headline"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_treatment_schedules_on_report_id"
+  end
+
+  create_table "unsuccessful_ishoku_cycles", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "number"
+    t.integer "ishoku_age"
+    t.integer "transplant_method"
+    t.integer "ishoku_type"
+    t.text "memo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_unsuccessful_ishoku_cycles_on_report_id"
+  end
+
+  create_table "unsuccessful_sairan_cycles", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.integer "number"
+    t.integer "sairan_age"
+    t.integer "type_of_ovarian_stimulation"
+    t.integer "number_of_eggs_collected"
+    t.integer "number_of_fertilized_eggs"
+    t.integer "number_of_transferable_embryos"
+    t.integer "number_of_frozen_eggs"
+    t.text "memo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_unsuccessful_sairan_cycles_on_report_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -648,6 +788,17 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
     t.string "uid"
     t.string "username"
     t.string "image_url"
+    t.integer "all_number_of_sairan"
+    t.integer "all_number_of_transplants"
+    t.integer "all_cost"
+    t.integer "first_age_to_start"
+    t.integer "first_age_to_start_art"
+    t.integer "number_of_aih"
+    t.integer "number_of_early_miscarriages"
+    t.integer "number_of_late_miscarriages"
+    t.integer "number_of_times_the_grant_was_received"
+    t.integer "all_grant_amount"
+    t.integer "drink"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -669,24 +820,38 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
   add_foreign_key "itinerary_of_choosing_a_clinics", "clinics"
   add_foreign_key "itinerary_of_choosing_a_clinics", "reports"
   add_foreign_key "prefectures", "region1s"
+  add_foreign_key "report_cl_female_inspections", "cl_female_inspections"
+  add_foreign_key "report_cl_female_inspections", "reports"
+  add_foreign_key "report_cl_male_inspections", "cl_male_inspections"
+  add_foreign_key "report_cl_male_inspections", "reports"
+  add_foreign_key "report_cl_selections", "cl_selections"
+  add_foreign_key "report_cl_selections", "reports"
+  add_foreign_key "report_cost_burdens", "cost_burdens"
+  add_foreign_key "report_cost_burdens", "reports"
   add_foreign_key "report_f_diseases", "f_diseases"
   add_foreign_key "report_f_diseases", "reports"
   add_foreign_key "report_f_infertility_factors", "f_infertility_factors"
   add_foreign_key "report_f_infertility_factors", "reports"
   add_foreign_key "report_f_surgeries", "f_surgeries"
   add_foreign_key "report_f_surgeries", "reports"
+  add_foreign_key "report_fuiku_inspections", "fuiku_inspections"
+  add_foreign_key "report_fuiku_inspections", "reports"
   add_foreign_key "report_inspections", "inspections"
   add_foreign_key "report_inspections", "reports"
   add_foreign_key "report_m_diseases", "m_diseases"
   add_foreign_key "report_m_diseases", "reports"
   add_foreign_key "report_m_infertility_factors", "m_infertility_factors"
   add_foreign_key "report_m_infertility_factors", "reports"
+  add_foreign_key "report_m_other_efforts", "m_other_efforts"
+  add_foreign_key "report_m_other_efforts", "reports"
+  add_foreign_key "report_m_supplements", "m_supplements"
+  add_foreign_key "report_m_supplements", "reports"
   add_foreign_key "report_m_surgeries", "m_surgeries"
   add_foreign_key "report_m_surgeries", "reports"
+  add_foreign_key "report_male_inspections", "male_inspections"
+  add_foreign_key "report_male_inspections", "reports"
   add_foreign_key "report_other_efforts", "other_efforts"
   add_foreign_key "report_other_efforts", "reports"
-  add_foreign_key "report_s_selection_methods", "reports"
-  add_foreign_key "report_s_selection_methods", "s_selection_methods"
   add_foreign_key "report_sairan_medicines", "reports"
   add_foreign_key "report_sairan_medicines", "sairan_medicines"
   add_foreign_key "report_scope_of_disclosures", "reports"
@@ -706,4 +871,7 @@ ActiveRecord::Schema.define(version: 2020_05_03_050123) do
   add_foreign_key "sairan_hormones", "reports"
   add_foreign_key "shokihaiishoku_hormones", "reports"
   add_foreign_key "special_inspections", "reports"
+  add_foreign_key "treatment_schedules", "reports"
+  add_foreign_key "unsuccessful_ishoku_cycles", "reports"
+  add_foreign_key "unsuccessful_sairan_cycles", "reports"
 end

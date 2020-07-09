@@ -6,7 +6,6 @@ class CreateSpecialInspections < ActiveRecord::Migration[6.0]
       t.integer :place
       t.integer :cost
       t.integer :timing
-      t.text :explanation
 
       t.timestamps
     end

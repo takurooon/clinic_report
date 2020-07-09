@@ -2,7 +2,6 @@
   <%= link_to "ログイン", new_session_path(resource_name) %><br />
 <% end %>
 
-<% if false %>
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <%= link_to "新規登録", new_registration_path(resource_name) %><br />
 <% end %>
@@ -17,7 +16,6 @@
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <%= link_to "アカウント凍結解除メールの再送信", new_unlock_path(resource_name) %><br />
-<% end %>
 <% end %>
 
 <%- if devise_mapping.omniauthable? %>

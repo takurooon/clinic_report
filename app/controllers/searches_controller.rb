@@ -17,7 +17,7 @@ class SearchesController < ApplicationController
     amh = Report::HASH_AMH
     amh_value = params[:value].to_i
     @selected_amh = amh[amh_value]
-    @reports = Report.where(amh: amh_value)
+    @reports = Report.where(amh: amh_value, status: 0)
     @amh_page = Report.page(params[:page]).per(10)
   end
 
@@ -31,7 +31,7 @@ class SearchesController < ApplicationController
   def tag
     tag_name = params[:tag_name]
     @tag = Tag.find_by(tag_name: tag_name)
-    @reports = @tag.reports
+    @reports = @tag.reports.where(status: 0)
     @tags = Tag.page(params[:page]).per(10)
   end
 
@@ -41,7 +41,7 @@ class SearchesController < ApplicationController
 
   def clinic
     @clinics = Clinic.find_by(id: params[:value])
-    @reports = Report.where(clinic_id: @clinics.id)
+    @reports = Report.where(clinic_id: @clinics.id, status: 0)
     @clinic_reports = Report.where(activated: true).search(params[:search])
   end
 
@@ -73,7 +73,7 @@ class SearchesController < ApplicationController
     age = Report::HASH_TREATMENT_END_AGE
     age_value = params[:value].to_i
     @selected_age = age[age_value]
-    @reports = Report.where(treatment_end_age: age_value)
+    @reports = Report.where(treatment_end_age: age_value, status: 0)
   end
 
   def factors

@@ -8,15 +8,14 @@ end
 #
 # Table name: special_inspections
 #
-#  id          :bigint           not null, primary key
-#  cost        :integer
-#  explanation :text
-#  name        :integer          not null
-#  place       :integer
-#  timing      :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  report_id   :bigint           not null
+#  id         :bigint           not null, primary key
+#  cost       :integer
+#  name       :integer          not null
+#  place      :integer
+#  timing     :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  report_id  :bigint           not null
 #
 # Indexes
 #

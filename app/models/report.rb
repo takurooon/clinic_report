@@ -6,13 +6,6 @@ class Report < ApplicationRecord
   # 仕事セクションの(年収などの項目）公開状況 参考:https://qiita.com/emacs_hhkb/items/fce19f443e5770ad2e13
   enum work_style_status: { show: 0, hide: 1 }, _prefix: true
   enum industry_type_status: { show: 0, hide: 1 }, _prefix: true
-  enum private_or_listed_company_status: { show: 0, hide: 1 }, _prefix: true
-  enum domestic_or_foreign_capital_status: { show: 0, hide: 1 }, _prefix: true
-  enum capital_size_status: { show: 0, hide: 1 }, _prefix: true
-  enum department_status: { show: 0, hide: 1 }, _prefix: true
-  enum position_status: { show: 0, hide: 1 }, _prefix: true
-  enum number_of_employees_status: { show: 0, hide: 1 }, _prefix: true
-  enum annual_income_status: { show: 0, hide: 1 }, _prefix: true
   enum household_net_income_status: { show: 0, hide: 1 }, _prefix: true
 
   # 治療当時の住まいの公開状況 参考:http://mnmandahalf.hatenablog.com/entry/2017/08/20/164442
@@ -175,390 +168,171 @@ class Report < ApplicationRecord
   belongs_to :city
 
   # ---子---
-    # 転院遍歴
-    has_many :itinerary_of_choosing_a_clinics, dependent: :destroy
-    accepts_nested_attributes_for :itinerary_of_choosing_a_clinics, reject_if: :all_blank, allow_destroy: true, update_only: true
-    def reject_itinerary_of_choosing_a_clinics(attributes)
-      exists = attributes[:id].present?
-      empty = attributes[:email].blank?
-      attributes.merge!(_destroy: 1) if exists && empty
-      !exists && empty
+  # コメント
+  has_many :comments, dependent: :destroy
+
+  # いいね
+  has_many :likes, dependent: :destroy
+
+  # 通知モデル
+  has_many :notifications, dependent: :destroy
+
+  def create_notification_comment!(current_user, comment_id)
+    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
+    temp_ids = Comment.select(:user_id).where(report_id: id).where.not(user_id: current_user.id).distinct
+    temp_ids.each do |temp_id|
+      save_notification_comment!(current_user, comment_id, temp_id['user_id'])
     end
-
-    # コメント
-    has_many :comments, dependent: :destroy
-
-    # いいね
-    has_many :likes, dependent: :destroy
-
-    # 通知モデル
-    has_many :notifications, dependent: :destroy
-
-    def create_notification_comment!(current_user, comment_id)
-      # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
-      temp_ids = Comment.select(:user_id).where(report_id: id).where.not(user_id: current_user.id).distinct
-      temp_ids.each do |temp_id|
-        save_notification_comment!(current_user, comment_id, temp_id['user_id'])
-      end
-      # まだ誰もコメントしていない場合は、投稿者に通知を送る
-      save_notification_comment!(current_user, comment_id, user_id) if temp_ids.blank?
-    end
-  
-    def save_notification_comment!(current_user, comment_id, visited_id)
-      # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
-      notification = current_user.active_notifications.new(
-        report_id: id,
-        comment_id: comment_id,
-        visited_id: visited_id,
-        action: 'comment'
-      )
-      # 自分の投稿に対するコメントの場合は、通知済みとする
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
-      notification.save if notification.valid?
-    end
-
-    # 採卵日当日のホルモン
-    has_many :day_of_sairans, inverse_of: :report, dependent: :destroy
-    accepts_nested_attributes_for :day_of_sairans, reject_if: :all_blank, allow_destroy: true, update_only: true
-
-    # 採卵周期のホルモン
-    has_many :sairan_hormones, inverse_of: :report, dependent: :destroy
-    accepts_nested_attributes_for :sairan_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
-
-    # 移植前のホルモン
-    has_many :before_ishoku_hormones, inverse_of: :report, dependent: :destroy
-    accepts_nested_attributes_for :before_ishoku_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
-
-    # 初期胚移植日当日のホルモン
-    has_many :day_of_shokihaiishokus, inverse_of: :report, dependent: :destroy
-    accepts_nested_attributes_for :day_of_shokihaiishokus, reject_if: :all_blank, allow_destroy: true, update_only: true
-
-    # 胚盤胞胚移植日当日のホルモン
-    has_many :day_of_haibanhoishokus, inverse_of: :report, dependent: :destroy
-    accepts_nested_attributes_for :day_of_haibanhoishokus, reject_if: :all_blank, allow_destroy: true, update_only: true
-
-    # 初期胚移植周期のホルモン
-    has_many :shokihaiishoku_hormones, inverse_of: :report, dependent: :destroy
-    accepts_nested_attributes_for :shokihaiishoku_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
-
-    # 胚盤胞移植周期のホルモン
-    has_many :haibanhoishoku_hormones, inverse_of: :report, dependent: :destroy
-    accepts_nested_attributes_for :haibanhoishoku_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
-
-    # 特殊検査（ERAなど）
-    has_many :special_inspections, inverse_of: :report, dependent: :destroy
-    accepts_nested_attributes_for :special_inspections, reject_if: :all_blank, allow_destroy: true, update_only: true
-
-  # 検索
-  def self.search(search)
-    if search
-      where(['name LIKE ?', "%#{search}%"])
-    else
-      all
-    end
+    # まだ誰もコメントしていない場合は、投稿者に通知を送る
+    save_notification_comment!(current_user, comment_id, user_id) if temp_ids.blank?
   end
 
-  # 精子選抜方法
-  has_many :report_s_selection_methods, dependent: :destroy
-  has_many :s_selection_methods, through: :report_s_selection_methods
-
-  def save_ssms(ssm_list)
-    current_ssms = self.s_selection_methods.pluck(:name) unless self.s_selection_methods.nil?
-    old_ssms = current_ssms - ssm_list
-    new_ssms = ssm_list - current_ssms
-
-    # Destroy old s_selection_methods:
-    old_ssms.each do |old_name|
-      self.s_selection_methods.delete SSelectionMethod.find_by(name: old_name)
+  def save_notification_comment!(current_user, comment_id, visited_id)
+    # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
+    notification = current_user.active_notifications.new(
+      report_id: id,
+      comment_id: comment_id,
+      visited_id: visited_id,
+      action: 'comment'
+    )
+    # 自分の投稿に対するコメントの場合は、通知済みとする
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
     end
-
-    # Create new s_selection_methods:
-    new_ssms.each do |new_name|
-      report_ssm = SSelectionMethod.find_or_create_by(name: new_name)
-      self.s_selection_methods << report_ssm
-    end
+    notification.save if notification.valid?
   end
 
-  # 検査項目
+  # 転院遍歴
+  has_many :itinerary_of_choosing_a_clinics, dependent: :destroy
+  accepts_nested_attributes_for :itinerary_of_choosing_a_clinics, reject_if: :all_blank, allow_destroy: true, update_only: true
+  def reject_itinerary_of_choosing_a_clinics(attributes)
+    exists = attributes[:id].present?
+    empty = attributes[:email].blank?
+    attributes.merge!(_destroy: 1) if exists && empty
+    !exists && empty
+  end
+
+  # 通院スケジュール
+  has_many :treatment_schedules, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :treatment_schedules, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 採卵日当日のホルモン
+  has_many :day_of_sairans, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :day_of_sairans, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 採卵周期のホルモン
+  has_many :sairan_hormones, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :sairan_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 不成功採卵周期の詳細
+  has_many :unsuccessful_sairan_cycles, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :unsuccessful_sairan_cycles, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 不成功移植周期の詳細
+  has_many :unsuccessful_ishoku_cycles, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :unsuccessful_ishoku_cycles, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 移植前のホルモン
+  has_many :before_ishoku_hormones, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :before_ishoku_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 初期胚移植日当日のホルモン
+  has_many :day_of_shokihaiishokus, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :day_of_shokihaiishokus, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 胚盤胞胚移植日当日のホルモン
+  has_many :day_of_haibanhoishokus, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :day_of_haibanhoishokus, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 初期胚移植周期のホルモン
+  has_many :shokihaiishoku_hormones, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :shokihaiishoku_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 胚盤胞移植周期のホルモン
+  has_many :haibanhoishoku_hormones, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :haibanhoishoku_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 特殊検査（ERAなど）
+  has_many :special_inspections, inverse_of: :report, dependent: :destroy
+  accepts_nested_attributes_for :special_inspections, reject_if: :all_blank, allow_destroy: true, update_only: true
+
+  # 基本検査(女性)
   has_many :report_inspections, dependent: :destroy
   has_many :inspections, through: :report_inspections
 
-  # def save_i(i_list)
-  #   current_is = self.inspections.pluck(:name) unless self.inspections.nil?
-  #   old_is = current_is - i_list
-  #   new_is = i_list - current_is
+  # 基本検査(男性)
+  has_many :report_male_inspections, dependent: :destroy
+  has_many :male_inspections, through: :report_male_inspections
 
-    # Destroy old inspections:
-    # old_is.each do |old_name|
-    #   self.inspections.delete Tag.find_by(name: old_name)
-    # end
+  # レポコのクリニックでの基本検査(女性)
+  has_many :report_cl_female_inspections, dependent: :destroy
+  has_many :cl_female_inspections, through: :report_cl_female_inspections
 
-    # Create new inspections:
-  #   new_is.each do |new_name|
-  #     report_i = Inspection.find_or_create_by(name: new_name)
-  #     self.inspections << report_i
-  #   end
-  # end
-  
+  # レポコのクリニックでの基本検査(男性)
+  has_many :report_cl_male_inspections, dependent: :destroy
+  has_many :cl_male_inspections, through: :report_cl_male_inspections
+
+  # コスト負担者
+  has_many :report_cost_burdens, dependent: :destroy
+  has_many :cost_burdens, through: :report_cost_burdens
+
+  # 不育症の原因
+  has_many :report_fuiku_inspections, dependent: :destroy
+  has_many :fuiku_inspections, through: :report_fuiku_inspections
+
   # 不妊原因(男女それぞれ)
   has_many :report_f_infertility_factors, dependent: :destroy
   has_many :f_infertility_factors, through: :report_f_infertility_factors
-  accepts_nested_attributes_for :f_infertility_factors
   has_many :report_m_infertility_factors, dependent: :destroy
   has_many :m_infertility_factors, through: :report_m_infertility_factors
-  accepts_nested_attributes_for :m_infertility_factors
-
-  def save_fifs(fif_list)
-    current_fifs = self.f_infertility_factors.pluck(:name) unless self.f_infertility_factors.nil?
-    old_fifs = current_fifs - fif_list
-    new_fifs = fif_list - current_fifs
-
-    # Destroy old f_infertility_factors:
-    old_fifs.each do |old_name|
-      self.f_infertility_factors.delete FInfertilityFactor.find_by(name: old_name)
-    end
-
-    # Create new f_infertility_factors:
-    new_fifs.each do |new_name|
-      report_fif = FInfertilityFactor.find_or_create_by(name: new_name)
-      self.f_infertility_factors << report_fif
-    end
-  end
-
-  def save_mifs(mif_list)
-    current_mifs = self.m_infertility_factors.pluck(:name) unless self.m_infertility_factors.nil?
-    old_mifs = current_mifs - mif_list
-    new_mifs = mif_list - current_mifs
-
-    # Destroy old mim_infertility_factorsfs:
-    old_mifs.each do |old_name|
-      self.m_infertility_factors.delete MInfertilityMactor.find_by(name: old_name)
-    end
-
-    # Create new m_infertility_factors:
-    new_mifs.each do |new_name|
-      report_mif = MInfertilityFactor.find_or_create_by(name: new_name)
-      self.m_infertility_factors << report_mif
-    end
-  end
 
   # 疾患(男女それぞれ)
   has_many :report_f_diseases, dependent: :destroy
   has_many :f_diseases, through: :report_f_diseases
-  accepts_nested_attributes_for :f_diseases
   has_many :report_m_diseases, dependent: :destroy
   has_many :m_diseases, through: :report_m_diseases
-  accepts_nested_attributes_for :m_diseases
-
-  def save_fds(fd_list)
-    current_fds = self.f_diseases.pluck(:name) unless self.f_diseases.nil?
-    old_fds = current_fds - fd_list
-    new_fds = fd_list - current_fds
-
-    # Destroy old f_diseases:
-    old_fds.each do |old_name|
-      self.f_diseases.delete FDisease.find_by(name: old_name)
-    end
-
-    # Create new f_diseases:
-    new_fds.each do |new_name|
-      report_fd = FDisease.find_or_create_by(name: new_name)
-      self.f_diseases << report_fd
-    end
-  end
-
-  def save_mds(md_list)
-    current_mds = self.m_diseases.pluck(:name) unless self.m_diseases.nil?
-    old_mds = current_mds - md_list
-    new_mds = md_list - current_mds
-
-    # Destroy old m_diseases:
-    old_mds.each do |old_name|
-      self.m_diseases.delete MDisease.find_by(name: old_name)
-    end
-
-    # Create new m_diseases:
-    new_mds.each do |new_name|
-      report_md = MDisease.find_or_create_by(name: new_name)
-      self.m_diseases << report_md
-    end
-  end
 
   # 手術歴(男女それぞれ)
   has_many :report_f_surgeries, dependent: :destroy
   has_many :f_surgeries, through: :report_f_surgeries
-  accepts_nested_attributes_for :f_surgeries
   has_many :report_m_surgeries, dependent: :destroy
   has_many :m_surgeries, through: :report_m_surgeries
-  accepts_nested_attributes_for :m_surgeries
-
-  def save_fss(fs_list)
-    current_fss = self.f_surgeries.pluck(:name) unless self.f_surgeries.nil?
-    old_fss = current_fss - fs_list
-    new_fss = fs_list - current_fss
-
-    # Destroy old f_surgeries:
-    old_fss.each do |old_name|
-      self.f_surgeries.delete FSurgery.find_by(name: old_name)
-    end
-
-    # Create new f_surgeries:
-    new_fss.each do |new_name|
-      report_fs = FSurgery.find_or_create_by(name: new_name)
-      self.f_surgeries << report_fs
-    end
-  end
-
-  def save_mss(ms_list)
-    current_mss = self.m_surgeries.pluck(:name) unless self.m_surgeries.nil?
-    old_mss = current_mss - ms_list
-    new_mss = ms_list - current_mss
-
-    # Destroy old m_surgeries:
-    old_mss.each do |old_name|
-      self.m_surgeries.delete MSurgery.find_by(name: old_name)
-    end
-
-    # Create new m_surgeries:
-    new_mss.each do |new_name|
-      report_ms = MSurgery.find_or_create_by(name: new_name)
-      self.m_surgeries << report_ms
-    end
-  end
 
   # 採卵周期での使用薬剤
   has_many :report_sairan_medicines, dependent: :destroy
   has_many :sairan_medicines, through: :report_sairan_medicines
-  accepts_nested_attributes_for :sairan_medicines
-
-  def save_sms(sm_list)
-    current_sms = self.sairan_medicines.pluck(:name) unless self.sairan_medicines.nil?
-    old_sms = current_sms - sm_list
-    new_sms = sm_list - current_sms
-
-    # Destroy old sairan_medicines:
-    old_sms.each do |old_name|
-      self.sairan_medicines.delete SairanMedicine.find_by(name: old_name)
-    end
-
-    # Create new sairan_medicines:
-    new_sms.each do |new_name|
-      report_sm = SairanMedicine.find_or_create_by(name: new_name)
-      self.sairan_medicines << report_sm
-    end
-  end
 
   # 移植周期での使用薬剤
   has_many :report_transfer_medicines, dependent: :destroy
   has_many :transfer_medicines, through: :report_transfer_medicines
-  accepts_nested_attributes_for :transfer_medicines
-
-  def save_tms(tm_list)
-    current_tms = self.transfer_medicines.pluck(:name) unless self.transfer_medicines.nil?
-    old_tms = current_tms - tm_list
-    new_tms = tm_list - current_tms
-
-    # Destroy old transfer_medicines:
-    old_tms.each do |old_name|
-      self.tms.delete TransferMedicine.find_by(name: old_name)
-    end
-
-    # Create new transfer_medicines:
-    new_tms.each do |new_name|
-      report_tm = TransferMedicine.find_or_create_by(name: new_name)
-      self.transfer_medicines << report_tm
-    end
-  end
 
   # 移植オプション
   has_many :report_transfer_options, dependent: :destroy
   has_many :transfer_options, through: :report_transfer_options
-  accepts_nested_attributes_for :transfer_options
 
-  def save_tos(to_list)
-    current_tos = self.transfer_options.pluck(:name) unless self.transfer_options.nil?
-    old_tos = current_tos - to_list
-    new_tos = to_list - current_tos
-
-    # Destroy old transfer_options:
-    old_tos.each do |old_name|
-      self.tos.delete TransferOption.find_by(name: old_name)
-    end
-
-    # Create new transfer_options:
-    new_tos.each do |new_name|
-      report_to = TransferOption.find_or_create_by(name: new_name)
-      self.transfer_options << report_to
-    end
-  end
-
-  # クリニックでの治療以外で行ったこと(努力)
+  # クリニックでの治療以外に行ったこと(女性)
   has_many :report_other_efforts, dependent: :destroy
   has_many :other_efforts, through: :report_other_efforts
-  accepts_nested_attributes_for :other_efforts
 
-  def save_oes(oe_list)
-    current_oes = self.other_efforts.pluck(:name) unless self.other_efforts.nil?
-    old_oes = current_oes - oe_list
-    new_oes = oe_list - current_oes
+  # クリニックでの治療以外に行ったこと(男性)
+  has_many :report_m_other_efforts, dependent: :destroy
+  has_many :m_other_efforts, through: :report_m_other_efforts
 
-    # Destroy old other_efforts:
-    old_oes.each do |old_name|
-      self.oes.delete OtherEffort.find_by(name: old_name)
-    end
-
-    # Create new other_efforts:
-    new_oes.each do |new_name|
-      report_oe = OtherEffort.find_or_create_by(name: new_name)
-      self.other_efforts << report_oe
-    end
-  end
-
-  # サプリ
+  # サプリ(女性)
   has_many :report_supplements, dependent: :destroy
   has_many :supplements, through: :report_supplements
-  accepts_nested_attributes_for :supplements
 
-  def save_supplements(supplement_list)
-    current_supplements = self.supplements.pluck(:name) unless self.supplements.nil?
-    old_supplements = current_supplements - supplement_list
-    new_supplements = supplement_list - current_supplements
-
-    # Destroy old supplements:
-    old_supplements.each do |old_name|
-      self.supplements.delete Supplement.find_by(name: old_name)
-    end
-
-    # Create new supplements:
-    new_supplements.each do |new_name|
-      report_supplement = Supplement.find_or_create_by(name: new_name)
-      self.supplements << report_supplement
-    end
-  end
+  # サプリ(男性)
+  has_many :report_m_supplements, dependent: :destroy
+  has_many :m_supplements, through: :report_m_supplements
 
   # 治療の開示範囲
   has_many :report_scope_of_disclosures, dependent: :destroy
   has_many :scope_of_disclosures, through: :report_scope_of_disclosures
-  accepts_nested_attributes_for :scope_of_disclosures
 
-  # def save_sods(sod_list)
-  #   current_sods = self.scope_of_disclosures.pluck(:scope) unless self.scope_of_disclosures.nil?
-  #   old_sods = current_sods - sod_list
-  #   new_sods = sod_list - current_sods
-
-    # Destroy old scope_of_disclosures:
-    # old_sods.each do |old_scope|
-    #   self.scope_of_disclosures.delete ScopeOfDisclosure.find_by(scope: old_scope)
-    # end
-
-    # Create new scope_of_disclosures:
-  #   new_sods.each do |new_scope|
-  #     report_sod = ScopeOfDisclosure.find_or_create_by(scope: new_scope)
-  #     self.scope_of_disclosures << report_sod
-  #   end
-  # end
+  # CL選定理由
+  has_many :report_cl_selections, dependent: :destroy
+  has_many :cl_selections, through: :report_cl_selections
 
   # タグ
   has_many :report_tags, dependent: :destroy
@@ -581,15 +355,25 @@ class Report < ApplicationRecord
     end
   end
 
+  # 検索
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+
   # current_stateの区分値(現在の状況)
   HASH_CURRENT_STATE = {
     1 => "妊娠中",
-    2 => "妊娠中（双子）",
+    2 => "妊娠中（多胎）",
     3 => "出産済み",
-    4 => "出産済み（双子）",
+    4 => "出産済み（多胎）",
     5 => "出産に至らず",
     6 => "転院した",
-    7 => "治療自体を完全にやめた",
+    7 => "お休み中",
+    8 => "治療自体を完全にやめた",
     99 => "その他"
   }
 
@@ -624,48 +408,97 @@ class Report < ApplicationRecord
     return HASH_TREATMENT_PERIOD[self.treatment_period]
   end
 
-  # bmiの区分値(BMI値)
-  HASH_BMI = {
-    1 => "18.5未満",
-    2 => "18.5〜25未満",
-    3 => "25〜30未満",
-    4 => "30〜35未満",
-    5 => "35〜40未満",
-    6 => "40以上",
-    99 => "不明"
+  # rest_periodの区分値(休み期間/CL単位)
+  HASH_REST_PERIOD = {
+    100 => "不明",
+    1 => "〜1ヵ月",
+    2 => "〜2ヵ月",
+    3 => "〜3ヶ月",
+    4 => "〜4ヶ月",
+    5 => "〜5ヶ月",
+    6 => "〜半年",
+    7 => "〜1半",
+    8 => "〜2年",
+    99 => "それ以上",
   }
 
-  def str_bmi
-    return HASH_BMI[self.bmi]
+  def str_rest_period
+    return HASH_REST_PERIOD[self.rest_period]
+  end
+
+  # how_long_to_continue_treatmentの区分値(治療継続期間設定の有無)
+  HASH_HOW_LONG_TO_CONTINUE_TREATMENT = {
+    1 => "決めていた",
+    2 => "決めていなかった",
+    100 => "不明",
+  }
+
+  def str_how_long_to_continue_treatment
+    return HASH_HOW_LONG_TO_CONTINUE_TREATMENT[self.how_long_to_continue_treatment]
+  end
+
+  # how_long_to_continue_treatment2の区分値(具体的な治療継続期間)
+  HASH_HOW_LONG_TO_CONTINUE_TREATMENT2 = {
+    1 => "〜3ヶ月",
+    2 => "〜半年",
+    3 => "〜1年",
+    4 => "〜2年",
+    5 => "〜3年",
+    6 => "〜5年",
+    99 => "その他",
+    100 => "不明",
+  }
+
+  def str_how_long_to_continue_treatment2
+    return HASH_HOW_LONG_TO_CONTINUE_TREATMENT2[self.how_long_to_continue_treatment2]
+  end
+
+  # followup_investigationの区分地値(出産確認の連絡有無)
+  HASH_FOLLOWUP_INVESTIGATION = {
+    1 => "出産確認の書類が届いた",
+    2 => "出産確認の電話がかかってきた",
+    3 => "その他連絡手段で確認がきた",
+    4 => "確認はなかった",
+    99 => "その他",
+    100 => "不明",
+  }
+
+  def str_followup_investigation
+    return HASH_FOLLOWUP_INVESTIGATION[self.followup_investigation]
   end
 
   # amhの区分値(AMH値)
   HASH_AMH = {
     100 => "不明",
     1 => "0.1以下",
-    2 => "0.3以下",
-    3 => "0.5以下",
-    4 => "0.7以下",
-    5 => "1.0以下",
-    6 => "1.5以下",
-    7 => "2.0以下",
-    8 => "2.5以下",
-    9 => "3.0以下",
-    10 => "3.5以下",
-    11 => "4.0以下",
-    12 => "4.5以下",
-    13 => "5.0以下",
-    14 => "5.5以下",
-    15 => "6.0以下",
-    16 => "6.5以下",
-    17 => "7.0以下",
-    18 => "7.5以下",
-    19 => "8.0以下",
-    20 => "8.5以下",
-    21 => "9.0以下",
-    22 => "9.5以下",
-    23 => "10.0以下",
-    99 => "10.1以上",
+    2 => "0.2以下",
+    3 => "0.3以下",
+    4 => "0.4以下",
+    5 => "0.5以下",
+    6 => "0.6以下",
+    7 => "0.7以下",
+    8 => "0.8以下",
+    9 => "0.9以下",
+    10 => "1.0以下",
+    11 => "1.5以下",
+    12 => "2.0以下",
+    13 => "2.5以下",
+    14 => "3.0以下",
+    15 => "3.5以下",
+    16 => "4.0以下",
+    17 => "4.5以下",
+    18 => "5.0以下",
+    19 => "5.5以下",
+    20 => "6.0以下",
+    21 => "6.5以下",
+    22 => "7.0以下",
+    23 => "7.5以下",
+    24 => "8.0以下",
+    25 => "8.5以下",
+    26 => "9.0以下",
+    27 => "9.5以下",
+    28 => "10.0以下",
+    99 => "それ以上",
   }
 
   def str_amh
@@ -866,32 +699,6 @@ class Report < ApplicationRecord
     return HASH_BLASTOCYST_GRADE2[self.blastocyst_grade2]
   end
 
-  # number_of_miscarriagesの区分値(化学流産回数)
-  HASH_NUMBER_OF_MISCARRIAGES = {
-    1 => "なし",
-    2 => "1回",
-    3 => "2回",
-    4 => "3回以上",
-    100 => "無回答",
-  }
-
-  def str_number_of_miscarriages
-    return HASH_NUMBER_OF_MISCARRIAGES[self.number_of_miscarriages]
-  end
-
-  # number_of_stillbirthsの区分値(死産回数)
-  HASH_NUMBER_OF_STILLBIRTHS = {
-    1 => "なし",
-    2 => "1回",
-    3 => "2回",
-    4 => "3回以上",
-    100 => "無回答",
-  }
-
-  def str_number_of_stillbirths
-    return HASH_NUMBER_OF_STILLBIRTHS[self.number_of_stillbirths]
-  end
-
   # fuikuの区分値(不育症の診断有無)
   HASH_FUIKU = {
     1 => "なし",
@@ -957,7 +764,7 @@ class Report < ApplicationRecord
     return HASH_OVA_WITH_IVM[self.ova_with_ivm]
   end
 
-  # other_effort_costの区分値(CL治療以外に行なったこと/月間平均投資額)
+  # f_other_effort_cost m_other_effort_costの区分値(CL治療以外に行なったこと/月間平均投資額)
   HASH_OTHER_EFFORT_COST = {
     1 => "3,000円未満",
     2 => "5,000円未満",
@@ -969,11 +776,15 @@ class Report < ApplicationRecord
     100 => "不明",
   }
 
-  def str_other_effort_cost
-    return HASH_OTHER_EFFORT_COST[self.other_effort_cost]
+  def str_f_other_effort_cost
+    return HASH_OTHER_EFFORT_COST[self.f_other_effort_cost]
   end
 
-  # supplement_costの区分値(サプリ月間平均購入額)
+  def str_m_other_effort_cost
+    return HASH_OTHER_EFFORT_COST[self.m_other_effort_cost]
+  end
+
+  # f_supplement_cost m_supplement_costの区分値(サプリ月間平均購入額)
   HASH_SUPPLEMENT_COST = {
     100 => "不明",
     1 => "1,000円未満",
@@ -1004,8 +815,12 @@ class Report < ApplicationRecord
     99 => "30万円以上",
   }
 
-  def str_supplement_cost
-    return HASH_SUPPLEMENT_COST[self.supplement_cost]
+  def str_f_supplement_cost
+    return HASH_SUPPLEMENT_COST[self.f_supplement_cost]
+  end
+
+  def str_m_supplement_cost
+    return HASH_SUPPLEMENT_COST[self.m_supplement_cost]
   end
 
   # sairan_costの区分値(CLでの1回あたりの採卵費用)
@@ -1067,6 +882,8 @@ class Report < ApplicationRecord
   def str_ishoku_cost
     return HASH_ISHOKU_COST[self.ishoku_cost]
   end
+
+
 
   # costの区分値(CLでの費用総額)
   HASH_COST = {
@@ -1181,136 +998,6 @@ class Report < ApplicationRecord
     return HASH_COST[self.cost]
   end
 
-  # all_costの区分値(不妊治療に関する費用総額)
-  HASH_ALL_COST = {
-    1000 => "不明",
-    1 => "10万円未満",
-    2 => "20万円未満",
-    3 => "30万円未満",
-    4 => "40万円未満",
-    5 => "50万円未満",
-    6 => "60万円未満",
-    7 => "70万円未満",
-    8 => "80万円未満",
-    9 => "90万円未満",
-    10 => "100万円未満",
-    11 => "110万円未満",
-    12 => "120万円未満",
-    13 => "130万円未満",
-    14 => "140万円未満",
-    15 => "150万円未満",
-    16 => "160万円未満",
-    17 => "170万円未満",
-    18 => "180万円未満",
-    19 => "190万円未満",
-    20 => "200万円未満",
-    21 => "210万円未満",
-    22 => "220万円未満",
-    23 => "230万円未満",
-    24 => "240万円未満",
-    25 => "250万円未満",
-    26 => "260万円未満",
-    27 => "270万円未満",
-    28 => "280万円未満",
-    29 => "290万円未満",
-    30 => "300万円未満",
-    31 => "310万円未満",
-    32 => "320万円未満",
-    33 => "330万円未満",
-    34 => "340万円未満",
-    35 => "350万円未満",
-    36 => "360万円未満",
-    37 => "370万円未満",
-    38 => "380万円未満",
-    39 => "390万円未満",
-    40 => "400万円未満",
-    41 => "410万円未満",
-    42 => "420万円未満",
-    43 => "430万円未満",
-    44 => "440万円未満",
-    45 => "450万円未満",
-    46 => "460万円未満",
-    47 => "470万円未満",
-    48 => "480万円未満",
-    49 => "490万円未満",
-    50 => "500万円未満",
-    51 => "510万円未満",
-    52 => "520万円未満",
-    53 => "530万円未満",
-    54 => "540万円未満",
-    55 => "550万円未満",
-    56 => "560万円未満",
-    57 => "570万円未満",
-    58 => "580万円未満",
-    59 => "590万円未満",
-    60 => "600万円未満",
-    61 => "610万円未満",
-    62 => "620万円未満",
-    63 => "630万円未満",
-    64 => "640万円未満",
-    65 => "650万円未満",
-    66 => "660万円未満",
-    67 => "670万円未満",
-    68 => "680万円未満",
-    69 => "690万円未満",
-    70 => "700万円未満",
-    71 => "710万円未満",
-    72 => "720万円未満",
-    73 => "730万円未満",
-    74 => "740万円未満",
-    75 => "750万円未満",
-    76 => "760万円未満",
-    77 => "770万円未満",
-    78 => "780万円未満",
-    79 => "790万円未満",
-    80 => "800万円未満",
-    81 => "810万円未満",
-    82 => "820万円未満",
-    83 => "830万円未満",
-    84 => "840万円未満",
-    85 => "850万円未満",
-    86 => "860万円未満",
-    87 => "870万円未満",
-    88 => "880万円未満",
-    89 => "890万円未満",
-    90 => "900万円未満",
-    91 => "910万円未満",
-    92 => "920万円未満",
-    93 => "930万円未満",
-    94 => "940万円未満",
-    95 => "950万円未満",
-    96 => "960万円未満",
-    97 => "970万円未満",
-    98 => "980万円未満",
-    99 => "990万円未満",
-    100 => "1,000万円未満",
-    101 => "1,500万円未満",
-    102 => "2,000万円未満",
-    103 => "5,000万円未満",
-    104 => "5,000万円以上",
-  }
-
-  def str_all_cost
-    return HASH_ALL_COST[self.all_cost]
-  end
-
-   # number_of_times_the_grant_was_receivedの区分値(助成金受給回数)
-   HASH_NUMBER_OF_TIMES_THE_GRANT_WAS_RECEIVED = {
-    1 => "0回",
-    2 => "1回",
-    3 => "2回",
-    4 => "3回",
-    5 => "4回",
-    6 => "5回",
-    7 => "6回",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_number_of_times_the_grant_was_received
-    return HASH_NUMBER_OF_TIMES_THE_GRANT_WAS_RECEIVED[self.number_of_times_the_grant_was_received]
-  end
-
   # credit_card_validityの区分値(クレジットカード使用可否)
   HASH_CREDIT_CARD_VALIDITY = {
     1 => "可",
@@ -1388,31 +1075,12 @@ class Report < ApplicationRecord
     return HASH_PERIOD_OF_TIME_SPENT_TRAVELING[self.period_of_time_spent_traveling]
   end
 
-  # clinic_selection_criteriaの区分値(このクリニック選定理由)
-  HASH_CLINIC_SELECTION_CRITERIA = {
-    1 => "自宅から近かったから",
-    2 => "職場から近かったから",
-    3 => "口コミサイトで評価が良かったから",
-    4 => "SNSでの評判を見て",
-    5 => "料金が手頃だったから",
-    6 => "知人から勧められたから",
-    7 => "説明会に参加して決めた",
-    8 => "ホームページをみて",
-    9 => "信頼する医師がいたから",
-    10 => "広告を見て",
-    99 => "その他"
-    }
-
-  def str_clinic_selection_criteria
-    return HASH_CLINIC_SELECTION_CRITERIA[self.clinic_selection_criteria]
-  end
-
   # briefing_sessionの区分値(説明会への有無と参加)
   HASH_BRIEFING_SESSION = {
-    1 => "リアル説明会に参加した",
-    2 => "オンライン説明会に参加した",
-    3 => "リアル/オンライン どちらにも参加した",
-    4 => "リアル/オンライン どちらの説明会へも参加しなかった",
+    1 => "リアル説明会に参加",
+    2 => "オンライン説明会に参加",
+    3 => "どちらにも参加",
+    4 => "どちらも参加せず",
     5 => "説明会自体がなかった",
     99 => "その他"
     }
@@ -1501,101 +1169,6 @@ class Report < ApplicationRecord
     return HASH_INDUSTRY_TYPE[self.industry_type]
   end
 
-  # private_or_listed_companyの区分値(上場非上場)
-  HASH_PRIVATE_OR_LISTED_COMPANY = {
-    1 => "上場企業",
-    2 => "非上場企業",
-    3 => "非上場企業(親会社が上場)",
-    4 => "国家公務員",
-    100 => "不明"
-  }
-
-  def str_private_or_listed_company
-    return HASH_PRIVATE_OR_LISTED_COMPANY[self.private_or_listed_company]
-  end
-
-  # domestic_or_foreign_capitalの区分値(日系or外資)
-  HASH_DOMESTIC_OR_FOREIGN_CAPITAL = {
-    1 => "日系企業(公務員含む)",
-    2 => "外資系企業",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_domestic_or_foreign_capital
-    return HASH_DOMESTIC_OR_FOREIGN_CAPITAL[self.domestic_or_foreign_capital]
-  end
-
-  # capital_sizeの区分値(資本金)
-  HASH_CAPITAL_SIZE = {
-    1 => "1千万円以下",
-    2 => "3千万円以下",
-    3 => "5千万円以下",
-    4 => "1億円以下",
-    5 => "3億円以下",
-    6 => "10億円以下",
-    7 => "50億円以下",
-    8 => "100億円以下",
-    9 => "それ以上",
-    100 => "不明"
-  }
-
-  def str_capital_size
-    return HASH_CAPITAL_SIZE[self.capital_size]
-  end
-
-  # departmentの区分値(部署)
-  HASH_DEPARTMENT = {
-    1 => "企画･広報",
-    2 => "販売･営業",
-    3 => "製造･生産",
-    4 => "調達･購買",
-    5 => "生産管理･品質管理",
-    6 => "技術･研究開発",
-    7 => "総務･人事",
-    8 => "経理･財務",
-    9 => "情報システム",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_department
-    return HASH_DEPARTMENT[self.department]
-  end  
-
-  # positionの区分値(役職)
-  HASH_POSITION = {
-    1 => "経営層･役員クラス",
-    2 => "部長クラス",
-    3 => "課長クラス",
-    4 => "係長･主任クラス",
-    5 => "一般社員クラス",
-    6 => "その他専門職･特別職等",
-    99 => "その他"
-  }
-
-  def str_position
-    return HASH_POSITION[self.position]
-  end
-
-  # number_of_employeesの区分値(従業員数)
-  HASH_NUMBER_OF_EMPLOYEES = {
-    1 => "5人以下",
-    2 => "20人以下",
-    3 => "50人以下",
-    4 => "100人以下",
-    5 => "500人以下",
-    6 => "千人以下",
-    7 => "5千人以下",
-    8 => "1万人以下",
-    99 => "それ以上",
-    100 => "不明"
-  }
-
-  def str_number_of_employees
-    return HASH_NUMBER_OF_EMPLOYEES[self.number_of_employees]
-  end
-
   # work_styleの区分値(働き方)
   HASH_WORK_STYLE = {
     1 => "公務員",
@@ -1612,28 +1185,6 @@ class Report < ApplicationRecord
 
   def str_work_style
     return HASH_WORK_STYLE[self.work_style]
-  end
-
-  # annual_incomeの区分値(当時のご自身の年収)
-  HASH_ANNUAL_INCOME = {
-    1 => "50万円未満",
-    2 => "100万円未満",
-    3 => "200万円未満",
-    4 => "300万円未満",
-    5 => "400万円未満",
-    6 => "500万円未満",
-    7 => "600万円未満",
-    8 => "700万円未満",
-    9 => "800万円未満",
-    10 => "900万円未満",
-    11 => "1,000万円未満",
-    12 => "1,500万円未満",
-    13 => "2,000万円未満",
-    14 => "2,000万円以上"
-  }
-
-  def str_annual_income
-    return HASH_ANNUAL_INCOME[self.annual_income]
   end
 
   # household_net_incomeの区分値(当時、前年の夫婦合算所得)
@@ -1696,8 +1247,12 @@ class Report < ApplicationRecord
     99 => "その他"
   }
 
-  def str_smoking
-    return HASH_SMOKING[self.smoking]
+  def str_smoking_male
+    return HASH_SMOKING[self.smoking_male]
+  end
+
+  def str_smoking_female
+    return HASH_SMOKING[self.smoking_female]
   end
 
 
@@ -1785,6 +1340,16 @@ class Report < ApplicationRecord
     hash
   end
 
+
+  # treatment_scheduleのday区分値(通院スケジュール)別モデル
+  def self.make_select_treatment_schedule_day
+    hash = {}
+    (1..100).each do |i|
+      hash["D#{i}"] = i
+    end
+    hash
+  end
+
   # special_inspectionの区分値(特殊検査)別モデル
     # name
     HASH_SPECIAL_INSPECTION_NAME = {
@@ -1802,7 +1367,6 @@ class Report < ApplicationRecord
       12 => "MRI",
       13 => "ビタミンD検査",
       14 => "銅亜鉛検査",
-      15 => "精子検査(クルーガーテスト)",
       99 => "その他",
     }
 
@@ -1817,7 +1381,7 @@ class Report < ApplicationRecord
     }
 
     def str_special_inspection_place
-      return HASH_SPECIAL_INSPECTION_PLACE[a]
+      return HASH_SPECIAL_INSPECTION_PLACE[SpecialInspection.place]
     end
 
     # timing
@@ -1827,6 +1391,32 @@ class Report < ApplicationRecord
         hash["D#{i}"] = i
       end
       hash
+    end
+
+  # treatment_scheduleの区分値(特殊検査)別モデル
+    # cycle
+    HASH_TREATMENT_SCHEDULE_CYCLE = {
+      1 => "検査周期",
+      2 => "採卵周期",
+      3 => "移植周期",
+      99 => "その他",
+      100 => "不明",
+    }
+
+    def str_treatment_schedule_cycle
+      return HASH_TREATMENT_SCHEDULE_CYCLE[TreatmentSchedule.cycle]
+    end
+
+    # exam_headline
+    HASH_TREATMENT_SCHEDULE_EXAM_HEADLINE = {
+      1 => "内診",
+      2 => "採血",
+      3 => "採卵",
+      4 => "移植",
+    }
+
+    def str_treatment_schedule_exam_headline
+      return HASH_TREATMENT_SCHEDULE_EXAM_HEADLINE[TreatmentSchedule.exam_headline]
     end
 
 
@@ -1911,26 +1501,6 @@ class Report < ApplicationRecord
   #   hash
   # end
 
-
-  # number_of_aihの区分値(実施人工授精実施回数/CL単位)
-  HASH_NUMBER_OF_AIH = {
-    1 => "1回",
-    2 => "2回",
-    3 => "3回",
-    4 => "4回",
-    5 => "5回",
-    6 => "6回",
-    7 => "7回",
-    8 => "8回",
-    9 => "9回",
-    10 => "10回",
-    99 => "11回以上",
-    100 => "不明",
-  }
-
-  def str_number_of_aih
-    return HASH_NUMBER_OF_AIH[self.number_of_aih]
-  end
   # NUMBER_OF_AIH_MAXIMUM = 1000
   # NUMBER_OF_AIH_RANGE = 10
   # UPPER_THE_NUMBER_OF_AIH_RANGE = NUMBER_OF_AIH_RANGE + 1
@@ -1956,57 +1526,6 @@ class Report < ApplicationRecord
   #   hash
   # end
   
-  
-  # first_age_to_startの区分値(治療開始年齢/妊活〜不妊治療全体)
-  HASH_FIRST_AGE_TO_START = {
-    100 => "不明",
-    19 => "19歳以下",
-    20 => "20歳",
-    21 => "21歳",
-    22 => "22歳",
-    23 => "23歳",
-    24 => "24歳",
-    25 => "25歳",
-    26 => "26歳",
-    27 => "27歳",
-    28 => "28歳",
-    29 => "29歳",
-    30 => "30歳",
-    31 => "31歳",
-    32 => "32歳",
-    33 => "33歳",
-    34 => "34歳",
-    35 => "35歳",
-    36 => "36歳",
-    37 => "37歳",
-    38 => "38歳",
-    39 => "39歳",
-    40 => "40歳",
-    41 => "41歳",
-    42 => "42歳",
-    43 => "43歳",
-    44 => "44歳",
-    45 => "45歳",
-    46 => "46歳",
-    47 => "47歳",
-    48 => "48歳",
-    49 => "49歳",
-    50 => "50歳",
-    51 => "51歳",
-    52 => "52歳",
-    53 => "53歳",
-    54 => "54歳",
-    55 => "55歳",
-    56 => "56歳",
-    57 => "57歳",
-    58 => "58歳",
-    59 => "59歳",
-    60 => "60歳以上",
-  }
-
-  def str_first_age_to_start
-    return HASH_FIRST_AGE_TO_START[self.first_age_to_start]
-  end
   # FIRST_AGE_TO_START_MAXIMUM = 1000
   # FIRST_AGE_TO_START_RANGE = 59
   # UPPER_THE_FIRST_AGE_TO_START_RANGE = FIRST_AGE_TO_START_RANGE + 1
@@ -2445,37 +1964,6 @@ class Report < ApplicationRecord
   #   hash
   # end
 
-
-  # all_number_of_sairanの区分値(全採卵回数/CL単位)
-  HASH_ALL_NUMBER_OF_SAIRAN = {
-    100 => "不明",
-    1 => "1回",
-    2 => "2回",
-    3 => "3回",
-    4 => "4回",
-    5 => "5回",
-    6 => "6回",
-    7 => "7回",
-    8 => "8回",
-    9 => "9回",
-    10 => "10回",
-    11 => "11回",
-    12 => "12回",
-    13 => "13回",
-    14 => "14回",
-    15 => "15回",
-    16 => "16回",
-    17 => "17回",
-    18 => "18回",
-    19 => "19回",
-    20 => "20回",
-    99 => "それ以上",
-  }
-
-  def str_all_number_of_sairan
-    return HASH_ALL_NUMBER_OF_SAIRAN[self.all_number_of_sairan]
-  end
-
   # ALL_NUMBER_OF_SAIRAN_MAXIMUM = 1000
   # ALL_NUMBER_OF_SAIRAN_RANGE = 20
   # UPPER_THE_ALL_NUMBER_OF_SAIRAN_RANGE = ALL_NUMBER_OF_SAIRAN_RANGE + 1
@@ -2622,36 +2110,6 @@ class Report < ApplicationRecord
   #   hash
   # end
 
-
-  # all_number_of_transplantsの区分値(全移植回数/CL単位)
-  HASH_ALL_NUMBER_OF_TRANSPLANTS = {
-    100 => "不明",
-    1 => "1回",
-    2 => "2回",
-    3 => "3回",
-    4 => "4回",
-    5 => "5回",
-    6 => "6回",
-    7 => "7回",
-    8 => "8回",
-    9 => "9回",
-    10 => "10回",
-    11 => "11回",
-    12 => "12回",
-    13 => "13回",
-    14 => "14回",
-    15 => "15回",
-    16 => "16回",
-    17 => "17回",
-    18 => "18回",
-    19 => "19回",
-    20 => "20回",
-    99 => "それ以上",
-  }
-
-  def str_all_number_of_transplants
-    return HASH_ALL_NUMBER_OF_TRANSPLANTS[self.all_number_of_transplants]
-  end
   # ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM = 1000
   # ALL_NUMBER_OF_TRANSPLANTS_RANGE = 20
   # UPPER_THE_ALL_NUMBER_OF_TRANSPLANTS_RANGE = ALL_NUMBER_OF_TRANSPLANTS_RANGE + 1
@@ -2870,7 +2328,7 @@ class Report < ApplicationRecord
   # end
 
 
-  # number_of_transferable_embryosの区分値(最新採卵周期での受精した個数/CL単位)
+  # number_of_transferable_embryosの区分値(最新採卵周期での移植可能胚数/CL単位)
   HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS = {
     100 => "不明",
     1 => "1個",
@@ -3127,6 +2585,26 @@ class Report < ApplicationRecord
   # end
 
 
+  # pregnancy_dateの区分値(妊娠に判定日数)
+  HASH_PREGNANCY_DATE = {
+    1 => "1日目",
+    2 => "2日目",
+    3 => "3日目",
+    4 => "4日目",
+    5 => "5日目",
+    6 => "6日目",
+    7 => "7日目",
+    8 => "8日目",
+    9 => "9日目",
+    10 => "10日目",
+    99 => "それ以上",
+    100 => "不明",
+  }
+
+  def str_pregnancy_date
+    return HASH_PREGNANCY_DATE[self.pregnancy_date]
+  end
+
   # embryo_culture_daysの区分値(妊娠に至った胚の培養日数)
   HASH_EMBRYO_CULTURE_DAYS = {
     1 => "1日目",
@@ -3181,42 +2659,29 @@ end
 # Table name: reports
 #
 #  id                                           :bigint           not null, primary key
-#  about_causes_of_infertility                  :text
 #  about_work_and_working_style                 :text
-#  adoption                                     :integer
 #  age_of_partner_at_end_of_treatment           :integer
-#  all_cost                                     :integer
-#  all_grant_amount                             :integer
-#  all_number_of_sairan                         :integer
-#  all_number_of_transplants                    :integer
 #  amh                                          :integer
-#  annual_income                                :integer
-#  annual_income_status                         :integer          default("show"), not null
 #  average_waiting_time                         :integer
+#  average_waiting_time2                        :integer
 #  blastocyst_grade1                            :integer
 #  blastocyst_grade1_supplementary_explanation  :text
 #  blastocyst_grade2                            :integer
 #  blastocyst_grade2_supplementary_explanation  :text
-#  bmi                                          :integer
 #  briefing_session                             :integer
-#  capital_size                                 :integer
-#  capital_size_status                          :integer
 #  city_at_the_time_status                      :integer          default("show"), not null
+#  cl_female_inspection_memo                    :text
+#  cl_male_inspection_memo                      :text
 #  clinic_review                                :text
-#  clinic_selection_criteria                    :integer
 #  comfort_of_space                             :integer
 #  content                                      :text
 #  cost                                         :integer
 #  credit_card_validity                         :integer
 #  creditcards_can_be_used_from_more_than       :integer
 #  current_state                                :integer
-#  department                                   :integer
-#  department_status                            :integer
 #  description_of_eggs_and_sperm_used           :text
 #  details_of_icsi                              :integer
 #  doctor_quality                               :integer
-#  domestic_or_foreign_capital                  :integer
-#  domestic_or_foreign_capital_status           :integer
 #  early_embryo_grade                           :integer
 #  early_embryo_grade_supplementary_explanation :text
 #  egg_maturity                                 :integer
@@ -3225,71 +2690,81 @@ end
 #  explanation_and_impression_about_ishoku      :text
 #  explanation_and_impression_about_sairan      :text
 #  explanation_of_cost                          :text
-#  explanation_of_frozen_embryo_storage_cost    :text
+#  f_disease_memo                               :text
+#  f_infertility_memo                           :text
+#  f_other_effort_cost                          :integer
+#  f_other_effort_memo                          :text
+#  f_supplement_cost                            :integer
+#  f_supplement_memo                            :text
+#  f_surgery_memo                               :text
 #  fertility_treatment_number                   :integer
-#  first_age_to_start                           :integer
-#  frozen_embryo_storage_cost                   :integer
+#  followup_investigation                       :integer
+#  followup_investigation_memo                  :text
 #  fuiku                                        :integer
 #  fuiku_supplementary_explanation              :text
 #  household_net_income                         :integer
 #  household_net_income_status                  :integer          default("show"), not null
+#  how_long_to_continue_treatment               :integer
+#  how_long_to_continue_treatment2              :integer
+#  how_long_to_continue_treatment_memo          :text
 #  impression_of_price                          :integer
 #  impression_of_technology                     :integer
 #  industry_type                                :integer
-#  industry_type_status                         :integer
+#  industry_type_status                         :integer          default("show"), not null
 #  inspection_supplementary_explanation         :text
+#  inspection_supplementary_explanation_men     :text
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
 #  ishoku_cost_explanation                      :text
 #  ishoku_type                                  :integer
+#  m_disease_memo                               :text
+#  m_infertility_memo                           :text
+#  m_other_effort_cost                          :integer
+#  m_other_effort_memo                          :text
+#  m_supplement_cost                            :integer
+#  m_supplement_memo                            :text
+#  m_surgery_memo                               :text
+#  most_sad_thing                               :text
 #  notes_on_type_of_sairan_cycle                :text
-#  number_of_aih                                :integer
 #  number_of_clinics                            :integer
 #  number_of_eggs_collected                     :integer
 #  number_of_eggs_stored                        :integer
-#  number_of_employees                          :integer
-#  number_of_employees_status                   :integer
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer
-#  number_of_miscarriages                       :integer
-#  number_of_stillbirths                        :integer
-#  number_of_times_the_grant_was_received       :integer
 #  number_of_transferable_embryos               :integer
 #  online_consultation                          :integer
 #  online_consultation_details                  :text
-#  other_effort_cost                            :integer
-#  other_effort_supplementary_explanation       :text
 #  ova_with_ivm                                 :integer
 #  period_of_time_spent_traveling               :integer
 #  pgt1                                         :integer
-#  pgt1_status                                  :integer
+#  pgt1_status                                  :integer          default("show"), not null
 #  pgt2                                         :integer
-#  pgt2_status                                  :integer
+#  pgt2_status                                  :integer          default("show"), not null
 #  pgt_supplementary_explanation                :text
-#  pgt_supplementary_explanation_status         :integer
-#  position                                     :integer
-#  position_status                              :integer
+#  pgt_supplementary_explanation_status         :integer          default("show"), not null
 #  prefecture_at_the_time_status                :integer          default("show"), not null
-#  private_or_listed_company                    :integer
-#  private_or_listed_company_status             :integer
+#  pregnancy_date                               :integer
+#  pregnancy_date_memo                          :text
 #  probability_of_normal_morphology_of_sperm    :float
+#  reason_for_transfer                          :text
 #  reasons_for_choosing_this_clinic             :text
 #  reservation_method                           :integer
+#  rest_period                                  :integer
+#  rest_period_memo                             :text
 #  sairan_age                                   :integer
 #  sairan_cost                                  :integer
 #  sairan_cost_explanation                      :text
 #  selection_of_anesthesia_type                 :integer
 #  semen_concentration                          :integer
 #  semen_volume                                 :float
-#  smoking                                      :integer
+#  smoking_female                               :integer
+#  smoking_male                                 :integer
+#  special_inspection_memo                      :text
 #  sperm_advance_rate                           :float
 #  sperm_description                            :text
 #  sperm_motility                               :float
 #  staff_quality                                :integer
 #  status                                       :integer          default("released"), not null
-#  supplement_cost                              :integer
-#  supplement_supplementary_explanation         :text
-#  supplementary_explanation_of_grant           :text
 #  suspended_or_retirement_job                  :integer
 #  title                                        :string
 #  total_amount_of_sperm                        :integer
@@ -3299,6 +2774,8 @@ end
 #  transplant_method                            :integer
 #  treatment_end_age                            :integer
 #  treatment_period                             :integer
+#  treatment_policy                             :text
+#  treatment_schedule_memo                      :text
 #  treatment_start_age                          :integer
 #  treatment_support_system                     :integer
 #  type_of_ovarian_stimulation                  :integer
@@ -3307,7 +2784,7 @@ end
 #  types_of_fertilization_methods               :integer
 #  use_of_anesthesia                            :integer
 #  work_style                                   :integer
-#  work_style_status                            :integer
+#  work_style_status                            :integer          default("show"), not null
 #  year_of_treatment_end                        :date
 #  created_at                                   :datetime         not null
 #  updated_at                                   :datetime         not null

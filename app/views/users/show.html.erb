@@ -18,78 +18,78 @@
                 <% end %>
               <% else %>
                 <% if @user.birthday == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
                 <% elsif Time.now.year - @user.birthday.year <= 25 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 30 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 35 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 40 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 45 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
                   <% end %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
                 <% end %>
               <% end %>
             </div>
             <div class="pt-2 text-center pt-3 pl-4">
               <h6>
                 <% if @user.birthday == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明") %>
                 <% elsif Time.now.year - @user.birthday.year <= 25 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy", title: "〜24歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 30 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 35 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 40 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 45 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
                   <% end %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
                 <% end %>
                 <%= @user.name %>
               </h6>
@@ -111,39 +111,39 @@
               <% end %>
             <% else %>
               <% if @user.birthday == nil %>
-                <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
+                <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
               <% elsif Time.now.year - @user.birthday.year <= 25 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
                 <% else %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
                 <% end %>
               <% elsif Time.now.year - @user.birthday.year <= 30 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
                 <% else %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
                 <% end %>
               <% elsif Time.now.year - @user.birthday.year <= 35 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
                 <% else %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
                 <% end %>
               <% elsif Time.now.year - @user.birthday.year <= 40 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
                 <% else %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
                 <% end %>
               <% elsif Time.now.year - @user.birthday.year <= 45 %>
                 <% if Time.now.month < @user.birthday.month %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
                 <% end %>
               <% else %>
-                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
               <% end %>
             <% end %>
           </div>
@@ -187,39 +187,39 @@
             <div>
               <h5 class="d-inline">
                 <% if @user.birthday == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明") %>
                 <% elsif Time.now.year - @user.birthday.year <= 25 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy", title: "〜24歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 30 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 35 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 40 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
                   <% end %>
                 <% elsif Time.now.year - @user.birthday.year <= 45 %>
                   <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
                   <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy") %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
                   <% end %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy") %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
                 <% end %>
                 <%= @user.name %>
               </5>
@@ -292,19 +292,19 @@
                                     <%= image_tag(report.user.icon, class:"icon_image") %>
                                   <% else %>
                                     <% if report.treatment_end_age == nil %>
-                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
                                     <% elsif report.treatment_end_age < 24 %>
-                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
                                     <% elsif report.treatment_end_age < 29 %>
-                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
                                     <% elsif report.treatment_end_age < 34 %>
-                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
                                     <% elsif report.treatment_end_age < 39 %>
-                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
                                     <% elsif report.treatment_end_age < 44 %>
-                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
                                     <% else %>
-                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
                                     <% end %>
                                   <% end %>
                                 </div>
@@ -312,19 +312,19 @@
                               <div class="align-items-center text-center pt-2">
                                 <p class="mb-0 pb-1">
                                   <% if report.treatment_end_age == nil %>
-                                    <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 24 %>
-                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy", title: "〜24歳"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 29 %>
-                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 34 %>
-                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 39 %>
-                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 44 %>
-                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳"), user_path(report.user_id) %>
                                   <% else %>
-                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜"), user_path(report.user_id) %>
                                   <% end %>
                                   <%= link_to report.user.name, user_path(report.user_id) %>
                                 </p>
@@ -358,19 +358,19 @@
                                     <%= image_tag(report.user.icon, class:"icon_image") %>
                                   <% else %>
                                     <% if report.treatment_end_age == nil %>
-                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
                                     <% elsif report.treatment_end_age < 24 %>
-                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
                                     <% elsif report.treatment_end_age < 29 %>
-                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
                                     <% elsif report.treatment_end_age < 34 %>
-                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
                                     <% elsif report.treatment_end_age < 39 %>
-                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
                                     <% elsif report.treatment_end_age < 44 %>
-                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
                                     <% else %>
-                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy") %>
+                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
                                     <% end %>
                                   <% end %>
                                 </div>
@@ -378,19 +378,19 @@
                               <div class="small align-items-center text-center pt-0">
                                 <p class="mb-0">
                                   <% if report.treatment_end_age == nil %>
-                                    <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy", title: "不明"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 24 %>
-                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "15px", class: "img-fluid", loading: "lazy", title: "〜24歳"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 29 %>
-                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "15px", class: "img-fluid", loading: "lazy", title: "25〜29歳"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 34 %>
-                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "15px", class: "img-fluid", loading: "lazy", title: "30〜34歳"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 39 %>
-                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "15px", class: "img-fluid", loading: "lazy", title: "35〜39歳"), user_path(report.user_id) %>
                                   <% elsif report.treatment_end_age < 44 %>
-                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "15px", class: "img-fluid", loading: "lazy", title: "40〜44歳"), user_path(report.user_id) %>
                                   <% else %>
-                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
+                                    <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy", title: "45歳〜"), user_path(report.user_id) %>
                                   <% end %>
                                   <%= link_to report.user.name, user_path(report.user_id) %>
                                 </p>

@@ -51,25 +51,6 @@ $(function() {
   });
 });
 
-// 治療の種類選択
-// $(function() {
-//   ivf($('#report_treatment_type option:selected').val());
-//   $("#report_treatment_type").change(function() {
-//     ivf($(this).val());
-//   });
-// })
-// function ivf(treatment_type) {
-//   if (treatment_type === "1") {
-//     $(".number_of_aih").show();
-//     $(".advanced_fertility_treatment1").show();
-//     $(".advanced_fertility_treatment2").show();
-//   } else {
-//     $(".number_of_aih").hide();
-//     $(".advanced_fertility_treatment1").hide();
-//     $(".advanced_fertility_treatment2").hide();
-//   }
-// }
-
 // 顕微授精の詳細
 $(function() {
   icsi($("#report_types_of_fertilization_methods option:selected").val());
@@ -102,6 +83,21 @@ function eggsperm(types_of_eggs_and_sperm) {
   }
 }
 
+// 治療継続期限
+$(function() {
+  continue_treatment($("#report_how_long_to_continue_treatment option:selected").val());
+  $("#report_how_long_to_continue_treatment").change(function() {
+    continue_treatment($(this).val());
+  });
+})
+function continue_treatment(how_long_to_continue_treatment) {
+  if (how_long_to_continue_treatment == "1") {
+    $(".how_long_to_continue_treatment2").show();
+  } else {
+    $(".how_long_to_continue_treatment2").hide();
+  }
+}
+
 // オンライン診療
 $(function() {
   online($("#report_online_consultation option:selected").val());
@@ -114,19 +110,6 @@ function online(online_consultation) {
     $(".online_consultation_details").show();
   } else {
     $(".online_consultation_details").hide();
-  }
-}
-
-// BMI計算
-function calc(){
-  var h = Number(document.getElementById("bmi_height").value);
-  var w = Number(document.getElementById("bmi_weight").value);
-  bmi = Math.round((w / ( (h / 100) * (h / 100) )) * 10);
-  bmi = bmi / 10;
-  if (isNaN(bmi)) {
-    alert("身長と体重を入力してください");
-  } else {
-    alert("あなたのBMIは" + "「" + bmi + "」です。");
   }
 }
 

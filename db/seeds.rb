@@ -53,12 +53,6 @@ CSV.foreach('db/csv/clinics.csv', headers: true) do |row|
   )
 end
 
-SSelectionMethod.create([
-  { name: "IMSI(イムジー)" },
-  { name: "Zymot(ザイモット)"},
-  { name: "SpermSlow(スパムスロー)"},
-])
-
 Tag.create([
   { tag_name: "自然周期" },
   { tag_name: "アンタゴニスト法" },
@@ -85,6 +79,13 @@ Supplement.create([
   { name: "L-アルギニン" },
   { name: "レスベラトロール" },
   { name: "メラトニン" },
+  { name: "その他" },
+])
+
+MSupplement.create([
+  { name: "マカ" },
+  { name: "まむし" },
+  { name: "その他" },
 ])
 
 ScopeOfDisclosure.create([
@@ -124,6 +125,9 @@ FInfertilityFactor.create([
   { name: "卵管(狭窄)癒着" },
   { name: "抗精子抗体" },
   { name: "内分泌ホルモン異常" },
+  { name: "甲状腺機能低下症" },
+  { name: "甲状腺機能亢進症" },
+  { name: "その他" },
 ])
 
 MInfertilityFactor.create([
@@ -140,11 +144,13 @@ MInfertilityFactor.create([
   { name: "先天性精管欠損" },
   { name: "膿精液症" },
   { name: "クラインフェルター症候群" },
+  { name: "その他" },
 ])
 
 FDisease.create([
   { name: "バセドウ病" },
   { name: "橋本病" },
+  { name: "その他" },
 ])
 
 MDisease.create([
@@ -157,10 +163,13 @@ FSurgery.create([
   { name: "子宮内膜症" },
   { name: "卵巣嚢腫" },
   { name: "卵管切除" },
+  { name: "子宮内膜ポリープ切除" },
+  { name: "その他" },
 ])
 
 MSurgery.create([
   { name: "精索静脈瘤" },
+  { name: "その他" },
 ])
 
 SairanMedicine.create([
@@ -181,6 +190,8 @@ SairanMedicine.create([
   { name: "セトロタイド" },
   { name: "レルミナ" },
   { name: "ボルタレン" },
+  { name: "プロギノーバ" },
+  { name: "その他" },
 ])
 
 TransferMedicine.create([
@@ -199,6 +210,7 @@ TransferMedicine.create([
   { name: "ワンクリノン" },
   { name: "ルテウム" },
   { name: "ウトロゲスタン" },
+  { name: "その他" },
 ])
 
 TransferOption.create([
@@ -222,6 +234,22 @@ OtherEffort.create([
   { name: "よもぎ蒸し" },
   { name: "岩盤浴" },
   { name: "ファスティング" },
+  { name: "その他" },
+])
+
+MOtherEffort.create([
+  { name: "運動" },
+  { name: "漢方(エキス剤等)" },
+  { name: "鍼" },
+  { name: "鍼灸" },
+  { name: "整体" },
+  { name: "骨盤矯正" },
+  { name: "ヨガ" },
+  { name: "ホットヨガ" },
+  { name: "よもぎ蒸し" },
+  { name: "岩盤浴" },
+  { name: "ファスティング" },
+  { name: "その他" },
 ])
 
 Inspection.create([
@@ -239,4 +267,80 @@ Inspection.create([
   { name: "抗精子抗体検査" },
   { name: "クラミジア抗原" },
   { name: "甲状腺機能検査" },
+  { name: "その他" },
+])
+
+ClFemaleInspection.create([
+  { name: "基礎体温" },
+  { name: "AMH検査" },
+  { name: "ホルモン値検査(E2/FSH/LH/PRL)" },
+  { name: "黄体ホルモン検査(P4)" },
+  { name: "テストステロン検査" },
+  { name: "子宮卵管造影" },
+  { name: "卵管通水検査" },
+  { name: "超音波検査" },
+  { name: "頚管粘液検査" },
+  { name: "フーナーテスト" },
+  { name: "子宮頸がん検査" },
+  { name: "抗精子抗体検査" },
+  { name: "クラミジア抗原" },
+  { name: "甲状腺機能検査" },
+  { name: "その他" },
+])
+
+MaleInspection.create([
+  { name: "ホルモン検査" },
+  { name: "クルーガーテスト" },
+  { name: "イムノビーズテスト" },
+  { name: "精子生存性検査" },
+  { name: "SCSA" },
+  { name: "高倍率精子形態検査" },
+  { name: "睾丸触診" },
+  { name: "陰嚢部超音波検査" },
+  { name: "その他" },
+])
+
+ClMaleInspection.create([
+  { name: "ホルモン検査" },
+  { name: "クルーガーテスト" },
+  { name: "イムノビーズテスト" },
+  { name: "精子生存性検査" },
+  { name: "SCSA" },
+  { name: "高倍率精子形態検査" },
+  { name: "睾丸触診" },
+  { name: "陰嚢部超音波検査" },
+  { name: "その他" },
+])
+
+CostBurden.create([
+  { name: "自分" },
+  { name: "パートナー" },
+  { name: "両親" },
+  { name: "義両親" },
+  { name: "祖父祖母" },
+  { name: "親戚" },
+  { name: "その他" },
+])
+
+FuikuInspection.create([
+  { name: "抗リン脂質抗体症候群" },
+  { name: "子宮形態異常" },
+  { name: "夫婦染色体異常" },
+  { name: "胎児染色体異常" },
+  { name: "凝固異常" },
+  { name: "その他" },
+])
+
+ClSelection.create([
+  { name: "自宅から近かったから" },
+  { name: "職場から近かったから" },
+  { name: "口コミサイトで評価が良かったから" },
+  { name: "SNSでの評判を見て" },
+  { name: "料金が手頃だったから" },
+  { name: "知人から勧められたから" },
+  { name: "説明会に参加して決めた" },
+  { name: "ホームページをみて" },
+  { name: "信頼する医師がいたから" },
+  { name: "広告を見て" },
+  { name: "その他" },
 ])

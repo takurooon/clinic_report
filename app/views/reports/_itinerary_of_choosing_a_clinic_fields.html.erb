@@ -2,7 +2,7 @@
   <table class="table table-sm table-bordered table-hover mb-0">
     <thead>
       <tr>
-        <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col1 text-center align-middle">転院歴&nbsp;<span><small class="text-info">(必須)</small></span></th>
+        <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col1 text-center align-middle">転院歴&nbsp;<span><br><small class="text-info">(必須)</small></span></th>
         <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col2 text-center align-middle"><small>都道府県</small></th>
         <th scope="col" class="itinerary-of-clinic-label itinerary-of-clinic-col3 text-center align-middle">クリニック</th>
       </tr>
@@ -26,7 +26,7 @@
         </td>
         <td class="text-center align-middle">
           <% if f.object.clinic.blank? %>
-            <%= f.select :clinic_id, {}, { prompt: "←先に都道府県を選択"}, { class: "form-control itinerary_of_clinic" } %>
+            <%= f.select :clinic_id, {}, { prompt: "選択"}, { class: "form-control itinerary_of_clinic" } %>
           <% else %>
             <% clinics = Clinic.where(prefecture_id: prefecture_id).order(id: "ASC") %>
             <% options = {} %>

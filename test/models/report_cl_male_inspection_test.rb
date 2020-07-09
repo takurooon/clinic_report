@@ -1,26 +1,26 @@
 # == Schema Information
 #
-# Table name: report_s_selection_methods
+# Table name: report_cl_male_inspections
 #
 #  id                    :bigint           not null, primary key
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  cl_male_inspection_id :bigint           not null
 #  report_id             :bigint           not null
-#  s_selection_method_id :bigint           not null
 #
 # Indexes
 #
-#  index_report_s_selection_methods_on_report_id              (report_id)
-#  index_report_s_selection_methods_on_s_selection_method_id  (s_selection_method_id)
+#  index_report_cl_male_inspections_on_cl_male_inspection_id  (cl_male_inspection_id)
+#  index_report_cl_male_inspections_on_report_id              (report_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (cl_male_inspection_id => cl_male_inspections.id)
 #  fk_rails_...  (report_id => reports.id)
-#  fk_rails_...  (s_selection_method_id => s_selection_methods.id)
 #
 require 'test_helper'
 
-class ReportSSelectionMethodTest < ActiveSupport::TestCase
+class ReportClMaleInspectionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

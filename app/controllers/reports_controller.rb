@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :show]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
     @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
@@ -19,9 +19,6 @@ class ReportsController < ApplicationController
     if @report.nonreleased? && @report.user != current_user
       redirect_to root_path
     end
-
-    @annual_income_status = Report.find(params[:id]).annual_income_status
-    @household_net_income_status = Report.find(params[:id]).household_net_income_status
 
     itinerary_of_choosing_a_clinics = @report.itinerary_of_choosing_a_clinics.order(order_of_transfer: "desc")
     clinics = itinerary_of_choosing_a_clinics.map { |i| i[:clinic_id] }
@@ -58,7 +55,7 @@ class ReportsController < ApplicationController
     end
     sairan_hormones = @report.sairan_hormones.order(day: "ASC")
     @sairan_hormones = sairan_hormones.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
-   
+
     sairan_hormones_days = sairan_hormones.map { |d| d[:day] }
     sairan_hormones_day = sairan_hormones_days.map do |d|
       "D" + d.to_s
@@ -225,43 +222,10 @@ class ReportsController < ApplicationController
     @report.shokihaiishoku_hormones.build
     @report.haibanhoishoku_hormones.build
     @report.special_inspections.build
+    @report.treatment_schedules.build
+    @report.unsuccessful_sairan_cycles.build
+    @report.unsuccessful_ishoku_cycles.build
   end
-
-  
-  # def confirm
-  #   flash[:alert] = "まだ投稿は完了していません。必須項目の「クリニック」と「お住まい(非公開設定可)」は選択済みですか？"
-  #   if params[:id].blank?
-  #     @report = Report.new(report_params_for_confirm)
-  #   else
-  #     @report = Report.find(params[:id])
-  #     @report.attributes = report_params_for_confirm
-  #   end
-
-  #   if params[:temp].blank?
-  #     @report.status = params[:status2]
-  #   else
-  #     @report.status = params[:status1]
-  #   end
-
-  #   if @report.status.blank?
-  #     @report.status = "released"
-  #   end
-
-  #   @i_name = params[:i_name]
-  #   @fif_name = params[:fif_name]
-  #   @mif_name = params[:mif_name]
-  #   @fd_name = params[:fd_name]
-  #   @md_name = params[:md_name]
-  #   @fs_name = params[:fs_name]
-  #   @ms_name = params[:ms_name] 
-  #   @sm_name = params[:sm_name] 
-  #   @tm_name = params[:tm_name]
-  #   @to_name = params[:to_name]
-  #   @oe_name = params[:oe_name]
-  #   @supplement_name = params[:supplement_name]
-  #   @sod_scope = params[:sod_scope]
-  #   @tag_name = params[:tag_name]
-  # end
 
   def molding(materials)
     list = materials.map do |material|
@@ -288,174 +252,6 @@ class ReportsController < ApplicationController
       @report.status = "released"
     end
 
-    # ssm_name = params[:ssm_name].split(",")
-    # ssm_list = molding(ssm_name)
-    # ssm_ids = params[:report][:s_selection_method_ids]
-    # ssm_ids.each do |ssm_id|
-    #   if ssm_id.blank?
-    #     next
-    #   end
-    #   ssm = SSelectionMethod.find(ssm_id)
-    #   ssm_list << ssm.name
-    # end
-    # ssm_list = ssm_list.uniq
-
-    # i_name = params[:i_name].split(",")
-    # i_list = molding(i_name)
-    # i_ids = params[:report][:inspection_ids]
-    # i_ids.each do |i_id|
-    #   if i_id.blank?
-    #     next
-    #   end
-    #   i = Inspection.find(i_id)
-    #   i_list << i.name
-    # end
-    # i_list = i_list.uniq
-
-    # fif_name = params[:fif_name].split(",")
-    # fif_list = molding(fif_name)
-    # fif_ids = params[:report][:f_infertility_factor_ids]
-    # fif_ids.each do |fif_id|
-    #   if fif_id.blank?
-    #     next
-    #   end
-    #   fif = FInfertilityFactor.find(fif_id)
-    #   fif_list << fif.name
-    # end
-    # fif_list = fif_list.uniq
-
-    # mif_name = params[:mif_name].split(",")
-    # mif_list = molding(mif_name)
-    # mif_ids = params[:report][:m_infertility_factor_ids]
-    # mif_ids.each do |mif_id|
-    #   if mif_id.blank?
-    #     next
-    #   end
-    #   mif = MInfertilityFactor.find(mif_id)
-    #   mif_list << mif.name
-    # end
-    # mif_list = mif_list.uniq
-
-    # fd_name = params[:fd_name].split(",")
-    # fd_list = molding(fd_name)
-    # fd_ids = params[:report][:f_disease_ids]
-    # fd_ids.each do |fd_id|
-    #   if fd_id.blank?
-    #     next
-    #   end
-    #   fd = FDisease.find(fd_id)
-    #   fd_list << fd.name
-    # end
-    # fd_list = fd_list.uniq
-
-    # md_name = params[:md_name].split(",")
-    # md_list = molding(md_name)
-    # md_ids = params[:report][:m_disease_ids]
-    # md_ids.each do |md_id|
-    #   if md_id.blank?
-    #     next
-    #   end
-    #   md = MDisease.find(md_id)
-    #   md_list << md.name
-    # end
-    # md_list = md_list.uniq
-
-    # fs_name = params[:fs_name].split(",")
-    # fs_list = molding(fs_name)
-    # fs_ids = params[:report][:f_surgery_ids]
-    # fs_ids.each do |fs_id|
-    #   if fs_id.blank?
-    #     next
-    #   end
-    #   fs = FSurgery.find(fs_id)
-    #   fs_list << fs.name
-    # end
-    # fs_list = fs_list.uniq
-
-    # ms_name = params[:ms_name].split(",")
-    # ms_list = molding(ms_name)
-    # ms_ids = params[:report][:m_surgery_ids]
-    # ms_ids.each do |ms_id|
-    #   if ms_id.blank?
-    #     next
-    #   end
-    #   ms = MSurgery.find(ms_id)
-    #   ms_list << ms.name
-    # end
-    # ms_list = ms_list.uniq
-
-    # sm_name = params[:sm_name].split(",")
-    # sm_list = molding(sm_name)
-    # sm_ids = params[:report][:sairan_medicine_ids]
-    # sm_ids.each do |sm_id|
-    #   if sm_id.blank?
-    #     next
-    #   end
-    #   sm = SairanMedicine.find(sm_id)
-    #   sm_list << sm.name
-    # end
-    # sm_list = sm_list.uniq
-
-    # tm_name = params[:tm_name].split(",")
-    # tm_list = molding(tm_name)
-    # tm_ids = params[:report][:transfer_medicine_ids]
-    # tm_ids.each do |tm_id|
-    #   if tm_id.blank?
-    #     next
-    #   end
-    #   tm = TransferMedicine.find(tm_id)
-    #   tm_list << tm.name
-    # end
-    # tm_list = tm_list.uniq
-
-    # to_name = params[:to_name].split(",")
-    # to_list = molding(to_name)
-    # to_ids = params[:report][:transfer_option_ids]
-    # to_ids.each do |to_id|
-    #   if to_id.blank?
-    #     next
-    #   end
-    #   to = TransferOption.find(to_id)
-    #   to_list << to.name
-    # end
-    # to_list = to_list.uniq
-
-    # oe_name = params[:oe_name].split(",")
-    # oe_list = molding(oe_name)
-    # oe_ids = params[:report][:other_effort_ids]
-    # oe_ids.each do |oe_id|
-    #   if oe_id.blank?
-    #     next
-    #   end
-    #   oe = OtherEffort.find(oe_id)
-    #   oe_list << oe.name
-    # end
-    # oe_list = oe_list.uniq
-
-    # supplement_name = params[:supplement_name].split(",")
-    # supplement_list = molding(supplement_name)
-    # supplement_ids = params[:report][:supplement_ids]
-    # supplement_ids.each do |supplement_id|
-    #   if supplement_id.blank?
-    #     next
-    #   end
-    #   supplement = Supplement.find(supplement_id)
-    #   supplement_list << supplement.name
-    # end
-    # supplement_list = supplement_list.uniq
-
-    # sod_name = params[:sod_scope].split(",")
-    # sod_list = molding(sod_name)
-    # sod_ids = params[:report][:scope_of_disclosure_ids]
-    # sod_ids.each do |sod_id|
-    #   if sod_id.blank?
-    #     next
-    #   end
-    #   sod = ScopeOfDisclosure.find(sod_id)
-    #   sod_list << sod.scope
-    # end
-    # sod_list = sod_list.uniq
-
     tag_name = params[:tag_name].split(",")
     tag_list = molding(tag_name)
     tag_ids = params[:report][:tag_ids]
@@ -472,19 +268,6 @@ class ReportsController < ApplicationController
       if params[:back]
         format.html { render :new }
       elsif @report.save
-        # @report.save_i(i_list)
-        # @report.save_fifs(fif_list)
-        # @report.save_mifs(mif_list)
-        # @report.save_fds(fd_list)
-        # @report.save_mds(md_list)
-        # @report.save_fss(fs_list)
-        # @report.save_mss(ms_list)
-        # @report.save_sms(sm_list)
-        # @report.save_tms(tm_list)
-        # @report.save_tos(to_list)
-        # @report.save_oes(oe_list)
-        # @report.save_supplements(supplement_list)
-        # @report.save_sods(sod_list)
         @report.save_tags(tag_list)
         format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
         format.json { render :show, status: :created, location: @report }
@@ -539,6 +322,18 @@ class ReportsController < ApplicationController
     if @report.special_inspections.count == 0
       @report.special_inspections.build
     end
+
+    if @report.treatment_schedules.count == 0
+      @report.treatment_schedules.build
+    end
+
+    if @report.unsuccessful_sairan_cycles.count == 0
+      @report.unsuccessful_sairan_cycles.build
+    end
+
+    if @report.unsuccessful_ishoku_cycles.count == 0
+      @report.unsuccessful_ishoku_cycles.build
+    end
   end
 
   def release
@@ -559,7 +354,6 @@ class ReportsController < ApplicationController
       return
     end
 
-    # @report.normalize_for_update_embryo_stage
     @report.normalize_for_credit_card_validity
 
     # if params[:temp].blank?
@@ -576,174 +370,6 @@ class ReportsController < ApplicationController
       @report.status = "released"
     end
 
-    # ssm_name = params[:ssm_name].split(",")
-    # ssm_list = molding(ssm_name)
-    # ssm_ids = params[:report][:s_selection_method_ids]
-    # ssm_ids.each do |ssm_id|
-    #   if ssm_id.blank?
-    #     next
-    #   end
-    #   ssm = SSelectionMethod.find(ssm_id)
-    #   ssm_list << ssm.name
-    # end
-    # ssm_list = ssm_list.uniq
-
-    # i_name = params[:i_name].split(",")
-    # i_list = molding(i_name)
-    # i_ids = params[:report][:inspection_ids]
-    # i_ids.each do |i_id|
-    #   if i_id.blank?
-    #     next
-    #   end
-    #   i = Inspection.find(i_id)
-    #   i_list << i.name
-    # end
-    # i_list = i_list.uniq
-
-    # fif_name = params[:fif_name].split(",")
-    # fif_list = molding(fif_name)
-    # fif_ids = params[:report][:f_infertility_factor_ids]
-    # fif_ids.each do |fif_id|
-    #   if fif_id.blank?
-    #     next
-    #   end
-    #   fif = FInfertilityFactor.find(fif_id)
-    #   fif_list << fif.name
-    # end
-    # fif_list = fif_list.uniq
-
-    # mif_name = params[:mif_name].split(",")
-    # mif_list = molding(mif_name)
-    # mif_ids = params[:report][:m_infertility_factor_ids]
-    # mif_ids.each do |mif_id|
-    #   if mif_id.blank?
-    #     next
-    #   end
-    #   mif = MInfertilityFactor.find(mif_id)
-    #   mif_list << mif.name
-    # end
-    # mif_list = mif_list.uniq
-
-    # fd_name = params[:fd_name].split(",")
-    # fd_list = molding(fd_name)
-    # fd_ids = params[:report][:f_disease_ids]
-    # fd_ids.each do |fd_id|
-    #   if fd_id.blank?
-    #     next
-    #   end
-    #   fd = FDisease.find(fd_id)
-    #   fd_list << fd.name
-    # end
-    # fd_list = fd_list.uniq
-
-    # md_name = params[:md_name].split(",")
-    # md_list = molding(md_name)
-    # md_ids = params[:report][:m_disease_ids]
-    # md_ids.each do |md_id|
-    #   if md_id.blank?
-    #     next
-    #   end
-    #   md = MDisease.find(md_id)
-    #   md_list << md.name
-    # end
-    # md_list = md_list.uniq
-
-    # fs_name = params[:fs_name].split(",")
-    # fs_list = molding(fs_name)
-    # fs_ids = params[:report][:f_surgery_ids]
-    # fs_ids.each do |fs_id|
-    #   if fs_id.blank?
-    #     next
-    #   end
-    #   fs = FSurgery.find(fs_id)
-    #   fs_list << fs.name
-    # end
-    # fs_list = fs_list.uniq
-
-    # ms_name = params[:ms_name].split(",")
-    # ms_list = molding(ms_name)
-    # ms_ids = params[:report][:m_surgery_ids]
-    # ms_ids.each do |ms_id|
-    #   if ms_id.blank?
-    #     next
-    #   end
-    #   ms = MSurgery.find(ms_id)
-    #   ms_list << ms.name
-    # end
-    # ms_list = ms_list.uniq
-
-    # sm_name = params[:sm_name].split(",")
-    # sm_list = molding(sm_name)
-    # sm_ids = params[:report][:sairan_medicine_ids]
-    # sm_ids.each do |sm_id|
-    #   if sm_id.blank?
-    #     next
-    #   end
-    #   sm = SairanMedicine.find(sm_id)
-    #   sm_list << sm.name
-    # end
-    # sm_list = sm_list.uniq
-
-    # tm_name = params[:tm_name].split(",")
-    # tm_list = molding(tm_name)
-    # tm_ids = params[:report][:transfer_medicine_ids]
-    # tm_ids.each do |tm_id|
-    #   if tm_id.blank?
-    #     next
-    #   end
-    #   tm = TransferMedicine.find(tm_id)
-    #   tm_list << tm.name
-    # end
-    # tm_list = tm_list.uniq
-
-    # to_name = params[:to_name].split(",")
-    # to_list = molding(to_name)
-    # to_ids = params[:report][:transfer_option_ids]
-    # to_ids.each do |to_id|
-    #   if to_id.blank?
-    #     next
-    #   end
-    #   to = TransferOption.find(to_id)
-    #   to_list << to.name
-    # end
-    # to_list = to_list.uniq
-
-    # oe_name = params[:oe_name].split(",")
-    # oe_list = molding(oe_name)
-    # oe_ids = params[:report][:other_effort_ids]
-    # oe_ids.each do |oe_id|
-    #   if oe_id.blank?
-    #     next
-    #   end
-    #   oe = OtherEffort.find(oe_id)
-    #   oe_list << oe.name
-    # end
-    # oe_list = oe_list.uniq
-
-    # supplement_name = params[:supplement_name].split(",")
-    # supplement_list = molding(supplement_name)
-    # supplement_ids = params[:report][:supplement_ids]
-    # supplement_ids.each do |supplement_id|
-    #   if supplement_id.blank?
-    #     next
-    #   end
-    #   supplement = Supplement.find(supplement_id)
-    #   supplement_list << supplement.name
-    # end
-    # supplement_list = supplement_list.uniq
-
-    # sod_name = params[:sod_scope].split(",")
-    # sod_list = molding(sod_name)
-    # sod_ids = params[:report][:scope_of_disclosure_ids]
-    # sod_ids.each do |sod_id|
-    #   if sod_id.blank?
-    #     next
-    #   end
-    #   sod = ScopeOfDisclosure.find(sod_id)
-    #   sod_list << sod.scope
-    # end
-    # sod_list = sod_list.uniq
-
     tag_name = params[:tag_name].split(",")
     tag_list = molding(tag_name)
     tag_ids = params[:report][:tag_ids]
@@ -756,49 +382,10 @@ class ReportsController < ApplicationController
     end
     tag_list = tag_list.uniq
 
-    # hash = params[:report][:day_of_haibanhoishokus_attributes]
-    # hash.each{|key, value|
-    #   print(key + "=>", value)
-    #   params[:report][:day_of_haibanhoishokus_attributes][key][:e2] = ""
-    # }
-
-    # 検証必須↓
-    # if params[:report][:embryo_stage] == 1
-    #   params[:report][:blastocyst_grade1] = {}
-    #   params[:report][:blastocyst_grade2] = {}
-    #   params[:report][:day_of_haibanhoishokus_attributes] = {}
-    #   params[:report][:haibanhoishoku_hormones_attributes] = {}
-    # elsif params[:embryo_stage] == 2
-    #   params[:report][:early_embryo_grade] = {}
-    #   params[:report][:day_of_shokihaiishokus] = {}
-    #   params[:report][:shokihaiishoku_hormones] = {}
-    # else
-    #   params[:report][:early_embryo_grade] = {}
-    #   params[:report][:blastocyst_grade1] = {}
-    #   params[:report][:blastocyst_grade2] = {}
-    #   params[:report][:day_of_shokihaiishokus] = {}
-    #   params[:report][:shokihaiishoku_hormones] = {}
-    #   params[:report][:day_of_haibanhoishokus_attributes] = {}
-    #   params[:report][:haibanhoishoku_hormones_attributes] = {}
-    # end
-
     respond_to do |format|
       if params[:back]
         format.html { render :edit }
       elsif @report.update(report_params)
-        # @report.save_i(i_list)
-        # @report.save_fifs(fif_list)
-        # @report.save_mifs(mif_list)
-        # @report.save_fds(fd_list)
-        # @report.save_mds(md_list)
-        # @report.save_fss(fs_list)
-        # @report.save_mss(ms_list)
-        # @report.save_sms(sm_list)
-        # @report.save_tms(tm_list)
-        # @report.save_tos(to_list)
-        # @report.save_oes(oe_list)
-        # @report.save_supplements(supplement_list)
-        # @report.save_sods(sod_list)
         @report.save_tags(tag_list)
         format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
         format.json { render :show, status: :created, location: @report }
@@ -832,166 +419,6 @@ class ReportsController < ApplicationController
       @report = Report.find(params[:id])
     end
 
-    # def report_params_for_confirm
-    #   params.require(:report).permit(
-    #     :current_state,
-    #     :clinic_id,
-    #     :prefecture_id,
-    #     :prefecture_at_the_time_status,
-    #     :city_id,
-    #     :city_at_the_time_status,
-    #     :number_of_clinics,
-    #     :clinic_selection_criteria,
-    #     :briefing_session,
-    #     :reasons_for_choosing_this_clinic,
-    #     :year_of_treatment_end,
-    #     :fertility_treatment_number,
-    #     :types_of_fertilization_methods,
-    #     :details_of_icsi,
-    #     :transplant_method,
-    #     :treatment_start_age,
-    #     :first_age_to_start,
-    #     :treatment_end_age,
-    #     :age_of_partner_at_end_of_treatment,
-    #     :treatment_period,
-    #     :number_of_aih,
-    #     :inspection_supplementary_explanation,
-    #     :amh,
-    #     :bmi,
-    #     :smoking,
-    #     :types_of_eggs_and_sperm,
-    #     :description_of_eggs_and_sperm_used,
-    #     :sairan_age,
-    #     :ishoku_age,
-    #     :type_of_ovarian_stimulation,
-    #     :type_of_sairan_cycle,
-    #     :notes_on_type_of_sairan_cycle,
-    #     :use_of_anesthesia,
-    #     :selection_of_anesthesia_type,
-    #     :total_number_of_sairan,
-    #     :all_number_of_sairan,
-    #     :number_of_eggs_collected,
-    #     :number_of_fertilized_eggs,
-    #     :number_of_transferable_embryos,
-    #     :number_of_frozen_eggs,
-    #     :egg_maturity,
-    #     :ova_with_ivm,
-    #     :embryo_culture_days,
-    #     :embryo_stage,
-    #     :early_embryo_grade,
-    #     :early_embryo_grade_supplementary_explanation,
-    #     :blastocyst_grade1,
-    #     :blastocyst_grade1_supplementary_explanation,
-    #     :blastocyst_grade2,
-    #     :blastocyst_grade2_supplementary_explanation,
-    #     :explanation_and_impression_about_sairan,
-    #     :about_causes_of_infertility,
-    #     :semen_volume,
-    #     :semen_concentration,
-    #     :sperm_advance_rate,
-    #     :sperm_motility,
-    #     :probability_of_normal_morphology_of_sperm,
-    #     :total_amount_of_sperm,
-    #     :sperm_description,
-    #     :number_of_miscarriages,
-    #     :number_of_stillbirths,
-    #     :fuiku,
-    #     :fuiku_supplementary_explanation,
-    #     :pgt1,
-    #     :pgt1_status,
-    #     :pgt2,
-    #     :pgt2_status,
-    #     :pgt_supplementary_explanation,
-    #     :pgt_supplementary_explanation_status,
-    #     :ishoku_type,
-    #     :total_number_of_transplants,
-    #     :total_number_of_eggs_transplanted,
-    #     :all_number_of_transplants,
-    #     :number_of_eggs_stored,
-    #     :frozen_embryo_storage_cost,
-    #     :explanation_of_frozen_embryo_storage_cost,
-    #     :explanation_and_impression_about_ishoku,
-    #     :adoption,
-    #     :other_effort_cost,
-    #     :other_effort_supplementary_explanation,
-    #     :supplement_cost,
-    #     :supplement_supplementary_explanation,
-    #     :sairan_cost,
-    #     :sairan_cost_explanation,
-    #     :ishoku_cost,
-    #     :ishoku_cost_explanation,
-    #     :cost,
-    #     :explanation_of_cost,
-    #     :all_cost,
-    #     :number_of_times_the_grant_was_received,
-    #     :all_grant_amount,
-    #     :supplementary_explanation_of_grant,
-    #     :credit_card_validity,
-    #     :creditcards_can_be_used_from_more_than,
-    #     :average_waiting_time,
-    #     :reservation_method,
-    #     :online_consultation,
-    #     :online_consultation_details,
-    #     :period_of_time_spent_traveling,
-    #     :work_style,
-    #     :work_style_status,
-    #     :industry_type,
-    #     :industry_type_status,
-    #     :private_or_listed_company,
-    #     :private_or_listed_company_status,
-    #     :domestic_or_foreign_capital,
-    #     :domestic_or_foreign_capital_status,
-    #     :capital_size,
-    #     :capital_size_status,
-    #     :department,
-    #     :department_status,
-    #     :position,
-    #     :position_status,
-    #     :number_of_employees,
-    #     :number_of_employees_status,
-    #     :treatment_support_system,
-    #     :suspended_or_retirement_job,
-    #     :annual_income,
-    #     :annual_income_status,
-    #     :household_net_income,
-    #     :household_net_income_status,
-    #     :about_work_and_working_style,
-    #     :title,
-    #     :content,
-    #     :clinic_review,
-    #     :staff_quality,
-    #     :doctor_quality,
-    #     :impression_of_price,
-    #     :impression_of_technology,
-    #     :comfort_of_space,
-    #     :status,
-    #     s_selection_method_ids: [],
-    #     inspection_ids: [],
-    #     f_infertility_factor_ids: [],
-    #     m_infertility_factor_ids: [],
-    #     f_disease_ids: [],
-    #     m_disease_ids: [],
-    #     f_surgery_ids: [],
-    #     m_surgery_ids: [],
-    #     sairan_medicine_ids: [],
-    #     transfer_medicine_ids: [],
-    #     transfer_option_ids: [],
-    #     other_effort_ids: [],
-    #     supplement_ids: [],
-    #     scope_of_disclosure_ids: [],
-    #     tag_ids: [],
-    #     day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
-    #     day_of_shokihaiishokus_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :_destroy],
-    #     day_of_haibanhoishokus_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :_destroy],
-    #     sairan_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
-    #     before_ishoku_hormones_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
-    #     shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
-    #     haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
-    #     itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy],
-    #     special_inspections_attributes: [:id, :name, :place, :cost, :timing, :explanation, :_destroy],
-    #   )
-    # end
-
     def report_params
       params.require(:report).permit(
         :current_state,
@@ -1001,7 +428,6 @@ class ReportsController < ApplicationController
         :city_id,
         :city_at_the_time_status,
         :number_of_clinics,
-        :clinic_selection_criteria,
         :briefing_session,
         :reasons_for_choosing_this_clinic,
         :year_of_treatment_end,
@@ -1010,15 +436,13 @@ class ReportsController < ApplicationController
         :details_of_icsi,
         :transplant_method,
         :treatment_start_age,
-        :first_age_to_start,
         :treatment_end_age,
         :age_of_partner_at_end_of_treatment,
         :treatment_period,
-        :number_of_aih,
         :inspection_supplementary_explanation,
         :amh,
-        :bmi,
-        :smoking,
+        :smoking_male,
+        :smoking_female,
         :types_of_eggs_and_sperm,
         :description_of_eggs_and_sperm_used,
         :sairan_age,
@@ -1029,7 +453,6 @@ class ReportsController < ApplicationController
         :use_of_anesthesia,
         :selection_of_anesthesia_type,
         :total_number_of_sairan,
-        :all_number_of_sairan,
         :number_of_eggs_collected,
         :number_of_fertilized_eggs,
         :number_of_transferable_embryos,
@@ -1045,7 +468,12 @@ class ReportsController < ApplicationController
         :blastocyst_grade2,
         :blastocyst_grade2_supplementary_explanation,
         :explanation_and_impression_about_sairan,
-        :about_causes_of_infertility,
+        :f_infertility_memo,
+        :m_infertility_memo,
+        :f_surgery_memo,
+        :m_surgery_memo,
+        :f_disease_memo,
+        :m_disease_memo,
         :semen_volume,
         :semen_concentration,
         :sperm_advance_rate,
@@ -1053,8 +481,6 @@ class ReportsController < ApplicationController
         :probability_of_normal_morphology_of_sperm,
         :total_amount_of_sperm,
         :sperm_description,
-        :number_of_miscarriages,
-        :number_of_stillbirths,
         :fuiku,
         :fuiku_supplementary_explanation,
         :pgt1,
@@ -1066,15 +492,16 @@ class ReportsController < ApplicationController
         :ishoku_type,
         :total_number_of_transplants,
         :total_number_of_eggs_transplanted,
-        :all_number_of_transplants,
         :number_of_eggs_stored,
-        :frozen_embryo_storage_cost,
-        :explanation_of_frozen_embryo_storage_cost,
         :explanation_and_impression_about_ishoku,
-        :adoption,
-        :other_effort_cost,
-        :other_effort_supplementary_explanation,
-        :supplement_cost,
+        :f_other_effort_cost,
+        :m_other_effort_cost,
+        :f_other_effort_memo,
+        :m_other_effort_memo,
+        :f_supplement_cost,
+        :m_supplement_cost,
+        :f_supplement_memo,
+        :m_supplement_memo,
         :supplement_supplementary_explanation,
         :sairan_cost,
         :sairan_cost_explanation,
@@ -1082,13 +509,10 @@ class ReportsController < ApplicationController
         :ishoku_cost_explanation,
         :cost,
         :explanation_of_cost,
-        :all_cost,
-        :number_of_times_the_grant_was_received,
-        :all_grant_amount,
-        :supplementary_explanation_of_grant,
         :credit_card_validity,
         :creditcards_can_be_used_from_more_than,
         :average_waiting_time,
+        :average_waiting_time2,
         :reservation_method,
         :online_consultation,
         :online_consultation_details,
@@ -1097,22 +521,8 @@ class ReportsController < ApplicationController
         :work_style_status,
         :industry_type,
         :industry_type_status,
-        :private_or_listed_company,
-        :private_or_listed_company_status,
-        :domestic_or_foreign_capital,
-        :domestic_or_foreign_capital_status,
-        :capital_size,
-        :capital_size_status,
-        :department,
-        :department_status,
-        :position,
-        :position_status,
-        :number_of_employees,
-        :number_of_employees_status,
         :treatment_support_system,
         :suspended_or_retirement_job,
-        :annual_income,
-        :annual_income_status,
         :household_net_income,
         :household_net_income_status,
         :about_work_and_working_style,
@@ -1125,10 +535,31 @@ class ReportsController < ApplicationController
         :impression_of_technology,
         :comfort_of_space,
         :status,
+        :rest_period,
+        :rest_period_memo,
+        :reason_for_transfer,
+        :most_sad_thing,
+        :how_long_to_continue_treatment,
+        :how_long_to_continue_treatment2,
+        :how_long_to_continue_treatment_memo,
+        :inspection_supplementary_explanation_men,
+        :cl_female_inspection_memo,
+        :cl_male_inspection_memo,
+        :pregnancy_date,
+        :pregnancy_date_memo,
+        :treatment_policy,
+        :followup_investigation,
+        :followup_investigation_memo,
+        :treatment_schedule_memo,
+        :special_inspection_memo,
         s_selection_method_ids: [],
         inspection_ids: [],
+        male_inspection_ids: [],
+        cl_female_inspection_ids: [],
+        cl_male_inspection_ids: [],
         f_infertility_factor_ids: [],
         m_infertility_factor_ids: [],
+        fuiku_inspection_ids: [],
         f_disease_ids: [],
         m_disease_ids: [],
         f_surgery_ids: [],
@@ -1137,9 +568,11 @@ class ReportsController < ApplicationController
         transfer_medicine_ids: [],
         transfer_option_ids: [],
         other_effort_ids: [],
+        m_other_effort_ids: [],
         supplement_ids: [],
-        scope_of_disclosure_ids: [],
+        m_supplement_ids: [],
         tag_ids: [],
+        cl_selection_ids: [],
         day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
         day_of_shokihaiishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
         day_of_haibanhoishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
@@ -1149,6 +582,9 @@ class ReportsController < ApplicationController
         haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
         itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy],
         special_inspections_attributes: [:id, :name, :place, :cost, :timing, :explanation, :_destroy],
+        treatment_schedules_attributes: [:id, :cycle, :day, :exam_headline, :_destroy],
+        unsuccessful_sairan_cycles_attributes: [:id, :number, :sairan_age, :type_of_ovarian_stimulation, :number_of_eggs_collected, :number_of_fertilized_eggs,:number_of_transferable_embryos, :number_of_frozen_eggs, :memo, :_destroy],
+        unsuccessful_ishoku_cycles_attributes: [:id, :number, :ishoku_age, :transplant_method, :memo, :_destroy],
       )
     end
 end

@@ -664,6 +664,9 @@ i .fa-edit {
 	#transfer, #job, #factor, #sairan, #inspections, #jusei, #ishoku, #cost, #supplements, #evaluation {
 		border-top-left-radius: 4px;
 	}
+	#tab_1_2, #tab_1_3, #tab_1_4, #tab_1_5, #tab_2_2, #tab_2_3, #tab_2_4, #tab_2_5, #tab_3_2, #tab_3_3, #tab_3_4, #tab_3_5, #tab_4_2, #tab_4_3, #tab_4_4, #tab_4_5, #tab_5_2, #tab_5_3, #tab_5_4, #tab_5_5, #right_tab, #right_tab2, #right_tab3, #right_tab4, #right_tab5 {
+		border-top-left-radius: 4px;
+	}
 // }
 
 // 未ログインでのshow画面のコメント欄(ブラー)
@@ -754,7 +757,7 @@ i .fa-edit {
     top: 60px;
     left: 0;
     width: 100%;
-    background-color: rgba( 0, 0, 0, 0 );
+    background-color: rgba(255, 255, 255, 0.9);
 		z-index: 10000;
 }
 .report-post-btn-area .report-post-btn-area-inner {
@@ -815,7 +818,7 @@ i .fa-edit {
 			top: 70px;
 			left: 0;
 			width: 100%;
-			background-color: rgba( 0, 0, 0, 0 );
+			background-color: rgba(255, 255, 255, 0.9);
 			z-index: 10000;
 	}
 	.report-post-btn-area .report-post-btn-area-inner {
@@ -873,7 +876,7 @@ i .fa-edit {
 			top: 70px;
 			left: 0;
 			width: 100%;
-			background-color: rgba( 0, 0, 0, 0 );
+			background-color: rgba(255, 255, 255, 0.9);
 			z-index: 10000;
 	}
 	.report-post-btn-area .report-post-btn-area-inner {
@@ -928,10 +931,10 @@ i .fa-edit {
 @media screen and (min-width:992px){
 	.report-post-btn-area {
 			position: fixed;
-			top: 70px;
+			top: 59px;
 			left: 0;
 			width: 100%;
-			background-color: rgba( 0, 0, 0, 0 );
+			background-color: rgba(255, 255, 255, 0.9);
 			z-index: 10000;
 	}
 	.report-post-btn-area .report-post-btn-area-inner {
@@ -1000,4 +1003,8 @@ i .fa-edit {
 	.table-right-column {
 		width: 55%;
 	}
+}
+
+// フォーム画面のタブ内でのスクロール
+.scroll-box {
 }
