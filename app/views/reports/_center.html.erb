@@ -143,6 +143,9 @@
                 <small class="text-muted">
                   <%= report.created_at.to_s(:datetime_jp) %>
                 </small>
+                <% if false %>
+                  いいね(<%= report.liked_users.count %>)
+                <% end %>
               </div>
               <div class="d-none d-sm-block">
                 <%= link_to report, data: { "turbolinks" => false } do %>

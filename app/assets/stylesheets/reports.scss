@@ -1,3 +1,46 @@
+// 質問項目
+.question {
+	font-weight: bold;
+	padding-top: 1em;
+	letter-spacing: 1px;
+}
+
+.sub-question {
+	font-size: small;
+	padding-top: 1em;
+	margin-bottom: 1em;
+}
+
+.form-group .sub-question {
+	font-size: small;
+	padding-top: 2em;
+	margin-bottom: 1em;
+}
+
+// 各タブの一番目のform-groupのスタイリング
+.scroll-box >.form-group:first-of-type {
+	margin-top: 0;
+	padding-top: 0;
+}
+.scroll-box >.form-group:first-of-type > .question {
+	margin-top: 0;
+	padding-top: 1em;
+}
+
+// formのボックスやタブの1問目
+.first-question-inbox {
+	margin-top: 0;
+	padding-top: 0;
+}
+.alert > .first-question-inbox {
+	margin-top: 0;
+	padding-top: 0;
+}
+.scroll-box > .first-question-inbox {
+	margin-top: 0;
+	padding-top: 0;
+}
+
 .reports_button {
   a {
       margin: 0 8px;
@@ -503,7 +546,7 @@ i .fa-edit {
     position: relative;
     margin: 2em 0;
     padding: 0.5em 1em;
-    border: solid 3px #62c1ce;
+		border: solid 3px #62c1ce;
 }
 .box27 .box-title {
     position: absolute;
@@ -529,6 +572,7 @@ i .fa-edit {
 	margin: 2em 0;
 	background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
 	background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+	border-radius: 10px;
 }
 .box16 p {
 	margin: 0; 
@@ -541,6 +585,30 @@ i .fa-edit {
 	border: double 5px #4ec4d3;
 }
 .box5 p {
+	margin: 0; 
+	padding: 0;
+}
+
+.box26 {
+	position: relative;
+	margin: 2em 0;
+	padding: 0.5em 1em;
+	border: solid 3px #8EEFF0;
+	border-radius: 8px;
+}
+.box26 .box-title {
+	position: absolute;
+	display: inline-block;
+	top: -13px;
+	left: 10px;
+	padding: 0 9px;
+	line-height: 1;
+	font-size: 19px;
+	background: #FFF;
+	color: #101010;
+	font-weight: bold;
+}
+.box26 p {
 	margin: 0; 
 	padding: 0;
 }
@@ -664,7 +732,7 @@ i .fa-edit {
 	#transfer, #job, #factor, #sairan, #inspections, #jusei, #ishoku, #cost, #supplements, #evaluation {
 		border-top-left-radius: 4px;
 	}
-	#tab_1_2, #tab_1_3, #tab_1_4, #tab_1_5, #tab_2_2, #tab_2_3, #tab_2_4, #tab_2_5, #tab_3_2, #tab_3_3, #tab_3_4, #tab_3_5, #tab_4_2, #tab_4_3, #tab_4_4, #tab_4_5, #tab_5_2, #tab_5_3, #tab_5_4, #tab_5_5, #right_tab, #right_tab2, #right_tab3, #right_tab4, #right_tab5 {
+	#tab_1_2, #tab_1_3, #tab_1_4, #tab_1_5, #tab_2_2, #tab_2_3, #tab_2_4, #tab_2_5, #tab_3_2, #tab_3_3, #tab_3_4, #tab_3_5, #tab_4_2, #tab_4_3, #tab_4_4, #tab_4_5, #tab_5_2, #tab_5_3, #tab_5_4, #tab_5_5, #right_tab, #right_tab2, #right_tab3, #right_tab4, #right_tab5, #right_tab6 {
 		border-top-left-radius: 4px;
 	}
 // }

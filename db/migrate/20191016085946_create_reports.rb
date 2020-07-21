@@ -128,6 +128,10 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :followup_investigation_memo
       t.text :treatment_schedule_memo
       t.text :special_inspection_memo
+      t.text :cost_burden_memo
+      t.integer :number_of_visits_before_sairan
+      t.integer :number_of_visits_before_ishoku
+      t.integer :number_of_visits_before_pregnancy_date
 
       t.timestamps
     end

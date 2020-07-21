@@ -33,6 +33,38 @@ $(function() {
   });
 });
 
+// クリニック選択した時点でform内のテキストに表示させる
+$(function() {
+  var clinic_name = $('#report_clinic_id option:selected').text();
+  var clinic_name_description = "「" + clinic_name + "」" + "での治療に関する情報についてお聞きします。";
+  var clinic_name_review = clinic_name + "での治療の「満足度」についてお聞きします。";
+  var clinic_name_birth = clinic_name + "での治療で妊娠し「出産された方」にお聞きします。";
+  if (clinic_name == "クリニック" ) {
+    $('.select-clinic-name').text("このレポコのクリニック");
+    $('.select-clinic-description').text("このレポコのクリニックでの治療に関する情報についてお聞きします。");
+    $('.select-clinic-review').text("このレポコのクリニックでの治療の満足度についてお聞きします。");
+    $('.select-clinic-birth').text("このレポコのクリニックでの治療で妊娠し「出産された方」にお聞きします。");
+  } else {
+    $('.select-clinic-name').text(clinic_name);
+    $('.select-clinic-description').text(clinic_name_description);
+    $('.select-clinic-review').text(clinic_name_review);
+    $('.select-clinic-birth').text(clinic_name_birth);
+  }
+});
+$(function() {
+  $('#report_clinic_id').change(function() {
+    var clinic_name = $('#report_clinic_id option:selected').text();
+    var clinic_name_description = "「" + clinic_name + "」" + "での治療に関する情報についてお聞きします。";
+    var clinic_name_review = clinic_name + "での治療の「満足度」についてお聞きします。";
+    var clinic_name_birth = clinic_name + "での治療で妊娠し「出産された方」にお聞きします。";
+    $('.select-clinic-name').text(clinic_name);
+    $('.select-clinic-description').text(clinic_name_description);
+    $('.select-clinic-review').text(clinic_name_review);
+    $('.select-clinic-birth').text(clinic_name_birth);
+  });
+});
+
+
 // 治療当時の住まい選択
 $(function() {
   $('#report_prefecture_id').change(function() {

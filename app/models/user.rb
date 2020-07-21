@@ -17,10 +17,14 @@ class User < ApplicationRecord
   has_many :reports, dependent: :destroy
   has_many :comments
   has_one_attached :icon
-  has_many :likes, dependent: :destroy
-  has_many :like_reports, through: :likes, source: :report
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
+  has_many :likes, dependent: :destroy
+  has_many :liked_reports, through: :likes, source: :report
+  def already_liked?(report)
+    self.likes.exists?(report_id: report.id)
+  end
 
   # carrierwave→activestrage変更に伴いmount解除(user/iconカラムも削除済み)↓
   # mount_uploader :icon, ImageUploader
@@ -76,12 +80,16 @@ class User < ApplicationRecord
     99 => "それ以上",
   }
 
-  def str_all_number_of_sairan
-    return HASH_IVF_COUNT[self.all_number_of_sairan]
+  def str_number_of_aih(aih)
+    return HASH_IVF_COUNT[aih]
   end
 
-  def str_all_number_of_transplants
-    return HASH_IVF_COUNT[self.all_number_of_transplants]
+  def str_all_number_of_sairan(sairan)
+    return HASH_IVF_COUNT[sairan]
+  end
+
+  def str_all_number_of_transplants(ishoku)
+    return HASH_IVF_COUNT[ishoku]
   end
 
   # 年齢
@@ -131,12 +139,12 @@ class User < ApplicationRecord
     60 => "60歳以上",
   }
 
-  def str_first_age_to_start
-    return HASH_AGE[self.first_age_to_start]
+  def str_first_age_to_start(age)
+    return HASH_AGE[age]
   end
 
-  def str_first_age_to_start_art
-    return HASH_AGE[self.first_age_to_start_art]
+  def str_first_age_to_start_art(age_art)
+    return HASH_AGE[age_art]
   end
 
 
@@ -249,7 +257,11 @@ class User < ApplicationRecord
     104 => "5,000万円以上",
   }
 
-  def str_all_cost
+  def str_all_cost(cost)
+    return HASH_ALL_COST[cost]
+  end
+
+  def str_all_cost_report
     return HASH_ALL_COST[self.all_cost]
   end
 
@@ -279,8 +291,8 @@ class User < ApplicationRecord
     99 => "100万円以上",
   }
 
-  def str_all_grant_amount
-    return HASH_JOSEIKIN[self.all_grant_amount]
+  def str_all_grant_amount(josei)
+    return HASH_JOSEIKIN[josei]
   end
 
   # 助成金受給回数
@@ -296,8 +308,8 @@ class User < ApplicationRecord
     100 => "不明"
   }
 
-  def str_number_of_times_the_grant_was_received
-    return HASH_JOSEIKIN_COUNT[self.number_of_times_the_grant_was_received]
+  def str_number_of_times_the_grant_was_received(josei)
+    return HASH_JOSEIKIN_COUNT[josei]
   end
 
   # 流産回数
@@ -309,12 +321,12 @@ class User < ApplicationRecord
     100 => "無回答",
   }
 
-  def str_number_of_early_miscarriages
-    return HASH_RYUZAN_COUNT[self.number_of_early_miscarriages]
+  def str_number_of_early_miscarriages(early)
+    return HASH_RYUZAN_COUNT[early]
   end
 
-  def str_number_of_late_stillbirths
-    return HASH_RYUZAN_COUNT[self.number_of_late_stillbirths]
+  def str_number_of_late_miscarriages(late)
+    return HASH_RYUZAN_COUNT[late]
   end
 
   # 飲酒
@@ -326,8 +338,8 @@ class User < ApplicationRecord
     100 => "無回答",
   }
 
-  def str_drink
-    return HASH_DRINK[self.drink]
+  def str_drink(drink)
+    return HASH_DRINK[drink]
   end
 end
 

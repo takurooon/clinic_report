@@ -4,9 +4,16 @@
       <div class="py-3">
       </div>
       <% if @user == current_user %>
-        <div class="pt-0 text-right">
-          <i data-feather="edit-3" class="feather-icon-style1 pb-1"></i><%= link_to 'プロフィールを編集', edit_user_registration_path, class:"btn btn-secondary pl-1 pr-0" %>
-        </div>
+        <%= link_to my_page_path do %>
+          <div class="pt-0 text-right small mb-2">
+            <i data-feather="user" class="feather-icon-style1 pb-1"></i>マイページ
+          </div>
+        <% end %>
+        <%= link_to edit_user_registration_path do %>
+          <div class="pt-0 text-right small">
+            <i data-feather="edit-3" class="feather-icon-style1 pb-1"></i>プロフィールを編集
+          </div>
+        <% end %>
       <% end %>
       <div class="card mt-2">
         <div class="row">

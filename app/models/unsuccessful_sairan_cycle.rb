@@ -26,8 +26,8 @@ class UnsuccessfulSairanCycle < ApplicationRecord
     100 => "不明",
   }
 
-  def str_unsuccessful_sairan_cycle_number
-    return HASH_TOTAL_NUMBER_OF_SAIRAN[UNSUCCESSFUL_SAIRAN_CYCLE.number]
+  def str_unsuccessful_sairan_cycle_number(number)
+    return HASH_NUMBER_OF_SAIRAN[number]
   end
 
   # sairan_ageの区分値(採卵時の年齢)
@@ -77,11 +77,11 @@ class UnsuccessfulSairanCycle < ApplicationRecord
     100 => "不明",
   }
 
-  def str_unsuccessful_sairan_cycle_sairan_age
-    return HASH_SAIRAN_AGE[UNSUCCESSFUL_SAIRAN_CYCLE.sairan_age]
+  def str_unsuccessful_sairan_cycle_sairan_age(age)
+    return HASH_SAIRAN_AGE[age]
   end
 
-  # type_of_ovarian_stimulationの区分値(採卵周期大分類)
+  # type_of_ovarian_stimulationの区分値()
   HASH_TYPE_OF_OVARIAN_STIMULATION = {
     1 => "刺激なし",
     2 => "低刺激",
@@ -91,8 +91,8 @@ class UnsuccessfulSairanCycle < ApplicationRecord
     100 => "不明"
   }
 
-  def str_unsuccessful_sairan_cycle_type_of_ovarian_stimulation
-    return HASH_TYPE_OF_OVARIAN_STIMULATION[UNSUCCESSFUL_SAIRAN_CYCLE.type_of_ovarian_stimulation]
+  def str_unsuccessful_sairan_cycle_type_of_ovarian_stimulation(type)
+    return HASH_TYPE_OF_OVARIAN_STIMULATION[type]
   end
 
   # 個数
@@ -151,20 +151,20 @@ class UnsuccessfulSairanCycle < ApplicationRecord
     100 => "不明",
   }
 
-  def str_unsuccessful_sairan_cycle_number_of_eggs_collected
-    return HASH_NUMBER_OF_EGGS[UNSUCCESSFUL_SAIRAN_CYCLE.number_of_eggs_collected]
+  def str_unsuccessful_sairan_cycle_number_of_eggs_collected(collected)
+    return HASH_NUMBER_OF_EGGS[collected]
   end
 
-  def str_unsuccessful_sairan_cycle_number_of_fertilized_eggs
-    return HASH_NUMBER_OF_EGGS[UNSUCCESSFUL_SAIRAN_CYCLE.number_of_fertilized_eggs]
+  def str_unsuccessful_sairan_cycle_number_of_fertilized_eggs(fertilized_eggs)
+    return HASH_NUMBER_OF_EGGS[fertilized_eggs]
   end
 
-  def str_unsuccessful_sairan_cycle_number_of_transferable_embryos
-    return HASH_NUMBER_OF_EGGS[UNSUCCESSFUL_SAIRAN_CYCLE.number_of_transferable_embryos]
+  def str_unsuccessful_sairan_cycle_number_of_transferable_embryos(transferable)
+    return HASH_NUMBER_OF_EGGS[transferable]
   end
 
-  def str_unsuccessful_sairan_cycle_number_of_frozen_eggs
-    return HASH_NUMBER_OF_EGGS[UNSUCCESSFUL_SAIRAN_CYCLE.number_of_frozen_eggs]
+  def str_unsuccessful_sairan_cycle_number_of_frozen_eggs(frozen)
+    return HASH_NUMBER_OF_EGGS[frozen]
   end
 end
 

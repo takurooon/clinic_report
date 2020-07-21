@@ -15,6 +15,7 @@ class ReportsController < ApplicationController
 
   def show
     @comment = Comment.new(report_id: @report.id)
+    @like = Like.new
 
     if @report.nonreleased? && @report.user != current_user
       redirect_to root_path
@@ -25,6 +26,9 @@ class ReportsController < ApplicationController
     @clinics = clinics.map do |c|
       Clinic.find(c).name
     end
+
+    @unsuccessful_sairan_cycles = @report.unsuccessful_sairan_cycles.order(number: "asc")
+    @unsuccessful_ishoku_cycles = @report.unsuccessful_ishoku_cycles.order(number: "asc")
 
     @special_inspection_era = @report.special_inspections.where(name: 1)
     @special_inspection_emma = @report.special_inspections.where(name: 2)
@@ -184,29 +188,8 @@ class ReportsController < ApplicationController
     end
 
     gon.clinic_name = @report.clinic.name
-    gon.doctor_quality = @report.doctor_quality
-    gon.staff_quality = @report.staff_quality
-    gon.impression_of_technology = @report.impression_of_technology
-    gon.impression_of_price = @report.impression_of_price
-    gon.comfort_of_space = @report.comfort_of_space
-    awt = @report.average_waiting_time
-    if awt.present?
-      if awt <= 2
-        @average_waiting_time = 1
-      elsif awt <= 4
-        @average_waiting_time = 2
-      elsif awt <= 6
-        @average_waiting_time = 3
-      elsif awt <= 8
-        @average_waiting_time = 4
-      else
-        @average_waiting_time = 5
-      end
-    else
-      @average_waiting_time = nil
-    end
     gon.clinic_evaluation = []
-    gon.clinic_evaluation << @report.doctor_quality << @report.staff_quality << @report.impression_of_technology << @report.impression_of_price << @average_waiting_time << @report.comfort_of_space
+    gon.clinic_evaluation << @report.doctor_quality << @report.staff_quality << @report.impression_of_technology << @report.impression_of_price << @report.average_waiting_time2 << @report.comfort_of_space
     @clinic_evaluation = gon.clinic_evaluation.compact
   end
 
@@ -222,7 +205,6 @@ class ReportsController < ApplicationController
     @report.shokihaiishoku_hormones.build
     @report.haibanhoishoku_hormones.build
     @report.special_inspections.build
-    @report.treatment_schedules.build
     @report.unsuccessful_sairan_cycles.build
     @report.unsuccessful_ishoku_cycles.build
   end
@@ -323,10 +305,6 @@ class ReportsController < ApplicationController
       @report.special_inspections.build
     end
 
-    if @report.treatment_schedules.count == 0
-      @report.treatment_schedules.build
-    end
-
     if @report.unsuccessful_sairan_cycles.count == 0
       @report.unsuccessful_sairan_cycles.build
     end
@@ -370,23 +348,23 @@ class ReportsController < ApplicationController
       @report.status = "released"
     end
 
-    tag_name = params[:tag_name].split(",")
-    tag_list = molding(tag_name)
-    tag_ids = params[:report][:tag_ids]
-    tag_ids.each do |tag_id|
-      if tag_id.blank?
-        next
-      end
-      tag = Tag.find(tag_id)
-      tag_list << tag.tag_name
-    end
-    tag_list = tag_list.uniq
+    # tag_name = params[:tag_name].split(",")
+    # tag_list = molding(tag_name)
+    # tag_ids = params[:report][:tag_ids]
+    # tag_ids.each do |tag_id|
+    #   if tag_id.blank?
+    #     next
+    #   end
+    #   tag = Tag.find(tag_id)
+    #   tag_list << tag.tag_name
+    # end
+    # tag_list = tag_list.uniq
 
     respond_to do |format|
       if params[:back]
         format.html { render :edit }
       elsif @report.update(report_params)
-        @report.save_tags(tag_list)
+        # @report.save_tags(tag_list)
         format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
         format.json { render :show, status: :created, location: @report }
       else
@@ -552,6 +530,10 @@ class ReportsController < ApplicationController
         :followup_investigation_memo,
         :treatment_schedule_memo,
         :special_inspection_memo,
+        :cost_burden_memo,
+        :number_of_visits_before_sairan,
+        :number_of_visits_before_ishoku,
+        :number_of_visits_before_pregnancy_date,
         s_selection_method_ids: [],
         inspection_ids: [],
         male_inspection_ids: [],
@@ -582,7 +564,6 @@ class ReportsController < ApplicationController
         haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
         itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy],
         special_inspections_attributes: [:id, :name, :place, :cost, :timing, :explanation, :_destroy],
-        treatment_schedules_attributes: [:id, :cycle, :day, :exam_headline, :_destroy],
         unsuccessful_sairan_cycles_attributes: [:id, :number, :sairan_age, :type_of_ovarian_stimulation, :number_of_eggs_collected, :number_of_fertilized_eggs,:number_of_transferable_embryos, :number_of_frozen_eggs, :memo, :_destroy],
         unsuccessful_ishoku_cycles_attributes: [:id, :number, :ishoku_age, :transplant_method, :memo, :_destroy],
       )

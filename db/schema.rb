@@ -639,6 +639,10 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.text "followup_investigation_memo"
     t.text "treatment_schedule_memo"
     t.text "special_inspection_memo"
+    t.text "cost_burden_memo"
+    t.integer "number_of_visits_before_sairan"
+    t.integer "number_of_visits_before_ishoku"
+    t.integer "number_of_visits_before_pregnancy_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "clinic_id", null: false
@@ -723,16 +727,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "treatment_schedules", force: :cascade do |t|
-    t.bigint "report_id", null: false
-    t.integer "day"
-    t.integer "cycle"
-    t.integer "exam_headline"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["report_id"], name: "index_treatment_schedules_on_report_id"
   end
 
   create_table "unsuccessful_ishoku_cycles", force: :cascade do |t|
@@ -871,7 +865,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
   add_foreign_key "sairan_hormones", "reports"
   add_foreign_key "shokihaiishoku_hormones", "reports"
   add_foreign_key "special_inspections", "reports"
-  add_foreign_key "treatment_schedules", "reports"
   add_foreign_key "unsuccessful_ishoku_cycles", "reports"
   add_foreign_key "unsuccessful_sairan_cycles", "reports"
 end

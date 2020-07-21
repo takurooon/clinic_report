@@ -26,8 +26,8 @@ class UnsuccessfulIshokuCycle < ApplicationRecord
     100 => "不明",
   }
 
-  def str_unsuccessful_ishoku_cycle_number
-    return HASH_TOTAL_NUMBER_OF_ISHOKU[UNSUCCESSFUL_ISHOKU_CYCLE.number]
+  def str_unsuccessful_ishoku_cycle_number(number)
+    return HASH_TOTAL_NUMBER_OF_ISHOKU[number]
   end
 
 
@@ -78,8 +78,8 @@ class UnsuccessfulIshokuCycle < ApplicationRecord
     100 => "不明",
   }
 
-  def str_unsuccessful_ishoku_cycle_ishoku_age
-    return HASH_ISHOKU_AGE[UNSUCCESSFUL_ISHOKU_CYCLE.ishoku_age]
+  def str_unsuccessful_ishoku_cycle_ishoku_age(age)
+    return HASH_ISHOKU_AGE[age]
   end
 
 
@@ -93,8 +93,8 @@ class UnsuccessfulIshokuCycle < ApplicationRecord
     100 => "不明"
   }
 
-  def str_unsuccessful_ishoku_cycle_transplant_method
-    return HASH_TRANSPLANT_METHOD[UNSUCCESSFUL_ISHOKU_CYCLE.transplant_method]
+  def str_unsuccessful_ishoku_cycle_transplant_method(method)
+    return HASH_TRANSPLANT_METHOD[method]
   end
 
   # ishoku_typeの区分値(移植周期のタイプ)
@@ -105,8 +105,8 @@ class UnsuccessfulIshokuCycle < ApplicationRecord
     100 => "不明",
   }
 
-  def str_unsuccessful_ishoku_cycle_ishoku_type
-    return HASH_ISHOKU_TYPE[UNSUCCESSFUL_ISHOKU_CYCLE.ishoku_type]
+  def str_unsuccessful_ishoku_cycle_ishoku_type(type)
+    return HASH_ISHOKU_TYPE[type]
   end
 end
 

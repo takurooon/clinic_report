@@ -2,7 +2,7 @@
   <table class="table table-sm table-bordered table-hover mb-0 special_inspections_table">
     <thead>
       <tr>
-        <th scope="col" class="hormon-label text-center px-0">検査<span class="small"><small class="text-info">(必須)</small></span></th>
+        <th scope="col" class="hormon-label text-center align-middle px-0">検査</th>
         <th scope="col" class="hormon-label text-center">受診</th>
         <th scope="col" class="hormon-label text-center">費用&nbsp;<span class="small"><small class="text-muted">(円)</small></span></th>
         <th scope="col" class="hormon-label text-center">時期</th>
@@ -10,10 +10,10 @@
     </thead>
     <tbody>
       <tr>
-        <th scope="row" class="et-bt-column"><%= f.select :name, Report::HASH_SPECIAL_INSPECTION_NAME.invert, { prompt: "必須" }, { class: "form-control text-muted" } %></th>
-        <td class="et-bt-hormone-column"><%= f.select :place, Report::HASH_SPECIAL_INSPECTION_PLACE.invert, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
+        <th scope="row" class="et-bt-column"><%= f.select :name, SpecialInspection::HASH_SPECIAL_INSPECTION_NAME.invert, { prompt: "必須" }, { class: "form-control text-muted" } %></th>
+        <td class="et-bt-hormone-column"><%= f.select :place, SpecialInspection::HASH_SPECIAL_INSPECTION_PLACE.invert, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
         <td class="et-bt-hormone-column"><%= f.number_field :cost, { step: "1", class: "form-control", placeholder: "入力" } %></td>
-        <td class="et-bt-hormone-column"><%= f.select :timing, Report.make_select_special_inspection_timing, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
+        <td class="et-bt-hormone-column"><%= f.select :timing, SpecialInspection.make_select_special_inspection_timing, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
       </tr>
     </tbody>
   </table>

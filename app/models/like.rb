@@ -1,6 +1,7 @@
 class Like < ApplicationRecord
   belongs_to :user
   belongs_to :report
+  validates_uniqueness_of :report_id, scope: :user_id
 end
 
 # == Schema Information

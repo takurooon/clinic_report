@@ -20,6 +20,7 @@
 #  comfort_of_space                             :integer
 #  content                                      :text
 #  cost                                         :integer
+#  cost_burden_memo                             :text
 #  credit_card_validity                         :integer
 #  creditcards_can_be_used_from_more_than       :integer
 #  current_state                                :integer
@@ -76,6 +77,9 @@
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer
 #  number_of_transferable_embryos               :integer
+#  number_of_visits_before_ishoku               :integer
+#  number_of_visits_before_pregnancy_date       :integer
+#  number_of_visits_before_sairan               :integer
 #  online_consultation                          :integer
 #  online_consultation_details                  :text
 #  ova_with_ivm                                 :integer

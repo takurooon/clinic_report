@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
   <% if report.liked_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
-      <p><span>お気に入り解除: </span><%=link_to report.likes.count, report_likes_path(report.id), method: :delete, remote: true %></p>
+      <p><span>お気に入り解除: </span><%= link_to report.likes.count, report_likes_path(report.id), method: :delete, remote: true %></p>
   <% else %>
-      <p><span>お気に入り登録: </span><%=link_to report.likes.count, report_likes_path(report.id), method: :post, remote: true %></p>
+      <p><span>お気に入り登録: </span><%= link_to report.likes.count, report_likes_path(report.id), method: :post, remote: true %></p>
   <% end %>
   <% else %>
     <p><span>お気に入り数: </span><%= report.likes.count %></p>

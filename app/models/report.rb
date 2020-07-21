@@ -152,11 +152,6 @@ class Report < ApplicationRecord
     end
   end
 
-  # like判定メソッド
-  def liked_by?(user)
-    likes.where(user_id: user.id).exists?
-  end
-
   # アクションテキスト
   has_rich_text :content
   
@@ -173,6 +168,7 @@ class Report < ApplicationRecord
 
   # いいね
   has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
 
   # 通知モデル
   has_many :notifications, dependent: :destroy
@@ -211,10 +207,6 @@ class Report < ApplicationRecord
     attributes.merge!(_destroy: 1) if exists && empty
     !exists && empty
   end
-
-  # 通院スケジュール
-  has_many :treatment_schedules, inverse_of: :report, dependent: :destroy
-  accepts_nested_attributes_for :treatment_schedules, reject_if: :all_blank, allow_destroy: true, update_only: true
 
   # 採卵日当日のホルモン
   has_many :day_of_sairans, inverse_of: :report, dependent: :destroy
@@ -370,11 +362,11 @@ class Report < ApplicationRecord
     2 => "妊娠中（多胎）",
     3 => "出産済み",
     4 => "出産済み（多胎）",
-    5 => "出産に至らず",
-    6 => "転院した",
-    7 => "お休み中",
-    8 => "治療自体を完全にやめた",
-    99 => "その他"
+    # 5 => "出産に至らず",
+    # 6 => "転院した",
+    # 7 => "お休み中",
+    # 8 => "治療自体を完全にやめた",
+    # 99 => "その他"
   }
 
   def str_current_state
@@ -410,7 +402,7 @@ class Report < ApplicationRecord
 
   # rest_periodの区分値(休み期間/CL単位)
   HASH_REST_PERIOD = {
-    100 => "不明",
+    0 => "なし",
     1 => "〜1ヵ月",
     2 => "〜2ヵ月",
     3 => "〜3ヶ月",
@@ -419,7 +411,8 @@ class Report < ApplicationRecord
     6 => "〜半年",
     7 => "〜1半",
     8 => "〜2年",
-    99 => "それ以上",
+    99 => "2年以上",
+    100 => "不明",
   }
 
   def str_rest_period
@@ -430,6 +423,7 @@ class Report < ApplicationRecord
   HASH_HOW_LONG_TO_CONTINUE_TREATMENT = {
     1 => "決めていた",
     2 => "決めていなかった",
+    99 => "その他",
     100 => "不明",
   }
 
@@ -883,8 +877,6 @@ class Report < ApplicationRecord
     return HASH_ISHOKU_COST[self.ishoku_cost]
   end
 
-
-
   # costの区分値(CLでの費用総額)
   HASH_COST = {
     1000 => "不明",
@@ -1002,7 +994,7 @@ class Report < ApplicationRecord
   HASH_CREDIT_CARD_VALIDITY = {
     1 => "可",
     2 => "不可",
-    3 => "一定の金額から使用可能",
+    3 => "一定の額から利用可",
     99 => "その他",
     100 => "不明"
     }
@@ -1015,10 +1007,14 @@ class Report < ApplicationRecord
   HASH_RESERVATION_METHOD = {
     1 => "電話予約のみ",
     2 => "web予約のみ",
-    3 => "電話･web予約どちらも",
-    4 => "予約不可",
-    5 => "その他",
-    6 => "不明"
+    3 => "アプリ予約のみ",
+    4 => "電話･webで予約",
+    5 => "電話･アプリで予約",
+    6 => "web･アプリで予約",
+    7 => "電話･web･アプリで予約",
+    8 => "予約不可",
+    99 => "その他",
+    100 => "不明"
   }
 
   def str_reservation_method
@@ -1030,7 +1026,8 @@ class Report < ApplicationRecord
     1 => "なし",
     2 => "あり(初診は除く)",
     3 => "あり(初診もOK)",
-    99 => "不明"
+    99 => "その他",
+    100 => "不明"
   }
 
   def str_online_consultation
@@ -1238,10 +1235,10 @@ class Report < ApplicationRecord
     return HASH_TREATMENT_SUPPORT_SYSTEM[self.treatment_support_system]
   end
 
-  # smokingの区分値(喫煙有無)
+  # smoking_female/maleの区分値(喫煙有無)
   HASH_SMOKING = {
     1 => "もとから非喫煙者",
-    2 => "元喫煙者だが治療以前に禁煙済み",
+    2 => "治療以前に禁煙済み",
     3 => "治療のために禁煙した",
     4 => "禁煙しなかった",
     99 => "その他"
@@ -1272,7 +1269,7 @@ class Report < ApplicationRecord
   def self.make_select_itinerary_of_choosing_a_clinics_order_of_transfer
     hash = {}
     (1..20).each do |i|
-      hash["#{i}つ前のCL"] = i
+      hash["#{i}つ前のクリニック"] = i
     end
     hash
   end
@@ -1340,86 +1337,6 @@ class Report < ApplicationRecord
     hash
   end
 
-
-  # treatment_scheduleのday区分値(通院スケジュール)別モデル
-  def self.make_select_treatment_schedule_day
-    hash = {}
-    (1..100).each do |i|
-      hash["D#{i}"] = i
-    end
-    hash
-  end
-
-  # special_inspectionの区分値(特殊検査)別モデル
-    # name
-    HASH_SPECIAL_INSPECTION_NAME = {
-      1 => "エラ(ERA)",
-      2 => "エマ(EMMA)",
-      3 => "アリス(ALICE)",
-      4 => "トリオ(TORIO)",
-      5 => "ERPeak",
-      6 => "子宮内膜組織診",
-      7 => "子宮内フローラ",
-      8 => "慢性子宮内膜炎(CD138/BCE)",
-      9 => "子宮鏡検査",
-      10 => "染色体検査",
-      11 => "CA125",
-      12 => "MRI",
-      13 => "ビタミンD検査",
-      14 => "銅亜鉛検査",
-      99 => "その他",
-    }
-
-    def str_special_inspection_name
-      return HASH_SPECIAL_INSPECTION_NAME[SpecialInspection.name]
-    end
-
-    # place
-    HASH_SPECIAL_INSPECTION_PLACE = {
-      1 => "このクリニックで",
-      2 => "別のクリニックで",
-    }
-
-    def str_special_inspection_place
-      return HASH_SPECIAL_INSPECTION_PLACE[SpecialInspection.place]
-    end
-
-    # timing
-    def self.make_select_special_inspection_timing
-      hash = {}
-      (1..100).each do |i|
-        hash["D#{i}"] = i
-      end
-      hash
-    end
-
-  # treatment_scheduleの区分値(特殊検査)別モデル
-    # cycle
-    HASH_TREATMENT_SCHEDULE_CYCLE = {
-      1 => "検査周期",
-      2 => "採卵周期",
-      3 => "移植周期",
-      99 => "その他",
-      100 => "不明",
-    }
-
-    def str_treatment_schedule_cycle
-      return HASH_TREATMENT_SCHEDULE_CYCLE[TreatmentSchedule.cycle]
-    end
-
-    # exam_headline
-    HASH_TREATMENT_SCHEDULE_EXAM_HEADLINE = {
-      1 => "内診",
-      2 => "採血",
-      3 => "採卵",
-      4 => "移植",
-    }
-
-    def str_treatment_schedule_exam_headline
-      return HASH_TREATMENT_SCHEDULE_EXAM_HEADLINE[TreatmentSchedule.exam_headline]
-    end
-
-
   # fertility_treatment_numberの区分値(何人目か)
   HASH_FERTILITY_TREATMENT_NUMBER = {
     1 => "1人目",
@@ -1430,31 +1347,6 @@ class Report < ApplicationRecord
   def str_fertility_treatment_number
     return HASH_FERTILITY_TREATMENT_NUMBER[self.fertility_treatment_number]
   end
-  # FERTILITY_TREATMENT_NUMBER_UNIT = "人目不妊"
-  # FERTILITY_TREATMENT_NUMBER_MAXIMUM = 1000
-  # FERTILITY_TREATMENT_NUMBER_RANGE = 2
-  # UPPER_THE_FERTILITY_TREATMENT_NUMBER_RANGE = FERTILITY_TREATMENT_NUMBER_RANGE + 1
-  # STR_FERTILITY_TREATMENT_NUMBER_MAXIMUM = "#{UPPER_THE_FERTILITY_TREATMENT_NUMBER_RANGE}#{FERTILITY_TREATMENT_NUMBER_UNIT}#{OR_MORE}"
-
-  # def str_fertility_treatment_number
-  #   return "" if self.fertility_treatment_number.nil?
-  #   if self.fertility_treatment_number == FERTILITY_TREATMENT_NUMBER_MAXIMUM
-  #     STR_FERTILITY_TREATMENT_NUMBER_MAXIMUM
-  #   elsif self.fertility_treatment_number >= 1 || self.fertility_treatment_number <= FERTILITY_TREATMENT_NUMBER_RANGE
-  #     "#{self.fertility_treatment_number} #{FERTILITY_TREATMENT_NUMBER_UNIT}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_fertility_treatment_number
-  #   hash = {}
-  #   (1..FERTILITY_TREATMENT_NUMBER_RANGE).each do |i|
-  #     hash["#{i}#{FERTILITY_TREATMENT_NUMBER_UNIT}"] = i
-  #   end
-  #   hash[STR_FERTILITY_TREATMENT_NUMBER_MAXIMUM] = STR_FERTILITY_TREATMENT_NUMBER_MAXIMUM
-  #   hash
-  # end
 
   # number_of_clinicsの区分値(何院目か)
   HASH_NUMBER_OF_CLINICS = {
@@ -1475,90 +1367,7 @@ class Report < ApplicationRecord
   def str_number_of_clinics
     return HASH_NUMBER_OF_CLINICS[self.number_of_clinics]
   end
-  # NUMBER_OF_CLINICS_UNIT = "院目"
-  # NUMBER_OF_CLINICS_MAXIMUM = 1000
-  # NUMBER_OF_CLINICS_RANGE = 10
-  # UPPER_THE_NUMBER_OF_CLINICS_RANGE = NUMBER_OF_CLINICS_RANGE + 1
-  # STR_NUMBER_OF_CLINICS_MAXIMUM = "#{UPPER_THE_NUMBER_OF_CLINICS_RANGE}#{NUMBER_OF_CLINICS_UNIT}#{OR_MORE}"
 
-  # def str_number_of_clinics
-  #   return "" if self.number_of_clinics.nil?
-  #   if self.number_of_clinics == NUMBER_OF_CLINICS_MAXIMUM
-  #     STR_NUMBER_OF_CLINICS_MAXIMUM
-  #   elsif self.number_of_clinics >= 1 || self.number_of_clinics <= NUMBER_OF_CLINICS_RANGE
-  #     "#{self.number_of_clinics} #{NUMBER_OF_CLINICS_UNIT}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_number_of_clinics
-  #   hash = {}
-  #   (1..NUMBER_OF_CLINICS_RANGE).each do |i|
-  #     hash["#{i}#{NUMBER_OF_CLINICS_UNIT}"] = i
-  #   end
-  #   hash[STR_NUMBER_OF_CLINICS_MAXIMUM] = STR_NUMBER_OF_CLINICS_MAXIMUM
-  #   hash
-  # end
-
-  # NUMBER_OF_AIH_MAXIMUM = 1000
-  # NUMBER_OF_AIH_RANGE = 10
-  # UPPER_THE_NUMBER_OF_AIH_RANGE = NUMBER_OF_AIH_RANGE + 1
-  # STR_NUMBER_OF_AIH_MAXIMUM = "#{UPPER_THE_NUMBER_OF_AIH_RANGE}#{TIMES}#{OR_MORE}"
-
-  # def str_number_of_aih
-  #   return "" if self.number_of_aih.nil?
-  #   if self.number_of_aih == NUMBER_OF_AIH_MAXIMUM
-  #     STR_NUMBER_OF_AIH_MAXIMUM
-  #   elsif self.number_of_aih >= 1 || self.number_of_aih <= NUMBER_OF_AIH_RANGE
-  #     "#{self.number_of_aih} #{TIMES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_number_of_aih
-  #   hash = {}
-  #   (1..NUMBER_OF_AIH_RANGE).each do |i|
-  #     hash["#{i}#{TIMES}"] = i
-  #   end
-  #   hash[STR_NUMBER_OF_AIH_MAXIMUM] = STR_NUMBER_OF_AIH_MAXIMUM
-  #   hash
-  # end
-  
-  # FIRST_AGE_TO_START_MAXIMUM = 1000
-  # FIRST_AGE_TO_START_RANGE = 59
-  # UPPER_THE_FIRST_AGE_TO_START_RANGE = FIRST_AGE_TO_START_RANGE + 1
-  # STR_FIRST_AGE_TO_START_MAXIMUM = "#{UPPER_THE_FIRST_AGE_TO_START_RANGE}#{AGE}#{OR_MORE}"
-  # STR_FIRST_AGE_TO_START_MINIMUM = "#{THE_BEGINNING_OF_AGE}#{AGE}#{OR_LESS}"
-
-  # def str_first_age_to_start
-  #   return "" if self.first_age_to_start.nil?
-  #   if self.first_age_to_start == FIRST_AGE_TO_START_MAXIMUM
-  #     STR_FIRST_AGE_TO_START_MAXIMUM
-  #   elsif self.first_age_to_start <= THE_BEGINNING_OF_AGE
-  #     STR_FIRST_AGE_TO_START_MINIMUM
-  #   elsif self.first_age_to_start > THE_BEGINNING_OF_AGE || self.first_age_to_start <= FIRST_AGE_TO_START_RANGE
-  #     "#{self.first_age_to_start} #{AGE}"
-  #   else
-  #     raise
-  #   end
-  # end
-  
-  # def self.make_select_options_first_age_to_start
-  #   hash = {}
-  #   (THE_BEGINNING_OF_AGE..FIRST_AGE_TO_START_RANGE).each do |i|
-  #     if i == THE_BEGINNING_OF_AGE
-  #       hash[STR_FIRST_AGE_TO_START_MINIMUM] = i
-  #     else
-  #       hash["#{i}#{AGE}"] = i
-  #     end
-  #   end
-  #   hash[STR_FIRST_AGE_TO_START_MAXIMUM] = STR_FIRST_AGE_TO_START_MAXIMUM
-  #   hash
-  # end
-  
-  
   # treatment_start_ageの区分値(治療開始年齢/CL単位)
   HASH_TREATMENT_START_AGE = {
     100 => "不明",
@@ -1609,37 +1418,6 @@ class Report < ApplicationRecord
   def str_treatment_start_age
     return HASH_TREATMENT_START_AGE[self.treatment_start_age]
   end
-  # TREATMENT_START_AGE_MAXIMUM = 1000
-  # TREATMENT_START_AGE_RANGE = 59
-  # UPPER_THE_TREATMENT_START_AGE_RANGE = TREATMENT_START_AGE_RANGE + 1
-  # STR_TREATMENT_START_AGE_MAXIMUM = "#{UPPER_THE_TREATMENT_START_AGE_RANGE}#{AGE}#{OR_MORE}"
-  # STR_TREATMENT_START_AGE_MINIMUM = "#{THE_BEGINNING_OF_AGE}#{AGE}#{OR_LESS}"
-
-  # def str_treatment_start_age
-  #   return "" if self.treatment_start_age.nil?
-  #   if self.treatment_start_age == TREATMENT_START_AGE_MAXIMUM
-  #     STR_TREATMENT_START_AGE_MAXIMUM
-  #   elsif self.treatment_start_age <= THE_BEGINNING_OF_AGE
-  #     STR_TREATMENT_START_AGE_MINIMUM
-  #   elsif self.treatment_start_age > THE_BEGINNING_OF_AGE || self.treatment_start_age <= TREATMENT_START_AGE_RANGE
-  #     "#{self.treatment_start_age} #{AGE}"
-  #   else
-  #     raise
-  #   end
-  # end
-  
-  # def self.make_select_options_treatment_start_age
-  #   hash = {}
-  #   (THE_BEGINNING_OF_AGE..TREATMENT_START_AGE_RANGE).each do |i|
-  #     if i == THE_BEGINNING_OF_AGE
-  #       hash[STR_TREATMENT_START_AGE_MINIMUM] = i
-  #     else
-  #       hash["#{i}#{AGE}"] = i
-  #     end
-  #   end
-  #   hash[STR_TREATMENT_START_AGE_MAXIMUM] = STR_TREATMENT_START_AGE_MAXIMUM
-  #   hash
-  # end
 
   # treatment_end_ageの区分値(治療終了年齢/CL単位)
   HASH_TREATMENT_END_AGE = {
@@ -1691,38 +1469,6 @@ class Report < ApplicationRecord
   def str_treatment_end_age
     return HASH_TREATMENT_END_AGE[self.treatment_end_age]
   end
-  # TREATMENT_END_AGE_MAXIMUM = 1000
-  # TREATMENT_END_AGE_RANGE = 59
-  # UPPER_THE_TREATMENT_END_AGE_RANGE = TREATMENT_END_AGE_RANGE + 1
-  # STR_TREATMENT_END_AGE_MAXIMUM = "#{UPPER_THE_TREATMENT_END_AGE_RANGE}#{AGE}#{OR_MORE}"
-  # STR_TREATMENT_END_AGE_MINIMUM = "#{THE_BEGINNING_OF_AGE}#{AGE}#{OR_LESS}"
-
-
-  # def str_treatment_end_age
-  #   return "" if self.treatment_end_age.nil?
-  #   if self.treatment_end_age == TREATMENT_END_AGE_MAXIMUM
-  #     STR_TREATMENT_END_AGE_MAXIMUM
-  #   elsif self.treatment_end_age <= THE_BEGINNING_OF_AGE
-  #     STR_TREATMENT_END_AGE_MINIMUM
-  #   elsif self.treatment_end_age > THE_BEGINNING_OF_AGE || self.treatment_end_age <= TREATMENT_END_AGE_RANGE
-  #     "#{self.treatment_end_age} #{AGE}"
-  #   else
-  #     raise
-  #   end
-  # end
-  
-  # def self.make_select_options_treatment_end_age
-  #   hash = {}
-  #   (THE_BEGINNING_OF_AGE..TREATMENT_END_AGE_RANGE).each do |i|
-  #     if i == THE_BEGINNING_OF_AGE
-  #       hash[STR_TREATMENT_END_AGE_MINIMUM] = i
-  #     else
-  #       hash["#{i}#{AGE}"] = i
-  #     end
-  #   end
-  #   hash[STR_TREATMENT_END_AGE_MAXIMUM] = STR_TREATMENT_END_AGE_MAXIMUM
-  #   hash
-  # end
 
   # age_of_partner_at_end_of_treatmentの区分値(治療終了時のパートナーの年齢/CL単位)
   HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT = {
@@ -1774,39 +1520,7 @@ class Report < ApplicationRecord
   def str_age_of_partner_at_end_of_treatment
     return HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT[self.age_of_partner_at_end_of_treatment]
   end
-  # AGE_OF_PARTNER_AT_END_OF_TREATMENT_MAXIMUM = 1000
-  # AGE_OF_PARTNER_AT_END_OF_TREATMENT_RANGE = 59
-  # UPPER_THE_AGE_OF_PARTNER_AT_END_OF_TREATMENT_RANGE = AGE_OF_PARTNER_AT_END_OF_TREATMENT_RANGE + 1
-  # STR_AGE_OF_PARTNER_AT_END_OF_TREATMENT_MAXIMUM = "#{UPPER_THE_AGE_OF_PARTNER_AT_END_OF_TREATMENT_RANGE}#{AGE}#{OR_MORE}"
-  # STR_AGE_OF_PARTNER_AT_END_OF_TREATMENT_MINIMUM = "#{THE_BEGINNING_OF_AGE}#{AGE}#{OR_LESS}"
 
-
-  # def str_age_of_partner_at_end_of_treatment
-  #   return "" if self.age_of_partner_at_end_of_treatment.nil?
-  #   if self.age_of_partner_at_end_of_treatment == AGE_OF_PARTNER_AT_END_OF_TREATMENT_MAXIMUM
-  #     STR_AGE_OF_PARTNER_AT_END_OF_TREATMENT_MAXIMUM
-  #   elsif self.age_of_partner_at_end_of_treatment <= THE_BEGINNING_OF_AGE
-  #     STR_AGE_OF_PARTNER_AT_END_OF_TREATMENT_MINIMUM
-  #   elsif self.age_of_partner_at_end_of_treatment > THE_BEGINNING_OF_AGE || self.age_of_partner_at_end_of_treatment <= AGE_OF_PARTNER_AT_END_OF_TREATMENT_RANGE
-  #     "#{self.age_of_partner_at_end_of_treatment} #{AGE}"
-  #   else
-  #     raise
-  #   end
-  # end
-  
-  # def self.make_select_options_age_of_partner_at_end_of_treatment
-  #   hash = {}
-  #   (THE_BEGINNING_OF_AGE..AGE_OF_PARTNER_AT_END_OF_TREATMENT_RANGE).each do |i|
-  #     if i == THE_BEGINNING_OF_AGE
-  #       hash[STR_AGE_OF_PARTNER_AT_END_OF_TREATMENT_MINIMUM] = i
-  #     else
-  #       hash["#{i}#{AGE}"] = i
-  #     end
-  #   end
-  #   hash[STR_AGE_OF_PARTNER_AT_END_OF_TREATMENT_MAXIMUM] = STR_AGE_OF_PARTNER_AT_END_OF_TREATMENT_MAXIMUM
-  #   hash
-  # end
-  
   # sairan_ageの区分値(採卵時の年齢)
   HASH_SAIRAN_AGE = {
     100 => "不明",
@@ -1938,57 +1652,6 @@ class Report < ApplicationRecord
   def str_total_number_of_sairan
     return HASH_TOTAL_NUMBER_OF_SAIRAN[self.total_number_of_sairan]
   end
-  # TOTAL_NUMBER_OF_SAIRAN_MAXIMUM = 1000
-  # TOTAL_NUMBER_OF_SAIRAN_RANGE = 20
-  # UPPER_THE_TOTAL_NUMBER_OF_SAIRAN_RANGE = TOTAL_NUMBER_OF_SAIRAN_RANGE + 1
-  # STR_TOTAL_NUMBER_OF_SAIRAN_MAXIMUM = "#{UPPER_THE_TOTAL_NUMBER_OF_SAIRAN_RANGE}#{TIMES}#{OR_MORE}"
-
-  # def str_total_number_of_sairan
-  #   return "" if self.total_number_of_sairan.nil?
-  #   if self.total_number_of_sairan == TOTAL_NUMBER_OF_SAIRAN_MAXIMUM
-  #     STR_TOTAL_NUMBER_OF_SAIRAN_MAXIMUM
-  #   elsif self.total_number_of_sairan >= 1 || self.total_number_of_sairan <= TOTAL_NUMBER_OF_SAIRAN_RANGE
-  #     "#{self.total_number_of_sairan} #{TIMES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_total_number_of_sairan
-  #   hash = {}
-  #   (1..TOTAL_NUMBER_OF_SAIRAN_RANGE).each do |i|
-  #     hash["#{i}#{TIMES}"] = i
-  #   end
-
-  #   hash[STR_TOTAL_NUMBER_OF_SAIRAN_MAXIMUM] = STR_TOTAL_NUMBER_OF_SAIRAN_MAXIMUM
-  #   hash
-  # end
-
-  # ALL_NUMBER_OF_SAIRAN_MAXIMUM = 1000
-  # ALL_NUMBER_OF_SAIRAN_RANGE = 20
-  # UPPER_THE_ALL_NUMBER_OF_SAIRAN_RANGE = ALL_NUMBER_OF_SAIRAN_RANGE + 1
-  # STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM = "#{UPPER_THE_ALL_NUMBER_OF_SAIRAN_RANGE}#{TIMES}#{OR_MORE}"
-
-  # def str_all_number_of_sairan
-  #   return "" if self.all_number_of_sairan.nil?
-  #   if self.all_number_of_sairan == ALL_NUMBER_OF_SAIRAN_MAXIMUM
-  #     STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM
-  #   elsif self.all_number_of_sairan >= 1 || self.all_number_of_sairan <= ALL_NUMBER_OF_SAIRAN_RANGE
-  #     "#{self.all_number_of_sairan} #{TIMES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_all_number_of_sairan
-  #   hash = {}
-  #   (1..ALL_NUMBER_OF_SAIRAN_RANGE).each do |i|
-  #     hash["#{i}#{TIMES}"] = i
-  #   end
-
-  #   hash[STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM] = STR_ALL_NUMBER_OF_SAIRAN_MAXIMUM
-  #   hash
-  # end
 
   # ishoku_typeの区分値(移植周期のタイプ)
   HASH_ISHOKU_TYPE = {
@@ -2031,30 +1694,19 @@ class Report < ApplicationRecord
   def str_total_number_of_transplants
     return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.total_number_of_transplants]
   end
-  # TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM = 1000
-  # TOTAL_NUMBER_OF_TRANSPLANTS_RANGE = 20
-  # UPPER_THE_TOTAL_NUMBER_OF_TRANSPLANTS_RANGE = TOTAL_NUMBER_OF_TRANSPLANTS_RANGE + 1
-  # STR_TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM = "#{UPPER_THE_TOTAL_NUMBER_OF_TRANSPLANTS_RANGE}#{TIMES}#{OR_MORE}"
 
-  # def str_total_number_of_transplants
-  #   return "" if self.total_number_of_transplants.nil?
-  #   if self.total_number_of_transplants == TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM
-  #     STR_TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM
-  #   elsif self.total_number_of_transplants >= 1 || self.total_number_of_transplants <= TOTAL_NUMBER_OF_TRANSPLANTS_RANGE
-  #     "#{self.total_number_of_transplants} #{TIMES}"
-  #   else
-  #     raise
-  #   end
-  # end
+  # 採卵前/移植前/卒業前までの通院回数質問にも利用
+  def str_number_of_visits_before_sairan
+    return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.number_of_visits_before_sairan]
+  end
+  def str_number_of_visits_before_ishoku
+    return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.number_of_visits_before_ishoku]
+  end
+  def str_number_of_visits_before_pregnancy_date
+    return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.number_of_visits_before_pregnancy_date]
+  end
 
-  # def self.make_select_options_total_number_of_transplants
-  #   hash = {}
-  #   (1..TOTAL_NUMBER_OF_TRANSPLANTS_RANGE).each do |i|
-  #     hash["#{i}#{TIMES}"] = i
-  #   end
-  #   hash[STR_TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM] = STR_TOTAL_NUMBER_OF_TRANSPLANTS_MAXIMUM
-  #   hash
-  # end
+
 
   # total_number_of_eggs_transplantedの区分値(全移植個数/CL単位)
   HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED = {
@@ -2085,60 +1737,11 @@ class Report < ApplicationRecord
   def str_total_number_of_eggs_transplanted
     return HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED[self.total_number_of_eggs_transplanted]
   end
-  # TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_MAXIMUM = 1000
-  # TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_RANGE = 20
-  # UPPER_THE_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_RANGE = TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_RANGE + 1
-  # STR_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_MAXIMUM = "#{UPPER_THE_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_RANGE}#{PIECES}"
-
-  # def str_total_number_of_eggs_transplanted
-  #   return "" if self.total_number_of_eggs_transplanted.nil?
-  #   if self.total_number_of_eggs_transplanted == TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_MAXIMUM
-  #     STR_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_MAXIMUM
-  #   elsif self.total_number_of_eggs_transplanted >= 1 || self.total_number_of_eggs_transplanted <= TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_RANGE
-  #     "#{self.total_number_of_eggs_transplanted} #{PIECES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_total_number_of_eggs_transplanted
-  #   hash = {}
-  #   (1..TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_RANGE).each do |i|
-  #     hash["#{i}#{PIECES}"] = i
-  #   end
-  #   hash[STR_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_MAXIMUM] = STR_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED_MAXIMUM
-  #   hash
-  # end
-
-  # ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM = 1000
-  # ALL_NUMBER_OF_TRANSPLANTS_RANGE = 20
-  # UPPER_THE_ALL_NUMBER_OF_TRANSPLANTS_RANGE = ALL_NUMBER_OF_TRANSPLANTS_RANGE + 1
-  # STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM = "#{UPPER_THE_ALL_NUMBER_OF_TRANSPLANTS_RANGE}#{TIMES}#{OR_MORE}"
-
-  # def str_all_number_of_transplants
-  #   return "" if self.all_number_of_transplants.nil?
-  #   if self.all_number_of_transplants == ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM
-  #     STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM
-  #   elsif self.all_number_of_transplants >= 1 || self.all_number_of_transplants <= ALL_NUMBER_OF_TRANSPLANTS_RANGE
-  #     "#{self.all_number_of_transplants} #{TIMES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_all_number_of_transplants
-  #   hash = {}
-  #   (1..ALL_NUMBER_OF_TRANSPLANTS_RANGE).each do |i|
-  #     hash["#{i}#{TIMES}"] = i
-  #   end
-  #   hash[STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM] = STR_ALL_NUMBER_OF_TRANSPLANTS_MAXIMUM
-  #   hash
-  # end
-
 
   # number_of_eggs_collectedの区分値(採卵個数/CL単位)
   HASH_NUMBER_OF_EGGS_COLLECTED = {
     100 => "不明",
+    0 => "0個",
     1 => "1個",
     2 => "2個",
     3 => "3個",
@@ -2195,53 +1798,6 @@ class Report < ApplicationRecord
   def str_number_of_eggs_collected
     return HASH_NUMBER_OF_EGGS_COLLECTED[self.number_of_eggs_collected]
   end
-  # NUMBER_OF_EGGS_COLLECTED_MAXIMUM = 1000
-  # NUMBER_OF_EGGS_COLLECTED_RANGE1 = 100
-  # NUMBER_OF_EGGS_COLLECTED_RANGE2 = 106
-  # STR_NUMBER_OF_EGGS_COLLECTED_MAXIMUM = "1,000#{PIECES}#{OR_MORE}"
-
-  # def str_number_of_eggs_collected
-  #   return "" if self.number_of_eggs_collected.nil?
-  #   case self.number_of_eggs_collected
-  #   when UNKNOWN
-  #     STR_UNKNOWN
-  #   when NUMBER_OF_EGGS_COLLECTED_MAXIMUM
-  #     STR_NUMBER_OF_EGGS_COLLECTED_MAXIMUM
-  #   when 1..NUMBER_OF_EGGS_COLLECTED_RANGE1
-  #     "#{self.number_of_eggs_collected} #{PIECES}"
-  #   when NUMBER_OF_EGGS_COLLECTED_RANGE1 + 1
-  #     "101〜150#{PIECES}"
-  #   when NUMBER_OF_EGGS_COLLECTED_RANGE1 + 2
-  #     "151〜200#{PIECES}"
-  #   when NUMBER_OF_EGGS_COLLECTED_RANGE1 + 3
-  #     "201〜300#{PIECES}"
-  #   when NUMBER_OF_EGGS_COLLECTED_RANGE1 + 4
-  #     "301〜400#{PIECES}"
-  #   when NUMBER_OF_EGGS_COLLECTED_RANGE1 + 5
-  #     "401〜500#{PIECES}"
-  #   when NUMBER_OF_EGGS_COLLECTED_RANGE1 + 6
-  #     "501〜999#{PIECES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_number_of_eggs_collected
-  #   hash = {}
-  #   (1..NUMBER_OF_EGGS_COLLECTED_RANGE1).each do |i|
-  #     hash["#{i}#{PIECES}"] = i
-  #   end
-  #   hash["101〜150#{PIECES}"] = "101〜150#{PIECES}"
-  #   hash["151〜200#{PIECES}"] = "101〜150#{PIECES}"
-  #   hash["201〜300#{PIECES}"] = "101〜150#{PIECES}"
-  #   hash["301〜400#{PIECES}"] = "101〜150#{PIECES}"
-  #   hash["401〜500#{PIECES}"] = "101〜150#{PIECES}"
-  #   hash["501〜1,000#{PIECES}"] = "101〜150#{PIECES}"
-  #   hash[STR_NUMBER_OF_EGGS_COLLECTED_MAXIMUM] = STR_NUMBER_OF_EGGS_COLLECTED_MAXIMUM
-  #   hash[STR_UNKNOWN] = STR_UNKNOWN
-  #   hash
-  # end
-
 
   # number_of_fertilized_eggsの区分値(最新採卵周期での受精した個数/CL単位)
   HASH_NUMBER_OF_FERTILIZED_EGGS = {
@@ -2302,35 +1858,11 @@ class Report < ApplicationRecord
   def str_number_of_fertilized_eggs
     return HASH_NUMBER_OF_FERTILIZED_EGGS[self.number_of_fertilized_eggs]
   end
-  # NUMBER_OF_FERTILIZED_EGGS_MAXIMUM = 1000
-  # NUMBER_OF_FERTILIZED_EGGS_RANGE = 50
-  # STR_NUMBER_OF_FERTILIZED_EGGS_MAXIMUM = "それ#{OR_MORE}"
-
-  # def str_number_of_fertilized_eggs
-  #   return "" if self.number_of_fertilized_eggs.nil?
-  #   if self.number_of_fertilized_eggs == NUMBER_OF_FERTILIZED_EGGS_MAXIMUM
-  #     STR_NUMBER_OF_FERTILIZED_EGGS_MAXIMUM
-  #   elsif self.number_of_fertilized_eggs >= 1 || self.number_of_fertilized_eggs <= NUMBER_OF_FERTILIZED_EGGS_RANGE
-  #     "#{self.number_of_fertilized_eggs} #{PIECES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_number_of_fertilized_eggs
-  #   hash = {}
-  #   (1..NUMBER_OF_FERTILIZED_EGGS_RANGE).each do |i|
-  #     hash["#{i}#{PIECES}"] = i
-  #   end
-  #   hash[STR_NUMBER_OF_FERTILIZED_EGGS_MAXIMUM] = STR_NUMBER_OF_FERTILIZED_EGGS_MAXIMUM
-  #   hash[STR_UNKNOWN] = STR_UNKNOWN
-  #   hash
-  # end
-
 
   # number_of_transferable_embryosの区分値(最新採卵周期での移植可能胚数/CL単位)
   HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS = {
     100 => "不明",
+    0 => "0個",
     1 => "1個",
     2 => "2個",
     3 => "3個",
@@ -2387,31 +1919,6 @@ class Report < ApplicationRecord
   def str_number_of_transferable_embryos
     return HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS[self.number_of_transferable_embryos]
   end
-  # NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM = 1000
-  # NUMBER_OF_TRANSFERABLE_EMBRYOS_RANGE = 50
-  # STR_NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM = "それ#{OR_MORE}"
-
-  # def str_number_of_transferable_embryos
-  #   return "" if self.number_of_transferable_embryos.nil?
-  #   if self.number_of_transferable_embryos == NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM
-  #     STR_NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM
-  #   elsif self.number_of_transferable_embryos >= 1 || self.number_of_transferable_embryos <= NUMBER_OF_TRANSFERABLE_EMBRYOS_RANGE
-  #     "#{self.number_of_transferable_embryos} #{PIECES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_number_of_transferable_embryos
-  #   hash = {}
-  #   (1..NUMBER_OF_TRANSFERABLE_EMBRYOS_RANGE).each do |i|
-  #     hash["#{i}#{PIECES}"] = i
-  #   end
-  #   hash[STR_NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM] = STR_NUMBER_OF_TRANSFERABLE_EMBRYOS_MAXIMUM
-  #   hash[STR_UNKNOWN] = STR_UNKNOWN
-  #   hash
-  # end
-
 
   # number_of_frozen_eggsの区分値(最新周期での凍結できた数/CL単位)
   HASH_NUMBER_OF_FROZEN_EGGS = {
@@ -2473,31 +1980,6 @@ class Report < ApplicationRecord
   def str_number_of_frozen_eggs
     return HASH_NUMBER_OF_FROZEN_EGGS[self.number_of_frozen_eggs]
   end
-  # NUMBER_OF_FROZEN_EGGS_MAXIMUM = 1000
-  # NUMBER_OF_FROZEN_EGGS_RANGE = 50
-  # STR_NUMBER_OF_FROZEN_EGGS_MAXIMUM = "それ#{OR_MORE}"
-
-  # def str_number_of_frozen_eggs
-  #   return "" if self.number_of_frozen_eggs.nil?
-  #   if self.number_of_frozen_eggs == NUMBER_OF_FROZEN_EGGS_MAXIMUM
-  #     STR_NUMBER_OF_FROZEN_EGGS_MAXIMUM
-  #   elsif self.number_of_frozen_eggs >= 1 || self.number_of_frozen_eggs <= NUMBER_OF_FROZEN_EGGS_RANGE
-  #     "#{self.number_of_frozen_eggs} #{PIECES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_number_of_frozen_eggs
-  #   hash = {}
-  #   (0..NUMBER_OF_FROZEN_EGGS_RANGE).each do |i|
-  #     hash["#{i}#{PIECES}"] = i
-  #   end
-  #   hash[STR_NUMBER_OF_FROZEN_EGGS_MAXIMUM] = STR_NUMBER_OF_FROZEN_EGGS_MAXIMUM
-  #   hash[STR_UNKNOWN] = STR_UNKNOWN
-  #   hash
-  # end
-
 
   # number_of_eggs_storedの区分値(凍結胚の在庫数/CL単位)
   HASH_NUMBER_OF_EGGS_STORED = {
@@ -2559,30 +2041,6 @@ class Report < ApplicationRecord
   def str_number_of_eggs_stored
     return HASH_NUMBER_OF_EGGS_STORED[self.number_of_eggs_stored]
   end
-  # NUMBER_OF_EGGS_STORED_MAXIMUM = 1000
-  # NUMBER_OF_EGGS_STORED_RANGE = 50
-  # STR_NUMBER_OF_EGGS_STORED_MAXIMUM = "それ#{OR_MORE}"
-
-  # def str_number_of_eggs_stored
-  #   return "" if self.number_of_eggs_stored.nil?
-  #   if self.number_of_eggs_stored == NUMBER_OF_EGGS_STORED_MAXIMUM
-  #     STR_NUMBER_OF_EGGS_STORED_MAXIMUM
-  #   elsif self.number_of_eggs_stored >= 1 || self.number_of_eggs_stored <= NUMBER_OF_EGGS_STORED_RANGE
-  #     "#{self.number_of_eggs_stored} #{PIECES}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_number_of_eggs_stored
-  #   hash = {}
-  #   (0..NUMBER_OF_EGGS_STORED_RANGE).each do |i|
-  #     hash["#{i}#{PIECES}"] = i
-  #   end
-  #   hash[STR_NUMBER_OF_EGGS_STORED_MAXIMUM] = STR_NUMBER_OF_EGGS_STORED_MAXIMUM
-  #   hash[STR_UNKNOWN] = STR_UNKNOWN
-  #   hash
-  # end
 
 
   # pregnancy_dateの区分値(妊娠に判定日数)
@@ -2624,34 +2082,6 @@ class Report < ApplicationRecord
   def str_embryo_culture_days
     return HASH_EMBRYO_CULTURE_DAYS[self.embryo_culture_days]
   end
-  # EMBRYO_CULTURE_DAYS_MAXIMUM = 1000
-  # EMBRYO_CULTURE_DAYS_RANGE = 10
-  # STR_EMBRYO_CULTURE_DAYS_MAXIMUM = "それ#{DAY}#{OR_MORE}"
-
-  # def str_embryo_culture_days
-  #   return "" if self.embryo_culture_days.nil?
-  #   case self.embryo_culture_days
-  #   when UNKNOWN
-  #     STR_UNKNOWN
-  #   when EMBRYO_CULTURE_DAYS_MAXIMUM
-  #     STR_EMBRYO_CULTURE_DAYS_MAXIMUM
-  #   when 1..EMBRYO_CULTURE_DAYS_RANGE
-  #     "#{self.embryo_culture_days} #{DAY}"
-  #   else
-  #     raise
-  #   end
-  # end
-
-  # def self.make_select_options_embryo_culture_days
-  #   hash = {}
-  #   (1..EMBRYO_CULTURE_DAYS_RANGE).each do |i|
-  #     hash["#{i}#{DAY}"] = i
-  #   end
-  #   hash[STR_EMBRYO_CULTURE_DAYS_MAXIMUM] = STR_EMBRYO_CULTURE_DAYS_MAXIMUM
-  #   hash[STR_UNKNOWN] = STR_UNKNOWN
-  #   hash
-  # end
-
 end
 
 # == Schema Information
@@ -2676,6 +2106,7 @@ end
 #  comfort_of_space                             :integer
 #  content                                      :text
 #  cost                                         :integer
+#  cost_burden_memo                             :text
 #  credit_card_validity                         :integer
 #  creditcards_can_be_used_from_more_than       :integer
 #  current_state                                :integer
@@ -2732,6 +2163,9 @@ end
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer
 #  number_of_transferable_embryos               :integer
+#  number_of_visits_before_ishoku               :integer
+#  number_of_visits_before_pregnancy_date       :integer
+#  number_of_visits_before_sairan               :integer
 #  online_consultation                          :integer
 #  online_consultation_details                  :text
 #  ova_with_ivm                                 :integer
