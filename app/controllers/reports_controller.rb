@@ -15,7 +15,6 @@ class ReportsController < ApplicationController
 
   def show
     @comment = Comment.new(report_id: @report.id)
-    @like = Like.new
 
     if @report.nonreleased? && @report.user != current_user
       redirect_to root_path
@@ -234,23 +233,23 @@ class ReportsController < ApplicationController
       @report.status = "released"
     end
 
-    tag_name = params[:tag_name].split(",")
-    tag_list = molding(tag_name)
-    tag_ids = params[:report][:tag_ids]
-    tag_ids.each do |tag_id|
-      if tag_id.blank?
-        next
-      end
-      tag = Tag.find(tag_id)
-      tag_list << tag.tag_name
-    end
-    tag_list = tag_list.uniq
+    # tag_name = params[:tag_name].split(",")
+    # tag_list = molding(tag_name)
+    # tag_ids = params[:report][:tag_ids]
+    # tag_ids.each do |tag_id|
+    #   if tag_id.blank?
+    #     next
+    #   end
+    #   tag = Tag.find(tag_id)
+    #   tag_list << tag.tag_name
+    # end
+    # tag_list = tag_list.uniq
 
     respond_to do |format|
       if params[:back]
         format.html { render :new }
       elsif @report.save
-        @report.save_tags(tag_list)
+        # @report.save_tags(tag_list)
         format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
         format.json { render :show, status: :created, location: @report }
       else
@@ -534,6 +533,8 @@ class ReportsController < ApplicationController
         :number_of_visits_before_sairan,
         :number_of_visits_before_ishoku,
         :number_of_visits_before_pregnancy_date,
+        :self_injection,
+        :number_of_injections,
         s_selection_method_ids: [],
         inspection_ids: [],
         male_inspection_ids: [],

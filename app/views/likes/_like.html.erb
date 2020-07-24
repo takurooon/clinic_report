@@ -1,9 +1,30 @@
-<% if user_signed_in? %>
-  <% if report.liked_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
-      <p><span>お気に入り解除: </span><%= link_to report.likes.count, report_likes_path(report.id), method: :delete, remote: true %></p>
-  <% else %>
-      <p><span>お気に入り登録: </span><%= link_to report.likes.count, report_likes_path(report.id), method: :post, remote: true %></p>
+<% if user_signed_in? && current_user.already_liked?(report) %>
+  <div class="like-circle">
+    <div class="like-btn" title='ストック'>
+      <%= link_to report_likes_path(report), method: :delete, remote: true do %>
+      <%= images_action_svg("like.svg") %>
+      <% end %>
+      <% if report.likes.present? %>
+        <span class="text-danger like-counter">&nbsp;&nbsp;<%= report.likes.count %></span>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="unlike-circle">
+    <div class="unlike-btn" title='ストック'>
+      <%= link_to report_likes_path(report), method: :post, remote: true do %>
+        <%= images_action_svg("unlike.svg") %>
+      <% end %>
+      <% if report.likes.present? %>
+        <span class="text-muted like-counter">&nbsp;&nbsp;<%= report.likes.count %></span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if false %>
+  <h6>いいねしたユーザー</h6>
+  <% report.liked_users.each do |user| %>
+    <li><%= user.email %></li>
   <% end %>
-  <% else %>
-    <p><span>お気に入り数: </span><%= report.likes.count %></p>
 <% end %>

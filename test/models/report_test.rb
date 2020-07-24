@@ -76,6 +76,7 @@
 #  number_of_eggs_stored                        :integer
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer
+#  number_of_injections                         :integer
 #  number_of_transferable_embryos               :integer
 #  number_of_visits_before_ishoku               :integer
 #  number_of_visits_before_pregnancy_date       :integer
@@ -103,6 +104,7 @@
 #  sairan_cost                                  :integer
 #  sairan_cost_explanation                      :text
 #  selection_of_anesthesia_type                 :integer
+#  self_injection                               :integer
 #  semen_concentration                          :integer
 #  semen_volume                                 :float
 #  smoking_female                               :integer

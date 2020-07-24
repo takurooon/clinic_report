@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
       return
     end
     comment.delete
-    redirect_to comment.report, flash: { notice: "コメントが削除されました" }
+    redirect_to comment.report, flash: { notice: "コメントを削除しました" }
   end
 
   private

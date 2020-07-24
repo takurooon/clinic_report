@@ -643,6 +643,8 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.integer "number_of_visits_before_sairan"
     t.integer "number_of_visits_before_ishoku"
     t.integer "number_of_visits_before_pregnancy_date"
+    t.integer "self_injection"
+    t.integer "number_of_injections"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "clinic_id", null: false

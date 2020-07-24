@@ -1,5 +1,8 @@
 <div class="sns_area mx-0 pl-0 pr-1 my-0 py-0">
-  <div class="sns_bar float-right mx-0 px-0 my-0 py-0">
+  <div class="float-left likes_buttons_<%= @report.id %>">
+    <%= render partial: 'likes/like', locals: { report: @report} %>
+  </div>
+  <div class="float-right mx-0 px-0 my-0 pt-4 pb-0">
       <%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "40px", class: "img-fluid float-right ml-1", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'Note', target: '_blank' %>
       <%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "40px", class: "img-fluid float-right ml-1", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %>
       <%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "40px", class: "img-fluid float-right ml-1", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %>

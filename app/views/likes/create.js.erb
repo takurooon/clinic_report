@@ -1,2 +1,1 @@
-#likes_buttons_<%= @blog.id %>この部分のHTMLだけ、renderで部分的に更新するという処理
-$('#likes_buttons_<%= @report.id %>').html("<%= j(render partial: 'likes/like', locals: {report: @report}) %>");
+$('.likes_buttons_<%= @report.id %>').html("<%= j(render partial: 'likes/like', locals: {report: @report}) %>");

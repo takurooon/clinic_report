@@ -173,6 +173,24 @@ class Report < ApplicationRecord
   # 通知モデル
   has_many :notifications, dependent: :destroy
 
+  def create_notification_like!(current_user)
+    # すでに「いいね」されているか検索
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and report_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+    # いいねされていない場合のみ、通知レコードを作成
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        report_id: id,
+        visited_id: user_id,
+        action: 'like'
+      )
+      # 自分の投稿に対するいいねの場合は、通知済みとする
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
+    end
+  end
+
   def create_notification_comment!(current_user, comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = Comment.select(:user_id).where(report_id: id).where.not(user_id: current_user.id).distinct
@@ -501,9 +519,9 @@ class Report < ApplicationRecord
 
   # types_of_eggs_and_spermの区分値(卵子と精子の帰属)
   HASH_TYPES_OF_EGGS_AND_SPERM = {
-    1 => "自身＆パートナーの卵子/精子を用いた",
-    2 => "自身＆パートナーの凍結未受精卵を用いた",
-    3 => "自身＆パートナーの凍結精子を用いた",
+    1 => "自身＆相手の卵子/精子を用いた",
+    2 => "自身or相手の凍結未受精卵を用いた",
+    3 => "自身＆相手の凍結精子を用いた",
     4 => "提供卵子を用いた",
     5 => "提供精子を用いた",
     99 => "その他",
@@ -511,6 +529,49 @@ class Report < ApplicationRecord
 
   def str_types_of_eggs_and_sperm
     return HASH_TYPES_OF_EGGS_AND_SPERM[self.types_of_eggs_and_sperm]
+  end
+
+  # self_injectionの区分値(自己注射の可否)
+  HASH_SELF_INJECTION = {
+    1 => "自己注射不可(都度通院必須)",
+    2 => "自己注射のみ",
+    3 => "自己注射も選べる",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_self_injection
+    return HASH_SELF_INJECTION[self.self_injection]
+  end
+
+  # number_of_injectionsの区分値(注射の回数)
+  HASH_NUMBER_OF_INJECTIONS = {
+    100 => "不明",
+    1 => "1回",
+    2 => "2回",
+    3 => "3回",
+    4 => "4回",
+    5 => "5回",
+    6 => "6回",
+    7 => "7回",
+    8 => "8回",
+    9 => "9回",
+    10 => "10回",
+    11 => "11回",
+    12 => "12回",
+    13 => "13回",
+    14 => "14回",
+    15 => "15回",
+    16 => "16回",
+    17 => "17回",
+    18 => "18回",
+    19 => "19回",
+    20 => "20回",
+    99 => "それ以上",
+  }
+
+  def str_number_of_injections
+    return HASH_NUMBER_OF_INJECTIONS[self.number_of_injections]
   end
 
   # use_of_anesthesiaの区分値(麻酔の種類)
@@ -2162,6 +2223,7 @@ end
 #  number_of_eggs_stored                        :integer
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer
+#  number_of_injections                         :integer
 #  number_of_transferable_embryos               :integer
 #  number_of_visits_before_ishoku               :integer
 #  number_of_visits_before_pregnancy_date       :integer
@@ -2189,6 +2251,7 @@ end
 #  sairan_cost                                  :integer
 #  sairan_cost_explanation                      :text
 #  selection_of_anesthesia_type                 :integer
+#  self_injection                               :integer
 #  semen_concentration                          :integer
 #  semen_volume                                 :float
 #  smoking_female                               :integer

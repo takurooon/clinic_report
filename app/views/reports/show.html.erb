@@ -8,7 +8,7 @@
     <div class="py-2"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
     <div class="py-2"><%= link_to image_tag("icon/slack_side_brandcolor_icon.png", alt: "slack_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
     <div class="py-2"><%= link_to image_tag("icon/hatena_side_brandcolor_icon.png", alt: "hatena_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
-    <span class="py-2"><%= link_to image_tag("icon/pocket_side_brandcolor_icon.png", alt: "pocket_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
+    <div class="py-2"><%= link_to image_tag("icon/pocket_side_brandcolor_icon.png", alt: "pocket_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
   </div>
   <div class="row">
     <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
@@ -79,11 +79,16 @@
       </div>
 
       <div class="mt-4 mb-0 pt-2 px-0 d-none d-sm-block">
-        <h4 class="d-none d-sm-block mb-5"><%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>のレポコ</h4>
+        <h5 class="d-none d-sm-block mb-3"><%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>のレポコ</h5>
       </div>
-      <div class="mt-2 mb-0 px-2 d-block d-sm-none">
-        <h5 class="d-block d-sm-none mb-3"><%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>のレポコ</h5>
+      <div class="mt-3 mb-0 px-2 d-block d-sm-none">
+        <h6 class="d-block d-sm-none mb-3"><%= @report.clinic.name %><span class="text-muted" style="font-size:14px">(<%= link_to @report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{@report.clinic.city.prefecture.name}" %>&nbsp;<%= link_to @report.clinic.city.name, "/category/clinics/city/#{@report.clinic.city.name}" %>)</span>のレポコ</h6>
       </div>
+
+      <% if @report.title.present? %>
+        <h3 class="d-none d-sm-block mb-3 py-4 px-0"><%= @report.title %></h3>
+        <h5 class="d-block d-sm-none mx-1 py-3 px-0"><%= @report.title %></h5>
+      <% end %>
 
       <div class="mb-1 px-2">
         <% if @report.treatment_end_age.present? %>
@@ -105,6 +110,7 @@
       </div>
 
       <div class="report-main-content">
+        <% if false %>
         <div class="d-none d-md-block col-md-12 mt-4 mb-4">
           <div class='row mb-3 sns-bar'>
             <div class="col-md-2 twitter-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/twitter_bar_brandcolor_icon.png", alt: "twitter_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
@@ -115,6 +121,7 @@
             <div class="col-md-2 hatena-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/hatena_bar_brandcolor_icon.png", alt: "hatena_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
           </div>
         </div>
+        <% end %>
 
         <% if @report.year_of_treatment_end.present? && Time.now.year - @report.year_of_treatment_end.year > 0 %>
           <div class="alert alert-info small my-3 py-1" role="alert">
@@ -122,23 +129,23 @@
           </div>
         <% end %>
 
-        <% if false %>
-          <h3>いいね件数: <%= @report.likes.count %></h3>
-          <% if current_user.already_liked?(@report) %>
-            <%= button_to 'いいねを取り消す', report_likes_path(@report), method: :delete, remote: true %>
-          <% else %>
-            <%= button_to 'いいね', report_likes_path(@report), remote: true %>
-          <% end %>
-          <h2>いいねしたユーザー</h2>
-          <% @report.liked_users.each do |user| %>
-            <li><%= user.email %></li>
-          <% end %>
-        <% end %>
+        <div class="action_area pl-2 py-0 mx-0 my-1 form-inline">
+          <div class="likes_buttons_<%= @report.id %>">
+            <%= render partial: 'likes/like', locals: { report: @report} %>
+          </div>
+        </div>
 
         <div class="parent-tab">
+          <p class="d-xs-block d-md-none float-left mb-0 px-2 d-inline" style="font-size:15px">
+            <% if current_user.already_liked?(@report) %>
+              <%= images_action_svg("like_smartphone.svg") %><span class="text-danger">&nbsp;&nbsp;<% if @report.likes.present? %><%= @report.likes.count %><% end %></span>
+            <% else %>
+              <%= images_action_svg("unlike_smartphone.svg") %><span class="text-muted">&nbsp;&nbsp;<% if @report.likes.present? %><%= @report.likes.count %><% end %></span>
+            <% end %>
+          </p>
           <p class="d-xs-block d-md-none float-right text-success mb-0 px-2" style="font-size:8px">※&nbsp;CL&nbsp;=&nbsp;クリニック(Clinic)</p><br>
           <p class="d-none d-md-block float-right text-success" style="font-size:8px">※&nbsp;CL&nbsp;=&nbsp;クリニック(Clinic)</p>
-          <ul class="nav nav-tabs parent-menu">
+          <ul class="nav nav-tabs parent-menu mt-2">
             <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">治療</a></li>
             <li><a href="#tab_2" data-toggle="tab">ユーザー</a></li>
             <li><a href="#tab_3" data-toggle="tab">クリニック</a></li>
@@ -169,7 +176,9 @@
                         <div class="small text-muted pt-2 text-center"><%= @report.str_age_of_partner_at_end_of_treatment %></div>
                       </div>
                       <div class="col-12 px-0 pt-4">
-                        <div class="text-center"><%= @report.year_of_treatment_end.year %>年<br><span class="small">治療終了</span></div>
+                        <% if @report.year_of_treatment_end.present? %>
+                          <div class="text-center"><%= @report.year_of_treatment_end.year %>年<br><span class="small">治療終了</span></div>
+                        <% end %>
                       </div>
                     </div>
                   </div>
@@ -184,7 +193,9 @@
                         <div class="small text-muted pt-2 text-center"><%= @report.str_age_of_partner_at_end_of_treatment %></div>
                       </div>
                       <div class="col-12 px-0 pt-4">
-                        <div class="text-center"><%= @report.year_of_treatment_end.year %>年&nbsp;治療終了</div>
+                        <% if @report.year_of_treatment_end.present? %>
+                          <div class="text-center"><%= @report.year_of_treatment_end.year %>年&nbsp;治療終了</div>
+                        <% end %>
                       </div>
                     </div>
                   </div>
@@ -1166,6 +1177,26 @@
                                   <li class="result-text small"><%= sairan_medicine.name %></li>
                                 </ul>
                               <% end %>
+                            <% else %>
+                              <span class="text-muted small">未回答</span>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="result-left-column small text-center">自己注射可否</td>
+                          <td class="pl-3">
+                            <% if @report.self_injection.present? %>
+                              <span class="result-text"><%= @report.str_self_injection %></span>
+                            <% else %>
+                              <span class="text-muted small">未回答</span>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="result-left-column small text-center">注射回数</td>
+                          <td class="pl-3">
+                            <% if @report.number_of_injections.present? %>
+                              <span class="result-text"><%= @report.str_number_of_injections %></span>
                             <% else %>
                               <span class="text-muted small">未回答</span>
                             <% end %>
@@ -2621,7 +2652,7 @@
               </section>
               <section class="child-tab-content" id="tab_2_3">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
-                <h4 class="child-tab-title">不妊原因</h4>
+                <h4 class="child-tab-title">不妊原因･疾患･不育症</h4>
                 <div class="parent-tab">
                   <ul class="nav nav-tabs parent-menu mt-0 pt-0">
                     <li><a href="#left_tab4" class="active mostleft-tab" data-toggle="tab">女性</a></li>
@@ -2629,6 +2660,7 @@
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2" id="left_tab4">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
+                      <h5 class="child-tab-title mt-3"><span class="marker-underline">不妊原因</span></h5>
                       <table class="table table-hover p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">不妊原因</td>
@@ -2647,6 +2679,9 @@
                             <% end %>
                           </td>
                         </tr>
+                      </table>
+                      <h5 class="child-tab-title mt-3"><span class="marker-underline">疾患</span></h5>
+                      <table class="table table-hover p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center">疾患</td>
                           <td class="pl-3">
@@ -2664,6 +2699,9 @@
                             <% end %>
                           </td>
                         </tr>
+                      </table>
+                      <h5 class="child-tab-title mt-3"><span class="marker-underline">不育症</span></h5>
+                      <table class="table table-hover p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center">不育症</td>
                           <td class="pl-3">
@@ -2701,6 +2739,7 @@
                   </div>
                   <div class="parent-tab-content p-2" id="right_tab4">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
+                    <h5 class="child-tab-title mt-3"><span class="marker-underline">不妊原因</span></h5>
                       <table class="table table-hover p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">不妊原因</td>
@@ -2719,6 +2758,9 @@
                             <% end %>
                           </td>
                         </tr>
+                      </table>
+                      <h5 class="child-tab-title mt-3"><span class="marker-underline">疾患</span></h5>
+                      <table class="table table-hover p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center">疾患</td>
                           <td class="pl-3">
@@ -2986,6 +3028,19 @@
                       <% end %>
                     </td>
                   </tr>
+                  <tr>
+                    <td class="result-left-column small text-center">自己注射の可否</td>
+                    <td class="pl-3">
+                      <% if @report.self_injection.present? %>
+                        <span class="result-text"><%= @report.str_self_injection %></span><br>
+                      <% else %>
+                        <span class="text-muted small">未回答</span><br>
+                      <% end %>
+                      <% if @report.number_of_injections.present? %>
+                        <span class="result-text"><span class="text-muted small">(&nbsp;回数:&nbsp;</span><%= @report.str_number_of_injections %><span class="text-muted small">&nbsp;)</span></span>
+                      <% end %>
+                    </td>
+                  </tr>
                 </table>
                 <small class="text-muted">
                   <% if @report.type_of_ovarian_stimulation || @report.type_of_sairan_cycle %>
@@ -3007,6 +3062,29 @@
                       <% end %>
                     </td>
                   </tr>
+                </table>
+                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">決済方法</span></h5>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small text-center">クレジットカード</td>
+                    <td class="pl-3">
+                      <% if @report.credit_card_validity.present? %>
+                        <span class="result-text"><%= @report.str_credit_card_validity %>&nbsp;↓</span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %><br><br>
+                      <% if @report.credit_card_validity == 3 %>
+                        <% if @report.creditcards_can_be_used_from_more_than.present? %>
+                          <span class="result-text"><span class="text-muted small">(クレジットカードの利用は)</span><br><%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から</span>
+                        <% else %>
+                          <span class="text-muted small">未回答</span>
+                        <% end %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">その他</span></h5>
+                <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small text-center">平均待ち時間</td>
                     <td class="pl-3">
@@ -3027,23 +3105,6 @@
                       <% end %><br><br>
                       <% if @report.online_consultation_details.present? %>
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.online_consultation_details.split("\n"),tag(:br)))).html_safe %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small text-center">クレジットカード</td>
-                    <td class="pl-3">
-                      <% if @report.credit_card_validity.present? %>
-                        <span class="result-text"><%= @report.str_credit_card_validity %>&nbsp;↓</span>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
-                      <% end %><br><br>
-                      <% if @report.credit_card_validity == 3 %>
-                        <% if @report.creditcards_can_be_used_from_more_than.present? %>
-                          <span class="result-text"><span class="text-muted small">(クレジットカードの利用は)</span><br><%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から</span>
-                        <% else %>
-                          <span class="text-muted small">未回答</span>
-                        <% end %>
                       <% end %>
                     </td>
                   </tr>
@@ -3402,25 +3463,27 @@
           </section>
         </div>
 
-        <div class="d-none d-md-block col-md-12 mt-4 mb-4 sns-button">
-          <div class='row mb-3 sns-bar'>
-            <div class="col-md-2 twitter-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/twitter_bar_brandcolor_icon.png", alt: "twitter_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
-            <div class="col-md-2 facebook-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/facebook_bar_brandcolor_icon.png", alt: "facebook_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
-            <div class="col-md-2 line-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/line_bar_brandcolor_icon.png", alt: "line_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
-            <div class="col-md-2 note-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/note_bar_brandcolor_icon.png", alt: "note_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'Note', target: '_blank' %></div>
-            <div class="col-md-2 slack-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/slack_bar_brandcolor_icon.png", alt: "slack_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
-            <div class="col-md-2 hatena-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/hatena_bar_brandcolor_icon.png", alt: "hatena_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
-          </div>
+        <div class="px-2 pt-0">
+          <%= @report.content %>
         </div>
 
-        <div class="d-none d-md-block col-md-12 mt-4 mb-4 sns-button">
-          <div class='row mb-3 sns-bar'>
-            <div class="col-md-2 twitter-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/twitter_bar_brandcolor_icon.png", alt: "twitter_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
-            <div class="col-md-2 facebook-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/facebook_bar_brandcolor_icon.png", alt: "facebook_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
-            <div class="col-md-2 line-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/line_bar_brandcolor_icon.png", alt: "line_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
-            <div class="col-md-2 note-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/note_bar_brandcolor_icon.png", alt: "note_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'Note', target: '_blank' %></div>
-            <div class="col-md-2 slack-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/slack_bar_brandcolor_icon.png", alt: "slack_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
-            <div class="col-md-2 hatena-button d-flex align-items-center justify-content-center p-0"><%= link_to image_tag("icon/hatena_bar_brandcolor_icon.png", alt: "hatena_bar_brandcolor_icon", width: "400px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
+        <div class="action_area pl-3 pr-0 py-4">
+          <div class="row">
+            <div class="col-3 form-inline">
+              <div class="likes_buttons_<%= @report.id %>">
+                <%= render partial: 'likes/like', locals: { report: @report} %>
+              </div>
+            </div>
+            <div class="col-9">
+              <div class="float-right"><%= link_to image_tag("icon/pocket_side_brandcolor_icon.png", alt: "pocket_side_brandcolor_icon", width: "50px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
+              <div class="float-right"><%= link_to image_tag("icon/hatena_side_brandcolor_icon.png", alt: "hatena_side_brandcolor_icon", width: "50px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
+              <div class="float-right"><%= link_to image_tag("icon/slack_side_brandcolor_icon.png", alt: "slack_side_brandcolor_icon", width: "50px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
+              <div class="float-right"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "50px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
+              <div class="float-right"><%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "50px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+              <div class="float-right"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "50px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+              <div class="float-right"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "50px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+              <div class="float-right"><p class="text-muted text-lg mt-1 pt-2">＼シェア／&nbsp;&nbsp;</p></div>
+            </div>
           </div>
         </div>
 

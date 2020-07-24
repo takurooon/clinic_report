@@ -556,6 +556,18 @@
                         </div>
 
                         <div class="form-group mt-3">
+                          <p class="question">自己注射の可否</p>
+                          <%= f.select :self_injection, Report::HASH_SELF_INJECTION.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                          <small class="text-muted"><span class="small">妊娠に至った採卵周期での自己注射(hMG/FSH/hCG)の可否</span></small>
+                        </div>
+
+                        <div class="form-group mt-3">
+                          <p class="question">(自己or通院)注射の回数</p>
+                          <%= f.select :number_of_injections, Report::HASH_NUMBER_OF_INJECTIONS.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                          <small class="text-muted"><span class="small">妊娠に至った採卵周期での注射(hMG/FSH/hCG)実施全回数</span></small>
+                        </div>
+
+                        <div class="form-group mt-3">
                           <p class="question">採卵時の麻酔の有無と種類</p>
                           <%= f.select :use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small">妊娠に至った採卵時の麻酔使用の有無</span></small>

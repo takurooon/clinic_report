@@ -11,11 +11,11 @@ module ApplicationHelper
   def resource_name
     :user
   end
-  
+
   def resource
       @resource ||= User.new
   end
-  
+
   def devise_mapping
       @devise_mapping ||= Devise.mappings[:user]
   end
@@ -23,7 +23,7 @@ module ApplicationHelper
   # OGP設定 参考:https://pgmg-rails.com/blogs/16 https://qiita.com/kenzoukenzou104809/items/fe3122abd8e98f9089ba
   def default_meta_tags
     {
-      site: '不妊治療レポート投稿サービス',
+      site: 'のこす、みえる、すすめる。不妊治療レポート投稿アプリ',
       title: 'REPOCO',
       reverse: true,
       charset: 'utf-8',
@@ -66,5 +66,12 @@ module ApplicationHelper
       text.gsub!(url_2, sub_text_2)
     end
     return text
+  end
+
+  # svgをviewで表示させる(https://stackoverflow.com/questions/36986925/how-do-i-display-svg-image-in-rails)但し以下のパスはactionフォルダのみに適用される
+  def images_action_svg(path)
+    File.open("app/assets/images/action/#{path}", "rb") do |file|
+      raw file.read
+    end
   end
 end

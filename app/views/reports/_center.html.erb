@@ -29,7 +29,7 @@
                 </div>
               <% end %>
 
-              <div class="d-none d-lg-block px-0">
+              <div class="d-none d-sm-block px-0">
                 <div class="align-items-center text-center pt-2">
                   <p class="mb-0 pb-1">
                     <% if report.treatment_end_age == nil %>
@@ -56,7 +56,7 @@
                       <span class="badge badge-pill badge-light text-muted p-0">男</span>
                     <% end %>
                     <% unless report.treatment_end_age.blank? %>
-                      <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
+                      <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span><br>
                     <% end %>
                     <% if report.prefecture_at_the_time_status == "hide" %>
                       <span class="small text-muted">−−</span>
@@ -74,7 +74,7 @@
                   </p>
                 </div>
               </div>
-              <div class="d-sm d-lg-none px-2">
+              <div class="d-xs d-sm-none px-2">
                 <div class="small align-items-center text-center pt-0">
                   <p class="mb-0">
                     <% if report.treatment_end_age == nil %>
@@ -93,28 +93,6 @@
                       <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy", title: "45歳〜"), user_path(report.user_id) %>
                     <% end %>
                     <%= link_to report.user.name, user_path(report.user_id) %>
-                  </p>
-                  <p class="text-center m-0 py-0">
-                    <% if report.user.gender == "female" %>
-                      <span class="badge badge-pill badge-light text-muted p-0"><%= "女" %></span>
-                    <% else %>
-                      <span class="badge badge-pill badge-light text-muted p-0"><%= "男" %></span>
-                    <% end %>
-                    <% if report.treatment_end_age.present? %>
-                      <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
-                    <% end %>
-                  </p>
-                  <p class="text-center m-0 py-0">
-                    <% if report.prefecture_at_the_time_status == "hide" %>
-                      <span class="small text-muted">−</span>
-                    <% else %>
-                      <span class="small text-muted"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
-                    <% end %>
-                    <% if report.city_at_the_time_status == "hide" %>
-                      <span class="small text-muted">−</span>
-                    <% else %>
-                      <span class="small text-muted"><%= link_to report.city.name, "/category/area/city/#{report.city.name}", class: "text-muted" %></span>
-                    <% end %>
                   </p>
                 </div>
               </div>
@@ -143,9 +121,6 @@
                 <small class="text-muted">
                   <%= report.created_at.to_s(:datetime_jp) %>
                 </small>
-                <% if false %>
-                  いいね(<%= report.liked_users.count %>)
-                <% end %>
               </div>
               <div class="d-none d-sm-block">
                 <%= link_to report, data: { "turbolinks" => false } do %>
@@ -200,11 +175,26 @@
                       <h6><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
                     </div>
                   <% end %>
-                  <%= link_to report, data: { "turbolinks" => false } do %>
-                    <div class="lead-content px-2 py-1">
+                  <div class="lead-content px-2 py-1">
+                    <%= link_to report, data: { "turbolinks" => false } do %>
                       <small><span class="text-muted"><%= strip_tags(report.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                    <% end %>
+                  </div>
+                  <div class="action_area pl-1 pr-0 py-2">
+                    <div class="row">
+                      <div class="col-3 form-inline">
+                        <div class="likes_buttons_<%= report.id %>">
+                          <%= render partial: 'likes/like', locals: { report: report} %>
+                        </div>
+                      </div>
+                      <div class="col-9">
+                        <div class="float-right"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
+                        <div class="float-right mr-2"><%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+                        <div class="float-right mr-2"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+                        <div class="float-right mr-2"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+                      </div>
                     </div>
-                  <% end %>
+                  </div>
                 </div>
               </div>
             </div>
@@ -214,11 +204,26 @@
                   <h7><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(30) %></h7>
                 </div>
               <% end %>
-              <%= link_to report, data: { "turbolinks" => false } do %>
-                <div  class="lead-content px-2 py-1">
+              <div  class="lead-content px-2 py-1">
+                <%= link_to report, data: { "turbolinks" => false } do %>
                   <small><%= strip_tags(report.content.to_s).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                <% end %>
+              </div>
+              <div class="px-0 py-0">
+                <div class="row">
+                  <div class="col-3">
+                    <div class="likes_buttons_<%= report.id %>">
+                      <%= render partial: 'likes/like', locals: { report: report} %>
+                    </div>
+                  </div>
+                  <div class="col-9 pt-2">
+                    <div class="float-right"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
+                    <div class="float-right mr-1"><%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+                    <div class="float-right mr-1"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+                    <div class="float-right mr-1"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+                  </div>
                 </div>
-              <% end %>
+              </div>
             </div>
           </div>
         </div>

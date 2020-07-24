@@ -132,6 +132,8 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :number_of_visits_before_sairan
       t.integer :number_of_visits_before_ishoku
       t.integer :number_of_visits_before_pregnancy_date
+      t.integer :self_injection
+      t.integer :number_of_injections
 
       t.timestamps
     end

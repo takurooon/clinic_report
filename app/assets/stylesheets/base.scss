@@ -300,17 +300,58 @@ h2{
   }
 }
 @media screen and (max-width:767px){
+  // ストックやSNSの表示エリア(スマホ表示のみ、sns_barからの読み込み)
   .sns_area {
     position: fixed;
-    bottom: 3.5rem;
+    bottom: 3rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 0);
     z-index: 10000;
   }
-  .sns_area .sns_bar {
+  .sns_area .like-circle {
     position: relative;
-    width: 100%;
+    margin-left: 60%;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255,255,255,1);
+    border: solid;
+    border-color: #EA3F60;
+    border-radius: 50%;
   }
+  .sns_area .unlike-circle {
+    position: relative;
+    margin-left: 60%;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255,255,255,1);
+    border: solid thin;
+    border-color: #EA3F60;
+    border-radius: 50%;
+  }
+  .like-circle .like-btn {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+  }
+  .unlike-circle .unlike-btn {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+  }
+  .sns_area .like-counter {
+    display: none;
+  }
+  .sns_area .like-counter {
+    display: none;
+  }
+
+  // PC時の表示(showからの読み込み)
+  .action_area {
+    // display: none;
+    visibility: hidden;
+  }
+
+  // 画面下部のナビアイコン(スマホ表示のみ)
   .under-nav-area {
     position: fixed;
     bottom: 0px;

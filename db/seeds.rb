@@ -214,9 +214,9 @@ TransferMedicine.create([
 ])
 
 TransferOption.create([
+  { name: "アシステッドハッチング(AHA)" },
   { name: "シート法(SEET)" },
   { name: "エンブリオグルー" },
-  { name: "アシステッドハッチング(AHA)" },
   { name: "スクラッチング法" },
   { name: "ヒアルロン酸胚移植用培養液" },
   { name: "その他" },
