@@ -174,6 +174,7 @@ class Report < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   def create_notification_like!(current_user)
+    # https://qiita.com/nekojoker/items/80448944ec9aaae48d0a
     # すでに「いいね」されているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and report_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
     # いいねされていない場合のみ、通知レコードを作成
@@ -290,12 +291,6 @@ class Report < ApplicationRecord
   has_many :report_fuiku_inspections, dependent: :destroy
   has_many :fuiku_inspections, through: :report_fuiku_inspections
 
-  # 不妊原因(男女それぞれ)
-  has_many :report_f_infertility_factors, dependent: :destroy
-  has_many :f_infertility_factors, through: :report_f_infertility_factors
-  has_many :report_m_infertility_factors, dependent: :destroy
-  has_many :m_infertility_factors, through: :report_m_infertility_factors
-
   # 疾患(男女それぞれ)
   has_many :report_f_diseases, dependent: :destroy
   has_many :f_diseases, through: :report_f_diseases
@@ -336,34 +331,9 @@ class Report < ApplicationRecord
   has_many :report_m_supplements, dependent: :destroy
   has_many :m_supplements, through: :report_m_supplements
 
-  # 治療の開示範囲
-  has_many :report_scope_of_disclosures, dependent: :destroy
-  has_many :scope_of_disclosures, through: :report_scope_of_disclosures
-
   # CL選定理由
   has_many :report_cl_selections, dependent: :destroy
   has_many :cl_selections, through: :report_cl_selections
-
-  # タグ
-  has_many :report_tags, dependent: :destroy
-  has_many :tags, through: :report_tags
-
-  def save_tags(tag_list)
-    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
-    old_tags = current_tags - tag_list
-    new_tags = tag_list - current_tags
-
-    # Destroy old taggings:
-    old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(tag_name: old_name)
-    end
-
-    # Create new taggings:
-    new_tags.each do |new_name|
-      report_tag = Tag.find_or_create_by(tag_name: new_name)
-      self.tags << report_tag
-    end
-  end
 
   # 検索
   def self.search(search)
@@ -1530,6 +1500,56 @@ class Report < ApplicationRecord
   def str_treatment_end_age
     return HASH_TREATMENT_END_AGE[self.treatment_end_age]
   end
+  # searchでの年齢検索用の区分値(治療終了年齢/CL単位)
+  HASH_TREATMENT_END_AGE_SEARCH = {
+    100 => "不明",
+    19 => "19歳以下",
+    20 => "20歳",
+    21 => "21歳",
+    22 => "22歳",
+    23 => "23歳",
+    24 => "24歳",
+    25 => "25歳",
+    26 => "26歳",
+    27 => "27歳",
+    28 => "28歳",
+    29 => "29歳",
+    30 => "30歳",
+    31 => "31歳",
+    32 => "32歳",
+    33 => "33歳",
+    34 => "34歳",
+    35 => "35歳",
+    36 => "36歳",
+    37 => "37歳",
+    38 => "38歳",
+    39 => "39歳",
+    40 => "40歳",
+    41 => "41歳",
+    42 => "42歳",
+    43 => "43歳",
+    44 => "44歳",
+    45 => "45歳",
+    46 => "46歳",
+    47 => "47歳",
+    48 => "48歳",
+    49 => "49歳",
+    50 => "50歳",
+    51 => "51歳",
+    52 => "52歳",
+    53 => "53歳",
+    54 => "54歳",
+    55 => "55歳",
+    56 => "56歳",
+    57 => "57歳",
+    58 => "58歳",
+    59 => "59歳",
+    60 => "60歳以上",
+  }
+
+  def str_treatment_end_age_search
+    return HASH_TREATMENT_END_AGE_SEARCH[self.treatment_end_age]
+  end
 
   # age_of_partner_at_end_of_treatmentの区分値(治療終了時のパートナーの年齢/CL単位)
   HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT = {
@@ -2183,7 +2203,6 @@ end
 #  explanation_and_impression_about_sairan      :text
 #  explanation_of_cost                          :text
 #  f_disease_memo                               :text
-#  f_infertility_memo                           :text
 #  f_other_effort_cost                          :integer
 #  f_other_effort_memo                          :text
 #  f_supplement_cost                            :integer
@@ -2210,7 +2229,6 @@ end
 #  ishoku_cost_explanation                      :text
 #  ishoku_type                                  :integer
 #  m_disease_memo                               :text
-#  m_infertility_memo                           :text
 #  m_other_effort_cost                          :integer
 #  m_other_effort_memo                          :text
 #  m_supplement_cost                            :integer

@@ -19,8 +19,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :pgt2_status, default: 0, null: false
       t.text :pgt_supplementary_explanation
       t.integer :pgt_supplementary_explanation_status, default: 0, null: false
-      t.text :f_infertility_memo
-      t.text :m_infertility_memo
       t.text :f_surgery_memo
       t.text :m_surgery_memo
       t.text :f_disease_memo

@@ -17,7 +17,7 @@
             <% prefecture_id = f.object.clinic.prefecture_id %>
           <% end %>
           <%= select_tag :clinic_prefecture,
-                          options_from_collection_for_select(Prefecture.all, :id, :name, selected: prefecture_id),
+                          options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name, selected: prefecture_id),
                           {
                             prompt: "選択",
                             class: "form-control clinic_prefecture"

@@ -9,13 +9,27 @@
     <div class="parent-tab">
       <ul class="nav nav-tabs parent-menu mt-0 pt-0">
         <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">レポコ</a></li>
-        <li><a href="#tab_2" data-toggle="tab">プロフィール</a></li>
+        <li>
+          <a href="#tab_2" data-toggle="tab">
+            <div class="tab-popup px-2">プロフィール
+              
+            </div>
+          </a>
+        </li>
       </ul>
       <section class="parent-tab-content active mostleft-tab main-index" id="tab_1">
         <div class="child-tab">
           <ul class="nav nav-tabs child-menu">
             <li><a href="#tab_1_1" class="active" data-toggle="tab">公開</a></li>
-            <li><a href="#tab_1_2" data-toggle="tab">保存･非公開</a></li>
+            <li>
+              <a href="#tab_1_2" data-toggle="tab">
+                <div class="tab-popup px-2">保存･非公開
+                  <% if @draft_reports.present? %>
+                    <i class="fas fa-circle tab-popup-circle fa-stack-1x"></i>
+                  <% end %>
+                </div>
+              </a>
+            </li>
           </ul>
           <section class="child-tab-content active px-1" id="tab_1_1">
             <div class="container p-0 m-0">
@@ -130,10 +144,6 @@
                             <% supplements = published.supplements.shuffle.sample(1) %>
                             <% supplements.each do |supplement| %>
                               <span class="badge badge-light text-muted"><%= supplement.name %></span>
-                            <% end %>
-                            <% tags = published.tags.shuffle.sample(1) %>
-                            <% tags.each do |tag| %>
-                              <span class="badge badge-light"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class:"text-muted" %></span>
                             <% end %>
                           </div>
                         </div>
@@ -264,6 +274,7 @@
                               <% if draft.treatment_end_age %>
                                 <%= draft.treatment_end_age %>歳&nbsp;
                               <% end %>
+                              <span class="text-primary">【非公開】</span>
                               <%= draft.clinic.name %>のレポコ</h5>
                           <% end %>
                         </div>
@@ -316,7 +327,13 @@
       <section class="parent-tab-content" id="tab_2">
         <div class="child-tab">
           <ul class="nav nav-tabs child-menu">
-            <li><a href="#tab_2_1" data-toggle="tab">基本情報</a></li>
+            <li>
+              <a href="#tab_2_1" data-toggle="tab">
+                <div class="tab-popup px-2">基本情報
+                  
+                </div>
+              </a>
+            </li>
             <li><a href="#tab_2_2" class="active" data-toggle="tab">治療情報</a></li>
             <li><a href="#tab_2_3" data-toggle="tab">登録情報</a></li>
           </ul>
@@ -467,12 +484,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="profile-item-l small text-center">助成金受給総額</td>
+                  <td class="profile-item-l small text-center">お酒</td>
                   <td class="profile-item-r">
-                  <% if @user.all_grant_amount.blank? %>
+                  <% if @user.drink.blank? %>
                     <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
                   <% else %>
-                    <%= @user.str_all_grant_amount(@user.all_grant_amount) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                    <%= @user.str_drink(@user.drink) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
                   <% end %>
                   </td>
                 </tr>

@@ -48,17 +48,11 @@ CSV.foreach('db/csv/clinics.csv', headers: true) do |row|
     pgt: row['pgt'],
     jis_art: row['jis_art'],
     japco: row['japco'],
+    yomigana: row['yomigana'],
     prefecture_id: row['prefecture_id'],
     city_id: row['city_id']
   )
 end
-
-Tag.create([
-  { tag_name: "自然周期" },
-  { tag_name: "アンタゴニスト法" },
-  { tag_name: "ショート法" },
-  { tag_name: "ロング法" },
-])
 
 Supplement.create([
   { name: "葉酸" },
@@ -88,27 +82,19 @@ MSupplement.create([
   { name: "その他" },
 ])
 
-ScopeOfDisclosure.create([
-  { scope: "パートナーのみ" },
-  { scope: "聞かれたら基本オープン" },
-  { scope: "両親" },
-  { scope: "義理の両親" },
-  { scope: "兄弟/姉妹" },
-  { scope: "義理の兄弟/姉妹" },
-  { scope: "その他親戚" },
-  { scope: "親友" },
-  { scope: "友人" },
-  { scope: "同僚" },
-  { scope: "上司" },
-  { scope: "部下" },
-])
-
-FInfertilityFactor.create([
+FDisease.create([
   { name: "多嚢胞性卵巣症候群(PCOS)" },
+  { name: "チョコレート嚢胞" },
   { name: "視床下部排卵障害(中枢性の排卵障害)" },
   { name: "下垂体性排卵障害(中枢性の排卵障害)" },
+  { name: "無排卵" },
+  { name: "無月経" },
+  { name: "希発月経" },
   { name: "高プロラクチン血症" },
   { name: "卵巣機能低下" },
+  { name: "卵巣嚢胞" },
+  { name: "遺残卵胞" },
+  { name: "卵巣過剰刺激症候群" },
   { name: "早発性卵巣機能不全" },
   { name: "黄体機能不全" },
   { name: "黄体化非破裂卵胞(LUF)" },
@@ -116,44 +102,49 @@ FInfertilityFactor.create([
   { name: "子宮内膜症" },
   { name: "子宮筋腫" },
   { name: "子宮内膜ポリープ" },
-  { name: "子宮奇形" },
+  { name: "子宮先天奇形" },
   { name: "子宮発育不全" },
   { name: "子宮内腔癒着症(アッシャーマン症候群)" },
   { name: "子宮腺筋症" },
+  { name: "慢性頸管炎" },
+  { name: "子宮頸管粘液不全" },
   { name: "クラミジア性卵管炎" },
-  { name: "卵管周囲炎" },
-  { name: "卵管(狭窄)癒着" },
+  { name: "卵管狭窄" },
+  { name: "卵管周囲癒着" },
+  { name: "卵管狭窄炎" },
+  { name: "卵管閉鎖" },
+  { name: "卵管留水腫" },
   { name: "抗精子抗体" },
   { name: "内分泌ホルモン異常" },
   { name: "甲状腺機能低下症" },
   { name: "甲状腺機能亢進症" },
+  { name: "下垂体線種" },
+  { name: "その他" },
+  { name: "バセドウ病" },
+  { name: "橋本病" },
+  { name: "乳がん" },
+  { name: "卵巣がん" },
+  { name: "子宮体がん" },
   { name: "その他" },
 ])
 
-MInfertilityFactor.create([
+MDisease.create([
   { name: "勃起障害(ED)" },
   { name: "膣内射精障害" },
   { name: "逆行性射精" },
   { name: "精索静脈瘤" },
+  { name: "精路閉鎖" },
   { name: "無精子症" },
   { name: "無精液症" },
   { name: "閉塞性無精子症" },
   { name: "乏精子症" },
   { name: "精子無力症" },
+  { name: "奇形精子症" },
   { name: "精液性状低下" },
   { name: "先天性精管欠損" },
   { name: "膿精液症" },
   { name: "クラインフェルター症候群" },
   { name: "その他" },
-])
-
-FDisease.create([
-  { name: "バセドウ病" },
-  { name: "橋本病" },
-  { name: "その他" },
-])
-
-MDisease.create([
   { name: "糖尿病" },
   { name: "痛風" },
 ])
@@ -162,13 +153,22 @@ FSurgery.create([
   { name: "子宮筋腫" },
   { name: "子宮内膜症" },
   { name: "卵巣嚢腫" },
+  { name: "卵管形成手術(FT)" },
   { name: "卵管切除" },
+  { name: "腹腔鏡手術" },
+  { name: "円錐切除手術" },
+  { name: "レーザー蒸散術" },
   { name: "子宮内膜ポリープ切除" },
   { name: "その他" },
 ])
 
 MSurgery.create([
   { name: "精索静脈瘤" },
+  { name: "TESE" },
+  { name: "TESA" },
+  { name: "MESA" },
+  { name: "顕微鏡下低位結紮術" },
+  { name: "精路再建手術" },
   { name: "その他" },
 ])
 

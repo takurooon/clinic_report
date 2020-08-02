@@ -20,6 +20,7 @@
 #  social_ranshitoketsu :integer
 #  teikyoseishi_aih     :integer
 #  tel                  :string
+#  yomigana             :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  city_id              :bigint           not null

@@ -53,6 +53,8 @@
                   このタブの項目は&nbsp;<strong>必ず選択して下さい。</strong><br>未選択では投稿/更新/保存はできません。
                 </div>
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">回答必須項目</span></h5>
+                <div class="spacer">
+                </div>
                 <div class="scroll-box row">
                   <div class="col-sm-6">
                     <div class="form-group border border-info rounded-lg p-3 mt-0">
@@ -64,7 +66,7 @@
                           <% prefecture_id = report.clinic.prefecture_id %>
                         <% end %>
                         <%= select_tag :select_prefecture,
-                                        options_from_collection_for_select(Prefecture.all, :id, :name, selected: prefecture_id),
+                                        options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name, selected: prefecture_id),
                                         {
                                           prompt: "都道府県",
                                           class: "form-control",
@@ -174,7 +176,8 @@
                     <p class="sub-question">おやすみ期間の補足説明</p>
                     <%= f.text_area :rest_period_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)例文いれる" %>
                   </div>
-
+                  <div class="spacer">
+                  </div>
                   <div class="box26">
                     <span class="box-title">喫煙歴</span>
                     <div class="form-group mt-0">
@@ -192,7 +195,7 @@
               </section>
               <section class="child-tab-content" id="tab_1_3">
                 <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
-                <h5 class="child-tab-title pt-3"><span class="marker-underline">年齢(治療時期)</span></h5>
+                <h5 class="child-tab-title pt-3"><span class="marker-underline">治療時期･年齢</span></h5>
                 <div class="scroll-box">
                   <div class="form-group">
                     <p class="question">治療終了年</p>
@@ -231,7 +234,7 @@
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">転院歴</span></h5>
                 <div class="scroll-box">
                   <div class="form-group">
-                    <p class="question"><span class="select-clinic-name"></span>は何院目</p>
+                    <p class="question"><span class="select-clinic-name"></span>は何院目ですか</p>
                     <%= f.select :number_of_clinics, Report::HASH_NUMBER_OF_CLINICS.invert, { prompt: "選択" }, { class: "form-control" } %>
                   </div> 
 
@@ -354,7 +357,8 @@
                       <small class="text-muted"><span class="small">自宅&nbsp;⇄&nbsp;<span class="select-clinic-name"></span>&nbsp;にかかる移動時間</span></small>
                     </div>
                   </div>
-
+                  <div class="spacer">
+                  </div>
                   <div class="box26">
                     <span class="box-title">予約方法･オンライン診療</span>
                     <div class="form-group mt-3">
@@ -415,7 +419,8 @@
                       <%= f.text_area :cl_male_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
                     </div>
                   </div>
-
+                  <div class="spacer">
+                  </div>
                   <div class="box26 pb-4">
                     <span class="box-title">特殊検査</span>
                     <div class="form-group mt-0">
@@ -430,7 +435,8 @@
                     <p class="sub-question">特殊検査の詳しい説明</p>
                     <%= f.text_area :special_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "補足説明" %>
                   </div>
-
+                  <div class="spacer">
+                  </div>
                   <div class="box26">
                     <span class="box-title">精液検査</span>
                     <table class="table table-hover mt-4">
@@ -488,7 +494,8 @@
                       <%= f.text_area :sperm_description, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)精液検査は毎回結果の変動が激しかったです" %>
                     </div>
                   </div>
-
+                  <div class="spacer">
+                  </div>
                   <div class="box26">
                     <span class="box-title">着床前スクリーニング</span>
                     <div class="form-group mt-0">
@@ -510,6 +517,8 @@
               <section class="child-tab-content" id="tab_2_3">
                 <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">最新採卵周期･過去採卵周期</span></h5>
+                <div class="spacer">
+                </div>
                 <div class="scroll-box">
                   <div class="parent-tab">
                     <ul class="nav nav-tabs parent-menu mt-0 pt-0">
@@ -519,9 +528,9 @@
                     <div class="parent-tab-content active mostleft-tab p-2" id="left_tab2">
                       <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                         <div class="form-group first-question-inbox">
-                          <p class="question">何回目の採卵</p>
+                          <p class="question">この採卵は何回目の採卵ですか</p>
                           <%= f.select :total_number_of_sairan, Report::HASH_TOTAL_NUMBER_OF_SAIRAN.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                          <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">での全採卵回数</span></small>
+                          <small class="text-muted">=&nbsp;<span class="small select-clinic-name"></span><span class="small">での全採卵回数</span></small>
                         </div>
 
                         <div class="form-group mt-3">
@@ -711,11 +720,12 @@
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">最新移植周期･過去移植周期</span></h5>
                 <div class="scroll-box">
                   <div class="form-group">
-                    <p class="question"><span class="select-clinic-name"></span>でこれまでに移植した胚の個数</p>
+                    <p class="question"><span class="select-clinic-name"></span>でこれまでに移植した胚の総個数</p>
                     <%= f.select :total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED.invert, { prompt: "選択" }, { class: "form-control" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>で移植した胚の合計</span></small>
                   </div>
-
+                  <div class="spacer">
+                  </div>
                   <div class="parent-tab">
                     <ul class="nav nav-tabs parent-menu mt-0 pt-0">
                       <li><a href="#left_tab3" class="active mostleft-tab" data-toggle="tab">妊娠に至った移植</a></li>
@@ -724,9 +734,9 @@
                     <div class="parent-tab-content active mostleft-tab p-2" id="left_tab3">
                       <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                         <div class="form-group first-question-inbox">
-                          <p class="question">何回目の移植</p>
+                          <p class="question">この移植は何回目の移植ですか</p>
                           <%= f.select :total_number_of_transplants, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                          <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">での全移植回数</span></small>
+                          <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">での移植回数の合計</span></small>
                         </div>
 
                         <div class="form-group mt-3">
@@ -1152,7 +1162,7 @@
           <section class="parent-tab-content" id="tab_4">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
-                <li><a href="#tab_4_1" class="active" data-toggle="tab">不妊原因</a></li>
+                <li><a href="#tab_4_1" class="active" data-toggle="tab">疾患･不育</a></li>
                 <li><a href="#tab_4_2" data-toggle="tab">検査等</a></li>
                 <li><a href="#tab_4_3" data-toggle="tab">サプリ</a></li>
                 <li><a href="#tab_4_4" data-toggle="tab">その他</a></li>
@@ -1161,39 +1171,8 @@
                 <div class="alert alert-primary small rounded-lg" role="alert">
                   <span>こちらの情報は&nbsp;<u><span class="select-clinic-name"></span>での治療情報に限りません。</u></span>
                 </div>
-                <h5 class="child-tab-title pt-3"><span class="marker-underline">不妊原因･疾患･不育症</span></h5>
+                <h5 class="child-tab-title pt-3"><span class="marker-underline">疾患･不育症</span></h5>
                 <div class="scroll-box">
-                  <div class="box26">
-                    <span class="box-title">不妊原因</span>
-                    <div class="form-group first-question-inbox">
-                      <p class="question mb-3">女性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:f_infertility_factor_ids, FInfertilityFactor.all, :id, :name) do |b| %>
-                        <div class="form-check checkbox checkbox">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                      <p class="sub-question">女性側の不妊原因の補足説明</p>
-                      <%= f.text_area :f_infertility_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <p class="question mb-3">男性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:m_infertility_factor_ids, MInfertilityFactor.all, :id, :name) do |b| %>
-                        <div class="form-check checkbox">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                      <p class="sub-question">男性側の不妊原因の補足説明</p>
-                      <%= f.text_area :m_infertility_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
-                    </div>
-                  </div>
-
                   <div class="box26">
                     <span class="box-title">疾患</span>
                     <div class="form-group mt-0">
@@ -1224,7 +1203,8 @@
                       <%= f.text_area :m_disease_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
                     </div>
                   </div>
-
+                  <div class="spacer">
+                  </div>
                   <div class="box26">
                     <span class="box-title">不育症</span>
                     <div class="form-group mt-0">
@@ -1284,7 +1264,8 @@
                       <%= f.text_area :inspection_supplementary_explanation_men, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
                     </div>
                   </div>
-
+                  <div class="spacer">
+                  </div>
                   <div class="box26">
                     <span class="box-title">手術歴</span>
                     <div class="form-group mt-0">
@@ -1361,7 +1342,8 @@
                       <%= f.text_area :m_supplement_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)最初はネットで調べて買っていましたが、途中からクリニックで販売していた〇〇サプリに切り替えました。お値段は〇〇円位でした。" %>
                     </div>
                   </div>
-
+                  <div class="spacer">
+                  </div>
                   <div class="box26">
                     <span class="box-title">治療以外に行ったこと</span>
                     <div class="form-group mt-0">
@@ -1442,35 +1424,6 @@
             <div><%= f.label :title, 'このレポコにタイトルをつけるとしたら', class: "question-matters" %></div>
             <%= f.text_field :title, class: "form-control", placeholder: "最大64文字" %>
           </div>
-
-          <% if false %>
-          <div class="form-group border rounded px-3 py-3 mb-5 tag-area">
-            <div class="row">
-              <div class="col-12">
-                <h3>タグ</h3>
-                <span class="question-matters"><%= f.label :tag_ids, 'タグをつけることができます(複数選択可)' %></span>
-              </div>
-              <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
-                <div class="col-md-4">
-                  <div class="form-check form-check-inline checkbox">
-                    <%= tag.label class: 'form-check-label' do %>
-                      <%= tag.check_box class: 'form-check-input' %>
-                      <%= tag.text %>
-                    <% end %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-            <div class="form-group">
-              <div class="label p-1"><%= f.label :name, "新しくタグを追加する", class: "question-matters" %></div>
-              <%= text_field_tag :tag_name, "", class: "form-control", placeholder: "半角カンマ区切り" %>
-              <small id="poster-tip" class="form-text text-muted">
-                <span class="small">1タグ最大15文字まで。複数ある場合は「半角カンマ」で区切って下さい。</span>
-              </small>
-            </div>
-          </div>
-          <% end %>
-
         </div>
 
         <% if is_new %>

@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :report
   has_many :notifications, dependent: :destroy
-  validates :comment, presence: true, length: { in: 1..1000 }
+  validates :comment, presence: true, length: { in: 1..500 }
 end
 
 # == Schema Information

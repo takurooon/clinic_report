@@ -151,10 +151,6 @@
                   <% supplements.each do |supplement| %>
                     <span class="badge badge-light text-muted"><%= supplement.name %></span>
                   <% end %>
-                  <% tags = report.tags.shuffle.sample(1) %>
-                  <% tags.each do |tag| %>
-                    <span class="badge badge-light"><%= link_to tag.tag_name, "/category/tags/#{tag.tag_name}", class:"text-muted" %></span>
-                  <% end %>
                 </div>
               </div>
 

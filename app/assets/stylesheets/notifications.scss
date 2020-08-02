@@ -9,3 +9,17 @@
   // color: rgb(255, 106, 170);
   color: rgba(29,161,242,0.9);
 }
+
+// マイページの非公開タブの通知アイコン
+.tab-popup {
+  position: relative;
+}
+.tab-popup .tab-popup-circle{
+  position: absolute;
+  padding-left: 0.3rem;
+  padding-right: 0;
+  padding-top: 0;
+  margin-bottom: 0.7rem;
+  margin-right: 0rem;
+  color: rgba(242, 47, 29, 0.691);
+}

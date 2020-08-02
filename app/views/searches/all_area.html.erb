@@ -10,13 +10,13 @@
 
   <div class="container all_factors">
     <div class="row tab-content">
-      <div class="col-md-8 offset-md-2 pl-0">
+      <div class="col-md-8 offset-md-2 pl-0 mb-3">
         <ul class="nav nav-tabs mb-3">
           <li class="nav-item">
-            <a href="#area_prefecture" class="nav-link active" data-toggle="tab" style="font-size: 16px">都道府県から探す</a>
+            <a href="#area_prefecture" class="nav-link active" data-toggle="tab" style="font-size: 16px"><i data-feather="map" class="feather-icon-style1"></i>&nbsp;&nbsp;都道府県から探す</a>
           </il>
           <li class="nav-item">
-            <a href="#area_city" class="nav-link" data-toggle="tab" style="font-size: 16px">市区町村から探す</a>
+            <a href="#area_city" class="nav-link" data-toggle="tab" style="font-size: 16px"><i data-feather="map-pin" class="feather-icon-style1"></i>&nbsp;&nbsp;市区町村から探す</a>
           </il>
         </ul>
       </div>
@@ -27,7 +27,7 @@
                           {
                             prompt: "都道府県を選択する",
                             class: "form-control",
-                            onchange: "location = 'area/prefecture/' + this.value"
+                            onchange: "location = 'prefecture/' + this.value"
                           }
           %>
         </div>
@@ -44,7 +44,7 @@
         </div><br>
 
         <div>
-          <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control", onchange: "location = 'area/city/' + this.value" } %></div><br>
+          <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control", onchange: "location = 'city/' + this.value" } %></div><br>
         </div>
 
         <script>

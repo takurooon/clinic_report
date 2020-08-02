@@ -3,9 +3,9 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
-    @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
+    # @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
+    # @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
     @reports = Report.released.order("created_at DESC").page(params[:page]).per(10)
-    @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
   end
 
   def draft
@@ -194,7 +194,6 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
-    @all_tag_list = Tag.all.pluck(:tag_name)
     @report.itinerary_of_choosing_a_clinics.build
     @report.sairan_hormones.build
     @report.day_of_sairans.build
@@ -445,8 +444,6 @@ class ReportsController < ApplicationController
         :blastocyst_grade2,
         :blastocyst_grade2_supplementary_explanation,
         :explanation_and_impression_about_sairan,
-        :f_infertility_memo,
-        :m_infertility_memo,
         :f_surgery_memo,
         :m_surgery_memo,
         :f_disease_memo,
@@ -540,8 +537,6 @@ class ReportsController < ApplicationController
         male_inspection_ids: [],
         cl_female_inspection_ids: [],
         cl_male_inspection_ids: [],
-        f_infertility_factor_ids: [],
-        m_infertility_factor_ids: [],
         fuiku_inspection_ids: [],
         f_disease_ids: [],
         m_disease_ids: [],
@@ -554,7 +549,6 @@ class ReportsController < ApplicationController
         m_other_effort_ids: [],
         supplement_ids: [],
         m_supplement_ids: [],
-        tag_ids: [],
         cl_selection_ids: [],
         day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
         day_of_shokihaiishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],

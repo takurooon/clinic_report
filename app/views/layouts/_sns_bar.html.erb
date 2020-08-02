@@ -2,10 +2,20 @@
   <div class="float-left likes_buttons_<%= @report.id %>">
     <%= render partial: 'likes/like', locals: { report: @report} %>
   </div>
-  <div class="float-right mx-0 px-0 my-0 pt-4 pb-0">
-      <%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "40px", class: "img-fluid float-right ml-1", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'Note', target: '_blank' %>
-      <%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "40px", class: "img-fluid float-right ml-1", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %>
-      <%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "40px", class: "img-fluid float-right ml-1", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %>
-      <%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "40px", class: "img-fluid float-right", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %>
+  <% if false %>
+    <div class="float-right mx-0 px-0 my-0 pt-4 pb-0">
+        <%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "40px", class: "img-fluid float-right ml-1", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'Note', target: '_blank' %>
+        <%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "40px", class: "img-fluid float-right ml-1", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %>
+        <%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "40px", class: "img-fluid float-right ml-1", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %>
+        <%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "40px", class: "img-fluid float-right", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %>
+        <%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "40px", class: "img-fluid float-right", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %>
+    </div>
+  <% end %>
+  <div class="twitter-circle">
+    <div class="twitter-btn" title='Twitterでシェア！'>
+      <%= link_to "https://twitter.com/share?url=#{request.url}&text=タイトル", {target: '_blank'} do %>
+        <%= images_action_svg("twitter_mobile.svg") %>
+      <% end %>
+    </div>
   </div>
 </div>

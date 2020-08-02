@@ -36,7 +36,6 @@
 #  explanation_and_impression_about_sairan      :text
 #  explanation_of_cost                          :text
 #  f_disease_memo                               :text
-#  f_infertility_memo                           :text
 #  f_other_effort_cost                          :integer
 #  f_other_effort_memo                          :text
 #  f_supplement_cost                            :integer
@@ -63,7 +62,6 @@
 #  ishoku_cost_explanation                      :text
 #  ishoku_type                                  :integer
 #  m_disease_memo                               :text
-#  m_infertility_memo                           :text
 #  m_other_effort_cost                          :integer
 #  m_other_effort_memo                          :text
 #  m_supplement_cost                            :integer

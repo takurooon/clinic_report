@@ -1,22 +1,57 @@
 <div class="container pb-5 mb-5">
-  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>タグ</strong>&nbsp;からレポコを探す</h5>
-  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong>タグ</strong>&nbsp;からレポコを探す</h4>
+  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>疾患･不育症</strong>&nbsp;からレポコを探す</h5>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong>疾患･不育症</strong>&nbsp;からレポコを探す</h4>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", category_search_path %>
   </small>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-4">
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", category_search_path %>
   </small>
-  
-  <div class="container all_tags pb-5 mb-5">
-    <div class="row">
-      <div class="col-md-8 offset-md-2 main-column">
-        <% @tags.each do |tag| %>
-          <span class="btn btn-info border border-primary mr-2 mb-3"><%= link_to "##{tag.tag_name}", "/category/tags/#{tag.tag_name}" %></span>
-        <% end %>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2 px-0">
+      <div class="parent-tab">
+        <ul class="nav nav-tabs parent-menu mt-2">
+          <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">疾患</a></li>
+          <li><a href="#tab_2" data-toggle="tab">手術歴</a></li>
+        </ul>
+        <section class="parent-tab-content active mostleft-tab" id="tab_1">
+          <div class="child-tab">
+            <ul class="nav nav-tabs child-menu">
+              <li><a href="#tab_1_1" class="active" data-toggle="tab">女性</a></li>
+              <li><a href="#tab_1_2" data-toggle="tab">男性</a></li>
+            </ul>
+            <section class="child-tab-content active" id="tab_1_1">
+              <% @f_diseases.each do |f_disease| %>
+                <span class="btn btn-primary border border-primary mr-2 mb-3"><%= link_to f_disease.name, "/カテゴリ/疾患/女性/#{f_disease.name}" %></span>
+              <% end %>
+            </section>
+            <section class="child-tab-content" id="tab_1_2">
+              <% @m_diseases.each do |m_disease| %>
+                <span class="btn btn-primary border border-primary mr-2 mb-3"><%= link_to m_disease.name, "/カテゴリ/疾患/男性/#{m_disease.name}" %></span>
+              <% end %>
+            </section>
+          </div>
+        </section>
+        <section class="parent-tab-content" id="tab_2">
+          <div class="child-tab">
+            <ul class="nav nav-tabs child-menu">
+              <li><a href="#tab_2_1" class="active" data-toggle="tab">女性</a></li>
+              <li><a href="#tab_2_2" data-toggle="tab">男性</a></li>
+            </ul>
+            <section class="child-tab-content active" id="tab_2_1">
+              <% @f_surgery .each do |f_sugery| %>
+                <span class="btn btn-primary border border-primary mr-2 mb-3"><%= link_to f_sugery.name, "/カテゴリ/手術/女性/#{f_sugery.name}" %></span>
+              <% end %>
+            </section>
+            <section class="child-tab-content" id="tab_2_2">
+              <% @m_surgery .each do |m_sugery| %>
+                <span class="btn btn-primary border border-primary mr-2 mb-3"><%= link_to m_sugery.name, "/カテゴリ/手術/男性/#{m_sugery.name}" %></span>
+              <% end %>
+            </section>
+          </div>
+        </section>
       </div>
-    <div>
+    </div>
   </div>
 </div>
-
-<%= paginate @tags_page %>

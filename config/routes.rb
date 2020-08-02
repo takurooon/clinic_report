@@ -7,19 +7,17 @@ Rails.application.routes.draw do
   get 'category/search' => 'searches#search'
   get 'category/amh' => 'searches#all_amh'
   get 'category/amh/:value' => 'searches#amh'
-  get 'category/tags' => 'searches#tags'
-  get 'category/tags/:tag_name' => 'searches#tag'
   get 'category/clinics' => 'searches#clinics'
   get 'category/clinics/:value' => 'searches#clinic'
   get 'category/clinics/prefecture/:value' => 'searches#clinic_prefecture'
   get 'category/clinics/city/:value' => 'searches#clinic_city'
   get 'category/age' => 'searches#all_age'
   get 'category/age/:value' => 'searches#age'
-  get 'category/factors' => 'searches#factors'
-  get 'category/factors/:gender/:value' => 'searches#factor'
+  get 'category/tags' => 'searches#tags'
+  get ':category/:tags/:gender/:value' => 'searches#tag'
   get 'category/area' => 'searches#all_area'
-  get 'category/area/prefecture/:value' => 'searches#area_prefecture'
-  get 'category/area/city/:value' => 'searches#area_city'
+  get 'category/prefecture/:value' => 'searches#area_prefecture'
+  get 'category/city/:value' => 'searches#area_city'
   get 'about' => 'application#about'
   get 'terms' => 'application#terms'
   get 'privacy' => 'application#privacy'
@@ -58,8 +56,8 @@ Rails.application.routes.draw do
   
   get "cities_select" => "clinics#cities_select"
   get "clinics_select" => "clinics#clinics_select"
-  get "address_cities_select" => "reports#address_cities_select"
   get "clinic_select" => "clinics#clinic_select"
+  get "address_cities_select" => "reports#address_cities_select"
   
   resources :comments, only: %i[create destroy]
 
@@ -80,19 +78,17 @@ end
 #                       category_search GET    /category/search(.:format)                                                               searches#search
 #                          category_amh GET    /category/amh(.:format)                                                                  searches#all_amh
 #                                       GET    /category/amh/:value(.:format)                                                           searches#amh
-#                         category_tags GET    /category/tags(.:format)                                                                 searches#tags
-#                                       GET    /category/tags/:tag_name(.:format)                                                       searches#tag
 #                      category_clinics GET    /category/clinics(.:format)                                                              searches#clinics
 #                                       GET    /category/clinics/:value(.:format)                                                       searches#clinic
 #                                       GET    /category/clinics/prefecture/:value(.:format)                                            searches#clinic_prefecture
 #                                       GET    /category/clinics/city/:value(.:format)                                                  searches#clinic_city
 #                          category_age GET    /category/age(.:format)                                                                  searches#all_age
 #                                       GET    /category/age/:value(.:format)                                                           searches#age
-#                      category_factors GET    /category/factors(.:format)                                                              searches#factors
-#                                       GET    /category/factors/:gender/:value(.:format)                                               searches#factor
+#                         category_tags GET    /category/tags(.:format)                                                                 searches#tags
+#                                       GET    /:category/:tags/:gender/:value(.:format)                                                searches#tag
 #                         category_area GET    /category/area(.:format)                                                                 searches#all_area
-#                                       GET    /category/area/prefecture/:value(.:format)                                               searches#area_prefecture
-#                                       GET    /category/area/city/:value(.:format)                                                     searches#area_city
+#                                       GET    /category/prefecture/:value(.:format)                                                    searches#area_prefecture
+#                                       GET    /category/city/:value(.:format)                                                          searches#area_city
 #                                 about GET    /about(.:format)                                                                         application#about
 #                                 terms GET    /terms(.:format)                                                                         application#terms
 #                               privacy GET    /privacy(.:format)                                                                       application#privacy
@@ -145,8 +141,8 @@ end
 #                                       DELETE /clinics/:id(.:format)                                                                   clinics#destroy
 #                         cities_select GET    /cities_select(.:format)                                                                 clinics#cities_select
 #                        clinics_select GET    /clinics_select(.:format)                                                                clinics#clinics_select
-#                 address_cities_select GET    /address_cities_select(.:format)                                                         reports#address_cities_select
 #                         clinic_select GET    /clinic_select(.:format)                                                                 clinics#clinic_select
+#                 address_cities_select GET    /address_cities_select(.:format)                                                         reports#address_cities_select
 #                              comments POST   /comments(.:format)                                                                      comments#create
 #                               comment DELETE /comments/:id(.:format)                                                                  comments#destroy
 #                         notifications GET    /notifications(.:format)                                                                 notifications#index

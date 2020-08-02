@@ -268,7 +268,6 @@ h2{
   border-bottom: solid thin;
   border-color: rgb(224,224,224);
 }
-
 .terms-h h6 {
   border-bottom: solid thin;
   border-color: rgb(224,224,224);
@@ -345,9 +344,26 @@ h2{
     display: none;
   }
 
+  .sns_area .twitter-circle {
+    position: relative;
+    margin-left: 83%;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255,255,255,1);
+    // background-color: #1DA1F3;
+    border: solid thin;
+    border-color: #1DA1F3;
+    border-radius: 50%;
+  }
+  .twitter-circle .twitter-btn {
+    position: absolute;
+    top: 25%;
+    left: 26%;
+  }
+
   // PC時の表示(showからの読み込み)
   .action_area {
-    // display: none;
+    display: none;
     visibility: hidden;
   }
 
