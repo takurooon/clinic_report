@@ -23,12 +23,12 @@
             </ul>
             <section class="child-tab-content active" id="tab_1_1">
               <% @f_diseases.each do |f_disease| %>
-                <span class="btn btn-primary border border-primary mr-2 mb-3"><%= link_to f_disease.name, "/カテゴリ/疾患/女性/#{f_disease.name}" %></span>
+                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to f_disease.name, "/カテゴリ/疾患/女性/#{f_disease.name}" %></span>
               <% end %>
             </section>
             <section class="child-tab-content" id="tab_1_2">
               <% @m_diseases.each do |m_disease| %>
-                <span class="btn btn-primary border border-primary mr-2 mb-3"><%= link_to m_disease.name, "/カテゴリ/疾患/男性/#{m_disease.name}" %></span>
+                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to m_disease.name, "/カテゴリ/疾患/男性/#{m_disease.name}" %></span>
               <% end %>
             </section>
           </div>
@@ -41,12 +41,12 @@
             </ul>
             <section class="child-tab-content active" id="tab_2_1">
               <% @f_surgery .each do |f_sugery| %>
-                <span class="btn btn-primary border border-primary mr-2 mb-3"><%= link_to f_sugery.name, "/カテゴリ/手術/女性/#{f_sugery.name}" %></span>
+                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to f_sugery.name, "/カテゴリ/手術/女性/#{f_sugery.name}" %></span>
               <% end %>
             </section>
             <section class="child-tab-content" id="tab_2_2">
               <% @m_surgery .each do |m_sugery| %>
-                <span class="btn btn-primary border border-primary mr-2 mb-3"><%= link_to m_sugery.name, "/カテゴリ/手術/男性/#{m_sugery.name}" %></span>
+                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to m_sugery.name, "/カテゴリ/手術/男性/#{m_sugery.name}" %></span>
               <% end %>
             </section>
           </div>

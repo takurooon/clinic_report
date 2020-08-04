@@ -100,7 +100,7 @@ function icsi(types_of_fertilization_methods) {
   }
 }
 
-// 用いた卵子と精子の説明
+// 用いた卵子と精子の説明①
 $(function() {
   eggsperm($("#report_types_of_eggs_and_sperm option:selected").val());
   $("#report_types_of_eggs_and_sperm").change(function() {
@@ -112,6 +112,21 @@ function eggsperm(types_of_eggs_and_sperm) {
     $(".description_of_eggs_and_sperm_used").show();
   } else {
     $(".description_of_eggs_and_sperm_used").hide();
+  }
+}
+
+// 用いた卵子と精子の説明②
+$(function() {
+  eggsperm2($("#report_types_of_eggs_and_sperm_status option:selected").val());
+  $("#report_types_of_eggs_and_sperm_status").change(function() {
+    eggsperm2($(this).val());
+  });
+})
+function eggsperm2(types_of_eggs_and_sperm_status) {
+  if (types_of_eggs_and_sperm_status > "1") {
+    $(".description_of_eggs_and_sperm_used_status").show();
+  } else {
+    $(".description_of_eggs_and_sperm_used_status").hide();
   }
 }
 

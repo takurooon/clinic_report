@@ -25,6 +25,7 @@
 #  creditcards_can_be_used_from_more_than       :integer
 #  current_state                                :integer
 #  description_of_eggs_and_sperm_used           :text
+#  description_of_eggs_and_sperm_used_status    :text
 #  details_of_icsi                              :integer
 #  doctor_quality                               :integer
 #  early_embryo_grade                           :integer
@@ -129,6 +130,7 @@
 #  type_of_ovarian_stimulation                  :integer
 #  type_of_sairan_cycle                         :integer
 #  types_of_eggs_and_sperm                      :integer
+#  types_of_eggs_and_sperm_status               :integer
 #  types_of_fertilization_methods               :integer
 #  use_of_anesthesia                            :integer
 #  work_style                                   :integer

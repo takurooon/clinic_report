@@ -119,7 +119,6 @@ FDisease.create([
   { name: "甲状腺機能低下症" },
   { name: "甲状腺機能亢進症" },
   { name: "下垂体線種" },
-  { name: "その他" },
   { name: "バセドウ病" },
   { name: "橋本病" },
   { name: "乳がん" },
@@ -144,9 +143,9 @@ MDisease.create([
   { name: "先天性精管欠損" },
   { name: "膿精液症" },
   { name: "クラインフェルター症候群" },
-  { name: "その他" },
   { name: "糖尿病" },
   { name: "痛風" },
+  { name: "その他" },
 ])
 
 FSurgery.create([

@@ -489,16 +489,27 @@ class Report < ApplicationRecord
 
   # types_of_eggs_and_spermの区分値(卵子と精子の帰属)
   HASH_TYPES_OF_EGGS_AND_SPERM = {
-    1 => "自身＆相手の卵子/精子を用いた",
-    2 => "自身or相手の凍結未受精卵を用いた",
-    3 => "自身＆相手の凍結精子を用いた",
-    4 => "提供卵子を用いた",
-    5 => "提供精子を用いた",
+    1 => "自分たちの卵子と精子",
+    2 => "提供卵子",
+    3 => "提供精子",
     99 => "その他",
   }
 
   def str_types_of_eggs_and_sperm
     return HASH_TYPES_OF_EGGS_AND_SPERM[self.types_of_eggs_and_sperm]
+  end
+
+  # types_of_eggs_and_sperm_statusの区分値(卵子と精子の状態)
+  HASH_TYPES_OF_EGGS_AND_SPERM_STATUS = {
+    1 => "未凍結卵子(未受精卵)と未凍結精子",
+    2 => "凍結卵子(未受精卵)",
+    3 => "凍結精子",
+    4 => "凍結卵子(未受精卵)と精子",
+    99 => "その他",
+  }
+
+  def str_types_of_eggs_and_sperm_status
+    return HASH_TYPES_OF_EGGS_AND_SPERM_STATUS[self.types_of_eggs_and_sperm_status]
   end
 
   # self_injectionの区分値(自己注射の可否)
@@ -2192,6 +2203,7 @@ end
 #  creditcards_can_be_used_from_more_than       :integer
 #  current_state                                :integer
 #  description_of_eggs_and_sperm_used           :text
+#  description_of_eggs_and_sperm_used_status    :text
 #  details_of_icsi                              :integer
 #  doctor_quality                               :integer
 #  early_embryo_grade                           :integer
@@ -2296,6 +2308,7 @@ end
 #  type_of_ovarian_stimulation                  :integer
 #  type_of_sairan_cycle                         :integer
 #  types_of_eggs_and_sperm                      :integer
+#  types_of_eggs_and_sperm_status               :integer
 #  types_of_fertilization_methods               :integer
 #  use_of_anesthesia                            :integer
 #  work_style                                   :integer

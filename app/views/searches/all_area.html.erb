@@ -8,15 +8,15 @@
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", category_search_path %>
   </small>
 
-  <div class="container all_factors">
+  <div class="container all_factors px-0">
     <div class="row tab-content">
-      <div class="col-md-8 offset-md-2 pl-0 mb-3">
-        <ul class="nav nav-tabs mb-3">
+      <div class="col-md-8 offset-md-2 px-0 mb-3">
+        <ul class="nav nav-tabs mb-3 px-2">
           <li class="nav-item">
-            <a href="#area_prefecture" class="nav-link active" data-toggle="tab" style="font-size: 16px"><i data-feather="map" class="feather-icon-style1"></i>&nbsp;&nbsp;都道府県から探す</a>
+            <a href="#area_prefecture" class="btn rounded-pill active" data-toggle="tab" style="font-size: 16px"><span class="font-weight-bold">都道府県</span><small><small>から探す</small></small></a>
           </il>
           <li class="nav-item">
-            <a href="#area_city" class="nav-link" data-toggle="tab" style="font-size: 16px"><i data-feather="map-pin" class="feather-icon-style1"></i>&nbsp;&nbsp;市区町村から探す</a>
+            <a href="#area_city" class="btn rounded-pill" data-toggle="tab" style="font-size: 16px"><span class="font-weight-bold">市区町村</span><small><small>から探す</small></small></a>
           </il>
         </ul>
       </div>
@@ -37,7 +37,7 @@
           <%= select_tag :select_prefecture,
                           options_from_collection_for_select(Prefecture.all, :id, :name),
                           {
-                            prompt: "都道府県を選択する",
+                            prompt: "都道府県を選択し",
                             class: "form-control"
                           }
           %>

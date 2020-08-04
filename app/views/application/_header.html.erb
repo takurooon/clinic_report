@@ -1,6 +1,5 @@
-<nav class="navbar navbar-expand-md border-bottom navbar-light fixed-top">
-  
-  <div class="container">
+<nav class="navbar navbar-expand-md navbar-light fixed-top">
+  <div class="container navbar-container">
     <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path, class: "navbar-brand" %>
     <button class="btn btn-link d-md-none" type="button" data-toggle="modal" data-target="#menuModal" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,21 +8,36 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
       </ul>
-      <% if user_signed_in? %>
-        <span class="mr-3"><%= render 'partial/circle' %></span>
-      <% end %>
+      
       <ul class="navbar-nav nav-tabs small">
-        <li class="nav-item active mx-1">
-          <%= header_link_item('レポコ', reports_path) %></<i>
-        </li>
-        <li class="nav-item mx-1">
-          <%= header_link_item('クリニック', category_clinics_path) %>
-        </li>
-        <li class="nav-item mx-1">
-          <%= header_link_item('カテゴリ', category_search_path) %>
-        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item mr-3">
+            <div class="mt-1 pt-3 pb-0">
+              <%= render 'partial/circle' %>
+            </div>
+          </li>
+          <li class="nav-item mr-3">
+            <%= link_to root_path, { title: "ホーム" } do %>
+              <div class="pt-3 pb-0">
+                <i data-feather="home" class="text-muted pt-1"></i>
+              </div>
+            <% end %>
+          </li>
+          <li class="nav-item mr-3">
+            <%= link_to category_search_path, { title: "カテゴリ検索" } do %>
+              <div class="pt-3 pb-0">
+                <i data-feather="search" class="text-muted pt-1"></i>
+              </div>
+            <% end %>
+          </li>
+          <li class="nav-item mr-3">
+            <div class="navbar-btn pt-3 pb-0">
+              <a href="" data-toggle="modal" data-target="#reportPost" title:="レポコを書く" style="text-decoration: none;"><div style="background-color: #2DB696; height: 2rem; width: 4.3rem; color: #ffffff; font-size: 14px;" class="m-0 p-1 pt-1 rounded-lg"><i data-feather="edit-2" class="text-light py-1"></i>投稿</div>
+            </div></a>
+          </li>
+        <% end %>
         <% if current_user %>
-          <li class="nav-item dropdown mx-1">
+          <li class="nav-item dropdown mx-1" title="設定">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <small><%= current_user.name %></small>
             </a>
@@ -34,22 +48,21 @@
                 <p class="alert alert-notice"><%= notice %></p>
               <% end %>
             </div>
+          </li>
         <% else %>
-          <ul class="navbar-nav">
+          <ul class="navbar-nav form-inline">
             <li class="nav-item">
-              <div class="navbar-btn pt-3">
-                <%= link_to "ログイン", new_user_session_path, class:"btn btn-outline-secondary", "data-toggle": "modal", "data-target": "#signinModal" %>
+              <div class="navbar-btn my-0">
+                <%= link_to "ログイン", new_user_session_path, class:"btn text-dark", "data-toggle": "modal", "data-target": "#signinModal" %>
               </div>
             </li>
-
-            <% if false %>
             <li class="nav-item">
-              <div class="navbar-btn pt-3">
-                <%= link_to "新規登録", new_user_registration_path, class:"btn btn-outline-secondary", "data-toggle": "modal", "data-target": "#signUpModal" %>
+              <div class="navbar-btn mb-1">
+                <%= link_to new_user_registration_path, { style: "text-decoration: none;" } do %>
+                  <div style="background-color: #2DB696; height: 2.3rem; width: 5rem;" class="m-0 p-1 rounded-lg text-center"><p class="pb-0 pt-1" style="color: #ffffff;">新規登録</p></div>
+                <% end %>
               </div>
             </li>
-            <% end %>
-
           </ul>
         <% end %>
       </ul>
@@ -217,6 +230,55 @@
             <li><%= link_to "新規登録", new_user_registration_path %></li>
           <% end %>
         </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signinLikeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin: auto;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <p><i data-feather="heart" style="wtidth:18px" class="text-danger"></i>&nbsp;&nbsp;するには<span class="font-weight-bold">ログインして下さい</span>。<br><br>ユーザー登録がお済みでない方は、<br><%= link_to "新規登録", new_user_registration_path %>を行ってください。</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if alert %>
+          <div class="alert alert-warning" role="alert">
+            <p class="alert alert-error"><%= alert %></p>
+          </div>
+        <% end %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group mt-0 pt-0">
+            <%= f.label :email, 'メール', for: "formGroupInput", class: "bmd-label-floating" %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control validate[required, custom[email]]', id: "formGroupInput" %>
+            <span class="bmd-help">登録したメールアドレスを入力して下さい。</span>
+          </div>
+
+          <div class="form-group mt-0 pt-0">
+            <%= f.label :password, 'パスワード', for: "formGroupInput", class: "bmd-label-floating" %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control validate[required, minSize[6]]', id: "formGroupInput" %>
+            <span class="bmd-help">登録したパスワードを入力してください。</span>
+          </div>
+          
+          <% if devise_mapping.rememberable? %>
+            <div class="field checkbox pt-3">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions pt-3">
+            <%= f.submit "ログイン", class: 'btn btn-raised btn-primary mx-auto d-block w-75' %>
+          </div>
+
+          <%= f.hidden_field :url, value: request.fullpath %>
+
+        <% end %>
+        <%= render "devise/shared/links" %>
+        
       </div>
     </div>
   </div>

@@ -1,6 +1,10 @@
 // ナビバーの前面指定
 .navbar {
-  z-index: 15000;
+  z-index: 30000;
+}
+
+.navbar > .navbar-container {
+  padding: 0 8rem;
 }
 
 // モーダルの最前面指定
@@ -382,3 +386,13 @@ h2{
     width: 100%;
   }
 }
+
+  .slide_bar {
+    height: 3rem;;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .child-tab-content a {
+    color: #151515;
+  }

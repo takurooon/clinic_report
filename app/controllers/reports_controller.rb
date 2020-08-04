@@ -265,8 +265,6 @@ class ReportsController < ApplicationController
       return
     end
 
-    @tag_list = @report.tags.pluck(:tag_name).join(",")
-
     if @report.itinerary_of_choosing_a_clinics.count == 0
       @report.itinerary_of_choosing_a_clinics.build
     end
@@ -346,23 +344,10 @@ class ReportsController < ApplicationController
       @report.status = "released"
     end
 
-    # tag_name = params[:tag_name].split(",")
-    # tag_list = molding(tag_name)
-    # tag_ids = params[:report][:tag_ids]
-    # tag_ids.each do |tag_id|
-    #   if tag_id.blank?
-    #     next
-    #   end
-    #   tag = Tag.find(tag_id)
-    #   tag_list << tag.tag_name
-    # end
-    # tag_list = tag_list.uniq
-
     respond_to do |format|
       if params[:back]
         format.html { render :edit }
       elsif @report.update(report_params)
-        # @report.save_tags(tag_list)
         format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
         format.json { render :show, status: :created, location: @report }
       else
@@ -420,7 +405,9 @@ class ReportsController < ApplicationController
         :smoking_male,
         :smoking_female,
         :types_of_eggs_and_sperm,
+        :types_of_eggs_and_sperm_status,
         :description_of_eggs_and_sperm_used,
+        :description_of_eggs_and_sperm_used_status,
         :sairan_age,
         :ishoku_age,
         :type_of_ovarian_stimulation,

@@ -50,7 +50,7 @@
               </ul>
               <section class="child-tab-content active" id="tab_1_1">
                 <div class="alert alert-info small rounded-lg" role="alert">
-                  このタブの項目は&nbsp;<strong>必ず選択して下さい。</strong><br>未選択では投稿/更新/保存はできません。
+                  このタブの項目は&nbsp;<strong>必ず選択して下さい。</strong><br>未選択では投稿/更新/保存はできません。<br>はじめにこちらを選択されると以降の質問がよりわかりやすくなります。
                 </div>
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">回答必須項目</span></h5>
                 <div class="spacer">
@@ -140,15 +140,27 @@
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question">卵子と精子</p>
+                    <p class="question">①(受精前の)卵子と精子</p>
                     <%= f.select :types_of_eggs_and_sperm, Report::HASH_TYPES_OF_EGGS_AND_SPERM.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small">妊娠に至った卵子と精子</span></small>
+                    <small class="text-muted"><span class="small">用いた卵子と精子について</span></small>
                   </div>
 
                   <div class="form-group mt-3 description_of_eggs_and_sperm_used">
-                    <p class="question">卵子と精子について</p>
+                    <p class="question">①(受精前の)卵子と精子について</p>
                     <%= f.text_area :description_of_eggs_and_sperm_used, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
-                    <small class="text-muted"><span class="small">提供卵子/精子について</small>
+                    <small class="text-muted"><span class="small">提供卵子/精子についての詳しい説明</small>
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <p class="question">②(受精前の)卵子と精子</p>
+                    <%= f.select :types_of_eggs_and_sperm_status, Report::HASH_TYPES_OF_EGGS_AND_SPERM_STATUS.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                    <small class="text-muted"><span class="small">用いた卵子と精子の状態について(受精前の卵子と精子の状態)</span></small>
+                  </div>
+
+                  <div class="form-group mt-3 description_of_eggs_and_sperm_used_status">
+                    <p class="question">②(受精前の)卵子と精子について</p>
+                    <%= f.text_area :description_of_eggs_and_sperm_used_status, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
+                    <small class="text-muted"><span class="small">用いた卵子と精子の状態についての詳しい説明</small>
                   </div>
 
                   <div class="form-group mt-3">
@@ -198,7 +210,7 @@
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">治療時期･年齢</span></h5>
                 <div class="scroll-box">
                   <div class="form-group">
-                    <p class="question">治療終了年</p>
+                    <p class="question"><span class="select-clinic-name"></span>での治療終了年</p>
                     <%= f.date_select :year_of_treatment_end, {
                       discard_month: true,
                       discard_day: true,
@@ -211,19 +223,19 @@
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question">治療開始年齢</p>
+                    <p class="question"><span class="select-clinic-name"></span>での治療開始年齢</p>
                     <%= f.select :treatment_start_age, Report::HASH_TREATMENT_START_AGE.invert, { prompt: "選択" }, { class: "form-control" } %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療開始年齢</span></small>
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question">治療終了時の年齢</p>
+                    <p class="question"><span class="select-clinic-name"></span>での治療終了時の年齢</p>
                     <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "選択" }, { class: "form-control" } %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業した年齢</span></small>
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question">治療終了時のパートナーの年齢</p>
+                    <p class="question"><span class="select-clinic-name"></span>での治療終了時のパートナーの年齢</p>
                     <%= f.select :age_of_partner_at_end_of_treatment, Report::HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT.invert, { prompt: "選択" }, { class: "form-control" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業した時のパートナーの年齢</span></small>
                   </div>

@@ -145,13 +145,15 @@
         </div>
 
         <div class="parent-tab">
-          <p class="d-xs-block d-md-none float-left mb-0 px-2 d-inline" style="font-size:15px">
-            <% if current_user.already_liked?(@report) %>
-              <%= images_action_svg("like_mobile.svg") %><span class="text-danger">&nbsp;&nbsp;<% if @report.likes.present? %><%= @report.likes.count %><% end %></span>
-            <% else %>
-              <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if @report.likes.present? %><%= @report.likes.count %><% end %></span>
-            <% end %>
-          </p>
+          <% if user_signed_in? %>
+            <p class="d-xs-block d-md-none float-left mb-0 px-2 d-inline" style="font-size:15px">
+              <% if current_user.already_liked?(@report) %>
+                <%= images_action_svg("like_mobile.svg") %><span class="text-danger">&nbsp;&nbsp;<% if @report.likes.present? %><%= @report.likes.count %><% end %></span>
+              <% else %>
+                <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if @report.likes.present? %><%= @report.likes.count %><% end %></span>
+              <% end %>
+            </p>
+          <% end %>
           <p class="d-xs-block d-md-none float-right text-success mb-0 px-2" style="font-size:8px">※&nbsp;CL&nbsp;=&nbsp;クリニック(Clinic)</p><br>
           <p class="d-none d-md-block float-right text-success" style="font-size:8px">※&nbsp;CL&nbsp;=&nbsp;クリニック(Clinic)</p>
           <ul class="nav nav-tabs parent-menu mt-2">
@@ -315,7 +317,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small text-center">卵子と精子</td>
+                    <td class="result-left-column small text-center">①卵子と精子</td>
                     <td class="pl-3">
                       <% if @report.types_of_eggs_and_sperm.present? %>
                         <span class="result-text"><%= @report.str_types_of_eggs_and_sperm %></span>
@@ -324,6 +326,20 @@
                       <% end %><br><br>
                       <% if @report.description_of_eggs_and_sperm_used.present? %>
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.description_of_eggs_and_sperm_used.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                  <tr>
+                    <td class="result-left-column small text-center">②卵子と精子</td>
+                    <td class="pl-3">
+                      <% if @report.types_of_eggs_and_sperm_status.present? %>
+                        <span class="result-text"><%= @report.str_types_of_eggs_and_sperm %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %><br><br>
+                      <% if @report.description_of_eggs_and_sperm_used_status.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.description_of_eggs_and_sperm_used_status.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
