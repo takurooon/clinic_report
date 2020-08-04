@@ -1,5 +1,5 @@
 <%= javascript_include_tag 'report_show' %>
-
+<%= render 'category_header' %>
 <div class="contaner px-0">
   <div class="d-none d-lg-block position-fixed mt-5 pt-4">
     <div class="py-2"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
