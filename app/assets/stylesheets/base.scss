@@ -396,3 +396,56 @@ h2{
   .child-tab-content a {
     color: #151515;
   }
+
+// ボタン
+// 緑ボタン
+  .green_btn {
+    width:100%;
+    font-size:13px;
+    text-decoration:none;
+    display:block;
+    text-align:center;
+    padding:7px;
+    margin: 0.3rem 0;
+    color:#fff;
+    background-color:#2DB696;
+    border: none;
+    border-radius:5px;
+}
+  // アウトライン緑ボタン
+.outline_green_btn {
+  width:100%;
+  font-size:13px;
+  text-decoration:none;
+  display:block;
+  text-align:center;
+  padding:7px;
+  margin: 0.3rem 0;
+  color:#2DB696;
+  background-color: #ffffff;
+  border: solid thin;
+  border-color: #2DB696;
+  border-radius:5px;
+}
+
+// サイドバー内のアイテム7b7b7b
+.sidebar_promote_item {
+  padding: 3%;
+  background-color: #F7F9F9;
+  border: none;
+  border-radius: 5%;
+}
+.sidebar_promote_card {
+  padding: 3%;
+}
+.sidebar_promote_card_header {
+  padding: 2%;
+}
+.sidebar_promote_card_header_left {
+}
+.sidebar_promote_card_header_right {
+  font-size: 0.8rem;
+  color: #646262;
+}
+.sidebar_promote_card_body {
+}
