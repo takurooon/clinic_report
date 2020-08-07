@@ -78,7 +78,10 @@ Supplement.create([
 
 MSupplement.create([
   { name: "マカ" },
-  { name: "まむし" },
+  { name: "亜鉛" },
+  { name: "コエンザイム" },
+  { name: "ビタミンD" },
+  { name: "ビタミンE" },
   { name: "その他" },
 ])
 
@@ -222,6 +225,7 @@ TransferOption.create([
 ])
 
 OtherEffort.create([
+  { name: "運動" },
   { name: "漢方(煎じ薬)" },
   { name: "漢方(エキス剤等)" },
   { name: "鍼" },

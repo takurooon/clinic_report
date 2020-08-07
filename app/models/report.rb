@@ -361,26 +361,34 @@ class Report < ApplicationRecord
     return HASH_CURRENT_STATE[self.current_state]
   end
 
-  # treatment_periodの区分値(休み期間覗く正味治療期間/CL単位)
+  # treatment_periodの区分値(休み期間除く正味治療期間/CL単位)
   HASH_TREATMENT_PERIOD = {
     100 => "不明",
     1 => "〜1ヵ月",
-    2 => "〜3ヵ月",
-    3 => "〜半年",
-    4 => "〜1年",
-    5 => "〜1年半",
-    6 => "〜2年",
-    7 => "〜2年半",
-    8 => "〜3年",
-    9 => "〜3年半",
-    10 => "〜4年",
-    11 => "〜4年半",
-    12 => "〜5年",
-    13 => "〜6年",
-    14 => "〜7年",
-    15 => "〜8年",
-    16 => "〜9年",
-    17 => "〜10年",
+    2 => "〜2ヵ月",
+    3 => "〜3ヵ月",
+    4 => "〜4ヵ月",
+    5 => "〜5ヵ月",
+    6 => "〜6ヵ月",
+    7 => "〜7ヵ月",
+    8 => "〜8ヵ月",
+    9 => "〜9ヵ月",
+    10 => "〜10ヵ月",
+    11 => "〜11ヵ月",
+    12 => "〜1年",
+    13 => "〜1年半",
+    14 => "〜2年",
+    15 => "〜2年半",
+    16 => "〜3年",
+    17 => "〜3年半",
+    18 => "〜4年",
+    19 => "〜4年半",
+    20 => "〜5年",
+    21 => "〜6年",
+    22 => "〜7年",
+    23 => "〜8年",
+    24 => "〜9年",
+    25 => "〜10年",
     99 => "それ以上",
   }
 
@@ -514,7 +522,7 @@ class Report < ApplicationRecord
 
   # self_injectionの区分値(自己注射の可否)
   HASH_SELF_INJECTION = {
-    1 => "自己注射不可(都度通院必須)",
+    1 => "自己注射不可(通院必須)",
     2 => "自己注射のみ",
     3 => "自己注射も選べる",
     99 => "その他",
@@ -2246,7 +2254,6 @@ end
 #  m_supplement_cost                            :integer
 #  m_supplement_memo                            :text
 #  m_surgery_memo                               :text
-#  most_sad_thing                               :text
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_clinics                            :integer
 #  number_of_eggs_collected                     :integer

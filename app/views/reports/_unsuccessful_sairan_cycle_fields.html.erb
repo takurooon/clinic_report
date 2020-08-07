@@ -3,32 +3,56 @@
   &nbsp;
   <div>
   <div class="box27 px-1 mb-0">
-    <span class="box-title">1採卵サイクル</span>
+    <span class="box-title">採卵1サイクル</span>
     <table class="table table-sm table-bordered table-hover mb-0">
       <tbody>
         <tr>
-          <td><%= f.select :number, UnsuccessfulSairanCycle::HASH_NUMBER_OF_SAIRAN.invert, { prompt: "何回目の採卵？" }, { class: "form-control" } %></td>
+          <td>
+            <small class="text-muted">何回目の採卵？</small>
+            <%= f.select :number, UnsuccessfulSairanCycle::HASH_NUMBER_OF_SAIRAN.invert, { prompt: "選択" }, { class: "form-control" } %>
+          </td>
         </tr>
         <tr>
-          <td><%= f.select :sairan_age, UnsuccessfulSairanCycle::HASH_SAIRAN_AGE.invert, { prompt: "↑  採卵時の年齢" }, { class: "form-control" } %></td>
+          <td>
+            <small class="text-muted">↑  採卵時の年齢</small>
+            <%= f.select :sairan_age, UnsuccessfulSairanCycle::HASH_SAIRAN_AGE.invert, { prompt: "選択" }, { class: "form-control" } %>
+          </td>
         </tr>
         <tr>
-          <td><%= f.select :type_of_ovarian_stimulation, UnsuccessfulSairanCycle::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "誘発タイプ" }, { class: "form-control" } %></td>
+          <td>
+            <small class="text-muted">誘発タイプ</small>
+            <%= f.select :type_of_ovarian_stimulation, UnsuccessfulSairanCycle::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "選択" }, { class: "form-control" } %>
+          </td>
         </tr>
         <tr>
-          <td><%= f.select :number_of_eggs_collected, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "採卵個数" }, { class: "form-control" } %></td>
+          <td>
+            <small class="text-muted">採卵個数</small>
+            <%= f.select :number_of_eggs_collected, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "選択" }, { class: "form-control" } %>
+          </td>
         </tr>
         <tr>
-          <td><%= f.select :number_of_fertilized_eggs, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "受精個数" }, { class: "form-control" } %></td>
+          <td>
+            <small class="text-muted">受精個数</small>
+            <%= f.select :number_of_fertilized_eggs, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "選択" }, { class: "form-control" } %>
+          </td>
         </tr>
         <tr>
-          <td><%= f.select :number_of_transferable_embryos, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "移植可能胚数(含新鮮胚)" }, { class: "form-control" } %></td>
+          <td>
+            <small class="text-muted">移植可能胚数(含新鮮胚)</small>
+            <%= f.select :number_of_transferable_embryos, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "選択" }, { class: "form-control" } %>
+          </td>
         </tr>
         <tr>
-          <td><%= f.select :number_of_frozen_eggs, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "そのうちの凍結胚数" }, { class: "form-control" } %></td>
+          <td>
+            <small class="text-muted">そのうちの凍結胚数</small>
+            <%= f.select :number_of_frozen_eggs, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "選択" }, { class: "form-control" } %>
+          </td>
         </tr>
         <tr>
-          <td><%= f.text_area :memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "補足説明" %></td>
+          <td>
+            <small class="text-muted">補足説明</small>
+            <%= f.text_area :memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "詳しい説明" %>
+          </td>
         </tr>
       </tbody>
     </table>

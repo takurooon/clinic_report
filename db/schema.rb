@@ -578,7 +578,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.integer "rest_period"
     t.text "rest_period_memo"
     t.text "reason_for_transfer"
-    t.text "most_sad_thing"
     t.integer "how_long_to_continue_treatment"
     t.text "how_long_to_continue_treatment_memo"
     t.text "inspection_supplementary_explanation_men"

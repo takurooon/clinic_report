@@ -54,7 +54,7 @@ class User < ApplicationRecord
     result
   end
 
-  # 回数
+  # 回数(0回なし)
   HASH_IVF_COUNT = {
     100 => "不明",
     1 => "1回",
@@ -80,16 +80,43 @@ class User < ApplicationRecord
     99 => "それ以上",
   }
 
-  def str_number_of_aih(aih)
-    return HASH_IVF_COUNT[aih]
-  end
-
   def str_all_number_of_sairan(sairan)
     return HASH_IVF_COUNT[sairan]
   end
 
   def str_all_number_of_transplants(ishoku)
     return HASH_IVF_COUNT[ishoku]
+  end
+
+  # 回数(0回あり)
+  HASH_AIH_COUNT = {
+    0 => "なし",
+    1 => "1回",
+    2 => "2回",
+    3 => "3回",
+    4 => "4回",
+    5 => "5回",
+    6 => "6回",
+    7 => "7回",
+    8 => "8回",
+    9 => "9回",
+    10 => "10回",
+    11 => "11回",
+    12 => "12回",
+    13 => "13回",
+    14 => "14回",
+    15 => "15回",
+    16 => "16回",
+    17 => "17回",
+    18 => "18回",
+    19 => "19回",
+    20 => "20回",
+    99 => "それ以上",
+    100 => "不明",
+  }
+
+  def str_number_of_aih(aih)
+    return HASH_AIH_COUNT[aih]
   end
 
   # 年齢

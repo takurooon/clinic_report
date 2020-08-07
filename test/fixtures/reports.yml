@@ -68,7 +68,6 @@
 #  m_supplement_cost                            :integer
 #  m_supplement_memo                            :text
 #  m_surgery_memo                               :text
-#  most_sad_thing                               :text
 #  notes_on_type_of_sairan_cycle                :text
 #  number_of_clinics                            :integer
 #  number_of_eggs_collected                     :integer

@@ -499,7 +499,6 @@ class ReportsController < ApplicationController
         :rest_period,
         :rest_period_memo,
         :reason_for_transfer,
-        :most_sad_thing,
         :how_long_to_continue_treatment,
         :how_long_to_continue_treatment2,
         :how_long_to_continue_treatment_memo,

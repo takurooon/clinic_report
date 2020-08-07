@@ -97,6 +97,7 @@ class UnsuccessfulSairanCycle < ApplicationRecord
 
   # 個数
   HASH_NUMBER_OF_EGGS = {
+    0=> '0個',
     1 => "1個",
     2 => "2個",
     3 => "3個",

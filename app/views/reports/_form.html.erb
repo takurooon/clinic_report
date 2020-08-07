@@ -129,67 +129,96 @@
                 <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">基礎情報</span></h5>
                 <div class="scroll-box">
-                  <div class="form-group">
-                    <p class="question">投稿時点の状況</p>
-                    <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, { prompt: "選択" }, { class: "form-control" } %>
+                  <div class="box26">
+                    <span class="box-title">ステータス</span>
+                    <div class="form-group mt-3">
+                      <p class="question">投稿時点の状況</p>
+                      <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, { prompt: "選択" }, { class: "form-control" } %>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <p class="question">何人目の不妊治療</p>
+                      <%= f.select :fertility_treatment_number, Report::HASH_FERTILITY_TREATMENT_NUMBER.invert, { prompt: "選択" }, { class: "form-control" } %>
+                    </div>
                   </div>
 
-                  <div class="form-group mt-3">
-                    <p class="question">何人目の不妊治療</p>
-                    <%= f.select :fertility_treatment_number, Report::HASH_FERTILITY_TREATMENT_NUMBER.invert, { prompt: "選択" }, { class: "form-control" } %>
-                  </div>
-
-                  <div class="form-group mt-3">
-                    <p class="question">①(受精前の)卵子と精子</p>
-                    <%= f.select :types_of_eggs_and_sperm, Report::HASH_TYPES_OF_EGGS_AND_SPERM.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small">用いた卵子と精子について</span></small>
-                  </div>
-
-                  <div class="form-group mt-3 description_of_eggs_and_sperm_used">
-                    <p class="question">①(受精前の)卵子と精子について</p>
-                    <%= f.text_area :description_of_eggs_and_sperm_used, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
-                    <small class="text-muted"><span class="small">提供卵子/精子についての詳しい説明</small>
-                  </div>
-
-                  <div class="form-group mt-3">
-                    <p class="question">②(受精前の)卵子と精子</p>
-                    <%= f.select :types_of_eggs_and_sperm_status, Report::HASH_TYPES_OF_EGGS_AND_SPERM_STATUS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small">用いた卵子と精子の状態について(受精前の卵子と精子の状態)</span></small>
-                  </div>
-
-                  <div class="form-group mt-3 description_of_eggs_and_sperm_used_status">
-                    <p class="question">②(受精前の)卵子と精子について</p>
-                    <%= f.text_area :description_of_eggs_and_sperm_used_status, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
-                    <small class="text-muted"><span class="small">用いた卵子と精子の状態についての詳しい説明</small>
-                  </div>
-
-                  <div class="form-group mt-3">
-                    <p class="question">卵子と精子の受精方法</p>
-                    <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small">妊娠に至った卵子と精子</span></small>
-                  </div>
-
-                  <div class="form-group detail-of-icsi mt-3">
-                    <p class="question">顕微受精の種類</p>
-                    <%= f.select :details_of_icsi, Report::HASH_DETAILS_OF_ICSI.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small">妊娠に至った顕微受精の種類</span></small>
-                  </div>
-
-                  <div class="form-group mt-3">
-                    <p class="question">治療期間</p>
-                    <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
-                  </div>
-
-                  <div class="form-group mt-3">
-                    <p class="question">自主的なお休み期間</p>
-                    <%= f.select :rest_period, Report::HASH_REST_PERIOD.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療中にとったお休み期間</span></small>
-                    <p class="sub-question">おやすみ期間の補足説明</p>
-                    <%= f.text_area :rest_period_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)例文いれる" %>
-                  </div>
                   <div class="spacer">
                   </div>
+
+                  <div class="box26">
+                  <span class="box-title">治療期間</span>
+                    <div class="form-group mt-3">
+                      <p class="question">治療期間</p>
+                      <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <p class="question">自主的なお休み期間</p>
+                      <%= f.select :rest_period, Report::HASH_REST_PERIOD.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療中にとったお休み期間</span></small>
+                      <p class="sub-question">おやすみ期間の補足説明</p>
+                      <%= f.text_area :rest_period_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)例文いれる" %>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <p class="question">不妊治療をいつまで続けるか期間を決めていたかどうか</p>
+                      <%= f.select :how_long_to_continue_treatment, Report::HASH_HOW_LONG_TO_CONTINUE_TREATMENT.invert, { prompt: "選択" }, { class: "form-control" } %>
+                      <small class="text-muted"><span class="small">特定のクリニックでの治療に限らず不妊治療自体の継続期限</span></small>
+                    </div>
+                    <div class="form-group how_long_to_continue_treatment2">
+                      <p class="question">具体的期限(期間)</p>
+                      <%= f.select :how_long_to_continue_treatment2, Report::HASH_HOW_LONG_TO_CONTINUE_TREATMENT2.invert, { prompt: "選択" }, { class: "form-control" } %>
+                    </div>
+                    <p class="sub-question mb-3">治療期限の詳しい説明</p>
+                    <%= f.text_area :how_long_to_continue_treatment_memo, class: "form-control border mb-3", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):1年と決めてのぞみました" %>
+                  </div>
+
+                  <div class="spacer">
+                  </div>
+
+                  <div class="box26">
+                    <span class="box-title">卵子と精子について</span>
+                    <div class="form-group mt-3">
+                      <p class="question">卵子と精子の受精方法</p>
+                      <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      <small class="text-muted"><span class="small">妊娠に至った卵子と精子</span></small>
+                    </div>
+
+                    <div class="form-group detail-of-icsi mt-3">
+                      <p class="question">顕微受精の種類</p>
+                      <%= f.select :details_of_icsi, Report::HASH_DETAILS_OF_ICSI.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      <small class="text-muted"><span class="small">妊娠に至った顕微受精の種類</span></small>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <p class="question">①(受精前の)卵子と精子</p>
+                      <%= f.select :types_of_eggs_and_sperm, Report::HASH_TYPES_OF_EGGS_AND_SPERM.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      <small class="text-muted"><span class="small">用いた卵子と精子について</span></small>
+                    </div>
+
+                    <div class="form-group mt-3 description_of_eggs_and_sperm_used">
+                      <p class="question">①(受精前の)卵子と精子について</p>
+                      <%= f.text_area :description_of_eggs_and_sperm_used, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
+                      <small class="text-muted"><span class="small">提供卵子/精子についての詳しい説明</small>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <p class="question">②(受精前の)卵子と精子</p>
+                      <%= f.select :types_of_eggs_and_sperm_status, Report::HASH_TYPES_OF_EGGS_AND_SPERM_STATUS.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      <small class="text-muted"><span class="small">用いた卵子と精子の状態について(受精前の卵子と精子の状態)</span></small>
+                    </div>
+
+                    <div class="form-group mt-3 description_of_eggs_and_sperm_used_status">
+                      <p class="question">②(受精前の)卵子と精子について</p>
+                      <%= f.text_area :description_of_eggs_and_sperm_used_status, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
+                      <small class="text-muted"><span class="small">用いた卵子と精子の状態についての詳しい説明</small>
+                    </div>
+                  </div>
+
+                  <div class="spacer">
+                  </div>
+
                   <div class="box26">
                     <span class="box-title">喫煙歴</span>
                     <div class="form-group mt-0">
@@ -349,17 +378,17 @@
                     <div class="form-group first-question-inbox">
                       <p class="question">採卵までの通院回数</p>
                       <%= f.select :number_of_visits_before_sairan, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small class="text-muted"><span class="small">採卵周期開始から採卵日までの通院回数</span></small>
+                      <small class="text-muted"><span class="small">採卵周期開始から採卵日までの(おおよその)通院回数</span></small>
                     </div>
                     <div class="form-group mt-3">
                       <p class="question">移植までの通院回数</p>
                       <%= f.select :number_of_visits_before_ishoku, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small class="text-muted"><span class="small">移植周期開始から移植日までの通院回数</span></small>
+                      <small class="text-muted"><span class="small">移植周期開始から移植日までの(おおよその)通院回数</span></small>
                     </div>
                     <div class="form-group mt-3">
                       <p class="question">卒業までの通院回数</p>
                       <%= f.select :number_of_visits_before_pregnancy_date, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small class="text-muted"><span class="small">移植後、卒業までの通院回数</span></small>
+                      <small class="text-muted"><span class="small">移植後、卒業までの(おおよその)通院回数</span></small>
                       <p class="sub-question">通院回数の補足説明</p>
                       <%= f.text_area :treatment_schedule_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):診察内容やかかった時間など何か情報があればお書きください。" %>
                     </div>
@@ -394,7 +423,7 @@
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">基本/特殊/精液検査･PGT-A</span></h5>
                 <div class="scroll-box">
                   <div class="box26">
-                    <span class="box-title">基本検査</span>
+                    <span class="box-title"><span class="select-clinic-name"></span>で受けた&nbsp;「基本検査」</span>
                     <div class="form-group first-question-inbox">
                       <p class="question">治療中のAMH値</p>
                       <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "選択" }, { class: "form-control" }  %>
@@ -433,24 +462,8 @@
                   </div>
                   <div class="spacer">
                   </div>
-                  <div class="box26 pb-4">
-                    <span class="box-title">特殊検査</span>
-                    <div class="form-group mt-0">
-                      <p class="question">基本検査以外に受けた特殊検査</p>
-                      <%= f.fields_for :special_inspections do |special_inspection| %>
-                        <%= render "special_inspection_fields", f: special_inspection %>
-                      <% end %>
-                      <div class="links pt-2 pl-2">
-                        <%= link_to_add_association "+ 追加", f, :special_inspections %>
-                      </div>
-                    </div>
-                    <p class="sub-question">特殊検査の詳しい説明</p>
-                    <%= f.text_area :special_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "補足説明" %>
-                  </div>
-                  <div class="spacer">
-                  </div>
                   <div class="box26">
-                    <span class="box-title">精液検査</span>
+                    <span class="box-title"><span class="select-clinic-name"></span>で受けた&nbsp;「精液検査」</span>
                     <table class="table table-hover mt-4">
                       <tr>
                         <td class="small text-muted text-center px-0" style="width:30%">
@@ -505,6 +518,22 @@
                       <p class="sub-question">精液検査の詳しい説明</p>
                       <%= f.text_area :sperm_description, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)精液検査は毎回結果の変動が激しかったです" %>
                     </div>
+                  </div>
+                  <div class="spacer">
+                  </div>
+                  <div class="box26 pb-4">
+                    <span class="box-title">特殊検査</span>
+                    <div class="form-group mt-0">
+                      <p class="question">基本検査以外に受けた特殊検査</p>
+                      <%= f.fields_for :special_inspections do |special_inspection| %>
+                        <%= render "special_inspection_fields", f: special_inspection %>
+                      <% end %>
+                      <div class="links pt-2 pl-2">
+                        <%= link_to_add_association "+ 追加", f, :special_inspections %>
+                      </div>
+                    </div>
+                    <p class="sub-question">特殊検査の詳しい説明</p>
+                    <%= f.text_area :special_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "補足説明" %>
                   </div>
                   <div class="spacer">
                   </div>
@@ -577,7 +606,7 @@
                         </div>
 
                         <div class="form-group mt-3">
-                          <p class="question">自己注射の可否</p>
+                          <p class="question">自己注射の選択</p>
                           <%= f.select :self_injection, Report::HASH_SELF_INJECTION.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small">妊娠に至った採卵周期での自己注射(hMG/FSH/hCG)の可否</span></small>
                         </div>
@@ -603,7 +632,7 @@
                         <div class="form-group mt-3">
                           <p class="question">採卵個数</p>
                           <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                          <small class="text-muted"><span class="small">妊娠に至った採卵時採卵個数</span></small>
+                          <small class="text-muted"><span class="small">妊娠に至った採卵時の採卵個数</span></small>
                         </div>
 
                         <div class="form-group mt-3">
@@ -971,7 +1000,7 @@
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question">費用の負担/拠出者&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                    <p class="question">費用の負担&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                     <%= f.collection_check_boxes(:cost_burden_ids, CostBurden.all, :id, :name) do |b| %>
                       <div class="form-check form-check-inline checkbox">
                         <%= b.label class: "form-check-label" do %>
@@ -1177,7 +1206,6 @@
                 <li><a href="#tab_4_1" class="active" data-toggle="tab">疾患･不育</a></li>
                 <li><a href="#tab_4_2" data-toggle="tab">検査等</a></li>
                 <li><a href="#tab_4_3" data-toggle="tab">サプリ</a></li>
-                <li><a href="#tab_4_4" data-toggle="tab">その他</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_4_1">
                 <div class="alert alert-primary small rounded-lg" role="alert">
@@ -1396,33 +1424,6 @@
                   </div>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_4_4">
-                <div class="alert alert-primary small rounded-lg" role="alert">
-                  <span>こちらの情報は&nbsp;<u><span class="select-clinic-name"></span>での治療情報に限りません。</u></span>
-                </div>
-                <h5 class="child-tab-title pt-3"><span class="marker-underline">治療期限･辛かったこと</span></h5>
-                <div class="scroll-box">
-                  <div class="form-group">
-                    <p class="question">不妊治療の継続期限の設定有無</p>
-                    <%= f.select :how_long_to_continue_treatment, Report::HASH_HOW_LONG_TO_CONTINUE_TREATMENT.invert, { prompt: "選択" }, { class: "form-control" } %>
-                    <small class="text-muted"><span class="small">特定のクリニックでの治療に限らず不妊治療自体の継続期限</span></small>
-                  </div>
-
-                  <div class="form-group mt-3 how_long_to_continue_treatment2">
-                    <p class="question">具体的期限(期間)</p>
-                    <%= f.select :how_long_to_continue_treatment2, Report::HASH_HOW_LONG_TO_CONTINUE_TREATMENT2.invert, { prompt: "選択" }, { class: "form-control" } %>
-                  </div>
-
-                  <p class="sub-question">治療期限の詳しい説明</p>
-                  <%= f.text_area :how_long_to_continue_treatment_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):1年と決めてのぞみました" %>
-
-                  <div class="form-group mt-3">
-                    <p class="question">治療中特に辛かったこと</p>
-                    <%= f.text_area :most_sad_thing, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):夫の無理解" %>
-                    <small class="text-muted"><span class="small">これまでの不妊治療全体を通して辛かったこと</span></small>
-                  </div>
-                </div>
-              </section>
             </div>
           </section>
         </div>
@@ -1433,7 +1434,7 @@
           </div>
 
           <div class="form-group mt-0">
-            <div><%= f.label :title, 'このレポコにタイトルをつけるとしたら', class: "question-matters" %></div>
+            <div><%= f.label :title, 'このレポコにタイトルをつける', class: "question-matters" %></div>
             <%= f.text_field :title, class: "form-control", placeholder: "最大64文字" %>
           </div>
         </div>

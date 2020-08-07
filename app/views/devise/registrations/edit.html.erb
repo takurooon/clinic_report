@@ -132,29 +132,29 @@
               <table class="table mb-0">
                 <tbody>
                   <tr>
-                    <td class="small text-center px-0">妊活開始</td>
-                    <td>
+                    <td class="small text-center px-0" style="width: 25%">妊活開始年齢</td>
+                    <td style="width: 75%">
                       <%= f.select :first_age_to_start, User::HASH_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
                       <small class="text-muted">
-                        <span class="small">タイミング法などの妊活を始めた年齢</span>
+                        <span class="small">妊活を始めた年齢</span>
                       </small>
                     </td>
                   </tr>
                   <tr>
-                    <td class="small text-center px-0">治療開始</td>
+                    <td class="small text-center px-0">高度治療開始年齢</td>
                     <td>
                       <%= f.select :first_age_to_start_art, User::HASH_AGE.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
                       <small class="text-muted">
-                        <span class="small">初めて高度不妊治療にステップアップした年齢</span>
+                        <span class="small">体外・顕微受精治療をスタートした年齢</span>
                       </small>
                     </td>
                   </tr>
                   <tr>
-                    <td class="small text-center px-0">人工授精</td>
+                    <td class="small text-center px-0">人工授精回数</td>
                     <td>
-                      <%= f.select :number_of_aih, User::HASH_IVF_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
+                      <%= f.select :number_of_aih, User::HASH_AIH_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
                       <small class="text-muted">
-                        <span class="small">初めて高度不妊治療にステップアップする前に行った人工授精の回数</span>
+                        <span class="small">体外・顕微受精治療をスタートする前に行った人工授精の回数</span>
                       </small>
                     </td>
                   </tr>
@@ -163,7 +163,7 @@
                     <td>
                       <%= f.select :all_number_of_sairan, User::HASH_IVF_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
                       <small class="text-muted">
-                        <span class="small">特定のクリニックに限らず高度不妊治療全体で行った全採卵回数</span>
+                        <span class="small">特定のクリニックに限らず体外・顕微授精全体で行った全採卵回数</span>
                       </small>
                     </td>
                   </tr>
@@ -172,7 +172,7 @@
                     <td>
                       <%= f.select :all_number_of_transplants, User::HASH_IVF_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
                       <small class="text-muted">
-                        <span class="small">特定のクリニックに限らず高度不妊治療全体で行った全移植回数</span>
+                        <span class="small">特定のクリニックに限らず体外・顕微授精全体で行った全移植回数</span>
                       </small>
                     </td>
                   </tr>
@@ -181,7 +181,7 @@
                     <td>
                       <%= f.select :all_cost, User::HASH_ALL_COST.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
                       <small class="text-muted">
-                        <span class="small">特定のクリニックに限らず高度不妊治療全体でかかった総額を選択下さい</span>
+                        <span class="small">特定のクリニックに限らず体外・顕微授精全体で行った全治療費用</span>
                       </small>
                     </td>
                   </tr>
@@ -190,7 +190,7 @@
                     <td>
                       <%= f.select :number_of_early_miscarriages, User::HASH_RYUZAN_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
                       <small class="text-muted">
-                        <span class="small">化学流産を除く12w未満の流産</span>
+                        <span class="small">胎嚢確認後、12w未満の流産</span>
                       </small>
                     </td>
                   </tr>
