@@ -2145,16 +2145,23 @@ class Report < ApplicationRecord
 
   # pregnancy_dateの区分値(妊娠に判定日数)
   HASH_PREGNANCY_DATE = {
-    1 => "1日目",
-    2 => "2日目",
-    3 => "3日目",
-    4 => "4日目",
-    5 => "5日目",
-    6 => "6日目",
-    7 => "7日目",
-    8 => "8日目",
-    9 => "9日目",
-    10 => "10日目",
+    4 => "ET/BT 4",
+    5 => "ET/BT 5",
+    6 => "ET/BT 6",
+    7 => "ET/BT 7",
+    8 => "ET/BT 8",
+    9 => "ET/BT 9",
+    10 => "ET/BT 10",
+    11 => "ET/BT 11",
+    12 => "ET/BT 12",
+    13 => "ET/BT 13",
+    14 => "ET/BT 14",
+    15 => "ET/BT 15",
+    16 => "ET/BT 16",
+    17 => "ET/BT 17",
+    18 => "ET/BT 18",
+    19 => "ET/BT 19",
+    20 => "ET/BT 20",
     99 => "それ以上",
     100 => "不明",
   }
@@ -2242,8 +2249,6 @@ end
 #  impression_of_technology                     :integer
 #  industry_type                                :integer
 #  industry_type_status                         :integer          default("show"), not null
-#  inspection_supplementary_explanation         :text
-#  inspection_supplementary_explanation_men     :text
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
 #  ishoku_cost_explanation                      :text

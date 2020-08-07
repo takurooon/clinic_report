@@ -419,13 +419,12 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_2">
-                <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">基本/特殊/精液検査･PGT-A</span></h5>
                 <div class="scroll-box">
                   <div class="box26">
-                    <span class="box-title"><span class="select-clinic-name"></span>で受けた&nbsp;「基本検査」</span>
+                    <span class="box-title">基本検査</span>
                     <div class="form-group first-question-inbox">
-                      <p class="question">治療中のAMH値</p>
+                      <p class="question"><span class="select-clinic-name"></span>での最新のAMH値</p>
                       <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "選択" }, { class: "form-control" }  %>
                       <small id="poster-tip" class="form-text text-muted">
                         <span class="small">治療中における最新の値を選択して下さい。</span>
@@ -433,9 +432,20 @@
                     </div>
 
                     <div class="form-group mt-3">
-                      <p class="question mb-3">基本検査(女性)&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                      <p class="question mb-3">【女性】<span class="select-clinic-name"></span>で受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                       <%= f.collection_check_boxes(:cl_female_inspection_ids, ClFemaleInspection.all, :id, :name) do |b| %>
-                        <div class="form-check form-check-inline checkbox mb-0">
+                        <div class="form-check checkbox mb-0">
+                          <%= b.label class: "form-check-label" do %>
+                            <%= b.check_box class: "form-check-input" %>
+                            <%= b.text %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="form-group mt-3">
+                      <p class="question mb-3">【女性】<span class="select-clinic-name"></span>以外でこれまでに受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                      <%= f.collection_check_boxes(:inspection_ids, Inspection.all, :id, :name) do |b| %>
+                        <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
                             <%= b.text %>
@@ -446,10 +456,24 @@
                       <%= f.text_area :cl_female_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
                     </div>
 
+                    <div class="spacer">
+                    </div>
+
                     <div class="form-group mt-3">
-                      <p class="question mb-3">基本検査(男性)&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                      <p class="question mb-3">【男性】<span class="select-clinic-name"></span>で受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                       <%= f.collection_check_boxes(:cl_male_inspection_ids, ClMaleInspection.all, :id, :name) do |b| %>
-                        <div class="form-check form-check-inline checkbox mb-0">
+                        <div class="form-check checkbox mb-0">
+                          <%= b.label class: "form-check-label" do %>
+                            <%= b.check_box class: "form-check-input" %>
+                            <%= b.text %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="form-group mt-3">
+                      <p class="question mb-3">【男性】<span class="select-clinic-name"></span>以外でこれまでに受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                      <%= f.collection_check_boxes(:male_inspection_ids, MaleInspection.all, :id, :name) do |b| %>
+                        <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
                             <%= b.text %>
@@ -462,8 +486,8 @@
                   </div>
                   <div class="spacer">
                   </div>
-                  <div class="box26">
-                    <span class="box-title"><span class="select-clinic-name"></span>で受けた&nbsp;「精液検査」</span>
+                  <div class="box26 pt-5">
+                    <span class="box-title"><span class="select-clinic-name"></span>で受けた&nbsp;最新の精液検査結果</span>
                     <table class="table table-hover mt-4">
                       <tr>
                         <td class="small text-muted text-center px-0" style="width:30%">
@@ -523,7 +547,7 @@
                   </div>
                   <div class="box26 pb-4">
                     <span class="box-title">特殊検査</span>
-                    <div class="form-group mt-0">
+                    <div class="form-group first-question-inbox">
                       <p class="question">基本検査以外に受けた特殊検査</p>
                       <%= f.fields_for :special_inspections do |special_inspection| %>
                         <%= render "special_inspection_fields", f: special_inspection %>
@@ -936,7 +960,7 @@
                         </div>
 
                         <div class="form-group mt-3">
-                          <p class="question">移植後の判定日</p>
+                          <p class="question">移植後の初回判定日</p>
                           <%= f.select :pregnancy_date, Report::HASH_PREGNANCY_DATE.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small">判定日は移植後何日目？</span></small>
                           <p class="sub-question">判定日の補足説明</p>
@@ -1204,7 +1228,7 @@
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li><a href="#tab_4_1" class="active" data-toggle="tab">疾患･不育</a></li>
-                <li><a href="#tab_4_2" data-toggle="tab">検査等</a></li>
+                <li><a href="#tab_4_2" data-toggle="tab">手術歴</a></li>
                 <li><a href="#tab_4_3" data-toggle="tab">サプリ</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_4_1">
@@ -1272,40 +1296,8 @@
                 <div class="alert alert-primary small rounded-lg" role="alert">
                   <span>こちらの情報は&nbsp;<u><span class="select-clinic-name"></span>での治療情報に限りません。</u></span>
                 </div>
-                <h5 class="child-tab-title pt-3"><span class="marker-underline">基本検査･手術歴</span></h5>
+                <h5 class="child-tab-title pt-3"><span class="marker-underline">手術歴</span></h5>
                 <div class="scroll-box">
-                  <div class="box26">
-                    <span class="box-title">基本検査</span>
-                    <div class="form-group first-question-inbox">
-                      <p class="question mb-3">女性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:inspection_ids, Inspection.all, :id, :name) do |b| %>
-                        <div class="form-check checkbox">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                      <p class="sub-question">基本検査の補足説明</p>
-                      <%= f.text_area :inspection_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <p class="question mb-3">男性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:male_inspection_ids, MaleInspection.all, :id, :name) do |b| %>
-                        <div class="form-check checkbox">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                      <p class="sub-question">基本検査の補足説明</p>
-                      <%= f.text_area :inspection_supplementary_explanation_men, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
-                    </div>
-                  </div>
-                  <div class="spacer">
-                  </div>
                   <div class="box26">
                     <span class="box-title">手術歴</span>
                     <div class="form-group mt-0">

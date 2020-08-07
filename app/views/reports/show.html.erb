@@ -374,11 +374,21 @@
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>で受けた</p>
                 <h4 class="child-tab-title">検査</h4>
                 <h5 class="child-tab-title"><span class="marker-underline">基本検査</span></h5>
-                <small class="text-muted"><span class="small">&nbsp;&nbsp;※&nbsp;<%= @report.clinic.name %>で受けた基本検査</span></small>
+                <small class="text-muted"><span class="small">&nbsp;&nbsp;※&nbsp;<%= @report.clinic.name %>で受けたAMHなどの基本検査</span></small>
                 <table class="table table-hover p-0">
                   <tr>
-                    <td class="result-left-column small text-center" style="width:30%">基本検査<br><span class="text-muted small">(女性)</span></td>
+                    <td class="result-left-column small text-center" style="width:30%">AMH</td>
                     <td class="pl-3" style="width:70%">
+                      <% if @report.amh.present? %>
+                        <span class="result-text"><%= @report.str_amh %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small text-center">基本検査<br><span class="text-muted small">(女性)</span></td>
+                    <td class="pl-3">
                       <% if @report.cl_female_inspections.present? %>
                         <% @report.cl_female_inspections.each do |cl_female_inspection| %>
                           <ul class="list-unstyled">
@@ -394,18 +404,6 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small text-center">AMH</td>
-                    <td class="pl-3">
-                      <% if @report.amh.present? %>
-                        <span class="result-text"><%= @report.str_amh %></span>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
-                      <% end %>
-                    </td>
-                  </tr>
-                </table>
-                <table class="table table-hover p-0">
-                  <tr>
                     <td class="result-left-column small text-center text-center" style="width:30%">基本検査<br><span class="text-muted small">(男性)</span></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.cl_male_inspections.present? %>
@@ -419,6 +417,37 @@
                       <% end %><br><br>
                       <% if @report.cl_male_inspection_memo.present? %>
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cl_male_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                <small class="text-muted"><span class="small">&nbsp;&nbsp;※&nbsp;<%= @report.clinic.name %><strong><u>以外で</u></strong>&nbsp;これまでに受けた基本検査</span></small>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small text-center" style="width:30%">基本検査<br><span class="text-muted small">(女性)</span></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.inspections.present? %>
+                        <% @report.inspections.each do |inspection| %>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= inspection.name %></li>
+                          </ul>
+                        <% end %>
+                      <% else %>
+                        <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small text-center text-center" style="width:30%">基本検査<br><span class="text-muted small">(男性)</span></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.male_inspections.present? %>
+                        <% @report.male_inspections.each do |male_inspection| %>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= male_inspection.name %></li>
+                          </ul>
+                        <% end %>
+                      <% else %>
+                        <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
                       <% end %>
                     </td>
                   </tr>
@@ -2556,94 +2585,44 @@
                   </tr>
                 </table>
                 <small class="text-muted"><span class="small">&nbsp;&nbsp;※&nbsp;高度不妊治療ステップアップ前の実施回数。<%= @report.clinic.name %>以前の実施を含みます。</span></small>
-                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">これまで受けた検査･手術歴</span></h5>
+                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">これまで受けた手術歴</span></h5>
                 <p class="small mb-0 pb-0 text-left"><span class="small text-muted">※<%= @report.clinic.name %>&nbsp;以外で受けた検査･手術を含みます。</span></p>
-                <div class="parent-tab">
-                  <ul class="nav nav-tabs parent-menu mt-0 pt-0">
-                    <li><a href="#left_tab3" class="active mostleft-tab" data-toggle="tab">女性</a></li>
-                    <li><a href="#right_tab3" data-toggle="tab">男性</a></li>
-                  </ul>
-                  <div class="parent-tab-content active mostleft-tab p-2" id="left_tab3">
-                    <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
-                      <table class="table table-hover p-0">
-                        <tr>
-                          <td class="result-left-column small text-center" style="width:30%">基本検査受診歴</td>
-                          <td class="pl-3" style="width:70%">
-                            <% if @report.inspections.present? %>
-                              <% @report.inspections.each do |inspection| %>
-                                <ul class="list-unstyled">
-                                  <li class="result-text small"><%= inspection.name %></li>
-                                </ul>
-                              <% end %>
-                            <% else %>
-                              <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
-                            <% end %><br><br>
-                            <% if @report.inspection_supplementary_explanation.present? %>
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.inspection_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
-                            <% end %>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="result-left-column small text-center">手術歴</td>
-                          <td class="pl-3">
-                            <% if @report.f_surgeries.present? %>
-                              <% @report.f_surgeries.each do |f_surgery| %>
-                                <ul class="list-unstyled">
-                                  <li class="result-text small"><%= f_surgery.name %></li>
-                                </ul>
-                              <% end %>
-                            <% else %>
-                              <span class="text-muted small">なし</span>
-                            <% end %><br><br>
-                            <% if @report.f_surgery_memo.present? %>
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_surgery_memo.split("\n"),tag(:br)))).html_safe %></span>
-                            <% end %>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="parent-tab-content p-2" id="right_tab3">
-                    <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
-                      <table class="table table-hover p-0">
-                        <tr>
-                          <td class="result-left-column small text-center" style="width:30%">基本検査受診歴</td>
-                          <td class="pl-3" style="width:70%">
-                            <% if @report.male_inspections.present? %>
-                              <% @report.male_inspections.each do |male_inspection| %>
-                                <ul class="list-unstyled">
-                                  <li class="result-text small"><%= male_inspection.name %></li>
-                                </ul>
-                              <% end %>
-                            <% else %>
-                              <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
-                            <% end %><br><br>
-                            <% if @report.inspection_supplementary_explanation_men.present? %>
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.inspection_supplementary_explanation_men.split("\n"),tag(:br)))).html_safe %></span>
-                            <% end %>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="result-left-column small text-center">手術歴</td>
-                          <td class="pl-3">
-                            <% if @report.m_surgeries.present? %>
-                              <% @report.m_surgeries.each do |m_surgery| %>
-                                <ul class="list-unstyled">
-                                  <li class="result-text small"><%= m_surgery.name %></li>
-                                </ul>
-                              <% end %>
-                            <% else %>
-                                <span class="text-muted small">なし</span>
-                            <% end %><br><br>
-                            <% if @report.m_surgery_memo.present? %>
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_surgery_memo.split("\n"),tag(:br)))).html_safe %></span>
-                            <% end %>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </div>
+                <table class="table table-hover p-0">
+                  <tr>
+                    <td class="result-left-column small text-center" style="width:30%">手術歴<br><span class="text-muted small">(女性)</span></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.f_surgeries.present? %>
+                        <% @report.f_surgeries.each do |f_surgery| %>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= f_surgery.name %></li>
+                          </ul>
+                        <% end %>
+                      <% else %>
+                        <span class="text-muted small">なし</span>
+                      <% end %><br><br>
+                      <% if @report.f_surgery_memo.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_surgery_memo.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small text-center" style="width:30%">手術歴<br><span class="text-muted small">(男性)</span></td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.m_surgeries.present? %>
+                        <% @report.m_surgeries.each do |m_surgery| %>
+                          <ul class="list-unstyled">
+                            <li class="result-text small"><%= m_surgery.name %></li>
+                          </ul>
+                        <% end %>
+                      <% else %>
+                          <span class="text-muted small">なし</span>
+                      <% end %><br><br>
+                      <% if @report.m_surgery_memo.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_surgery_memo.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
               </section>
               <section class="child-tab-content" id="tab_2_3">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
@@ -3418,23 +3397,38 @@
           </section>
         </div>
 
-        <div class="form-inline repoco-title">
+
+        <% if @report.title.present? %>
           <% if @report.status == "nonreleased" %>
-            <h5 class="d-none d-sm-block m-0 p-0 text-primary">【非公開】</h5>
+            <% if @report.user == current_user %>
+              <div class="form-inline repoco-title">
+                <h5 class="d-none d-sm-block m-0 p-0 text-primary">【非公開】</h5>
+                <h3 class="d-none d-sm-block m-0 p-0"><%= @report.title %></h3>
+                <h7 class="d-block d-sm-none m-0 p-0 text-primary">【非公開】</h7>
+                <h5 class="d-block d-sm-none m-0 p-0"><%= @report.title %></h5>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="form-inline repoco-title">
+              <h3 class="d-none d-sm-block m-0 p-0"><%= @report.title %></h3>
+              <h5 class="d-block d-sm-none m-0 p-0"><%= @report.title %></h5>
+            </div>
           <% end %>
-          <% if @report.title.present? %>
-            <h3 class="d-none d-sm-block m-0 p-0"><%= @report.title %></h3>
-          <% end %>
+        <% end %>
+
+        <% if @report.content.present? %>
           <% if @report.status == "nonreleased" %>
-            <h7 class="d-block d-sm-none m-0 p-0 text-primary">【非公開】</h7>
+            <% if @report.user == current_user %>
+              <div class="px-2 pt-0">
+                <%= @report.content %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="px-2 pt-0">
+              <%= @report.content %>
+            </div>
           <% end %>
-          <% if @report.title.present? %>
-            <h5 class="d-block d-sm-none m-0 p-0"><%= @report.title %></h5>
-          <% end %>
-        </div>
-        <div class="px-2 pt-0">
-          <%= @report.content %>
-        </div>
+        <% end %>
 
         <div class="action_area pl-3 pr-0 py-4">
           <div class="row">

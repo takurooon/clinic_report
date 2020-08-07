@@ -276,7 +276,7 @@ Inspection.create([
 ClFemaleInspection.create([
   { name: "基礎体温" },
   { name: "AMH検査" },
-  { name: "ホルモン値検査(E2/FSH/LH/PRL)" },
+  { name: "ホルモン検査(E2/FSH/LH/PRL)" },
   { name: "黄体ホルモン検査(P4)" },
   { name: "テストステロン検査" },
   { name: "子宮卵管造影" },

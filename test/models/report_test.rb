@@ -56,8 +56,6 @@
 #  impression_of_technology                     :integer
 #  industry_type                                :integer
 #  industry_type_status                         :integer          default("show"), not null
-#  inspection_supplementary_explanation         :text
-#  inspection_supplementary_explanation_men     :text
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
 #  ishoku_cost_explanation                      :text

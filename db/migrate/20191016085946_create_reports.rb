@@ -12,7 +12,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :treatment_end_age
       t.integer :age_of_partner_at_end_of_treatment
       t.integer :treatment_period
-      t.text :inspection_supplementary_explanation
       t.integer :pgt1
       t.integer :pgt1_status, default: 0, null: false
       t.integer :pgt2
@@ -116,7 +115,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :reason_for_transfer
       t.integer :how_long_to_continue_treatment
       t.text :how_long_to_continue_treatment_memo
-      t.text :inspection_supplementary_explanation_men
       t.integer :pregnancy_date
       t.text :pregnancy_date_memo
       t.text :treatment_policy
