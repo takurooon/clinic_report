@@ -180,6 +180,30 @@
                   <div class="box26">
                     <span class="box-title">卵子と精子について</span>
                     <div class="form-group mt-3">
+                      <p class="question">①<span class="select-current-status"></span></p>
+                      <%= f.select :types_of_eggs_and_sperm, Report::HASH_TYPES_OF_EGGS_AND_SPERM.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      <small class="text-muted"><span class="small">「投稿時点の状況」に至った卵子と精子について</span></small>
+                    </div>
+
+                    <div class="form-group mt-3 description_of_eggs_and_sperm_used">
+                      <p class="question">①<span class="egg_sparm1_default"><span class="select-current-status"></span>についての詳しい説明</span><span class="egg_sparm1_default2"><span class="select-egg-sparm1"></span></span></p>
+                      <%= f.text_area :description_of_eggs_and_sperm_used, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
+                      <small class="text-muted"><span class="small">提供卵子/精子についての詳しい説明</small>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <p class="question">②<span class="select-current-status"></span>卵子と精子</p>
+                      <%= f.select :types_of_eggs_and_sperm_status, Report::HASH_TYPES_OF_EGGS_AND_SPERM_STATUS.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      <small class="text-muted"><span class="small">用いた卵子と精子の状態について(受精前の卵子と精子の状態)</span></small>
+                    </div>
+
+                    <div class="form-group mt-3 description_of_eggs_and_sperm_used_status">
+                      <p class="question">②<span class="egg_sparm2_default"><span class="select-current-status"></span>についての詳しい説明</span><span class="egg_sparm2_default2"><span class="select-egg-sparm2"></span></span></p>
+                      <%= f.text_area :description_of_eggs_and_sperm_used_status, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
+                      <small class="text-muted"><span class="small">用いた卵子と精子の状態についての詳しい説明</small>
+                    </div>
+
+                    <div class="form-group mt-3">
                       <p class="question">卵子と精子の受精方法</p>
                       <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "選択" }, { class: "form-control" }  %>
                       <small class="text-muted"><span class="small">妊娠に至った卵子と精子</span></small>
@@ -189,30 +213,6 @@
                       <p class="question">顕微受精の種類</p>
                       <%= f.select :details_of_icsi, Report::HASH_DETAILS_OF_ICSI.invert, { prompt: "選択" }, { class: "form-control" }  %>
                       <small class="text-muted"><span class="small">妊娠に至った顕微受精の種類</span></small>
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <p class="question">①(受精前の)卵子と精子</p>
-                      <%= f.select :types_of_eggs_and_sperm, Report::HASH_TYPES_OF_EGGS_AND_SPERM.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small class="text-muted"><span class="small">用いた卵子と精子について</span></small>
-                    </div>
-
-                    <div class="form-group mt-3 description_of_eggs_and_sperm_used">
-                      <p class="question">①(受精前の)卵子と精子について</p>
-                      <%= f.text_area :description_of_eggs_and_sperm_used, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
-                      <small class="text-muted"><span class="small">提供卵子/精子についての詳しい説明</small>
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <p class="question">②(受精前の)卵子と精子</p>
-                      <%= f.select :types_of_eggs_and_sperm_status, Report::HASH_TYPES_OF_EGGS_AND_SPERM_STATUS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small class="text-muted"><span class="small">用いた卵子と精子の状態について(受精前の卵子と精子の状態)</span></small>
-                    </div>
-
-                    <div class="form-group mt-3 description_of_eggs_and_sperm_used_status">
-                      <p class="question">②(受精前の)卵子と精子について</p>
-                      <%= f.text_area :description_of_eggs_and_sperm_used_status, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)アメリカで卵子提供を受けました" %>
-                      <small class="text-muted"><span class="small">用いた卵子と精子の状態についての詳しい説明</small>
                     </div>
                   </div>
 

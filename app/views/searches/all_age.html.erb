@@ -9,7 +9,7 @@
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", category_search_path %>
   </small>
   
-  <div class="container all_age pb-5 mb-5">
+  <div class="row all_age pb-5 mb-5">
     <div class="col-md-8 offset-md-2 main-column">
       <%= select "report", :treatment_end_age, @age.invert, { prompt: "年齢   で絞り込み" }, { class: "form-control my-5", onchange: "location = 'age/' + this.value + '歳'" } %>
       <%= select "report", :treatment_end_age, @age_range.invert, { prompt: "年齢層   で絞り込み" }, { class: "form-control my-5", onchange: "location = 'age/' + this.value + '歳'" } %>

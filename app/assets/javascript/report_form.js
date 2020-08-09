@@ -33,13 +33,13 @@ $(function() {
   });
 });
 
-// クリニック選択した時点でform内のテキストに表示させる
+// クリニックを選択した時点でform内のテキストに表示させる
 $(function() {
   var clinic_name = $('#report_clinic_id option:selected').text();
   var clinic_name_description = "「" + clinic_name + "」" + "での治療に関する情報についてお聞きします。";
   var clinic_name_review = clinic_name + "での治療の「満足度」についてお聞きします。";
   var clinic_name_birth = clinic_name + "での治療で妊娠し「出産された方」にお聞きします。";
-  if (clinic_name == "クリニック" ) {
+  if (clinic_name === "クリニック" ) {
     $('.select-clinic-name').text("このレポコのクリニック");
     $('.select-clinic-description').text("このレポコのクリニックでの治療に関する情報についてお聞きします。");
     $('.select-clinic-review').text("このレポコのクリニックでの治療の満足度についてお聞きします。");
@@ -61,6 +61,80 @@ $(function() {
     $('.select-clinic-description').text(clinic_name_description);
     $('.select-clinic-review').text(clinic_name_review);
     $('.select-clinic-birth').text(clinic_name_birth);
+  });
+});
+
+// ステータスを選択した時点でform内のテキストに表示させる
+$(function() {
+  var current_state = $('#report_current_state option:selected').text();
+  var status = current_state + "に至った卵子と精子";
+  if (current_state === "選択") {
+    $('.select-current-status').text("妊娠or出産に至った卵子と精子");
+  } else {
+    $('.select-current-status').text(status);
+  }
+});
+$(function() {
+  $('#report_current_state').change(function() {
+    var current_state = $('#report_current_state option:selected').text();
+    var status = current_state + "に至った卵子と精子";
+    $('.select-current-status').text(status);
+  });
+});
+
+// フォーム内の①卵子と精子の回答によって次項のテキストを変える
+$(function() {
+  var egg_sparm1 = $('#report_types_of_eggs_and_sperm option:selected').text();
+  var egg_sparm1_memo = egg_sparm1 + "についての詳しい説明";
+  if (egg_sparm1 === "提供卵子" || egg_sparm1 === "提供精子") {
+    $('.select-egg-sparm1').text(egg_sparm1_memo);
+    $(".egg_sparm1_default2").show();
+    $(".egg_sparm1_default").hide();
+  } else {
+    $(".egg_sparm1_default2").hide();
+    $(".egg_sparm1_default").show();
+  }
+});
+$(function() {
+  $('#report_types_of_eggs_and_sperm').change(function() {
+    var egg_sparm1 = $('#report_types_of_eggs_and_sperm option:selected').text();
+    var egg_sparm1_memo = egg_sparm1 + "についての詳しい説明";
+    if (egg_sparm1 === "提供卵子" || egg_sparm1 === "提供精子") {
+      $('.select-egg-sparm1').text(egg_sparm1_memo);
+      $(".egg_sparm1_default2").show();
+      $(".egg_sparm1_default").hide();
+    } else {
+      $(".egg_sparm1_default2").hide();
+      $(".egg_sparm1_default").show();
+    }
+  });
+});
+
+// フォーム内の②卵子と精子の回答によって次項のテキストを変える
+$(function() {
+  var egg_sparm2 = $('#report_types_of_eggs_and_sperm_status option:selected').text();
+  var egg_sparm2_memo = egg_sparm2 + "についての詳しい説明";
+  if (egg_sparm2 === "凍結卵子" || egg_sparm2 === "凍結精子" || egg_sparm2 === "凍結卵子と凍結精子") {
+    $('.select-egg-sparm2').text(egg_sparm2_memo);
+    $(".egg_sparm2_default2").show();
+    $(".egg_sparm2_default").hide();
+  } else {
+    $(".egg_sparm2_default2").hide();
+    $(".egg_sparm2_default").show();
+  }
+});
+$(function() {
+  $('#report_types_of_eggs_and_sperm_status').change(function() {
+    var egg_sparm2 = $('#report_types_of_eggs_and_sperm_status option:selected').text();
+    var egg_sparm2_memo = egg_sparm2 + "についての詳しい説明";
+    if (egg_sparm2 === "凍結卵子" || egg_sparm2 === "凍結精子" || egg_sparm2 === "凍結卵子と凍結精子") {
+      $('.select-egg-sparm2').text(egg_sparm2_memo);
+      $(".egg_sparm2_default2").show();
+      $(".egg_sparm2_default").hide();
+    } else {
+      $(".egg_sparm2_default2").hide();
+      $(".egg_sparm2_default").show();
+    }
   });
 });
 
