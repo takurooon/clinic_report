@@ -10,11 +10,9 @@
   </small>
   
   <div class="container all_age pb-5 mb-5">
-    <div class="row">
-      <div class="col-md-8 offset-md-2 main-column">
-        <%= select "report", :treatment_end_age, @age.invert, { prompt: "年齢   で絞り込み" }, { class: "form-control my-5", onchange: "location = 'age/' + this.value + '歳'" } %>
-        <%= select "report", :treatment_end_age, @age_range.invert, { prompt: "年齢層   で絞り込み" }, { class: "form-control my-5", onchange: "location = 'age/' + this.value + '歳'" } %>
-      </div>
-    <div>
+    <div class="col-md-8 offset-md-2 main-column">
+      <%= select "report", :treatment_end_age, @age.invert, { prompt: "年齢   で絞り込み" }, { class: "form-control my-5", onchange: "location = 'age/' + this.value + '歳'" } %>
+      <%= select "report", :treatment_end_age, @age_range.invert, { prompt: "年齢層   で絞り込み" }, { class: "form-control my-5", onchange: "location = 'age/' + this.value + '歳'" } %>
+    </div>
   </div>
 </div>

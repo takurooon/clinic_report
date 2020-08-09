@@ -10,10 +10,8 @@
   </small>
 
   <div class="container all_amh pb-5 mb-5">
-    <div class="row">
-      <div class="col-md-8 offset-md-2 main-column">
-        <%= select "report", :amh, @amhs.invert, { prompt: "選択してください" }, { class: "form-control", onchange: "location = 'amh/' + this.value" } %>
-      </div>
-    <div>
+    <div class="col-md-8 offset-md-2 main-column">
+      <%= select "report", :amh, @amhs.invert, { prompt: "選択してください" }, { class: "form-control", onchange: "location = 'amh/' + this.value" } %>
+    </div>
   </div>
 </div>
