@@ -1,8 +1,8 @@
 <%= render 'reports/category_header' %>
 <div class="container-fluid px-2">
   <h5 class="d-sm d-md-none mt-4 text-center"><%= @city.prefecture.name %>&nbsp;「<strong><%= @city.name %></strong>&nbsp;」<br>にお住まいの方のレポコ一覧</h5>
-  <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-5">
-    <%= link_to "カテゴリ一覧", category_search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to @city.prefecture.name, "/category/prefecture/#{@city.prefecture.name}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= @city.name %></b></strong>&nbsp;&nbsp;<span class="small">&nbsp;※治療当時の住まい</span>
+  <small class="text-muted d-md-none col-md-8 offset-md-2 mt-4 mb-5">
+    <%= link_to "カテゴリ一覧", category_search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to @city.prefecture.name, "/category/prefecture/#{@city.prefecture.name}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= @city.name %></b></strong><br><div class="text-right"><span class="small">※治療当時の住まい</span></div>
   </small>
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4"><%= @city.prefecture.name %>「<strong><%= @city.name %></strong>」にお住まいの方のレポコ一覧</h4>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
