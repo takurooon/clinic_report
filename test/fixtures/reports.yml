@@ -94,6 +94,7 @@
 #  reason_for_transfer                          :text
 #  reasons_for_choosing_this_clinic             :text
 #  reservation_method                           :integer
+#  reservation_method_memo                      :text
 #  rest_period                                  :integer
 #  rest_period_memo                             :text
 #  sairan_age                                   :integer

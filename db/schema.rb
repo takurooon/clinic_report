@@ -552,6 +552,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.integer "average_waiting_time"
     t.integer "average_waiting_time2"
     t.integer "reservation_method"
+    t.text "reservation_method_memo"
     t.integer "online_consultation"
     t.text "online_consultation_details"
     t.integer "period_of_time_spent_traveling"
