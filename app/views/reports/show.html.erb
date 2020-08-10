@@ -2891,7 +2891,12 @@
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">医療機関</td>
-                    <td style="width:70%"><%= @report.clinic.name %></td>
+                    <td style="width:70%">
+                      <% if @report.clinic.current_status == 1 %>
+                        <span class="text-danger">【閉院】</span>
+                      <% end %>
+                      <%= @report.clinic.name %>
+                    </td>
                   </tr>
                   <tr>
                     <td class="result-left-column small text-center">電話</td>

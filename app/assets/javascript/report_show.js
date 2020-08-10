@@ -6,7 +6,7 @@
     }
     setActive(activeTag);
     $(activeTag.attr('href')).addClass('active');
-    
+
     $('ul.child-menu a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         $(e.target).parent().parent().addClass("active");
         $(e.target).parent().addClass("active");
@@ -15,7 +15,7 @@
     $('ul.parent-menu a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         setActive($(e.target));
     });
-    
+
     function setActive(targetObj) {
         targetMenuId = targetObj.attr("href");
         targetTabId = $(targetMenuId).find("li.active a").first().attr("href");

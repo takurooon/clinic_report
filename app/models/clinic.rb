@@ -17,6 +17,7 @@ end
 #  id                   :bigint           not null, primary key
 #  address1             :string
 #  address2             :string
+#  current_status       :integer
 #  fujinkashuyo         :integer
 #  hai_ranshi_toketsu   :integer
 #  ivf                  :integer
