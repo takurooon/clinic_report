@@ -1099,7 +1099,7 @@
                     <td class="result-left-column small text-center" style="width:30%">実施状況&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.pgt1_status == "hide" %>
-                        <span class="small text-muted"><%= "非公開" %></span>
+                        <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
                       <% elsif @report.pgt1.blank? %>
                         <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
@@ -1111,7 +1111,7 @@
                     <td class="result-left-column small text-center">受診有無&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.pgt2_status == "hide" %>
-                        <span class="small text-muted"><%= "非公開" %></span>
+                        <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
                       <% elsif @report.pgt2.blank? %>
                         <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
@@ -1124,7 +1124,7 @@
                       <td class="result-left-column small text-center">メモ&nbsp;<sup class="text-success">●</sup></td>
                       <td class="pl-3">
                         <% if @report.pgt_supplementary_explanation_status == "hide" %>
-                          <span class="small text-muted"><%= "非公開" %></span>
+                          <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
                         <% else %>
                           <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.pgt_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
                         <% end %>
@@ -2374,12 +2374,12 @@
                     <td class="result-left-column small text-center">住まい&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.prefecture_at_the_time_status == "hide" %>
-                        <span class="small text-muted">&nbsp;&nbsp;非公開 <span class="small">(都道府県)</span></span>
+                        <span class="small text-muted">&nbsp;&nbsp;<i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開 <span class="small">(都道府県)</span></span>
                       <% else %>
                         <span class="result-text"><%= @report.prefecture.name %></span>&nbsp;&nbsp;
                       <% end %>
                       <% if @report.city_at_the_time_status == "hide" %>
-                        <span class="small text-muted">&nbsp;&nbsp;非公開 <span class="small">(市区町村)</span></span><br>
+                        <span class="small text-muted">&nbsp;&nbsp;<i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開 <span class="small">(市区町村)</span></span><br>
                       <% else %>
                         <span class="result-text"><%= @report.city.name %></span>&nbsp;&nbsp;<br>
                       <% end %>
@@ -2428,7 +2428,7 @@
                     <td class="result-left-column small text-center" style="width:30%">働き方&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.work_style_status == "hide" %>
-                        <span class="small text-muted"><%= "非公開" %></span>
+                        <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
                       <% elsif @report.work_style.blank? %>
                         <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
@@ -2440,7 +2440,7 @@
                     <td class="result-left-column small text-center">業種&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.industry_type_status == "hide" %>
-                        <span class="small text-muted"><%= "非公開" %></span>
+                        <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
                       <% elsif @report.industry_type.blank? %>
                         <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
@@ -2472,7 +2472,7 @@
                     <td class="result-left-column small text-center">夫婦合算所得&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3">
                       <% if @report.household_net_income_status == "hide" %>
-                        <span class="small text-muted"><%= "非公開" %></span>
+                        <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
                       <% elsif @report.household_net_income.blank? %>
                         <span class="small text-muted"><%= "未回答" %></span>
                       <% else %>
@@ -3401,9 +3401,9 @@
           <% if @report.status == "nonreleased" %>
             <% if @report.user == current_user %>
               <div class="form-inline repoco-title">
-                <h5 class="d-none d-sm-block m-0 p-0 text-primary">【非公開】</h5>
+                <h5 class="d-none d-sm-block m-0 p-0 text-primary">【<i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開】</h5>
                 <h3 class="d-none d-sm-block m-0 p-0"><%= @report.title %></h3>
-                <h7 class="d-block d-sm-none m-0 p-0 text-primary">【非公開】</h7>
+                <h7 class="d-block d-sm-none m-0 p-0 text-primary">【<i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開】</h7>
                 <h5 class="d-block d-sm-none m-0 p-0"><%= @report.title %></h5>
               </div>
             <% end %>

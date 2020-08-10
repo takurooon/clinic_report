@@ -161,12 +161,12 @@
                 <% if @user.reports.present? %>
                   <i data-feather="home" class="feather-icon-style3 pl-2 pr-0 pt-1 pb-2 m-0"></i>
                   <% if @user.reports.last.prefecture_at_the_time_status == "hide" %>
-                    <span class="small"><span class="d-inline small text-muted"><%= "非公開" %>&nbsp;(都道府県)</span></span>
+                    <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(都道府県)</span></span>
                   <% else %>
                     <small class="d-inline"><%= @user.reports.last.prefecture.name %></small>
                   <% end %>
                   <% if @user.reports.last.city_at_the_time_status == "hide" %>
-                    <span class="small"><span class="d-inline small text-muted"><%= "非公開" %>&nbsp;(市区町村)</span></span>
+                    <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(市区町村)</span></span>
                   <% else %>
                     <small class="d-inline"><%= @user.reports.last.city.name %></small>
                   <% end %>
@@ -244,12 +244,12 @@
               <% if @user.reports.present? %>
                 <i data-feather="home" class="feather-icon-style3 pb-2 m-0"></i>
                 <% if @user.reports.last.prefecture_at_the_time_status == "hide" %>
-                  <span class="small"><span class="d-inline small text-muted"><%= "非公開" %>&nbsp;(都道府県)</span></span>
+                  <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(都道府県)</span></span>
                 <% else %>
                   <h7 class="d-inline"><%= @user.reports.last.prefecture.name %></h7>
                 <% end %>
                 <% if @user.reports.last.city_at_the_time_status == "hide" %>
-                  <span class="small"><span class="d-inline small text-muted"><%= "非公開" %>&nbsp;(市区町村)</span></span>
+                  <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(市区町村)</span></span>
                 <% else %>
                   <h7 class="d-inline"><%= @user.reports.last.city.name %></h7>
                 <% end %>
@@ -345,12 +345,12 @@
                                     <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}", class: "text-muted" %>歳</span>
                                   <% end %>
                                   <% if report.prefecture_at_the_time_status == "hide" %>
-                                    <span class="small text-muted"><small><%= "非公開" %></small></span>
+                                    <span class="small text-muted"><small><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開</small></span>
                                   <% else %>
                                     <span class="badge badge-pill badge-light p-0"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
                                   <% end %>
                                   <% if report.city_at_the_time_status == "hide" %>
-                                    <span class="small text-muted"><small><%= "非公開" %></small></span>
+                                    <span class="small text-muted"><small><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開</small></span>
                                   <% else %>
                                   <span class="badge badge-pill badge-light p-0"><%= link_to report.city.name, "/category/area/city/#{report.city.name}", class: "text-muted" %></span>
                                   <% end %>
@@ -458,7 +458,7 @@
                                     <%= report.treatment_end_age %>歳&nbsp;
                                   <% end %>
                                   <% if report.status == "nonreleased" %>
-                                    <span class="text-primary">【非公開】</span>
+                                    <span class="text-primary">【<i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開】</span>
                                   <% end %>
                                     <%= report.clinic.name %>のレポコ</h5>
                               <% end %>
@@ -470,7 +470,7 @@
                                     <%= report.treatment_end_age %>歳&nbsp;
                                   <% end %>
                                   <% if report.status == "nonreleased" %>
-                                    <span class="text-primary">【非公開】</span>
+                                    <span class="text-primary">【<i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開】</span>
                                   <% end %>
                                   <%= report.clinic.name %>のレポコ</h6>
                               <% end %>
@@ -592,12 +592,12 @@
                                       <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}", class: "text-muted" %>歳</span>
                                     <% end %>
                                     <% if report.prefecture_at_the_time_status == "hide" %>
-                                      <span class="small text-muted"><small><%= "非公開" %></small></span>
+                                      <span class="small text-muted"><small><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開</small></span>
                                     <% else %>
                                       <span class="badge badge-pill badge-light p-0"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
                                     <% end %>
                                     <% if report.city_at_the_time_status == "hide" %>
-                                      <span class="small text-muted"><small><%= "非公開" %></small></span>
+                                      <span class="small text-muted"><small><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開</small></span>
                                     <% else %>
                                     <span class="badge badge-pill badge-light p-0"><%= link_to report.city.name, "/category/area/city/#{report.city.name}", class: "text-muted" %></span>
                                     <% end %>
@@ -705,7 +705,7 @@
                                       <%= report.treatment_end_age %>歳&nbsp;
                                     <% end %>
                                     <% if report.status == "nonreleased" %>
-                                      <span class="text-primary">【非公開】</span>
+                                      <span class="text-primary">【<i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開】</span>
                                     <% end %>
                                       <%= report.clinic.name %>のレポコ</h5>
                                 <% end %>
@@ -717,7 +717,7 @@
                                       <%= report.treatment_end_age %>歳&nbsp;
                                     <% end %>
                                     <% if report.status == "nonreleased" %>
-                                      <span class="text-primary">【非公開】</span>
+                                      <span class="text-primary">【<i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開】</span>
                                     <% end %>
                                     <%= report.clinic.name %>のレポコ</h6>
                                 <% end %>
