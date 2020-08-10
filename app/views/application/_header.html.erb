@@ -240,13 +240,13 @@
 <div class="modal fade" id="signinLikeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin: auto;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-          <p><i data-feather="heart" style="wtidth:18px" class="text-danger"></i>&nbsp;&nbsp;するには<span class="font-weight-bold">ログインして下さい</span>。<br><br>ユーザー登録がお済みでない方は、<br><%= link_to "新規登録", new_user_registration_path %>を行ってください。</p>
+      <div class="modal-header pb-0">
+          <p class="mb-0"><i data-feather="heart" style="wtidth:18px" class="text-danger"></i>&nbsp;&nbsp;するには<span class="font-weight-bold">ログインして下さい</span>。ユーザー登録がお済みでない方は、<%= link_to "新規登録", new_user_registration_path %>を行ってください。</p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body pt-0">
         <% if alert %>
           <div class="alert alert-warning" role="alert">
             <p class="alert alert-error"><%= alert %></p>
