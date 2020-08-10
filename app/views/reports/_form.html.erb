@@ -405,6 +405,8 @@
                       <p class="question">診察の予約方法</p>
                       <%= f.select :reservation_method, Report::HASH_RESERVATION_METHOD.invert, { prompt: "選択" }, { class: "form-control" }  %>
                       <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>の予約方法</span></small>
+                      <p class="sub-question">予約方法の補足説明</p>
+                      <%= f.text_area :reservation_method_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "基本Webやアプリで予約できますが、初診だけは電話予約必須でした。" %>
                     </div>
 
                     <div class="form-group mt-3">
@@ -418,10 +420,10 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_2">
-                <h5 class="child-tab-title pt-3"><span class="marker-underline">基本/特殊/精液検査･PGT-A</span></h5>
+                <h5 class="child-tab-title pt-3"><span class="marker-underline">検査(基本･特殊･精液)･PGT-A</span></h5>
                 <div class="scroll-box">
                   <div class="box26">
-                    <span class="box-title">基本検査</span>
+                    <span class="box-title">検査</span>
                     <div class="form-group first-question-inbox">
                       <p class="question"><span class="select-clinic-name"></span>での最新のAMH値</p>
                       <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "選択" }, { class: "form-control" }  %>
@@ -459,7 +461,7 @@
                     </div>
 
                     <div class="form-group mt-3">
-                      <p class="question mb-3">【男性】<span class="select-clinic-name"></span>で受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                      <p class="question mb-3">【男性】<span class="select-clinic-name"></span>で受けた&nbsp;検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                       <%= f.collection_check_boxes(:cl_male_inspection_ids, ClMaleInspection.all, :id, :name) do |b| %>
                         <div class="form-check checkbox mb-0">
                           <%= b.label class: "form-check-label" do %>
@@ -470,7 +472,7 @@
                       <% end %>
                     </div>
                     <div class="form-group mt-3">
-                      <p class="question mb-3">【男性】<span class="select-clinic-name"></span>以外でこれまでに受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                      <p class="question mb-3">【男性】<span class="select-clinic-name"></span>以外でこれまでに受けたことのある&nbsp;検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                       <%= f.collection_check_boxes(:male_inspection_ids, MaleInspection.all, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
