@@ -347,12 +347,12 @@
                                   <% if report.prefecture_at_the_time_status == "hide" %>
                                     <span class="small text-muted"><small><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開</small></span>
                                   <% else %>
-                                    <span class="badge badge-pill badge-light p-0"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
+                                    <span class="badge badge-pill badge-light p-0"><%= link_to report.city.prefecture.name, "/category/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
                                   <% end %>
                                   <% if report.city_at_the_time_status == "hide" %>
                                     <span class="small text-muted"><small><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開</small></span>
                                   <% else %>
-                                  <span class="badge badge-pill badge-light p-0"><%= link_to report.city.name, "/category/area/city/#{report.city.name}", class: "text-muted" %></span>
+                                  <span class="badge badge-pill badge-light p-0"><%= link_to report.city.name, "/category/city/#{report.city.name}", class: "text-muted" %></span>
                                   <% end %>
                                   <span class="badge badge-pill badge-light p-0 text-muted"><%= report.str_work_style %></span>
                                 </p>
@@ -415,12 +415,12 @@
                                   <% if report.prefecture_at_the_time_status == "hide" %>
                                     <span class="small text-muted">−</span>
                                   <% else %>
-                                    <span class="small text-muted"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
+                                    <span class="small text-muted"><%= link_to report.city.prefecture.name, "/category/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
                                   <% end %>
                                   <% if report.city_at_the_time_status == "hide" %>
                                     <span class="small text-muted">−</span>
                                   <% else %>
-                                    <span class="small text-muted"><%= link_to report.city.name, "/category/area/city/#{report.city.name}", class: "text-muted" %></span>
+                                    <span class="small text-muted"><%= link_to report.city.name, "/category/city/#{report.city.name}", class: "text-muted" %></span>
                                   <% end %>
                                 </p>
                               </div>
@@ -594,12 +594,12 @@
                                     <% if report.prefecture_at_the_time_status == "hide" %>
                                       <span class="small text-muted"><small><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開</small></span>
                                     <% else %>
-                                      <span class="badge badge-pill badge-light p-0"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
+                                      <span class="badge badge-pill badge-light p-0"><%= link_to report.city.prefecture.name, "/category/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
                                     <% end %>
                                     <% if report.city_at_the_time_status == "hide" %>
                                       <span class="small text-muted"><small><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開</small></span>
                                     <% else %>
-                                    <span class="badge badge-pill badge-light p-0"><%= link_to report.city.name, "/category/area/city/#{report.city.name}", class: "text-muted" %></span>
+                                    <span class="badge badge-pill badge-light p-0"><%= link_to report.city.name, "/category/city/#{report.city.name}", class: "text-muted" %></span>
                                     <% end %>
                                     <span class="badge badge-pill badge-light p-0 text-muted"><%= report.str_work_style %></span>
                                   </p>
@@ -662,12 +662,12 @@
                                     <% if report.prefecture_at_the_time_status == "hide" %>
                                       <span class="small text-muted">−</span>
                                     <% else %>
-                                      <span class="small text-muted"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
+                                      <span class="small text-muted"><%= link_to report.city.prefecture.name, "/category/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
                                     <% end %>
                                     <% if report.city_at_the_time_status == "hide" %>
                                       <span class="small text-muted">−</span>
                                     <% else %>
-                                      <span class="small text-muted"><%= link_to report.city.name, "/category/area/city/#{report.city.name}", class: "text-muted" %></span>
+                                      <span class="small text-muted"><%= link_to report.city.name, "/category/city/#{report.city.name}", class: "text-muted" %></span>
                                     <% end %>
                                   </p>
                                 </div>
