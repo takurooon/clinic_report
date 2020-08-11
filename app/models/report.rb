@@ -2252,6 +2252,7 @@ end
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
 #  ishoku_cost_explanation                      :text
+#  ishoku_medicine_memo                         :text
 #  ishoku_type                                  :integer
 #  m_disease_memo                               :text
 #  m_other_effort_cost                          :integer
@@ -2293,6 +2294,7 @@ end
 #  sairan_age                                   :integer
 #  sairan_cost                                  :integer
 #  sairan_cost_explanation                      :text
+#  sairan_medicine_memo                         :text
 #  selection_of_anesthesia_type                 :integer
 #  self_injection                               :integer
 #  semen_concentration                          :integer
@@ -2311,6 +2313,7 @@ end
 #  total_number_of_eggs_transplanted            :integer
 #  total_number_of_sairan                       :integer
 #  total_number_of_transplants                  :integer
+#  transfer_option_memo                         :text
 #  transplant_method                            :integer
 #  treatment_end_age                            :integer
 #  treatment_period                             :integer

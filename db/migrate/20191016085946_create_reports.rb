@@ -132,6 +132,9 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :number_of_visits_before_pregnancy_date
       t.integer :self_injection
       t.integer :number_of_injections
+      t.text :sairan_medicine_memo
+      t.text :ishoku_medicine_memo
+      t.text :transfer_option_memo
 
       t.timestamps
     end

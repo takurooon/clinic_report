@@ -238,7 +238,7 @@
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">治療時期･年齢</span></h5>
                 <div class="scroll-box">
                   <div class="form-group">
-                    <p class="question"><span class="select-clinic-name"></span>での治療終了年</p>
+                    <p class="question"><span class="select-clinic-name"></span>での治療終了(卒業)年</p>
                     <%= f.date_select :year_of_treatment_end, {
                       discard_month: true,
                       discard_day: true,
@@ -257,13 +257,13 @@
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question"><span class="select-clinic-name"></span>での治療終了時の年齢</p>
+                    <p class="question"><span class="select-clinic-name"></span>での治療終了(卒業)時の年齢</p>
                     <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "選択" }, { class: "form-control" } %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業した年齢</span></small>
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question"><span class="select-clinic-name"></span>での治療終了時のパートナーの年齢</p>
+                    <p class="question"><span class="select-clinic-name"></span>での治療終了(卒業)時のパートナーの年齢</p>
                     <%= f.select :age_of_partner_at_end_of_treatment, Report::HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT.invert, { prompt: "選択" }, { class: "form-control" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業した時のパートナーの年齢</span></small>
                   </div>
@@ -628,6 +628,8 @@
                               <% end %>
                             </div>
                           <% end %>
+                          <p class="sub-question">使用薬剤の補足説明</p>
+                          <%= f.text_area :sairan_medicine_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
                         </div>
 
                         <div class="form-group mt-3">
@@ -832,6 +834,8 @@
                               <% end %>
                             </div>
                           <% end %>
+                          <p class="sub-question">使用薬剤の補足説明</p>
+                          <%= f.text_area :ishoku_medicine_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
                         </div>
                         <div class="form-group mt-3">
                           <p class="question">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
@@ -843,6 +847,8 @@
                               <% end %>
                             </div>
                           <% end %>
+                          <p class="sub-question">オプションの補足説明</p>
+                          <%= f.text_area :transfer_option_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
                         </div>
 
                         <div class="form-group mt-3 before_ishoku-hormone">
@@ -1423,7 +1429,7 @@
 
         <div class="p-1">
           <div class="form-group mt-0">
-            <%= f.rich_text_area :content, placeholder: "上記に書ききれない詳しい治療情報のほか、治療中の思いや感情をブログのように自由に綴って下さい。" %>
+            <%= f.rich_text_area :content, placeholder: "治療中の思いや感情をブログのように自由に治療体験記を書いてください" %>
           </div>
 
           <div class="form-group mt-0">
