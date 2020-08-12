@@ -1,7 +1,7 @@
 <%= render 'reports/category_header' %>
 <div class="container">
-  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>お住まい</strong>&nbsp;のレポコを探す</h5>
-  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong>お住まい</strong>&nbsp;のレポコを探す</h4>
+  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>住まい</strong>&nbsp;からレポコを探す</h5>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong>住まい</strong>&nbsp;からレポコを探す</h4>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", category_search_path %>
   </small>
@@ -14,10 +14,10 @@
       <div class="col-md-8 offset-md-2 px-0 mb-3">
         <ul class="nav nav-tabs mb-3 px-2">
           <li class="nav-item">
-            <a href="#area_prefecture" class="btn rounded-pill active" data-toggle="tab" style="font-size: 16px"><span class="font-weight-bold">都道府県</span><small><small>から探す</small></small></a>
+            <a href="#area_prefecture" class="btn rounded-pill active" data-toggle="tab" style="font-size: 16px"><span class="font-weight-bold">都道府県･海外</span><small><small>から探す</small></small></a>
           </il>
           <li class="nav-item">
-            <a href="#area_city" class="btn rounded-pill" data-toggle="tab" style="font-size: 16px"><span class="font-weight-bold">市区町村</span><small><small>から探す</small></small></a>
+            <a href="#area_city" class="btn rounded-pill" data-toggle="tab" style="font-size: 16px"><span class="font-weight-bold">市区町村･国</span><small><small>から探す</small></small></a>
           </il>
         </ul>
       </div>
@@ -26,7 +26,7 @@
           <%= select_tag :area_prefecture,
                           options_from_collection_for_select(Prefecture.where(id: 1..47), :name, :name),
                           {
-                            prompt: "都道府県を選択する",
+                            prompt: "都道府県･海外を選択する",
                             class: "form-control",
                             onchange: "location = 'prefecture/' + this.value"
                           }
@@ -38,14 +38,14 @@
           <%= select_tag :select_prefecture,
                           options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name),
                           {
-                            prompt: "都道府県を選択し",
+                            prompt: "都道府県･海外を選択し",
                             class: "form-control"
                           }
           %>
         </div><br>
 
         <div>
-          <%= select_tag :city, options_for_select([["市区町村選択する", 99]],), { class: "form-control", onchange: "location = 'city/' + this.value" } %></div><br>
+          <%= select_tag :city, options_for_select([["市区町村･国を選択する", 99]],), { class: "form-control", onchange: "location = 'city/' + this.value" } %></div><br>
         </div>
 
         <script>
