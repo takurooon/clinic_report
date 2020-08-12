@@ -156,14 +156,12 @@ class Report < ApplicationRecord
   has_rich_text :content
   
   # ---親---
-    # ユーザー
   belongs_to :user
   belongs_to :clinic
   belongs_to :prefecture
   belongs_to :city
 
   # ---子---
-  # コメント
   has_many :comments, dependent: :destroy
 
   # いいね

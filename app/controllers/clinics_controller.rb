@@ -1,7 +1,8 @@
 class ClinicsController < ApplicationController
 
   def cities_select
-    @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id).joins(:clinics).distinct
+    # @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id).joins(:clinics).distinct
+    @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id)
     render partial: 'address/cities'
   end
 

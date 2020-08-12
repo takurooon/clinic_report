@@ -138,7 +138,6 @@ $(function() {
   });
 });
 
-
 // 治療当時の住まい選択
 $(function() {
   $('#report_prefecture_id').change(function() {

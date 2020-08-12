@@ -100,7 +100,7 @@
                     <div class="form-group border border-info rounded-lg p-3 mt-0">
                       <p class="question">治療当時の住まい&nbsp;<sup class="text-success">●</sup></p>
                       <div>
-                        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "都道府県"}, {class: "form-control"}) %>
+                        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県" }, { class: "form-control" }) %>
                       </div>
                       <small><small class="text-danger">選択必須</small></small>
                       <small id="poster-tip" class="form-text text-muted text-right pt-2">

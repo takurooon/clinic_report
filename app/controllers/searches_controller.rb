@@ -21,21 +21,11 @@ class SearchesController < ApplicationController
     @amh_page = Report.page(params[:page]).per(10)
   end
 
-  # def tags
-  #   report_tags = ReportTag.group(:tag_id).where.not(tag_id: nil).distinct.count
-  #   tag = report_tags.keys
-  #   @tags = Tag.where(id: tag)
-  #   @tags_page = Tag.page(params[:page]).per(30)
-  # end
-
-  # def tag
-  #   tag_name = params[:tag_name]
-  #   @tag = Tag.find_by(tag_name: tag_name)
-  #   @reports = @tag.reports.where(status: 0)
-  #   @tags = Tag.page(params[:page]).per(10)
-  # end
-
   def clinics
+    @clinics = Clinic.all
+  end
+
+  def clinics_area
     @clinics = Clinic.all
   end
 
@@ -54,6 +44,18 @@ class SearchesController < ApplicationController
   end
   
   def clinic_city
+    @city = City.find_by(name: params[:value])
+    clinics = Clinic.where(city_id: @city.id)
+    @reports = Report.where(clinic_id: clinics.ids, status: 0)
+  end
+
+  def clinic_prefecture_area
+    @prefecture = Prefecture.find_by(name: params[:value])
+    clinics = Clinic.where(prefecture_id: @prefecture)
+    @reports = Report.where(clinic_id: clinics.ids, status: 0)
+  end
+  
+  def clinic_city_area
     @city = City.find_by(name: params[:value])
     clinics = Clinic.where(city_id: @city.id)
     @reports = Report.where(clinic_id: clinics.ids, status: 0)
@@ -158,10 +160,12 @@ class SearchesController < ApplicationController
   def area_prefecture
     @prefecture = Prefecture.find_by(name: params[:value])
     @reports = Report.where(prefecture_id: @prefecture.id, status: 0, prefecture_at_the_time_status: 0)
+    # @reports = Report.joins(clinic: :prefecture).where(prefectures: {id: @prefecture.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
 
   def area_city
     @city = City.find_by(name: params[:value])
     @reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0)
+    # @reports = Report.joins(clinic: :city).where(cities: {id: @city.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
 end

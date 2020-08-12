@@ -14,7 +14,7 @@
       <div class="form-group pt-0">
         <div>
           <%= select_tag :select_prefecture,
-                          options_from_collection_for_select(Prefecture.all, :id, :name),
+                          options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name),
                           {
                             prompt: "都道府県を選択する",
                             class: "form-control"
