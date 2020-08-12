@@ -82,9 +82,12 @@ end
 #                          category_amh GET    /category/amh(.:format)                                                                  searches#all_amh
 #                                       GET    /category/amh/:value(.:format)                                                           searches#amh
 #                      category_clinics GET    /category/clinics(.:format)                                                              searches#clinics
+#                 category_clinics_area GET    /category/clinics_area(.:format)                                                         searches#clinics_area
 #                                       GET    /category/clinics/:value(.:format)                                                       searches#clinic
 #                                       GET    /category/clinics/prefecture/:value(.:format)                                            searches#clinic_prefecture
+#                                       GET    /category/clinics_area/prefecture/:value(.:format)                                       searches#clinic_prefecture_area
 #                                       GET    /category/clinics/city/:value(.:format)                                                  searches#clinic_city
+#                                       GET    /category/clinics_area/city/:value(.:format)                                             searches#clinic_city_area
 #                          category_age GET    /category/age(.:format)                                                                  searches#all_age
 #                                       GET    /category/age/:value(.:format)                                                           searches#age
 #                         category_tags GET    /category/tags(.:format)                                                                 searches#tags
