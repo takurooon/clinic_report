@@ -79,7 +79,7 @@
                           <%= select_tag :city, options_for_select([["市区町村", 99]],), { class: "form-control" } %>
                         <% else %>
                           <% city_id = report.clinic.city_id %>
-                          <% cities = City.where(prefecture_id: prefecture_id).order(:id) %>
+                          <% cities = City.where(prefecture_id: prefecture_id).order(:id).joins(:clinics).distinct %>
                           <%= collection_select :prefecture, :city, cities, :id, :name, { prompt: "市区町村", selected: city_id }, { class: "form-control", id: "city" } %>
                         <% end %>
                       </div><br>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_222944) do
+ActiveRecord::Schema.define(version: 2020_08_13_020927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,10 +62,13 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.integer "code"
+    t.string "yomigana"
     t.bigint "prefecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "seireishitei_id", null: false
     t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
+    t.index ["seireishitei_id"], name: "index_cities_on_seireishitei_id"
   end
 
   create_table "cl_female_inspections", force: :cascade do |t|
@@ -631,6 +634,14 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "seireishiteis", force: :cascade do |t|
+    t.string "name"
+    t.bigint "prefecture_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["prefecture_id"], name: "index_seireishiteis_on_prefecture_id"
+  end
+
   create_table "shokihaiishoku_hormones", force: :cascade do |t|
     t.bigint "report_id", null: false
     t.integer "et", null: false
@@ -746,6 +757,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "before_ishoku_hormones", "reports"
   add_foreign_key "cities", "prefectures"
+  add_foreign_key "cities", "seireishiteis"
   add_foreign_key "clinic_reviews", "clinics"
   add_foreign_key "clinic_reviews", "users"
   add_foreign_key "clinics", "cities"
@@ -800,6 +812,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
   add_foreign_key "reports", "prefectures"
   add_foreign_key "reports", "users"
   add_foreign_key "sairan_hormones", "reports"
+  add_foreign_key "seireishiteis", "prefectures"
   add_foreign_key "shokihaiishoku_hormones", "reports"
   add_foreign_key "special_inspections", "reports"
   add_foreign_key "unsuccessful_ishoku_cycles", "reports"
