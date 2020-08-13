@@ -1,8 +1,8 @@
 class ClinicsController < ApplicationController
 
   def cities_select
-    # @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id).joins(:clinics).distinct
-    @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id)
+    # クリニックが存在するcityだけを抽出
+    @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id).joins(:clinics).distinct
     render partial: 'address/cities'
   end
 
