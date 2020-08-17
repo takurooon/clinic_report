@@ -21,20 +21,12 @@ CSV.foreach('db/csv/prefecture.csv', headers: true) do |row|
   )
 end
 
-CSV.foreach('db/csv/seireishitei.csv', headers: true) do |row|
-  Seireishitei.create(
-    name: row['name'],
-    prefecture_id: row['prefecture_id']
-  )
-end
-
 CSV.foreach('db/csv/city.csv', headers: true) do |row|
   City.create(
     name: row['name'],
     code: row['code'],
     yomigana: row['yomigana'],
-    prefecture_id: row['prefecture_id'],
-    seireishitei_id: row['seireishitei_id']
+    prefecture_id: row['prefecture_id']
   )
 end
 

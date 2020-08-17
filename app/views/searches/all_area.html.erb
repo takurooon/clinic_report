@@ -51,7 +51,7 @@
         <script>
           $(function() {
             $('#select_prefecture').change(function() {
-              $.ajax('/cities_select',
+              $.ajax('/cities_select_area',
                 {
                   type: 'get',
                   data: { prefecture_id: $(this).val() },

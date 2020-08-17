@@ -57,7 +57,8 @@ Rails.application.routes.draw do
 
   resources :clinics
   
-  get "cities_select" => "clinics#cities_select"
+  get "cities_select" => "clinics#cities_select_clinics"
+  get "cities_select_area" => "clinics#cities_select_area"
   get "clinics_select" => "clinics#clinics_select"
   get "clinic_select" => "clinics#clinic_select"
   get "address_cities_select" => "reports#address_cities_select"
