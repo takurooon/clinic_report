@@ -1,14 +1,18 @@
 <%= javascript_include_tag 'report_show' %>
 <%= render 'category_header' %>
 <div class="contaner px-0">
-  <div class="d-none d-lg-block position-fixed mt-5 pt-4">
-    <div class="py-2"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
-    <div class="py-2"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
-    <div class="py-2"><%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
-    <div class="py-2"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
-    <div class="py-2"><%= link_to image_tag("icon/slack_side_brandcolor_icon.png", alt: "slack_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
-    <div class="py-2"><%= link_to image_tag("icon/hatena_side_brandcolor_icon.png", alt: "hatena_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
-    <div class="py-2"><%= link_to image_tag("icon/pocket_side_brandcolor_icon.png", alt: "pocket_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
+  <div class="d-none d-lg-block position-fixed mt-0 pt-0">
+    <div class="text-center m-0 p-0">
+      <p style="font-size: 12.5px;" class="text-muted mb-1">＼シェア／</p>
+      <i data-feather="chevrons-down" class="text-muted pr-1"></i>
+    </div>
+    <div class="py-1"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "53px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+    <div class="py-1"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "53px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+    <div class="py-1"><%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "53px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+    <div class="py-1"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "53px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
+    <div class="py-1"><%= link_to image_tag("icon/slack_side_brandcolor_icon.png", alt: "slack_side_brandcolor_icon", width: "53px", class: "img-fluid", loading: "lazy"), "http://slackbutton.herokuapp.com/post/new/?url=#{request.url}&text=タイトル", class: 'slack', title: 'Slack', target: '_blank' %></div>
+    <div class="py-1"><%= link_to image_tag("icon/hatena_side_brandcolor_icon.png", alt: "hatena_side_brandcolor_icon", width: "53px", class: "img-fluid", loading: "lazy"), "http://b.hatena.ne.jp/add?mode=confirm&url=#{request.url}&text=タイトル", class: 'hatena', title: 'Hatena', target: '_blank' %></div>
+    <div class="py-1"><%= link_to image_tag("icon/pocket_side_brandcolor_icon.png", alt: "pocket_side_brandcolor_icon", width: "53px", class: "img-fluid", loading: "lazy"), "http://getpocket.com/edit?url=#{request.url}&text=タイトル", class: 'pocket', title: 'Pocket', target: '_blank' %></div>
   </div>
   <div class="row">
     <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
@@ -969,8 +973,9 @@
                     <% end %>
                   <% else %>
                     <tr>
-                      <td class="result-left-column small text-center table-left-column">
-                        <ul class="small list-unstyled">
+                      <td class="result-left-column small text-center px-0 table-left-column">
+                        <p class="mb-1">【特殊検査】</p>
+                        <ul class="small mb-0 list-unstyled">
                           <li>・エラ(ERA)</li>
                           <li>・エマ(EMMA)</li>
                           <li>・アリス(ALICE)</li>
@@ -994,7 +999,7 @@
                     </tr>
                   <% end %>
                 </table>
-                <% if @report.special_inspection_memo %>
+                <% if @report.special_inspection_memo.present? %>
                   <table class="table table-hover p-0 mt-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:30%">特殊検査メモ</td>
@@ -1079,7 +1084,6 @@
                               <span class="text-muted small">未回答</span>
                             </td>
                           <% end %>
-                        </tr>
                         </tr>
                       </table>
                     </td>
@@ -2179,6 +2183,7 @@
                         <% else %>
                         <% end %>
                       </table>
+
                       <% if @before_ishoku_hormones.present? || @day_of_shokihaiishokus.present? || @day_of_haibanhoishokus.present? || @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
                         <div class="grapharea pt-3">
                           <div class="mb-0">
@@ -2223,7 +2228,7 @@
                                   <td class="result-left-column small text-center" style="width:45%">移植時年齢</td>
                                   <td class="pl-3" style="width:55%">
                                     <% if unsuccessful_ishoku_cycle.ishoku_age.present? %>
-                                      <%= unsuccessful_ishoku_cycle.str_unsuccessful_ishoku_cycle_sairan_age(unsuccessful_ishoku_cycle.ishoku_age) %>
+                                      <%= unsuccessful_ishoku_cycle.str_unsuccessful_ishoku_cycle_ishoku_age(unsuccessful_ishoku_cycle.ishoku_age) %>
                                     <% else %>
                                       <span class="text-muted small">未回答</span>
                                     <% end %>
@@ -3165,6 +3170,7 @@
                       </div>
                     <% end %>
                   </div>
+                </div>
               </section>
             </div>
           </section>
@@ -3445,6 +3451,10 @@
             </div>
           <% end %>
         <% end %>
+
+        <div class="d-block d-md-none m-0 p-o">
+          <%= render partial: 'ichiran' %>
+        </div>
 
         <div class="action_area pl-3 pr-0 py-4">
           <div class="row">

@@ -1387,9 +1387,9 @@ class Report < ApplicationRecord
 
   # fertility_treatment_numberの区分値(何人目か)
   HASH_FERTILITY_TREATMENT_NUMBER = {
-    1 => "1人目",
-    2 => "2人目",
-    3 => "3人以上",
+    1 => "1人目の治療",
+    2 => "2人目の治療",
+    3 => "3人以上の治療",
   }
 
   def str_fertility_treatment_number

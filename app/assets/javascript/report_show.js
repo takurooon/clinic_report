@@ -27,9 +27,18 @@
     }
   });
 
-// 採卵移植グラフ表示
+// タブ内採卵移植グラフ表示
   window.onload = function() {
     element = document.getElementById("sairanFshLh");
+    if (element != null) {
+      ctx = element.getContext("2d");
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData1,
+        options: complexChartOption1
+      });
+    };
+    element = document.getElementById("sairanFshLh_ichiran");
     if (element != null) {
       ctx = element.getContext("2d");
       window.myBar = new Chart(ctx, {
@@ -47,7 +56,25 @@
         options: complexChartOption2
       });
     };
+    element = document.getElementById("sairanE2P4_ichiran");
+    if (element != null) {
+      ctx = element.getContext("2d"); 
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData2,
+        options: complexChartOption2
+      });
+    };
     element = document.getElementById("ishokuFshLh");
+    if (element != null) {
+      ctx = element.getContext("2d");
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData3,
+        options: complexChartOption3
+      });
+    };
+    element = document.getElementById("ishokuFshLh_ichiran");
     if (element != null) {
       ctx = element.getContext("2d");
       window.myBar = new Chart(ctx, {
@@ -65,6 +92,15 @@
         options: complexChartOption4
       });
     };
+    element = document.getElementById("ishokuE2P4_ichiran");
+    if (element != null) {
+      ctx = element.getContext("2d");
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData4,
+        options: complexChartOption4
+      });
+    };
     element = document.getElementById("ishokuhcg");
     if (element != null) {
       ctx = element.getContext("2d");
@@ -74,7 +110,36 @@
         options: complexChartOption5
       });
     };
+    element = document.getElementById("ishokuhcg_ichiran");
+    if (element != null) {
+      ctx = element.getContext("2d");
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData5,
+        options: complexChartOption5
+      });
+    };
     ctx = document.getElementById("clinicEvaluation");
+    window.clinicEvaluation = new Chart(ctx, {
+      type: 'radar',
+      data: radarChartData,
+      options: {
+        maintainAspectRatio: false,
+        scale: {
+          ticks: {
+            label: false,
+            min: 0,
+            max: 5,
+            fixedStepSize: 2,
+            showLabelBackdrop: false,
+            fontSize: 0,
+            color: '#eee',
+            drawOnChartArea: true,
+          }
+        }
+      }
+    });
+    ctx = document.getElementById("clinicEvaluation_ichiran");
     window.clinicEvaluation = new Chart(ctx, {
       type: 'radar',
       data: radarChartData,
@@ -337,3 +402,5 @@
       },
     ],
   };
+
+

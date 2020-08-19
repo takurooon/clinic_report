@@ -27,7 +27,7 @@ class UnsuccessfulIshokuCycle < ApplicationRecord
   }
 
   def str_unsuccessful_ishoku_cycle_number(number)
-    return HASH_TOTAL_NUMBER_OF_ISHOKU[number]
+    return HASH_NUMBER_OF_ISHOKU[number]
   end
 
 

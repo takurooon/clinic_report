@@ -191,14 +191,6 @@ i .fa-edit {
   font-size: 20px;
 }
 
-// showの結果カラム(右)の文字
-.result-text {
-}
-
-// showのresult右カラム
-.result-right-column {
-}
-
 // showのresult左カラム
 .result-left-column {
 	background-color: rgba(232,254,252,0.8);
@@ -1060,7 +1052,7 @@ i .fa-edit {
 	}
 }
 
-
+// タブボックス内の特殊検査の左カラム
 @media screen and (min-width:768px) {
 	.table-left-column {
 		width: 30%;
@@ -1069,7 +1061,6 @@ i .fa-edit {
 		width: 70%;
 	}
 }
-
 @media screen and (max-width:767px) {
 	.table-left-column {
 		width: 45%;
@@ -1078,6 +1069,15 @@ i .fa-edit {
 		width: 55%;
 	}
 }
+
+// 一覧表示の左カラム
+.ichirantable-left {
+	width: 35%;
+}
+.ichirantable-right {
+	width: 65%;
+}
+
 
 // フォーム画面のタブ内でのスクロール
 .scroll-box {
@@ -1092,4 +1092,23 @@ i .fa-edit {
 	border-bottom: solid thin #d5d5d5;
 	letter-spacing: 0.1rem;
 	color: #3e3e3e;
+}
+
+// 水平スクロール
+.horizontal-list {
+	overflow-x: auto;
+	white-space: nowrap;
+	-webkit-overflow-scrolling: touch;
+	padding: 1rem;
+	margin-bottom: 0;
+}
+.horizontal-item {
+	/* 横スクロール用 */
+	display: inline-block;
+	width: 95%;
+	/* 見た目調整 */
+	height: 100%;
+	margin: 5px;
+	font-size: 12px;
+	vertical-align: top;
 }
