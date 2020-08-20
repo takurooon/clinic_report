@@ -359,6 +359,23 @@ class Report < ApplicationRecord
     return HASH_CURRENT_STATE[self.current_state]
   end
 
+  # 検索画面用のcurrent_stateの区分値(現在の状況)
+  HASH_CURRENT_STATE_SEARCH = {
+    1 => "妊娠中",
+    2 => "妊娠中（多胎）",
+    3 => "出産済み",
+    4 => "出産済み（多胎）",
+    # 5 => "出産に至らず",
+    # 6 => "転院した",
+    # 7 => "お休み中",
+    # 8 => "治療自体を完全にやめた",
+    # 99 => "その他"
+  }
+
+  def str_current_state_search
+    return HASH_CURRENT_STATE_SEARCH[self.current_state]
+  end
+
   # treatment_periodの区分値(休み期間除く正味治療期間/CL単位)
   HASH_TREATMENT_PERIOD = {
     100 => "不明",
@@ -491,6 +508,44 @@ class Report < ApplicationRecord
 
   def str_amh
     return HASH_AMH[self.amh]
+  end
+
+  # 検索画面用のamhの区分値(AMH値)
+  HASH_AMH_SEARCH = {
+    100 => "不明",
+    1 => "0.1以下",
+    2 => "0.2以下",
+    3 => "0.3以下",
+    4 => "0.4以下",
+    5 => "0.5以下",
+    6 => "0.6以下",
+    7 => "0.7以下",
+    8 => "0.8以下",
+    9 => "0.9以下",
+    10 => "1.0以下",
+    11 => "1.5以下",
+    12 => "2.0以下",
+    13 => "2.5以下",
+    14 => "3.0以下",
+    15 => "3.5以下",
+    16 => "4.0以下",
+    17 => "4.5以下",
+    18 => "5.0以下",
+    19 => "5.5以下",
+    20 => "6.0以下",
+    21 => "6.5以下",
+    22 => "7.0以下",
+    23 => "7.5以下",
+    24 => "8.0以下",
+    25 => "8.5以下",
+    26 => "9.0以下",
+    27 => "9.5以下",
+    28 => "10.0以下",
+    99 => "それ以上",
+  }
+
+  def str_amh_search
+    return HASH_AMH_SEARCH[self.amh]
   end
 
   # types_of_eggs_and_spermの区分値(卵子と精子の帰属)
@@ -2187,6 +2242,33 @@ class Report < ApplicationRecord
   def str_embryo_culture_days
     return HASH_EMBRYO_CULTURE_DAYS[self.embryo_culture_days]
   end
+
+  # free_wifiの区分値(CLにWiFiがあるかどうか)
+  HASH_FREE_WIFI = {
+    1 => "フリーWiFi なし",
+    2 => "フリーWiFi あり",
+    3 => "有料WiFi あり",
+    99 => "その他",
+    100 => "不明",
+  }
+
+  def str_free_wifi
+    return HASH_FREE_WIFI[self.free_wifi]
+  end
+
+  # possible_to_wait_outside_clの区分値(院外で待てるかどうか)
+  HASH_POSSIBLE_TO_WAIT_OUTSIDE_CL = {
+    1 => "外出は不可",
+    2 => "外出は可能",
+    3 => "外出は可能(条件or制限付き)",
+    99 => "その他",
+    100 => "不明",
+  }
+
+  def str_possible_to_wait_outside_cl
+    return HASH_POSSIBLE_TO_WAIT_OUTSIDE_CL[self.possible_to_wait_outside_cl]
+  end
+
 end
 
 # == Schema Information
@@ -2236,6 +2318,7 @@ end
 #  fertility_treatment_number                   :integer
 #  followup_investigation                       :integer
 #  followup_investigation_memo                  :text
+#  free_wifi                                    :integer
 #  fuiku                                        :integer
 #  fuiku_supplementary_explanation              :text
 #  household_net_income                         :integer
@@ -2279,6 +2362,7 @@ end
 #  pgt2_status                                  :integer          default("show"), not null
 #  pgt_supplementary_explanation                :text
 #  pgt_supplementary_explanation_status         :integer          default("show"), not null
+#  possible_to_wait_outside_cl                  :integer
 #  prefecture_at_the_time_status                :integer          default("show"), not null
 #  pregnancy_date                               :integer
 #  pregnancy_date_memo                          :text

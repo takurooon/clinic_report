@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   end
 
   def all_amh
-    amhs = Report::HASH_AMH
+    amhs = Report::HASH_AMH_SEARCH
     reports = Report.group(:amh).where.not(amh: nil).distinct.count
     c = amhs.keys - reports.keys
     c.each do |d|
@@ -14,11 +14,29 @@ class SearchesController < ApplicationController
   end
 
   def amh
-    amh = Report::HASH_AMH
+    amh = Report::HASH_AMH_SEARCH
     amh_value = params[:value].to_i
     @selected_amh = amh[amh_value]
     @reports = Report.where(amh: amh_value, status: 0)
     @amh_page = Report.page(params[:page]).per(10)
+  end
+
+  def all_status
+    statuses = Report::HASH_CURRENT_STATE_SEARCH
+    reports = Report.group(:current_state).where.not(current_state: nil).distinct.count
+    s = statuses.keys - reports.keys
+    s.each do |t|
+      statuses.delete(t)
+    end
+    @status = statuses
+  end
+
+  def status
+    status = Report::HASH_CURRENT_STATE_SEARCH
+    status_value = params[:value].to_i
+    @selected_status = status[status_value]
+    @reports = Report.where(current_state: status_value, status: 0)
+    @status_page = Report.page(params[:page]).per(10)
   end
 
   def clinics
@@ -74,7 +92,7 @@ class SearchesController < ApplicationController
   end
 
   def age
-    age = Report::HASH_TREATMENT_END_AGE
+    age = Report::HASH_TREATMENT_END_AGE_SEARCH
     if params[:value] === "45~歳"
       value = "4500"
       age_45 = "45歳以上"

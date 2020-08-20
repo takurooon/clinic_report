@@ -1,15 +1,14 @@
-
-<div class="cp_box mt-5">
+<div class="cp_box mt-0">
   <input id="cp01" type="checkbox">
   <label for="cp01"></label>
   <div class="cp_container">
-    <table class="table table-hover treatment-all-list">
-      <tr>
-        <td class="text-center matome-title" colspan="2" style="color:#1A2438"><%= link_to @report.user.name, user_path(@report.user_id) %>&nbsp;<span class="text-muted small">さんの</span>&nbsp;<%= link_to @report.clinic.name, "/category/clinics/#{@report.clinic.id}" %><br><span class="text-muted small">での</span>&nbsp;<span class="font-weight-bold">治療情報一覧</span></td>
-      </tr>
-    </table>
+    <div class="text-center matome-title mb-3 pt-3">
+      <%= link_to @report.user.name, user_path(@report.user_id) %>&nbsp;<span class="text-muted small">さんの</span>&nbsp;
+      <%= link_to @report.clinic.name, "/category/clinics/#{@report.clinic.id}" %><br>
+      <span class="text-muted small">での</span>&nbsp;<span class="font-weight-bold">治療情報一括表示</span>
+    </div>
 
-    <table class="table table-hover p-0 mt-4">
+    <table class="table table-hover p-0 mt-0">
       <tr>
         <td class="result-left-column" colspan="2">
           <div class="m-0 p-0 form-inline justify-content-center">
@@ -2755,7 +2754,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="result-left-column small text-center ichirantable-left">快適さ</td>
+                  <td class="result-left-column small text-center ichirantable-left">施設の環境</td>
                   <td class="pl-3 ichirantable-right">
                     <% if @report.comfort_of_space.present? %>
                       &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.comfort_of_space %>
@@ -2764,15 +2763,26 @@
                     <% end %>
                   </td>
                 </tr>
-                <tr>
-                  <td class="result-left-column small text-center ichirantable-left">レビュー</td>
-                  <td class="pl-3 ichirantable-right">
-                    <% if @report.clinic_review.present? %>
-                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.clinic_review.split("\n"),tag(:br)))).html_safe %></span>
-                    <% end %>
-                  </td>
-                </tr>
+                <% if (@report.free_wifi.present? && @report.free_wifi <= 3) || (@report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3) %>
+                  <tr>
+                    <td class="result-left-column small text-center ichirantable-left">備考</td>
+                    <td class="pl-3 ichirantable-right">
+                      <% if @report.free_wifi.present? && @report.free_wifi <= 3 %>
+                        <small><span class="small">･&nbsp;<%= @report.str_free_wifi %></span></small><br>
+                      <% end %>
+                      <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
+                        <small><span class="small">･&nbsp;待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
               </table>
+              <% if @report.clinic_review.present? %>
+                <div class="p-3">
+                  <i data-feather="edit-3" class="feather-icon-style4 pl-0 py-1 mx-0"></i>&nbsp;&nbsp;レビュー<br>
+                  <div class="small pt-3"><%= text_url_to_link(h(safe_join(@report.clinic_review.split("\n"),tag(:br)))).html_safe %></div>
+                </div>
+              <% end %>
               <table class="table rounded table-hover table-dark p-0 mt-5 mb-2">
                 <tr>
                   <td class="small text-center" colspan="2">

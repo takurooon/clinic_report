@@ -45,6 +45,7 @@
 #  fertility_treatment_number                   :integer
 #  followup_investigation                       :integer
 #  followup_investigation_memo                  :text
+#  free_wifi                                    :integer
 #  fuiku                                        :integer
 #  fuiku_supplementary_explanation              :text
 #  household_net_income                         :integer
@@ -88,6 +89,7 @@
 #  pgt2_status                                  :integer          default("show"), not null
 #  pgt_supplementary_explanation                :text
 #  pgt_supplementary_explanation_status         :integer          default("show"), not null
+#  possible_to_wait_outside_cl                  :integer
 #  prefecture_at_the_time_status                :integer          default("show"), not null
 #  pregnancy_date                               :integer
 #  pregnancy_date_memo                          :text

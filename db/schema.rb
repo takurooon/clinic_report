@@ -601,6 +601,8 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.text "sairan_medicine_memo"
     t.text "ishoku_medicine_memo"
     t.text "transfer_option_memo"
+    t.integer "free_wifi"
+    t.integer "possible_to_wait_outside_cl"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "clinic_id", null: false

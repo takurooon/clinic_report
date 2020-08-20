@@ -193,7 +193,8 @@ i .fa-edit {
 
 // showのresult左カラム
 .result-left-column {
-	background-color: rgba(232,254,252,0.8);
+	// background-color: rgba(232,254,252,1);
+	background-color: rgba(151, 251, 243, 0.7);
 }
 
 // showのresultのthead
@@ -358,6 +359,7 @@ i .fa-edit {
 	bottom: 0;
 	width: 100%;
 	height: 300px; /* グラデーションの高さ */
+	margin-bottom: 0;
 	cursor: pointer;
 	text-align: center;
 	/* 以下グラデーションは背景を自身のサイトに合わせて設定してください */
@@ -380,7 +382,8 @@ i .fa-edit {
 	color: #1A2438;
 	border: solid thin;
 	border-radius: 20px;
-	background-color: rgba(232, 254, 252, 0.8);
+	// background-color: rgba(232, 254, 252, 0.8);
+	background-color: rgba(151, 251, 243, 1);
 }
 .cp_box input {
 	display: none;
@@ -446,7 +449,8 @@ i .fa-edit {
 
 // 一覧画面の記事「続きを読む」
 .lead-content {
-	background-color: rgb(196,244,244);
+	// background-color: rgb(196,244,244);
+	background-color: rgba(151, 251, 243, 0.8);
 	border-radius: 5px;
 }
 
@@ -663,7 +667,8 @@ i .fa-edit {
 	}
 
 	.parent-menu li a.active {
-		background: rgb(196,244,244);
+		// background: rgb(196,244,244);
+		background-color: rgba(151, 251, 243, 0.8);
 		color: #333;
 		font-size: 16px;
 		font-weight: bold;
@@ -693,7 +698,8 @@ i .fa-edit {
 	}
 
 	.parent-tab-content.active {
-		background: rgb(196,244,244);
+		// background: rgb(196,244,244);
+		background-color: rgba(151, 251, 243, 0.8);
 		color: #333;
 		min-height: 150px;
 		padding: 2em 12px 12px;
@@ -785,7 +791,9 @@ i .fa-edit {
 	border-top: solid thin rgb(183, 183, 183);
 }
 .matome-title {
-	background-color: rgb(232, 254, 252);
+	// background-color: rgb(232, 254, 252);
+	// border-top: solid thin;
+	// border-color:#313E4C;
 }
 
 // ペンアイコン

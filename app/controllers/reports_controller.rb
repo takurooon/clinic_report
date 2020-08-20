@@ -520,6 +520,8 @@ class ReportsController < ApplicationController
         :sairan_medicine_memo,
         :ishoku_medicine_memo,
         :transfer_option_memo,
+        :free_wifi,
+        :possible_to_wait_outside_cl,
         s_selection_method_ids: [],
         inspection_ids: [],
         male_inspection_ids: [],

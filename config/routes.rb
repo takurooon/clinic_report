@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'category/search' => 'searches#search'
   get 'category/amh' => 'searches#all_amh'
   get 'category/amh/:value' => 'searches#amh'
+  get 'category/status' => 'searches#all_status'
+  get 'category/status/:value' => 'searches#status'
   get 'category/clinics' => 'searches#clinics'
   get 'category/clinics_area' => 'searches#clinics_area'
   get 'category/clinics/:value' => 'searches#clinic'
@@ -146,7 +148,8 @@ end
 #                                       PATCH  /clinics/:id(.:format)                                                                   clinics#update
 #                                       PUT    /clinics/:id(.:format)                                                                   clinics#update
 #                                       DELETE /clinics/:id(.:format)                                                                   clinics#destroy
-#                         cities_select GET    /cities_select(.:format)                                                                 clinics#cities_select
+#                         cities_select GET    /cities_select(.:format)                                                                 clinics#cities_select_clinics
+#                    cities_select_area GET    /cities_select_area(.:format)                                                            clinics#cities_select_area
 #                        clinics_select GET    /clinics_select(.:format)                                                                clinics#clinics_select
 #                         clinic_select GET    /clinic_select(.:format)                                                                 clinics#clinic_select
 #                 address_cities_select GET    /address_cities_select(.:format)                                                         reports#address_cities_select

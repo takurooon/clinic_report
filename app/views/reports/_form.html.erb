@@ -1085,30 +1085,6 @@
                 <div class="scroll-box">
                   <div class="form-group">
                     <div class="mt-0 pt-2">
-                      <p class="question">待ち時間</p>
-                      <span class="small text-muted">低</span>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 1, onclick: "radioDeselection(this, 1)" %>1
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 2, onclick: "radioDeselection(this, 2)" %>2
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 3, onclick: "radioDeselection(this, 3)" %>3
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 4, onclick: "radioDeselection(this, 4)" %>4
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 5, onclick: "radioDeselection(this, 5)" %>5
-                      </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
-                      <div class="form-group mt-3">
-                        <p class="sub-question">平均待ち時間</p>
-                        <%= f.select :average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      </div>
-                    </div>
-
-                    <div class="mt-5 pt-3">
                       <p class="question">医師の対応や雰囲気</p>
                       <span class="small text-muted">低</span>&nbsp;&nbsp;
                       <label class="radio-inline">
@@ -1146,6 +1122,7 @@
                       <label class="radio-inline">
                         <%= f.radio_button :staff_quality, 5, onclick: "radioDeselection(this, 5)" %>5
                       </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
+                      
                     </div>
 
                     <div class="mt-5 pt-3">
@@ -1189,7 +1166,31 @@
                     </div>
 
                     <div class="mt-5 pt-3">
-                      <p class="question">院内の快適さ</p>
+                      <p class="question">待ち時間</p>
+                      <span class="small text-muted">低</span>&nbsp;&nbsp;
+                      <label class="radio-inline">
+                        <%= f.radio_button :average_waiting_time2, 1, onclick: "radioDeselection(this, 1)" %>1
+                      </label>&nbsp;&nbsp;
+                      <label class="radio-inline">
+                        <%= f.radio_button :average_waiting_time2, 2, onclick: "radioDeselection(this, 2)" %>2
+                      </label>&nbsp;&nbsp;
+                      <label class="radio-inline">
+                        <%= f.radio_button :average_waiting_time2, 3, onclick: "radioDeselection(this, 3)" %>3
+                      </label>&nbsp;&nbsp;
+                      <label class="radio-inline">
+                        <%= f.radio_button :average_waiting_time2, 4, onclick: "radioDeselection(this, 4)" %>4
+                      </label>&nbsp;&nbsp;
+                      <label class="radio-inline">
+                        <%= f.radio_button :average_waiting_time2, 5, onclick: "radioDeselection(this, 5)" %>5
+                      </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
+                      <div class="form-group mt-3">
+                        <p class="sub-question">平均待ち時間</p>
+                        <%= f.select :average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      </div>
+                    </div>
+
+                    <div class="mt-5 pt-3">
+                      <p class="question">施設の環境</p>
                       <span class="small text-muted">低</span>&nbsp;&nbsp;
                       <label class="radio-inline">
                         <%= f.radio_button :comfort_of_space, 1, onclick: "radioDeselection(this, 1)" %>1
@@ -1206,9 +1207,17 @@
                       <label class="radio-inline">
                         <%= f.radio_button :comfort_of_space, 5, onclick: "radioDeselection(this, 5)" %>5
                       </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
+                      <div class="form-group mt-3">
+                        <p class="sub-question">フリーWiFiの有無</p>
+                        <%= f.select :free_wifi, Report::HASH_FREE_WIFI.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      </div>
+                      <div class="form-group mt-3">
+                        <p class="sub-question">待ち時間中の外出可否</p>
+                        <%= f.select :possible_to_wait_outside_cl, Report::HASH_POSSIBLE_TO_WAIT_OUTSIDE_CL.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                      </div>
                     </div>
                     <div class="form-group mt-3">
-                      <p class="sub-question">その他</p>
+                      <p class="sub-question">その他感想など</p>
                       <%= f.text_area :clinic_review, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)待ち時間長く、診察は秒速ですが、技術はとても高いと感じました。" %>
                     </div>
                   </div>

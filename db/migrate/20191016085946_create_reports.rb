@@ -135,6 +135,8 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :sairan_medicine_memo
       t.text :ishoku_medicine_memo
       t.text :transfer_option_memo
+      t.integer :free_wifi
+      t.integer :possible_to_wait_outside_cl
 
       t.timestamps
     end

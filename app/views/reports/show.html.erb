@@ -3079,10 +3079,10 @@
                             <td colspan="2" class="text-muted small"><small>※&nbsp;<%= @report.user.name %>さんによる満足度評価&nbsp;(5段階)</small></td>
                           </tr>
                           <tr>
-                            <td class="text-right small text-muted">
-                              医師&nbsp;:
+                            <td class="text-center small text-muted" style="width:40%">
+                              <span class="small">医師</span>&nbsp;:
                             </td>
-                            <td>
+                            <td style="width:60%">
                               <% if @report.doctor_quality.present? %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.doctor_quality %>
                               <% else %>
@@ -3091,8 +3091,8 @@
                             </td>
                           </tr>
                           <tr>
-                            <td class="text-right small text-muted">
-                              スタッフ&nbsp;:
+                            <td class="text-center small text-muted">
+                              <span class="small">スタッフ</center>&nbsp;:
                             </td>
                             <td>
                               <% if @report.staff_quality.present? %>
@@ -3103,8 +3103,8 @@
                             </td>
                           </tr>
                           <tr>
-                            <td class="text-right small text-muted">
-                              技術&nbsp;:
+                            <td class="text-center small text-muted">
+                              <span class="small">技術</span>&nbsp;:
                             </td>
                             <td>
                               <% if @report.impression_of_technology.present? %>
@@ -3115,8 +3115,8 @@
                             </td>
                           </tr>
                           <tr>
-                            <td class="text-right small text-muted">
-                              価格&nbsp;:
+                            <td class="text-center small text-muted">
+                              <span class="small">価格</span>&nbsp;:
                             </td>
                             <td>
                               <% if @report.impression_of_price.present? %>
@@ -3127,8 +3127,8 @@
                             </td>
                           </tr>
                           <tr>
-                            <td class="text-right small text-muted">
-                              待ち時間&nbsp;:
+                            <td class="text-center small text-muted">
+                              <span class="small">待ち時間</span>&nbsp;:
                             </td>
                             <td>
                               <% if @report.average_waiting_time2.present? %>
@@ -3139,8 +3139,8 @@
                             </td>
                           </tr>
                           <tr>
-                            <td class="text-right small text-muted">
-                              快適さ&nbsp;:
+                            <td class="text-center small text-muted">
+                              <span class="small">施設の環境</span>&nbsp;:
                             </td>
                             <td>
                               <% if @report.comfort_of_space.present? %>
@@ -3150,6 +3150,21 @@
                               <% end %>
                             </td>
                           </tr>
+                          <% if (@report.free_wifi.present? && @report.free_wifi <= 3) || (@report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3) %>
+                            <tr>
+                              <td class="text-center small text-muted">
+                                <span class="small">備考</span>&nbsp;:
+                              </td>
+                              <td>
+                                <% if @report.free_wifi.present? && @report.free_wifi <= 3 %>
+                                  <small><span class="small"><%= @report.str_free_wifi %></span></small><br>
+                                <% end %>
+                                <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
+                                  <small><span class="small">待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small>
+                                <% end %>
+                              </td>
+                            </tr>
+                          <% end %>
                         </table>
                       </div>
                     </div>
@@ -3163,9 +3178,88 @@
                         <canvas id="clinicEvaluation"></canvas>
                       <% end %>
                     </div>
+
+                    <div class="d-block d-sm-none col-12 m-0 p-0">
+                      <table class="table table-hover p-0">
+                        <tr>
+                          <td class="result-left-column small text-center ichirantable-left">医師</td>
+                          <td class="pl-3 ichirantable-right">
+                            <% if @report.doctor_quality.present? %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.doctor_quality %>
+                            <% else %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="result-left-column small text-center ichirantable-left">スタッフ</td>
+                          <td class="pl-3 ichirantable-right">
+                            <% if @report.doctor_quality.present? %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.doctor_quality %>
+                            <% else %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="result-left-column small text-center ichirantable-left">技術</td>
+                          <td class="pl-3 ichirantable-right">
+                            <% if @report.impression_of_technology.present? %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.impression_of_technology %>
+                            <% else %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="result-left-column small text-center ichirantable-left">価格</td>
+                          <td class="pl-3 ichirantable-right">
+                            <% if @report.impression_of_price.present? %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.impression_of_price %>
+                            <% else %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="result-left-column small text-center ichirantable-left">待ち時間</td>
+                          <td class="pl-3 ichirantable-right">
+                            <% if @report.average_waiting_time2.present? %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.average_waiting_time2 %>&nbsp;<small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
+                            <% else %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="result-left-column small text-center ichirantable-left">施設の環境</td>
+                          <td class="pl-3 ichirantable-right">
+                            <% if @report.comfort_of_space.present? %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.comfort_of_space %>
+                            <% else %>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <% if (@report.free_wifi.present? && @report.free_wifi <= 3) || (@report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3) %>
+                          <tr>
+                            <td class="result-left-column small text-center ichirantable-left">備考</td>
+                            <td class="pl-3 ichirantable-right">
+                              <% if @report.free_wifi.present? && @report.free_wifi <= 3 %>
+                                <small><span class="small">･&nbsp;<%= @report.str_free_wifi %></span></small><br>
+                              <% end %>
+                              <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
+                                <small><span class="small">･&nbsp;待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small>
+                              <% end %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </table>
+                    </div>
+
                     <% if @report.clinic_review.present? %>
                       <div class="p-3">
-                        <i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;感想<br>
+                        <i data-feather="edit-3" class="feather-icon-style4 pl-0 py-1 mx-0"></i>&nbsp;&nbsp;レビュー<br>
                         <div class="small pt-3"><%= text_url_to_link(h(safe_join(@report.clinic_review.split("\n"),tag(:br)))).html_safe %></div>
                       </div>
                     <% end %>
