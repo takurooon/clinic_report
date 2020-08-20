@@ -879,7 +879,7 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <th scope="row" class="day-column"><%= day_of_shokihaiishoku.select :day, Report.make_select_day_of_shokihaiishoku, { prompt: "まず選択" }, { class: "form-control text-muted" } %></td>
+                                  <th scope="row" class="day-column"><%= day_of_shokihaiishoku.select :day, Report.make_select_day_of_shokihaiishoku, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
                                   <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :e2, { step: "0.01", class: "form-control", placeholder: "pg/ml" } %></td>
                                   <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :fsh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
                                   <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :lh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
@@ -908,7 +908,7 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td class="hormon-column"><%= day_of_haibanhoishoku.select :day, Report.make_select_day_of_haibanhoishoku, { prompt: "まず選択" }, { class: "form-control text-muted" } %></td>
+                                  <td class="hormon-column"><%= day_of_haibanhoishoku.select :day, Report.make_select_day_of_haibanhoishoku, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
                                   <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :e2, { step: "0.01", class: "form-control", placeholder: "pg/ml" } %></td>
                                   <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :fsh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
                                   <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :lh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
