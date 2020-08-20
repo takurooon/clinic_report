@@ -2526,7 +2526,7 @@
                         <span class="text-muted small">未回答</span>
                       <% end %>
                       <% if @report.how_long_to_continue_treatment2.present? && @report.how_long_to_continue_treatment2 < 7 %>
-                        <span class="small">(期限:&nbsp;<%= @report.str_how_long_to_continue_treatment2 %>)</span>
+                        <span class="small">(&nbsp;<%= @report.str_how_long_to_continue_treatment2 %><span class="small text-muted">くらい</span>&nbsp;)</span>
                       <% end %>
                       <br><br>
                       <% if @report.how_long_to_continue_treatment_memo.present? %>
