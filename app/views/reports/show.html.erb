@@ -3176,7 +3176,7 @@
                                   <small><span class="small"><%= @report.str_free_wifi %></span></small><br>
                                 <% end %>
                                 <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
-                                  <small><span class="small">待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small>
+                                  <small><span class="small">待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small><br>
                                 <% end %>
                                 <% if @report.credit_card_validity.present? %>
                                   <small><span class="small">･&nbsp;クレジットカード:&nbsp;<%= @report.str_credit_card_validity %></span></small>
