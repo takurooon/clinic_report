@@ -2800,7 +2800,7 @@
                             <% if @report.other_efforts.present? %>
                               <% @report.other_efforts.each do |other_effort| %>
                                 <ul class="list-unstyled mb-0">
-                                  <li class="result-text">･<%= other_effort.name %></li>
+                                  <li class="result-text small">･<%= other_effort.name %></li>
                                 </ul>
                               <% end %>
                             <% else %>
@@ -2874,7 +2874,7 @@
                             <% if @report.m_other_efforts.present? %>
                               <% @report.m_other_efforts.each do |m_other_effort| %>
                                 <ul class="list-unstyled mb-0">
-                                  <li class="result-text">･<%= m_other_effort.name %></li>
+                                  <li class="result-text small">･<%= m_other_effort.name %></li>
                                 </ul>
                               <% end %>
                             <% else %>

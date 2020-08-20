@@ -175,62 +175,56 @@
       <tr>
         <td class="result-left-column small text-center">基本検査<br><span class="text-muted small">(女性)</span></td>
         <td class="pl-3">
+          <small class="mb-3"><span class="small">【<%= @report.clinic.name %>で受けた基本検査】</span></small><br>
           <% if @report.cl_female_inspections.present? %>
             <% @report.cl_female_inspections.each do |cl_female_inspection| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= cl_female_inspection.name %></li>
+                <li class="result-text small">&nbsp;&nbsp;･<%= cl_female_inspection.name %></li>
               </ul>
             <% end %>
           <% else %>
-            <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
+            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
           <% end %><br>
           <% if @report.cl_female_inspection_memo.present? %>
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cl_female_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center text-center">基本検査<br><span class="text-muted small">(男性)</span></td>
-        <td class="pl-3">
-          <% if @report.cl_male_inspections.present? %>
-            <% @report.cl_male_inspections.each do |cl_male_inspection| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= cl_male_inspection.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-            <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
-          <% end %><br>
-          <% if @report.cl_male_inspection_memo.present? %>
-            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cl_male_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center">基本検査<br><span class="text-muted small">(女性)</span></td>
-        <td class="pl-3">
+          <% end %><br><br>
+          <small class="mb-3"><span class="small">【<%= @report.clinic.name %><span class="font-weight-bold">&nbsp;<u>以外で受けた</u>&nbsp;</span>基本検査】</span></small><br>
           <% if @report.inspections.present? %>
             <% @report.inspections.each do |inspection| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= inspection.name %></li>
+                <li class="result-text small">&nbsp;&nbsp;･<%= inspection.name %></li>
               </ul>
             <% end %>
           <% else %>
-            <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
+            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
           <% end %>
         </td>
       </tr>
       <tr>
         <td class="result-left-column small text-center text-center">基本検査<br><span class="text-muted small">(男性)</span></td>
         <td class="pl-3">
-          <% if @report.male_inspections.present? %>
-            <% @report.male_inspections.each do |male_inspection| %>
+          <small class="mb-3"><span class="small">【<%= @report.clinic.name %>で受けた基本検査】</span></small><br>
+          <% if @report.cl_male_inspections.present? %>
+            <% @report.cl_male_inspections.each do |cl_male_inspection| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= male_inspection.name %></li>
+                <li class="result-text small">&nbsp;&nbsp;･<%= cl_male_inspection.name %></li>
               </ul>
             <% end %>
           <% else %>
-            <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
+            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
+          <% end %><br>
+          <% if @report.cl_male_inspection_memo.present? %>
+            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cl_male_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
+          <% end %><br><br>
+          <small class="mb-3"><span class="small">【<%= @report.clinic.name %><span class="font-weight-bold">&nbsp;<u>以外で受けた</u>&nbsp;</span>基本検査】</span></small><br>
+          <% if @report.male_inspections.present? %>
+            <% @report.male_inspections.each do |male_inspection| %>
+              <ul class="list-unstyled mb-0">
+                <li class="result-text small">&nbsp;&nbsp;･<%= male_inspection.name %></li>
+              </ul>
+            <% end %>
+          <% else %>
+            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
           <% end %>
         </td>
       </tr>
@@ -1291,7 +1285,7 @@
               <span class="result-text"><%= @report.str_early_embryo_grade %></span>
             <% else %>
               <span class="text-muted small">未回答</span>
-            <% end %><br>
+            <% end %><br><br>
             <% if @report.early_embryo_grade_supplementary_explanation.present? %>
               <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.early_embryo_grade_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
             <% end %>
@@ -1305,7 +1299,7 @@
               <span class="result-text"><%= @report.str_blastocyst_grade1 %></span>
             <% else %>
               <span class="text-muted small">未回答</span>
-            <% end %><br>
+            <% end %><br><br>
             <% if @report.blastocyst_grade1_supplementary_explanation.present? %>
               <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.blastocyst_grade1_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
             <% end %>
@@ -1318,7 +1312,7 @@
               <span class="result-text"><%= @report.str_blastocyst_grade2 %></span>
             <% else %>
               <span class="text-muted small">未回答</span>
-            <% end %><br>
+            <% end %><br><br>
             <% if @report.blastocyst_grade2_supplementary_explanation.present? %>
               <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.blastocyst_grade2_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
             <% end %>
@@ -2048,7 +2042,7 @@
             <span class="result-text"><%= @report.str_sairan_cost %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
-          <% end %><br>
+          <% end %><br><br>
           <% if @report.sairan_cost_explanation.present? %>
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.sairan_cost_explanation.split("\n"),tag(:br)))).html_safe %></span>
           <% end %>
@@ -2061,7 +2055,7 @@
             <span class="result-text"><%= @report.str_ishoku_cost %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
-          <% end %><br>
+          <% end %><br><br>
           <% if @report.ishoku_cost_explanation.present? %>
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.ishoku_cost_explanation.split("\n"),tag(:br)))).html_safe %></span>
           <% end %>
@@ -2409,8 +2403,8 @@
         <td class="pl-3">
           <% if @report.fuiku_inspections.present? %>
             <% @report.fuiku_inspections.each do |fuiku_inspection| %>
-              <ul class="list-unstyled">
-                <li class="result-text small"><%= fuiku_inspection.name %></li>
+              <ul class="list-unstyled mb-0">
+                <li class="result-text small">･<%= fuiku_inspection.name %></li>
               </ul>
             <% end %>
           <% else %>
@@ -2432,7 +2426,7 @@
           <% if @report.m_diseases.present? %>
             <% @report.m_diseases.each do |m_disease| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text small"><%= m_disease.name %></li>
+                <li class="result-text small">･<%= m_disease.name %></li>
               </ul>
             <% end %>
           <% else %>
@@ -2460,7 +2454,7 @@
           <% if @report.supplements.present? %>
             <% @report.supplements.each do |supplement| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= supplement.name %></li>
+                <li class="result-text small">&nbsp;&nbsp;･<%= supplement.name %></li>
               </ul>
             <% end %>
           <% else %>
@@ -2470,7 +2464,7 @@
           <% if @report.m_supplements.present? %>
             <% @report.m_supplements.each do |m_supplement| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= m_supplement.name %></li>
+                <li class="result-text small">&nbsp;&nbsp;･<%= m_supplement.name %></li>
               </ul>
             <% end %>
           <% else %>
@@ -2513,7 +2507,7 @@
           <% if @report.other_efforts.present? %>
             <% @report.other_efforts.each do |other_effort| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text">･<%= other_effort.name %></li>
+                <li class="result-text small">&nbsp;&nbsp;･<%= other_effort.name %></li>
               </ul>
             <% end %>
           <% else %>
@@ -2523,7 +2517,7 @@
           <% if @report.m_other_efforts.present? %>
             <% @report.m_other_efforts.each do |m_other_effort| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text">･<%= m_other_effort.name %></li>
+                <li class="result-text small">&nbsp;&nbsp;･<%= m_other_effort.name %></li>
               </ul>
             <% end %>
           <% else %>
@@ -2619,7 +2613,7 @@
             <span class="result-text"><%= @report.str_reservation_method %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
-          <% end %><br>
+          <% end %><br><br>
           <% if @report.reservation_method_memo.present? %>
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.reservation_method_memo.split("\n"),tag(:br)))).html_safe %></span>
           <% end %>
@@ -2659,7 +2653,7 @@
             <span class="result-text"><%= @report.str_online_consultation %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
-          <% end %><br>
+          <% end %><br><br>
           <% if @report.online_consultation_details.present? %>
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.online_consultation_details.split("\n"),tag(:br)))).html_safe %></span>
           <% end %>
