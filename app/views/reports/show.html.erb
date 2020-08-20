@@ -175,7 +175,7 @@
                       </div>
                       <div class="col-12 px-0 pt-4">
                         <% if @report.year_of_treatment_end.present? %>
-                          <div class="text-center"><%= @report.year_of_treatment_end.year %>年<br><span class="small">治療終了</span></div>
+                          <div class="text-center"><%= @report.year_of_treatment_end.year %>年<br><span class="small">CL卒業</span></div>
                         <% end %>
                       </div>
                     </div>
@@ -192,7 +192,7 @@
                       </div>
                       <div class="col-12 px-0 pt-4">
                         <% if @report.year_of_treatment_end.present? %>
-                          <div class="text-center"><%= @report.year_of_treatment_end.year %>年&nbsp;治療終了</div>
+                          <div class="text-center"><%= @report.year_of_treatment_end.year %>年&nbsp;CL卒業</div>
                         <% end %>
                       </div>
                     </div>
@@ -2361,7 +2361,7 @@
               <section class="child-tab-content active" id="tab_2_1">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">基本情報</h4>
-                <p class="small mb-0 pb-0"><span class="small text-muted">※<%= @report.clinic.name %>&nbsp;での治療時点の情報</span></p>
+                <p class="small mb-0 pb-0"><span class="small text-muted">※&nbsp;<%= @report.clinic.name %>&nbsp;での治療当時の情報</span></p>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">性別</td>
@@ -2436,7 +2436,7 @@
                   </tr>
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">仕事</span></h5>
-                <p class="small mb-0 pb-0"><span class="small text-muted">※<%= @report.clinic.name %>&nbsp;での治療時点の情報</span></p>
+                <p class="small mb-0 pb-0"><span class="small text-muted">※&nbsp;<%= @report.clinic.name %>&nbsp;での治療当時の情報</span></p>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">働き方&nbsp;<sup class="text-success">●</sup></td>
