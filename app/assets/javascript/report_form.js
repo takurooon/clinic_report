@@ -67,7 +67,7 @@ $(function() {
 // ステータスを選択した時点でform内のテキストに表示させる
 $(function() {
   var current_state = $('#report_current_state option:selected').text();
-  var status = current_state + "に至った卵子と精子";
+  var status = "「" + current_state + "」" + "に至った卵子と精子";
   if (current_state === "選択") {
     $('.select-current-status').text("妊娠or出産に至った卵子と精子");
   } else {
@@ -77,7 +77,7 @@ $(function() {
 $(function() {
   $('#report_current_state').change(function() {
     var current_state = $('#report_current_state option:selected').text();
-    var status = current_state + "に至った卵子と精子";
+    var status = "「" + current_state + "」" + "に至った卵子と精子";
     $('.select-current-status').text(status);
   });
 });

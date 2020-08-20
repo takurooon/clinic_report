@@ -450,7 +450,8 @@ i .fa-edit {
 // 一覧画面の記事「続きを読む」
 .lead-content {
 	// background-color: rgb(196,244,244);
-	background-color: rgba(151, 251, 243, 0.8);
+	// background-color: rgba(151, 251, 243, 0.8);
+	background-color:rgb(172,252,245);
 	border-radius: 5px;
 }
 
@@ -668,7 +669,8 @@ i .fa-edit {
 
 	.parent-menu li a.active {
 		// background: rgb(196,244,244);
-		background-color: rgba(151, 251, 243, 0.8);
+		// background-color:rgba(151, 251, 243, 0.8);
+		background-color:rgb(172,252,245);
 		color: #333;
 		font-size: 16px;
 		font-weight: bold;
@@ -699,7 +701,8 @@ i .fa-edit {
 
 	.parent-tab-content.active {
 		// background: rgb(196,244,244);
-		background-color: rgba(151, 251, 243, 0.8);
+		// background-color: rgba(151, 251, 243, 0.8);
+		background-color:rgb(172,252,245);
 		color: #333;
 		min-height: 150px;
 		padding: 2em 12px 12px;

@@ -3150,7 +3150,7 @@
                               <% end %>
                             </td>
                           </tr>
-                          <% if (@report.free_wifi.present? && @report.free_wifi <= 3) || (@report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3) %>
+                          <% if (@report.free_wifi.present? && @report.free_wifi <= 3) || (@report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3) || @report.credit_card_validity.present? || (@report.credit_card_validity == 3 && @report.creditcards_can_be_used_from_more_than.present?) %>
                             <tr>
                               <td class="text-center small text-muted">
                                 <span class="small">備考</span>&nbsp;:
@@ -3161,6 +3161,14 @@
                                 <% end %>
                                 <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
                                   <small><span class="small">待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small>
+                                <% end %>
+                                <% if @report.credit_card_validity.present? %>
+                                  <small><span class="small">･&nbsp;クレジットカード:&nbsp;<%= @report.str_credit_card_validity %></span></small>
+                                <% end %>
+                                <% if @report.credit_card_validity == 3 %>
+                                  <% if @report.creditcards_can_be_used_from_more_than.present? %>
+                                    <small><span class="text-muted small">(<%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から利用可能)</span></small>
+                                  <% end %>
                                 <% end %>
                               </td>
                             </tr>
@@ -3241,7 +3249,7 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if (@report.free_wifi.present? && @report.free_wifi <= 3) || (@report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3) %>
+                        <% if (@report.free_wifi.present? && @report.free_wifi <= 3) || (@report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3) || @report.credit_card_validity.present? || (@report.credit_card_validity == 3 && @report.creditcards_can_be_used_from_more_than.present?) %>
                           <tr>
                             <td class="result-left-column small text-center ichirantable-left">備考</td>
                             <td class="pl-3 ichirantable-right">
@@ -3250,6 +3258,14 @@
                               <% end %>
                               <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
                                 <small><span class="small">･&nbsp;待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small>
+                              <% end %>
+                              <% if @report.credit_card_validity.present? %>
+                                <small><span class="small">･&nbsp;クレジットカード:&nbsp;<%= @report.str_credit_card_validity %></span></small>
+                              <% end %>
+                              <% if @report.credit_card_validity == 3 %>
+                                <% if @report.creditcards_can_be_used_from_more_than.present? %>
+                                  <small><span class="text-muted small">(<%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から利用可能)</span></small>
+                                <% end %>
                               <% end %>
                             </td>
                           </tr>
@@ -3263,6 +3279,7 @@
                         <div class="small pt-3"><%= text_url_to_link(h(safe_join(@report.clinic_review.split("\n"),tag(:br)))).html_safe %></div>
                       </div>
                     <% end %>
+                    <small class="px-2 my-3"><span class="small text-muted">※&nbsp;<%= @report.user.name %> さんの治療当時の情報です。最新情報は直接クリニックに確認して下さい。</span></small>
                   </div>
                 </div>
               </section>
