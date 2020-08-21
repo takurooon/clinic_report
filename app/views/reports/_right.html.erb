@@ -42,6 +42,8 @@
         <div class="sidebar_promote_card_body">
           <%= link_to new_user_registration_path, { title: "ユーザー登録をする", style: "text-decoration: none;" } do %>
             <button class="green_btn">新規登録</button>
+          <% end %>
+          <%= link_to new_user_session_path, { title: "ログイン", style: "text-decoration: none;" } do %>
             <button class="outline_green_btn mt-3">登録済みの方はこちら</button>
           <% end %>
         </div>

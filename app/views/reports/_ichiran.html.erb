@@ -770,9 +770,9 @@
       <% end %>
       <% if @report.special_inspection_memo.present? %>
         <tr>
-          <td class="result-left-column small text-center ichirantable-left">特殊検査メモ</td>
+          <td class="result-left-column small text-center ichirantable-left">特殊検査の詳しい説明</td>
           <td class="pl-3 ichirantable-right">
-            <%= @report.special_inspection_memo %>
+            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.special_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
           </td>
         </tr>
       <% end %>
@@ -943,7 +943,7 @@
               <span class="result-text"><%= @report.str_type_of_sairan_cycle %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
-          <% end %><br>
+          <% end %><br><br>
           <% if @report.notes_on_type_of_sairan_cycle.present? %>
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.notes_on_type_of_sairan_cycle.split("\n"),tag(:br)))).html_safe %></span>
           <% end %>
@@ -2062,17 +2062,17 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">費用拠出者</td>
+        <td class="result-left-column small text-center">費用の負担</td>
         <td class="pl-3">
           <% if @report.cost_burdens.present? %>
             <% @report.cost_burdens.each do |cost_burden| %>
-              <ul class="list-unstyled">
-                <li class="result-text small"><%= cost_burden.name %></li>
+              <ul class="list-unstyled mb-0">
+                <li class="result-text small">･<%= cost_burden.name %></li>
               </ul>
             <% end %>
           <% else %>
               <span class="text-muted small">未回答</span>
-          <% end %>
+          <% end %><br><br>
           <% if @report.cost_burden_memo.present? %>
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cost_burden_memo.split("\n"),tag(:br)))).html_safe %></span>
           <% end %>
@@ -2225,7 +2225,7 @@
       </tr>
       <% if @report.about_work_and_working_style.present? %>
         <tr>
-          <td class="result-left-column small text-center">メモ</td>
+          <td class="result-left-column small text-center">仕事と治療について</td>
           <td class="pl-3">
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)))).html_safe %></span>
           </td>
@@ -2280,8 +2280,8 @@
         <td class="pl-3">
           <% if @report.cl_selections.present? %>
             <% @report.cl_selections.each do |cl_selection| %>
-              <ul class="list-unstyled">
-                <li class="result-text small"><%= cl_selection.name %></li>
+              <ul class="list-unstyled mb-0">
+                <li class="result-text small">･<%= cl_selection.name %></li>
               </ul>
             <% end %>
           <% else %>
@@ -2473,7 +2473,7 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">サプリ等平均購入額</td>
+        <td class="result-left-column small text-center">サプリ等月額平均購入額</td>
         <td class="pl-3">
           <span class="small text-muted">女性:</span>&nbsp;
           <% if @report.f_supplement_cost.present? %>
