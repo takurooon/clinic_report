@@ -1417,9 +1417,9 @@
                   <% if unsuccessful_sairan_cycle.memo.present? %>
                     <tr>
                       <td class="result-left-column small text-center">採卵メモ</td>
-                      <td class="pl-3">
+                      <td class="pl-3 d-flex align-items-start" style="white-space: pre-wrap;">
                         <% if unsuccessful_sairan_cycle.memo.present? %>
-                          <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(unsuccessful_sairan_cycle.memo.split("\n"),tag(:br)))).html_safe %></span>
+                          <p class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(unsuccessful_sairan_cycle.memo.split("\n"),tag(:br)))).html_safe %></p>
                         <% end %>
                       </td>
                     </tr>
@@ -2020,7 +2020,7 @@
                   <% if unsuccessful_ishoku_cycle.memo.present? %>
                     <tr>
                       <td class="result-left-column small text-center">移植メモ</td>
-                      <td class="pl-3">
+                      <td class="pl-3 d-flex align-items-start" style="white-space: pre-wrap;">
                         <% if unsuccessful_ishoku_cycle.memo.present? %>
                           <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(unsuccessful_ishoku_cycle.memo.split("\n"),tag(:br)))).html_safe %></span>
                         <% end %>
