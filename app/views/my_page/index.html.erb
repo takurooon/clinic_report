@@ -488,9 +488,9 @@
                   <td class="profile-item-l small text-center">アイコン</td>
                   <td class="profile-item-r">
                     <% if @user.icon.blank? %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <small><%= link_to "編集", edit_user_registration_path %></small>
+                      <small><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% end %>
                   </td>
                 </tr>
@@ -498,9 +498,9 @@
                   <td class="small text-center">生年月</td>
                   <td>
                     <% if @user.birthday.blank? %>
-                      <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -508,9 +508,9 @@
                   <td class="small text-center">リンク</td>
                   <td>
                     <% if @user.link.blank? %>
-                    <span>未設定</span>&nbsp;&nbsp;<small class="text-muted"><span class="small">(ブログやSNS)</span></small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                    <span>未設定</span>&nbsp;&nbsp;<small class="text-muted"><span class="small">(ブログやSNS)</span></small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -518,10 +518,10 @@
                   <td class="small text-center">プロフ</td>
                   <td>
                     <% if @user.self_introduction.blank? %>
-                      <i data-feather="chevron-right" class="feather-icon-style2"></i><strong><%= link_to "ぜひ詳しい情報を載せましょう！", edit_user_registration_path %></strong>
+                      <i data-feather="chevron-right" class="feather-icon-style2"></i><strong><%= link_to "ぜひ詳しい情報を載せましょう！", edit_user_registration_path, { style: "color:#009688;"} %></strong>
                     <% else %>
                       <div class="p-0 mb-4"><%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %></div>
-                      <small class="text-muted"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i><span class="small"><%= link_to "もっと詳細情報を載せる", edit_user_registration_path %></span></small>
+                      <small class="text-muted"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i><span class="small"><%= link_to "もっと詳細情報を載せる", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -538,9 +538,9 @@
                   <td class="profile-item-l small text-center" style="width:35%">妊活開始</td>
                   <td class="profile-item-r" style="width:65%">
                     <% if @user.first_age_to_start.blank? %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_first_age_to_start(@user.first_age_to_start) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.str_first_age_to_start(@user.first_age_to_start) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -548,9 +548,9 @@
                   <td class="profile-item-l small text-center">治療開始</td>
                   <td class="profile-item-r">
                     <% if @user.first_age_to_start_art.blank? %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -558,9 +558,9 @@
                   <td class="profile-item-l small text-center">人工授精</td>
                   <td class="profile-item-r">
                     <% if @user.number_of_aih.blank? %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_number_of_aih(@user.number_of_aih) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.str_number_of_aih(@user.number_of_aih) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -568,9 +568,9 @@
                   <td class="profile-item-l small text-center">採卵回数</td>
                   <td class="profile-item-r">
                     <% if @user.all_number_of_sairan.blank? %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -578,9 +578,9 @@
                   <td class="profile-item-l small text-center">移植回数</td>
                   <td class="profile-item-r">
                     <% if @user.all_number_of_transplants.blank? %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -588,9 +588,9 @@
                   <td class="profile-item-l small text-center">費用総額</td>
                   <td class="profile-item-r">
                   <% if @user.all_cost.blank? %>
-                    <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                    <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                   <% else %>
-                    <%= @user.str_all_cost(@user.all_cost) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                    <%= @user.str_all_cost(@user.all_cost) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                   <% end %>
                   </td>
                 </tr>
@@ -598,9 +598,9 @@
                   <td class="profile-item-l small text-center">初期流産</td>
                   <td class="profile-item-r">
                     <% if @user.number_of_early_miscarriages.blank? %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -608,9 +608,9 @@
                   <td class="profile-item-l small text-center">後期流産</td>
                   <td class="profile-item-r">
                     <% if @user.number_of_late_miscarriages.blank? %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -618,9 +618,9 @@
                   <td class="profile-item-l small text-center">助成金受給回数</td>
                   <td class="profile-item-r">
                     <% if @user.number_of_times_the_grant_was_received.blank? %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                      <%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -628,9 +628,9 @@
                   <td class="profile-item-l small text-center">お酒</td>
                   <td class="profile-item-r">
                   <% if @user.drink.blank? %>
-                    <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                    <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                   <% else %>
-                    <%= @user.str_drink(@user.drink) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                    <%= @user.str_drink(@user.drink) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                   <% end %>
                   </td>
                 </tr>
@@ -646,30 +646,30 @@
                 <tr>
                   <td class="profile-item-l small text-center" style="width:35%">ユーザー名</td>
                   <td class="profile-item-r" style="width:65%">
-                    <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                    <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                   </td>
                 <tr>
                 <tr>
                   <td class="profile-item-l small text-center">メールアドレス</td>
                   <td class="profile-item-r">
-                    <%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path %></span></small>
+                    <%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                   </td>
                 <tr>
                 <tr>
                   <td class="profile-item-l small text-center">パスワード</td>
                   <td class="profile-item-r">
-                    <%= link_to "編集", edit_user_registration_path %></span></small>
+                    ●●●●●●&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                   </td>
                 <tr>
                 <tr>
                   <td class="profile-item-l small text-center">性別</td>
                   <td class="profile-item-r">
                     <% if @user.gender === "female" %>
-                      女性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path %></span></small>
+                      女性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% elsif @user.gender === "male" %>
-                      男性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path %></span></small>
+                      男性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% else %>
-                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path %></small>
+                      <span>未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% end %>
                   </td>
                 <tr>

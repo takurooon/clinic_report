@@ -295,6 +295,7 @@ class User < ApplicationRecord
   # 助成金
   HASH_JOSEIKIN = {
     100 => "不明",
+    0 => "受給したことはない",
     1 => "〜5万円未満",
     2 => "〜10万円未満",
     3 => "〜15万円未満",
@@ -324,13 +325,13 @@ class User < ApplicationRecord
 
   # 助成金受給回数
   HASH_JOSEIKIN_COUNT = {
-    1 => "0回",
-    2 => "1回",
-    3 => "2回",
-    4 => "3回",
-    5 => "4回",
-    6 => "5回",
-    7 => "6回",
+    0 => "0回",
+    1 => "1回",
+    2 => "2回",
+    3 => "3回",
+    4 => "4回",
+    5 => "5回",
+    6 => "6回",
     99 => "その他",
     100 => "不明"
   }
@@ -345,8 +346,12 @@ class User < ApplicationRecord
     2 => "1回",
     3 => "2回",
     4 => "3回以上",
-    100 => "無回答",
+    0 => "無回答",
   }
+
+  def str_number_of_chemical_abortions(chemical)
+    return HASH_RYUZAN_COUNT[chemical]
+  end
 
   def str_number_of_early_miscarriages(early)
     return HASH_RYUZAN_COUNT[early]
@@ -397,6 +402,7 @@ end
 #  link                                   :string
 #  name                                   :string
 #  number_of_aih                          :integer
+#  number_of_chemical_abortions           :integer
 #  number_of_early_miscarriages           :integer
 #  number_of_late_miscarriages            :integer
 #  number_of_times_the_grant_was_received :integer

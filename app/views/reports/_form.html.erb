@@ -1041,7 +1041,7 @@
                       </div>
                     <% end %>
                     <p class="sub-question">費用負担の補足説明</p>
-                    <%= f.text_area :cost_burden_memmo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例" %>
+                    <%= f.text_area :cost_burden_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例" %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での費用分担</span></small>
                   </div>
 
@@ -1457,7 +1457,7 @@
         <% else %>
           <div class="report-post-btn-area">
             <div class="report-post-btn-area-inner">
-              <%= f.submit '更新', class: "report-post-btn-area-btn", data: { confirm: "\n【注意!!!】 (最初にある赤枠で囲われた) 必須項目の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから更新して下さい!" } %>
+              <%= f.submit '更新', class: "report-post-btn-area-btn", data: { confirm: "\n【注意!!!】1.概要→必須タブ内の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから投稿して下さい!" } %>
               <% if false %>
               <% if @report.released? %>
                 <%= link_to nonrelease_report_path(@report), method: :patch, data: { confirm: '非公開にして良いですか？'} do %>

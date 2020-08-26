@@ -540,6 +540,7 @@ class ReportsController < ApplicationController
         supplement_ids: [],
         m_supplement_ids: [],
         cl_selection_ids: [],
+        cost_burden_ids: [],
         day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
         day_of_shokihaiishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
         day_of_haibanhoishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
@@ -550,7 +551,7 @@ class ReportsController < ApplicationController
         itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy],
         special_inspections_attributes: [:id, :name, :place, :cost, :timing, :explanation, :_destroy],
         unsuccessful_sairan_cycles_attributes: [:id, :number, :sairan_age, :type_of_ovarian_stimulation, :number_of_eggs_collected, :number_of_fertilized_eggs,:number_of_transferable_embryos, :number_of_frozen_eggs, :memo, :_destroy],
-        unsuccessful_ishoku_cycles_attributes: [:id, :number, :ishoku_age, :transplant_method, :memo, :_destroy],
+        unsuccessful_ishoku_cycles_attributes: [:id, :number, :ishoku_age, :transplant_method, :ishoku_type, :memo, :_destroy],
       )
     end
 end

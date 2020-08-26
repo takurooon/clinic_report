@@ -736,6 +736,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.integer "first_age_to_start"
     t.integer "first_age_to_start_art"
     t.integer "number_of_aih"
+    t.integer "number_of_chemical_abortions"
     t.integer "number_of_early_miscarriages"
     t.integer "number_of_late_miscarriages"
     t.integer "number_of_times_the_grant_was_received"

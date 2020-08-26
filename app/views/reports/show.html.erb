@@ -246,7 +246,7 @@
                     <td class="result-left-column small text-center" style="width:30%">何人目</td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.fertility_treatment_number.present? %>
-                        <span class="result-text"><%= @report.str_fertility_treatment_number %>治療</span>
+                        <span class="result-text"><%= @report.str_fertility_treatment_number %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %>
@@ -317,7 +317,7 @@
                         <span class="result-text"><%= @report.str_types_of_eggs_and_sperm %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
-                      <% end %><br>
+                      <% end %><br><br>
                       <% if @report.description_of_eggs_and_sperm_used.present? %>
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.description_of_eggs_and_sperm_used.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
@@ -331,7 +331,7 @@
                         <span class="result-text"><%= @report.str_types_of_eggs_and_sperm_status %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
-                      <% end %><br>
+                      <% end %><br><br>
                       <% if @report.description_of_eggs_and_sperm_used_status.present? %>
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.description_of_eggs_and_sperm_used_status.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
@@ -2347,24 +2347,13 @@
                         <% end %>
                       <% else %>
                           <span class="text-muted small">未回答</span>
-                      <% end %><br><br>
+                      <% end %><br>
                       <% if @report.cost_burden_memo.present? %>
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cost_burden_memo.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
                 </table>
-                <% if @report.user.all_cost.present? %>
-                  <p class="child-tab-title mt-5 mb-0 pb-0"><span class="marker-underline"><%= @report.clinic.name %>以外の費用も含んだ</span></p><h5 class="child-tab-title mt-0"><span class="marker-underline">費用総額</span></h5>
-                  <table class="table table-hover p-0">
-                    <tr>
-                      <td class="result-left-column small text-center" style="width:30%">治療費総額</td>
-                      <td class="pl-3" style="width:70%">
-                        <span class="result-text"><%= @report.user.str_all_cost_report %></span>
-                      </td>
-                    </tr>
-                  </table>
-                <% end %>
               </section>
             </div>
           </section>
@@ -2616,15 +2605,18 @@
                       <% if @report.user.number_of_aih.present? %>
                         <span class="result-text"><%= @report.user.number_of_aih %>回</span>
                       <% else %>
-                        <span class="text-muted small">未回答</span>
+                        <span class="text-muted small">未回答
+                          <% if current_user %>
+                            &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
+                          <% end %>
+                        </span>
                       <% end %>
                     </td>
                   </tr>
                 </table>
-                <small class="text-muted"><span class="small">&nbsp;&nbsp;※&nbsp;高度不妊治療ステップアップ前の実施回数。<%= @report.clinic.name %>以前の実施を含みます。</span></small>
-                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">これまで受けた手術歴</span></h5>
-                <p class="small mb-0 pb-0 text-left"><span class="small text-muted">※<%= @report.clinic.name %>&nbsp;以外で受けた検査･手術を含みます。</span></p>
-                <table class="table table-hover p-0">
+                <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での実施に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までに実施した回数。</span></p>
+                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">手術歴</span></h5>
+                <table class="table table-hover p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">手術歴<br><span class="text-muted small">(女性)</span></td>
                     <td class="pl-3" style="width:70%">
@@ -2660,6 +2652,123 @@
                     </td>
                   </tr>
                 </table>
+                <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での手術に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの手術歴。</span></p>
+                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">全採卵回数</span></h5>
+                <table class="table table-hover p-0 mb-0">
+                  <tr>
+                    <td class="result-left-column small text-center" style="width:30%">回数</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.user.all_number_of_sairan.present? %>
+                        <span class="result-text"><%= @report.user.str_all_number_of_sairan(@report.user.all_number_of_sairan) %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答
+                          <% if current_user %>
+                            &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
+                          <% end %>
+                        </span>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での採卵に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの全採卵回数。</span></p>
+                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">全移植回数</span></h5>
+                <table class="table table-hover p-0 mb-0">
+                  <tr>
+                    <td class="result-left-column small text-center" style="width:30%">回数</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.user.all_number_of_transplants.present? %>
+                        <span class="result-text"><%= @report.user.str_all_number_of_transplants(@report.user.all_number_of_transplants) %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答
+                          <% if current_user %>
+                            &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
+                          <% end %>
+                        </span>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での移植に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの全移植回数。</span></p>
+                <% if (@report.user.number_of_chemical_abortions.present? && @report.user.number_of_chemical_abortions > 1) || (@report.user.number_of_early_miscarriages.present? && @report.user.number_of_early_miscarriages > 1) || (@report.user.number_of_late_miscarriages.present? && @report.user.number_of_late_miscarriages > 1) %>
+                  <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">流産経験</span></h5>
+                  <table class="table table-hover p-0 mb-0">
+                    <% if @report.user.number_of_chemical_abortions.present? && @report.user.number_of_chemical_abortions > 1 %>
+                      <tr>
+                        <td class="result-left-column small text-center" style="width:30%">化学流産</td>
+                        <td class="pl-3" style="width:70%">
+                          <span class="result-text"><%= @report.user.str_number_of_chemical_abortions(@report.user.number_of_chemical_abortions) %></span>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @report.user.number_of_early_miscarriages.present? && @report.user.number_of_early_miscarriages > 1 %>
+                      <tr>
+                        <td class="result-left-column small text-center" style="width:30%">初期流産</td>
+                        <td class="pl-3" style="width:70%">
+                          <span class="result-text"><%= @report.user.str_number_of_early_miscarriages(@report.user.number_of_early_miscarriages) %></span>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @report.user.number_of_late_miscarriages.present? && @report.user.number_of_late_miscarriages > 1 %>
+                      <tr>
+                        <td class="result-left-column small text-center" style="width:30%">後期流産</td>
+                        <td class="pl-3" style="width:70%">
+                          <span class="result-text"><%= @report.user.str_number_of_late_miscarriages(@report.user.number_of_late_miscarriages) %></span>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </table>
+                  <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの流産経験。</span></p>
+                <% end %>
+                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">費用総額</span></h5>
+                <table class="table table-hover p-0 mb-0">
+                  <tr>
+                    <td class="result-left-column small text-center" style="width:30%">治療費総額</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.user.all_cost.present? %>
+                        <span class="result-text"><%= @report.user.str_all_cost_report %></span>
+                      <% else %>
+                      <span class="text-muted small">未回答
+                        <% if current_user %>
+                          &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
+                        <% end %>
+                      </span>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での費用に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの治療費用総額。</span></p>
+                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">助成金受給状況</span></h5>
+                <table class="table table-hover p-0 mb-0">
+                  <tr>
+                    <td class="result-left-column small text-center" style="width:30%">受給回数</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.user.number_of_times_the_grant_was_received.present? %>
+                        <span class="result-text"><%= @report.user.str_number_of_times_the_grant_was_received(@report.user.number_of_times_the_grant_was_received) %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答
+                          <% if current_user %>
+                            &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
+                          <% end %>
+                        </span>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="result-left-column small text-center" style="width:30%">受給総額</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.user.all_grant_amount.present? %>
+                        <span class="result-text"><%= @report.user.str_all_grant_amount(@report.user.all_grant_amount) %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答
+                          <% if current_user %>
+                            &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
+                          <% end %>
+                        </span>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療に限らず、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの受給状況。</span></p>
               </section>
               <section class="child-tab-content" id="tab_2_3">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
@@ -2777,6 +2886,9 @@
                               <% end %>
                             <% else %>
                                 <span class="text-muted small">なし</span>
+                            <% end %><br>
+                            <% if @report.f_supplement_memo.present? %>
+                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_supplement_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>
@@ -2790,14 +2902,6 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if @report.f_supplement_memo.present? %>
-                          <tr>
-                            <td class="result-left-column small text-center">メモ</td>
-                            <td class="pl-3">
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_supplement_memo.split("\n"),tag(:br)))).html_safe %></span>
-                            </td>
-                          </tr>
-                        <% end %>
                       </table>
                       <h5 class="child-tab-title mt-5"><span class="marker-underline">不妊治療以外に行ったこと</span></h5>
                       <table class="table table-hover p-0 mb-0">
@@ -2851,6 +2955,9 @@
                               <% end %>
                             <% else %>
                                 <span class="text-muted small">なし</span>
+                            <% end %><br>
+                            <% if @report.m_supplement_memo.present? %>
+                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_supplement_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>
@@ -2864,14 +2971,6 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if @report.m_supplement_memo.present? %>
-                          <tr>
-                            <td class="result-left-column small text-center">メモ</td>
-                            <td class="pl-3">
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_supplement_memo.split("\n"),tag(:br)))).html_safe %></span>
-                            </td>
-                          </tr>
-                        <% end %>
                       </table>
                       <h5 class="child-tab-title mt-5"><span class="marker-underline">不妊治療以外に行ったこと</span></h5>
                       <table class="table table-hover p-0 mb-0">

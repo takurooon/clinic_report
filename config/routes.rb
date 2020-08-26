@@ -84,6 +84,8 @@ end
 #                       category_search GET    /category/search(.:format)                                                               searches#search
 #                          category_amh GET    /category/amh(.:format)                                                                  searches#all_amh
 #                                       GET    /category/amh/:value(.:format)                                                           searches#amh
+#                       category_status GET    /category/status(.:format)                                                               searches#all_status
+#                                       GET    /category/status/:value(.:format)                                                        searches#status
 #                      category_clinics GET    /category/clinics(.:format)                                                              searches#clinics
 #                 category_clinics_area GET    /category/clinics_area(.:format)                                                         searches#clinics_area
 #                                       GET    /category/clinics/:value(.:format)                                                       searches#clinic

@@ -98,7 +98,7 @@ class UnsuccessfulIshokuCycle < ApplicationRecord
   end
 
   # ishoku_typeの区分値(移植周期のタイプ)
-  HASH_ISHOKU_TYPE = {
+  HASH_UNSUCCESSFUL_ISHOKU_TYPE = {
     1 => "自然周期",
     2 => "ホルモン補充周期",
     99 => "その他",
@@ -106,7 +106,7 @@ class UnsuccessfulIshokuCycle < ApplicationRecord
   }
 
   def str_unsuccessful_ishoku_cycle_ishoku_type(type)
-    return HASH_ISHOKU_TYPE[type]
+    return HASH_UNSUCCESSFUL_ISHOKU_TYPE[type]
   end
 end
 

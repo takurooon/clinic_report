@@ -186,11 +186,20 @@
                     </td>
                   </tr>
                   <tr>
+                    <td class="small text-center px-0">化学流産経験</td>
+                    <td>
+                      <%= f.select :number_of_chemical_abortions, User::HASH_RYUZAN_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
+                      <small class="text-muted">
+                        <span class="small">胎嚢確認前の流産</span>
+                      </small>
+                    </td>
+                  </tr>
+                  <tr>
                     <td class="small text-center px-0">初期流産経験</td>
                     <td>
                       <%= f.select :number_of_early_miscarriages, User::HASH_RYUZAN_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
                       <small class="text-muted">
-                        <span class="small">胎嚢確認後、12w未満の流産</span>
+                        <span class="small">12w未満の流産</span>
                       </small>
                     </td>
                   </tr>

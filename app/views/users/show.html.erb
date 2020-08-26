@@ -179,63 +179,70 @@
               </div>
             </div>
             <div class="py-3 pl-2 pr-4">
-              <div class="row mb-5">
-                <div class="col-sm-5 px-0">
+              <% if @user.first_age_to_start.present? || @user.first_age_to_start_art.present? || @user.number_of_aih.present? || @user.all_number_of_sairan.present? || @user.all_number_of_transplants.present? || @user.all_cost.present? || @user.number_of_chemical_abortions.present? || @user.number_of_early_miscarriages.present? || @user.number_of_late_miscarriages.present? || @user.number_of_times_the_grant_was_received.present? || @user.all_grant_amount.present? || @user.drink.present? %>
+                <div class="row mb-5">
                   <% if @user.first_age_to_start.present? %>
-                    <p class="mb-0 small font-weight-bold font-weight-bold"><span class="small text-muted">妊活開始:</span>&nbsp;<%= @user.str_first_age_to_start(@user.first_age_to_start) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold font-weight-bold"><span class="small text-muted">妊活開始:</span>&nbsp;<%= @user.str_first_age_to_start(@user.first_age_to_start) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-3 px-0">
                   <% if @user.first_age_to_start_art.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">高度治療開始:</span>&nbsp;<%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">高度治療開始:</span>&nbsp;<%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-4 px-0">
                   <% if @user.number_of_aih.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">人工授精:</span>&nbsp;<%= @user.str_number_of_aih(@user.number_of_aih) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">人工授精:</span>&nbsp;<%= @user.str_number_of_aih(@user.number_of_aih) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-5 px-0">
                   <% if @user.all_number_of_sairan.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">全採卵回数:</span>&nbsp;<%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">全採卵回数:</span>&nbsp;<%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-3 px-0">
                   <% if @user.all_number_of_transplants.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">全移植回数:</span>&nbsp;<%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">全移植回数:</span>&nbsp;<%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-4 px-0">
                   <% if @user.all_cost.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-5 px-0">
+                  <% if @user.number_of_chemical_abortions.present? %>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
+                    </div>
+                  <% end %>
                   <% if @user.number_of_early_miscarriages.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-3 px-0">
                   <% if @user.number_of_late_miscarriages.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-4 px-0">
                   <% if @user.number_of_times_the_grant_was_received.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-5 px-0">
                   <% if @user.all_grant_amount.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-sm-3 px-0">
                   <% if @user.drink.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small"><span class="small text-muted">お酒:</span></span>&nbsp;<%= @user.str_drink(@user.drink) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">お酒:</span>&nbsp;<%= @user.str_drink(@user.drink) %></p>
+                    </div>
                   <% end %>
                 </div>
-              </div>
+              <% end %>
               <% if @user.self_introduction.present? %>
                 <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
               <% else %>
@@ -332,63 +339,70 @@
               </div>
             <% end %>
             <div class="py-2 px-4 border rounded mt-0 mb-4 mx-2">
-              <div class="row mb-0">
-                <div class="col-5 px-0">
+              <% if @user.first_age_to_start.present? || @user.first_age_to_start_art.present? || @user.number_of_aih.present? || @user.all_number_of_sairan.present? || @user.all_number_of_transplants.present? || @user.all_cost.present? || @user.number_of_chemical_abortions.present? || @user.number_of_early_miscarriages.present? || @user.number_of_late_miscarriages.present? || @user.number_of_times_the_grant_was_received.present? || @user.all_grant_amount.present? || @user.drink.present? %>
+                <div class="row mb-0">
                   <% if @user.first_age_to_start.present? %>
-                    <p class="mb-0 small font-weight-bold font-weight-bold"><span class="small text-muted">妊活開始:</span>&nbsp;<%= @user.str_first_age_to_start(@user.first_age_to_start) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold font-weight-bold"><span class="small text-muted">妊活開始:</span>&nbsp;<%= @user.str_first_age_to_start(@user.first_age_to_start) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-7 px-0">
                   <% if @user.first_age_to_start_art.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">高度治療開始:</span>&nbsp;<%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">高度治療開始:</span>&nbsp;<%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-5 px-0">
                   <% if @user.number_of_aih.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">人工授精:</span>&nbsp;<%= @user.str_number_of_aih(@user.number_of_aih) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">人工授精:</span>&nbsp;<%= @user.str_number_of_aih(@user.number_of_aih) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-7 px-0">
-                  <% if @user.drink.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small"><span class="small text-muted">お酒:</span></span>&nbsp;<%= @user.str_drink(@user.drink) %></p>
-                  <% end %>
-                </div>
-                <div class="col-5 px-0">
                   <% if @user.all_number_of_sairan.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">全採卵回数:</span>&nbsp;<%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">全採卵回数:</span>&nbsp;<%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-7 px-0">
                   <% if @user.all_number_of_transplants.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">全移植回数:</span>&nbsp;<%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">全移植回数:</span>&nbsp;<%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %></p>
+                    </div>
                   <% end %>
-                </div>
-                <div class="col-5 px-0">
-                  <% if @user.number_of_early_miscarriages.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
-                  <% end %>
-                </div>
-                <div class="col-7 px-0">
-                  <% if @user.number_of_late_miscarriages.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
-                  <% end %>
-                </div>
-                <div class="col-5 px-0">
-                  <% if @user.number_of_times_the_grant_was_received.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
-                  <% end %>
-                </div>
-                <div class="col-7 px-0">
-                  <% if @user.all_grant_amount.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
-                  <% end %>
-                </div>
-                <div class="col-7 px-0">
                   <% if @user.all_cost.present? %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
+                    </div>
+                  <% end %>
+                  <% if @user.number_of_chemical_abortions.present? %>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
+                    </div>
+                  <% end %>
+                  <% if @user.number_of_early_miscarriages.present? %>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
+                    </div>
+                  <% end %>
+                  <% if @user.number_of_late_miscarriages.present? %>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
+                    </div>
+                  <% end %>
+                  <% if @user.number_of_times_the_grant_was_received.present? %>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
+                    </div>
+                  <% end %>
+                  <% if @user.all_grant_amount.present? %>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
+                    </div>
+                  <% end %>
+                  <% if @user.drink.present? %>
+                    <div class="col-sm-4 px-0">
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">お酒:</span>&nbsp;<%= @user.str_drink(@user.drink) %></p>
+                    </div>
                   <% end %>
                 </div>
-              </div>
+              <% end %>
             </div>
             <div class="py-2 px-4">
               <% if @user.self_introduction.present? %>
