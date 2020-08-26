@@ -1,0 +1,34 @@
+<% path = request.path %>
+<% unless path.include?("reports")%>
+  <div class="area_under_mobile_screen mx-0 pl-0 pr-3 my-0 py-0">
+    <div class="newrepoco-circle">
+      <div class="newrepoco-btn" title='レポコを投稿！'>
+        <%= link_to new_report_path, 'data-toggle': :modal, 'data-target': :"#reportPost" do %>
+          <%= images_action_svg("edit.svg") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="modal fade fullscreen" id="reportPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-center mt-5 pt-5">
+        <div>
+          <%= link_to "新規に作成", new_report_path, class: "btn btn-outline-dark" %>
+        </div>
+        <div class="py-4">
+          <p class="m-0">または</p>
+        </div>
+        <div>
+          <%= link_to "更新 ･ 下書き", my_page_path, class: "btn btn-outline-dark" %>
+        </div>
+    </div>
+  </div>
+</div>

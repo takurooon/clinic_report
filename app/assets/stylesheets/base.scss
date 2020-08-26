@@ -293,9 +293,9 @@ h2{
     width: 100%;
 }
 
-// 画面下のSNSボタン・ナビゲーションバー
+// 画面下の投稿やSNSボタン・ナビゲーションバー
 @media screen and (min-width:768px){
-	.sns_area {
+	.area_under_mobile_screen {
     display: none;
   }
   .under-nav-area {
@@ -304,14 +304,14 @@ h2{
 }
 @media screen and (max-width:767px){
   // ストックやSNSの表示エリア(スマホ表示のみ、sns_barからの読み込み)
-  .sns_area {
+  .area_under_mobile_screen {
     position: fixed;
     bottom: 3rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 0);
     z-index: 10000;
   }
-  .sns_area .like-circle {
+  .area_under_mobile_screen .like-circle {
     position: relative;
     margin-left: 60%;
     width: 60px;
@@ -321,7 +321,7 @@ h2{
     border-color: #EA3F60;
     border-radius: 50%;
   }
-  .sns_area .unlike-circle {
+  .area_under_mobile_screen .unlike-circle {
     position: relative;
     margin-left: 60%;
     width: 60px;
@@ -341,14 +341,14 @@ h2{
     top: 30%;
     left: 30%;
   }
-  .sns_area .like-counter {
+  .area_under_mobile_screen .like-counter {
     display: none;
   }
-  .sns_area .like-counter {
+  .area_under_mobile_screen .like-counter {
     display: none;
   }
 
-  .sns_area .twitter-circle {
+  .area_under_mobile_screen .twitter-circle {
     position: relative;
     margin-left: 83%;
     width: 60px;
@@ -360,6 +360,23 @@ h2{
     border-radius: 50%;
   }
   .twitter-circle .twitter-btn {
+    position: absolute;
+    top: 25%;
+    left: 26%;
+  }
+
+  .area_under_mobile_screen .newrepoco-circle {
+    position: relative;
+    margin-left: 83%;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255,255,255,1);
+    // border: solid thin;
+    // border-color: #009688;
+    border-radius: 50%;
+    box-shadow: 0 1px 6px rgba(0,0,0,.4);
+  }
+  .newrepoco-circle .newrepoco-btn {
     position: absolute;
     top: 25%;
     left: 26%;
