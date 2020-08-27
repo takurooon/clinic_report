@@ -2515,7 +2515,7 @@
       <tr>
         <td class="result-left-column small text-center ichirantable-left">疾患</td>
         <td class="pl-3 ichirantable-right">
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span><br>
+          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span><br>
           <% if @report.f_diseases.present? %>
             <% @report.f_diseases.each do |f_disease| %>
               <ul class="list-unstyled mb-0">
@@ -2528,7 +2528,7 @@
           <% if @report.f_disease_memo.present? %>
             <p class="result-text small mb-5"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_disease_memo.split("\n"),tag(:br)))).html_safe %></p>
           <% end %>
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i>&nbsp;&nbsp;</span>&nbsp;<%= @report.str_smoking_male %></span><br>
+          <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span><br>
           <% if @report.m_diseases.present? %>
             <% @report.m_diseases.each do |m_disease| %>
               <ul class="list-unstyled mb-0">
@@ -2588,7 +2588,7 @@
       <tr>
         <td class="result-left-column small text-center ichirantable-left">サプリ</td>
         <td class="pl-3 ichirantable-right">
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span><br>
+          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span><br>
           <% if @report.supplements.present? %>
             <% @report.supplements.each do |supplement| %>
               <ul class="list-unstyled mb-0">
@@ -2601,7 +2601,7 @@
           <% if @report.f_supplement_memo.present? %>
             <p class="result-text small mb-5"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_supplement_memo.split("\n"),tag(:br)))).html_safe %></p>
           <% end %>
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i>&nbsp;&nbsp;</span>&nbsp;<%= @report.str_smoking_male %></span><br>
+          <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span><br>
           <% if @report.m_supplements.present? %>
             <% @report.m_supplements.each do |m_supplement| %>
               <ul class="list-unstyled mb-0">
@@ -2619,13 +2619,13 @@
       <tr>
         <td class="result-left-column small text-center">サプリ等月額平均購入額</td>
         <td class="pl-3">
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
+          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
           <% if @report.f_supplement_cost.present? %>
             <span class="result-text"><%= @report.str_f_supplement_cost %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %><br>
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
+            <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
           <% if @report.m_supplement_cost.present? %>
             <span class="result-text"><%= @report.str_m_supplement_cost %></span>
           <% else %>
@@ -2636,7 +2636,7 @@
       <tr>
         <td class="result-left-column small text-center">治療以外に行ったこと</td>
         <td class="pl-3">
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
+            <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
           <% if @report.other_efforts.present? %>
             <% @report.other_efforts.each do |other_effort| %>
               <ul class="list-unstyled mb-0">
@@ -2646,7 +2646,7 @@
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %><br>
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
+            <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
           <% if @report.m_other_efforts.present? %>
             <% @report.m_other_efforts.each do |m_other_effort| %>
               <ul class="list-unstyled mb-0">
@@ -2661,13 +2661,13 @@
       <tr>
         <td class="result-left-column small text-center">(治療以外)平均月額コスト</td>
         <td class="pl-3">
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
+          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
           <% if @report.f_other_effort_cost.present? %>
               <span class="result-text"><%= @report.str_f_other_effort_cost %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %><br>
-          <span class="result-text"><span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
+            <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
           <% if @report.m_other_effort_cost.present? %>
               <span class="result-text"><%= @report.str_m_other_effort_cost %></span>
           <% else %>
@@ -2679,9 +2679,9 @@
         <tr>
           <td class="result-left-column small text-center">治療以外に行ったことについて</td>
           <td class="pl-3">
-            <span class="result-text"><span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
+            <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
             <p class="result-text small mb-3"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_other_effort_memo.split("\n"),tag(:br)))).html_safe %></p>
-            <span class="result-text"><span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
+            <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
             <p class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_other_effort_memo.split("\n"),tag(:br)))).html_safe %></p>
           </td>
         </tr>
