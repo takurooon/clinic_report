@@ -17,7 +17,7 @@ class SearchesController < ApplicationController
     amh = Report::HASH_AMH_SEARCH
     amh_value = params[:value].to_i
     @selected_amh = amh[amh_value]
-    @reports = Report.where(amh: amh_value, status: 0)
+    @reports = Report.where(amh: amh_value, status: 0).order(created_at: :desc)
     @amh_page = Report.page(params[:page]).per(10)
   end
 
@@ -35,7 +35,7 @@ class SearchesController < ApplicationController
     status = Report::HASH_CURRENT_STATE_SEARCH
     status_value = params[:value].to_i
     @selected_status = status[status_value]
-    @reports = Report.where(current_state: status_value, status: 0)
+    @reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
     @status_page = Report.page(params[:page]).per(10)
   end
 
@@ -50,7 +50,7 @@ class SearchesController < ApplicationController
   def clinic
     @clinics = Clinic.find_by(id: params[:value])
     @reports = Report.where(clinic_id: @clinics.id, status: 0)
-    @clinic_reports = Report.where(activated: true).search(params[:search])
+    @clinic_reports = Report.where(activated: true).search(params[:search]).order(created_at: :desc)
   end
 
   def clinic_prefecture
@@ -58,25 +58,25 @@ class SearchesController < ApplicationController
     # cities = City.where(prefecture_id: @prefecture)
     # clinics = Clinic.where(city_id: cities.ids)
     clinics = Clinic.where(prefecture_id: @prefecture)
-    @reports = Report.where(clinic_id: clinics.ids, status: 0)
+    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
   end
   
   def clinic_city
     @city = City.find_by(name: params[:value])
     clinics = Clinic.where(city_id: @city.id)
-    @reports = Report.where(clinic_id: clinics.ids, status: 0)
+    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
   end
 
   def clinic_prefecture_area
     @prefecture = Prefecture.find_by(name: params[:value])
     clinics = Clinic.where(prefecture_id: @prefecture)
-    @reports = Report.where(clinic_id: clinics.ids, status: 0)
+    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
   end
   
   def clinic_city_area
     @city = City.find_by(name: params[:value])
     clinics = Clinic.where(city_id: @city.id)
-    @reports = Report.where(clinic_id: clinics.ids, status: 0)
+    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
   end
 
   def all_age
@@ -116,7 +116,9 @@ class SearchesController < ApplicationController
       @selected_age = "40〜44歳"
     when 4500
       @selected_age = age_45
-    when 19..59
+    when 19
+      @selected_age = age_value.to_s + "歳以下"
+    when 20..59
       @selected_age = age_value.to_s + "歳"
     when 60
       @selected_age = age_value.to_s + "歳以上"
@@ -128,9 +130,9 @@ class SearchesController < ApplicationController
       i = age_value.scan(/.{2}/)
       a = i[0]
       b = i[1]
-      @reports = Report.where(treatment_end_age: a..b, status: 0)
+      @reports = Report.where(treatment_end_age: a..b, status: 0).order(created_at: :desc)
     else
-      @reports = Report.where(treatment_end_age: age_value, status: 0)
+      @reports = Report.where(treatment_end_age: age_value, status: 0).order(created_at: :desc)
     end
   end
 
@@ -155,18 +157,18 @@ class SearchesController < ApplicationController
   def tag
     if params[:gender] === "女性"
       if params[:tags] === "疾患"
-        @tag = FDisease.find_by(name: params[:value])
+        @tag = FDisease.find_by(name: params[:value]).order(created_at: :desc)
         @reports = @tag.reports
       else params[:tags] === "手術"
-        @tag = FSurgery.find_by(name: params[:value])
+        @tag = FSurgery.find_by(name: params[:value]).order(created_at: :desc)
         @reports = @tag.reports
       end
     else
       if params[:tags] === "疾患"
-        @tag = MDisease.find_by(name: params[:value])
+        @tag = MDisease.find_by(name: params[:value]).order(created_at: :desc)
         @reports = @tag.reports
       else params[:tags] === "手術"
-        @tag = MSurgery.find_by(name: params[:value])
+        @tag = MSurgery.find_by(name: params[:value]).order(created_at: :desc)
         @reports = @tag.reports
       end
     end
@@ -177,13 +179,13 @@ class SearchesController < ApplicationController
 
   def area_prefecture
     @prefecture = Prefecture.find_by(name: params[:value])
-    @reports = Report.where(prefecture_id: @prefecture.id, status: 0, prefecture_at_the_time_status: 0)
+    @reports = Report.where(prefecture_id: @prefecture.id, status: 0, prefecture_at_the_time_status: 0).order(created_at: :desc)
     # @reports = Report.joins(clinic: :prefecture).where(prefectures: {id: @prefecture.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
 
   def area_city
     @city = City.find_by(name: params[:value])
-    @reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0)
+    @reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0).order(created_at: :desc)
     # @reports = Report.joins(clinic: :city).where(cities: {id: @city.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
 end
