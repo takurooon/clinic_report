@@ -14,12 +14,12 @@ class ClinicsController < ApplicationController
 
   def clinics_select
     city = City.find_by(name: params[:city_name])
-    @clinics = Clinic.where(city_id: city.id)
+    @clinics = Clinic.where(city_id: city.id).order(:yomigana)
     render partial: 'address/clinics'
   end
 
   def clinic_select
-    @clinics = Clinic.where(prefecture_id: params[:prefecture_id])
+    @clinics = Clinic.where(prefecture_id: params[:prefecture_id]).order(:yomigana)
     render partial: 'address/clinics'
   end
 

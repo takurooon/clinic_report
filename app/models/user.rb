@@ -54,6 +54,26 @@ class User < ApplicationRecord
     result
   end
 
+  def registration_status1
+    registration_status1 = []
+    registration_status1 = [self.first_age_to_start, self.first_age_to_start_art, self.number_of_aih, self.all_number_of_sairan, self.all_number_of_transplants, self.all_cost, self.number_of_chemical_abortions, self.number_of_early_miscarriages, self.number_of_late_miscarriages, self.number_of_times_the_grant_was_received, self.all_grant_amount, self.drink]
+    if registration_status1.include?(nil)
+      true
+    else
+      false
+    end
+  end
+
+  def registration_status2
+    registration_status2 = []
+    registration_status2 = [self.icon, self.link, self.self_introduction]
+    if registration_status2.include?("")
+      true
+    else
+      false
+    end
+  end
+
   # 回数(0回なし)
   HASH_IVF_COUNT = {
     100 => "不明",
