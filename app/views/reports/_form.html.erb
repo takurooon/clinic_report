@@ -399,7 +399,7 @@
                     <div class="form-group mt-3">
                       <p class="question">卒業までの通院回数</p>
                       <%= f.select :number_of_visits_before_pregnancy_date, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small class="text-muted"><span class="small">移植後、卒業までの(おおよその)通院回数</span></small>
+                      <small class="text-muted"><span class="small">移植後、クリニック卒業(心拍確認 or 胎嚢確認)までの(おおよその)通院回数</span></small>
                       <p class="sub-question">通院回数の補足説明</p>
                       <%= f.text_area :treatment_schedule_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):診察内容やかかった時間など何か情報があればお書きください。" %>
                     </div>
@@ -1202,7 +1202,7 @@
                     </div>
 
                     <div class="mt-5 pt-3">
-                      <p class="question">施設の環境</p>
+                      <p class="question">院内環境</p>
                       <span class="small text-muted">低</span>&nbsp;&nbsp;
                       <label class="radio-inline">
                         <%= f.radio_button :comfort_of_space, 1, onclick: "radioDeselection(this, 1)" %>1
