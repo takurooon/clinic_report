@@ -8,6 +8,8 @@ class Clinic < ApplicationRecord
   def str_clinic
     return self.name
   end
+
+  scope :clinic_name_yomigana, -> { order('yomigana COLLATE "C" ASC') }
 end
 
 # == Schema Information
