@@ -522,6 +522,8 @@ class ReportsController < ApplicationController
         :transfer_option_memo,
         :free_wifi,
         :possible_to_wait_outside_cl,
+        :types_of_fertilization_methods_memo,
+        :details_of_icsi_memo,
         s_selection_method_ids: [],
         inspection_ids: [],
         male_inspection_ids: [],

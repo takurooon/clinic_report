@@ -137,6 +137,8 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :transfer_option_memo
       t.integer :free_wifi
       t.integer :possible_to_wait_outside_cl
+      t.text :types_of_fertilization_methods_memo
+      t.text :details_of_icsi_memo
 
       t.timestamps
     end

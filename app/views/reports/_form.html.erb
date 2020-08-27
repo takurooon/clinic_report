@@ -193,13 +193,13 @@
                     <div class="form-group mt-3">
                       <p class="question">②<span class="select-current-status"></span>卵子と精子</p>
                       <%= f.select :types_of_eggs_and_sperm_status, Report::HASH_TYPES_OF_EGGS_AND_SPERM_STATUS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small class="text-muted"><span class="small">用いた卵子と精子の状態について(受精前の卵子と精子の状態)</span></small>
+                      <small class="text-muted"><span class="small">妊娠に至った卵子と精子の状態について(受精前の卵子と精子の状態)</span></small>
                     </div>
 
                     <div class="form-group mt-3 description_of_eggs_and_sperm_used_status">
                       <p class="question">②<span class="egg_sparm2_default"><span class="select-current-status"></span>についての詳しい説明</span><span class="egg_sparm2_default2"><span class="select-egg-sparm2"></span></span></p>
                       <%= f.text_area :description_of_eggs_and_sperm_used_status, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "詳しい説明" %>
-                      <small class="text-muted"><span class="small">用いた卵子と精子の状態についての詳しい説明</small>
+                      <small class="text-muted"><span class="small">妊娠に至った卵子と精子の状態についての詳しい説明</small>
                     </div>
 
                     <div class="form-group mt-3">
@@ -208,10 +208,22 @@
                       <small class="text-muted"><span class="small">妊娠に至った卵子と精子</span></small>
                     </div>
 
-                    <div class="form-group detail-of-icsi mt-3">
+                    <div class="form-group mt-3 description_of_types_of_fertilization_methods">
+                      <p class="question">受精方法の詳しい説明</p>
+                      <%= f.text_area :types_of_fertilization_methods_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "詳しい説明" %>
+                      <small class="text-muted"><span class="small">妊娠に至った卵子と精子の受精方法「その他」の詳しい説明</small>
+                    </div>
+
+                    <div class="form-group detail_of_icsi mt-3">
                       <p class="question">顕微受精の種類</p>
                       <%= f.select :details_of_icsi, Report::HASH_DETAILS_OF_ICSI.invert, { prompt: "選択" }, { class: "form-control" }  %>
                       <small class="text-muted"><span class="small">妊娠に至った顕微受精の種類</span></small>
+                    </div>
+
+                    <div class="form-group mt-3 description_of_details_of_icsi">
+                      <p class="question">顕微受精の詳しい説明</p>
+                      <%= f.text_area :details_of_icsi_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "詳しい説明" %>
+                      <small class="text-muted"><span class="small">妊娠に至った顕微受精の種類「その他」の詳しい説明</small>
                     </div>
                   </div>
 

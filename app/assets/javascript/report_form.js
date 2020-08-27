@@ -82,6 +82,38 @@ $(function() {
   });
 });
 
+// 治療当時の住まい選択
+$(function() {
+  $('#report_prefecture_id').change(function() {
+    $.ajax('/address_cities_select',
+      {
+        type: 'get',
+        data: { prefecture_id: $(this).val() },
+      }
+    )
+    .done(function(data) {
+      $('#report_city_id').html(data) 
+    })
+    .fail(function() {
+      window.alert('正しい結果を得られませんでした。');
+    });
+  });
+});
+
+// 用いた卵子と精子の説明①
+$(function() {
+  eggsperm($("#report_types_of_eggs_and_sperm option:selected").val());
+  $("#report_types_of_eggs_and_sperm").change(function() {
+    eggsperm($(this).val());
+  });
+})
+function eggsperm(types_of_eggs_and_sperm) {
+  if (types_of_eggs_and_sperm > "1") {
+    $(".description_of_eggs_and_sperm_used").show();
+  } else {
+    $(".description_of_eggs_and_sperm_used").hide();
+  }
+}
 // フォーム内の①卵子と精子の回答によって次項のテキストを変える
 $(function() {
   var egg_sparm1 = $('#report_types_of_eggs_and_sperm option:selected').text();
@@ -110,6 +142,20 @@ $(function() {
   });
 });
 
+// 用いた卵子と精子の説明②
+$(function() {
+  eggsperm2($("#report_types_of_eggs_and_sperm_status option:selected").val());
+  $("#report_types_of_eggs_and_sperm_status").change(function() {
+    eggsperm2($(this).val());
+  });
+})
+function eggsperm2(types_of_eggs_and_sperm_status) {
+  if (types_of_eggs_and_sperm_status > "1") {
+    $(".description_of_eggs_and_sperm_used_status").show();
+  } else {
+    $(".description_of_eggs_and_sperm_used_status").hide();
+  }
+}
 // フォーム内の②卵子と精子の回答によって次項のテキストを変える
 $(function() {
   var egg_sparm2 = $('#report_types_of_eggs_and_sperm_status option:selected').text();
@@ -138,70 +184,44 @@ $(function() {
   });
 });
 
-// 治療当時の住まい選択
+// 受精方法の詳細
 $(function() {
-  $('#report_prefecture_id').change(function() {
-    $.ajax('/address_cities_select',
-      {
-        type: 'get',
-        data: { prefecture_id: $(this).val() },
-      }
-    )
-    .done(function(data) {
-      $('#report_city_id').html(data) 
-    })
-    .fail(function() {
-      window.alert('正しい結果を得られませんでした。');
-    });
-  });
-});
-
-// 顕微授精の詳細
-$(function() {
-  icsi($("#report_types_of_fertilization_methods option:selected").val());
+  fertilization_method($("#report_types_of_fertilization_methods option:selected").val());
   $("#report_types_of_fertilization_methods").change(function() {
-    icsi($(this).val());
+    fertilization_method($(this).val());
   });
 })
-function icsi(types_of_fertilization_methods) {
+function fertilization_method(types_of_fertilization_methods) {
   if (types_of_fertilization_methods == "2") {
-    $(".detail-of-icsi").show();
+    $(".detail_of_icsi").show();
+    $(".description_of_types_of_fertilization_methods").hide();
   } else if (types_of_fertilization_methods == "3") {
-    $(".detail-of-icsi").show();
+    $(".detail_of_icsi").show();
+    $(".description_of_types_of_fertilization_methods").hide();
+  } else if (types_of_fertilization_methods == "99") {
+    $(".description_of_types_of_fertilization_methods").show();
+    $(".detail_of_icsi").hide();
   } else {
-    $(".detail-of-icsi").hide();
+    $(".detail_of_icsi").hide();
+    $(".description_of_types_of_fertilization_methods").hide();
   }
 }
 
-// 用いた卵子と精子の説明①
+// 顕微受精方法の詳細
 $(function() {
-  eggsperm($("#report_types_of_eggs_and_sperm option:selected").val());
-  $("#report_types_of_eggs_and_sperm").change(function() {
-    eggsperm($(this).val());
+  details_of_icsi($("#report_details_of_icsi option:selected").val());
+  $("#report_details_of_icsi").change(function() {
+    details_of_icsi($(this).val());
   });
 })
-function eggsperm(types_of_eggs_and_sperm) {
-  if (types_of_eggs_and_sperm > "1") {
-    $(".description_of_eggs_and_sperm_used").show();
-  } else {
-    $(".description_of_eggs_and_sperm_used").hide();
+function details_of_icsi(report_details_of_icsi) {
+  if (report_details_of_icsi == "99") {
+    $(".description_of_details_of_icsi").show();
+  } else  {
+    $(".description_of_details_of_icsi").hide();
   }
 }
 
-// 用いた卵子と精子の説明②
-$(function() {
-  eggsperm2($("#report_types_of_eggs_and_sperm_status option:selected").val());
-  $("#report_types_of_eggs_and_sperm_status").change(function() {
-    eggsperm2($(this).val());
-  });
-})
-function eggsperm2(types_of_eggs_and_sperm_status) {
-  if (types_of_eggs_and_sperm_status > "1") {
-    $(".description_of_eggs_and_sperm_used_status").show();
-  } else {
-    $(".description_of_eggs_and_sperm_used_status").hide();
-  }
-}
 
 // 治療継続期限
 $(function() {

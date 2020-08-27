@@ -27,6 +27,7 @@
 #  description_of_eggs_and_sperm_used           :text
 #  description_of_eggs_and_sperm_used_status    :text
 #  details_of_icsi                              :integer
+#  details_of_icsi_memo                         :text
 #  doctor_quality                               :integer
 #  early_embryo_grade                           :integer
 #  early_embryo_grade_supplementary_explanation :text
@@ -135,6 +136,7 @@
 #  types_of_eggs_and_sperm                      :integer
 #  types_of_eggs_and_sperm_status               :integer
 #  types_of_fertilization_methods               :integer
+#  types_of_fertilization_methods_memo          :text
 #  use_of_anesthesia                            :integer
 #  work_style                                   :integer
 #  work_style_status                            :integer          default("show"), not null
