@@ -207,7 +207,7 @@
                   <div class="col-8">
                     <table class="pt-0">
                       <tr>
-                        <td class="text-muted text-right py-1 small"><span class="small">現状&nbsp;:</span></td>
+                        <td class="text-muted text-right py-1 small"><span class="small">ステータス&nbsp;:</span></td>
                         <td class="font-weight-bold pl-2"><%= @report.str_current_state %></td>
                       </tr>
                       <tr>
@@ -3044,7 +3044,7 @@
                   </tr>
                   <tr>
                     <td class="result-left-column small text-center">備考</td>
-                    <td>
+                    <td class="small">
                       <% if @report.clinic.pgt != 0 %>
                         <%= "・着床前診断(PGT)臨床指定施設" %><br>
                       <% end %>
@@ -3430,9 +3430,9 @@
                     <ul class="list-unstyled">
                       <li>
                         <% if @report.current_state.present? %>
-                          <span class="text-muted small">　　　現状</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_current_state %></span>
+                          <span class="text-muted small">ステータス</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_current_state %></span>
                         <% else %>
-                          <span class="text-muted small">　　　現状</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                          <span class="text-muted small">ステータス</span>&nbsp;：&nbsp;<span class="small">未回答</span>
                         <% end %>
                       </li>
                       <li>

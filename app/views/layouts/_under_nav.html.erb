@@ -7,7 +7,14 @@
         <% end %>
       </div>
       <div>
-        <i data-feather="edit" class="text-muted" type="image" data-toggle="modal" data-target="#reportPost"></i>
+        <% path = request.path %>
+        <% unless path.include?("reports") || path.include?("my_page") || path.include?("sign_in") || path.include?("sign_up") || path.include?("my_page") || path.include?("edit") || path.include?("notifications") %>
+          <%= link_to category_search_path do %>
+            <i data-feather="search" class="text-muted"></i>
+          <% end %>
+        <% else %>
+          <i data-feather="edit" class="text-muted" type="image" data-toggle="modal" data-target="#reportPost"></i>
+        <% end %>
       </div>
       <div>
         <%= link_to notifications_path do %>
