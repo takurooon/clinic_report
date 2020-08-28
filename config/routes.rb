@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'terms' => 'application#terms'
   get 'privacy' => 'application#privacy'
   get 'admin' => 'application#admin'
+  get 'terminology' => 'application#terminology'
 
   devise_for :users, path: '', controllers: {
     registrations: 'users/registrations',
