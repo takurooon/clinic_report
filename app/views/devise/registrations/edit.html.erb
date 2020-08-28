@@ -1,4 +1,4 @@
-
+s
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -192,6 +192,7 @@
                       <small class="text-muted">
                         <span class="small">胎嚢確認前の流産</span>
                       </small>
+                      <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :number_of_chemical_abortions_status, {}, "hide", "show" %><span class="small">非公開</span></small>
                     </td>
                   </tr>
                   <tr>
@@ -201,6 +202,7 @@
                       <small class="text-muted">
                         <span class="small">12w未満の流産</span>
                       </small>
+                      <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :number_of_early_miscarriages_status, {}, "hide", "show" %><span class="small">非公開</span></small>
                     </td>
                   </tr>
                   <tr>
@@ -210,6 +212,7 @@
                       <small class="text-muted">
                         <span class="small">12w以降の流産</span>
                       </small>
+                      <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :number_of_late_miscarriages_status, {}, "hide", "show" %><span class="small">非公開</span></small>
                     </td>
                   </tr>
                   <tr>

@@ -26,8 +26,11 @@
 #  name                                   :string
 #  number_of_aih                          :integer
 #  number_of_chemical_abortions           :integer
+#  number_of_chemical_abortions_status    :integer          default("show"), not null
 #  number_of_early_miscarriages           :integer
+#  number_of_early_miscarriages_status    :integer          default("show"), not null
 #  number_of_late_miscarriages            :integer
+#  number_of_late_miscarriages_status     :integer          default("show"), not null
 #  number_of_times_the_grant_was_received :integer
 #  provider                               :string
 #  remember_created_at                    :datetime

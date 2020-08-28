@@ -213,17 +213,29 @@
                   <% end %>
                   <% if @user.number_of_chemical_abortions.present? %>
                     <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
+                      <% if @user.number_of_chemical_abortions_status == "hide" %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                      <% else %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
+                      <% end %>
                     </div>
                   <% end %>
                   <% if @user.number_of_early_miscarriages.present? %>
                     <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
+                      <% if @user.number_of_early_miscarriages_status == "hide" %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                      <% else %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
+                      <% end %>
                     </div>
                   <% end %>
                   <% if @user.number_of_late_miscarriages.present? %>
                     <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
+                      <% if @user.number_of_late_miscarriages_status == "hide" %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                      <% else %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
+                      <% end %>
                     </div>
                   <% end %>
                   <% if @user.number_of_times_the_grant_was_received.present? %>
@@ -364,17 +376,29 @@
                   <% end %>
                   <% if @user.number_of_chemical_abortions.present? %>
                     <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
+                      <% if @user.number_of_chemical_abortions_status == "hide" %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                      <% else %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
+                      <% end %>
                     </div>
                   <% end %>
                   <% if @user.number_of_early_miscarriages.present? %>
                     <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
+                      <% if @user.number_of_early_miscarriages_status == "hide" %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                      <% else %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
+                      <% end %>
                     </div>
                   <% end %>
                   <% if @user.number_of_late_miscarriages.present? %>
                     <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
+                      <% if @user.number_of_late_miscarriages_status == "hide" %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                      <% else %>
+                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
+                      <% end %>
                     </div>
                   <% end %>
                   <% if @user.number_of_times_the_grant_was_received.present? %>

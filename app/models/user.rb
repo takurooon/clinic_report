@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   enum gender: { female: 0, male: 1 }
 
+  enum number_of_chemical_abortions_status: { show: 0, hide: 1 }, _prefix: true
+  enum number_of_early_miscarriages_status: { show: 0, hide: 1 }, _prefix: true
+  enum number_of_late_miscarriages_status: { show: 0, hide: 1 }, _prefix: true
+
   # ゲストログイン機能(参考: https://qiita.com/take18k_tech/items/35f9b5883f5be4c6e104)
   # def self.guest
   #   find_or_create_by!(email: 'guest@example.com') do |user|
@@ -423,8 +427,11 @@ end
 #  name                                   :string
 #  number_of_aih                          :integer
 #  number_of_chemical_abortions           :integer
+#  number_of_chemical_abortions_status    :integer          default("show"), not null
 #  number_of_early_miscarriages           :integer
+#  number_of_early_miscarriages_status    :integer          default("show"), not null
 #  number_of_late_miscarriages            :integer
+#  number_of_late_miscarriages_status     :integer          default("show"), not null
 #  number_of_times_the_grant_was_received :integer
 #  provider                               :string
 #  remember_created_at                    :datetime
