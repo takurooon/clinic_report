@@ -159,7 +159,6 @@ FSurgery.create([
   { name: "卵巣嚢腫" },
   { name: "卵管形成手術(FT)" },
   { name: "卵管切除" },
-  { name: "腹腔鏡手術" },
   { name: "円錐切除手術" },
   { name: "レーザー蒸散術" },
   { name: "子宮内膜ポリープ切除" },
@@ -295,6 +294,7 @@ ClFemaleInspection.create([
 ])
 
 MaleInspection.create([
+  { name: "精液検査" },
   { name: "イムノビーズテスト" },
   { name: "陰嚢部超音波検査" },
   { name: "SCSA" },
@@ -307,6 +307,7 @@ MaleInspection.create([
 ])
 
 ClMaleInspection.create([
+  { name: "精液検査" },
   { name: "イムノビーズテスト" },
   { name: "陰嚢部超音波検査" },
   { name: "SCSA" },

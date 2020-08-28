@@ -193,7 +193,7 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new
+    @report = Report.new(content: "<h1>不妊治療へ踏み切ったきっかけや思い</h1><br><br><br><h1>不妊治療をはじめて驚いたこと</h1><br><br><br><h1>夫婦間での不妊治療に対する温度や認識</h1><br><br><br><h1>仕事との両立</h1><br><br><br>")
     @report.itinerary_of_choosing_a_clinics.build
     @report.sairan_hormones.build
     @report.day_of_sairans.build
