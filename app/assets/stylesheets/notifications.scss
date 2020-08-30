@@ -1,13 +1,27 @@
 // 通知アイコン
-.n-circle {
-  position: absolute;
-  padding-left: 0.1rem;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 0.9rem;
-  margin-right: 0.6rem;
-  // color: rgb(255, 106, 170);
-  color: rgba(29,161,242,0.9);
+@media screen and (min-width:768px){
+  .n-circle-pc {
+    position: absolute;
+    padding-left: 0.1rem;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 0.9rem;
+    margin-right: 0.3rem;
+    // color: rgb(255, 106, 170);
+    color: rgba(29,161,242,0.9);
+  }
+}
+@media screen and (max-width:767px){
+  .n-circle-mobile {
+    position: absolute;
+    padding-left: 0.1rem;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 0.9rem;
+    margin-right: 0.8rem;
+    // color: rgb(255, 106, 170);
+    color: rgba(29,161,242,0.9);
+  }
 }
 
 // マイページの非公開タブの通知アイコン
