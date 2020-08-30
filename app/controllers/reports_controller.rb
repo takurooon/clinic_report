@@ -6,6 +6,7 @@ class ReportsController < ApplicationController
     # @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
     # @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
     @reports = Report.released.order("created_at DESC").page(params[:page]).per(10)
+    @report_content = "<h1>不妊治療へ踏み切ったきっかけ・思い</h1><br><br><br><h1>不妊治療をはじめて驚いたこと</h1><br><br><br><h1>夫婦間での不妊治療に対する温度や認識</h1><br><br><br><h1>仕事との両立</h1><br><br><br>"
   end
 
   def draft
@@ -193,7 +194,8 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new(content: "<h1>不妊治療へ踏み切ったきっかけ・思い</h1><br><br><br><h1>不妊治療をはじめて驚いたこと</h1><br><br><br><h1>夫婦間での不妊治療に対する温度や認識</h1><br><br><br><h1>仕事との両立</h1><br><br><br>")
+    @report_content = "<h1>不妊治療へ踏み切ったきっかけ・思い</h1><br><br><br><h1>不妊治療をはじめて驚いたこと</h1><br><br><br><h1>夫婦間での不妊治療に対する温度や認識</h1><br><br><br><h1>仕事との両立</h1><br><br><br>"
+    @report = Report.new(content: @report_content)
     @report.itinerary_of_choosing_a_clinics.build
     @report.sairan_hormones.build
     @report.day_of_sairans.build

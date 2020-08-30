@@ -12,7 +12,7 @@
         <li>
           <a href="#tab_2" data-toggle="tab">
             <div class="tab-popup px-2">プロフィール設定
-              <% if @registration_alert1 || @registration_alert2 == true %>
+              <% if current_user.registration_status1 || current_user.registration_status2 == true %>
                 <i class="fas fa-circle tab-popup-circle fa-stack-1x"></i>
               <% end %>
             </div>
@@ -473,7 +473,7 @@
             <li>
               <a href="#tab_2_1" data-toggle="tab">
                 <div class="tab-popup px-2">基本情報
-                  <% if @registration_alert2 == true %>
+                  <% if current_user.registration_status2 === true %>
                     <i class="fas fa-circle tab-popup-circle fa-stack-1x"></i>
                   <% end %>
                 </div>
@@ -482,7 +482,7 @@
             <li>
               <a href="#tab_2_2" class="active" data-toggle="tab">
                 <div class="tab-popup px-2">治療情報
-                  <% if @registration_alert1 == true %>
+                  <% if current_user.registration_status1 == true %>
                     <i class="fas fa-circle tab-popup-circle fa-stack-1x"></i>
                   <% end %>
                 </div>

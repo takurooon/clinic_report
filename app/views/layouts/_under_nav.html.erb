@@ -31,6 +31,11 @@
       <div>
         <%= link_to my_page_path do %>
           <i data-feather="smile" class="text-muted"></i>
+          <% if current_user.registration_status1 || current_user.registration_status2 == true %>
+            <div class="tab-popup m-0 p-0">
+              <i class="fas fa-circle tab-popup-circle fa-stack-1x"></i>
+            </div>
+          <% end %> 
         <% end %> 
       </div>
     </div>

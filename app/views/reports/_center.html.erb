@@ -202,6 +202,7 @@
               <% end %>
               <div  class="lead-content px-2 py-1">
                 <%= link_to report, data: { "turbolinks" => false } do %>
+                  <% content = report.content %>
                   <small><%= strip_tags(report.content.to_s).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                 <% end %>
               </div>

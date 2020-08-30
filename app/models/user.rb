@@ -70,8 +70,8 @@ class User < ApplicationRecord
 
   def registration_status2
     registration_status2 = []
-    registration_status2 = [self.icon, self.link, self.self_introduction]
-    if registration_status2.include?(nil)
+    registration_status2 = [self.self_introduction]
+    if registration_status2.include?(nil) || registration_status2.include?("")
       true
     else
       false
