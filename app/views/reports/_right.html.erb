@@ -7,27 +7,29 @@
   </form>
   <% end %>
   <% if user_signed_in? %>
-    <div class="sidebar_promote_item">
-      <div class="sidebar_promote_card">
-        <div class="sidebar_promote_card_header row">
-          <div class="col-2 sidebar_promote_card_header_left">
-            <i data-feather="settings" class="pl-1" style="color: #646262"></i>
+    <% if current_user.registration_status1 || current_user.registration_status2 == true %>
+      <div class="sidebar_promote_item">
+        <div class="sidebar_promote_card">
+          <div class="sidebar_promote_card_header row">
+            <div class="col-2 sidebar_promote_card_header_left">
+              <i data-feather="settings" class="pl-1" style="color: #646262"></i>
+            </div>
+            <div class="col-10 sidebar_promote_card_header_right">
+              <% if request.path.include?("reports") %>
+                <p>簡単にできる治療歴＆プロフィール設定はお済みですか？</p>
+              <% else %>
+                <p>まずは治療歴＆プロフィール設定をしましょう。設定することでより詳しいレポコを発信することができます！</p>
+              <% end %>
+            </div>
           </div>
-          <div class="col-10 sidebar_promote_card_header_right">
-            <% if request.path.include?("reports") %>
-              <p>簡単にできる治療歴＆プロフィール設定はお済みですか？</p>
-            <% else %>
-              <p>まずは治療歴＆プロフィール設定をしましょう。設定することでより詳しいレポコを発信することができます！</p>
+          <div class="sidebar_promote_card_body">
+            <%= link_to edit_user_registration_path, { title: "治療歴を設定する", style: "text-decoration: none;" } do %>
+              <button class="green_btn">設定する</button>
             <% end %>
           </div>
         </div>
-        <div class="sidebar_promote_card_body">
-          <%= link_to edit_user_registration_path, { title: "治療歴を設定する", style: "text-decoration: none;" } do %>
-            <button class="green_btn">設定する</button>
-          <% end %>
-        </div>
       </div>
-    </div>
+    <% end %>
   <% else %>
     <div class="sidebar_promote_item">
       <div class="sidebar_promote_card">
