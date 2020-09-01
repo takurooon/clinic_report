@@ -28,6 +28,7 @@ gem 'chartkick'
 gem 'cocoon'
 gem 'gon'
 gem "aws-sdk-s3", require: false
+gem 'nokogiri'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
