@@ -651,6 +651,86 @@ class Report < ApplicationRecord
     return HASH_SELECTION_OF_ANESTHESIA_TYPE[self.selection_of_anesthesia_type]
   end
 
+  # choice_of_sairantimeの区分値(採卵の時間帯の選択余地)
+  HASH_CHOICE_OF_SAIRANTIME = {
+    1 => "午前のみ(選択の余地なし)",
+    2 => "午後のみ(選択の余地なし)",
+    3 => "午前･午後を選択できた",
+    4 => "時間指定ができた",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_choice_of_sairantime
+    return HASH_CHOICE_OF_SAIRANTIME[self.choice_of_sairantime]
+  end
+
+  # time_for_sairanの区分値(採卵の時間)
+  HASH_TIME_FOR_SAIRAN = {
+    1 => "6時台",
+    2 => "7時台",
+    3 => "8時台",
+    4 => "9時台",
+    5 => "10時台",
+    6 => "11時台",
+    7 => "12時台",
+    8 => "13時台",
+    9 => "14時台",
+    10 => "15時台",
+    11 => "16時台",
+    12 => "17時台",
+    13 => "18時台",
+    14 => "19時台",
+    15 => "20時台",
+    16 => "21時台",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_time_for_sairan
+    return HASH_TIME_FOR_SAIRAN[self.time_for_sairan]
+  end
+
+  # choice_of_ishokutimeの区分値(移植の時間帯の選択余地)
+  HASH_CHOICE_OF_ISHOKUTIME = {
+    1 => "午前のみ(選択の余地なし)",
+    2 => "午後のみ(選択の余地なし)",
+    3 => "午前･午後を選択できた",
+    4 => "時間指定ができた",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_choice_of_ishokutime
+    return HASH_CHOICE_OF_ISHOKUTIME[self.choice_of_ishokutime]
+  end
+
+  # time_for_ishokuの区分値(移植の時間)
+  HASH_TIME_FOR_ISHOKU = {
+    1 => "6時台",
+    2 => "7時台",
+    3 => "8時台",
+    4 => "9時台",
+    5 => "10時台",
+    6 => "11時台",
+    7 => "12時台",
+    8 => "13時台",
+    9 => "14時台",
+    10 => "15時台",
+    11 => "16時台",
+    12 => "17時台",
+    13 => "18時台",
+    14 => "19時台",
+    15 => "20時台",
+    16 => "21時台",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_time_for_ishoku
+    return HASH_TIME_FOR_ISHOKU[self.time_for_ishoku]
+  end
+
   # type_of_ovarian_stimulationの区分値(採卵周期大分類)
   HASH_TYPE_OF_OVARIAN_STIMULATION = {
     1 => "刺激なし",
@@ -2277,6 +2357,8 @@ end
 #  blastocyst_grade2                            :integer
 #  blastocyst_grade2_supplementary_explanation  :text
 #  briefing_session                             :integer
+#  choice_of_ishokutime                         :integer
+#  choice_of_sairantime                         :integer
 #  city_at_the_time_status                      :integer          default("show"), not null
 #  cl_female_inspection_memo                    :text
 #  cl_male_inspection_memo                      :text
@@ -2382,6 +2464,8 @@ end
 #  staff_quality                                :integer
 #  status                                       :integer          default("released"), not null
 #  suspended_or_retirement_job                  :integer
+#  time_for_ishoku                              :integer
+#  time_for_sairan                              :integer
 #  title                                        :string
 #  total_amount_of_sperm                        :integer
 #  total_number_of_eggs_transplanted            :integer

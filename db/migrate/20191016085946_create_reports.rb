@@ -139,6 +139,10 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :possible_to_wait_outside_cl
       t.text :types_of_fertilization_methods_memo
       t.text :details_of_icsi_memo
+      t.integer :choice_of_sairantime
+      t.integer :time_for_sairan
+      t.integer :choice_of_ishokutime
+      t.integer :time_for_ishoku
 
       t.timestamps
     end

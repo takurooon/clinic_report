@@ -605,6 +605,10 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.integer "possible_to_wait_outside_cl"
     t.text "types_of_fertilization_methods_memo"
     t.text "details_of_icsi_memo"
+    t.integer "choice_of_sairantime"
+    t.integer "time_for_sairan"
+    t.integer "choice_of_ishokutime"
+    t.integer "time_for_ishoku"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "clinic_id", null: false

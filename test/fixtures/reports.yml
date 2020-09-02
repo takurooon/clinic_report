@@ -13,6 +13,8 @@
 #  blastocyst_grade2                            :integer
 #  blastocyst_grade2_supplementary_explanation  :text
 #  briefing_session                             :integer
+#  choice_of_ishokutime                         :integer
+#  choice_of_sairantime                         :integer
 #  city_at_the_time_status                      :integer          default("show"), not null
 #  cl_female_inspection_memo                    :text
 #  cl_male_inspection_memo                      :text
@@ -118,6 +120,8 @@
 #  staff_quality                                :integer
 #  status                                       :integer          default("released"), not null
 #  suspended_or_retirement_job                  :integer
+#  time_for_ishoku                              :integer
+#  time_for_sairan                              :integer
 #  title                                        :string
 #  total_amount_of_sperm                        :integer
 #  total_number_of_eggs_transplanted            :integer

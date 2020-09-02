@@ -771,6 +771,18 @@
                         </div>
 
                         <div class="form-group mt-3">
+                          <p class="question">採卵時間の選択</p>
+                          <%= f.select :choice_of_sairantime, Report::HASH_CHOICE_OF_SAIRANTIME.invert, { prompt: "選択" }, { class: "form-control" } %>
+                          <small class="text-muted"><span class="small">採卵の時間帯を選べたかどうか</span></small>
+                        </div>
+
+                        <div class="form-group mt-3">
+                          <p class="question">採卵の時間帯</p>
+                          <%= f.select :time_for_sairan, Report::HASH_TIME_FOR_SAIRAN.invert, { prompt: "選択" }, { class: "form-control" } %>
+                          <small class="text-muted"><span class="small">採卵を行った時間帯</span></small>
+                        </div>
+
+                        <div class="form-group mt-3">
                           <p class="question">採卵まとめ</p>
                           <%= f.text_area :explanation_and_impression_about_sairan, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "採卵に関しての感想や情報を載せて下さい" %>
                           <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での採卵の総括</span></small>
@@ -861,6 +873,18 @@
                           <% end %>
                           <p class="sub-question">オプションの補足説明</p>
                           <%= f.text_area :transfer_option_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
+                        </div>
+
+                        <div class="form-group mt-3">
+                          <p class="question">移植時間の選択</p>
+                          <%= f.select :choice_of_ishokutime, Report::HASH_CHOICE_OF_ISHOKUTIME.invert, { prompt: "選択" }, { class: "form-control" } %>
+                          <small class="text-muted"><span class="small">採卵の時間帯を選べたかどうか</span></small>
+                        </div>
+
+                        <div class="form-group mt-3">
+                          <p class="question">移植の時間帯</p>
+                          <%= f.select :time_for_ishoku, Report::HASH_TIME_FOR_ISHOKU.invert, { prompt: "選択" }, { class: "form-control" } %>
+                          <small class="text-muted"><span class="small">移植を行った時間帯</span></small>
                         </div>
 
                         <div class="form-group mt-3 before_ishoku-hormone">
