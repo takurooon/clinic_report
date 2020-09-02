@@ -3172,6 +3172,11 @@
                   <% end %>
                 </small>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">採卵/移植の時間帯</span></h5>
+                <% if @report.current_state.present? %>
+                  <small class="text-muted"><span class="small">※「<%= @report.str_current_state %>」に至った周期における採卵/移植時間の情報</span></small>
+                <% else %>
+                  <small class="text-muted"><span class="small">※現在の状況に至った周期における採卵/移植時間の情報</span></small>
+                <% end %>
                 <table class="table table-hover p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">採卵時間帯の選択</td>
