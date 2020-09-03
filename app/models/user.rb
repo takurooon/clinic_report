@@ -60,7 +60,7 @@ class User < ApplicationRecord
 
   def registration_status1
     registration_status1 = []
-    registration_status1 = [self.first_age_to_start, self.first_age_to_start_art, self.number_of_aih, self.all_number_of_sairan, self.all_number_of_transplants, self.all_cost, self.number_of_chemical_abortions, self.number_of_early_miscarriages, self.number_of_late_miscarriages, self.number_of_times_the_grant_was_received, self.all_grant_amount, self.drink]
+    registration_status1 = [self.first_age_to_start, self.first_age_to_start_art, self.number_of_aih, self.all_number_of_sairan, self.all_number_of_transplants, self.all_cost, self.number_of_chemical_abortions, self.number_of_early_miscarriages, self.number_of_late_miscarriages, self.number_of_times_the_grant_was_received, self.all_grant_amount]
     if registration_status1.include?(nil)
       true
     else
@@ -384,19 +384,6 @@ class User < ApplicationRecord
   def str_number_of_late_miscarriages(late)
     return HASH_RYUZAN_COUNT[late]
   end
-
-  # 飲酒
-  HASH_DRINK = {
-    1 => "自分だけ飲む",
-    2 => "自分だけ飲まない",
-    3 => "2人とも飲む",
-    4 => "2人とも飲まない",
-    100 => "無回答",
-  }
-
-  def str_drink(drink)
-    return HASH_DRINK[drink]
-  end
 end
 
 # == Schema Information
@@ -414,7 +401,6 @@ end
 #  confirmed_at                           :datetime
 #  current_sign_in_at                     :datetime
 #  current_sign_in_ip                     :inet
-#  drink                                  :integer
 #  email                                  :string           default(""), not null
 #  encrypted_password                     :string           default(""), not null
 #  first_age_to_start                     :integer

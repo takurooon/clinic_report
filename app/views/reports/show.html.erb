@@ -1230,17 +1230,20 @@
                           </td>
                         </tr>
                         <tr>
-                          <td class="result-left-column small text-center">自己注射可否</td>
+                          <td class="result-left-column small text-center">卵巣刺激/排卵誘発 注射の選択<br><span class="small text-muted">(自己or院内注射)</span></td>
                           <td class="pl-3">
                             <% if @report.self_injection.present? %>
                               <span class="result-text"><%= @report.str_self_injection %></span>
                             <% else %>
                               <span class="text-muted small">未回答</span>
+                            <% end %><br><br>
+                            <% if @report.injection_memo.present? %>
+                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.injection_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>
                         <tr>
-                          <td class="result-left-column small text-center">注射回数</td>
+                          <td class="result-left-column small text-center">卵巣刺激/排卵誘発 注射の回数</td>
                           <td class="pl-3">
                             <% if @report.number_of_injections.present? %>
                               <span class="result-text"><%= @report.str_number_of_injections %></span>
@@ -2478,16 +2481,6 @@
                       <% end %>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="result-left-column small text-center">お酒</td>
-                    <td class="pl-3">
-                      <% if @report.user.drink.present? %>
-                        <span class="result-text"><%= @report.user.str_drink(@report.user.drink) %></span>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
-                      <% end %>
-                    </td>
-                  </tr>
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">仕事</span></h5>
                 <p class="small mb-0 pb-0"><span class="small text-muted">※&nbsp;<%= @report.clinic.name %>&nbsp;での治療当時の情報</span></p>
@@ -3150,7 +3143,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small text-center">自己注射の可否</td>
+                    <td class="result-left-column small text-center">卵巣刺激/排卵誘発 注射の選択<span class="small text-muted">(自己or院内注射)</span></td>
                     <td class="pl-3">
                       <% if @report.self_injection.present? %>
                         <span class="result-text"><%= @report.str_self_injection %></span><br>
@@ -3158,7 +3151,10 @@
                         <span class="text-muted small">未回答</span><br>
                       <% end %>
                       <% if @report.number_of_injections.present? %>
-                        <span class="result-text"><span class="text-muted small">(&nbsp;回数:&nbsp;</span><%= @report.str_number_of_injections %><span class="text-muted small">&nbsp;)</span></span>
+                        <span class="result-text"><span class="text-muted small">(&nbsp;回数:&nbsp;</span><%= @report.str_number_of_injections %><span class="text-muted small">&nbsp;)</span></span><br>
+                      <% end %>
+                      <% if @report.injection_memo.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.injection_memo.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>

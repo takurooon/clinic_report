@@ -583,9 +583,9 @@ class Report < ApplicationRecord
 
   # self_injectionの区分値(自己注射の可否)
   HASH_SELF_INJECTION = {
-    1 => "自己注射不可(通院必須)",
-    2 => "自己注射のみ",
-    3 => "自己注射も選べる",
+    1 => "選択可(自己注射or院内注射)",
+    2 => "選択不可(自己注射のみ)",
+    3 => "選択不可(院内注射のみ)",
     99 => "その他",
     100 => "不明"
   }
@@ -2404,6 +2404,7 @@ end
 #  impression_of_technology                     :integer
 #  industry_type                                :integer
 #  industry_type_status                         :integer          default("show"), not null
+#  injection_memo                               :text
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
 #  ishoku_cost_explanation                      :text

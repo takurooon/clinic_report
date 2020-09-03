@@ -60,6 +60,7 @@
 #  impression_of_technology                     :integer
 #  industry_type                                :integer
 #  industry_type_status                         :integer          default("show"), not null
+#  injection_memo                               :text
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
 #  ishoku_cost_explanation                      :text

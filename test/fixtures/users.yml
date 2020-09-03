@@ -13,7 +13,6 @@
 #  confirmed_at                           :datetime
 #  current_sign_in_at                     :datetime
 #  current_sign_in_ip                     :inet
-#  drink                                  :integer
 #  email                                  :string           default(""), not null
 #  encrypted_password                     :string           default(""), not null
 #  first_age_to_start                     :integer

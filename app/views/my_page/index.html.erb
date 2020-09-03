@@ -636,16 +636,6 @@
                     <% end %>
                   </td>
                 </tr>
-                <tr>
-                  <td class="profile-item-l small text-center">お酒</td>
-                  <td class="profile-item-r">
-                  <% if @user.drink.blank? %>
-                    <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
-                  <% else %>
-                    <%= @user.str_drink(@user.drink) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
-                  <% end %>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </section>
