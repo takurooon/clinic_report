@@ -35,6 +35,6 @@ class ApplicationController < ActionController::Base
   def privacy
   end
 
-  def admin
+  def repoco
   end
 end

@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get 'about' => 'application#about'
   get 'terms' => 'application#terms'
   get 'privacy' => 'application#privacy'
-  get 'admin' => 'application#admin'
+  get 'repoco' => 'application#repoco'
   get 'terminology' => 'application#terminology'
 
   devise_for :users, path: '', controllers: {

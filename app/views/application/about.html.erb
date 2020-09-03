@@ -1,15 +1,19 @@
-<div class="container-fluid">
-  <div class="row mt-5">
-    <div class="col-lg-6 mb-5">
-      <%= image_tag "home/home_top_img.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
+<div class="row">
+  <div class="offset-lg-2 col-lg-8 terms-h">
+    <div class="py-4 px-2">
+      <i data-feather="chevron-left" class="feather-icon-style1" style="color:#56B5AB"></i><%= link_to '戻る', 'javascript:history.back()' %>
     </div>
-    <div class="col-lg-6 mb-5">
-      <h1>みんなのレポコを参考にしよう</h1>
-      <p class="mt-5">REPOCOは、不妊治療で妊娠出産に至った方の足跡を 治療レポート（=レポコ）として投稿〜検索できるサービスです。</p>
-      <p>具体的な治療情報はもちろんのこと、心境の変化などの心の機微についても書き記すことで、その決断に至った経緯を立体的かつよりクリアに知る事ができます。ぜひクリニック選びや治療方針を検討する際にお役立て下さい。</p>
-      <div class="text-center">
-        <%= link_to "レポコ一覧", reports_path, class:"btn btn-info btn-raised" %>
+    <div class="card mt-2 mb-3 mx-2 p-md-5 p-3 small">
+      <h3 class="pb-2">運営者情報</h3>
+      <div class="pt-5">
+      <p>当サービスは、個人により開発及び運営が行われています。</p>
+      <p>開発者：<a href="https://awesomeworldlife.com" target="blank">ぽころぐ</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://twitter.com/pocoloooog" target="blank"><i data-feather="twitter" class="feather-icon-style1" style="color: #1DA1F2"></i>&nbsp;<span style="color: #1DA1F2">Twitter</span>&nbsp;<span class="text-muted">(@pocoloooog)</span></a></p>
+
+      <p>REPOCOに関するお問い合わせは、<a href="https://forms.gle/ZJW7qnkX4PLN7Lkc9" target="_blank">こちら</a>&nbsp;まで<br>それ以外の開発者本人への連絡はTwitterのDMへお願い致します。</p>
+      <p>返信には時間を要する場合があります。恐れ入りますが予めご了承ください。</p>
       </div>
+    <div class="py-5 px-0">
+      <i data-feather="chevron-left" class="feather-icon-style1" style="color:#56B5AB"></i><%= link_to '戻る', 'javascript:history.back()' %>
     </div>
   </div>
 </div>
