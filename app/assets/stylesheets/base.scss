@@ -446,6 +446,19 @@ h2{
   border-radius:5px;
 }
 
+// ブランドカラーボタン
+.brand_btn {
+  width:50%;
+  font-size:13px;
+  text-decoration:none;
+  padding:7px;
+  margin: 0.3rem 0;
+  color:#bebebe;
+  background-color:#ACFCF5;
+  border: none;
+  border-radius:5px;
+}
+
 // サイドバー内のアイテム7b7b7b
 .sidebar_promote_item {
   padding: 3%;
@@ -468,11 +481,22 @@ h2{
 .sidebar_promote_card_body {
 }
 
-
+// 専門用語集のページ内リンク先のズレを補正
 .terminology-content {
   padding-top: 100px;
 }
 .terminology-content-inner {
   padding-top: 100px;
   margin-top: -100px;
+}
+
+// aboutページのレイアウト
+.color-area {
+  background-color: #ACFCF5;
+}
+
+@media screen and (min-width:768px) {
+  .about-first-area {
+    min-height: 90vh;
+  }
 }
