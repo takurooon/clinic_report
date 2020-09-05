@@ -2622,17 +2622,13 @@
                         <% end %>
                       <% else %>
                           <span class="text-muted small">特にない</span>
+                      <% end %><br>
+                      <% if @report.reasons_for_choosing_this_clinic.present? %>
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>
                     </td>
                   </tr>
-                  <% if @report.reasons_for_choosing_this_clinic.present? %>
-                    <tr>
-                      <td class="result-left-column small text-center"><%= @report.clinic.name %>を選んだ理由</td>
-                      <td class="pl-3">
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
-                      </td>
-                    </tr>
-                  <% end %>
+                  
                   <tr>
                     <td class="result-left-column small text-center">前院からの転院理由</td>
                     <td class="pl-3">
@@ -2979,6 +2975,9 @@
                               <% end %>
                             <% else %>
                               <span class="text-muted small">未回答</span>
+                            <% end %><br>
+                            <% if @report.f_other_effort_memo.present? %>
+                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_other_effort_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>
@@ -2992,14 +2991,6 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if @report.f_other_effort_memo.present? %>
-                          <tr>
-                            <td class="result-left-column small text-center">メモ</td>
-                            <td class="pl-3">
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_other_effort_memo.split("\n"),tag(:br)))).html_safe %></span>
-                            </td>
-                          </tr>
-                        <% end %>
                       </table>
                     </div>
                   </div>
@@ -3048,6 +3039,9 @@
                               <% end %>
                             <% else %>
                               <span class="text-muted small">未回答</span>
+                            <% end %><br>
+                            <% if @report.m_other_effort_memo.present? %>
+                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_other_effort_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>
@@ -3061,14 +3055,6 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if @report.m_other_effort_memo.present? %>
-                          <tr>
-                            <td class="result-left-column small text-center">メモ</td>
-                            <td class="pl-3">
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_other_effort_memo.split("\n"),tag(:br)))).html_safe %></span>
-                            </td>
-                          </tr>
-                        <% end %>
                       </table>
                     </div>
                   </div>

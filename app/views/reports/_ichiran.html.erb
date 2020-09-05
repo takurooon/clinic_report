@@ -247,7 +247,7 @@
       <% if @report.special_inspections.present? %>
         <% if @special_inspection_era.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">エラ<br><span class="small text-muted">(ERA)</span></td>
+            <td class="result-left-column small text-center ichirantable-left">エラ<br><span class="small text-muted">(ERA)</span><br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_era.each do |era| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -279,7 +279,7 @@
         <% end %>
         <% if @special_inspection_emma.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">エマ<br><span class="small text-muted">(EMMA)</span></td>
+            <td class="result-left-column small text-center ichirantable-left">エマ<br><span class="small text-muted">(EMMA)</span><br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_emma.each do |emma| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -294,7 +294,7 @@
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">費用</td>
                       <% if emma.cost.present? %>
-                        <td class="pl-3 small" style="width:80%">約&nbsp;<%= emma.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                        <td class="pl-3 small" style="width:80%">約&nbsp;<%= emma.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span><br><span class="small text-muted">【特殊検査】</span></td>
                       <% end %>
                     </tr>
                     <tr>
@@ -311,7 +311,7 @@
         <% end %>
         <% if @special_inspection_alice.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">アリス<br><span class="small text-muted">(ALICE)</span></td>
+            <td class="result-left-column small text-center ichirantable-left">アリス<br><span class="small text-muted">(ALICE)</span><br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_alice.each do |alice| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -326,7 +326,7 @@
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">費用</td>
                       <% if alice.cost.present? %>
-                        <td class="pl-3 small" style="width:80%">約&nbsp;<%= alice.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                        <td class="pl-3 small" style="width:80%">約&nbsp;<%= alice.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span><br><span class="small text-muted">【特殊検査】</span></td>
                       <% end %>
                     </tr>
                     <tr>
@@ -343,7 +343,7 @@
         <% end %>
         <% if @special_inspection_trio.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">トリオ<br><span class="small text-muted">(TRIO)</span></td>
+            <td class="result-left-column small text-center ichirantable-left">トリオ<br><span class="small text-muted">(TRIO)</span><br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_trio.each do |trio| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -375,7 +375,7 @@
         <% end %>
         <% if @special_inspection_erpeak.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">エラピーク<br><span class="small text-muted">(ERPeak)</span></td>
+            <td class="result-left-column small text-center ichirantable-left">エラピーク<br><span class="small text-muted">(ERPeak)</span><br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_erpeak.each do |erpeak| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -407,7 +407,7 @@
         <% end %>
         <% if @special_inspection_endometrial_biopsy.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">子宮内膜組織診</td>
+            <td class="result-left-column small text-center ichirantable-left">子宮内膜組織診<br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_endometrial_biopsy.each do |endometrial_biopsy| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -439,7 +439,7 @@
         <% end %>
         <% if @special_inspection_intrauterine_flora.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">子宮内フローラ</td>
+            <td class="result-left-column small text-center ichirantable-left">子宮内フローラ<br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_intrauterine_flora.each do |intrauterine_flora| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -471,7 +471,7 @@
         <% end %>
         <% if @special_inspection_bce.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">慢性子宮内膜炎<br><span class="small text-muted">(CD138/BCE)</span></td>
+            <td class="result-left-column small text-center ichirantable-left">慢性子宮内膜炎<br><span class="small text-muted">(CD138/BCE)</span><br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_bce.each do |bce| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -503,7 +503,7 @@
         <% end %>
         <% if @special_inspection_hysteroscopy.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">子宮鏡検査</td>
+            <td class="result-left-column small text-center ichirantable-left">子宮鏡検査<br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_hysteroscopy.each do |hysteroscopy| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -535,7 +535,7 @@
         <% end %>
         <% if @special_inspection_chromosome.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">染色体検査</td>
+            <td class="result-left-column small text-center ichirantable-left">染色体検査<br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_chromosome.each do |chromosome| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -567,7 +567,7 @@
         <% end %>
         <% if @special_inspection_ca125.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">CA125</td>
+            <td class="result-left-column small text-center ichirantable-left">CA125<br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_ca125.each do |ca125| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -599,7 +599,7 @@
         <% end %>
         <% if @special_inspection_mri.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">MRI</td>
+            <td class="result-left-column small text-center ichirantable-left">MRI<br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_mri.each do |mri| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -631,7 +631,7 @@
         <% end %>
         <% if @special_inspection_vitamin_d.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">ビタミンD検査</td>
+            <td class="result-left-column small text-center ichirantable-left">ビタミンD検査<br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_vitamin_d.each do |vitamin_d| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -663,7 +663,7 @@
         <% end %>
         <% if @special_inspection_copper_zinc.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">銅亜鉛検査</td>
+            <td class="result-left-column small text-center ichirantable-left">銅亜鉛検査<br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_copper_zinc.each do |copper_zinc| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -695,7 +695,7 @@
         <% end %>
         <% if @special_inspection_kruger.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">精子検査<br><span class="small text-muted">(クルーガーテスト)</span></td>
+            <td class="result-left-column small text-center ichirantable-left">精子検査<br><span class="small text-muted">(クルーガーテスト)</span><br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_kruger.each do |kruger| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -727,7 +727,7 @@
         <% end %>
         <% if @special_inspection_other_inspection.present? %>
           <tr>
-            <td class="result-left-column small text-center ichirantable-left">その他</td>
+            <td class="result-left-column small text-center ichirantable-left">その他<br><span class="small text-muted">【特殊検査】</span></td>
             <td class="pl-1 pr-2 py-1 ichirantable-right">
               <% @special_inspection_other_inspection.each do |other_inspection| %>
                 <div class="mb-0 mt-1 p-0 box5">
@@ -786,7 +786,7 @@
       <% end %>
       <% if @report.special_inspection_memo.present? %>
         <tr>
-          <td class="result-left-column small text-center ichirantable-left">特殊検査の詳しい説明</td>
+          <td class="result-left-column small text-center ichirantable-left">【特殊検査】の詳しい説明</td>
           <td class="pl-3 ichirantable-right">
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.special_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
           </td>
@@ -2343,17 +2343,12 @@
             <% end %>
           <% else %>
               <span class="text-muted small">特にない</span>
+          <% end %><br>
+          <% if @report.reasons_for_choosing_this_clinic.present? %>
+            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
           <% end %>
         </td>
       </tr>
-      <% if @report.reasons_for_choosing_this_clinic.present? %>
-        <tr>
-          <td class="result-left-column small text-center"><%= @report.clinic.name %>を選んだ理由</td>
-          <td class="pl-3">
-            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
-          </td>
-        </tr>
-      <% end %>
       <tr>
         <td class="result-left-column small text-center">前院からの転院理由</td>
         <td class="pl-3">
@@ -2684,7 +2679,7 @@
       <tr>
         <td class="result-left-column small text-center">治療以外に行ったこと</td>
         <td class="pl-3">
-            <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
+          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
           <% if @report.other_efforts.present? %>
             <% @report.other_efforts.each do |other_effort| %>
               <ul class="list-unstyled mb-0">
@@ -2694,7 +2689,10 @@
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %><br>
-            <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
+          <% if @report.f_other_effort_memo.present? %>
+            <p class="result-text small mb-3"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_other_effort_memo.split("\n"),tag(:br)))).html_safe %></p>
+          <% end %><br><br>
+          <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
           <% if @report.m_other_efforts.present? %>
             <% @report.m_other_efforts.each do |m_other_effort| %>
               <ul class="list-unstyled mb-0">
@@ -2703,6 +2701,9 @@
             <% end %>
           <% else %>
             <span class="text-muted small">未回答</span>
+          <% end %><br>
+          <% if @report.m_other_effort_memo.present? %>
+            <p class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_other_effort_memo.split("\n"),tag(:br)))).html_safe %></p>
           <% end %>
         </td>
       </tr>
@@ -2723,17 +2724,6 @@
           <% end %>
         </td>
       </tr>
-      <% if @report.f_other_effort_memo.present? || @report.m_other_effort_memo.present? %>
-        <tr>
-          <td class="result-left-column small text-center">治療以外に行ったことについて</td>
-          <td class="pl-3">
-            <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
-            <p class="result-text small mb-3"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_other_effort_memo.split("\n"),tag(:br)))).html_safe %></p>
-            <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
-            <p class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_other_effort_memo.split("\n"),tag(:br)))).html_safe %></p>
-          </td>
-        </tr>
-      <% end %>
     </table>
 
     <table class="table table-hover p-0 mt-5 mb-0">
