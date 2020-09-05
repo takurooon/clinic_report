@@ -165,7 +165,7 @@
                             <% end %>
                             <%= link_to published, data: { "turbolinks" => false } do %>
                               <div class="lead-content px-2 py-1">
-                                <small><span class="text-muted"><%= strip_tags(published.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                                <small><span class="text-muted"><%= strip_tags(published.summarize_content).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                               </div>
                             <% end %>
                           </div>
@@ -309,7 +309,7 @@
                             <% end %>
                             <%= link_to draft, data: { "turbolinks" => false } do %>
                               <div class="lead-content px-2 py-1">
-                                <small><span class="text-muted"><%= strip_tags(draft.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                                <small><span class="text-muted"><%= strip_tags(draft.summarize_content).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                               </div>
                             <% end %>
                           </div>
@@ -452,7 +452,7 @@
                               <% end %>
                               <%= link_to report, data: { "turbolinks" => false } do %>
                                 <div class="lead-content px-2 py-1">
-                                  <small><span class="text-muted"><%= strip_tags(report.content.to_s).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                                  <small><span class="text-muted"><%= strip_tags(report.summarize_content).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                                 </div>
                               <% end %>
                             </div>
