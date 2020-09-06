@@ -8,7 +8,7 @@ class ClinicsController < ApplicationController
 
   def cities_select_area
     # 住まい検索
-    @cities = City.where(prefecture_id: params[:prefecture_id])
+    @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id)
     render partial: 'address/cities'
   end
 
