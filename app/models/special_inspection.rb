@@ -38,15 +38,6 @@ class SpecialInspection < ApplicationRecord
   def str_special_inspection_place(place)
     return HASH_SPECIAL_INSPECTION_PLACE[place]
   end
-
-  # timing
-  def self.make_select_special_inspection_timing
-    hash = {}
-    (1..100).each do |i|
-      hash["D#{i}"] = i
-    end
-    hash
-  end
 end
 
 # == Schema Information
@@ -55,9 +46,9 @@ end
 #
 #  id         :bigint           not null, primary key
 #  cost       :integer
+#  memo       :text
 #  name       :integer          not null
 #  place      :integer
-#  timing     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  report_id  :bigint           not null

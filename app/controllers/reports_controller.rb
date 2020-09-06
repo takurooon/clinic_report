@@ -511,7 +511,6 @@ class ReportsController < ApplicationController
         :followup_investigation,
         :followup_investigation_memo,
         :treatment_schedule_memo,
-        :special_inspection_memo,
         :cost_burden_memo,
         :number_of_visits_before_sairan,
         :number_of_visits_before_ishoku,
@@ -557,7 +556,7 @@ class ReportsController < ApplicationController
         shokihaiishoku_hormones_attributes: [:id, :et, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
         haibanhoishoku_hormones_attributes: [:id, :bt, :e2, :fsh, :lh, :p4, :hcg, :_destroy],
         itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy],
-        special_inspections_attributes: [:id, :name, :place, :cost, :timing, :explanation, :_destroy],
+        special_inspections_attributes: [:id, :name, :place, :cost, :memo, :_destroy],
         unsuccessful_sairan_cycles_attributes: [:id, :number, :sairan_age, :type_of_ovarian_stimulation, :number_of_eggs_collected, :number_of_fertilized_eggs,:number_of_transferable_embryos, :number_of_frozen_eggs, :memo, :_destroy],
         unsuccessful_ishoku_cycles_attributes: [:id, :number, :ishoku_age, :transplant_method, :ishoku_type, :memo, :_destroy],
       )

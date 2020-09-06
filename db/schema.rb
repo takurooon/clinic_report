@@ -591,7 +591,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.integer "followup_investigation"
     t.text "followup_investigation_memo"
     t.text "treatment_schedule_memo"
-    t.text "special_inspection_memo"
     t.text "cost_burden_memo"
     t.integer "number_of_visits_before_sairan"
     t.integer "number_of_visits_before_ishoku"
@@ -660,7 +659,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.integer "name", null: false
     t.integer "place"
     t.integer "cost"
-    t.integer "timing"
+    t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id"], name: "index_special_inspections_on_report_id"

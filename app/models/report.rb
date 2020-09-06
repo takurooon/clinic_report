@@ -2458,7 +2458,6 @@ end
 #  semen_volume                                 :float
 #  smoking_female                               :integer
 #  smoking_male                                 :integer
-#  special_inspection_memo                      :text
 #  sperm_advance_rate                           :float
 #  sperm_description                            :text
 #  sperm_motility                               :float

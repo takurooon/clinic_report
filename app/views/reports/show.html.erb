@@ -492,14 +492,17 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if era.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= era.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= era.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if era.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= era.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if era.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                    <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(era.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
+                                  
                                 </tr>
                               </table>
                             </div>
@@ -524,13 +527,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if emma.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= emma.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= emma.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if emma.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= emma.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if emma.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(emma.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -556,13 +561,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if alice.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= alice.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= alice.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if alice.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= alice.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if alice.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(alice.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -588,13 +595,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if trio.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= trio.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= trio.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if trio.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= trio.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if trio.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(trio.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -620,13 +629,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if erpeak.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= erpeak.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= erpeak.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if erpeak.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= erpeak.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if erpeak.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(erpeak.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -652,13 +663,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if endometrial_biopsy.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= endometrial_biopsy.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= endometrial_biopsy.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if endometrial_biopsy.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= endometrial_biopsy.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if endometrial_biopsy.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(endometrial_biopsy.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -684,13 +697,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if intrauterine_flora.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= intrauterine_flora.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= intrauterine_flora.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if intrauterine_flora.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= intrauterine_flora.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if intrauterine_flora.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(intrauterine_flora.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -716,13 +731,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if bce.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= bce.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= bce.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if bce.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= bce.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if bce.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(bce.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -748,13 +765,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if hysteroscopy.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= hysteroscopy.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= hysteroscopy.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if hysteroscopy.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= hysteroscopy.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if hysteroscopy.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(hysteroscopy.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -780,13 +799,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if chromosome.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= chromosome.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= chromosome.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if chromosome.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= chromosome.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if chromosome.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(chromosome.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -812,13 +833,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if ca125.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= ca125.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= ca125.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if ca125.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= ca125.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if ca125.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(ca125.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -844,13 +867,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if mri.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= mri.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= mri.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if mri.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= mri.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if mri.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(mri.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -876,13 +901,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if vitamin_d.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= vitamin_d.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= vitamin_d.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if vitamin_d.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= vitamin_d.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if vitamin_d.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(vitamin_d.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -908,13 +935,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if copper_zinc.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= copper_zinc.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= copper_zinc.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if copper_zinc.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= copper_zinc.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if copper_zinc.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(copper_zinc.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -940,13 +969,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if kruger.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= kruger.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= kruger.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if kruger.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= kruger.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if kruger.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(kruger.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -972,13 +1003,15 @@
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">費用</td>
                                   <% if other_inspection.cost.present? %>
-                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= other_inspection.cost.to_s(:delimited) %>円&nbsp;<span class="small text-muted">(税別)</span></td>
+                                    <td class="pl-3 small" style="width:80%">約&nbsp;<%= other_inspection.cost.to_s(:delimited) %>円</td>
                                   <% end %>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">時期</td>
-                                  <% if other_inspection.timing.present? %>
-                                    <td class="pl-3 small" style="width:80%">D<%= other_inspection.timing %></td>
+                                  <td class="result-left-column small text-center" style="width:20%">メモ</td>
+                                  <% if other_inspection.memo.present? %>
+                                    <td class="pl-3 small" style="width:80%">
+                                      <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(other_inspection.memo.split("\n"),tag(:br)))).html_safe %></span>
+                                    </td>
                                   <% end %>
                                 </tr>
                               </table>
@@ -1015,17 +1048,6 @@
                     </tr>
                   <% end %>
                 </table>
-                <% if @report.special_inspection_memo.present? %>
-                  <table class="table table-hover p-0 mt-0">
-                    <tr>
-                      <td class="result-left-column small text-center" style="width:30%">特殊検査メモ</td>
-                      <td class="pl-2" style="width:70%">
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.special_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
-                      </td>
-                    </tr>
-                  </table>
-                <% end %>
-
                 <h5 class="child-tab-title mt-5"><span class="marker-underline">精液検査</span></h5>
                 <table class="table table-hover p-0">
                   <tr>
@@ -1102,15 +1124,10 @@
                           <% end %>
                         </tr>
                       </table>
+                      <% if @report.sperm_description.present? %>
+                        <br><span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.sperm_description.split("\n"),tag(:br)))).html_safe %></span>
+                      <% end %>
                     </td>
-                  </tr>
-                  <tr>
-                    <% if @report.sperm_description.present? %>
-                      <td class="result-left-column small text-center">メモ</td>
-                      <td class="pl-3">
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.sperm_description.split("\n"),tag(:br)))).html_safe %></span>
-                      </td>
-                    <% end %>
                   </tr>
                 </table>
                 <h5 class="child-tab-title mt-5"><span class="marker-underline">着床前スクリーニング</span></h5>
