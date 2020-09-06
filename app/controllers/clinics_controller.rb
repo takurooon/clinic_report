@@ -9,6 +9,8 @@ class ClinicsController < ApplicationController
   def cities_select_area
     # 住まい検索
     @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id)
+    # ある程度レポコが溜まってきたら上を止め、下のコードを有効にする(レポコ投稿者のいない市区町村は表示しない仕様)
+    # @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id).joins(:reports).distinct
     render partial: 'address/cities'
   end
 
