@@ -157,19 +157,19 @@ class SearchesController < ApplicationController
   def tag
     if params[:gender] === "女性"
       if params[:tags] === "疾患"
-        @tag = FDisease.find_by(name: params[:value]).order(created_at: :desc)
-        @reports = @tag.reports
+        @tag = FDisease.find_by(name: params[:value])
+        @reports = @tag.reports.order(created_at: :desc)
       else params[:tags] === "手術"
-        @tag = FSurgery.find_by(name: params[:value]).order(created_at: :desc)
-        @reports = @tag.reports
+        @tag = FSurgery.find_by(name: params[:value])
+        @reports = @tag.reports.order(created_at: :desc)
       end
     else
       if params[:tags] === "疾患"
-        @tag = MDisease.find_by(name: params[:value]).order(created_at: :desc)
-        @reports = @tag.reports
+        @tag = MDisease.find_by(name: params[:value])
+        @reports = @tag.reports.order(created_at: :desc)
       else params[:tags] === "手術"
-        @tag = MSurgery.find_by(name: params[:value]).order(created_at: :desc)
-        @reports = @tag.reports
+        @tag = MSurgery.find_by(name: params[:value])
+        @reports = @tag.reports.order(created_at: :desc)
       end
     end
   end
