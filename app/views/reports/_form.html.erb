@@ -259,7 +259,7 @@
                       prompt: "選択"
                       },
                       { class: "form-control" } %>
-                      <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業した年</span></small>
+                      <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業した年(通院を終了した年)</span></small>
                   </div>
 
                   <div class="form-group mt-3">
@@ -453,7 +453,7 @@
 
                     <div class="form-group mt-3">
                       <p class="question mb-3">【女性】<span class="select-clinic-name"></span>で受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:cl_female_inspection_ids, ClFemaleInspection.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:cl_female_inspection_ids, ClFemaleInspection.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox mb-0">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -464,7 +464,7 @@
                     </div>
                     <div class="form-group mt-3">
                       <p class="question mb-3">【女性】<span class="select-clinic-name"></span>以外でこれまでに受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:inspection_ids, Inspection.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:inspection_ids, Inspection.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -481,7 +481,7 @@
 
                     <div class="form-group mt-3">
                       <p class="question mb-3">【男性】<span class="select-clinic-name"></span>で受けた&nbsp;検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:cl_male_inspection_ids, ClMaleInspection.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:cl_male_inspection_ids, ClMaleInspection.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox mb-0">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -492,7 +492,7 @@
                     </div>
                     <div class="form-group mt-3">
                       <p class="question mb-3">【男性】<span class="select-clinic-name"></span>以外でこれまでに受けたことのある&nbsp;検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:male_inspection_ids, MaleInspection.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:male_inspection_ids, MaleInspection.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -641,7 +641,7 @@
 
                         <div class="form-group mt-3">
                           <p class="question">使用薬剤&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                          <%= f.collection_check_boxes(:sairan_medicine_ids, SairanMedicine.all, :id, :name) do |b| %>
+                          <%= f.collection_check_boxes(:sairan_medicine_ids, SairanMedicine.all.name_yomigana, :id, :name) do |b| %>
                             <div class="form-check checkbox">
                               <%= b.label class: "form-check-label" do %>
                                 <%= b.check_box class: "form-check-input" %>
@@ -871,7 +871,7 @@
 
                         <div class="form-group mt-3">
                           <p class="question">使用薬剤&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                          <%= f.collection_check_boxes(:transfer_medicine_ids, TransferMedicine.all, :id, :name) do |b| %>
+                          <%= f.collection_check_boxes(:transfer_medicine_ids, TransferMedicine.all.name_yomigana, :id, :name) do |b| %>
                             <div class="form-check checkbox">
                               <%= b.label class: "form-check-label" do %>
                                 <%= b.check_box class: "form-check-input" %>
@@ -884,7 +884,7 @@
                         </div>
                         <div class="form-group mt-3">
                           <p class="question">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                          <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
+                          <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all.name_yomigana, :id, :name) do |b| %>
                             <div class="form-check checkbox">
                               <%= b.label class: "form-check-label" do %>
                                 <%= b.check_box class: "form-check-input" %>
@@ -1325,7 +1325,7 @@
                     <span class="box-title">疾患</span>
                     <div class="form-group mt-0">
                       <p class="question mb-3">女性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:f_disease_ids, FDisease.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:f_disease_ids, FDisease.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -1339,7 +1339,7 @@
 
                     <div class="form-group mt-3">
                       <p class="question mb-3">男性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:m_disease_ids, MDisease.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:m_disease_ids, MDisease.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -1362,7 +1362,7 @@
 
                     <div class="form-group mt-3">
                       <p class="question mb-3">不育原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -1386,7 +1386,7 @@
                     <span class="box-title">手術歴</span>
                     <div class="form-group mt-0">
                       <p class="question mb-3">女性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:f_surgery_ids, FSurgery.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:f_surgery_ids, FSurgery.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -1400,7 +1400,7 @@
 
                     <div class="form-group mt-3">
                       <p class="question mb-3">男性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:m_surgery_ids, MSurgery.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:m_surgery_ids, MSurgery.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -1424,7 +1424,7 @@
                     <span class="box-title">サプリ</span>
                     <div class="form-group first-question-inbox">
                       <p class="question mb-3">女性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:supplement_ids, Supplement.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:supplement_ids, Supplement.all.name_yomigana, :id, :name) do |b| %>
                       <div class="form-check checkbox">
                         <%= b.label class: "form-check-label" do %>
                           <%= b.check_box class: "form-check-input" %>
@@ -1442,7 +1442,7 @@
 
                     <div class="form-group mt-3">
                       <p class="question mb-3">男性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:m_supplement_ids, MSupplement.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:m_supplement_ids, MSupplement.all.name_yomigana, :id, :name) do |b| %>
                       <div class="form-check checkbox">
                         <%= b.label class: "form-check-label" do %>
                           <%= b.check_box class: "form-check-input" %>
@@ -1464,7 +1464,7 @@
                     <span class="box-title">治療以外に行ったこと</span>
                     <div class="form-group mt-0">
                       <p class="question mb-3">女性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:other_effort_ids, OtherEffort.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:other_effort_ids, OtherEffort.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>
@@ -1482,7 +1482,7 @@
 
                     <div class="form-group mt-3">
                       <p class="question mb-3">男性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:m_other_effort_ids, MOtherEffort.all, :id, :name) do |b| %>
+                      <%= f.collection_check_boxes(:m_other_effort_ids, MOtherEffort.all.name_yomigana, :id, :name) do |b| %>
                         <div class="form-check checkbox">
                           <%= b.label class: "form-check-label" do %>
                             <%= b.check_box class: "form-check-input" %>

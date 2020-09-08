@@ -71,12 +71,14 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
 
   create_table "cl_female_inspections", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "cl_male_inspections", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -186,18 +188,21 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
 
   create_table "f_diseases", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "f_surgeries", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "fuiku_inspections", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -218,6 +223,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
 
   create_table "inspections", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -241,30 +247,35 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
 
   create_table "m_diseases", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "m_other_efforts", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "m_supplements", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "m_surgeries", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "male_inspections", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -286,6 +297,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
 
   create_table "other_efforts", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -639,6 +651,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
 
   create_table "sairan_medicines", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -670,18 +683,21 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
 
   create_table "supplements", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "transfer_medicines", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "transfer_options", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
