@@ -1878,17 +1878,12 @@
                               <span class="result-text">判定日は移植後<%= @report.str_pregnancy_date %></span>
                             <% else %>
                               <span class="text-muted small">未回答</span>
+                            <% end %><br><br>
+                            <% if @report.pregnancy_date_memo.present? %>
+                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.pregnancy_date_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>
-                        <% if @report.pregnancy_date_memo.present? %>
-                          <tr>
-                            <td class="result-left-column small text-center">メモ</td>
-                            <td class="pl-3">
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.pregnancy_date_memo.split("\n"),tag(:br)))).html_safe %></span>
-                            </td>
-                          </tr>
-                        <% end %>
                         <tr>
                           <td class="result-left-column small text-center">貯卵数</td>
                           <td class="pl-3">
@@ -3280,7 +3275,7 @@
                     <td class="result-left-column small text-center" style="width:30%">クレジットカード</td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.credit_card_validity.present? %>
-                        <span class="result-text"><%= @report.str_credit_card_validity %>&nbsp;↓</span>
+                        <span class="result-text"><%= @report.str_credit_card_validity %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %><br>

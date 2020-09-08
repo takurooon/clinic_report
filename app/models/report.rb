@@ -641,8 +641,8 @@ class Report < ApplicationRecord
 
   # selection_of_anesthesia_typeの区分値(麻酔の有無&種類に関しての選択の余地)
   HASH_SELECTION_OF_ANESTHESIA_TYPE = {
-    1 => "選択できなかった",
-    2 => "選択できた",
+    1 => "選べなかった",
+    2 => "選べた",
     99 => "その他",
     100 => "不明"
   }
@@ -653,8 +653,8 @@ class Report < ApplicationRecord
 
   # choice_of_sairantimeの区分値(採卵の時間帯の選択余地)
   HASH_CHOICE_OF_SAIRANTIME = {
-    1 => "午前のみ(選択の余地なし)",
-    2 => "午後のみ(選択の余地なし)",
+    1 => "午前のみ(選択不可)",
+    2 => "午後のみ(選択不可)",
     3 => "午前･午後を選択できた",
     4 => "時間指定ができた",
     99 => "その他",
@@ -693,8 +693,8 @@ class Report < ApplicationRecord
 
   # choice_of_ishokutimeの区分値(移植の時間帯の選択余地)
   HASH_CHOICE_OF_ISHOKUTIME = {
-    1 => "午前のみ(選択の余地なし)",
-    2 => "午後のみ(選択の余地なし)",
+    1 => "午前のみ(選択不可)",
+    2 => "午後のみ(選択不可)",
     3 => "午前･午後を選択できた",
     4 => "時間指定ができた",
     99 => "その他",
