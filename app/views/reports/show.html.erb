@@ -17,6 +17,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
       <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん(#{@report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
+      <% set_meta_tags twitter: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん(#{@report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
 
       <div class="row pt-3 pb-0">
         <div class="d-none d-sm-block col-2">
@@ -1219,6 +1220,9 @@
                               <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
                             <% else %>
                               <span class="text-muted small">未回答</span>
+                            <% end %><br><br>
+                            <% if @report.type_of_ovarian_stimulation_memo.present? %>
+                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.type_of_ovarian_stimulation_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>
@@ -1794,6 +1798,9 @@
                               <span class="result-text"><%= @report.str_transplant_method %></span>
                             <% else %>
                               <span class="text-muted small">未回答</span>
+                            <% end %><br><br>
+                            <% if @report.transplant_method_memo.present? %>
+                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.transplant_method_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>
@@ -1804,6 +1811,9 @@
                               <span class="result-text"><%= @report.str_ishoku_type %></span>
                             <% else %>
                               <span class="text-muted small">未回答</span>
+                            <% end %><br><br>
+                            <% if @report.ishoku_type_memo.present? %>
+                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.ishoku_type_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>

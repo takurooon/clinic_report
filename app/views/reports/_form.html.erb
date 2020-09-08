@@ -369,6 +369,13 @@
                   </div>
                 </div>
               </section>
+              <ul class="nav nav-tabs child-menu nav-bottom">
+                <li><a href="#tab_1_1" class="active" data-toggle="tab"><span class="text-info">必須</span></a></li>
+                <li><a href="#tab_1_2" data-toggle="tab">基礎</a></li>
+                <li><a href="#tab_1_3" data-toggle="tab">年齢</a></li>
+                <li><a href="#tab_1_4" data-toggle="tab">転院</a></li>
+                <li><a href="#tab_1_5" data-toggle="tab">仕事</a></li>
+              </ul>
             </div>
           </section>
           <section class="parent-tab-content" id="tab_2">
@@ -620,12 +627,15 @@
                           <p class="question">誘発タイプ</p>
                           <%= f.select :type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の誘発タイプ</span></small>
+                          <p class="sub-question">誘発タイプのメモ</p>
+                          <%= f.text_area :type_of_ovarian_stimulation_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例) " %>
                         </div>
+
                         <div class="form-group mt-3">
                           <p class="question">誘発方法</p>
                           <%= f.select :type_of_sairan_cycle, Report::HASH_TYPE_OF_SAIRAN_CYCLE.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の誘発方法</span></small>
-                          <p class="sub-question">採卵誘発の補足説明</p>
+                          <p class="sub-question">採卵誘発のメモ</p>
                           <%= f.text_area :notes_on_type_of_sairan_cycle, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例) 私が通ったクリニックでは「〇〇法」という独自の呼び方でした。ですが内容は〇〇と一緒でした" %>
                         </div>
 
@@ -847,13 +857,18 @@
                           <p class="question">最新移植周期の移植方法</p>
                           <%= f.select :transplant_method, Report::HASH_TRANSPLANT_METHOD.invert, { prompt: "選択" }, { class: "form-control" } %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植方法</span></small>
+                          <p class="sub-question">移植方法メモ</p>
+                          <%= f.text_area :transplant_method_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
                         </div>
 
                         <div class="form-group mt-3">
                           <p class="question">移植周期のタイプ</p>
                           <%= f.select :ishoku_type, Report::HASH_ISHOKU_TYPE.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植タイプ</span></small>
+                          <p class="sub-question">移植周期タイプのメモ</p>
+                          <%= f.text_area :ishoku_type_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
                         </div>
+
                         <div class="form-group mt-3">
                           <p class="question">使用薬剤&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                           <%= f.collection_check_boxes(:transfer_medicine_ids, TransferMedicine.all, :id, :name) do |b| %>
@@ -1113,6 +1128,13 @@
                   </div>
                 </div>
               </section>
+              <ul class="nav nav-tabs child-menu nav-bottom">
+                <li><a href="#tab_2_1" class="active" data-toggle="tab">通院</a></li>
+                <li><a href="#tab_2_2" data-toggle="tab">検査</a></li>
+                <li><a href="#tab_2_3" data-toggle="tab">採卵</a></li>
+                <li><a href="#tab_2_4" data-toggle="tab">移植</a></li>
+                <li><a href="#tab_2_5" data-toggle="tab">費用</a></li>
+              </ul>
             </div>
           </section>
           <section class="parent-tab-content" id="tab_3">
@@ -1280,6 +1302,10 @@
                   </div>
                 </div>
               </section>
+              <ul class="nav nav-tabs child-menu nav-bottom">
+                <li><a href="#tab_3_1" class="active" data-toggle="tab">満足度評価</a></li>
+                <li><a href="#tab_3_2" data-toggle="tab">追跡調査</a></li>
+              </ul>
             </div>
           </section>
           <section class="parent-tab-content" id="tab_4">
@@ -1474,8 +1500,19 @@
                   </div>
                 </div>
               </section>
+              <ul class="nav nav-tabs child-menu nav-bottom">
+                <li><a href="#tab_4_1" class="active" data-toggle="tab">疾患･不育</a></li>
+                <li><a href="#tab_4_2" data-toggle="tab">手術歴</a></li>
+                <li><a href="#tab_4_3" data-toggle="tab">サプリ</a></li>
+              </ul>
             </div>
           </section>
+          <ul class="nav nav-tabs parent-menu mt-0 pt-0 nav-bottom">
+            <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">1.概要</a></li>
+            <li><a href="#tab_2" data-toggle="tab">2.詳細</a></li>
+            <li><a href="#tab_3" data-toggle="tab">3.評価</a></li>
+            <li><a href="#tab_4" data-toggle="tab">4.治療歴 他</a></li>
+          </ul>
         </div>
 
         <div class="p-1">

@@ -2410,6 +2410,7 @@ end
 #  ishoku_cost_explanation                      :text
 #  ishoku_medicine_memo                         :text
 #  ishoku_type                                  :integer
+#  ishoku_type_memo                             :text
 #  m_disease_memo                               :text
 #  m_other_effort_cost                          :integer
 #  m_other_effort_memo                          :text
@@ -2473,6 +2474,7 @@ end
 #  total_number_of_transplants                  :integer
 #  transfer_option_memo                         :text
 #  transplant_method                            :integer
+#  transplant_method_memo                       :text
 #  treatment_end_age                            :integer
 #  treatment_period                             :integer
 #  treatment_policy                             :text
@@ -2480,6 +2482,7 @@ end
 #  treatment_start_age                          :integer
 #  treatment_support_system                     :integer
 #  type_of_ovarian_stimulation                  :integer
+#  type_of_ovarian_stimulation_memo             :text
 #  type_of_sairan_cycle                         :integer
 #  types_of_eggs_and_sperm                      :integer
 #  types_of_eggs_and_sperm_status               :integer

@@ -1,31 +1,31 @@
 // タブ表示
-  $(function(){
-    activeTag = $('ul.parent-menu').find("li.active a").first();
-    if (!activeTag) {
-        activeTag = $('ul.parent-menu').find("li").first().find("a").first();
-    }
-    setActive(activeTag);
-    $(activeTag.attr('href')).addClass('active');
+  // $(function(){
+  //   activeTag = $('ul.parent-menu').find("li.active a").first();
+  //   if (!activeTag) {
+  //       activeTag = $('ul.parent-menu').find("li").first().find("a").first();
+  //   }
+  //   setActive(activeTag);
+  //   $(activeTag.attr('href')).addClass('active');
 
-    $('ul.child-menu a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        $(e.target).parent().parent().addClass("active");
-        $(e.target).parent().addClass("active");
-        $(e.relatedTarget).parent().removeClass("active");
-    });
-    $('ul.parent-menu a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        setActive($(e.target));
-    });
+  //   $('ul.child-menu a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  //       $(e.target).parent().parent().addClass("active");
+  //       $(e.target).parent().addClass("active");
+  //       $(e.relatedTarget).parent().removeClass("active");
+  //   });
+  //   $('ul.parent-menu a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  //       setActive($(e.target));
+  //   });
 
-    function setActive(targetObj) {
-        targetMenuId = targetObj.attr("href");
-        targetTabId = $(targetMenuId).find("li.active a").first().attr("href");
-        if(!targetTabId){
-            $(targetMenuId).find("li").first().addClass("active");
-            targetTabId = $(targetMenuId).find("li").first().find("a").attr("href");
-        }
-        $(targetTabId).addClass('active').addClass('in');
-    }
-  });
+  //   function setActive(targetObj) {
+  //       targetMenuId = targetObj.attr("href");
+  //       targetTabId = $(targetMenuId).find("li.active a").first().attr("href");
+  //       if(!targetTabId){
+  //           $(targetMenuId).find("li").first().addClass("active");
+  //           targetTabId = $(targetMenuId).find("li").first().find("a").attr("href");
+  //       }
+  //       $(targetTabId).addClass('active').addClass('in');
+  //   }
+  // });
 
 // タブ内採卵移植グラフ表示
   window.onload = function() {

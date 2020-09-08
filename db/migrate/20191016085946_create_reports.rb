@@ -6,6 +6,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.date :year_of_treatment_end
       t.integer :fertility_treatment_number
       t.integer :transplant_method
+      t.text :transplant_method_memo
       t.integer :number_of_clinics
       t.integer :briefing_session
       t.integer :treatment_start_age
@@ -39,6 +40,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :sairan_age
       t.integer :ishoku_age
       t.integer :type_of_ovarian_stimulation
+      t.text :type_of_ovarian_stimulation_memo
       t.integer :type_of_sairan_cycle
       t.text :notes_on_type_of_sairan_cycle
       t.integer :use_of_anesthesia
@@ -62,6 +64,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :blastocyst_grade2_supplementary_explanation
       t.text :explanation_and_impression_about_sairan
       t.integer :ishoku_type
+      t.text :ishoku_type_memo
       t.integer :total_number_of_transplants
       t.integer :total_number_of_eggs_transplanted
       t.integer :number_of_eggs_stored
