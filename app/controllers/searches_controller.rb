@@ -139,19 +139,19 @@ class SearchesController < ApplicationController
   def tags
     report_f_diseases = ReportFDisease.group(:f_disease_id).where.not(f_disease_id: nil).distinct.count
     f_disease = report_f_diseases.keys
-    @f_diseases = FDisease.where(id: f_disease)
+    @f_diseases = FDisease.where(id: f_disease).name_yomigana
 
     report_m_diseases = ReportMDisease.group(:m_disease_id).where.not(m_disease_id: nil).distinct.count
     m_disease = report_m_diseases.keys
-    @m_diseases = MDisease.where(id: m_disease)
+    @m_diseases = MDisease.where(id: m_disease).name_yomigana
 
     report_f_surgeries = ReportFSurgery.group(:f_surgery_id).where.not(f_surgery_id: nil).distinct.count
     f_surgery = report_f_surgeries.keys
-    @f_surgery = FSurgery.where(id: f_surgery)
+    @f_surgery = FSurgery.where(id: f_surgery).name_yomigana
 
     report_m_surgery = ReportMSurgery.group(:m_surgery_id).where.not(m_surgery_id: nil).distinct.count
     m_surgery = report_m_surgery.keys
-    @m_surgery = MSurgery.where(id: m_surgery)
+    @m_surgery = MSurgery.where(id: m_surgery).name_yomigana
   end
 
   def tag
