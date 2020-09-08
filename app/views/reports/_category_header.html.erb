@@ -1,6 +1,7 @@
 <div class="container mt-3">
   <div class="d-md-none slide_bar btn-toolbar">
     <div class="btn-group my-0">
+      <%= link_to terminology_path, class: "btn btn-outline-primary rounded-pill mb-0 mx-1 h-75" do %>専門用語集<% end %>
       <%= link_to category_clinics_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>クリニック<% end %>
       <%= link_to  category_clinics_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>エリア<% end %>
       <%= link_to category_age_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>年齢<% end %>
@@ -10,9 +11,6 @@
       <%= link_to category_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>住まい<% end %>
     </div>
   </div>
-  <div class="text-right d-md-none pt-3">
-      <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
-    </div>
   <div class="d-none d-md-block p-0 text-center">
     <%= link_to category_search_path do %>
       <button type="button" class="btn text-muted rounded-pill">＼ <i data-feather="arrow-down" class="px-1 mb-1"></i>カテゴリからレポコを検索 <i data-feather="arrow-down" class="px-1 mb-1"></i>／</button>
@@ -20,6 +18,7 @@
     <br>
     <div class="slide_bar">
       <div class="btn-group my-0">
+        <%= link_to terminology_path, class: "btn btn-outline-primary rounded-pill mb-0 mx-1 h-100" do %>専門用語集<% end %>
         <%= link_to category_clinics_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>クリニック<% end %>
         <%= link_to  category_clinics_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>エリア<% end %>
         <%= link_to category_age_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>年齢<% end %>
