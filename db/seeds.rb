@@ -209,6 +209,7 @@ TransferMedicine.create([
   { name: "プラノバール", yomigana: "プラノバール" },
   { name: "プレマリン", yomigana: "プレマリン" },
   { name: "プロゲストン", yomigana: "プロゲストン" },
+  { name: "プロゲステロン", yomigana: "プロゲステロン" },
   { name: "プロベラ", yomigana: "プロベラ" },
   { name: "ルティナス", yomigana: "ルティナス" },
   { name: "ルテウム", yomigana: "ルテウム" },
