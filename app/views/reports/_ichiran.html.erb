@@ -254,9 +254,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if era.place.present? %>
-                        <% place = era.place %>
-                        <td class="pl-3 small" style="width:80%"><%= era.str_special_inspection_place(era.place) %></td>
+                      <% if era.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif era.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -288,9 +290,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if emma.place.present? %>
-                        <% place = emma.place %>
-                        <td class="pl-3 small" style="width:80%"><%= emma.str_special_inspection_place(emma.place) %></td>
+                      <% if emma.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif emma.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -322,9 +326,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if alice.place.present? %>
-                        <% place = alice.place %>
-                        <td class="pl-3 small" style="width:80%"><%= alice.str_special_inspection_place(alice.place) %></td>
+                      <% if alice.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif alice.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -356,9 +362,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if trio.place.present? %>
-                        <% place = trio.place %>
-                        <td class="pl-3 small" style="width:80%"><%= trio.str_special_inspection_place(trio.place) %></td>
+                      <% if trio.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif trio.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -390,9 +398,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if erpeak.place.present? %>
-                        <% place = erpeak.place %>
-                        <td class="pl-3 small" style="width:80%"><%= erpeak.str_special_inspection_place(erpeak.place) %></td>
+                      <% if erapeak.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif erapeak.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -424,9 +434,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if endometrial_biopsy.place.present? %>
-                        <% place = endometrial_biopsy.place %>
-                        <td class="pl-3 small" style="width:80%"><%= endometrial_biopsy.str_special_inspection_place(endometrial_biopsy.place) %></td>
+                      <% if endometrial_biopsy.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif endometrial_biopsy.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -458,9 +470,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if intrauterine_flora.place.present? %>
-                        <% place = intrauterine_flora.place %>
-                        <td class="pl-3 small" style="width:80%"><%= intrauterine_flora.str_special_inspection_place(intrauterine_flora.place) %></td>
+                      <% if intrauterine_flora.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif intrauterine_flora.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -492,9 +506,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if bce.place.present? %>
-                        <% place = bce.place %>
-                        <td class="pl-3 small" style="width:80%"><%= bce.str_special_inspection_place(bce.place) %></td>
+                      <% if bce.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif bce.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -526,9 +542,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if hysteroscopy.place.present? %>
-                        <% place = hysteroscopy.place %>
-                        <td class="pl-3 small" style="width:80%"><%= hysteroscopy.str_special_inspection_place(hysteroscopy.place) %></td>
+                      <% if hysteroscopy.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif hysteroscopy.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -560,9 +578,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if chromosome.place.present? %>
-                        <% place = chromosome.place %>
-                        <td class="pl-3 small" style="width:80%"><%= chromosome.str_special_inspection_place(chromosome.place) %></td>
+                      <% if chromosome.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif chromosome.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -594,9 +614,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if ca125.place.present? %>
-                        <% place = ca125.place %>
-                        <td class="pl-3 small" style="width:80%"><%= ca125.str_special_inspection_place(ca125.place) %></td>
+                      <% if ca125.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif ca125.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -628,10 +650,12 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if mri.place.present? %>
-                        <% place = mri.place %>
-                        <td class="pl-3 small" style="width:80%"><%= mri.str_special_inspection_place(mri.place) %></td>
-                      <% end %>
+                      <% if mri.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif mri.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
+                    <% end %>
                     </tr>
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">費用</td>
@@ -662,9 +686,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if vitamin_d.place.present? %>
-                        <% place = vitamin_d.place %>
-                        <td class="pl-3 small" style="width:80%"><%= vitamin_d.str_special_inspection_place(vitamin_d.place) %></td>
+                      <% if vitamin_d.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif vitamin_d.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -696,9 +722,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if copper_zinc.place.present? %>
-                        <% place = copper_zinc.place %>
-                        <td class="pl-3 small" style="width:80%"><%= copper_zinc.str_special_inspection_place(copper_zinc.place) %></td>
+                      <% if copper_zinc.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif copper_zinc.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -730,9 +758,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if kruger.place.present? %>
-                        <% place = kruger.place %>
-                        <td class="pl-3 small" style="width:80%"><%= kruger.str_special_inspection_place(kruger.place) %></td>
+                      <% if kruger.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif kruger.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
@@ -764,9 +794,11 @@
                   <table class="table table-hover p-0 mb-0">
                     <tr>
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                      <% if other_inspection.place.present? %>
-                        <% place = other_inspection.place %>
-                        <td class="pl-3 small" style="width:80%"><%= other_inspection.str_special_inspection_place(other_inspection.place) %></td>
+                      <% if other_inspection.place == 1 %>
+                        <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                      <% elsif other_inspection.place == 2 %>
+                        <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                      <% else %>
                       <% end %>
                     </tr>
                     <tr>
