@@ -58,27 +58,22 @@
 .inline-block_report-card-text {
   display: inline-block;
 }
-
 .reports__searchForm {
   display: inline-block;
 }
-
 .reports__select {
   display: inline-block;
   width: auto;
 }
-
 .form-area {
   background-color: white;
 }
-
 .form {
   margin-top: 20px;
 }
-
-.show {
-  margin-top: 30px;
-}
+// .show {
+//   margin-top: 30px;
+// }
 
 // showの中の独自タイトル
 .report_title {
@@ -1003,25 +998,21 @@ i .fa-edit {
 .parent-tab {
 	margin: 0 0 2em;
 }
-
 .child-tab {
 	margin: 0;
 }
-
 .parent-menu {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 	display: flex;
 }
-
 .child-menu {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 	display: flex;
 }
-
 .parent-menu li a {
 	display: inline-block;
 	text-align: center;
@@ -1035,14 +1026,12 @@ i .fa-edit {
 	text-decoration: none;
 	border-radius: 4px 4px 0 0;
 }
-
 // 追加
 .parent-menu.nav-bottom li a {
 	border-top: none;
     border-bottom: 1px solid;
 	border-radius: 0 0 4px 4px;
 }
-
 .child-menu li a {
 	display: inline-block;
 	text-align: center;
@@ -1054,7 +1043,6 @@ i .fa-edit {
 	text-decoration: none;
 	border-radius: 4px 4px 0 0;
 }
-
 .parent-menu li a.active {
 	// background: rgb(196,244,244);
 	// background-color:rgba(151, 251, 243, 0.8);
@@ -1066,13 +1054,11 @@ i .fa-edit {
 	border-left: 1px solid;
 	border-right: 1px solid;
 }
-
 // 追加
 .parent-menu.nav-bottom li a.active {
 	border-top: none;
     border-bottom: 1px solid;
 }
-
 .child-menu li a.active {
 	background: #fff;
 	color: #333;
@@ -1082,24 +1068,20 @@ i .fa-edit {
 	border-left: 1px solid;
 	border-right: 1px solid;
 }
-
 // 追加
 .child-menu.nav-bottom li a.active {
 	border-top: none;
 	border-bottom: 1px solid;
 	border-radius: 0 0 4px 4px;
 }
-
 .parent-menu li a:not(.active):hover {
 	opacity: 0.3;
 	transition: opacity 0.4s;
 }
-
 .child-menu li a:not(.active):hover {
 	opacity: 0.3;
 	transition: opacity 0.4s;
 }
-
 .parent-tab-content.active {
 	// background: rgb(196,244,244);
 	// background-color: rgba(151, 251, 243, 0.8);
@@ -1114,7 +1096,6 @@ i .fa-edit {
 .parent-tab-content:not(.mostleft-tab) {
 	border-top-left-radius: 4px;
 }
-
 .child-tab-content.active {
 	background: #fff;
 	color: #333;
@@ -1124,23 +1105,18 @@ i .fa-edit {
 	display: block;
 	border-top-right-radius: 4px;
 }
-
 .parent-tab-content {
 	display: none;
 }
-
 .child-tab-content {
 	display: none;
 }
-
 .mostleft-tab {
 	border-left: 1px solid;
 }
-
 #tab_1_2, #tab_1_3, #tab_1_4, #tab_1_5, #tab_2_2, #tab_2_3, #tab_2_4, #tab_2_5, #tab_3_2, #tab_3_3, #tab_3_4, #tab_3_5, #tab_4_2, #tab_4_3, #tab_4_4, #tab_4_5, #tab_5_2, #tab_5_3, #tab_5_4, #tab_5_5, #right_tab, #right_tab2, #right_tab3, #right_tab4, #right_tab5, #right_tab6 {
 	border-top-left-radius: 4px;
 }
-
 // 追加
 .nav-tabs.nav-bottom .nav-item.show .nav-link, 
 .nav-tabs.nav-bottom .nav-link.active {
@@ -1148,7 +1124,6 @@ i .fa-edit {
 	background-color: #fff;
 	border-color: #fff #dee2e6 #dee2e6 #dee2e6;
 }
-
 // 追加
 .nav-tabs.nav-bottom .nav-link {
 	border: 1px solid transparent;
@@ -1157,29 +1132,24 @@ i .fa-edit {
 	border-bottom-left-radius: .25rem;
 	border-bottom-right-radius: .25rem;
 }
-
 // 追加
 .nav-tabs.nav-bottom .nav-item {
 	margin-top: -2px;
 	margin-bottom: 0px;
 }
-
 // 追加
 .nav-tabs.nav-bottom  {
 	border-bottom: none;
 	border-top: 1px solid #dee2e6;
 }
-
 // 追加
 .nav-bottom.mt-2 {
     margin-top: 0!important;
 }
-
 // 追加
 .btn.btnPrevious {
 	background-color:rgb(172,252,245);
 }
-
 // 追加
 .btn.btnNext {
 	background-color:rgb(172,252,245);

@@ -33,19 +33,19 @@
           <div class="p-1">
           </div>
           <ul class="nav nav-tabs parent-menu mt-0 pt-0">
-            <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">1.概要</a></li>
-            <li><a href="#tab_2" data-toggle="tab">2.詳細</a></li>
-            <li><a href="#tab_3" data-toggle="tab">3.評価</a></li>
-            <li><a href="#tab_4" data-toggle="tab">4.治療歴 他</a></li>
+            <li class="nav-item"><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">1.概要</a></li>
+            <li class="nav-item"><a href="#tab_2" data-toggle="tab">2.詳細</a></li>
+            <li class="nav-item"><a href="#tab_3" data-toggle="tab">3.評価</a></li>
+            <li class="nav-item"><a href="#tab_4" data-toggle="tab">4.治療歴 他</a></li>
           </ul>
           <section class="parent-tab-content active mostleft-tab" id="tab_1">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li><a href="#tab_1_1" class="active" data-toggle="tab"><span class="text-info">必須</span></a></li>
-                <li><a href="#tab_1_2" data-toggle="tab">基礎</a></li>
-                <li><a href="#tab_1_3" data-toggle="tab">年齢</a></li>
-                <li><a href="#tab_1_4" data-toggle="tab">転院</a></li>
-                <li><a href="#tab_1_5" data-toggle="tab">仕事</a></li>
+                <li class="nav-item"><a href="#tab_1_2" data-toggle="tab">基礎</a></li>
+                <li class="nav-item"><a href="#tab_1_3" data-toggle="tab">年齢</a></li>
+                <li class="nav-item"><a href="#tab_1_4" data-toggle="tab">転院</a></li>
+                <li class="nav-item"><a href="#tab_1_5" data-toggle="tab">仕事</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_1_1">
                 <div class="alert alert-info small rounded-lg" role="alert">
@@ -122,6 +122,10 @@
                       </small>
                     </div>
                   </div>
+                  <div class="mt-3 col-12 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_2">
@@ -145,7 +149,7 @@
                   </div>
 
                   <div class="box26">
-                  <span class="box-title">治療期間</span>
+                    <span class="box-title">治療期間</span>
                     <div class="form-group mt-3">
                       <p class="question">治療期間</p>
                       <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "選択" }, { class: "form-control" }  %>
@@ -243,6 +247,10 @@
                       <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療時の喫煙状況</span></small>
                     </div>
                   </div>
+                  <div class="mt-3 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_3">
@@ -278,6 +286,11 @@
                     <p class="question"><span class="select-clinic-name"></span>での治療終了(卒業)時のパートナーの年齢</p>
                     <%= f.select :age_of_partner_at_end_of_treatment, Report::HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT.invert, { prompt: "選択" }, { class: "form-control" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業した時のパートナーの年齢</span></small>
+                  </div>
+
+                  <div class="mt-5 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                   </div>
                 </div>
               </section>
@@ -324,6 +337,10 @@
                     <%= f.select :briefing_session, Report::HASH_BRIEFING_SESSION.invert, { prompt: "選択" }, { class: "form-control" } %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を選ぶ際に参加したかどうか</span></small>
                   </div>
+                  <div class="mt-5 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_5">
@@ -367,25 +384,23 @@
                     <p class="sub-question">治療中の働き方の詳しい説明</p>
                     <%= f.text_area :about_work_and_working_style, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)治療の理解がなかなか得られず配置転換を希望しなんとか治療を継続しました" %>
                   </div>
+
+                  <div class="mt-5 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
-              <ul class="nav nav-tabs child-menu nav-bottom">
-                <li><a href="#tab_1_1" class="active" data-toggle="tab"><span class="text-info">必須</span></a></li>
-                <li><a href="#tab_1_2" data-toggle="tab">基礎</a></li>
-                <li><a href="#tab_1_3" data-toggle="tab">年齢</a></li>
-                <li><a href="#tab_1_4" data-toggle="tab">転院</a></li>
-                <li><a href="#tab_1_5" data-toggle="tab">仕事</a></li>
-              </ul>
             </div>
           </section>
           <section class="parent-tab-content" id="tab_2">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
-                <li><a href="#tab_2_1" class="active" data-toggle="tab">通院</a></li>
-                <li><a href="#tab_2_2" data-toggle="tab">検査</a></li>
-                <li><a href="#tab_2_3" data-toggle="tab">採卵</a></li>
-                <li><a href="#tab_2_4" data-toggle="tab">移植</a></li>
-                <li><a href="#tab_2_5" data-toggle="tab">費用</a></li>
+                <li class="nav-item"><a href="#tab_2_1" class="active" data-toggle="tab">通院</a></li>
+                <li class="nav-item"><a href="#tab_2_2" data-toggle="tab">検査</a></li>
+                <li class="nav-item"><a href="#tab_2_3" data-toggle="tab">採卵</a></li>
+                <li class="nav-item"><a href="#tab_2_4" data-toggle="tab">移植</a></li>
+                <li class="nav-item"><a href="#tab_2_5" data-toggle="tab">費用</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_2_1">
                 <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
@@ -435,6 +450,10 @@
                       <p class="sub-question">オンライン診療の詳しい説明</p>
                       <%= f.text_area :online_consultation_details, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "内容のほか、感想など(メリットデメリット)" %>
                     </div>
+                  </div>
+                  <div class="mt-3 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                   </div>
                 </div>
               </section>
@@ -595,6 +614,10 @@
                       <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :pgt_supplementary_explanation_status, {}, "hide", "show" %>非公開</small>
                     </div>
                   </div>
+                  <div class="mt-3 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_3">
@@ -603,7 +626,7 @@
                 <div class="spacer">
                 </div>
                 <div class="scroll-box">
-                  <div class="parent-tab">
+                  <div class="parent-tab mb-0">
                     <ul class="nav nav-tabs parent-menu mt-0 pt-0">
                       <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の採卵周期</a></li>
                       <li><a href="#right_tab2" data-toggle="tab">過去の採卵</a></li>
@@ -821,6 +844,10 @@
                     </div>
                   </div>
                 </div>
+                <div class="mt-5 d-flex justify-content-between">
+                  <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                  <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                </div>
               </section>
               <section class="child-tab-content" id="tab_2_4">
                 <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
@@ -833,7 +860,7 @@
                   </div>
                   <div class="spacer">
                   </div>
-                  <div class="parent-tab">
+                  <div class="parent-tab mb-0">
                     <ul class="nav nav-tabs parent-menu mt-0 pt-0">
                       <li><a href="#left_tab3" class="active mostleft-tab" data-toggle="tab">最新の移植周期</a></li>
                       <li><a href="#right_tab3" data-toggle="tab">過去の移植</a></li>
@@ -1061,6 +1088,10 @@
                     </div>
                   </div>
                 </div>
+                <div class="mt-5 d-flex justify-content-between">
+                  <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                  <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                </div>
               </section>
               <section class="child-tab-content" id="tab_2_5">
                 <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
@@ -1126,22 +1157,19 @@
                     <%= f.text_area :explanation_of_cost, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)〇〇検査など他のクリニックと比べるととても高かったです" %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療費用の総括</span></small>
                   </div>
+                  <div class="mt-5 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
-              <ul class="nav nav-tabs child-menu nav-bottom">
-                <li><a href="#tab_2_1" class="active" data-toggle="tab">通院</a></li>
-                <li><a href="#tab_2_2" data-toggle="tab">検査</a></li>
-                <li><a href="#tab_2_3" data-toggle="tab">採卵</a></li>
-                <li><a href="#tab_2_4" data-toggle="tab">移植</a></li>
-                <li><a href="#tab_2_5" data-toggle="tab">費用</a></li>
-              </ul>
             </div>
           </section>
           <section class="parent-tab-content" id="tab_3">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
-                <li><a href="#tab_3_1" class="active" data-toggle="tab">満足度評価</a></li>
-                <li><a href="#tab_3_2" data-toggle="tab">追跡調査</a></li>
+                <li class="nav-item"><a href="#tab_3_1" class="active" data-toggle="tab">満足度評価</a></li>
+                <li class="nav-item"><a href="#tab_3_2" data-toggle="tab">追跡調査</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_3_1">
                 <div class="alert alert-info small rounded-lg select-clinic-review" role="alert"></div>
@@ -1285,6 +1313,10 @@
                       <%= f.text_area :clinic_review, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)待ち時間長く、診察は秒速ですが、技術はとても高いと感じました。" %>
                     </div>
                   </div>
+                  <div class="mt-5 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
               <section class="child-tab-content" id="tab_3_2">
@@ -1300,20 +1332,20 @@
                     <p class="sub-question"><span class="select-clinic-name"></span>からの出産確認の追跡調査についての補足説明</p>
                     <%= f.text_area :followup_investigation_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
                   </div>
+                  <div class="mt-5 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
-              <ul class="nav nav-tabs child-menu nav-bottom">
-                <li><a href="#tab_3_1" class="active" data-toggle="tab">満足度評価</a></li>
-                <li><a href="#tab_3_2" data-toggle="tab">追跡調査</a></li>
-              </ul>
             </div>
           </section>
           <section class="parent-tab-content" id="tab_4">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
-                <li><a href="#tab_4_1" class="active" data-toggle="tab">疾患･不育</a></li>
-                <li><a href="#tab_4_2" data-toggle="tab">手術歴</a></li>
-                <li><a href="#tab_4_3" data-toggle="tab">サプリ</a></li>
+                <li class="nav-item"><a href="#tab_4_1" class="active" data-toggle="tab">疾患･不育</a></li>
+                <li class="nav-item"><a href="#tab_4_2" data-toggle="tab">手術歴</a></li>
+                <li class="nav-item"><a href="#tab_4_3" data-toggle="tab">サプリ</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_4_1">
                 <div class="alert alert-primary small rounded-lg" role="alert">
@@ -1374,6 +1406,10 @@
                       <%= f.text_area :fuiku_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)不育症は〇〇クリニックで検査を受けてわかりました" %>
                     </div>
                   </div>
+                  <div class="mt-3 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
               <section class="child-tab-content" id="tab_4_2">
@@ -1411,6 +1447,10 @@
                       <p class="sub-question">手術既往歴の補足説明</p>
                       <%= f.text_area :m_surgery_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
                     </div>
+                  </div>
+                  <div class="mt-3 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                   </div>
                 </div>
               </section>
@@ -1498,21 +1538,14 @@
                       <%= f.text_area :m_other_effort_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)〇〇漢方鍼灸院にて漢方治療のみを◯年行なっていました。" %>
                     </div>
                   </div>
+                  <div class="mt-3 d-flex justify-content-between">
+                    <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn btnNext rounded-lg pr-2 shadow" >最初へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
                 </div>
               </section>
-              <ul class="nav nav-tabs child-menu nav-bottom">
-                <li><a href="#tab_4_1" class="active" data-toggle="tab">疾患･不育</a></li>
-                <li><a href="#tab_4_2" data-toggle="tab">手術歴</a></li>
-                <li><a href="#tab_4_3" data-toggle="tab">サプリ</a></li>
-              </ul>
             </div>
           </section>
-          <ul class="nav nav-tabs parent-menu mt-0 pt-0 nav-bottom">
-            <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">1.概要</a></li>
-            <li><a href="#tab_2" data-toggle="tab">2.詳細</a></li>
-            <li><a href="#tab_3" data-toggle="tab">3.評価</a></li>
-            <li><a href="#tab_4" data-toggle="tab">4.治療歴 他</a></li>
-          </ul>
         </div>
 
         <div class="p-1">
