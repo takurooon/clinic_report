@@ -1,4 +1,63 @@
 // 2段タブ表示
+// $(function(){
+//   $('.btnNext').click(function(){
+//       var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().next().find('a');
+//       if (ele.length == 0) {
+//         var ele2 = $('.parent-menu .nav-item .active').parent().next().find('a');
+//         if (ele2.length == 0) {
+//           $('.parent-menu .nav-item').first().find('a').trigger('click');
+//         } else {
+//           ele2.trigger('click');
+//         }
+//         $('.parent-tab-content.active .child-tab .nav-tabs li').first().find('a').trigger('click');
+//       } else {
+//         ele.trigger('click');
+//       }
+//   });
+  
+//   $('.btnPrevious').click(function(){
+//       var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().prev().find('a');
+//       if (ele.length == 0) {
+//         var ele2 = $('.parent-menu .nav-item .active').parent().prev().find('a');
+//         if (ele2.length == 0) {
+//           $('.parent-menu .nav-item').last().find('a').trigger('click');
+//         } else {
+//           ele2.trigger('click');
+//         }
+//         $('.parent-tab-content.active .child-tab .nav-tabs li').last().find('a').trigger('click');
+//       } else {
+//         ele.trigger('click');
+//       }
+//   });
+
+//   $('.nav-item a').on('click', function (event) {
+//     var tabEle = $(event.target).closest('ul');
+//     var ele = $(event.target).attr('href');
+    
+//     if (tabEle.hasClass('parent-menu')) {
+//       $('.parent-menu a[data-toggle=tab].active').removeClass('active show');
+//     } else if (tabEle.hasClass('child-menu')) {
+//       $('.parent-tab-content.active.show .child-menu a[data-toggle=tab].active').removeClass('active show');
+//     }
+    
+//     if (tabEle.hasClass('nav-bottom')) {
+//       $('ul:not(.nav-bottom) a[href=\\' + ele +']').addClass('active show');
+//     } else {
+//       $('ul.nav-bottom a[href=\\' + ele +']').addClass('active show');
+//     }
+// });
+  
+  // $('.nav-item a').on('shown.bs.tab', function (event) {
+  //     var ele = $(event.target).attr('href');
+  //     $('a[href=\\' + ele +']:not(.active)').addClass('active');
+  //     $('a[href=\\' + ele +']:not(.active)').addClass('show');
+      
+  //     var ele2 = $(event.relatedTarget).attr('href');
+  //     $('a[href=\\' + ele2 +'].active').removeClass('active');
+  //     $('a[href=\\' + ele2 +'].active').removeClass('show');
+  // });
+// });
+
 $(function(){
   $('.btnNext').click(function(){
       var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().next().find('a');
@@ -13,6 +72,7 @@ $(function(){
       } else {
         ele.trigger('click');
       }
+      scrollTabTop();
   });
   
   $('.btnPrevious').click(function(){
@@ -28,19 +88,31 @@ $(function(){
       } else {
         ele.trigger('click');
       }
+      scrollTabTop();
   });
   
-  $('.nav-item a').on('shown.bs.tab', function (event) {
+  $('.nav-item a').on('click', function (event) {
+      var tabEle = $(event.target).closest('ul');
       var ele = $(event.target).attr('href');
-      $('a[href=\\' + ele +']:not(.active)').addClass('active');
-      $('a[href=\\' + ele +']:not(.active)').addClass('show');
       
-      var ele2 = $(event.relatedTarget).attr('href');
-      $('a[href=\\' + ele2 +'].active').removeClass('active');
-      $('a[href=\\' + ele2 +'].active').removeClass('show');
+      if (tabEle.hasClass('parent-menu')) {
+        $('.parent-menu a[data-toggle=tab].active').removeClass('active show');
+      } else if (tabEle.hasClass('child-menu')) {
+        $('.parent-tab-content.active .child-menu a[data-toggle=tab].active').removeClass('active show');
+      }
+      
+      if (tabEle.hasClass('nav-bottom')) {
+        $('ul:not(.nav-bottom) a[href=\\' + ele +']').addClass('active show');
+      } else {
+        $('ul.nav-bottom a[href=\\' + ele +']').addClass('active show');
+      }
   });
 });
 
+function scrollTabTop(){
+var offsetTop = $('.parent-tab-content.active').offset().top -170;
+$("html, body").animate({ scrollTop: offsetTop }, 200);
+}
 
 
 // クリニック選択
