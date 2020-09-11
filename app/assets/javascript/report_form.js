@@ -47,6 +47,7 @@ $(function(){
       } else {
         $('ul.nav-bottom a[href=\\' + ele +']').addClass('active show');
       }
+      scrollTabTop();
   });
 });
 
