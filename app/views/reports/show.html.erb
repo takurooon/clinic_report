@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'report_show' %>
+<%= javascript_include_tag 'report_form' %>
 <%= render 'category_header' %>
 <div class="contaner px-0">
   <div class="d-none d-lg-block position-fixed mt-0 pt-0">
@@ -391,8 +392,8 @@
                   <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
-                  <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
-                  <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  <a class="btn btnPrevious rounded-lg pl-2 shadow"><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                  <a class="btn btnNext rounded-lg pr-2 shadow">次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_2">
@@ -1536,7 +1537,7 @@
                         </div>
                       <% end %>
                       <h5 class="child-tab-title"><span class="marker-underline">受精･培養</span></h5>
-                      <table class="table table-hover p-0">
+                      <table class="table table-hover p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">成熟度</td>
                           <td class="pl-3" style="width:70%">
@@ -1830,7 +1831,7 @@
                           <% end %>
                         </span>
                       </h5>
-                      <table class="table table-hover p-0">
+                      <table class="table table-hover p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">移植回数</td>
                           <td class="pl-3" style="width:70%">
@@ -2115,7 +2116,7 @@
                           </tr>
                         <% end %>
                       </table>
-                      <table class="table table-hover table-bordered p-0 mt-5 mb-0" style="border-top:solid;">
+                      <table class="table table-hover table-bordered p-0 mb-0" style="border-top:solid;">
                         <% if @before_ishoku_hormones.present? %>
                           <tr>
                             <td class="text-center result-left-column" colspan="5" style="border-top:solid">
@@ -2256,7 +2257,7 @@
                         <% else %>
                         <% end %>
                       </table>
-                      <table class="table table-hover table-bordered p-0 mt-0" style="border-top:solid;">
+                      <table class="table table-hover table-bordered p-0 mb-0" style="border-top:solid;">
                         <% if @report.embryo_stage == 1 %>
                           <% if @shokihaiishoku_hormones.present? %>
                             <tr>
