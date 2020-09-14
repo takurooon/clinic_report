@@ -1225,13 +1225,21 @@
                 <% end %>
 
                 <div class="parent-tab mb-3">
-                  <ul class="nav nav-tabs parent-menu mt-0 pt-0">
-                    <li><a href="#left_tab" class="active mostleft-tab" data-toggle="tab">妊娠に至った採卵</a></li>
+                  <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
+                    <li><a href="#left_tab" class="active mostleft-tab" data-toggle="tab">最新の採卵</a></li>
                     <li><a href="#right_tab" data-toggle="tab">過去の採卵</a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2" id="left_tab">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
-                      <h5 class="child-tab-title"><span class="marker-underline">採卵</span></h5>
+                      <h5 class="child-tab-title">
+                        <span class="marker-underline">
+                          <% if @report.current_state.present? %>
+                            <%= @report.str_current_state %>に至った採卵
+                          <% else %>
+                            採卵
+                          <% end %>
+                        </span>
+                      </h5>
                       <table class="table table-hover p-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">採卵回数</td>
@@ -1807,13 +1815,21 @@
                 <% end %>
 
                 <div class="parent-tab mb-3">
-                  <ul class="nav nav-tabs parent-menu mt-0 pt-0">
-                    <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">妊娠に至った移植</a></li>
+                  <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
+                    <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の移植</a></li>
                     <li><a href="#right_tab2" data-toggle="tab">過去の移植</a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2" id="left_tab2">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
-                      <h5 class="child-tab-title"><span class="marker-underline">移植</span></h5>
+                      <h5 class="child-tab-title">
+                        <span class="marker-underline">
+                          <% if @report.current_state.present? %>
+                            <%= @report.str_current_state %>に至った移植
+                          <% else %>
+                            移植
+                          <% end %>
+                        </span>
+                      </h5>
                       <table class="table table-hover p-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">移植回数</td>
@@ -2912,12 +2928,15 @@
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">疾患･不育症</h4>
                 <div class="parent-tab mb-3">
-                  <ul class="nav nav-tabs parent-menu mt-0 pt-0">
+                  <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab4" class="active mostleft-tab" data-toggle="tab">女性</a></li>
                     <li><a href="#right_tab4" data-toggle="tab">男性</a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2" id="left_tab4">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
+                      <div class="text-center my-2">
+                        <i class="fas fa-female fa-3x female-icon"></i>&nbsp;<span class="text-muted small">女性</span>
+                      </div>
                       <h5 class="child-tab-title mt-3"><span class="marker-underline">疾患</span></h5>
                       <table class="table table-hover p-0 mb-0">
                         <tr>
@@ -2977,6 +2996,9 @@
                   </div>
                   <div class="parent-tab-content p-2" id="right_tab4">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
+                      <div class="text-center my-2">
+                        <i class="fas fa-male fa-3x male-icon"></i>&nbsp;<span class="text-muted small">男性</span>
+                      </div>
                       <h5 class="child-tab-title mt-3"><span class="marker-underline">疾患</span></h5>
                       <table class="table table-hover p-0 mb-0">
                         <tr>
@@ -3012,12 +3034,15 @@
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">サプリ･治療以外のこと</h4>
                 <div class="parent-tab mb-3">
-                  <ul class="nav nav-tabs parent-menu mt-0 pt-0">
+                  <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab5" class="active mostleft-tab" data-toggle="tab">女性</a></li>
                     <li><a href="#right_tab5" data-toggle="tab">男性</a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2" id="left_tab5">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
+                      <div class="text-center my-2">
+                        <i class="fas fa-female fa-3x female-icon"></i>&nbsp;<span class="text-muted small">女性</span>
+                      </div>
                       <h5 class="child-tab-title mt-3"><span class="marker-underline">サプリ</span></h5>
                       <table class="table table-hover p-0 mb-0">
                         <tr>
@@ -3082,6 +3107,9 @@
                   </div>
                   <div class="parent-tab-content p-2" id="right_tab5">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
+                      <div class="text-center my-2">
+                        <i class="fas fa-male fa-3x male-icon"></i>&nbsp;<span class="text-muted small">男性</span>
+                      </div>
                       <h5 class="child-tab-title mt-3"><span class="marker-underline">サプリ</span></h5>
                       <table class="table table-hover p-0 mb-0">
                         <tr>
