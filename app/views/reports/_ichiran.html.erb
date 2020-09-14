@@ -2094,9 +2094,9 @@
                   <tr>
                     <td colspan="2" class="result-left-column small text-center">
                       <% if unsuccessful_ishoku_cycle.number.present? %>
-                        <%= unsuccessful_ishoku_cycle.str_unsuccessful_ishoku_cycle_number(unsuccessful_ishoku_cycle.number) %>
+                        <span class="text-muted">(過去)</span>&nbsp;<%= unsuccessful_ishoku_cycle.str_unsuccessful_ishoku_cycle_number(unsuccessful_ishoku_cycle.number) %>
                       <% else %>
-                        ○回目の採卵
+                        <span class="text-muted">(過去)</span>&nbsp;○回目の採卵
                       <% end %>
                     </td>
                   </tr>
