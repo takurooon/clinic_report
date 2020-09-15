@@ -1235,7 +1235,7 @@
                       <h5 class="child-tab-title">
                         <span class="marker-underline">
                           <% if @report.current_state.present? %>
-                            <%= @report.str_current_state %>に至った採卵
+                            「<%= @report.str_current_state %>」に至った採卵
                           <% else %>
                             採卵
                           <% end %>
@@ -1695,7 +1695,7 @@
                           <div class="box27 px-1 mb-0">
                             <span class="box-title">
                               <% if unsuccessful_sairan_cycle.number.present? %>
-                                <%= unsuccessful_sairan_cycle.str_unsuccessful_sairan_cycle_number(unsuccessful_sairan_cycle.number) %>
+                                <span class="small text-white">(過去)</span>&nbsp;<%= unsuccessful_sairan_cycle.str_unsuccessful_sairan_cycle_number(unsuccessful_sairan_cycle.number) %>
                               <% else %>
                                 ○回目の採卵
                               <% end %>
@@ -1825,7 +1825,7 @@
                       <h5 class="child-tab-title">
                         <span class="marker-underline">
                           <% if @report.current_state.present? %>
-                            <%= @report.str_current_state %>に至った移植
+                            「<%= @report.str_current_state %>」に至った移植
                           <% else %>
                             移植
                           <% end %>
@@ -2377,7 +2377,7 @@
                           <div class="box27 px-1 mb-0">
                             <span class="box-title">
                               <% if unsuccessful_ishoku_cycle.number.present? %>
-                                <%= unsuccessful_ishoku_cycle.str_unsuccessful_ishoku_cycle_number(unsuccessful_ishoku_cycle.number) %>
+                                <span class="small text-white">(過去)</span>&nbsp;<%= unsuccessful_ishoku_cycle.str_unsuccessful_ishoku_cycle_number(unsuccessful_ishoku_cycle.number) %>
                               <% else %>
                                 ○回目の採卵
                               <% end %>
@@ -3249,7 +3249,11 @@
                   </small>
                 </div>
                 <h5 class="child-tab-title mt-3 mb-0"><span class="marker-underline">通院回数</span></h5>
-                <small class="text-muted"><span class="small">&nbsp;&nbsp;※&nbsp;以下は現在の状況に至った周期における通院回数</span></small>
+                <% if @report.current_state.present? %>
+                  <small class="text-muted"><span class="small">※「<%= @report.str_current_state %>」に至った周期における通院回数</span></small>
+                <% else %>
+                  <small class="text-muted"><span class="small">※現在の状況に至った周期における通院回数</span></small>
+                <% end %>
                 <table class="table table-hover p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">採卵周期通院回数</td>
