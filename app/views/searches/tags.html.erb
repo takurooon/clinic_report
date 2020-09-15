@@ -14,7 +14,8 @@
       <div class="parent-tab">
         <ul class="nav nav-tabs parent-menu mt-2">
           <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">疾患</a></li>
-          <li><a href="#tab_2" data-toggle="tab">手術歴</a></li>
+          <li><a href="#tab_2" data-toggle="tab">不育症</a></li>
+          <li><a href="#tab_3" data-toggle="tab">手術歴</a></li>
         </ul>
         <section class="parent-tab-content active mostleft-tab" id="tab_1">
           <div class="child-tab">
@@ -38,15 +39,27 @@
           <div class="child-tab">
             <ul class="nav nav-tabs child-menu">
               <li><a href="#tab_2_1" class="active" data-toggle="tab">女性</a></li>
-              <li><a href="#tab_2_2" data-toggle="tab">男性</a></li>
             </ul>
             <section class="child-tab-content active" id="tab_2_1">
-              <% @f_surgery .each do |f_sugery| %>
+              <% @fuiku_inspections .each do |fuiku_inspection| %>
+                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to fuiku_inspection.name, "/カテゴリ/不育症/女性/#{fuiku_inspection.name}" %></span>
+              <% end %>
+            </section>
+          </div>
+        </section>
+        <section class="parent-tab-content" id="tab_3">
+          <div class="child-tab">
+            <ul class="nav nav-tabs child-menu">
+              <li><a href="#tab_3_1" class="active" data-toggle="tab">女性</a></li>
+              <li><a href="#tab_3_2" data-toggle="tab">男性</a></li>
+            </ul>
+            <section class="child-tab-content active" id="tab_3_1">
+              <% @f_surgeries .each do |f_sugery| %>
                 <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to f_sugery.name, "/カテゴリ/手術/女性/#{f_sugery.name}" %></span>
               <% end %>
             </section>
-            <section class="child-tab-content" id="tab_2_2">
-              <% @m_surgery .each do |m_sugery| %>
+            <section class="child-tab-content" id="tab_3_2">
+              <% @m_surgeries .each do |m_sugery| %>
                 <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to m_sugery.name, "/カテゴリ/手術/男性/#{m_sugery.name}" %></span>
               <% end %>
             </section>

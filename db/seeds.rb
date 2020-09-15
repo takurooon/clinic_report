@@ -332,11 +332,14 @@ CostBurden.create([
 ])
 
 FuikuInspection.create([
-  { name: "凝固異常", yomigana: "ギョウコイジョウ" },
+  { name: "血液凝固異常", yomigana: "ケツエキギョウコイジョウ" },
+  { name: "甲状腺機能異常", yomigana: "コウジョウセンキノウイジョウ" },
   { name: "抗リン脂質抗体症候群", yomigana: "コウリンシシツコウタイショウコウグン" },
+  { name: "抗リン脂質抗体陽性", yomigana: "コウリンシシツコウタイヨウセイ" },
   { name: "子宮形態異常", yomigana: "シキュウケイタイイジョウ" },
   { name: "胎児染色体異常", yomigana: "タイジセンショクタイイジョウ" },
   { name: "夫婦染色体異常", yomigana: "フウフセンショクタイイジョウ" },
+  { name: "免疫学的異常", yomigana: "メンエキガクテキイジョウ" },
   { name: "その他", yomigana: "ンンン" },
 ])
 
