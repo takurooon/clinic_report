@@ -189,9 +189,9 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">基本検査<br><span class="text-muted small">(女性)</span></td>
+        <td class="result-left-column small text-center">基本検査</td>
         <td class="pl-3">
-          <small class="mb-3"><span class="small">【<%= @report.clinic.name %>で受けた基本検査】</span></small><br>
+          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span><br>
           <% if @report.cl_female_inspections.present? %>
             <% @report.cl_female_inspections.each do |cl_female_inspection| %>
               <ul class="list-unstyled mb-0">
@@ -203,23 +203,8 @@
           <% end %><br>
           <% if @report.cl_female_inspection_memo.present? %>
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cl_female_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
-          <% end %><br><br>
-          <small class="mb-3"><span class="small">【<%= @report.clinic.name %><span class="font-weight-bold">&nbsp;<u>以外で受けた</u>&nbsp;</span>基本検査】</span></small><br>
-          <% if @report.inspections.present? %>
-            <% @report.inspections.each do |inspection| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">&nbsp;&nbsp;･<%= inspection.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center text-center">基本検査<br><span class="text-muted small">(男性)</span></td>
-        <td class="pl-3">
-          <small class="mb-3"><span class="small">【<%= @report.clinic.name %>で受けた基本検査】</span></small><br>
+          <% end %><br>
+          <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span><br>
           <% if @report.cl_male_inspections.present? %>
             <% @report.cl_male_inspections.each do |cl_male_inspection| %>
               <ul class="list-unstyled mb-0">
@@ -231,8 +216,23 @@
           <% end %><br>
           <% if @report.cl_male_inspection_memo.present? %>
             <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cl_male_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td class="result-left-column small text-center text-center">基本検査<br><small class="small text-muted">【<%= @report.clinic.name %><span class="font-weight-bold">&nbsp;<u>以外で受けた</u>&nbsp;</span>これまでの基本検査】</small></td>
+        <td class="pl-3">
+          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span><br>
+          <% if @report.inspections.present? %>
+            <% @report.inspections.each do |inspection| %>
+              <ul class="list-unstyled mb-0">
+                <li class="result-text small">&nbsp;&nbsp;･<%= inspection.name %></li>
+              </ul>
+            <% end %>
+          <% else %>
+            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
           <% end %><br><br>
-          <small class="mb-3"><span class="small">【<%= @report.clinic.name %><span class="font-weight-bold">&nbsp;<u>以外で受けた</u>&nbsp;</span>基本検査】</span></small><br>
+          <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span><br>
           <% if @report.male_inspections.present? %>
             <% @report.male_inspections.each do |male_inspection| %>
               <ul class="list-unstyled mb-0">

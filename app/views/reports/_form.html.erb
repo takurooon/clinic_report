@@ -630,8 +630,8 @@
                 <div class="scroll-box">
                   <div class="parent-tab mb-0">
                     <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
-                      <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の採卵周期</a></li>
-                      <li><a href="#right_tab2" data-toggle="tab">過去の採卵</a></li>
+                      <li class="tab-item"><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の採卵周期</a></li>
+                      <li class="tab-item"><a href="#right_tab2" data-toggle="tab">過去の採卵</a></li>
                     </ul>
                     <div class="parent-tab-content active mostleft-tab p-2" id="left_tab2">
                       <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
@@ -827,6 +827,9 @@
                           <%= f.text_area :explanation_and_impression_about_sairan, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "採卵に関しての感想や情報を載せて下さい" %>
                           <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での採卵の総括</span></small>
                         </div>
+                        <div class="mt-3 d-flex justify-content-end">
+                          <a class="btn minBtnNext rounded-lg pr-2 shadow">過去の採卵入力画面<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                        </div>
                       </div>
                     </div>
                     <div class="parent-tab-content p-2" id="right_tab2">
@@ -842,6 +845,9 @@
                             <%= link_to_add_association "+ 追加", f, :unsuccessful_sairan_cycles %>
                           </div>
                         </div>
+                      </div>
+                      <div class="mt-3 d-flex justify-content-between">
+                        <a class="btn minBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>最新の採卵周期入力画面</a>
                       </div>
                     </div>
                   </div>
@@ -1071,6 +1077,9 @@
                           <%= f.text_area :explanation_and_impression_about_ishoku, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "移植に関しての感想や情報を載せて下さい" %>
                           <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での移植の総括</span></small>
                         </div>
+                        <div class="mt-3 d-flex justify-content-end">
+                          <a class="btn minBtnNext rounded-lg pr-2 shadow">過去の移植入力画面<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                        </div>
                       </div>
                     </div>
                     <div class="parent-tab-content p-2" id="right_tab3">
@@ -1085,6 +1094,9 @@
                           <div class="links pt-2 pl-2">
                             <%= link_to_add_association "+ 追加", f, :unsuccessful_ishoku_cycles %>
                           </div>
+                        </div>
+                        <div class="mt-3 d-flex justify-content-between">
+                          <a class="btn minBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>最新の移植周期入力画面</a>
                         </div>
                       </div>
                     </div>

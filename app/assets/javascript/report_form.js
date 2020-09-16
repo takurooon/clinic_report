@@ -1,26 +1,22 @@
 // 2段タブ表示
 $(function(){
   $('.btnNext').click(function(){
-    console.log("あ")
       var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().next().find('a');
       if (ele.length == 0) {
         var ele2 = $('.parent-menu .tab-item .active').parent().next().find('a');
         if (ele2.length == 0) {
           $('.parent-menu .tab-item').first().find('a').trigger('click');
         } else {
-          console.log("い")
           ele2.trigger('click');
         }
         $('.parent-tab-content.active .child-tab .nav-tabs li').first().find('a').trigger('click');
       } else {
         ele.trigger('click');
       }
-      console.log("う")
       scrollTabTop();
   });
   
   $('.btnPrevious').click(function(){
-    console.log("え")
       var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().prev().find('a');
       if (ele.length == 0) {
         var ele2 = $('.parent-menu .tab-item .active').parent().prev().find('a');
@@ -28,16 +24,51 @@ $(function(){
           $('.parent-menu .tab-item').last().find('a').trigger('click');
         } else {
           ele2.trigger('click');
-          console.log("お")
         }
         $('.parent-tab-content.active .child-tab .nav-tabs li').last().find('a').trigger('click');
       } else {
         ele.trigger('click');
       }
-      console.log("か")
+      scrollTabTop();
+  });
+
+  $('.minBtnNext').click(function(){
+      var ele = $('.parent-tab-content.active .nav-tabs2 .active').parent().next().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().next().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').first().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .nav-tabs2 li').first().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
       scrollTabTop();
   });
   
+  $('.minBtnPrevious').click(function(){
+      var ele = $('.parent-tab-content.active .nav-tabs2 .active').parent().prev().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().prev().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').last().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .nav-tabs2 li').last().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollTabTop();
+  });
+  
+
+
+
+
+
   // $('.tab-item a').on('click', function (event) {
   //     var tabEle = $(event.target).closest('ul');
   //     var ele = $(event.target).attr('href');
