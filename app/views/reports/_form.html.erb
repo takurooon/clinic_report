@@ -482,6 +482,8 @@
                           <% end %>
                         </div>
                       <% end %>
+                      <p class="sub-question">【女性】<span class="select-clinic-name"></span>で受けた基本検査の補足説明</p>
+                      <%= f.text_area :cl_female_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
                     </div>
                     <div class="form-group mt-3">
                       <p class="question mb-3">【女性】<span class="select-clinic-name"></span>以外でこれまでに受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
@@ -493,8 +495,6 @@
                           <% end %>
                         </div>
                       <% end %>
-                      <p class="sub-question">基本検査の補足説明(女性)</p>
-                      <%= f.text_area :cl_female_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
                     </div>
 
                     <div class="spacer">
@@ -510,6 +510,8 @@
                           <% end %>
                         </div>
                       <% end %>
+                      <p class="sub-question">【男性】<span class="select-clinic-name"></span>で受けた基本検査の補足説明</p>
+                      <%= f.text_area :cl_male_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
                     </div>
                     <div class="form-group mt-3">
                       <p class="question mb-3">【男性】<span class="select-clinic-name"></span>以外でこれまでに受けたことのある&nbsp;検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
@@ -521,8 +523,6 @@
                           <% end %>
                         </div>
                       <% end %>
-                      <p class="sub-question">検査の補足説明(男性)</p>
-                      <%= f.text_area :cl_male_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
                     </div>
                   </div>
                   <div class="spacer">
