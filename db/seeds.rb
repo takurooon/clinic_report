@@ -337,7 +337,6 @@ FuikuInspection.create([
   { name: "抗リン脂質抗体症候群", yomigana: "コウリンシシツコウタイショウコウグン" },
   { name: "抗リン脂質抗体陽性", yomigana: "コウリンシシツコウタイヨウセイ" },
   { name: "子宮形態異常", yomigana: "シキュウケイタイイジョウ" },
-  { name: "胎児染色体異常", yomigana: "タイジセンショクタイイジョウ" },
   { name: "夫婦染色体異常", yomigana: "フウフセンショクタイイジョウ" },
   { name: "免疫学的異常", yomigana: "メンエキガクテキイジョウ" },
   { name: "その他", yomigana: "ンンン" },

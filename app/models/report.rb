@@ -355,11 +355,9 @@ class Report < ApplicationRecord
     2 => "妊娠中(多胎)",
     3 => "出産",
     4 => "出産(多胎)",
-    # 5 => "出産に至らず",
-    # 6 => "転院した",
-    # 7 => "お休み中",
-    # 8 => "治療自体を完全にやめた",
-    # 99 => "その他"
+    5 => "流産",
+    6 => "死産",
+    99 => "その他"
   }
 
   def str_current_state
@@ -369,14 +367,12 @@ class Report < ApplicationRecord
   # 検索画面用のcurrent_stateの区分値(現在の状況)
   HASH_CURRENT_STATE_SEARCH = {
     1 => "妊娠中",
-    2 => "妊娠中（多胎）",
-    3 => "出産済み",
-    4 => "出産済み（多胎）",
-    # 5 => "出産に至らず",
-    # 6 => "転院した",
-    # 7 => "お休み中",
-    # 8 => "治療自体を完全にやめた",
-    # 99 => "その他"
+    2 => "妊娠中(多胎)",
+    3 => "出産",
+    4 => "出産(多胎)",
+    5 => "流産",
+    6 => "死産",
+    99 => "その他"
   }
 
   def str_current_state_search
@@ -2348,6 +2344,7 @@ end
 #
 #  id                                           :bigint           not null, primary key
 #  about_work_and_working_style                 :text
+#  after_the_current_state_memo                 :text
 #  age_of_partner_at_end_of_treatment           :integer
 #  amh                                          :integer
 #  average_waiting_time                         :integer

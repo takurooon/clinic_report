@@ -3,6 +3,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
     create_table :reports do |t|
       t.string :title
       t.integer :current_state
+      t.text :after_the_current_state_memo
       t.date :year_of_treatment_end
       t.integer :fertility_treatment_number
       t.integer :transplant_method

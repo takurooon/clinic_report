@@ -481,6 +481,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
   create_table "reports", force: :cascade do |t|
     t.string "title"
     t.integer "current_state"
+    t.text "after_the_current_state_memo"
     t.date "year_of_treatment_end"
     t.integer "fertility_treatment_number"
     t.integer "transplant_method"

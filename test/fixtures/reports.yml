@@ -4,6 +4,7 @@
 #
 #  id                                           :bigint           not null, primary key
 #  about_work_and_working_style                 :text
+#  after_the_current_state_memo                 :text
 #  age_of_partner_at_end_of_treatment           :integer
 #  amh                                          :integer
 #  average_waiting_time                         :integer
