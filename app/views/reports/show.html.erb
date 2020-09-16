@@ -140,7 +140,7 @@
           </div>
         </div>
 
-        <div class="parent-tab">
+        <div class="parent-tab landing-point">
           <% if user_signed_in? %>
             <p class="d-xs-block d-md-none float-left mb-0 px-2 d-inline" style="font-size:15px">
               <% if current_user.already_liked?(@report) %>
@@ -1210,12 +1210,6 @@
               <section class="child-tab-content" id="tab_1_3">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title">採卵･受精･培養</h4>
-                <% if @report.explanation_and_impression_about_sairan.present? %>
-                  <div class="box27">
-                    <span class="box-title">採卵まとめ</span>
-                    <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)))).html_safe %></p>
-                  </div>
-                <% end %>
 
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
@@ -1233,6 +1227,12 @@
                           <% end %>
                         </span>
                       </h5>
+                      <% if @report.explanation_and_impression_about_sairan.present? %>
+                        <div class="box27">
+                          <span class="box-title">採卵まとめ</span>
+                          <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)))).html_safe %></p>
+                        </div>
+                      <% end %>
                       <table class="table table-hover p-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">採卵回数</td>
@@ -1806,12 +1806,6 @@
                     移植
                   <% end %>
                 </h4>
-                <% if @report.explanation_and_impression_about_ishoku.present? %>
-                  <div class="box27">
-                    <span class="box-title">移植まとめ</span>
-                    <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)))).html_safe %></p>
-                  </div>
-                <% end %>
 
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
@@ -1829,6 +1823,12 @@
                           <% end %>
                         </span>
                       </h5>
+                      <% if @report.explanation_and_impression_about_ishoku.present? %>
+                        <div class="box27">
+                          <span class="box-title">移植まとめ</span>
+                          <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)))).html_safe %></p>
+                        </div>
+                      <% end %>
                       <table class="table table-hover p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">移植回数</td>

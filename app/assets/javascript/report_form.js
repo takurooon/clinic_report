@@ -32,6 +32,38 @@ $(function(){
       scrollTabTop();
   });
 
+  $('.FormBtnNext').click(function(){
+      var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().next().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().next().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').first().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .child-tab .nav-tabs li').first().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollTabTopForm();
+  });
+  
+  $('.FormBtnPrevious').click(function(){
+      var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().prev().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().prev().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').last().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .child-tab .nav-tabs li').last().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollTabTopForm();
+  });
+
   $('.minBtnNext').click(function(){
       var ele = $('.parent-tab-content.active .nav-tabs2 .active').parent().next().find('a');
       if (ele.length == 0) {
@@ -83,12 +115,17 @@ $(function(){
 });
 
 function scrollTabTop(){
-var offsetTop = $('.parent-tab-content.active').offset().top -100;
+var offsetTop = $('.landing-point').offset().top -40;
+$("html, body").animate({ scrollTop: offsetTop }, 200);
+}
+
+function scrollTabTopForm(){
+var offsetTop = $('.landing-point').offset().top -130;
 $("html, body").animate({ scrollTop: offsetTop }, 200);
 }
 
 function scrollMinTabTop(){
-var offsetTop = $('.parent-tab-content.active').offset().top -30;
+var offsetTop = $('.landing-point').offset().top +170;
 $("html, body").animate({ scrollTop: offsetTop }, 200);
 }
 
