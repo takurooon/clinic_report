@@ -25,8 +25,8 @@ class SpecialInspection < ApplicationRecord
     99 => "その他",
   }
 
-  def str_special_inspection_name
-    return HASH_SPECIAL_INSPECTION_NAME[SpecialInspection.name]
+  def str_special_inspection_name(name)
+    return HASH_SPECIAL_INSPECTION_NAME[name]
   end
 
   # place

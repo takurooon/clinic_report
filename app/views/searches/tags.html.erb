@@ -16,6 +16,7 @@
           <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">疾患</a></li>
           <li><a href="#tab_2" data-toggle="tab">不育症</a></li>
           <li><a href="#tab_3" data-toggle="tab">手術歴</a></li>
+          <li><a href="#tab_4" data-toggle="tab">検査</a></li>
         </ul>
         <section class="parent-tab-content active mostleft-tab" id="tab_1">
           <div class="child-tab">
@@ -61,6 +62,27 @@
             <section class="child-tab-content" id="tab_3_2">
               <% @m_surgeries .each do |m_sugery| %>
                 <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to m_sugery.name, "/カテゴリ/手術/男性/#{m_sugery.name}" %></span>
+              <% end %>
+            </section>
+          </div>
+        </section>
+        <section class="parent-tab-content" id="tab_4">
+          <div class="child-tab">
+            <ul class="nav nav-tabs child-menu">
+              <li><a href="#tab_4_1" class="active" data-toggle="tab">女性</a></li>
+              <li><a href="#tab_4_2" data-toggle="tab">男性</a></li>
+            </ul>
+            <section class="child-tab-content active" id="tab_4_1">
+              <% @special_examinations.each do |special_examination| %>
+                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to special_examination.str_special_inspection_name(special_examination.name), "/カテゴリ/特殊検査/女性/#{special_examination.name}" %></span>
+              <% end %>
+              <% @cl_female_examinations.each do |cl_female_examination| %>
+                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to cl_female_examination.name, "/カテゴリ/基本検査/女性/#{cl_female_examination.name}" %></span>
+              <% end %>
+            </section>
+            <section class="child-tab-content" id="tab_4_2">
+              <% @cl_male_examinations .each do |cl_male_examination| %>
+                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to cl_male_examination.name, "/カテゴリ/基本検査/男性/#{cl_male_examination.name}" %></span>
               <% end %>
             </section>
           </div>

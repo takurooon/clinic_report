@@ -3513,7 +3513,10 @@
                             </td>
                             <td>
                               <% if @report.average_waiting_time2.present? %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.average_waiting_time2 %>&nbsp;<small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.average_waiting_time2 %>
+                                <% if @report.str_average_waiting_time %>
+                                  &nbsp;<small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
+                                <% end %>
                               <% else %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                               <% end %>
@@ -3614,7 +3617,10 @@
                           <td class="result-left-column small text-center ichirantable-left">待ち時間</td>
                           <td class="pl-3 ichirantable-right">
                             <% if @report.average_waiting_time2.present? %>
-                              &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.average_waiting_time2 %>&nbsp;<small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.average_waiting_time2 %>
+                              <% if @report.str_average_waiting_time %>
+                                &nbsp;<small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
+                              <% end %>
                             <% else %>
                               &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                             <% end %>
@@ -3635,18 +3641,18 @@
                             <td class="result-left-column small text-center ichirantable-left">備考</td>
                             <td class="pl-3 ichirantable-right">
                               <% if @report.free_wifi.present? && @report.free_wifi <= 3 %>
-                                <small><span class="small">･&nbsp;<%= @report.str_free_wifi %></span></small><br>
+                                <p class="small"><span class="small">･&nbsp;<%= @report.str_free_wifi %></span></p>
                               <% end %>
                               <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
-                                <small><span class="small">･&nbsp;待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small>
+                                <p class="small"><span class="small">･&nbsp;待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></p>
                               <% end %>
                               <% if @report.credit_card_validity.present? %>
-                                <small><span class="small">･&nbsp;クレジットカード:&nbsp;<%= @report.str_credit_card_validity %></span></small>
+                                <p class="small"><span class="small">･&nbsp;クレジットカードは&nbsp;<%= @report.str_credit_card_validity %></span>
                               <% end %>
                               <% if @report.credit_card_validity == 3 %>
                                 <% if @report.creditcards_can_be_used_from_more_than.present? %>
                                   <small><span class="text-muted small">(<%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から利用可能)</span></small>
-                                <% end %>
+                                <% end %></p>
                               <% end %>
                             </td>
                           </tr>

@@ -149,6 +149,16 @@ class SearchesController < ApplicationController
     fuiku_inspection = report_fuiku_inspections.keys
     @fuiku_inspections = FuikuInspection.where(id: fuiku_inspection).name_yomigana
 
+    report_f_examinations = ReportClFemaleInspection.group(:cl_female_inspection_id).where.not(cl_female_inspection_id: nil).distinct.count
+    cl_female_examination = report_f_examinations.keys
+    @cl_female_examinations = ClFemaleInspection.where(id: cl_female_examination).name_yomigana
+
+    @special_examinations = SpecialInspection.where.not(report_id: nil).distinct
+
+    report_m_examinations = ReportClMaleInspection.group(:cl_male_inspection_id).where.not(cl_male_inspection_id: nil).distinct.count
+    cl_male_examination = report_m_examinations.keys
+    @cl_male_examinations = ClMaleInspection.where(id: cl_male_examination).name_yomigana
+
     report_f_surgeries = ReportFSurgery.group(:f_surgery_id).where.not(f_surgery_id: nil).distinct.count
     f_surgery = report_f_surgeries.keys
     @f_surgeries = FSurgery.where(id: f_surgery).name_yomigana
@@ -166,6 +176,12 @@ class SearchesController < ApplicationController
       elsif params[:tags] === "手術"
         @tag = FSurgery.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+      elsif params[:tags] === "基本検査"
+        @tag = ClFemaleInspection.find_by(name: params[:value])
+        @reports = @tag.reports.order(created_at: :desc)
+      elsif params[:tags] === "特殊検査"
+        @tag = SpecialInspection.find_by(name: params[:value])
+        @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag })
       else params[:tags] === "不育症"
         @tag = FuikuInspection.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
@@ -174,8 +190,11 @@ class SearchesController < ApplicationController
       if params[:tags] === "疾患"
         @tag = MDisease.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
-      else params[:tags] === "手術"
+      elsif params[:tags] === "手術"
         @tag = MSurgery.find_by(name: params[:value])
+        @reports = @tag.reports.order(created_at: :desc)
+      else params[:tags] === "基本検査"
+        @tag = ClMaleInspection.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
       end
     end
