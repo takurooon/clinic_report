@@ -272,7 +272,7 @@ Inspection.create([
   { name: "超音波検査", yomigana: "チョウオンパケンサ" },
   { name: "テストステロン検査", yomigana: "テストステロンケンサ" },
   { name: "フーナーテスト", yomigana: "フーナーテスト" },
-  { name: "ホルモン値検査(E2/FSH/LH/PRL)", yomigana: "ホルモンチケンサ" },
+  { name: "ホルモン値検査(E2･FSH･LH･PRL)", yomigana: "ホルモンチケンサ" },
   { name: "卵管通水検査", yomigana: "ランカンツウスイケンサ" },
   { name: "その他", yomigana: "ンンン" },
 ])
@@ -290,7 +290,7 @@ ClFemaleInspection.create([
   { name: "超音波検査", yomigana: "チョウオンパケンサ" },
   { name: "テストステロン検査", yomigana: "テストステロンケンサ" },
   { name: "フーナーテスト", yomigana: "フーナーテスト" },
-  { name: "ホルモン値検査(E2/FSH/LH/PRL)", yomigana: "ホルモンチケンサ" },
+  { name: "ホルモン値検査(E2･FSH･LH･PRL)", yomigana: "ホルモンチケンサ" },
   { name: "卵管通水検査", yomigana: "ランカンツウスイケンサ" },
   { name: "その他", yomigana: "ンンン" },
 ])
