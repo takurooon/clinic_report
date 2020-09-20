@@ -15,7 +15,7 @@ class SpecialInspection < ApplicationRecord
     5 => "ERPeak",
     6 => "子宮内膜組織診",
     7 => "子宮内フローラ",
-    8 => "慢性子宮内膜炎(CD138/BCE)",
+    8 => "慢性子宮内膜炎(CD138･BCE)",
     9 => "子宮鏡検査",
     10 => "染色体検査",
     11 => "CA125",

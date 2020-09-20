@@ -11,7 +11,8 @@
 
   <div class="row all_amh pb-5 mb-5">
     <div class="col-md-8 offset-md-2 main-column">
-      <%= select "report", :current_state, @status.invert, { prompt: "選択してください" }, { class: "form-control", onchange: "location = 'status/' + this.value" } %>
+      <%= select "report", :current_state, @current_status.invert, { prompt: "投稿時のステータス" }, { class: "form-control my-5", onchange: "location = 'status/' + this.value + 'current_state'" } %>
+      <%= select "report", :fertility_treatment_number, @fertility_treatment_number.invert, { prompt: "何人目治療？" }, { class: "form-control my-5", onchange: "location = 'status/' + this.value" } %>
     </div>
   </div>
 </div>

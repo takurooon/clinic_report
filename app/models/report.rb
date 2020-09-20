@@ -1514,6 +1514,17 @@ class Report < ApplicationRecord
     return HASH_FERTILITY_TREATMENT_NUMBER[self.fertility_treatment_number]
   end
 
+  # 検索画面用のfertility_treatment_numberの区分値(何人目か)
+  HASH_FERTILITY_TREATMENT_NUMBER_SEARCH = {
+    1 => "1人目の治療",
+    2 => "2人目の治療",
+    3 => "3人以上の治療",
+  }
+
+  def str_fertility_treatment_number_search
+    return HASH_FERTILITY_TREATMENT_NUMBER_SEARCH[self.fertility_treatment_number]
+  end
+
   # number_of_clinicsの区分値(何院目か)
   HASH_NUMBER_OF_CLINICS = {
     1 => "1院目",

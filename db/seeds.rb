@@ -181,7 +181,7 @@ SairanMedicine.create([
   { name: "hMGフジ", yomigana: "エイチエムジーフジ" },
   { name: "オビドレル", yomigana: "オビドレル" },
   { name: "ガニレスト", yomigana: "ガニレスト" },
-  { name: "クロミッド(クロミフェン/セロフェン)", yomigana: "クロミッド" },
+  { name: "クロミッド(クロミフェン･セロフェン)", yomigana: "クロミッド" },
   { name: "ゴナピュール", yomigana: "ゴナピュール" },
   { name: "スプレキュア", yomigana: "スプレキュア" },
   { name: "セキソビット", yomigana: "セキソビット" },

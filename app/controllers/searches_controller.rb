@@ -22,21 +22,37 @@ class SearchesController < ApplicationController
   end
 
   def all_status
-    statuses = Report::HASH_CURRENT_STATE_SEARCH
-    reports = Report.group(:current_state).where.not(current_state: nil).distinct.count
-    s = statuses.keys - reports.keys
-    s.each do |t|
-      statuses.delete(t)
+    current_statuses = Report::HASH_CURRENT_STATE_SEARCH
+    current_state_reports = Report.group(:current_state).where.not(current_state: nil).distinct.count
+    c = current_statuses.keys - current_state_reports.keys
+    c.each do |s|
+      current_statuses.delete(s)
     end
-    @status = statuses
+    @current_status = current_statuses
+
+    fertility_treatment_number = Report::HASH_FERTILITY_TREATMENT_NUMBER_SEARCH
+    fertility_treatment_number_reports = Report.group(:fertility_treatment_number).where.not(fertility_treatment_number: nil).distinct.count
+    f = fertility_treatment_number.keys - fertility_treatment_number_reports.keys
+    f.each do |t|
+      fertility_treatment_number.delete(t)
+    end
+    @fertility_treatment_number = fertility_treatment_number
   end
 
   def status
-    status = Report::HASH_CURRENT_STATE_SEARCH
-    status_value = params[:value].to_i
-    @selected_status = status[status_value]
-    @reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
-    @status_page = Report.page(params[:page]).per(10)
+    if params[:value].include?("current_state")
+      status = Report::HASH_CURRENT_STATE_SEARCH
+      status_value = params[:value].to_i
+      @selected_word = status[status_value]
+      @reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
+      @selected_word_page = Report.page(params[:page]).per(10)
+    else
+      fertility_treatment_number = Report::HASH_FERTILITY_TREATMENT_NUMBER_SEARCH
+      fertility_treatment_number_value = params[:value].to_i
+      @selected_word = fertility_treatment_number[fertility_treatment_number_value]
+      @reports = Report.where(fertility_treatment_number: fertility_treatment_number_value, status: 0).order(created_at: :desc)
+      @selected_word_page = Report.page(params[:page]).per(10)
+    end
   end
 
   def clinics
@@ -166,6 +182,14 @@ class SearchesController < ApplicationController
     report_m_surgery = ReportMSurgery.group(:m_surgery_id).where.not(m_surgery_id: nil).distinct.count
     m_surgery = report_m_surgery.keys
     @m_surgeries = MSurgery.where(id: m_surgery).name_yomigana
+
+    report_sairan_medicine = ReportSairanMedicine.group(:sairan_medicine_id).where.not(sairan_medicine_id: nil).distinct.count
+    sairan_medicine = report_sairan_medicine.keys
+    @sairan_medicines = SairanMedicine.where(id: sairan_medicine).name_yomigana
+
+    report_transfer_medicine = ReportTransferMedicine.group(:transfer_medicine_id).where.not(transfer_medicine_id: nil).distinct.count
+    transfer_medicine = report_transfer_medicine.keys
+    @transfer_medicines = TransferMedicine.where(id: transfer_medicine).name_yomigana
   end
 
   def tag
@@ -181,9 +205,15 @@ class SearchesController < ApplicationController
         @reports = @tag.reports.order(created_at: :desc)
       elsif params[:tags] === "特殊検査"
         @tag = SpecialInspection.find_by(name: params[:value])
-        @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag })
-      else params[:tags] === "不育症"
+        @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag.name })
+      elsif params[:tags] === "不育症"
         @tag = FuikuInspection.find_by(name: params[:value])
+        @reports = @tag.reports.order(created_at: :desc)
+      elsif params[:tags] === "採卵周期の薬剤"
+        @tag = SairanMedicine.find_by(name: params[:value])
+        @reports = @tag.reports.order(created_at: :desc)
+      else params[:tags] === "移植周期の薬剤"
+        @tag = TransferMedicine.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
       end
     else
