@@ -42,6 +42,9 @@ Rails.application.routes.draw do
   # end
   # ここまで(ゲストログイン機能)
 
+  resources :users
+    put "/users/:id/hide" => "users#hide", as: 'users_hide'
+
   resources :users, shallow: true do
     resources :reports, only: %[index]
   end
@@ -121,12 +124,21 @@ end
 #                                       PUT    /                                                                                        users/registrations#update
 #                                       DELETE /                                                                                        users/registrations#destroy
 #                                       POST   /                                                                                        users/registrations#create
-#                          user_reports GET    /users/:user_id/reports(.:format)                                                        reports#index
 #                                 users GET    /users(.:format)                                                                         users#index
 #                                       POST   /users(.:format)                                                                         users#create
 #                              new_user GET    /users/new(.:format)                                                                     users#new
 #                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
 #                                  user GET    /users/:id(.:format)                                                                     users#show
+#                                       PATCH  /users/:id(.:format)                                                                     users#update
+#                                       PUT    /users/:id(.:format)                                                                     users#update
+#                                       DELETE /users/:id(.:format)                                                                     users#destroy
+#                            users_hide PUT    /users/:id/hide(.:format)                                                                users#hide
+#                          user_reports GET    /users/:user_id/reports(.:format)                                                        reports#index
+#                                       GET    /users(.:format)                                                                         users#index
+#                                       POST   /users(.:format)                                                                         users#create
+#                                       GET    /users/new(.:format)                                                                     users#new
+#                                       GET    /users/:id/edit(.:format)                                                                users#edit
+#                                       GET    /users/:id(.:format)                                                                     users#show
 #                                       PATCH  /users/:id(.:format)                                                                     users#update
 #                                       PUT    /users/:id(.:format)                                                                     users#update
 #                                       DELETE /users/:id(.:format)                                                                     users#destroy

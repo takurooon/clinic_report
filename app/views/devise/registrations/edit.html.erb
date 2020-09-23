@@ -243,7 +243,8 @@
         <section class="parent-tab-content" id="tab_2">
           <div class="child-tab">
             <ul class="nav nav-tabs child-menu">
-              <li><a href="#tab_1_1" class="active" data-toggle="tab">設定情報</a></li>
+              <li><a href="#tab_2_1" class="active" data-toggle="tab">設定情報</a></li>
+              <li><a href="#tab_2_2" data-toggle="tab">退会</a></li>
             </ul>
             <section class="child-tab-content active px-1" id="tab_2_1">
               <div class="alert alert-secondary rounded-lg m-2 mb-3 small" role="alert">
@@ -291,9 +292,20 @@
                 <%= f.submit "更新", class: "btn btn-raised btn-primary w-100" %>
               </div>
             </section>
+            <section class="child-tab-content px-1" id="tab_2_2">
+              <div class="alert alert-secondary rounded-lg m-2 mb-3 small" role="alert">
+                こちらから退会処理を行えます。
+              </div>
+              <div class="text-center">
+                <p>退会されるとユーザー情報、投稿投稿、ストック機能の利用が停止されます。</p>
+                <% if user_signed_in? && @user.id == current_user.id %>
+                  <%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+                <% end %>
+              </div>
+            </section>
           </div>
         </section>
-      </>
+      </div>
     </div>
   </div>
 <% end %>  

@@ -58,6 +58,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.integer :number_of_late_miscarriages_status, default: 0, null: false
       t.integer :number_of_times_the_grant_was_received
       t.integer :all_grant_amount
+      t.boolean :is_deleted, default: false
     end
 
     add_index :users, :email,                unique: true
