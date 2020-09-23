@@ -1,8 +1,7 @@
 class User < ApplicationRecord
-  # 以下バリデーション(3･4行)はゲストログイン機能を有効にする場合はコメントアウトのこと
   validates :name, presence: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: true
-  # ここまで
+  validates_acceptance_of :agreement, allow_nil: false, message: "※会員登録には利用規約への同意が必要です。", on: :create
   
   VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
   validates :password, format: { with: VALID_PASSWORD_REGEX },
