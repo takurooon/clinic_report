@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'category/area' => 'searches#all_area'
   get 'category/prefecture/:value' => 'searches#area_prefecture'
   get 'category/city/:value' => 'searches#area_city'
+  get 'category/works' => 'searches#works'
+  get 'category/work/:value' => 'searches#work'
   get 'about' => 'application#about'
   get 'terms' => 'application#terms'
   get 'privacy' => 'application#privacy'

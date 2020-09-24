@@ -244,4 +244,38 @@ class SearchesController < ApplicationController
     @reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0).order(created_at: :desc)
     # @reports = Report.joins(clinic: :city).where(cities: {id: @city.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
+
+  def works
+    works = Report::HASH_WORK_STYLE_SEARCH
+    reports = Report.group(:work_style).where.not(work_style: nil).distinct.count
+    w = works.keys - reports.keys
+    w.each do |wo|
+      works.delete(wo)
+    end
+    @works = works
+
+    industry = Report::HASH_INDUSTRY_TYPE_SEARCH
+    reports = Report.group(:industry_type).where.not(industry_type: nil).distinct.count
+    i = industry.keys - reports.keys
+    i.each do |ind|
+      industry.delete(ind)
+    end
+    @industry = industry
+  end
+
+  def work
+    if params[:value].include?("work_style")
+      work_style = Report::HASH_WORK_STYLE_SEARCH
+      work_value = params[:value].to_i
+      @selected_work = "「" + work_style[work_value] + "」"
+      @reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
+      @work_page = Report.page(params[:page]).per(10)
+    else
+      industry_type = Report::HASH_INDUSTRY_TYPE_SEARCH
+      industry_type_value = params[:value].to_i
+      @selected_work = "「" + industry_type[industry_type_value] + "」" + "業界で働く方"
+      @reports = Report.where(industry_type: industry_type_value, status: 0).order(created_at: :desc)
+      @work_page = Report.page(params[:page]).per(10)
+    end
+  end
 end
