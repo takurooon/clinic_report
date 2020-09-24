@@ -770,7 +770,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.integer "number_of_late_miscarriages_status", default: 0, null: false
     t.integer "number_of_times_the_grant_was_received"
     t.integer "all_grant_amount"
-    t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

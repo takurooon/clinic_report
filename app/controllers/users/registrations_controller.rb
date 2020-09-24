@@ -41,9 +41,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   def destroy
     super
-    # @user.icon.destroyreport.user.icon
-    # flash[:notice] = 'レポートを削除しました。'
-    # end
   end
 
   # GET /resource/cancel

@@ -25,10 +25,7 @@ class User < ApplicationRecord
     self.likes.exists?(report_id: report.id)
   end
 
-  # 退会ユーザーはログインできなくする(https://qiita.com/yuto_1014/items/358d0a425193b12c969a)
-  def active_for_authentication?
-    super && (self.is_deleted == false)
-  end
+  # 退会処理(論理削除)→https://qiita.com/yuto_1014/items/358d0a425193b12c969a
 
   # carrierwave→activestrage変更に伴いmount解除(user/iconカラムも削除済み)↓
   # mount_uploader :icon, ImageUploader

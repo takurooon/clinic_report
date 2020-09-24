@@ -244,7 +244,7 @@
           <div class="child-tab">
             <ul class="nav nav-tabs child-menu">
               <li><a href="#tab_2_1" class="active" data-toggle="tab">設定情報</a></li>
-              <li><a href="#tab_2_2" data-toggle="tab">退会</a></li>
+              <li><a href="#tab_2_2" data-toggle="tab" class="small text-muted">退会</a></li>
             </ul>
             <section class="child-tab-content active px-1" id="tab_2_1">
               <div class="alert alert-secondary rounded-lg m-2 mb-3 small" role="alert">
@@ -296,11 +296,11 @@
               <div class="alert alert-secondary rounded-lg m-2 mb-3 small" role="alert">
                 こちらから退会処理を行えます。
               </div>
-              <div class="text-center">
-                <p>退会されるとユーザー情報、投稿投稿、ストック機能の利用が停止されます。</p>
-                <% if user_signed_in? && @user.id == current_user.id %>
-                  <%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
-                <% end %>
+              <div class="px-4 text-danger">
+                <p class="mb-5">退会されるとユーザー情報、投稿投稿、ストック機能などの全てのサービスの利用が停止され、投稿データを含むユーザー情報が完全に削除されます。退会後のデータの復元はできませんのであらかじめご了承の上、退会ください。</p>
+                <div class="text-center">
+                  <%= link_to "全て削除して退会する",user_path(current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？退会すると投稿データ含むユーザー情報が削除され復元できなくなります。", class: "btn btn-outline-danger" %>
+                </div>
               </div>
             </section>
           </div>

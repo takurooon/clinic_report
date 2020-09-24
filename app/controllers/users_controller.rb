@@ -9,13 +9,10 @@ class UsersController < ApplicationController
   def thanks
   end
 
-  def hide
-    @user = User.find(params[:id])
-    #is_deletedカラムにフラグを立てる(defaultはfalse)
-    @user.update(is_deleted: true)
-    #ログアウトさせる
-    reset_session
-    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-    redirect_to root_path
+  def destroy
+    @user = User.find(params[:id]) #特定のidを持つ情報を取得
+    @user.destroy
+    flash[:notice] = "退会処理が完了しました。ご利用ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to :root #削除に成功すればrootページに戻る
   end
 end
