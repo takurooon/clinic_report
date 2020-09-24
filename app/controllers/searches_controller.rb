@@ -98,9 +98,9 @@ class SearchesController < ApplicationController
   def all_age
     age = Report::HASH_TREATMENT_END_AGE_SEARCH
     reports = Report.group(:treatment_end_age).where.not(treatment_end_age: nil).distinct.count
-    c = age.keys - reports.keys
-    c.each do |d|
-      age.delete(d)
+    all_age = age.keys - reports.keys
+    all_age.each do |aa|
+      age.delete(aa)
     end
     @age = age
 
@@ -108,13 +108,7 @@ class SearchesController < ApplicationController
   end
 
   def age
-    age = Report::HASH_TREATMENT_END_AGE_SEARCH
-    if params[:value] === "45~歳"
-      value = "4500"
-      age_45 = "45歳以上"
-    else
-      value = params[:value]
-    end
+    value = params[:value]
     age_value = value.delete("^0-9")
 
     case age_value.to_i
@@ -130,8 +124,8 @@ class SearchesController < ApplicationController
       @selected_age = "40〜44歳"
     when 4044
       @selected_age = "40〜44歳"
-    when 4500
-      @selected_age = age_45
+    when 45
+      @selected_age = "45歳以上"
     when 19
       @selected_age = age_value.to_s + "歳以下"
     when 20..59
@@ -141,7 +135,7 @@ class SearchesController < ApplicationController
     else
       @selected_age = "不明"
     end
-
+    binding.pry
     if age_value.length > 3
       i = age_value.scan(/.{2}/)
       a = i[0]
@@ -276,6 +270,111 @@ class SearchesController < ApplicationController
       @selected_work = "「" + industry_type[industry_type_value] + "」" + "業界で働く方"
       @reports = Report.where(industry_type: industry_type_value, status: 0).order(created_at: :desc)
       @work_page = Report.page(params[:page]).per(10)
+    end
+  end
+
+  def various_costs
+    total_costs = Report::HASH_COST_SEARCH
+    reports = Report.group(:cost).where.not(cost: nil).distinct.count
+    v_cost = total_costs.keys - reports.keys
+    v_cost.each do |vc|
+      total_costs.delete(vc)
+    end
+    @total_costs = total_costs
+
+    @total_costs_range = { "1~5": "50万円未満", "6~10": "50万円以上〜100万円未満", "11~20": "100万円以上〜200万円未満", "21~30": "200万円以上〜300万円未満", "31~40": "300万円以上〜400万円未満", "41~50": "400万円以上〜500万円未満", "51~60": "500万円以上〜600万円未満", "61~70": "600万円以上〜700万円未満", "71~80": "700万円以上〜800万円未満", "81~90": "800万円以上〜900万円未満", "91~100": "900万円以上〜1,000万円未満", "101000~": "1,000万円以上(または不明)" }
+
+    sairan_cost = Report::HASH_SAIRAN_COST_SEARCH
+    reports = Report.group(:sairan_cost).where.not(sairan_cost: nil).distinct.count
+    sairan = sairan_cost.keys - reports.keys
+    sairan.each do |sc|
+      sairan_cost.delete(sc)
+    end
+    @sairan_cost = sairan_cost
+
+    ishoku_cost = Report::HASH_ISHOKU_COST_SEARCH
+    reports = Report.group(:ishoku_cost).where.not(ishoku_cost: nil).distinct.count
+    ishoku = ishoku_cost.keys - reports.keys
+    ishoku.each do |ic|
+      ishoku_cost.delete(ic)
+    end
+    @ishoku_cost = ishoku_cost
+  end
+
+  def cost
+    if params[:value].include?("cost")
+      cost = Report::HASH_COST_SEARCH
+      cost_value = params[:value].to_i
+      @selected_cost = "治療費用「" + cost[cost_value] + "」"
+      @reports = Report.where(cost: cost_value, status: 0).order(created_at: :desc)
+      @cost_page = Report.page(params[:page]).per(10)
+    elsif params[:value].include?("sairan")
+      sairan_cost = Report::HASH_SAIRAN_COST_SEARCH
+      sairan_cost_value = params[:value].to_i
+      @selected_cost = "採卵1回あたりの費用「" + sairan_cost[sairan_cost_value] + "」"
+      @reports = Report.where(sairan_cost: sairan_cost_value, status: 0).order(created_at: :desc)
+      @cost_page = Report.page(params[:page]).per(10)
+    elsif params[:value].include?("ishoku")
+      ishoku_cost = Report::HASH_ISHOKU_COST_SEARCH
+      ishoku_cost_value = params[:value].to_i
+      @selected_cost = "移植1回あたりの費用「" + ishoku_cost[ishoku_cost_value] + "」"
+      @reports = Report.where(ishoku_cost: ishoku_cost_value, status: 0).order(created_at: :desc)
+      @cost_page = Report.page(params[:page]).per(10)
+    else
+      value = params[:value]
+      cost_value = value.delete("^0-9")
+      case cost_value.to_i
+      when 15
+        @selected_cost = "治療費用「50万円未満」"
+      when 610
+        @selected_cost = "治療費用「50万円以上〜100万円未満」"
+      when 1120
+        @selected_cost = "治療費用「100万円以上〜200万円未満」"
+      when 2130
+        @selected_cost = "治療費用「200万円以上〜300万円未満」"
+      when 3140
+        @selected_cost = "治療費用「300万円以上〜400万円未満」"
+      when 4150
+        @selected_cost = "治療費用「400万円以上〜500万円未満」"
+      when 5160
+        @selected_cost = "治療費用「500万円以上〜600万円未満」"
+      when 6170
+        @selected_cost = "治療費用「600万円以上〜700万円未満」"
+      when 7180
+        @selected_cost = "治療費用「700万円以上〜800万円未満」"
+      when 8190
+        @selected_cost = "治療費用「800万円以上〜900万円未満」"
+      when 91100
+        @selected_cost = "治療費用「900万円以上〜1,000万円未満」"
+      when 101000
+        @selected_cost = "治療費用「1,000万円以上(または不明)」"
+      end
+      if cost_value.length == 2
+        i = cost_value.split(//,2)
+        a = i[0]
+        b = i[1]
+        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+      elsif cost_value.length == 3
+        i = cost_value.split(//,2)
+        a = i[0]
+        b = i[1]
+        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+      elsif cost_value.length == 4
+        i = cost_value.scan(/.{2}/)
+        a = i[0]
+        b = i[1]
+        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+      elsif cost_value.length == 5 
+        i = cost_value.split(/\A(.{1,2})/,2)
+        a = i[0]
+        b = i[1]
+        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+      else cost_value.length > 5
+        i = cost_value.split(/\A(.{1,3})/,2)
+        a = i[1]
+        b = "104"
+        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+      end
     end
   end
 end

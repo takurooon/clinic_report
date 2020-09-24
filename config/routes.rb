@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'category/city/:value' => 'searches#area_city'
   get 'category/works' => 'searches#works'
   get 'category/work/:value' => 'searches#work'
+  get 'category/various_costs' => 'searches#various_costs'
+  get 'category/cost/:value' => 'searches#cost'
   get 'about' => 'application#about'
   get 'terms' => 'application#terms'
   get 'privacy' => 'application#privacy'
