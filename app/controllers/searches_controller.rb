@@ -135,7 +135,6 @@ class SearchesController < ApplicationController
     else
       @selected_age = "不明"
     end
-    binding.pry
     if age_value.length > 3
       i = age_value.scan(/.{2}/)
       a = i[0]
