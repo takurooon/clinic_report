@@ -1,4 +1,3 @@
-<%= javascript_include_tag 'report_form' %>
 <div class="container px-0">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
@@ -529,13 +528,13 @@
                   </div>
                   <div class="box26 pt-5">
                     <span class="box-title"><span class="select-clinic-name"></span>で受けた&nbsp;最新の精液検査結果</span>
-                    <table class="table table-hover mt-4">
+                    <table class="table mt-4">
                       <tr>
                         <td class="small text-muted text-center px-0" style="width:30%">
                           精液量
                         </td>
                         <td style="width:70%">
-                          <%= f.number_field :semen_volume, { step: "0.1", class: "form-control", placeholder: "半角数字入力 ml" } %>
+                          <%= f.number_field :semen_volume, { step: "0.1", class: "form-control", placeholder: "半角数字入力 /ml" } %>
                         </td>
                       </tr>
                       <tr>
@@ -543,7 +542,7 @@
                           精子総数
                         </td>
                         <td>
-                          <%= f.number_field :total_amount_of_sperm, { class: "form-control", placeholder: "半角数字入力"} %>
+                          <%= f.number_field :total_amount_of_sperm, { class: "form-control", type: "text", placeholder: "半角数字入力"} %>
                         </td>
                       </tr>
                       <tr>
@@ -551,7 +550,7 @@
                           精子濃度
                         </td>
                         <td>
-                          <%= f.number_field :semen_concentration, { class: "form-control", placeholder: "半角数字入力 ml" } %>
+                          <%= f.number_field :semen_concentration, { class: "form-control", type: "text", placeholder: "半角数字入力 /ml" } %>
                         </td>
                       </tr>
                       <tr>
@@ -787,7 +786,7 @@
                           <p class="question"><span class="text-danger font-weight-bold">採卵日当日</span>の各ホルモン値</p>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の採卵日のホルモン値</span></small>
                           <%= f.fields_for :day_of_sairans do |day_of_sairan| %>
-                            <table class="table table-sm table-bordered table-hover mb-0">
+                            <table class="table table-sm table-bordered mb-0">
                               <thead>
                                 <tr>
                                   <th scope="col" class="hormon-label text-center align-middle">Day</th>
@@ -958,7 +957,7 @@
                           <p class="question">初期胚の移植当日のホルモンと内膜</p>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植当日の数値</span></small>
                           <%= f.fields_for :day_of_shokihaiishokus do |day_of_shokihaiishoku| %>
-                            <table class="table table-sm table-bordered table-hover mb-0">
+                            <table class="table table-sm table-bordered mb-0">
                               <thead>
                                 <tr>
                                   <th scope="col" class="hormon-label text-center align-middle">Day</th>
@@ -987,7 +986,7 @@
                           <p class="question">胚盤胞の移植当日のホルモンと内膜</p>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植当日の数値</span></small>
                           <%= f.fields_for :day_of_haibanhoishokus do |day_of_haibanhoishoku| %>
-                            <table class="table table-sm table-bordered table-hover mb-0">
+                            <table class="table table-sm table-bordered mb-0">
                               <thead>
                                 <tr>
                                   <th scope="col" class="hormon-label text-center align-middle">Day</th>
@@ -1157,7 +1156,7 @@
                     <p class="question">利用可能額</p>
                     <div class="row p-0 m-0">
                       <div class="col-8 p-0 m-0">
-                        <%= f.number_field :creditcards_can_be_used_from_more_than, { class: "form-control" } %>
+                        <%= f.number_field :creditcards_can_be_used_from_more_than, { class: "form-control", placeholder: "半角数字で入力してください", type: "text" } %>
                       </div>
                       <div class="col-4 p-0 m-0">
                         円以上
@@ -1611,3 +1610,4 @@
     </div>
   </div>
 </div>
+<%= javascript_include_tag 'report_form' %>

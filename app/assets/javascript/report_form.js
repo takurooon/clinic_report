@@ -1,3 +1,29 @@
+// 数字リアルタイム3桁区切り
+// 参考記事→ https://qiita.com/tsunet111/items/5531e2fd4d5b55e70f40
+function updateTextView(_obj){
+  var num = getNumber(_obj.val());
+  if(num==0){
+    _obj.val('');
+  }else{
+    _obj.val(num.toLocaleString());
+  }
+}
+function getNumber(_str){
+  var arr = _str.split('');
+  var out = new Array();
+  for(var cnt=0;cnt<arr.length;cnt++){
+    if(isNaN(arr[cnt])==false){
+      out.push(arr[cnt]);
+    }
+  }
+  return Number(out.join(''));
+}
+$(document).ready(function(){
+  $('input[type=text]').on('keyup',function(){
+    updateTextView($(this));
+  });
+});
+
 // 2段タブ表示
 $(function(){
   $('.btnNext').click(function(){

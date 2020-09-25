@@ -1,5 +1,3 @@
-<%= javascript_include_tag 'report_show' %>
-<%= javascript_include_tag 'report_form' %>
 <%= render 'category_header' %>
 <div class="contaner px-0">
   <div class="d-none d-lg-block position-fixed mt-0 pt-0">
@@ -243,7 +241,7 @@
                     </table>
                   </div>
                 </div>
-                <table class="table table-hover p-0 mt-4">
+                <table class="table p-0 mt-4">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">何人目</td>
                     <td class="pl-3" style="width:70%">
@@ -400,7 +398,7 @@
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>で受けた</p>
                 <h4 class="child-tab-title">検査</h4>
                 <h5 class="child-tab-title"><span class="marker-underline">基本検査</span></h5>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">AMH</td>
                     <td class="pl-3" style="width:70%">
@@ -443,7 +441,7 @@
                     </td>
                   </tr>
                 </table>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">基本検査<br><small class="small text-muted">※<%= @report.clinic.name %><span class="font-weight-bold">&nbsp;<u>以外で受けた</u>&nbsp;</span>これまでの基本検査</small></td>
                     <td class="pl-3" style="width:70%">
@@ -471,7 +469,7 @@
                   </tr>
                 </table>
                 <h5 class="child-tab-title mt-5"><span class="marker-underline">特殊検査</span></h5>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <% if @report.special_inspections.present? %>
                     <% if @special_inspection_era.present? %>
                       <tr>
@@ -479,7 +477,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_era.each do |era| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if era.place == 1 %>
@@ -516,7 +514,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_emma.each do |emma| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                     <% if emma.place == 1 %>
@@ -552,7 +550,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_alice.each do |alice| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if alice.place == 1 %>
@@ -588,7 +586,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_trio.each do |trio| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if trio.place == 1 %>
@@ -624,7 +622,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_erpeak.each do |erpeak| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if erpeak.place == 1 %>
@@ -660,7 +658,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_endometrial_biopsy.each do |endometrial_biopsy| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if endometrial_biopsy.place == 1 %>
@@ -696,7 +694,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_intrauterine_flora.each do |intrauterine_flora| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if intrauterine_flora.place == 1 %>
@@ -732,7 +730,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_bce.each do |bce| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if bce.place == 1 %>
@@ -768,7 +766,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_hysteroscopy.each do |hysteroscopy| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if hysteroscopy.place == 1 %>
@@ -804,7 +802,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_chromosome.each do |chromosome| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if chromosome.place == 1 %>
@@ -840,7 +838,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_ca125.each do |ca125| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if ca125.place == 1 %>
@@ -876,7 +874,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_mri.each do |mri| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if mri.place == 1 %>
@@ -912,7 +910,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_vitamin_d.each do |vitamin_d| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if vitamin_d.place == 1 %>
@@ -948,7 +946,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_copper_zinc.each do |copper_zinc| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if copper_zinc.place == 1 %>
@@ -984,7 +982,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_kruger.each do |kruger| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if kruger.place == 1 %>
@@ -1020,7 +1018,7 @@
                         <td class="pl-1 pr-0 py-1" style="width:70%">
                           <% @special_inspection_other_inspection.each do |other_inspection| %>
                             <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table table-hover p-0 mb-0">
+                              <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
                                   <% if other_inspection.place == 1 %>
@@ -1079,7 +1077,7 @@
                   <% end %>
                 </table>
                 <h5 class="child-tab-title mt-5"><span class="marker-underline">精液検査</span></h5>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">精液検査</td>
                     <td class="pl-2" style="width:70%">
@@ -1161,7 +1159,7 @@
                   </tr>
                 </table>
                 <h5 class="child-tab-title mt-5"><span class="marker-underline">着床前スクリーニング</span></h5>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">実施状況&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3" style="width:70%">
@@ -1233,7 +1231,7 @@
                           <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)))).html_safe %></p>
                         </div>
                       <% end %>
-                      <table class="table table-hover p-0">
+                      <table class="table p-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">採卵回数</td>
                           <td class="pl-3" style="width:70%">
@@ -1436,7 +1434,7 @@
                           </td>
                         </tr>
                       </table>
-                      <table class="table table-hover table-bordered p-0 mt-5" style="border-top:solid;">
+                      <table class="table table-bordered p-0 mt-5" style="border-top:solid;">
                         <% if @sairan_hormones.present? %>
                           <tr>
                             <td class="text-center result-left-column" colspan="5"><h6 class="p-0 m-0">採卵前&nbsp;〜</h6></td>
@@ -1529,7 +1527,7 @@
                         </div>
                       <% end %>
                       <h5 class="child-tab-title"><span class="marker-underline">受精･培養</span></h5>
-                      <table class="table table-hover p-0 mb-0">
+                      <table class="table p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">成熟度</td>
                           <td class="pl-3" style="width:70%">
@@ -1695,7 +1693,7 @@
                                 ○回目の採卵
                               <% end %>
                             </span>
-                            <table class="table table-sm table-bordered table-hover mb-0">
+                            <table class="table table-sm table-bordered mb-0">
                               <tbody>
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:45%">採卵時年齢</td>
@@ -1829,7 +1827,7 @@
                           <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_ishoku.split("\n"),tag(:br)))).html_safe %></p>
                         </div>
                       <% end %>
-                      <table class="table table-hover p-0 mb-0">
+                      <table class="table p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">移植回数</td>
                           <td class="pl-3" style="width:70%">
@@ -2114,7 +2112,7 @@
                           </tr>
                         <% end %>
                       </table>
-                      <table class="table table-hover table-bordered p-0 mb-0" style="border-top:solid;">
+                      <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
                         <% if @before_ishoku_hormones.present? %>
                           <tr>
                             <td class="text-center result-left-column" colspan="5" style="border-top:solid">
@@ -2255,7 +2253,7 @@
                         <% else %>
                         <% end %>
                       </table>
-                      <table class="table table-hover table-bordered p-0 mb-0" style="border-top:solid;">
+                      <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
                         <% if @report.embryo_stage == 1 %>
                           <% if @shokihaiishoku_hormones.present? %>
                             <tr>
@@ -2383,7 +2381,7 @@
                                 ○回目の採卵
                               <% end %>
                             </span>
-                            <table class="table table-sm table-bordered table-hover mb-0">
+                            <table class="table table-sm table-bordered mb-0">
                               <tbody>
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:45%">移植時年齢</td>
@@ -2451,7 +2449,7 @@
               <section class="child-tab-content" id="tab_1_5">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>でかかった</p>
                 <h4 class="child-tab-title">費用</h4>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">治療費総額</td>
                     <td class="pl-3" style="width:70%">
@@ -2529,7 +2527,7 @@
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">基本情報</h4>
                 <p class="small mb-0 pb-0"><span class="small text-muted">※&nbsp;<%= @report.clinic.name %>&nbsp;での治療当時の情報</span></p>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">性別</td>
                     <td class="pl-3" style="width:70%">
@@ -2597,7 +2595,7 @@
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">仕事</span></h5>
                 <p class="small mb-0 pb-0"><span class="small text-muted">※&nbsp;<%= @report.clinic.name %>&nbsp;での治療当時の情報</span></p>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">働き方&nbsp;<sup class="text-success">●</sup></td>
                     <td class="pl-3" style="width:70%">
@@ -2664,7 +2662,7 @@
                   <% end %>
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">治療の継続期限</span></h5>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">治療継続期限の設定</td>
                     <td class="pl-3" style="width:70%">
@@ -2695,7 +2693,7 @@
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">これまでの治療歴</h4>
                 <h5 class="child-tab-title"><span class="marker-underline">転院歴と転院理由</span></h5>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">何院目</td>
                     <td class="pl-3" style="width:70%">
@@ -2753,7 +2751,7 @@
                   </tr>
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">人工授精</span></h5>
-                <table class="table table-hover p-0 mb-0">
+                <table class="table p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">回数</td>
                     <td class="pl-3" style="width:70%">
@@ -2771,7 +2769,7 @@
                 </table>
                 <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での実施に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までに実施した回数。</span></p>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">手術歴</span></h5>
-                <table class="table table-hover p-0 mb-0">
+                <table class="table p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">手術歴<br><span class="text-muted small">(女性)</span></td>
                     <td class="pl-3" style="width:70%">
@@ -2809,7 +2807,7 @@
                 </table>
                 <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での手術に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの手術歴。</span></p>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">全採卵回数</span></h5>
-                <table class="table table-hover p-0 mb-0">
+                <table class="table p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">回数</td>
                     <td class="pl-3" style="width:70%">
@@ -2827,7 +2825,7 @@
                 </table>
                 <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での採卵に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの全採卵回数。</span></p>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">全移植回数</span></h5>
-                <table class="table table-hover p-0 mb-0">
+                <table class="table p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">回数</td>
                     <td class="pl-3" style="width:70%">
@@ -2846,7 +2844,7 @@
                 <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での移植に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの全移植回数。</span></p>
                 <% if (@report.user.number_of_chemical_abortions.present? && @report.user.number_of_chemical_abortions > 1) || (@report.user.number_of_early_miscarriages.present? && @report.user.number_of_early_miscarriages > 1) || (@report.user.number_of_late_miscarriages.present? && @report.user.number_of_late_miscarriages > 1) %>
                   <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">流産経験</span></h5>
-                  <table class="table table-hover p-0 mb-0">
+                  <table class="table p-0 mb-0">
                     <% if @report.user.number_of_chemical_abortions.present? && @report.user.number_of_chemical_abortions > 1 %>
                       <tr>
                         <td class="result-left-column small text-center" style="width:30%">化学流産</td>
@@ -2875,7 +2873,7 @@
                   <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの流産経験。</span></p>
                 <% end %>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">費用総額</span></h5>
-                <table class="table table-hover p-0 mb-0">
+                <table class="table p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">治療費総額</td>
                     <td class="pl-3" style="width:70%">
@@ -2893,7 +2891,7 @@
                 </table>
                 <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での費用に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの治療費用総額。</span></p>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">助成金受給状況</span></h5>
-                <table class="table table-hover p-0 mb-0">
+                <table class="table p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">受給回数</td>
                     <td class="pl-3" style="width:70%">
@@ -2946,7 +2944,7 @@
                         <i class="fas fa-female fa-3x female-icon"></i>&nbsp;<span class="text-muted small">女性</span>
                       </div>
                       <h5 class="child-tab-title mt-3"><span class="marker-underline">疾患</span></h5>
-                      <table class="table table-hover p-0 mb-0">
+                      <table class="table p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">疾患</td>
                           <td class="pl-3" style="width:70%">
@@ -2966,7 +2964,7 @@
                         </tr>
                       </table>
                       <h5 class="child-tab-title mt-3"><span class="marker-underline">不育症</span></h5>
-                      <table class="table table-hover p-0 mb-0">
+                      <table class="table p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">不育症</td>
                           <td class="pl-3" style="width:70%">
@@ -3011,7 +3009,7 @@
                         <i class="fas fa-male fa-3x male-icon"></i>&nbsp;<span class="text-muted small">男性</span>
                       </div>
                       <h5 class="child-tab-title mt-3"><span class="marker-underline">疾患</span></h5>
-                      <table class="table table-hover p-0 mb-0">
+                      <table class="table p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">疾患</td>
                           <td class="pl-3" style="width:70%">
@@ -3058,7 +3056,7 @@
                         <i class="fas fa-female fa-3x female-icon"></i>&nbsp;<span class="text-muted small">女性</span>
                       </div>
                       <h5 class="child-tab-title mt-3"><span class="marker-underline">サプリ</span></h5>
-                      <table class="table table-hover p-0 mb-0">
+                      <table class="table p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">サプリ</td>
                           <td class="pl-3" style="width:70%">
@@ -3088,7 +3086,7 @@
                         </tr>
                       </table>
                       <h5 class="child-tab-title mt-5"><span class="marker-underline">不妊治療以外に行ったこと</span></h5>
-                      <table class="table table-hover p-0 mb-0">
+                      <table class="table p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">行ったこと</td>
                           <td class="pl-3" style="width:70%">
@@ -3128,7 +3126,7 @@
                         <i class="fas fa-male fa-3x male-icon"></i>&nbsp;<span class="text-muted small">男性</span>
                       </div>
                       <h5 class="child-tab-title mt-3"><span class="marker-underline">サプリ</span></h5>
-                      <table class="table table-hover p-0 mb-0">
+                      <table class="table p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">サプリ</td>
                           <td class="pl-3" style="width:70%">
@@ -3158,7 +3156,7 @@
                         </tr>
                       </table>
                       <h5 class="child-tab-title mt-5"><span class="marker-underline">不妊治療以外に行ったこと</span></h5>
-                      <table class="table table-hover p-0 mb-0">
+                      <table class="table p-0 mb-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">行ったこと</td>
                           <td class="pl-3" style="width:70%">
@@ -3214,7 +3212,7 @@
               <section class="child-tab-content active" id="tab_3_1">
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>の</p>
                 <h4 class="child-tab-title">基本情報</h4>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">医療機関</td>
                     <td style="width:70%">
@@ -3273,7 +3271,7 @@
                 <% else %>
                   <small class="text-muted"><span class="small">※現在の状況に至った周期における通院回数</span></small>
                 <% end %>
-                <table class="table table-hover p-0 mb-0">
+                <table class="table p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">採卵周期通院回数</td>
                     <td class="pl-3" style="width:70%">
@@ -3335,7 +3333,7 @@
                 <% else %>
                   <small class="text-muted"><span class="small">※現在の状況に至った周期における採卵/移植時間の情報</span></small>
                 <% end %>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">採卵時間帯の選択</td>
                     <td class="pl-3" style="width:70%">
@@ -3378,7 +3376,7 @@
                   </tr>
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">予約方法</span></h5>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">予約方法</td>
                     <td class="pl-3" style="width:70%">
@@ -3394,7 +3392,7 @@
                   </tr>
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">決済方法</span></h5>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">クレジットカード</td>
                     <td class="pl-3" style="width:70%">
@@ -3414,7 +3412,7 @@
                   </tr>
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">その他</span></h5>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">平均待ち時間</td>
                     <td class="pl-3" style="width:70%">
@@ -3572,7 +3570,7 @@
                     </div>
 
                     <div class="d-block d-sm-none col-12 m-0 p-0">
-                      <table class="table table-hover p-0">
+                      <table class="table p-0">
                         <tr>
                           <td class="result-left-column small text-center ichirantable-left">医師</td>
                           <td class="pl-3 ichirantable-right">
@@ -3773,7 +3771,7 @@
                 <div>
                   <p class="small text-muted pt-4"><small>以下は上記情報をもとに算出。</small></p>
                 </div>
-                <table class="table table-hover p-0">
+                <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">受精率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
@@ -4040,3 +4038,5 @@
     <%= render 'layouts/area_under_mobile_screen_show' %>
   </div>
 </div>
+<%= javascript_include_tag 'report_show' %>
+<%= javascript_include_tag 'report_form' %>
