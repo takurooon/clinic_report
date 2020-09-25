@@ -563,8 +563,8 @@ class Report < ApplicationRecord
   # types_of_eggs_and_sperm_statusの区分値(卵子と精子の状態)
   HASH_TYPES_OF_EGGS_AND_SPERM_STATUS = {
     1 => "未凍結卵子と未凍結精子",
-    2 => "凍結卵子",
-    3 => "凍結精子",
+    2 => "凍結卵子と未凍結精子",
+    3 => "未凍結卵子と凍結精子",
     4 => "凍結卵子と凍結精子",
     99 => "その他",
   }
