@@ -1018,7 +1018,7 @@ i .fa-edit {
 	text-align: center;
 	padding: .3em 1em;
 	margin-right: -1px;
-	margin-bottom: -1px;
+	margin-bottom: -1.5px;
 	color: #333;
 	font-size: 12px;
 	border-top: 1px solid #353434;
@@ -1027,17 +1027,17 @@ i .fa-edit {
 	border-radius: 4px 4px 0 0;
 }
 // 追加
-.parent-menu.nav-bottom li a {
-	border-top: none;
-    border-bottom: 1px solid;
-	border-radius: 0 0 4px 4px;
-}
+// .parent-menu.nav-bottom li a {
+// 	border-top: none;
+//     border-bottom: 1px solid;
+// 	border-radius: 0 0 4px 4px;
+// }
 .child-menu li a {
 	display: inline-block;
 	text-align: center;
 	padding: .3em 1em;
 	margin-right: 0.1em;
-	margin-bottom: -1px;
+	margin-bottom: -1.5px;
 	color: #333;
 	font-size: 12px;
 	text-decoration: none;
@@ -1055,10 +1055,10 @@ i .fa-edit {
 	border-right: 1px solid;
 }
 // 追加
-.parent-menu.nav-bottom li a.active {
-	border-top: none;
-    border-bottom: 1px solid;
-}
+// .parent-menu.nav-bottom li a.active {
+// 	border-top: none;
+//     border-bottom: 1px solid;
+// }
 .child-menu li a.active {
 	background: #fff;
 	color: #333;
@@ -1069,11 +1069,11 @@ i .fa-edit {
 	border-right: 1px solid;
 }
 // 追加
-.child-menu.nav-bottom li a.active {
-	border-top: none;
-	border-bottom: 1px solid;
-	border-radius: 0 0 4px 4px;
-}
+// .child-menu.nav-bottom li a.active {
+// 	border-top: none;
+// 	border-bottom: 1px solid;
+// 	border-radius: 0 0 4px 4px;
+// }
 .parent-menu li a:not(.active):hover {
 	opacity: 0.3;
 	transition: opacity 0.4s;
@@ -1118,30 +1118,30 @@ i .fa-edit {
 	border-top-left-radius: 4px;
 }
 // 追加
-.nav-tabs.nav-bottom .nav-item.show .nav-link, 
-.nav-tabs.nav-bottom .nav-link.active {
-	color: #495057;
-	background-color: #fff;
-	border-color: #fff #dee2e6 #dee2e6 #dee2e6;
-}
+// .nav-tabs.nav-bottom .nav-item.show .nav-link, 
+// .nav-tabs.nav-bottom .nav-link.active {
+// 	color: #495057;
+// 	background-color: #fff;
+// 	border-color: #fff #dee2e6 #dee2e6 #dee2e6;
+// }
 // 追加
-.nav-tabs.nav-bottom .nav-link {
-	border: 1px solid transparent;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	border-bottom-left-radius: .25rem;
-	border-bottom-right-radius: .25rem;
-}
+// .nav-tabs.nav-bottom .nav-link {
+// 	border: 1px solid transparent;
+// 	border-top-left-radius: 0;
+// 	border-top-right-radius: 0;
+// 	border-bottom-left-radius: .25rem;
+// 	border-bottom-right-radius: .25rem;
+// }
 // 追加
-.nav-tabs.nav-bottom .nav-item {
-	margin-top: -2px;
-	margin-bottom: 0px;
-}
+// .nav-tabs.nav-bottom .nav-item {
+// 	margin-top: -2px;
+// 	margin-bottom: 0px;
+// }
 // 追加
-.nav-tabs.nav-bottom  {
-	border-bottom: none;
-	border-top: 1px solid #dee2e6;
-}
+// .nav-tabs.nav-bottom  {
+// 	border-bottom: none;
+// 	border-top: 1px solid #dee2e6;
+// }
 // 追加
 .nav-bottom.mt-2 {
     margin-top: 0!important;
