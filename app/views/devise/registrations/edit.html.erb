@@ -253,6 +253,14 @@
               <table class="table">
                 <tbody>
                   <tr>
+                    <td class="profile-item-l small text-center px-0">名前</td>
+                    <td class="profile-item-r">
+                      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+                      <span class="bmd-help">1〜20文字以内で入力してください。</span>
+                    </td>
+                  </tr>
+
+                  <tr>
                     <td class="profile-item-l small text-center px-0">メールアドレス</td>
                     <td class="profile-item-r">
                       <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
