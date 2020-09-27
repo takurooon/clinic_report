@@ -607,6 +607,16 @@
                   </td>
                 </tr>
                 <tr>
+                  <td class="profile-item-l small text-center">化学流産</td>
+                  <td class="profile-item-r">
+                    <% if @user.number_of_chemical_abortions.blank? %>
+                      <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
+                    <% else %>
+                      <%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
                   <td class="profile-item-l small text-center">初期流産</td>
                   <td class="profile-item-r">
                     <% if @user.number_of_early_miscarriages.blank? %>
