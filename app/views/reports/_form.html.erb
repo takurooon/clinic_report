@@ -40,7 +40,7 @@
           <section class="parent-tab-content active mostleft-tab" id="tab_1">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
-                <li><a href="#tab_1_1" class="active" data-toggle="tab"><span class="text-info">必須</span></a></li>
+                <li class="tab-item"><a href="#tab_1_1" class="active" data-toggle="tab"><span class="text-info">必須</span></a></li>
                 <li class="tab-item"><a href="#tab_1_2" data-toggle="tab">基礎</a></li>
                 <li class="tab-item"><a href="#tab_1_3" data-toggle="tab">年齢</a></li>
                 <li class="tab-item"><a href="#tab_1_4" data-toggle="tab">転院</a></li>
@@ -121,10 +121,10 @@
                       </small>
                     </div>
                   </div>
-                  <div class="mt-3 col-12 d-flex justify-content-between">
-                    <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
-                    <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
-                  </div>
+                </div>
+                <div class="mt-3 col-12 d-flex justify-content-between">
+                  <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                  <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_2">
@@ -629,10 +629,10 @@
                 <div class="scroll-box">
                   <div class="parent-tab mb-0">
                     <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
-                      <li class="tab-item"><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の採卵周期</a></li>
-                      <li class="tab-item"><a href="#right_tab2" data-toggle="tab">過去の採卵</a></li>
+                      <li><a href="#left_tab" class="active mostleft-tab" data-toggle="tab">最新の採卵周期</a></li>
+                      <li><a href="#right_tab" data-toggle="tab">過去の採卵</a></li>
                     </ul>
-                    <div class="parent-tab-content active mostleft-tab p-2" id="left_tab2">
+                    <div class="parent-tab-content active mostleft-tab p-2" id="left_tab">
                       <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                         <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った採卵周期について</span></h6>
                         <div class="form-group first-question-inbox">
@@ -831,7 +831,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="parent-tab-content p-2" id="right_tab2">
+                    <div class="parent-tab-content p-2" id="right_tab">
                       <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                         <div class="alert alert-info rounded-lg border mt-3 mb-0" role="alert">
                           <small class="text-muted"><span class="select-clinic-name"></span><span>での過去の採卵結果を分かる範囲で教えて下さい。<br>複数ある場合は「+追加」ボタンで追加できます。</span></small>
@@ -869,10 +869,10 @@
                   </div>
                   <div class="parent-tab mb-0">
                     <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
-                      <li><a href="#left_tab3" class="active mostleft-tab" data-toggle="tab">最新の移植周期</a></li>
-                      <li><a href="#right_tab3" data-toggle="tab">過去の移植</a></li>
+                      <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の移植周期</a></li>
+                      <li><a href="#right_tab2" data-toggle="tab">過去の移植</a></li>
                     </ul>
-                    <div class="parent-tab-content active mostleft-tab p-2" id="left_tab3">
+                    <div class="parent-tab-content active mostleft-tab p-2" id="left_tab2">
                       <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                         <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った移植周期について</span></h6>
                         <div class="form-group first-question-inbox">
@@ -1081,7 +1081,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="parent-tab-content p-2" id="right_tab3">
+                    <div class="parent-tab-content p-2" id="right_tab2">
                       <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                         <div class="alert alert-info rounded-lg border mt-3 mb-0" role="alert">
                           <small class="text-muted"><span class="select-clinic-name"></span><span>での過去の移植結果を分かる範囲で教えて下さい。<br>複数ある場合は「+追加」ボタンで追加できます。</span></small>
