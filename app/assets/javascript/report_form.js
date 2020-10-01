@@ -597,7 +597,7 @@ function getNumber(_str){
   return Number(out.join(''));
 }
 $(document).ready(function(){
-  $('input[type=text]').on('keyup',function(){
+  $('.commas').on('keyup',function(){
     updateTextView($(this));
   });
 });

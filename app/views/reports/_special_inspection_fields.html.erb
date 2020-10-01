@@ -8,32 +8,7 @@
     <tr>
       <td scope="row" class="et-bt-column"><%= f.select :name, SpecialInspection::HASH_SPECIAL_INSPECTION_NAME.invert, { prompt: "必須" }, { class: "form-control text-muted" } %></td>
       <td class="et-bt-hormone-column"><%= f.select :place, SpecialInspection::HASH_SPECIAL_INSPECTION_PLACE.invert, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
-      <td class="et-bt-hormone-column"><%= f.number_field :cost, { step: "1", class: "form-control", placeholder: "半角数字", type: "text" } %></td>
-      <script>
-        function updateTextView(_obj){
-          var num = getNumber(_obj.val());
-          if(num==0){
-            _obj.val('');
-          }else{
-            _obj.val(num.toLocaleString());
-          }
-        }
-        function getNumber(_str){
-          var arr = _str.split('');
-          var out = new Array();
-          for(var cnt=0;cnt<arr.length;cnt++){
-            if(isNaN(arr[cnt])==false){
-              out.push(arr[cnt]);
-            }
-          }
-          return Number(out.join(''));
-        }
-        $(document).ready(function(){
-          $('input[type=text]').on('keyup',function(){
-            updateTextView($(this));
-          });
-        });
-      </script>
+      <td class="et-bt-hormone-column"><%= f.text_field :cost, { step: "1", class: "form-control commas", placeholder: "半角数字" } %></td>
     </tr>
     <tr>
       <td class="hormon-label text-center small" colspan="3">メモ</td>
