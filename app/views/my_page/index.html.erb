@@ -635,17 +635,23 @@
           </ul>
           <section class="child-tab-content px-1" id="tab_2_1">
             <div class="text-right px-1">
-              <%= link_to "基本情報を編集", edit_user_registration_path, class: "btn btn-primary" %>
+              <%= link_to "基本情報を変更", edit_user_registration_path, class: "btn btn-primary" %>
             </div>
             <table class="table">
               <tbody>
+                <tr>
+                  <td class="profile-item-l small text-center">ユーザー名</td>
+                  <td class="profile-item-r">
+                    <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                  </td>
+                <tr>
                 <tr>
                   <td class="profile-item-l small text-center">アイコン</td>
                   <td class="profile-item-r">
                     <% if @user.icon.blank? %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path(anchor: "tab_1_1"), { style: "color:#009688;"} %></small>
                     <% else %>
-                      <small><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></small>
+                      <small><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% end %>
                   </td>
                 </tr>
@@ -655,7 +661,7 @@
                     <% if @user.birthday.blank? %>
                       <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -665,7 +671,7 @@
                     <% if @user.link.blank? %>
                     <span class="notset">未設定</span>&nbsp;&nbsp;<small class="text-muted"><span class="small">(ブログやSNS)</span></small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -685,7 +691,7 @@
           </section>
           <section class="child-tab-content active px-1" id="tab_2_2">
             <div class="text-right px-1">
-              <%= link_to "治療情報を編集", edit_user_registration_path, class: "btn btn-primary" %>
+              <%= link_to "治療情報を変更", edit_user_registration_path, class: "btn btn-primary" %>
             </div>
             <table class="table">
               <tbody>
@@ -695,7 +701,7 @@
                     <% if @user.first_age_to_start.blank? %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_first_age_to_start(@user.first_age_to_start) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.str_first_age_to_start(@user.first_age_to_start) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -705,7 +711,7 @@
                     <% if @user.first_age_to_start_art.blank? %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -715,7 +721,7 @@
                     <% if @user.number_of_aih.blank? %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_number_of_aih(@user.number_of_aih) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.str_number_of_aih(@user.number_of_aih) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -725,7 +731,7 @@
                     <% if @user.all_number_of_sairan.blank? %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -735,7 +741,7 @@
                     <% if @user.all_number_of_transplants.blank? %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -745,7 +751,7 @@
                   <% if @user.all_cost.blank? %>
                     <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                   <% else %>
-                    <%= @user.str_all_cost(@user.all_cost) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                    <%= @user.str_all_cost(@user.all_cost) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                   <% end %>
                   </td>
                 </tr>
@@ -755,7 +761,7 @@
                     <% if @user.number_of_early_miscarriages.blank? %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -765,7 +771,7 @@
                     <% if @user.number_of_late_miscarriages.blank? %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -775,7 +781,7 @@
                     <% if @user.number_of_times_the_grant_was_received.blank? %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% else %>
-                      <%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                      <%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% end %>
                   </td>
                 </tr>
@@ -784,26 +790,20 @@
           </section>
           <section class="child-tab-content px-1" id="tab_2_3">
             <div class="text-right px-1">
-              <%= link_to "登録情報を編集", edit_user_registration_path, class: "btn btn-primary" %>
+              <%= link_to "登録情報を変更", edit_user_registration_path, class: "btn btn-primary" %>
             </div>
             <table class="table">
               <tbody>
                 <tr>
-                  <td class="profile-item-l small text-center" style="width:35%">ユーザー名</td>
+                  <td class="profile-item-l small text-center" style="width:35%">メールアドレス</td>
                   <td class="profile-item-r" style="width:65%">
-                    <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
-                  </td>
-                <tr>
-                <tr>
-                  <td class="profile-item-l small text-center">メールアドレス</td>
-                  <td class="profile-item-r">
-                    <%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                    <%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                   </td>
                 <tr>
                 <tr>
                   <td class="profile-item-l small text-center">パスワード</td>
                   <td class="profile-item-r">
-                    ●●●●●●&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "編集", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                    ●●●●●●&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                   </td>
                 <tr>
                 <tr>
