@@ -578,26 +578,27 @@ $(function (){
 
 // 数字リアルタイム3桁区切り
 // 参考記事→ https://qiita.com/tsunet111/items/5531e2fd4d5b55e70f40
-function updateTextView(_obj){
-  var num = getNumber(_obj.val());
-  if(num==0){
-    _obj.val('');
-  }else{
-    _obj.val(num.toLocaleString());
-  }
-}
-function getNumber(_str){
-  var arr = _str.split('');
-  var out = new Array();
-  for(var cnt=0;cnt<arr.length;cnt++){
-    if(isNaN(arr[cnt])==false){
-      out.push(arr[cnt]);
-    }
-  }
-  return Number(out.join(''));
-}
-$(document).ready(function(){
-  $('.commas').on('keyup',function(){
-    updateTextView($(this));
-  });
-});
+// これを有効にする場合には.commasが付与されているformのtypeをnumber_fieldからtext_fieldに変更のこと。
+// function updateTextView(_obj){
+//   var num = getNumber(_obj.val());
+//   if(num==0){
+//     _obj.val('');
+//   }else{
+//     _obj.val(num.toLocaleString());
+//   }
+// }
+// function getNumber(_str){
+//   var arr = _str.split('');
+//   var out = new Array();
+//   for(var cnt=0;cnt<arr.length;cnt++){
+//     if(isNaN(arr[cnt])==false){
+//       out.push(arr[cnt]);
+//     }
+//   }
+//   return Number(out.join(''));
+// }
+// $(function(){
+//   $('.commas').on('keyup',function(){
+//     updateTextView($(this));
+//   });
+// });

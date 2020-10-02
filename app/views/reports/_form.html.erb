@@ -542,7 +542,7 @@
                           精子総数
                         </td>
                         <td>
-                          <%= f.text_field :total_amount_of_sperm, { class: "form-control commas", placeholder: "半角数字入力"} %>
+                          <%= f.number_field :total_amount_of_sperm, { class: "form-control commas", placeholder: "半角数字入力"} %>
                         </td>
                       </tr>
                       <tr>
@@ -550,7 +550,7 @@
                           精子濃度
                         </td>
                         <td>
-                          <%= f.text_field :semen_concentration, { class: "form-control commas", placeholder: "半角数字入力 /ml" } %>
+                          <%= f.number_field :semen_concentration, { class: "form-control commas", placeholder: "半角数字入力 /ml" } %>
                         </td>
                       </tr>
                       <tr>
@@ -1156,7 +1156,7 @@
                     <p class="question">利用可能額</p>
                     <div class="row p-0 m-0">
                       <div class="col-8 p-0 m-0">
-                        <%= f.text_field :creditcards_can_be_used_from_more_than, { class: "form-control commas", placeholder: "半角数字で入力してください" } %>
+                        <%= f.number_field :creditcards_can_be_used_from_more_than, { class: "form-control commas", placeholder: "半角数字で入力してください" } %>
                       </div>
                       <div class="col-4 p-0 m-0">
                         円以上
@@ -1610,4 +1610,5 @@
     </div>
   </div>
 </div>
+<%= javascript_include_tag 'report_show' %>
 <%= javascript_include_tag 'report_form' %>
