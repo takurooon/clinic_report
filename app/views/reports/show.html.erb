@@ -3568,7 +3568,7 @@
                                 <% else @report.average_waiting_time2 == 5 %>
                                 <span class="rating-star small">★★★★★</span><% end %>
                                 <% if @report.str_average_waiting_time %>
-                                  &nbsp;<small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
+                                  <br><small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
                                 <% end %>
                               <% else %>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
@@ -3726,7 +3726,7 @@
                               &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.average_waiting_time2 == 5 %>
                               <span class="rating-star">★★★★★</span><% end %>
                               <% if @report.str_average_waiting_time %>
-                                &nbsp;<small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
+                                <small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
                               <% end %>
                             <% else %>
                               &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
