@@ -2980,7 +2980,16 @@
                   <td class="result-left-column small text-center ichirantable-left">医師</td>
                   <td class="pl-3 ichirantable-right">
                     <% if @report.doctor_quality.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.doctor_quality %>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.doctor_quality == 1 %>
+                      <span class="rating-star small">★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 2 %>
+                      <span class="rating-star small">★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 3 %>
+                      <span class="rating-star small">★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 4%>
+                      <span class="rating-star small">★★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.doctor_quality == 5 %>
+                      <span class="rating-star small">★★★★★</span><% end %>
                     <% else %>
                       &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                     <% end %>
@@ -2989,8 +2998,17 @@
                 <tr>
                   <td class="result-left-column small text-center ichirantable-left">スタッフ</td>
                   <td class="pl-3 ichirantable-right">
-                    <% if @report.doctor_quality.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.doctor_quality %>
+                    <% if @report.staff_quality.present? %>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.staff_quality == 1 %>
+                      <span class="rating-star small">★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 2 %>
+                      <span class="rating-star small">★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 3 %>
+                      <span class="rating-star small">★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 4%>
+                      <span class="rating-star small">★★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.staff_quality == 5 %>
+                      <span class="rating-star small">★★★★★</span><% end %>
                     <% else %>
                       &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                     <% end %>
@@ -3000,7 +3018,16 @@
                   <td class="result-left-column small text-center ichirantable-left">技術</td>
                   <td class="pl-3 ichirantable-right">
                     <% if @report.impression_of_technology.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.impression_of_technology %>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_technology == 1 %>
+                      <span class="rating-star small">★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 2 %>
+                      <span class="rating-star small">★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 3 %>
+                      <span class="rating-star small">★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 4%>
+                      <span class="rating-star small">★★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.impression_of_technology == 5 %>
+                      <span class="rating-star small">★★★★★</span><% end %>
                     <% else %>
                       &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                     <% end %>
@@ -3010,7 +3037,16 @@
                   <td class="result-left-column small text-center ichirantable-left">価格</td>
                   <td class="pl-3 ichirantable-right">
                     <% if @report.impression_of_price.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.impression_of_price %>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_price == 1 %>
+                      <span class="rating-star small">★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 2 %>
+                      <span class="rating-star small">★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 3 %>
+                      <span class="rating-star small">★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 4%>
+                      <span class="rating-star small">★★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.impression_of_price == 5 %>
+                      <span class="rating-star small">★★★★★</span><% end %>
                     <% else %>
                       &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                     <% end %>
@@ -3020,7 +3056,16 @@
                   <td class="result-left-column small text-center ichirantable-left">待ち時間</td>
                   <td class="pl-3 ichirantable-right">
                     <% if @report.average_waiting_time2.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.average_waiting_time2 %>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.average_waiting_time2 == 1 %>
+                      <span class="rating-star small">★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 2 %>
+                      <span class="rating-star small">★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 3 %>
+                      <span class="rating-star small">★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 4%>
+                      <span class="rating-star small">★★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.average_waiting_time2 == 5 %>
+                      <span class="rating-star small">★★★★★</span><% end %>
                       <% if @report.str_average_waiting_time %>
                         &nbsp;<small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
                       <% end %>
@@ -3033,7 +3078,16 @@
                   <td class="result-left-column small text-center ichirantable-left">施設の環境</td>
                   <td class="pl-3 ichirantable-right">
                     <% if @report.comfort_of_space.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%= @report.comfort_of_space %>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.comfort_of_space == 1 %>
+                      <span class="rating-star small">★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 2 %>
+                      <span class="rating-star small">★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 3 %>
+                      <span class="rating-star small">★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 4%>
+                      <span class="rating-star small">★★★★</span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<% else @report.comfort_of_space == 5 %>
+                      <span class="rating-star small">★★★★★</span><% end %>
                     <% else %>
                       &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                     <% end %>
