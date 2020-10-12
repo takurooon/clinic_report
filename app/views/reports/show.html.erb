@@ -268,8 +268,8 @@
                         </small><br>
                       <% else %>
                         <small>
-                          <span class="small text-muted">妊活自体は&nbsp;○○歳から開始</span>
                           <% if user_signed_in? && @report.user_id == current_user.id %>
+                            <span class="small text-muted">妊活自体は&nbsp;○○歳から開始</span>
                             &nbsp;&nbsp;<span class="small"><%= link_to "→ 回答する", edit_user_registration_path , { class: "small", style: "color:#009688;"} %></span>
                           <% end %>
                         </small><br>
@@ -283,8 +283,8 @@
                         </small>
                       <% else %>
                         <small>
-                          <span class="small text-muted">高度治療は&nbsp;○○歳から開始</span>
                           <% if user_signed_in? && @report.user_id == current_user.id %>
+                            <span class="small text-muted">高度治療は&nbsp;○○歳から開始</span>
                             &nbsp;&nbsp;<span class="small"><%= link_to "→ 回答する", edit_user_registration_path , { class: "small", style: "color:#009688;"} %></span>
                           <% end %>
                         </small>
