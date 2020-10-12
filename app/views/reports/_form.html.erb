@@ -47,7 +47,7 @@
                 <li class="tab-item"><a href="#tab_1_5" data-toggle="tab">仕事</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_1_1">
-                <div class="alert alert-info small rounded-lg" role="alert">
+                <div class="alert alert-info small rounded-lg text-dark" role="alert">
                   このタブの項目は&nbsp;<strong>必ず選択して下さい。</strong><br>未選択では投稿/更新/保存はできません。<br>はじめにこちらを選択されると以降の質問がよりわかりやすくなります。
                 </div>
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">回答必須項目</span></h5>
@@ -56,7 +56,7 @@
                 <div class="scroll-box row">
                   <div class="col-sm-6">
                     <div class="form-group border border-info rounded-lg p-3 mt-0">
-                      <p class="question">クリニック</p>
+                      <p class="question">クリニック&nbsp;&nbsp;<span class="badge badge-danger">必須</span></p>
                       <div>
                         <% if report.clinic.blank? %>
                           <% prefecture_id = nil %>
@@ -97,7 +97,7 @@
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group border border-info rounded-lg p-3 mt-0">
-                      <p class="question">治療当時の住まい&nbsp;<sup class="text-success">●</sup></p>
+                      <p class="question">治療当時の住まい&nbsp;<sup class="text-success">●</sup>&nbsp;&nbsp;<span class="badge badge-danger">必須</span></p>
                       <div>
                         <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県" }, { class: "form-control" }) %>
                       </div>
