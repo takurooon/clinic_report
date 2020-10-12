@@ -2757,7 +2757,7 @@
                         <span class="result-text"><%= @report.user.number_of_aih %>回</span>
                       <% else %>
                         <span class="text-muted small">未回答
-                          <% if current_user %>
+                          <% if user_signed_in? && @report.user_id == current_user.id %>
                             &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
                           <% end %>
                         </span>
@@ -2813,7 +2813,7 @@
                         <span class="result-text"><%= @report.user.str_all_number_of_sairan(@report.user.all_number_of_sairan) %></span>
                       <% else %>
                         <span class="text-muted small">未回答
-                          <% if current_user %>
+                          <% if user_signed_in? && @report.user_id == current_user.id %>
                             &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
                           <% end %>
                         </span>
@@ -2831,7 +2831,7 @@
                         <span class="result-text"><%= @report.user.str_all_number_of_transplants(@report.user.all_number_of_transplants) %></span>
                       <% else %>
                         <span class="text-muted small">未回答
-                          <% if current_user %>
+                          <% if user_signed_in? && @report.user_id == current_user.id %>
                             &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
                           <% end %>
                         </span>
@@ -2879,7 +2879,7 @@
                         <span class="result-text"><%= @report.user.str_all_cost_report %></span>
                       <% else %>
                       <span class="text-muted small">未回答
-                        <% if current_user %>
+                        <% if user_signed_in? && @report.user_id == current_user.id %>
                           &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
                         <% end %>
                       </span>
@@ -2897,7 +2897,7 @@
                         <span class="result-text"><%= @report.user.str_number_of_times_the_grant_was_received(@report.user.number_of_times_the_grant_was_received) %></span>
                       <% else %>
                         <span class="text-muted small">未回答
-                          <% if current_user %>
+                          <% if user_signed_in? && @report.user_id == current_user.id %>
                             &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
                           <% end %>
                         </span>
@@ -2911,7 +2911,7 @@
                         <span class="result-text"><%= @report.user.str_all_grant_amount(@report.user.all_grant_amount) %></span>
                       <% else %>
                         <span class="text-muted small">未回答
-                          <% if current_user %>
+                          <% if user_signed_in? && @report.user_id == current_user.id %>
                             &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path, { style: "color:#009688;"} %>
                           <% end %>
                         </span>
