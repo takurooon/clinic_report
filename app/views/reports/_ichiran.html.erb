@@ -3098,13 +3098,13 @@
                     <td class="result-left-column small text-center ichirantable-left">備考</td>
                     <td class="pl-3 ichirantable-right">
                       <% if @report.free_wifi.present? && @report.free_wifi <= 3 %>
-                        <small><span class="small font-weight-bold">･&nbsp;<%= @report.str_free_wifi %></span></small><br>
+                        <small>･<span class="small font-weight-bold">&nbsp;<%= @report.str_free_wifi %></span></small><br>
                       <% end %>
                       <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
-                        <small><span class="small font-weight-bold">･&nbsp;待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small><br>
+                        <small>･<span class="small font-weight-bold">&nbsp;待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small><br>
                       <% end %>
                       <% if @report.credit_card_validity.present? %>
-                        <small><span class="small">･&nbsp;クレジットカード:&nbsp;<span class="font-weight-bold"><%= @report.str_credit_card_validity %></span></span></small>
+                        <small>･<span class="small">&nbsp;クレジットカード:&nbsp;<span class="font-weight-bold"><%= @report.str_credit_card_validity %></span></span></small>
                       <% end %>
                       <% if @report.credit_card_validity == 3 %>
                         <% if @report.creditcards_can_be_used_from_more_than.present? %>
