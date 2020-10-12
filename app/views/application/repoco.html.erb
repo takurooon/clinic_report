@@ -2,15 +2,25 @@
   <div class="row">
     <div class="col-sm-6 p-5">
       <%= image_tag "home/home_top_img.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
-    </div>
+      </div>
     <div class="col-sm-6 d-flex align-items-center justify-content-center">
       <div class="d-block d-sm-none mb-5">
         <h4 class="mb-4 text-center">のこす&nbsp;みえる&nbsp;ふみだせる</h4>
         <p class="px-2">みんなの のこした治療レポート(&nbsp;=&nbsp;レポコ&nbsp;)をみて、ふみだそう！</p>
+        <div class="pt-3 text-center">
+          <%= link_to root_path, { title: "レポコ一覧", style: "text-decoration: none;" } do %>
+            <button class="brand_btn"><span style="color:#2F2E41;">レポコ一覧</span></button>
+          <% end %>
+        </div>
       </div>
       <div class="d-none d-sm-block">
         <h2 class="mb-4">のこす&nbsp;みえる&nbsp;ふみだせる</h2>
         <p class="px-5">みんなの のこした治療レポート(&nbsp;=&nbsp;レポコ&nbsp;)をみて、ふみだそう！</p>
+        <div class="pt-3 text-center">
+          <%= link_to root_path, { title: "レポコ一覧", style: "text-decoration: none;" } do %>
+            <button class="brand_btn"><span style="color:#2F2E41;">レポコ一覧</span></button>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
