@@ -11,7 +11,248 @@
   <div class="container-fluid main-index">
     <div class="row px-0">
       <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color">
-        <%= render 'reports/center' %>
+        <ul class="nav nav-tabs justify-content-center" id="repoco_tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="left-tab" data-toggle="tab" href="#clinic_repoco" role="tab" aria-controls="home" aria-selected="true">レポコ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="right-tab" data-toggle="tab" href="#past_repoco" role="tab" aria-controls="profile" aria-selected="false">同院を転院した方のレポコ</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="clinic_repoco" role="tabpanel" aria-labelledby="clinic_repoco-tab"><%= render 'reports/center' %></div>
+          <div class="tab-pane fade" id="past_repoco" role="tabpanel" aria-labelledby="past_repoco-tab">
+            <% @transfer_reports.each do |transfer_report| %>
+              <div class="row">
+                <div class="card col-12 mb-4 pb-0 px-0 shadow-none">
+                  <div class="card-body px-2">
+                    <div class="media-body px-2">
+                      <div class="row">
+                        <div class="col-3 pl-0 text-center px-0">
+                          <%= link_to user_path(transfer_report.user_id), data: { "turbolinks" => false } do %>
+                            <div class="icon-field">
+                              <% if transfer_report.user.icon.attached? %>
+                                <%= image_tag(transfer_report.user.icon, class:"icon_image") %>
+                              <% else %>
+                                <% if transfer_report.treatment_end_age == nil %>
+                                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
+                                <% elsif transfer_report.treatment_end_age < 25 %>
+                                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
+                                <% elsif transfer_report.treatment_end_age < 30 %>
+                                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+                                <% elsif transfer_report.treatment_end_age < 35 %>
+                                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+                                <% elsif transfer_report.treatment_end_age < 40 %>
+                                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+                                <% elsif transfer_report.treatment_end_age < 45 %>
+                                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+                                <% else %>
+                                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+                                <% end %>
+                              <% end %>
+                            </div>
+                          <% end %>
+            
+                          <div class="d-none d-sm-block px-0">
+                            <div class="align-items-center text-center pt-2">
+                              <p class="mb-0 pb-1">
+                                <% if transfer_report.treatment_end_age == nil %>
+                                  <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 25 %>
+                                  <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy", title: "〜24歳"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 30 %>
+                                  <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 35 %>
+                                  <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 40 %>
+                                  <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 45 %>
+                                  <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳"), user_path(transfer_report.user_id) %>
+                                <% else %>
+                                  <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜"), user_path(transfer_report.user_id) %>
+                                <% end %>
+                                <%= link_to transfer_report.user.name, user_path(transfer_report.user_id) %>
+                              </p>
+                              <p class="text-center mb-0 pb-0">
+                                <% if transfer_report.user.gender == "female" %>
+                                  <span class="badge badge-pill badge-light text-muted p-0">女</span>
+                                <% else %>
+                                  <span class="badge badge-pill badge-light text-muted p-0">男</span>
+                                <% end %>
+                                <% unless transfer_report.treatment_end_age.blank? %>
+                                  <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to transfer_report.treatment_end_age, "/category/age/#{transfer_report.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span><br>
+                                <% end %>
+                                <% if transfer_report.prefecture_at_the_time_status == "hide" %>
+                                  <span class="small text-muted">−−</span>
+                                <% else %>
+                                  <span class="small text-muted"><%= link_to transfer_report.city.prefecture.name, "/category/prefecture/#{transfer_report.city.prefecture.name}", class: "text-muted" %></span>
+                                <% end %>
+                                <% if transfer_report.city_at_the_time_status == "hide" %>
+                                  <span class="small text-muted">−−</span>
+                                <% else %>
+                                  <span class="small text-muted"><%= link_to transfer_report.city.name, "/category/city/#{transfer_report.city.name}", class: "text-muted" %></span>
+                                <% end %>
+                              </p>
+                              <p class="text-center m-0 py-0 small">
+                                <span class="small text-muted text-muted"><%= transfer_report.str_work_style %></span>
+                              </p>
+                            </div>
+                          </div>
+                          <div class="d-xs d-sm-none px-2">
+                            <div class="small align-items-center text-center pt-0">
+                              <p class="mb-0">
+                                <% if transfer_report.treatment_end_age == nil %>
+                                  <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy", title: "不明"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 25 %>
+                                  <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "15px", class: "img-fluid", loading: "lazy", title: "〜24歳"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 30 %>
+                                  <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "15px", class: "img-fluid", loading: "lazy", title: "25〜29歳"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 35 %>
+                                  <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "15px", class: "img-fluid", loading: "lazy", title: "30〜34歳"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 40 %>
+                                  <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "15px", class: "img-fluid", loading: "lazy", title: "35〜39歳"), user_path(transfer_report.user_id) %>
+                                <% elsif transfer_report.treatment_end_age < 45 %>
+                                  <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "15px", class: "img-fluid", loading: "lazy", title: "40〜44歳"), user_path(transfer_report.user_id) %>
+                                <% else %>
+                                  <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy", title: "45歳〜"), user_path(transfer_report.user_id) %>
+                                <% end %>
+                                <%= link_to transfer_report.user.name, user_path(transfer_report.user_id) %>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-9 pl-0">
+                          <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
+                            <small class="text-muted d-none d-sm-block">
+                              <% unless transfer_report.current_state.blank? %>
+                                <%= transfer_report.str_current_state %>&nbsp;&nbsp;
+                              <% end %>
+                              <% unless transfer_report.year_of_treatment_end.blank? %>
+                                <%= transfer_report.year_of_treatment_end.year %>年卒業
+                              <% end %>
+                              <% unless transfer_report.fertility_treatment_number.blank? %>
+                                <%= transfer_report.str_fertility_treatment_number %>&nbsp;&nbsp;
+                              <% end %>
+                            </small>
+                            <small class="text-muted d-block d-sm-none">
+                              <% unless transfer_report.current_state.blank? %>
+                                <%= transfer_report.str_current_state %>&nbsp;&nbsp;
+                              <% end %>
+                              <% unless transfer_report.year_of_treatment_end.blank? %>
+                                <%= transfer_report.year_of_treatment_end.year %>年卒業
+                              <% end %>
+                            </small>
+                            <small class="text-muted">
+                              <%= transfer_report.created_at.to_s(:datetime_jp) %>
+                            </small>
+                          </div>
+                          <div class="d-none d-sm-block">
+                            <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                              <h5 class="mb-0 mt-2 mx-0 mb-1">
+                                <% if transfer_report.treatment_end_age %>
+                                  <%= transfer_report.treatment_end_age %>歳&nbsp;
+                                <% end %>
+                                <%= transfer_report.clinic.name %>のレポコ</h5>
+                            <% end %>
+                          </div>
+                          <div class="d-block d-sm-none">
+                            <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                              <h6 class="mb-0 mt-2 mx-0 mb-1">
+                                <% if transfer_report.treatment_end_age %>
+                                  <%= transfer_report.treatment_end_age %>歳&nbsp;
+                                <% end %>
+                                <%= transfer_report.clinic.name %>のレポコ</h6>
+                            <% end %>
+                          </div>
+                          <div class="d-none d-sm-block justify-content-start mr-2">
+                            <div class="personaldata-badge pr-2">
+                              <span class="badge badge-light text-muted"><%= transfer_report.str_cost %></span>
+                              <% inspections = transfer_report.inspections.shuffle.sample(1) %>
+                              <% inspections.each do |inspection| %>
+                                <span class="badge badge-light text-muted"><%= inspection.name %></span>
+                              <% end %>
+                              <% supplements = transfer_report.supplements.shuffle.sample(1) %>
+                              <% supplements.each do |supplement| %>
+                                <span class="badge badge-light text-muted"><%= supplement.name %></span>
+                              <% end %>
+                            </div>
+                          </div>
+            
+                          <div>
+                            <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
+                              <div class="d-none d-sm-block my-0 mr-2 clinic_address">
+                                <%= link_to transfer_report.clinic.name, "/category/clinics/#{transfer_report.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to transfer_report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{transfer_report.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to transfer_report.clinic.city.name, "/category/clinics/city/#{transfer_report.clinic.city.name}", class:"text-muted" %></span>
+                              </div>
+                              <div class="d-block d-sm-none mb-0 mr-2 clinic_address">
+                                <div class="col-12 pl-0">
+                                  <%= link_to transfer_report.clinic.name, "/category/clinics/#{transfer_report.clinic.id}", class: "text-muted small" %>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="d-none d-sm-block col-12 px-0">
+                              <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                                <div class="pt-2 pb-1 px-1">
+                                  <h6><%= strip_tags(transfer_report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
+                                </div>
+                              <% end %>
+                              <div class="lead-content px-2 py-1">
+                                <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                                  <small><span class="text-muted"><%= strip_tags(transfer_report.summarize_content).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                                <% end %>
+                              </div>
+                              <div class="action_area pl-1 pr-0 py-2">
+                                <div class="row">
+                                  <div class="col-3 form-inline">
+                                    <div class="likes_buttons_<%= transfer_report.id %>">
+                                      <%= render partial: 'likes/like', locals: { report: transfer_report} %>
+                                    </div>
+                                  </div>
+                                  <div class="col-9">
+                                    <div class="float-right"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
+                                    <div class="float-right mr-2"><%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+                                    <div class="float-right mr-2"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+                                    <div class="float-right mr-2"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="d-block d-sm-none col-12 px-1">
+                          <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                            <div class="py-2 px-3">
+                              <h7><%= strip_tags(transfer_report.title.to_s).gsub(/[\n]/,"").strip.truncate(30) %></h7>
+                            </div>
+                          <% end %>
+                          <div  class="lead-content px-2 py-1">
+                            <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                              <small><%= strip_tags(transfer_report.summarize_content).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                            <% end %>
+                          </div>
+                          <div class="px-0 py-0">
+                            <div class="row">
+                              <div class="col-3">
+                                <div class="likes_buttons_<%= transfer_report.id %>">
+                                  <%= render partial: 'likes/like', locals: { report: transfer_report} %>
+                                </div>
+                              </div>
+                              <div class="col-9 pt-2">
+                                <div class="float-right"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
+                                <div class="float-right mr-1"><%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
+                                <div class="float-right mr-1"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
+                                <div class="float-right mr-1"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
       <div class="col-lg-3 col-md-3 d-none d-md-block">
         <%= render 'reports/right' %>
