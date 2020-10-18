@@ -101,6 +101,8 @@
                       <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
                     <% end %>
                   </p>
+                <% else %>
+                  <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
                 <% end %>
                 <p class="m-0 text-muted d-flex align-items-center">
                   <span class="small"><%= report.prefecture.name %></span>&nbsp;
