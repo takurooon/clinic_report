@@ -79,6 +79,18 @@ class Report < ApplicationRecord
   #   end
   # end
 
+  def previous
+    Report.where("id < ?", self.id).where(status: 0).order("id DESC").first
+  end
+
+  def next
+    Report.where("id > ?", self.id).where(status: 0).order("id ASC").first
+  end
+
+  def self.rank
+    Report.find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
+  end
+
   def validate_content_length
     length = content.to_plain_text.length
 
@@ -1774,9 +1786,9 @@ class Report < ApplicationRecord
 
   # fertility_treatment_numberの区分値(何人目か)
   HASH_FERTILITY_TREATMENT_NUMBER = {
-    1 => "1人目の治療",
-    2 => "2人目の治療",
-    3 => "3人以上の治療",
+    1 => "1人目治療",
+    2 => "2人目治療",
+    3 => "3人以上治療",
   }
 
   def str_fertility_treatment_number
@@ -1785,9 +1797,9 @@ class Report < ApplicationRecord
 
   # 検索画面用のfertility_treatment_numberの区分値(何人目か)
   HASH_FERTILITY_TREATMENT_NUMBER_SEARCH = {
-    1 => "1人目の治療",
-    2 => "2人目の治療",
-    3 => "3人以上の治療",
+    1 => "1人目治療",
+    2 => "2人目治療",
+    3 => "3人以上治療",
   }
 
   def str_fertility_treatment_number_search

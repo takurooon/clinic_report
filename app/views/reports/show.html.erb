@@ -25,21 +25,21 @@
               <% if @report.user.icon.attached? %>
                 <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
               <% else %>
-                  <% if @report.treatment_end_age == nil %>
-                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
-                  <% elsif @report.treatment_end_age < 25 %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
-                  <% elsif @report.treatment_end_age < 30 %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
-                  <% elsif @report.treatment_end_age < 35 %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
-                  <% elsif @report.treatment_end_age < 40 %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
-                  <% elsif @report.treatment_end_age < 45 %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
-                  <% end %>
+                <% if @report.treatment_end_age == nil %>
+                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                <% elsif @report.treatment_end_age < 25 %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                <% elsif @report.treatment_end_age < 30 %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                <% elsif @report.treatment_end_age < 35 %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                <% elsif @report.treatment_end_age < 40 %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                <% elsif @report.treatment_end_age < 45 %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                <% end %>
               <% end %>
             <% end %>
           </div>
@@ -138,7 +138,7 @@
           </div>
         </div>
 
-        <div class="parent-tab landing-point">
+        <div class="parent-tab landing-pointbackground-color">
           <% if user_signed_in? %>
             <p class="d-xs-block d-md-none float-left mb-0 px-2 d-inline" style="font-size:15px">
               <% if current_user.already_liked?(@report) %>
@@ -4171,13 +4171,354 @@
           </div>
         </div>
 
-        <% if @report.user == current_user %>
-          <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm float-right mx-1" %>
-          <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
-          <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary btn-sm button float-right mx-1" %>
-        <% else %>
-          <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm button float-right mx-1" %>
-        <% end %>
+        <div class="row mb-3">
+          <div class="col-12">
+            <% if @report.user == current_user %>
+              <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm float-right mx-1" %>
+              <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
+              <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary btn-sm button float-right mx-1" %>
+            <% else %>
+              <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm button float-right mx-1" %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="d-none d-sm-block">
+          <div class="row">
+            <% unless @report.previous.nil? %>
+              <div class="col-6">
+                <%= link_to report_path(@report.previous), style:"text-decoration: none;" do %>
+                  <div class="card rounded-lg pl-0 h-100" style="background-color: #F7F9F9;">
+                    <div class="m-0 row h-100">
+                      <div class="col-1 m-0 p-0 rounded-left d-flex align-items-center" style="background-color: #2ECFC0;">
+                        <i data-feather="chevrons-left" class="text-light pl-1"></i>
+                      </div>
+                      <div class="col-11 px-3 pt-2 pb-3">
+                        <% if @report.previous.present? %>
+                          <% if @report.previous.title.present? %>
+                            <span class="badge badge-info pt-1"><%= @report.previous.clinic.name %></span>
+                            <% if @report.previous.year_of_treatment_end.present? %>
+                              <span class="badge badge-light"><%= @report.previous.year_of_treatment_end.year %>年卒業</span>
+                            <% end %>
+                            <% if @report.previous.treatment_end_age.present? %>
+                              <span class="badge badge-light"><%= @report.previous.str_treatment_end_age %></span>
+                            <% end %>
+                            <div class="d-flex">
+                              <div class="mt-2 pr-3 d-flex align-items-center">
+                                <% if @report.previous.user.icon.attached? %>
+                                  <%= image_tag(@report.previous.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                                <% else %>
+                                  <% if @report.previous.treatment_end_age == nil %>
+                                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                  <% elsif @report.previous.treatment_end_age < 25 %>
+                                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 30 %>
+                                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 35 %>
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 40 %>
+                                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 45 %>
+                                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                  <% else %>
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                              <p class="m-0 pt-1 text-dark d-flex align-items-center"><%= strip_tags(@report.previous.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
+                            </div>
+                          <% else %>
+                            <% if @report.previous.year_of_treatment_end.present? %>
+                              <span class="badge badge-light"><%= @report.previous.year_of_treatment_end.year %>年卒業</span>
+                            <% end %>
+                            <% if @report.previous.treatment_end_age.present? %>
+                              <span class="badge badge-light"><%= @report.previous.str_treatment_end_age %></span>
+                            <% end %>
+                            <div class="d-flex">
+                              <div class="mt-2 pr-3 d-flex align-items-center">
+                                <% if @report.previous.user.icon.attached? %>
+                                  <%= image_tag(@report.previous.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                                <% else %>
+                                  <% if @report.previous.treatment_end_age == nil %>
+                                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                  <% elsif @report.previous.treatment_end_age < 25 %>
+                                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 30 %>
+                                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 35 %>
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 40 %>
+                                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 45 %>
+                                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                  <% else %>
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                              <p class="m-0 pt-1 text-dark d-flex align-items-center"><%= @report.previous.clinic.name %>での<%= @report.previous.user.name %>さんのレポコ</p>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="col-6">
+              </div>
+            <% end %>
+            <% unless @report.next.nil? %>
+              <div class="col-6">
+                <%= link_to report_path(@report.next), style:"text-decoration: none;" do %>
+                  <div class="card rounded-lg pl-0 h-100" style="background-color: #F7F9F9;">
+                    <div class="m-0 row h-100">
+                      <div class="col-11 px-3 pt-2 pb-3">
+                        <% if @report.next.present? %>
+                          <% if @report.next.title.present? %>
+                            <span class="badge badge-info pt-1"><%= @report.next.clinic.name %></span>
+                            <% if @report.next.year_of_treatment_end.present? %>
+                              <span class="badge badge-light"><%= @report.next.year_of_treatment_end.year %>年卒業</span>
+                            <% end %>
+                            <% if @report.next.treatment_end_age.present? %>
+                              <span class="badge badge-light"><%= @report.next.str_treatment_end_age %></span>
+                            <% end %>
+                            <div class="d-flex">
+                              <div class="mt-2 pr-3 d-flex align-items-center">
+                                <% if @report.next.user.icon.attached? %>
+                                  <%= image_tag(@report.next.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                                <% else %>
+                                  <% if @report.next.treatment_end_age == nil %>
+                                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                  <% elsif @report.next.treatment_end_age < 25 %>
+                                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                  <% elsif @report.next.treatment_end_age < 30 %>
+                                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                  <% elsif @report.next.treatment_end_age < 35 %>
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                  <% elsif @report.next.treatment_end_age < 40 %>
+                                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                  <% elsif @report.next.treatment_end_age < 45 %>
+                                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                  <% else %>
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                              <p class="m-0 pt-1 text-dark d-flex align-items-center"><%= strip_tags(@report.next.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
+                            </div>
+                          <% else %>
+                            <% if @report.next.year_of_treatment_end.present? %>
+                              <span class="badge badge-light"><%= @report.next.year_of_treatment_end.year %>年卒業</span>
+                            <% end %>
+                            <% if @report.next.treatment_end_age.present? %>
+                              <span class="badge badge-light"><%= @report.next.str_treatment_end_age %></span>
+                            <% end %>
+                            <div class="d-flex">
+                              <div class="mt-2 pr-3 d-flex align-items-center">
+                                <% if @report.next.user.icon.attached? %>
+                                  <%= image_tag(@report.next.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                                <% else %>
+                                  <% if @report.next.treatment_end_age == nil %>
+                                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                  <% elsif @report.next.treatment_end_age < 25 %>
+                                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                  <% elsif @report.next.treatment_end_age < 30 %>
+                                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                  <% elsif @report.next.treatment_end_age < 35 %>
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                  <% elsif @report.next.treatment_end_age < 40 %>
+                                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                  <% elsif @report.next.treatment_end_age < 45 %>
+                                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                  <% else %>
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                              <p class="m-0 pt-1 text-dark d-flex align-items-center"><%= @report.next.clinic.name %>での<%= @report.next.user.name %>さんのレポコ</p>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <div class="col-1 m-0 p-0 rounded-right d-flex align-items-center" style="background-color: #2ECFC0;">
+                        <i data-feather="chevrons-right" class="text-light pl-1"></i>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="d-block d-sm-none">
+          <div class="row px-2">
+            <% unless @report.previous.nil? %>
+              <div class="col-12 mb-3" style="height: 110px;">
+                <%= link_to report_path(@report.previous), style:"text-decoration: none;" do %>
+                  <div class="card rounded-lg pl-0 h-100" style="background-color: #F7F9F9;">
+                    <div class="m-0 row h-100">
+                      <div class="col-1 m-0 p-0 rounded-left d-flex align-items-center" style="background-color: #2ECFC0;">
+                        <i data-feather="chevrons-left" class="text-light pl-1"></i>
+                      </div>
+                      <div class="col-11 px-3 pt-2 pb-3">
+                        <% if @report.previous.present? %>
+                          <% if @report.previous.title.present? %>
+                            <span class="badge badge-info pt-1"><%= @report.previous.clinic.name %></span>
+                            <% if @report.previous.year_of_treatment_end.present? %>
+                              <span class="badge badge-light"><%= @report.previous.year_of_treatment_end.year %>年卒業</span>
+                            <% end %>
+                            <% if @report.previous.treatment_end_age.present? %>
+                              <span class="badge badge-light"><%= @report.previous.str_treatment_end_age %></span>
+                            <% end %>
+                            <div class="d-flex">
+                              <div class="mt-2 pr-3 d-flex align-items-center">
+                                <% if @report.previous.user.icon.attached? %>
+                                  <%= image_tag(@report.previous.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                                <% else %>
+                                  <% if @report.previous.treatment_end_age == nil %>
+                                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                  <% elsif @report.previous.treatment_end_age < 25 %>
+                                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 30 %>
+                                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 35 %>
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 40 %>
+                                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 45 %>
+                                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                  <% else %>
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                              <p class="m-0 pt-1 text-dark d-flex align-items-center"><%= strip_tags(@report.previous.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
+                            </div>
+                          <% else %>
+                            <% if @report.previous.year_of_treatment_end.present? %>
+                              <span class="badge badge-light"><%= @report.previous.year_of_treatment_end.year %>年卒業</span>
+                            <% end %>
+                            <% if @report.previous.treatment_end_age.present? %>
+                              <span class="badge badge-light"><%= @report.previous.str_treatment_end_age %></span>
+                            <% end %>
+                            <div class="d-flex">
+                              <div class="mt-2 pr-3 d-flex align-items-center">
+                                <% if @report.previous.user.icon.attached? %>
+                                  <%= image_tag(@report.previous.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                                <% else %>
+                                  <% if @report.previous.treatment_end_age == nil %>
+                                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                  <% elsif @report.previous.treatment_end_age < 25 %>
+                                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 30 %>
+                                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 35 %>
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 40 %>
+                                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                  <% elsif @report.previous.treatment_end_age < 45 %>
+                                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                  <% else %>
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                              <p class="m-0 pt-1 text-dark d-flex align-items-center"><%= @report.previous.clinic.name %>での<%= @report.previous.user.name %>さんのレポコ</p>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+            <% unless @report.next.nil? %>
+              <div class="col-12" style="height: 110px;">
+                <%= link_to report_path(@report.next), style:"text-decoration: none;" do %>
+                  <div class="card rounded-lg pl-0 h-100" style="background-color: #F7F9F9;">
+                    <div class="m-0 row h-100">
+                      <div class="col-11 px-3 pt-2 pb-3">
+                        <% if @report.next.present? %>
+                          <% if @report.next.title.present? %>
+                            <span class="badge badge-info pt-1"><%= @report.next.clinic.name %></span>
+                            <% if @report.next.year_of_treatment_end.present? %>
+                              <span class="badge badge-light"><%= @report.next.year_of_treatment_end.year %>年卒業</span>
+                            <% end %>
+                            <% if @report.next.treatment_end_age.present? %>
+                              <span class="badge badge-light"><%= @report.next.str_treatment_end_age %></span>
+                            <% end %>
+                            <div class="d-flex align-items-center">
+                              <div class="mt-2 pr-3 d-flex align-items-center">
+                                <% if @report.next.user.icon.attached? %>
+                                  <%= image_tag(@report.next.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                                <% else %>
+                                  <% if @report.next.treatment_end_age == nil %>
+                                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                  <% elsif @report.next.treatment_end_age < 25 %>
+                                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                  <% elsif @report.next.treatment_end_age < 30 %>
+                                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                  <% elsif @report.next.treatment_end_age < 35 %>
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                  <% elsif @report.next.treatment_end_age < 40 %>
+                                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                  <% elsif @report.next.treatment_end_age < 45 %>
+                                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                  <% else %>
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                              <p class="m-0 pt-1 text-dark d-flex align-items-center"><%= strip_tags(@report.next.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
+                            </div>
+                          <% else %>
+                            <% if @report.next.year_of_treatment_end.present? %>
+                              <span class="badge badge-light"><%= @report.next.year_of_treatment_end.year %>年卒業</span>
+                            <% end %>
+                            <% if @report.next.treatment_end_age.present? %>
+                              <span class="badge badge-light"><%= @report.next.str_treatment_end_age %></span>
+                            <% end %>
+                            <div class="d-flex">
+                              <div class="mt-2 pr-3 d-flex align-items-center">
+                                <% if @report.next.user.icon.attached? %>
+                                  <%= image_tag(@report.next.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                                <% else %>
+                                  <% if @report.next.treatment_end_age == nil %>
+                                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                  <% elsif @report.next.treatment_end_age < 25 %>
+                                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                  <% elsif @report.next.treatment_end_age < 30 %>
+                                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                  <% elsif @report.next.treatment_end_age < 35 %>
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                  <% elsif @report.next.treatment_end_age < 40 %>
+                                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                  <% elsif @report.next.treatment_end_age < 45 %>
+                                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                  <% else %>
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                              <p class="m-0 pt-1 text-dark d-flex align-items-center"><%= @report.next.clinic.name %>での<%= @report.next.user.name %>さんのレポコ</p>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <div class="col-1 m-0 p-0 rounded-right d-flex align-items-center" style="background-color: #2ECFC0;">
+                        <i data-feather="chevrons-right" class="text-light pl-1"></i>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
 
         <div class="comment-area mt-5">
           <div class="p-comment__list">
@@ -4205,7 +4546,7 @@
         </div>
       </div>
     </div>
-    <div class="d-none d-lg-block col-lg-3">
+    <div class="d-none d-lg-block col-lg-3 pl-2 pr-0">
       <%= render 'right' %>
     </div>
     <%= render 'layouts/area_under_mobile_screen_show' %>

@@ -2,7 +2,7 @@
   <% if current_user.already_liked?(report) %>
     <div class="like-circle">
       <div class="like-btn" title='ストック'>
-        <%= link_to report_likes_path(report), method: :delete, remote: true do %>
+        <%= link_to report_likes_path(report), style:" text-decoration: none;", method: :delete, remote: true do %>
         <%= images_action_svg("like.svg") %>
         <% end %>
         <% if report.likes.present? %>
@@ -13,7 +13,7 @@
   <% else %>
     <div class="unlike-circle">
       <div class="unlike-btn" title='ストック'>
-        <%= link_to report_likes_path(report), method: :post, remote: true do %>
+        <%= link_to report_likes_path(report), style:" text-decoration: none;", method: :post, remote: true do %>
           <%= images_action_svg("unlike.svg") %>
         <% end %>
         <% if report.likes.present? %>
