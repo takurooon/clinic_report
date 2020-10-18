@@ -91,6 +91,10 @@ class Report < ApplicationRecord
     Report.find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
   end
 
+  def self.same_cl(report)
+    Report.where(status: 0, clinic_id: report.clinic_id).where.not(id: report.id).limit(5)
+  end
+
   def validate_content_length
     length = content.to_plain_text.length
 
