@@ -4360,7 +4360,7 @@
         <div class="d-block d-sm-none">
           <div class="row px-2">
             <% unless @report.previous.nil? %>
-              <div class="col-12 mb-2" style="height: 110px;">
+              <div class="col-12 mb-2">
                 <%= link_to report_path(@report.previous), style:"text-decoration: none;" do %>
                   <div class="card rounded-lg pl-0 h-100" style="background-color: #F7F9F9;">
                     <div class="m-0 row h-100">
@@ -4444,7 +4444,7 @@
             <% end %>
 
             <% unless @report.next.nil? %>
-              <div class="col-12" style="height: 110px;">
+              <div class="col-12">
                 <%= link_to report_path(@report.next), style:"text-decoration: none;" do %>
                   <div class="card rounded-lg pl-0 h-100" style="background-color: #F7F9F9;">
                     <div class="m-0 row h-100">
