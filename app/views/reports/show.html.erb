@@ -4360,7 +4360,7 @@
         <div class="d-block d-sm-none">
           <div class="row px-2">
             <% unless @report.previous.nil? %>
-              <div class="col-12 mb-3" style="height: 110px;">
+              <div class="col-12 mb-2" style="height: 110px;">
                 <%= link_to report_path(@report.previous), style:"text-decoration: none;" do %>
                   <div class="card rounded-lg pl-0 h-100" style="background-color: #F7F9F9;">
                     <div class="m-0 row h-100">
@@ -4442,6 +4442,7 @@
                 <% end %>
               </div>
             <% end %>
+
             <% unless @report.next.nil? %>
               <div class="col-12" style="height: 110px;">
                 <%= link_to report_path(@report.next), style:"text-decoration: none;" do %>
@@ -4722,19 +4723,19 @@
                       <div class="mb-2 text-dark d-flex align-items-center" style="height: 60px">
                         <p class="mb-0">
                         <% if report.title.present? %>
-                          <small class="text-muted" style="font-size: 5px;"><%= report.clinic.name %>&nbsp;(<%= report.clinic.prefecture.name %>)</small>
+                          <small class="text-muted" style="font-size: 10px;"><%= report.clinic.name %>&nbsp;(<%= report.clinic.prefecture.name %>)</small>
                           <br><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
                         <% else %>
                           <% if report.year_of_treatment_end.present? %>
-                            <small class="text-muted" style="font-size: 5px;"><%= report.year_of_treatment_end.year %>年卒業</small>
+                            <small class="text-muted" style="font-size: 10px;"><%= report.year_of_treatment_end.year %>年卒業</small>
                           <% end %>
                           <% if report.fertility_treatment_number.present? %>
-                            <small class="text-muted" style="font-size: 5px;"><%= report.str_fertility_treatment_number %></small>
+                            <small class="text-muted" style="font-size: 10px;"><%= report.str_fertility_treatment_number %></small>
                           <% end %>
                           <% if report.current_state.present? %>
-                            <small class="text-muted" style="font-size: 5px;"><%= report.str_current_state %></small>
+                            <small class="text-muted" style="font-size: 10px;"><%= report.str_current_state %></small>
                           <% end %>
-                          <br><%= report.clinic.name %><span class="text-muted" style="font-size: 5px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ
+                          <br><%= report.clinic.name %><span class="text-muted" style="font-size: 10px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ
                         <% end %>
                         </p>
                       </div>
@@ -4800,19 +4801,19 @@
                       <div class="mb-2 text-dark d-flex align-items-center" style="height: 60px">
                         <p class="mb-0">
                         <% if report.title.present? %>
-                          <small class="text-muted" style="font-size: 5px;"><%= report.clinic.name %>&nbsp;(<%= report.clinic.prefecture.name %>)</small>
+                          <small class="text-muted" style="font-size: 10px;"><%= report.clinic.name %>&nbsp;(<%= report.clinic.prefecture.name %>)</small>
                           <br><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
                         <% else %>
                           <% if report.year_of_treatment_end.present? %>
-                            <small class="text-muted" style="font-size: 5px;"><%= report.year_of_treatment_end.year %>年卒業</small>
+                            <small class="text-muted" style="font-size: 10px;"><%= report.year_of_treatment_end.year %>年卒業</small>
                           <% end %>
                           <% if report.fertility_treatment_number.present? %>
-                            <small class="text-muted" style="font-size: 5px;"><%= report.str_fertility_treatment_number %></small>
+                            <small class="text-muted" style="font-size: 10px;"><%= report.str_fertility_treatment_number %></small>
                           <% end %>
                           <% if report.current_state.present? %>
-                            <small class="text-muted" style="font-size: 5px;"><%= report.str_current_state %></small>
+                            <small class="text-muted" style="font-size: 10px;"><%= report.str_current_state %></small>
                           <% end %>
-                          <br><%= report.clinic.name %><span class="text-muted" style="font-size: 5px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ
+                          <br><%= report.clinic.name %><span class="text-muted" style="font-size: 10px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ
                         <% end %>
                         </p>
                       </div>
