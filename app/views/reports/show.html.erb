@@ -4151,6 +4151,31 @@
           <%= render partial: 'ichiran' %>
         </div>
 
+        <div class="comment-area mt-5">
+          <div class="p-comment__list">
+            <h4 class="p-comment__listTitle"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメント</h4>
+            <%= render @report.comments %>
+          </div>
+          <% if current_user %>
+            <%= render partial: 'comments/form', locals: { comment: @comment } %>
+          <% else %>
+          <div class="comment-blur">
+            REPOCOは、不妊治療で妊娠出産に至った方や、転院または治療をやめられた方の足跡を「治療レポート」として投稿〜検索できるサービスです。
+            このサービスは情報取得が難しい不妊治療の現状を少しでも改善したいとの思いから、0からプログラミングを学習して作りました。<br>
+            もっともっと良いサービスにしていきたいと思っていますので、一緒にREPOCOを成長させてくれる方(特にエンジニアの方)を絶賛大募集中です。
+            まずは、お気軽にお問い合わせください！
+          </div>
+          <div class="card text-center mb-5 commnet-blur-text">
+            <div class="card-body">
+              <h5 class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;ログインしてコメントしよう！</h5>
+              <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
+              <%=link_to 'ログイン', new_user_session_path, class: "btn btn-raised btn-info mr-2" %>
+              <%=link_to '新規登録',  new_user_registration_path, class: "btn btn-info border ml-2" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+
         <div class="action_area pl-3 pr-0 py-4">
           <div class="row">
             <div class="col-3 form-inline">
@@ -4868,31 +4893,6 @@
           </div>
         </div>
 
-
-        <div class="comment-area mt-5">
-          <div class="p-comment__list">
-            <h4 class="p-comment__listTitle"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメント</h4>
-            <%= render @report.comments %>
-          </div>
-          <% if current_user %>
-            <%= render partial: 'comments/form', locals: { comment: @comment } %>
-          <% else %>
-          <div class="comment-blur">
-            REPOCOは、不妊治療で妊娠出産に至った方や、転院または治療をやめられた方の足跡を「治療レポート」として投稿〜検索できるサービスです。
-            このサービスは情報取得が難しい不妊治療の現状を少しでも改善したいとの思いから、0からプログラミングを学習して作りました。<br>
-            もっともっと良いサービスにしていきたいと思っていますので、一緒にREPOCOを成長させてくれる方(特にエンジニアの方)を絶賛大募集中です。
-            まずは、お気軽にお問い合わせください！
-          </div>
-          <div class="card text-center mb-5 commnet-blur-text">
-            <div class="card-body">
-              <h5 class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;ログインしてコメントしよう！</h5>
-              <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
-              <%=link_to 'ログイン', new_user_session_path, class: "btn btn-raised btn-info mr-2" %>
-              <%=link_to '新規登録',  new_user_registration_path, class: "btn btn-info border ml-2" %>
-            </div>
-          </div>
-          <% end %>
-        </div>
       </div>
     </div>
     <div class="d-none d-lg-block col-lg-3 pl-2 pr-0">
