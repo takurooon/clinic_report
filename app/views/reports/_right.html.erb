@@ -78,7 +78,7 @@
                 <p class="mb-0">
                 <% if report.title.present? %>
                   <small class="text-muted" style="font-size: 5px;"><%= report.clinic.name %>&nbsp;(<%= report.clinic.prefecture.name %>)</small>
-                  <br><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
+                  <br><span style="font-size: 14px;"><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %></span>
                 <% else %>
                   <% if report.year_of_treatment_end.present? %>
                     <small class="text-muted" style="font-size: 5px;"><%= report.year_of_treatment_end.year %>年卒業</small>
@@ -89,7 +89,7 @@
                   <% if report.current_state.present? %>
                     <small class="text-muted" style="font-size: 5px;"><%= report.str_current_state %></small>
                   <% end %>
-                  <br><%= report.clinic.name %><span class="text-muted" style="font-size: 5px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ
+                  <br><span style="font-size: 14px;"><%= report.clinic.name %><span class="text-muted" style="font-size: 5px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ</span>
                 <% end %>
                 </p>
               </div>

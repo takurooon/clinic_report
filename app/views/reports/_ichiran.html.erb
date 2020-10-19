@@ -3,7 +3,9 @@
   <label for="cp01"></label>
   <div class="cp_container">
     <div class="text-center matome-title mb-3 pt-3">
-      <%= link_to @report.user.name, user_path(@report.user_id) %>&nbsp;<span class="text-muted small">さんの</span>&nbsp;
+      <%= link_to user_path(@report.user_id) do %>
+        <%= strip_tags(@report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %>&nbsp;<span class="text-muted small">さんの</span>&nbsp;
+      <% end %>
       <%= link_to @report.clinic.name, "/category/clinics/#{@report.clinic.id}" %><br>
       <span class="text-muted small">での</span>&nbsp;<span class="font-weight-bold">治療情報 一括表示</span>
     </div>
