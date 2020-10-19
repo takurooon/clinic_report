@@ -69,6 +69,53 @@
                 </div>
               <% else %>
                 <div class="col-12">
+                  <div class="row">
+                    <% if @report.user.self_introduction.present? %>
+                      <div class="col-6 d-flex align-items-center">
+                        <div class="balloon1-left small d-flex align-items-center">
+                          <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
+                            <p class="text-dark">【プロフィール】</p>
+                            <span class="text-muted"><%= strip_tags(@report.user.self_introduction.to_s).gsub(/[\n]/,"").strip.truncate(50) %></span>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="alert alert-info rounded-lg pt-2 pb-1 px-3 mt-3">
+                          <% if @report.comments.present? %>
+                            <a href="#comments_area">
+                              <p class="mb-0 small text-muted">コメント(<%= @report.comments.count %>件)</p>
+                              <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
+                            </a>
+                          <% else %>
+                            <div class="d-flex align-items-end">
+                              <a href="#comments_area">
+                                <p class="mb-0 small text-muted">コメント(0件)</p>
+                                <p class="my-2 text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントしてみる</p>
+                              </a>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% else %>
+                      <div class="col-12">
+                        <div class="alert alert-info rounded-lg pt-2 pb-1 px-3 mt-3">
+                          <% if @report.comments.present? %>
+                            <a href="#comments_area">
+                              <p class="mb-0 small text-muted">コメント(<%= @report.comments.count %>件)</p>
+                              <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(60) %></p>
+                            </a>
+                          <% else %>
+                            <div>
+                              <a href="#comments_area">
+                                <p class="mb-0 small text-muted">コメント(0件)</p>
+                                <p class="my-2 text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントしてみる</p>
+                              </a>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
               <% end %>
             </div>
@@ -124,8 +171,24 @@
                 <% end %>
               </div>
             <% else %>
-              <div class="col-12">
-                
+              <div class="col-12 pl-0">
+                <div class="pt-2 pb-1 mr-2">
+                  <% if @report.comments.present? %>
+                    <div class="small d-flex align-items-center">
+                      <a href="#comments_area">
+                        <p class="mb-0 small text-muted">コメント(<%= @report.comments.count %>件)</p>
+                        <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(50) %></p>
+                      </a> 
+                    </div>
+                  <% else %>
+                    <div class="small d-flex align-items-center">
+                      <a href="#comments_area">
+                        <p class="mb-0 small text-muted">コメント(0件)</p>
+                        <p class="my-2 text-dark marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントしてみる</p>
+                      </a>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             <% end %>
           </div>
@@ -4195,7 +4258,7 @@
           <%= render partial: 'ichiran' %>
         </div>
 
-        <div class="comment-area mt-5">
+        <div class="comment-area mt-5" id="comments_area">
           <div class="p-comment__list">
             <h4 class="p-comment__listTitle"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメント</h4>
             <%= render @report.comments %>
