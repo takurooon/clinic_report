@@ -83,7 +83,7 @@
                           <% if @report.comments.present? %>
                             <a href="#comments_area">
                               <p class="mb-0 small text-muted">コメント(<%= @report.comments.count %>件)</p>
-                              <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
+                              <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp<span class="small"><%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %></span>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
                             </a>
                           <% else %>
                             <div class="d-flex align-items-end">
@@ -101,7 +101,7 @@
                           <% if @report.comments.present? %>
                             <a href="#comments_area">
                               <p class="mb-0 small text-muted">コメント(<%= @report.comments.count %>件)</p>
-                              <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(60) %></p>
+                              <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<span class="small"><%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(85) %></span>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
                             </a>
                           <% else %>
                             <div>
@@ -176,7 +176,7 @@
                     <div class="alert rounded-lg small d-flex align-items-center px-3 pb-2 mb-0" style="background-color: #F7F9F9">
                       <a href="#comments_area">
                         <p class="mb-0 small text-muted">コメント(<%= @report.comments.count %>件)</p>
-                        <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(47) %></p>
+                        <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
                       </a> 
                     </div>
                   <% else %>
