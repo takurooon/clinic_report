@@ -70,7 +70,7 @@
       <i data-feather="trending-up" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">人気のレポコ</h7>
     </div>
     <% Report.rank.each do |report| %>
-      <%= link_to report_path(report), style:"text-decoration: none;" do %>
+      <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
         <div class="mb-2">
           <div class="row mb-2 rounded-lg">
             <div class="col-9 pt-2 pr-2">
