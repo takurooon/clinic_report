@@ -4268,6 +4268,13 @@
           <%= render partial: 'ichiran' %>
         </div>
 
+        <div class="d-block d-sm-none px-3 mt-4 text-center">
+          <p class="text-muted mb-3">＼&nbsp;&nbsp;&nbsp;Copy&nbsp;!&nbsp;&nbsp;／</p>
+          <button class="btn btn-primary btn-lg w-100 mb-4" id="copy-page2" style="background-color: #2ECFC0;">
+            <i data-feather="copy" style="color: #ffffff;"></i>&nbsp;&nbsp;<span class="text-light">URLをコピー！</span>
+          </button>
+        </div>
+
         <div class="action_area pl-4 pr-0 py-0">
           <div class="row">
             <div class="col-12 form-inline">
@@ -4304,15 +4311,8 @@
           <% end %>
         </div>
 
-        <div class="d-block d-sm-none px-3 text-center">
-          <p class="text-muted mb-3">＼&nbsp;&nbsp;&nbsp;Copy&nbsp;!&nbsp;&nbsp;／</p>
-          <button class="btn btn-primary btn-lg w-100 mb-4" id="copy-page2" style="background-color: #2ECFC0;">
-            <i data-feather="copy" style="color: #ffffff;"></i>&nbsp;&nbsp;<span class="text-light">URLをコピー！</span>
-          </button>
-        </div>
-
-        <div class="row mb-5">
-          <div class="col-12">
+        <div class="row mb-5 pr-1">
+          <div class="col-12 pr-4">
             <% if @report.user == current_user %>
               <%= link_to 'ホーム', reports_path, class:"btn btn-info btn-sm float-right mx-1" %>
               <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '削除してもよろしいですか？'}, class:"btn btn-warning btn-sm float-right mx-1" %>
