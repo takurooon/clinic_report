@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col-sm-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
       <% if @report.title.present? %>
-        <% report_title = strip_tags(@report.title.to_s).gsub(/[\n]/,"").strip.truncate(30) %>
+        <% report_title = strip_tags(@report.title.to_s).gsub(/[\n]/,"").strip.truncate(19) %>
         <% title = "#{report_title} | REPOCO" %>
       <% else %>
         <% title = "#{@report.clinic.name}のレポコ | REPOCO" %>
