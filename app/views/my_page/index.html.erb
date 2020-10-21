@@ -11,7 +11,7 @@
         <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">レポコ</a></li>
         <li>
           <a href="#tab_2" data-toggle="tab">
-            <div class="tab-popup px-2">プロフィール設定
+            <div class="tab-popup px-2">ユーザー設定
               <% if current_user.registration_status1 || current_user.registration_status2 == true %>
                 <i class="fas fa-circle tab-popup-circle fa-stack-1x"></i>
               <% end %>
@@ -83,7 +83,9 @@
                               <% else %>
                                 <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
                               <% end %>
-                              <%= link_to published.user.name, user_path(published.user_id) %>
+                              <%= link_to user_path(published.user_id) do %>
+                                <%= strip_tags(published.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>
+                              <% end %>
                             </p>
                             <p class="text-center mb-0 pb-0">
                               <% if published.user.gender == "female" %>
@@ -110,7 +112,7 @@
                             </p>
                           </div>
                         </div>
-                        <div class="d-xs d-sm-none px-0">
+                        <div class="d-block d-sm-none px-0">
                           <div class="align-items-center text-center pt-2">
                             <p class="mb-0 pb-1">
                               <% if published.treatment_end_age == nil %>
@@ -128,7 +130,9 @@
                               <% else %>
                                 <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy"), user_path(published.user_id) %>
                               <% end %>
-                              <%= link_to published.user.name, user_path(published.user_id) %>
+                              <%= link_to user_path(published.user_id) do %>
+                                <span class="small"><%= strip_tags(published.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %></span>
+                              <% end %>
                             </p>
                           </div>
                         </div>
@@ -274,7 +278,9 @@
                               <% else %>
                                 <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
                               <% end %>
-                              <%= link_to draft.user.name, user_path(draft.user_id) %>
+                              <%= link_to user_path(draft.user_id) do %>
+                                <%= strip_tags(draft.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>
+                              <% end %>
                             </p>
                             <p class="text-center mb-0 pb-0">
                               <% if draft.user.gender == "female" %>
@@ -301,7 +307,7 @@
                             </p>
                           </div>
                         </div>
-                        <div class="d-xs d-sm-none px-0">
+                        <div class="d-block d-sm-none px-0">
                           <div class="align-items-center text-center pt-2">
                             <p class="mb-0 pb-1">
                               <% if draft.treatment_end_age == nil %>
@@ -319,7 +325,9 @@
                               <% else %>
                                 <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy"), user_path(draft.user_id) %>
                               <% end %>
-                              <%= link_to draft.user.name, user_path(draft.user_id) %>
+                              <%= link_to user_path(draft.user_id) do %>
+                                <span class="small"><%= strip_tags(draft.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %></span>
+                              <% end %>
                             </p>
                           </div>
                         </div>
@@ -614,14 +622,16 @@
         <div class="child-tab">
           <ul class="nav nav-tabs child-menu">
             <li>
-              <a href="#tab_2_1" data-toggle="tab">
-                <div class="tab-popup px-2">基本情報
-                  <% if current_user.registration_status2 === true %>
+              <a href="#tab_2_1" class="active" data-toggle="tab">
+                <div class="tab-popup px-2">各種設定
+                  <% if current_user.registration_status2 === true || current_user.registration_status1 == true %>
                     <i class="fas fa-circle tab-popup-circle fa-stack-1x"></i>
                   <% end %>
                 </div>
               </a>
             </li>
+
+            <% if false %>
             <li>
               <a href="#tab_2_2" class="active" data-toggle="tab">
                 <div class="tab-popup px-2">治療情報
@@ -631,69 +641,21 @@
                 </div>
               </a>
             </li>
-            <li><a href="#tab_2_3" data-toggle="tab">登録情報</a></li>
+            <li>
+              <a href="#tab_2_3" data-toggle="tab">登録情報</a>
+            </li>
+            <% end %>
+
           </ul>
-          <section class="child-tab-content px-1" id="tab_2_1">
-            <div class="text-right px-1">
-              <%= link_to "基本情報を変更", edit_user_registration_path, class: "btn btn-primary" %>
+          <section class="child-tab-content active px-1" id="tab_2_1">
+            <div class="d-flex justify-content-between pl-3 pr-2 mt-5">
+              <h5 class="pt-1 text-dark font-weight-bold">治療情報</h5>
+              <div><i data-feather="settings" class="pl-2 pr-0 pb-2 text-muted"></i><%= link_to "治療情報を設定 / 変更", edit_user_registration_path, class: "btn btn-primary mx-0 pl-1 pr-0" %></div>
             </div>
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td class="profile-item-l small text-center">ユーザー名</td>
-                  <td class="profile-item-r">
-                    <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
-                  </td>
-                <tr>
-                <tr>
-                  <td class="profile-item-l small text-center">アイコン</td>
-                  <td class="profile-item-r">
-                    <% if @user.icon.blank? %>
-                      <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path(anchor: "tab_1_1"), { style: "color:#009688;"} %></small>
-                    <% else %>
-                      <small><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></small>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="small text-center">生年月</td>
-                  <td>
-                    <% if @user.birthday.blank? %>
-                      <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
-                    <% else %>
-                      <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="small text-center">リンク</td>
-                  <td>
-                    <% if @user.link.blank? %>
-                    <span class="notset">未設定</span>&nbsp;&nbsp;<small class="text-muted"><span class="small">(ブログやSNS)</span></small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
-                    <% else %>
-                      <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="small text-center">プロフ</td>
-                  <td>
-                    <% if @user.self_introduction.blank? %>
-                      <i data-feather="chevron-right" class="feather-icon-style2"></i><span class="notset">未設定</span><br><%= link_to "ぜひ詳しい情報を載せましょう！", edit_user_registration_path, { style: "color:#009688;"} %>
-                    <% else %>
-                      <div class="p-0 mb-4"><%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %></div>
-                      <small class="text-muted"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i><span class="small"><%= link_to "もっと詳細情報を載せる", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
-                    <% end %>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-          <section class="child-tab-content active px-1" id="tab_2_2">
-            <div class="text-right px-1">
-              <%= link_to "治療情報を変更", edit_user_registration_path, class: "btn btn-primary" %>
+            <div class="alert alert-info rounded-lg mx-2 px-3 py-2">
+              <small>こちらの治療情報は投稿したレポコに反映されますので、ぜひ設定ください！</small>
             </div>
-            <table class="table">
+            <table class="table mb-5">
               <tbody>
                 <tr>
                   <td class="profile-item-l small text-center" style="width:35%">妊活開始</td>
@@ -786,13 +748,69 @@
                   </td>
                 </tr>
               </tbody>
-            </table>
-          </section>
-          <section class="child-tab-content px-1" id="tab_2_3">
-            <div class="text-right px-1">
-              <%= link_to "登録情報を変更", edit_user_registration_path, class: "btn btn-primary" %>
+            </table><hr>
+
+            <div class="d-flex justify-content-between pl-3 pr-2 mt-5">
+              <h5 class="pt-1 text-dark font-weight-bold">基本情報</h5>
+              <div><i data-feather="settings" class="pl-2 pr-0 pb-2 text-muted"></i><%= link_to "基本情報を設定 / 変更", edit_user_registration_path, class: "btn btn-primary mx-0 pl-1 pr-0" %></div>
             </div>
-            <table class="table">
+            <table class="table mb-5">
+              <tbody>
+                <tr>
+                  <td class="profile-item-l small text-center">ユーザー名</td>
+                  <td class="profile-item-r">
+                    <%= @user.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                  </td>
+                <tr>
+                <tr>
+                  <td class="profile-item-l small text-center">アイコン</td>
+                  <td class="profile-item-r">
+                    <% if @user.icon.blank? %>
+                      <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path(anchor: "tab_1_1"), { style: "color:#009688;"} %></small>
+                    <% else %>
+                      <small><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></small>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="small text-center">生年月</td>
+                  <td>
+                    <% if @user.birthday.blank? %>
+                      <span>未登録</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
+                    <% else %>
+                      <%= @user.birthday.year %>年<%= @user.birthday.month %>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="small text-center">リンク</td>
+                  <td>
+                    <% if @user.link.blank? %>
+                    <span class="notset">未設定</span>&nbsp;&nbsp;<small class="text-muted"><span class="small">(ブログやSNS)</span></small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
+                    <% else %>
+                      <%= @user.link %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="small text-center">プロフ</td>
+                  <td>
+                    <% if @user.self_introduction.blank? %>
+                      <i data-feather="chevron-right" class="feather-icon-style2"></i><span class="notset">未設定</span><br><%= link_to "ぜひ詳しい情報を載せましょう！", edit_user_registration_path, { style: "color:#009688;"} %>
+                    <% else %>
+                      <div class="p-0 mb-4"><%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %></div>
+                      <small class="text-muted"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i><span class="small"><%= link_to "もっと詳細情報を載せる", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table><hr>
+
+            <div class="d-flex justify-content-between pl-3 pr-2 mt-5">
+              <h5 class="pt-1 text-dark font-weight-bold">登録情報</h5>
+              <div><i data-feather="settings" class="pl-2 pr-0 pb-2 text-muted"></i><%= link_to "登録情報を設定 / 変更", edit_user_registration_path, class: "btn btn-primary mx-0 pl-1 pr-0" %></div>
+            </div>
+            <table class="table mb-5">
               <tbody>
                 <tr>
                   <td class="profile-item-l small text-center" style="width:35%">メールアドレス</td>
@@ -820,7 +838,15 @@
                 <tr>
               <tbody>
             </table>
+
           </section>
+
+          <% if false %>
+          <section class="child-tab-content active px-1" id="tab_2_2">
+          </section>
+          <section class="child-tab-content px-1" id="tab_2_3">
+          </section>
+          <% end %>
         <div>
       </section>
     </div>
