@@ -285,6 +285,9 @@
                 <li class="tab-item"><a href="#tab_1_5" data-toggle="tab">費用</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_1_1">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title"><%= @report.str_fertility_treatment_number %>&nbsp;概要</h4>
                 <div class="row summary-info m-2 p-3 pt-4 box3">
@@ -533,6 +536,9 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_2">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>で受けた</p>
                 <h4 class="child-tab-title">検査</h4>
                 <h5 class="child-tab-title"><span class="marker-underline">基本検査</span></h5>
@@ -1344,6 +1350,9 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_3">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title">採卵･受精･培養</h4>
 
@@ -1926,6 +1935,9 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_4">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title">
                   <% if @report.embryo_stage == 1 %>
@@ -2585,6 +2597,9 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_5">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>でかかった</p>
                 <h4 class="child-tab-title">費用</h4>
                 <table class="table p-0">
@@ -2661,6 +2676,9 @@
                 <li class="tab-item"><a href="#tab_2_4" data-toggle="tab">サプリ</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_2_1">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">基本情報</h4>
                 <p class="small mb-0 pb-0"><span class="small text-muted">※&nbsp;<%= @report.clinic.name %>&nbsp;での治療当時の情報</span></p>
@@ -2827,6 +2845,9 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_2">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">これまでの治療歴</h4>
                 <h5 class="child-tab-title"><span class="marker-underline">転院歴と転院理由</span></h5>
@@ -3104,6 +3125,9 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_3">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">疾患･不育症</h4>
                 <div class="parent-tab mb-3">
@@ -3216,6 +3240,9 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_4">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">サプリ･治療以外のこと</h4>
                 <div class="parent-tab mb-3">
@@ -3382,6 +3409,9 @@
                 <li class="tab-item"><a href="#tab_3_3" data-toggle="tab">レビュー</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_3_1">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>の</p>
                 <h4 class="child-tab-title">基本情報</h4>
                 <table class="table p-0">
@@ -3426,6 +3456,9 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_3_2">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>の</p>
                 <h4 class="child-tab-title">通院予定･予約方法 他</h4>
                 <div class="box4 mb-2 mt-3">
@@ -3631,6 +3664,9 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_3_3">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>への</p>
                 <h4 class="child-tab-title"><%= @report.user.name %>さんのレビュー</h4>
                 <div class="box27 mt-5">
@@ -3976,6 +4012,9 @@
                 <li class="tab-item"><a href="#tab_4_1" class="active" data-toggle="tab">データ</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_4_1">
+                <div class="d-block d-sm-none text-left small my-2 px-0">
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
+                </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title">治療データ分析</h4>
                 <div class="box4 mb-2 mt-3">
