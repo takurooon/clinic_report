@@ -83,7 +83,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-          <h2><i data-feather="log-in" style="wtidth:20px" class="text-muted"></i>&nbsp;&nbsp;ログイン</h2>
+        <h2><i data-feather="log-in" style="wtidth:20px" class="text-muted"></i>&nbsp;&nbsp;ログイン</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -286,6 +286,21 @@
         <% end %>
         <%= render "devise/shared/links" %>
         
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade fullscreen" id="terminology" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i data-feather="x" class="text-dark p-0 m-0"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render "terminology" %> 
       </div>
     </div>
   </div>

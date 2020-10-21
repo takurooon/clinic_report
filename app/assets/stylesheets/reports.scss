@@ -611,6 +611,31 @@ i .fa-edit {
 	padding: 0;
 }
 
+.box26-2 {
+	position: relative;
+	margin: 2em 0;
+	padding: 0.5em 1em;
+	border: solid 3px #5a5a5a;
+	border-radius: 8px;
+}
+.box26-2 .box-title {
+	position: absolute;
+	display: inline-block;
+	top: -13px;
+	left: 10px;
+	padding: 0 9px;
+	line-height: 1;
+	font-size: 19px;
+	background: #FFF;
+	color: #101010;
+	font-weight: bold;
+	line-height: 1.5em
+}
+.box26-2 p {
+	margin: 0; 
+	padding: 0;
+}
+
 // 未ログインでのshow画面のコメント欄(ブラー)
 .comment-blur {
 	width: 100%;

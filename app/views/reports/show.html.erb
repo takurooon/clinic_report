@@ -9,10 +9,12 @@
         <i data-feather="copy" style="color: #ffffff;"></i>
       </button>
     </div>
+
     <div class="text-center mt-5 p-0">
       <p style="font-size: 11px;" class="text-muted mb-1">＼専門用語／</p>
     </div>
-    <div class="text-center my-2"><%= link_to image_tag("action/book.svg", alt: "terminology", width: "55px", class: "pl-1", loading: "lazy"), terminology_path, title: 'Terminology' %></div>
+    <div class="text-center my-2"><%= link_to image_tag("action/book.svg", alt: "terminology", width: "55px", class: "pl-1", loading: "lazy"), terminology_path, title: 'Terminology', "data-toggle": "modal", "data-target": "#terminology" %></div>
+
     <div class="text-center mt-5 p-0">
       <p style="font-size: 11px;" class="text-muted mb-1">＼シェア／</p>
     </div>
@@ -94,7 +96,7 @@
                             <div class="d-flex align-items-end">
                               <a href="#comments_area">
                                 <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>コメントしてみる</span></p>
+                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>コメントして聞いてみる</span></p>
                               </a>
                             </div>
                           <% end %>
@@ -112,7 +114,7 @@
                             <div>
                               <a href="#comments_area">
                                 <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントしてみる&nbsp;&nbsp;</span></p>
+                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントして聞いてみる&nbsp;&nbsp;</span></p>
                               </a>
                             </div>
                           <% end %>
@@ -188,7 +190,7 @@
                     <div class="alert rounded-lg small d-flex align-items-center px-3 pb-2 mb-0" style="background-color: #F7F9F9">
                       <a href="#comments_area">
                         <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                        <p class="my-2 text-dark marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントしてみる</p>
+                        <p class="my-2 text-dark marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントして聞いてみる</p>
                       </a>
                     </div>
                   <% end %>
@@ -523,7 +525,7 @@
                   </tr>
                 </table>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow"><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -1334,7 +1336,7 @@
                   <% end %>
                 </table>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -1916,7 +1918,7 @@
                   </div>
                 </div>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -2575,7 +2577,7 @@
                   </div>
                 </div>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -2641,7 +2643,7 @@
                   </tr>
                 </table>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -2817,7 +2819,7 @@
                   </tr>
                 </table>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -3094,7 +3096,7 @@
                 </table>
                 <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療に限らず、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの受給状況。</span></p>
                 <div class="text-right mt-3 px-3">
-                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -3206,7 +3208,7 @@
                   </div>
                 </div>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -3363,7 +3365,7 @@
                   </div>
                 </div>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -3416,7 +3418,7 @@
                   </tr>
                 </table>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -3621,7 +3623,7 @@
                   </tr>
                 </table>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -3959,7 +3961,7 @@
                   </div>
                 </div>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -4221,7 +4223,7 @@
                   <% end %>
                 </table>
                 <div class="text-right mt-0 px-0">
-                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;" } %></small>
+                  <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語集", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                   <a class="btn btnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
