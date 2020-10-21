@@ -15,22 +15,14 @@
           <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">ユーザー設定</a></li>
 
           <% if false %>
-          <li>
-            <a href="#tab_2" data-toggle="tab">登録設定</a>
-          </li>
+          <li><a href="#tab_2" data-toggle="tab">退会処理</a></li>
           <% end %>
         </ul>
         <section class="parent-tab-content active mostleft-tab" id="tab_1">
           <div class="child-tab">
             <ul class="nav nav-tabs child-menu">
-              <li>
-                <a href="#tab_1_1" class="active" data-toggle="tab">各種設定</a>
-              </li>
-              <% if false %>
-              <li>
-                <a href="#tab_1_2" data-toggle="tab"><span class="text-warning">治療情報</span></a>
-              </li>
-              <% end %>
+              <li><a href="#tab_1_1" class="active" data-toggle="tab">各種設定</a></li>
+              <li><a href="#tab_1_2" data-toggle="tab"><span class="text-muted">退会処理</span></a></li>
             </ul>
             <section class="child-tab-content active px-1" id="tab_1_1">
               <div class="d-flex justify-content-between pl-3 pr-2 mt-5">
@@ -286,23 +278,22 @@
                   </tr>
                 </tbody>
               </table>
-              <div class="px-3 py-3 mb-5">
+              <div class="px-3 py-3 mb-3">
                 <%= f.submit "更新する", class: "btn btn-raised btn-primary w-100", style: "background-color: #2ECFC0;" %>
-              </div><hr><br>
-
-              <div class="mx-3 p-3 rounded-lg" style="background-color: #BBBBBB;">
+              </div>
+            </section>
+            <section class="child-tab-content px-1" id="tab_1_2">
+              <div class="m-3 py-4 px-2 rounded-lg" style="background-color: #BBBBBB;">
                 <div class="d-flex justify-content-between px-3">
                   <h5 class="pt-1 text-danger">退会処理</h5>
                 </div>
-                <div class="px-4 text-danger mt-3">
+                <div class="px-3 text-danger mt-3">
                   <p class="mb-5">退会されるとユーザー情報、投稿投稿、ストック機能などの全てのサービスの利用が停止され、投稿データを含むユーザー情報が完全に削除されます。退会後のデータの復元はできませんのであらかじめご了承の上、退会ください。</p>
                   <div class="text-center mt-5">
                     <%= link_to "全て削除して退会する",user_path(current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？退会すると投稿データ含むユーザー情報が削除され復元できなくなります。", class: "btn btn-outline-danger" %>
                   </div>
                 </div>
               </div>
-            </section>
-            <section class="child-tab-content px-1" id="tab_1_2">
             </section>
           </div>
         </section>
