@@ -1,11 +1,4 @@
 <% @reports.each do |report| %>
-  <% if report.title.present? %>
-    <% title = "#{report.title} | REPOCO" %>
-  <% else %>
-    <% title = "#{report.clinic.name}のレポコ | REPOCO" %>
-  <% end %>
-  <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{report.clinic.name}】#{report.user.name}さん(#{report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
-  <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{report.clinic.name}】#{report.user.name}さん(#{report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
   <div class="row">
     <div class="card col-12 mb-4 pb-0 px-0 shadow-none">
       <div class="card-body px-2">
