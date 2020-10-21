@@ -12,123 +12,34 @@
     <div class="col-md-8 offset-md-2 px-0">
       <div class="parent-tab">
         <ul class="nav nav-tabs parent-menu mt-0 pt-0">
-          <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">基本情報</a></li>
-          <li><a href="#tab_2" data-toggle="tab">登録設定</a></li>
+          <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">ユーザー設定</a></li>
+
+          <% if false %>
+          <li>
+            <a href="#tab_2" data-toggle="tab">登録設定</a>
+          </li>
+          <% end %>
         </ul>
         <section class="parent-tab-content active mostleft-tab" id="tab_1">
           <div class="child-tab">
             <ul class="nav nav-tabs child-menu">
-              <li><a href="#tab_1_1" class="active" data-toggle="tab">基礎情報</a></li>
-              <li><a href="#tab_1_2" data-toggle="tab"><span class="text-warning">治療情報</span></a></li>
+              <li>
+                <a href="#tab_1_1" class="active" data-toggle="tab">各種設定</a>
+              </li>
+              <% if false %>
+              <li>
+                <a href="#tab_1_2" data-toggle="tab"><span class="text-warning">治療情報</span></a>
+              </li>
+              <% end %>
             </ul>
             <section class="child-tab-content active px-1" id="tab_1_1">
-              <div class="alert alert-secondary rounded-lg m-2 mb-3 small" role="alert">
-                プロフィールを充実させましょう！
+              <div class="d-flex justify-content-between pl-3 pr-2 mt-5">
+                <h5 class="pt-1 text-dark font-weight-bold">治療情報</h5>
               </div>
-              <table class="table mb-0">
-                <tbody>
-                  <tr>
-                    <td class="profile-item-l small text-center px-0">アイコン</td>
-                    <td class="profile-item-r">
-                      <div class="img-field-parent">
-                        <div id="img_field" onClick="$('#file').click()">
-                          <% if @user.icon.attached? %>
-                            <%= image_tag(@user.icon, class:"icon_image_edit") %>
-                          <% else %>
-                            <i class="fas fa-camera-retro fa-5x icon-camera"></i>
-                          <% end %>
-                        </div>
-                        <small class="capacity-limit-attention"><small class="text-danger">※最大5MB</small></small>
-                      </div><br>
-
-                      <% if false %> deviseの中でどうやって削除paramsを取得するか？
-                        <% if @user.icon.attached? %>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" name="user[user_icon]" value="off"><span class="small">アイコンを削除</span>
-                            </label>
-                          </div>
-                        <% end %>
-                      <% end %>
-
-                      <p class="text-muted"><span class="text-primary filesize1"></span><span class="text-danger filesize2"></span></p>
-                      <small class="text-muted">画像をクリックするとアイコン画像の選択ができます。</small>
-                      <%= f.file_field :icon, class: "form-control", style: "display:none;", id: "file" %>
-                    </td>
-                  </tr>
-                  <script>
-                    $(function(){
-                      $fileField = $('#file')
-
-                      // 選択された画像を取得し表示
-                      $($fileField).on('change', $fileField, function(e) {
-                        file = e.target.files[0]
-                        reader = new FileReader(),
-                        $preview = $("#img_field");
-                        var imgSize1 = this.files[0].size;
-                        var imgSize = imgSize1 / 1000000
-                        if(imgSize <= 5) {
-                          $('span.filesize1').text("ファイルサイズ: " + imgSize.toFixed(2) + "MB").show();
-                          $('span.filesize2').hide();
-                        } else {
-                          $('span.filesize2').text("ファイルサイズ: " + imgSize.toFixed(2) + "MB！  上限容量の5MBを超えています。").show();
-                          $('span.filesize1').hide();
-                        }
-
-                        reader.onload = (function(file) {
-                          return function(e) {
-                            $preview.empty();
-                            $preview.append($('<img>').attr({
-                              src: e.target.result,
-                              width: "100%",
-                              class: "preview",
-                              title: file.name
-                            }));
-                          };
-                        })(file);
-                        reader.readAsDataURL(file);
-                      });
-                    });
-                  </script>
-                  <tr>
-                    <td class="small text-center px-0">名前</td>
-                    <td><%= f.text_field :name, class: "form-control" %></td>
-                  </tr>
-                  <tr>
-                    <td class="small text-center px-0">生年月</td>
-                    <td>
-                    <%= raw sprintf(
-                      f.date_select(
-                          :birthday,
-                          use_month_numbers: true,
-                          discard_day: true,
-                          start_year:        (Time.now.year - 60),
-                          end_year:          (Time.now.year - 18),
-                          default:           Date.new(1980, 1, 1),
-                          date_separator:    '%s'), # 年月日区切りをそれぞれ指定
-                      '年 ') + '月'
-                    %><br>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="small text-center px-0">リンク</td>
-                    <td><%= f.text_field :link, class: "form-control", placeholder: "twitterやブログのURL" %></td>
-                  </tr>
-                  <tr>
-                    <td class="small text-center px-0">自己紹介</td>
-                    <td class="pl-0 pr-2"><%= f.text_area :self_introduction, class: "form-control border rounded-lg p-2", rows: "20", placeholder: "妊活から不妊治療へ至る経緯や、ご自身の細かい属性を盛り込みましょう！" %></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="px-3 py-3">
-                <%= f.submit "更新", class: "btn btn-raised btn-primary w-100" %>
+              <div class="alert alert-info rounded-lg mx-2 px-3 py-2">
+                <small>こちらの治療情報は投稿したレポコに反映されますので、ぜひ設定ください！(選択式)</small>
               </div>
-            </section>
-            <section class="child-tab-content px-1" id="tab_1_2">
-              <div class="alert alert-info rounded-lg m-2 mb-3 small" role="alert">
-                ぜひ以下項目にお答え下さい！<span class="small">(選択式)</span>
-              </div>
-              <table class="table mb-0">
+              <table class="table mb-5">
                 <tbody>
                   <tr>
                     <td class="small text-center px-0" style="width: 25%">妊活開始年齢</td>
@@ -233,24 +144,111 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
-              <div class="px-3 py-3">
-                <%= f.submit "更新", class: "btn btn-raised btn-primary w-100" %>
+              </table><hr>
+
+              <div class="d-flex justify-content-between pl-3 pr-2 mt-5">
+                <h5 class="pt-1 text-dark font-weight-bold">基本情報</h5>
               </div>
-            </section>
-          </div>
-        </section>
-        <section class="parent-tab-content" id="tab_2">
-          <div class="child-tab">
-            <ul class="nav nav-tabs child-menu">
-              <li><a href="#tab_2_1" class="active" data-toggle="tab">設定情報</a></li>
-              <li><a href="#tab_2_2" data-toggle="tab" class="small text-muted">退会</a></li>
-            </ul>
-            <section class="child-tab-content active px-1" id="tab_2_1">
-              <div class="alert alert-secondary rounded-lg m-2 mb-3 small" role="alert">
-                こちらからユーザー登録情報の変更ができます
+              <table class="table mb-5">
+                <tbody>
+                  <tr>
+                    <td class="profile-item-l small text-center px-0">アイコン</td>
+                    <td class="profile-item-r">
+                      <div class="img-field-parent">
+                        <div id="img_field" onClick="$('#file').click()">
+                          <% if @user.icon.attached? %>
+                            <%= image_tag(@user.icon, class:"icon_image_edit") %>
+                          <% else %>
+                            <i class="fas fa-camera-retro fa-5x icon-camera"></i>
+                          <% end %>
+                        </div>
+                        <small class="capacity-limit-attention"><small class="text-danger">※最大5MB</small></small>
+                      </div><br>
+
+                      <% if false %> deviseの中でどうやって削除paramsを取得するか？
+                        <% if @user.icon.attached? %>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="user[user_icon]" value="off"><span class="small">アイコンを削除</span>
+                            </label>
+                          </div>
+                        <% end %>
+                      <% end %>
+
+                      <p class="text-muted"><span class="text-primary filesize1"></span><span class="text-danger filesize2"></span></p>
+                      <small class="text-muted">画像をクリックするとアイコン画像の選択ができます。</small>
+                      <%= f.file_field :icon, class: "form-control", style: "display:none;", id: "file" %>
+                    </td>
+                  </tr>
+                  <script>
+                    $(function(){
+                      $fileField = $('#file')
+
+                      // 選択された画像を取得し表示
+                      $($fileField).on('change', $fileField, function(e) {
+                        file = e.target.files[0]
+                        reader = new FileReader(),
+                        $preview = $("#img_field");
+                        var imgSize1 = this.files[0].size;
+                        var imgSize = imgSize1 / 1000000
+                        if(imgSize <= 5) {
+                          $('span.filesize1').text("ファイルサイズ: " + imgSize.toFixed(2) + "MB").show();
+                          $('span.filesize2').hide();
+                        } else {
+                          $('span.filesize2').text("ファイルサイズ: " + imgSize.toFixed(2) + "MB！  上限容量の5MBを超えています。").show();
+                          $('span.filesize1').hide();
+                        }
+
+                        reader.onload = (function(file) {
+                          return function(e) {
+                            $preview.empty();
+                            $preview.append($('<img>').attr({
+                              src: e.target.result,
+                              width: "100%",
+                              class: "preview",
+                              title: file.name
+                            }));
+                          };
+                        })(file);
+                        reader.readAsDataURL(file);
+                      });
+                    });
+                  </script>
+                  <tr>
+                    <td class="small text-center px-0">名前</td>
+                    <td><%= f.text_field :name, class: "form-control" %></td>
+                  </tr>
+                  <tr>
+                    <td class="small text-center px-0">生年月</td>
+                    <td>
+                    <%= raw sprintf(
+                      f.date_select(
+                          :birthday,
+                          use_month_numbers: true,
+                          discard_day: true,
+                          start_year:        (Time.now.year - 60),
+                          end_year:          (Time.now.year - 18),
+                          default:           Date.new(1980, 1, 1),
+                          date_separator:    '%s'), # 年月日区切りをそれぞれ指定
+                      '年 ') + '月'
+                    %><br>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="small text-center px-0">リンク</td>
+                    <td><%= f.text_field :link, class: "form-control", placeholder: "twitterやブログのURL" %></td>
+                  </tr>
+                  <tr>
+                    <td class="small text-center px-0">自己紹介</td>
+                    <td class="pl-0 pr-2"><%= f.text_area :self_introduction, class: "form-control border rounded-lg p-2", rows: "20", placeholder: "妊活から不妊治療へ至る経緯や、ご自身の細かい属性を盛り込みましょう！" %></td>
+                  </tr>
+                </tbody>
+              </table><hr>
+
+              <div class="d-flex justify-content-between pl-3 pr-2 mt-5">
+                <h5 class="pt-1 text-dark font-weight-bold">登録情報</h5>
               </div>
-              <table class="table">
+              <table class="table mb-5">
                 <tbody>
                   <tr>
                     <td class="profile-item-l small text-center px-0">メールアドレス</td>
@@ -288,23 +286,40 @@
                   </tr>
                 </tbody>
               </table>
-              <div class="px-3 py-3">
-                <%= f.submit "更新", class: "btn btn-raised btn-primary w-100" %>
-              </div>
-            </section>
-            <section class="child-tab-content px-1" id="tab_2_2">
-              <div class="alert alert-secondary rounded-lg m-2 mb-3 small" role="alert">
-                こちらから退会処理を行えます。
-              </div>
-              <div class="px-4 text-danger">
-                <p class="mb-5">退会されるとユーザー情報、投稿投稿、ストック機能などの全てのサービスの利用が停止され、投稿データを含むユーザー情報が完全に削除されます。退会後のデータの復元はできませんのであらかじめご了承の上、退会ください。</p>
-                <div class="text-center">
-                  <%= link_to "全て削除して退会する",user_path(current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？退会すると投稿データ含むユーザー情報が削除され復元できなくなります。", class: "btn btn-outline-danger" %>
+              <div class="px-3 py-3 mb-5">
+                <%= f.submit "更新する", class: "btn btn-raised btn-primary w-100", style: "background-color: #2ECFC0;" %>
+              </div><hr><br>
+
+              <div class="mx-3 p-3 rounded-lg" style="background-color: #BBBBBB;">
+                <div class="d-flex justify-content-between px-3">
+                  <h5 class="pt-1 text-danger">退会処理</h5>
+                </div>
+                <div class="px-4 text-danger mt-3">
+                  <p class="mb-5">退会されるとユーザー情報、投稿投稿、ストック機能などの全てのサービスの利用が停止され、投稿データを含むユーザー情報が完全に削除されます。退会後のデータの復元はできませんのであらかじめご了承の上、退会ください。</p>
+                  <div class="text-center mt-5">
+                    <%= link_to "全て削除して退会する",user_path(current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？退会すると投稿データ含むユーザー情報が削除され復元できなくなります。", class: "btn btn-outline-danger" %>
+                  </div>
                 </div>
               </div>
             </section>
+            <section class="child-tab-content px-1" id="tab_1_2">
+            </section>
           </div>
         </section>
+        <% if false %>
+        <section class="parent-tab-content" id="tab_2">
+          <div class="child-tab">
+            <ul class="nav nav-tabs child-menu">
+              <li><a href="#tab_2_1" class="active" data-toggle="tab">設定情報</a></li>
+              <li><a href="#tab_2_2" data-toggle="tab" class="small text-muted">退会</a></li>
+            </ul>
+            <section class="child-tab-content active px-1" id="tab_2_1">
+            </section>
+            <section class="child-tab-content px-1" id="tab_2_2">
+            </section>
+          </div>
+        </section>
+        <% end %>
       </div>
     </div>
   </div>
