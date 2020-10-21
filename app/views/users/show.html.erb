@@ -98,7 +98,7 @@
                 <% else %>
                   <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
                 <% end %>
-                <%= @user.name %>
+                <span class="small"><%= @user.name %></span>
               </h6>
               <small>
                 <span class="small">
@@ -299,7 +299,7 @@
                 <% else %>
                   <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
                 <% end %>
-                <%= @user.name %>
+                <span class="small"><span class="small"><%= @user.name %></span></span>
               </5>
               <small>
                 <span class="small">
@@ -332,7 +332,7 @@
               <% end %>
             </div>
           </div>
-          <div class="d-block d-sm-none col-12 pt-3 pb-2">
+          <div class="d-block d-sm-none col-12 pt-3 pb-5">
             <div class="px-1 pb-2">
               <i data-feather="hash" class="feather-icon-style3 pb-2 pl-0 pr-0 mx-0"></i><h5 class="d-inline">Profile</h5>
             </div>
