@@ -26,10 +26,15 @@
         <% report_title = strip_tags(@report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
         <% title = "#{report_title} | REPOCO" %>
       <% else %>
-        <% title = "#{@report.clinic.name}のレポコ | REPOCO" %>
+        <% title = "(#{@report.clinic.name}のレポコ | REPOCO)" %>
       <% end %>
-      <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん(#{@report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
-      <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん(#{@report.str_treatment_end_age})のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
+      <% if @report.treatment_end_age.present? %>
+        <% treatment_end_age = "(#{@report.str_treatment_end_age})" %>
+      <% else %>
+        <% treatment_end_age = "" %>
+      <% end %>
+      <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
+      <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
 
       <div class="d-none d-sm-block">
         <div class="row pt-3 pb-0">
