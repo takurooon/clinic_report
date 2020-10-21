@@ -290,7 +290,7 @@
                 <div class="px-3 text-danger mt-3">
                   <p class="mb-5">退会されるとユーザー情報、投稿投稿、ストック機能などの全てのサービスの利用が停止され、投稿データを含むユーザー情報が完全に削除されます。退会後のデータの復元はできませんのであらかじめご了承の上、退会ください。</p>
                   <div class="text-center mt-5">
-                    <%= link_to "全て削除して退会する",user_path(current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？退会すると投稿データ含むユーザー情報が削除され復元できなくなります。", class: "btn btn-outline-danger" %>
+                    <%= link_to "全て削除して退会する",user_path(current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？退会すると投稿データ・ユーザー情報全てが削除されます。なお退会後にデータの復元をすることはできません。", class: "btn btn-outline-danger" %>
                   </div>
                 </div>
               </div>
