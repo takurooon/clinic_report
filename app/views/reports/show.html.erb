@@ -87,14 +87,14 @@
                         <div class="alert rounded-lg pt-2 pb-1 px-3 mt-3" style="background-color: #F7F9F9">
                           <% if @report.comments.present? %>
                             <a href="#comments_area">
-                              <p class="mb-0 small text-muted">コメント(<%= @report.comments.count %>件)</p>
+                              <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
                               <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp<span class="small"><%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %></span>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
                             </a>
                           <% else %>
                             <div class="d-flex align-items-end">
                               <a href="#comments_area">
-                                <p class="mb-0 small text-muted">コメント(0件)</p>
-                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントしてみる</span></p>
+                                <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
+                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>コメントしてみる</span></p>
                               </a>
                             </div>
                           <% end %>
@@ -105,14 +105,14 @@
                         <div class="alert rounded-lg pt-2 pb-1 px-3 mt-3" style="background-color: #F7F9F9">
                           <% if @report.comments.present? %>
                             <a href="#comments_area">
-                              <p class="mb-0 small text-muted">コメント(<%= @report.comments.count %>件)</p>
+                              <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
                               <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<span class="small"><%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(85) %></span>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
                             </a>
                           <% else %>
                             <div>
                               <a href="#comments_area">
-                                <p class="mb-0 small text-muted">コメント(0件)</p>
-                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントしてみる</span></p>
+                                <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
+                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントしてみる&nbsp;&nbsp;</span></p>
                               </a>
                             </div>
                           <% end %>
@@ -180,14 +180,14 @@
                   <% if @report.comments.present? %>
                     <div class="alert rounded-lg small d-flex align-items-center px-3 pb-2 mb-0" style="background-color: #F7F9F9">
                       <a href="#comments_area">
-                        <p class="mb-0 small text-muted">コメント(<%= @report.comments.count %>件)</p>
+                        <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
                         <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
                       </a> 
                     </div>
                   <% else %>
                     <div class="alert rounded-lg small d-flex align-items-center px-3 pb-2 mb-0" style="background-color: #F7F9F9">
                       <a href="#comments_area">
-                        <p class="mb-0 small text-muted">コメント(0件)</p>
+                        <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
                         <p class="my-2 text-dark marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントしてみる</p>
                       </a>
                     </div>
