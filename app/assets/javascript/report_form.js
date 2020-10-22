@@ -550,7 +550,7 @@ function radioDeselection(already, numeric) {
   }
 }
 
-// 文字数カウント
+// コメント文字数カウント
 $(function (){
   var count = $(".js-text").text().replace(/\n/g, "改行").length;
   var now_count = 500 - count;
@@ -573,6 +573,32 @@ $(function (){
       var status = "残り" + now_count + "文字"
     }
     $(".js-text-count").text(status);
+  });
+});
+
+// title文字数カウント
+$(function (){
+  var count = $(".title-js-text").text().replace(/\n/g, "改行").length;
+  var now_count = 64 - count;
+  if (count > 64) {
+    $(".title-js-text-count").css("color","red");
+  } else {
+    $(".title-js-text-count").css("color","#808080");
+  }
+  $(".title-js-text-count").text( "残り" + now_count + "文字");
+
+  $(".title-js-text").on("keyup", function() {
+    var count = $(this).val().replace(/\n/g, "改行").length;
+    var now_count = 64 - count;
+
+    if (count > 64) {
+      $(".title-js-text-count").css("color","red");
+      var status = (now_count * -1) + "文字オーバーしています！"
+    } else {
+      $(".title-js-text-count").css("color","#808080");
+      var status = "残り" + now_count + "文字"
+    }
+    $(".title-js-text-count").text(status);
   });
 });
 

@@ -1571,7 +1571,8 @@
 
           <div class="form-group mt-0">
             <div><%= f.label :title, 'このレポコにタイトルをつける', class: "question-matters" %></div>
-            <%= f.text_area :title, class: "form-control", placeholder: "最大64文字", rowa: 4 %>
+            <%= f.text_area :title, class: "form-control title-js-text", placeholder: "最大64文字", rowa: 4 %>
+            <p class="title-js-text-count text-right mt-2"></p>
           </div>
         </div>
 
