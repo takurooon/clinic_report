@@ -516,7 +516,9 @@
                                 <% else %>
                                   <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy"), user_path(report.user_id) %>
                                 <% end %>
-                                <%= link_to report.user.name, user_path(report.user_id) %>
+                                <%= link_to user_path(report.user_id) do %>
+                                  <span class="small"><%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %></span>
+                                <% end %>
                               </p>
                             </div>
                           </div>
