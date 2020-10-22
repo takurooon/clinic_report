@@ -168,46 +168,50 @@
               </div>
             <% end %>
           </div>
-          <div class="col-9 d-flex align-items-center">
-            <div class="row">
-              <% if @report.user == current_user %>
-                <div class="col-12 text-right">
-                  <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '本当に削除してもよろしいですか？'}, class:"btn btn-warning float-right" %>
-                  <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary float-right mx-1" %>
-                  <% if @report.released? %>
-                    <%= link_to '非公開', nonrelease_report_path(@report), method: :patch, data: { confirm: '非公開にして良いですか？'}, class:"btn btn-secondary float-right" %>
-                  <% else %>
-                    <%= link_to '公開', release_report_path(@report), method: :patch, data: { confirm: '公開して良いですか？'}, class:"btn btn-secondary btn-info float-right" %>
-                  <% end %>
-                </div>
-                <div class="col-12 text-right">
-                  <%= link_to edit_user_registration_path do %>
-                    <div class="pt-0 pr-3 small">
-                      <i data-feather="edit-3" class="feather-icon-style1 pb-1"></i>プロフィールを編集
-                    </div>
-                  <% end %>
-                </div>
-              <% else %>
-                <div class="col-12 pl-0">
-                  <div class="pt-2 pb-0 mr-2">
-                    <% if @report.comments.present? %>
-                      <div class="alert rounded-lg small d-flex align-items-center px-3 pb-2 mb-0" style="background-color: #F7F9F9">
-                        <a href="#comments_area">
-                          <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                          <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
-                        </a> 
-                      </div>
+          <div class="col-9 pl-0 d-flex align-items-center">
+            <div class="container-fluid">
+              <div class="row">
+                <% if @report.user == current_user %>
+                  <div class="col-12 text-right">
+                    <%= link_to '削除', report_path(@report), method: :delete, data: { confirm: '本当に削除してもよろしいですか？'}, class:"btn btn-warning float-right" %>
+                    <%= link_to '編集', edit_report_path(@report), class:"btn btn-secondary float-right mx-1" %>
+                    <% if @report.released? %>
+                      <%= link_to '非公開', nonrelease_report_path(@report), method: :patch, data: { confirm: '非公開にして良いですか？'}, class:"btn btn-secondary float-right" %>
                     <% else %>
-                      <div class="alert rounded-lg small d-flex align-items-center px-3 pb-2 mb-0" style="background-color: #F7F9F9">
-                        <a href="#comments_area">
-                          <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                          <p class="my-2 text-dark marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントして聞いてみる</p>
-                        </a>
+                      <%= link_to '公開', release_report_path(@report), method: :patch, data: { confirm: '公開して良いですか？'}, class:"btn btn-secondary btn-info float-right" %>
+                    <% end %>
+                  </div>
+                  <div class="col-12 text-right">
+                    <%= link_to edit_user_registration_path do %>
+                      <div class="pt-0 pr-3 small">
+                        <i data-feather="edit-3" class="feather-icon-style1 pb-1"></i>プロフィールを編集
                       </div>
                     <% end %>
                   </div>
-                </div>
-              <% end %>
+                <% else %>
+                  <div class="col-12 px-0">
+                    <div class="alert rounded-lg ml-0 mr-2 mb-0 p-0" style="background-color: #F7F9F9">
+                      <div class="pt-3 pb-0 mr-0">
+                        <% if @report.comments.present? %>
+                          <div class="small d-flex align-items-center px-3 pb-2 mb-0">
+                            <a href="#comments_area">
+                              <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
+                              <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
+                            </a> 
+                          </div>
+                        <% else %>
+                          <div class="small d-flex align-items-center px-3 pb-2 mb-0">
+                            <a href="#comments_area">
+                              <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
+                              <p class="my-2 text-dark marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントして聞いてみる</p>
+                            </a>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -4893,19 +4897,19 @@
         </div>
 
         <div class="d-block d-sm-none px-3">
-          <% Report.same_cl(@report).each do |report| %>
-            <div class="same_cl_report mt-5">
-              <div class="mb-2 d-flex justify-content-between">
-                <div>
-                  <i data-feather="layers" class="pr-1 text-dark"></i>&nbsp;&nbsp;
-                  <h7 class="font-weight-bold text-dark">同じクリニックのレポコ</h7>
-                </div>
-                <% if false %>
-                <div class="d-flex align-items-center pr-3">
-                  <p class="small text-muted mb-0">すべて見る</p>
-                </div>
-                <% end %>
+          <div class="same_cl_report mt-5">
+            <div class="mb-2 d-flex justify-content-between">
+              <div>
+                <i data-feather="layers" class="pr-1 text-dark"></i>&nbsp;&nbsp;
+                <h7 class="font-weight-bold text-dark">同じクリニックのレポコ</h7>
               </div>
+              <% if false %>
+              <div class="d-flex align-items-center pr-3">
+                <p class="small text-muted mb-0">すべて見る</p>
+              </div>
+              <% end %>
+            </div>
+            <% Report.same_cl(@report).each do |report| %>
               <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
                 <div class="mb-2">
                   <div class="row mb-2 rounded-lg">
@@ -4976,8 +4980,8 @@
                   </div><hr class="my-2">
                 </div>
               <% end %>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
 
           <div class="rank_report mt-5">
             <div class="mb-2">
