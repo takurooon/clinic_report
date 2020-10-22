@@ -48,7 +48,7 @@
                   } else {
                     $(".signup-name-js-text-count").css("color","#808080");
                   }
-                  $(".signup-name-js-text-count").text( "残り" + now_count + "文字");
+                  $(".signup-name-js-text-count").text( "上限まで残り" + now_count + "文字");
 
                   $(".signup-name-js-text").on("keyup", function() {
                     var count = $(this).val().replace(/\n/g, "改行").length;
@@ -59,7 +59,7 @@
                       var status = (now_count * -1) + "文字オーバーしています！"
                     } else {
                       $(".signup-name-js-text-count").css("color","#808080");
-                      var status = "残り" + now_count + "文字"
+                      var status = "上限まで残り" + now_count + "文字"
                     }
                     $(".signup-name-js-text-count").text(status);
                   });
@@ -73,7 +73,7 @@
                   } else {
                     $(".signup-pass1-js-text-count").css("color","#808080");
                   }
-                  $(".signup-pass1-js-text-count").text( "残り" + now_count + "文字");
+                  $(".signup-pass1-js-text-count").text( "上限まで残り" + now_count + "文字");
 
                   $(".signup-pass1-js-text").on("keyup", function() {
                     var count = $(this).val().replace(/\n/g, "改行").length;
@@ -84,7 +84,7 @@
                       var status = (now_count * -1) + "文字オーバーしています！"
                     } else {
                       $(".signup-pass1-js-text-count").css("color","#808080");
-                      var status = "残り" + now_count + "文字"
+                      var status = "上限まで残り" + now_count + "文字"
                     }
                     $(".signup-pass1-js-text-count").text(status);
                   });
@@ -98,7 +98,7 @@
                   } else {
                     $(".signup-pass2-js-text-count").css("color","#808080");
                   }
-                  $(".signup-pass2-js-text-count").text( "残り" + now_count + "文字");
+                  $(".signup-pass2-js-text-count").text( "上限まで残り" + now_count + "文字");
 
                   $(".signup-pass2-js-text").on("keyup", function() {
                     var count = $(this).val().replace(/\n/g, "改行").length;
@@ -109,7 +109,7 @@
                       var status = (now_count * -1) + "文字オーバーしています！"
                     } else {
                       $(".signup-pass2-js-text-count").css("color","#808080");
-                      var status = "残り" + now_count + "文字"
+                      var status = "上限まで残り" + now_count + "文字"
                     }
                     $(".signup-pass2-js-text-count").text(status);
                   });

@@ -585,7 +585,7 @@ $(function (){
   } else {
     $(".title-js-text-count").css("color","#808080");
   }
-  $(".title-js-text-count").text( "残り" + now_count + "文字");
+  $(".title-js-text-count").text( "上限まで残り" + now_count + "文字");
 
   $(".title-js-text").on("keyup", function() {
     var count = $(this).val().replace(/\n/g, "改行").length;
@@ -596,7 +596,7 @@ $(function (){
       var status = (now_count * -1) + "文字オーバーしています！"
     } else {
       $(".title-js-text-count").css("color","#808080");
-      var status = "残り" + now_count + "文字"
+      var status = "上限まで残り" + now_count + "文字"
     }
     $(".title-js-text-count").text(status);
   });
