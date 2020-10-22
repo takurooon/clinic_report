@@ -40,7 +40,7 @@
         <div class="row pt-3 pb-0">
           <div class="col-2 d-flex align-items-center justify-content-center">
             <div class="py-0 pl-0">
-              <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
+              <%= link_to user_path(@report.user_id), data: { "turbolinks" => false }, style: "text-decoration: none;" do %>
                 <% if @report.user.icon.attached? %>
                   <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
                 <% else %>
@@ -143,7 +143,7 @@
       <div class="d-block d-sm-none">
         <div class="row pt-2 pb-0">
           <div class="col-3 pl-4 pr-2 pt-3 pb-2 d-flex align-items-center justify-content-center">
-            <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
+            <%= link_to user_path(@report.user_id), data: { "turbolinks" => false }, style: "text-decoration: none;" do %>
               <% if @report.user.icon.attached? %>
                   <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
               <% else %>
