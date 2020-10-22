@@ -4803,19 +4803,19 @@
               </div>
             </div>
             <div class="col-6 pl-3 pr-0">
-              <% Report.same_cl(@report).each do |report| %>
-                <div class="same_cl_report mt-5">
-                  <div class="mb-2 d-flex justify-content-between">
-                    <div>
-                      <i data-feather="layers" class="pr-1 text-dark"></i>&nbsp;&nbsp;
-                      <h7 class="font-weight-bold text-dark">同じクリニックのレポコ</h7>
-                    </div>
-                    <% if false %>
-                    <div class="d-flex align-items-center pr-3">
-                      <p class="small text-muted mb-0">すべて見る</p>
-                    </div>
-                    <% end %>
+              <div class="same_cl_report mt-5">
+                <div class="mb-2 d-flex justify-content-between">
+                  <div>
+                    <i data-feather="layers" class="pr-1 text-dark"></i>&nbsp;&nbsp;
+                    <h7 class="font-weight-bold text-dark">同じクリニックのレポコ</h7>
                   </div>
+                  <% if false %>
+                  <div class="d-flex align-items-center pr-3">
+                    <p class="small text-muted mb-0">すべて見る</p>
+                  </div>
+                  <% end %>
+                </div>
+                <% Report.same_cl(@report).each do |report| %>
                   <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
                     <div class="mb-2">
                       <div class="row mb-2 rounded-lg">
@@ -4886,8 +4886,8 @@
                       </div><hr class="my-2">
                     </div>
                   <% end %>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
