@@ -18,23 +18,39 @@
     <div class="text-center mt-5 p-0">
       <p style="font-size: 8px;" class="text-muted mb-1">＼シェア／</p>
     </div>
-    <div class="text-center my-2"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
+
+    <% report_title = strip_tags(@report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
+    <% report_title_long = strip_tags(@report.title.to_s).gsub(/[\n]/,"").strip.truncate(50) %>
+    <% user_name = strip_tags(@report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %>
+    <% if @report.treatment_end_age.present? %>
+      <% treatment_end_age = "(#{@report.str_treatment_end_age})" %>
+      <% treatment_end_age2 = "#{@report.str_treatment_end_age}: " %>
+    <% else %>
+      <% treatment_end_age = "" %>
+      <% treatment_end_age2 = "" %>
+    <% end %>
+    <% if @report.year_of_treatment_end.present? %>
+      <% year_of_treatment_end = "(#{@report.year_of_treatment_end.year.to_s}年卒業)" %>
+      <% year_of_treatment_end2 = "･･･#{@report.year_of_treatment_end.year.to_s}年卒業" %>
+    <% else %>
+      <% year_of_treatment_end = "" %>
+      <% year_of_treatment_end2 = "" %>
+    <% end %>
+    <% author = " #{user_name}さんの" %>
+    <% if @report.title.present? %>
+      <% title = "#{report_title} | REPOCO" %>
+      <% sns_text = "【#{treatment_end_age2}#{@report.clinic.name} (#{@report.clinic.prefecture.name})での#{author}レポコ#{year_of_treatment_end2}】 " + "#{report_title_long}" %>
+    <% else %>
+      <% title = "#{@report.clinic.name}のレポコ | REPOCO" %>
+      <% sns_text = "【#{treatment_end_age2}#{@report.clinic.name} (#{@report.clinic.prefecture.name})での#{author}レポコ#{year_of_treatment_end2}】 " %>
+    <% end %>
+
+    <div class="text-center my-2"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=#{sns_text}", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
   </div>
   <div class="row">
     <div class="col-sm-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
-      <% if @report.title.present? %>
-        <% report_title = strip_tags(@report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
-        <% title = "#{report_title} | REPOCO" %>
-      <% else %>
-        <% title = "(#{@report.clinic.name}のレポコ | REPOCO)" %>
-      <% end %>
-      <% if @report.treatment_end_age.present? %>
-        <% treatment_end_age = "(#{@report.str_treatment_end_age})" %>
-      <% else %>
-        <% treatment_end_age = "" %>
-      <% end %>
-      <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
-      <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
+      <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
+      <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
 
       <div class="d-none d-sm-block">
         <div class="row pt-3 pb-0">
