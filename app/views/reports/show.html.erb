@@ -1,8 +1,8 @@
 <%= render 'category_header' %>
 <div class="contaner px-0">
-  <div class="d-none d-lg-block position-fixed mt-0 pt-0">
+  <div class="d-none d-lg-block position-fixed mt-0 pt-5">
     <div class="text-center m-0 p-0">
-      <p style="font-size: 11px;" class="text-muted mb-1">＼URLをコピー／</p>
+      <p style="font-size: 8px;" class="text-muted mb-1">＼URLをコピー／</p>
     </div>
     <div class="text-center mt-2 mb-3 pb-1">
       <button type="button" class="btn bmd-btn-fab" id="copy-page" title="URLをコピー！" style="background-color: #2ECFC0;">
@@ -11,12 +11,12 @@
     </div>
 
     <div class="text-center mt-5 p-0">
-      <p style="font-size: 11px;" class="text-muted mb-1">＼専門用語／</p>
+      <p style="font-size: 8px;" class="text-muted mb-1">＼専門用語／</p>
     </div>
     <div class="text-center my-2"><%= link_to image_tag("action/book.svg", alt: "terminology", width: "55px", class: "pl-1", loading: "lazy"), terminology_path, title: 'Terminology', "data-toggle": "modal", "data-target": "#terminology" %></div>
 
     <div class="text-center mt-5 p-0">
-      <p style="font-size: 11px;" class="text-muted mb-1">＼シェア／</p>
+      <p style="font-size: 8px;" class="text-muted mb-1">＼シェア／</p>
     </div>
     <div class="text-center my-2"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
   </div>
@@ -4349,7 +4349,7 @@
 
         <div class="comment-area mt-2" id="comments_area">
           <div class="p-comment__list">
-            <h4 class="p-comment__listTitle"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメント</h4>
+            <h4 class="p-comment__listTitle"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメント&nbsp;<span class="text-muted" style="font-size: 16px;">(&nbsp;<%= @report.comments.count %>件&nbsp;)</span></h4>
             <%= render @report.comments %>
           </div>
           <% if current_user %>
