@@ -1,75 +1,9 @@
-
-<div class="sticky-area px-0 py-3">
-  <% if false %>
-  <form action="https://docs.google.com/forms/u/2/d/e/1FAIpQLSdSe_vOEPPdpsZI0Wn5YuYUl7LTqaYeq8x_yBLGaOhiM4eiuQ/formResponse" target="_self" method="POST" class="text-right">
-    <textarea class="feedback-textarea" rows="7" placeholder="REPOCOに関するご意見やご要望をお聞かせください。どんな些細なことでもウェルカムです！" name="entry.1597222762" required></textarea><br>
-    <button type="submit" class="btn btn-outline-primary feedback-sidebar">意見を送る&nbsp;<i data-feather="send" class="feather-icon-style1"></i></button>
-  </form>
-  <% end %>
-  <% if user_signed_in? %>
-    <% if current_user.registration_status1 || current_user.registration_status2 == true %>
-      <div class="sidebar_promote_item mt-3">
-        <div class="sidebar_promote_card">
-          <div class="sidebar_promote_card_header row">
-            <div class="col-2 sidebar_promote_card_header_left">
-              <i data-feather="settings" class="pl-1" style="color: #646262"></i>
-            </div>
-            <div class="col-10 sidebar_promote_card_header_right">
-              <% if request.path.include?("reports") %>
-                <p>簡単にできる治療歴＆プロフィール設定はお済みですか？</p>
-              <% else %>
-                <p>まずは治療歴＆プロフィール設定をしましょう。設定することでより詳しいレポコを発信することができます！</p>
-              <% end %>
-            </div>
-          </div>
-          <div class="sidebar_promote_card_body">
-            <%= link_to edit_user_registration_path, { title: "治療歴を設定する", style: "text-decoration: none;" } do %>
-              <button class="green_btn">設定する</button>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% else %>
-    <div class="sidebar_promote_item mt-3">
-      <div class="sidebar_promote_card">
-        <div class="sidebar_promote_card_header row">
-          <div class="col-2 sidebar_promote_card_header_left">
-            <i data-feather="heart" class="pl-1" style="color: #646262"></i>
-          </div>
-          <div class="col-10 sidebar_promote_card_header_right">
-            <p>参考になるレポコをいつでも読み返せるストック機能を利用するには&nbsp;<%= link_to "ユーザー登録", new_user_registration_path %>&nbsp;または&nbsp;<%= link_to "ログイン", new_user_session_path %>&nbsp;が必要です。ユーザー登録はこちらから10秒ほどで簡単に登録できます <i data-feather="arrow-down" class="px-1" style="color: #646262"></i></p>
-          </div>
-        </div>
-        <div class="sidebar_promote_card_body">
-          <%= link_to new_user_registration_path, { title: "ユーザー登録をする", style: "text-decoration: none;" } do %>
-            <button class="green_btn">新規登録</button>
-          <% end %>
-          <%= link_to new_user_session_path, { title: "ログイン", style: "text-decoration: none;" } do %>
-            <button class="outline_green_btn mt-3">登録済みの方はこちら</button>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-  <div class="sidebar_promote_item mt-3">
-    <div class="sidebar_promote_card">
-      <div class="sidebar_promote_card_header row">
-        <div class="col-2 sidebar_promote_card_header_left">
-          <i data-feather="book" class="pl-1" style="color: #646262"></i>
-        </div>
-        <div class="col-10 sidebar_promote_card_header_right mt-1">
-          <p class="mb-0 font-weight-bold"><%= link_to "専門用語集", terminology_path %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sidebar_rank_report mt-5">
+<% if Report.same_cl(@report).present? %>
+  <div class="sidebar_same_cl_report mt-5">
     <div class="mb-2">
-      <i data-feather="trending-up" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">人気のレポコ</h7>
+      <i data-feather="layers" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">同じクリニックのレポコ</h7>
     </div>
-    <% Report.rank.each do |report| %>
+    <% Report.same_cl(@report).each do |report| %>
       <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
         <div class="mb-2">
           <div class="row mb-2 rounded-lg">
@@ -142,4 +76,4 @@
       <% end %>
     <% end %>
   </div>
-</div>
+<% end %>
