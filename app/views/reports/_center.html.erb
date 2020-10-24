@@ -69,35 +69,33 @@
                     <% if report.city_at_the_time_status == "hide" %>
                       <span class="small text-muted">−−</span>
                     <% else %>
-                      <span class="small text-muted"><%= link_to "##{report.city.name}", "/category/city/#{report.city.name}", class: "text-muted small" %></span>
+                      < class="small text-muted"><%= link_to "##{report.city.name}", "/category/city/#{report.city.name}", class: "text-muted small" %></>
                     <% end %>
                   </p>
                   <% end %>
                 </div>
               </div>
-              <div class="d-block d-sm-none px-2">
-                <div class="small align-items-center text-center pt-0">
-                  <p class="mb-0">
-                    <% if report.treatment_end_age == nil %>
-                      <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "15px", class: "img-fluid", loading: "lazy", title: "不明"), user_path(report.user_id) %>
-                    <% elsif report.treatment_end_age < 25 %>
-                      <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "15px", class: "img-fluid", loading: "lazy", title: "〜24歳"), user_path(report.user_id) %>
-                    <% elsif report.treatment_end_age < 30 %>
-                      <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "15px", class: "img-fluid", loading: "lazy", title: "25〜29歳"), user_path(report.user_id) %>
-                    <% elsif report.treatment_end_age < 35 %>
-                      <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "15px", class: "img-fluid", loading: "lazy", title: "30〜34歳"), user_path(report.user_id) %>
-                    <% elsif report.treatment_end_age < 40 %>
-                      <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "15px", class: "img-fluid", loading: "lazy", title: "35〜39歳"), user_path(report.user_id) %>
-                    <% elsif report.treatment_end_age < 45 %>
-                      <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "15px", class: "img-fluid", loading: "lazy", title: "40〜44歳"), user_path(report.user_id) %>
-                    <% else %>
-                      <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "15px", class: "img-fluid", loading: "lazy", title: "45歳〜"), user_path(report.user_id) %>
-                    <% end %>
-                    <%= link_to user_path(report.user_id) do %>
-                      <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>
-                    <% end %>
-                  </p>
-                </div>
+              <div class="d-block d-sm-none pl-0 pr-2">
+                <p class="mb-0 text-enter">
+                  <% if report.treatment_end_age == nil %>
+                    <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "17px", class: "px-0", loading: "lazy", title: "不明"), user_path(report.user_id) %>
+                  <% elsif report.treatment_end_age < 25 %>
+                    <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "17px", class: "px-0", loading: "lazy", title: "〜24歳"), user_path(report.user_id) %>
+                  <% elsif report.treatment_end_age < 30 %>
+                    <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "17px", class: "px-0", loading: "lazy", title: "25〜29歳"), user_path(report.user_id) %>
+                  <% elsif report.treatment_end_age < 35 %>
+                    <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "17px", class: "px-0", loading: "lazy", title: "30〜34歳"), user_path(report.user_id) %>
+                  <% elsif report.treatment_end_age < 40 %>
+                    <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "17px", class: "px-0", loading: "lazy", title: "35〜39歳"), user_path(report.user_id) %>
+                  <% elsif report.treatment_end_age < 45 %>
+                    <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "17px", class: "px-0", loading: "lazy", title: "40〜44歳"), user_path(report.user_id) %>
+                  <% else %>
+                    <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "17px", class: "px-0", loading: "lazy", title: "45歳〜"), user_path(report.user_id) %>
+                  <% end %>
+                  <%= link_to user_path(report.user_id) do %>
+                    <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>
+                  <% end %>
+                </p>
               </div>
             </div>
             <div class="col-9 pl-0">
@@ -106,19 +104,23 @@
                   <% unless report.current_state.blank? %>
                     <%= report.str_current_state %>&nbsp;&nbsp;
                   <% end %>
-                  <% unless report.year_of_treatment_end.blank? %>
-                    <%= report.year_of_treatment_end.year %>年卒業
+                  <% if report.user.gender == "female" %>
+                    女性&nbsp;&nbsp;
+                  <% else %>
+                    男性&nbsp;&nbsp;
                   <% end %>
                   <% unless report.fertility_treatment_number.blank? %>
                     <%= report.str_fertility_treatment_number %>&nbsp;&nbsp;
                   <% end %>
                 </small>
                 <small class="text-muted d-block d-sm-none">
+                  <% if report.user.gender == "female" %>
+                    女性&nbsp;&nbsp;
+                  <% else %>
+                    男性&nbsp;&nbsp;
+                  <% end %>
                   <% unless report.current_state.blank? %>
                     <%= report.str_current_state %>&nbsp;&nbsp;
-                  <% end %>
-                  <% unless report.year_of_treatment_end.blank? %>
-                    <%= report.year_of_treatment_end.year %>年卒業
                   <% end %>
                 </small>
                 <small class="text-muted">
@@ -131,7 +133,11 @@
                     <% if report.treatment_end_age %>
                       <%= report.treatment_end_age %>歳&nbsp;
                     <% end %>
-                    <%= report.clinic.name %>のレポコ</h5>
+                    <%= report.clinic.name %>のレポコ
+                    <% unless report.year_of_treatment_end.blank? %>
+                      <span class="small"><span class="small text-muted">&nbsp;&nbsp;(<%= report.year_of_treatment_end.year %>年卒業)</span></span>
+                    <% end %>
+                  </h5>
                 <% end %>
               </div>
               <div class="d-block d-sm-none">
@@ -140,7 +146,11 @@
                     <% if report.treatment_end_age %>
                       <%= report.treatment_end_age %>歳&nbsp;
                     <% end %>
-                    <%= report.clinic.name %>のレポコ</h6>
+                    <%= report.clinic.name %>のレポコ
+                    <% unless report.year_of_treatment_end.blank? %>
+                      <span class="small"><span class="small text-muted">&nbsp;&nbsp;(<%= report.year_of_treatment_end.year %>年卒業)</span></span>
+                    <% end %>
+                  </h6>
                 <% end %>
               </div>
               
@@ -159,11 +169,6 @@
                 </div>
                 <% end %>
 
-                <% if report.user.gender == "female" %>
-                  <span class="badge badge-pill badge-light text-muted p-0">女性</span>
-                <% else %>
-                  <span class="badge badge-pill badge-light text-muted p-0">男性</span>
-                <% end %>
                 <% unless report.treatment_end_age.blank? %>
                   &nbsp;&nbsp;<span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to "##{report.treatment_end_age}歳", "/category/age/#{report.treatment_end_age}#{"歳"}", class: "text-muted small" %></span>
                 <% end %>
@@ -180,11 +185,6 @@
               </div>
 
               <div class="d-block d-sm-none justify-content-start mr-2 mt-2 mb-1">
-                <% if report.user.gender == "female" %>
-                  <span class="badge badge-pill badge-light text-muted p-0">女性</span>
-                <% else %>
-                  <span class="badge badge-pill badge-light text-muted p-0">男性</span>
-                <% end %>
                 <% unless report.treatment_end_age.blank? %>
                   &nbsp;&nbsp;<span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to "##{report.treatment_end_age}歳", "/category/age/#{report.treatment_end_age}#{"歳"}", class: "text-muted small" %></span>
                 <% end %>
