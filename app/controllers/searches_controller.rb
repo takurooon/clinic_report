@@ -81,19 +81,26 @@ class SearchesController < ApplicationController
   def clinic_city
     @city = City.find_by(name: params[:value])
     clinics = Clinic.where(city_id: @city.id)
+    @city_clinics = Clinic.where(city_id: @city.id).name_yomigana
     @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
+    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
+    @rereased_reports = Clinic.joins(:reports).where(city_id: @city.id, reports: {status: 0})
   end
 
   def clinic_prefecture_area
     @prefecture = Prefecture.find_by(name: params[:value])
     clinics = Clinic.where(prefecture_id: @prefecture)
+    @prefecture_clinics = Clinic.where(prefecture_id: @prefecture).name_yomigana
     @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
   end
   
   def clinic_city_area
     @city = City.find_by(name: params[:value])
     clinics = Clinic.where(city_id: @city.id)
+    @city_clinics = Clinic.where(city_id: @city.id).name_yomigana
     @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
+    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
+    @rereased_reports = Clinic.joins(:reports).where(city_id: @city.id, reports: {status: 0})
   end
 
   def all_age
