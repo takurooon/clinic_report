@@ -38,8 +38,10 @@
                     <div class="col-sm-6 mb-1 px-3">
                       <span class="small text-muted">
                         <span class="small">
-                          <%= clinic.name %>
-                          (0件)
+                          <%= link_to "/category/clinics/#{clinic.id}" do %>
+                            <%= clinic.name %>
+                            (0件)
+                          <% end %>
                         </span>
                       </span>
                     </div>

@@ -1263,10 +1263,25 @@ i .fa-edit {
 	transition: .5s;
 	visibility: hidden;
 }
-.acd-check:checked + .acd-label + .acd-content{
+.acd-check:checked + .acd-label + .acd-content {
 	height: auto;
 	max-height: 240px;
 	opacity: 1;
 	visibility: visible;
 	overflow-y: scroll;
+}
+.acd-content-not-overflow-y {
+	background: #F7F9F9;
+	border: 1px solid #2ECFC0;
+	border-radius: 0 0 5px 5px;
+	height: 0;
+	opacity: 0;
+	transition: .5s;
+	visibility: hidden;
+}
+.acd-check:checked + .acd-label + .acd-content-not-overflow-y {
+	height: auto;
+	max-height: 500px;
+	opacity: 1;
+	visibility: visible;
 }

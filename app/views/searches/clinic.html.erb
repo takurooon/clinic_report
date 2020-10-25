@@ -10,18 +10,75 @@
   </small>
   <div class="container-fluid main-index">
     <div class="row px-0">
-      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color">
+      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-1">
+        <% unless @clinic_all_reports == 0 %>
+          <div class="alert alert-info rounded-lg mt-0 px-3 py-1">
+            <span class="small"><span class="small"><%= @clinics.name %>でのレポコは&nbsp;<%= @clinic_all_reports %>件&nbsp;あります。</span></span>
+          </div>
+        <% else %>
+          <div class="alert alert-danger rounded-lg mt-0 px-3 py-1">
+            <span class="small"><span class="small"><%= @clinics.name %>でのレポコはまだありません。</span></span>
+          </div>
+        <% end %>
+        <input id="acd-check1" class="acd-check" type="checkbox" checked>
+        <label class="acd-label small mb-0 px-1 py-2" for="acd-check1"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<%= @clinics.name %>の基本情報</label>
+        <div class="acd-content-not-overflow-y container small pt-3 mb-4">
+          <table class="table p-0">
+            <tr>
+              <td class="result-left-column small text-center" style="width:30%">医療機関</td>
+              <td style="width:70%">
+                <% if @clinics.current_status == 1 %>
+                  <span class="text-danger">【閉院】</span>
+                <% end %>
+                <%= @clinics.name %>
+              </td>
+            </tr>
+            <tr>
+              <td class="result-left-column small text-center">電話</td>
+              <td><i data-feather="phone-outgoing" class="feather-icon-style1"></i>&nbsp;&nbsp;&nbsp;<a href="tel:<%= @clinics.tel %>"><%= @clinics.tel %></a></td>
+            </tr>
+            <tr>
+              <td class="result-left-column small text-center">住所</td>
+              <td>〒<%= @clinics.post_code.to_s.insert(3, " - ") %><br><%= @clinics.city.prefecture.name %><%= @clinics.city.name %><%= @clinics.address1 %><br><%= @clinics.address2 %></td>
+            </tr>
+            <tr>
+              <td class="result-left-column small text-center">備考</td>
+              <td class="small">
+                <% if @clinics.pgt != 0 %>
+                  <%= "・着床前診断(PGT)臨床指定施設" %><br>
+                <% end %>
+                <% if @clinics.japco != 0 %>
+                  <%= "・PGTコンソーシアム(JAPCO)加盟施設" %><br>
+                <% end %>
+                <% if @clinics.jis_art != 0 %>
+                  <%= "・JIS-ART登録施設" %><br>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
+
         <ul class="nav nav-tabs justify-content-center" id="repoco_tab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="left-tab" data-toggle="tab" href="#clinic_repoco" role="tab" aria-controls="home" aria-selected="true">最新</a>
+            <a class="nav-link active px-1" id="left-tab" data-toggle="tab" href="#clinic_repoco" role="tab" aria-controls="home" aria-selected="true">最新&nbsp;<span class="small"><span class="small text-muted">(<%= @clinic_all_reports %>件)</span></span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="right-tab" data-toggle="tab" href="#past_repoco" role="tab" aria-controls="profile" aria-selected="false">同院を転院した方のレポコ</a>
+            <a class="nav-link px-1" id="right-tab" data-toggle="tab" href="#past_repoco" role="tab" aria-controls="profile" aria-selected="false">同院を転院した方のレポコ&nbsp;<span class="small"><span class="small text-muted">(<%= @transfer_reports.count %>件)</span></span></a>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="clinic_repoco" role="tabpanel" aria-labelledby="clinic_repoco-tab"><%= render 'reports/center' %></div>
+          <div class="tab-pane fade show active" id="clinic_repoco" role="tabpanel" aria-labelledby="clinic_repoco-tab">
+            <%= render 'reports/center' %></div>
           <div class="tab-pane fade" id="past_repoco" role="tabpanel" aria-labelledby="past_repoco-tab">
+            <% unless @transfer_reports.count == 0 %>
+              <div class="alert alert-info rounded-lg mt-0">
+                <span class="small"><%= @clinics.name %>を経由されたレポコは&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span>
+              </div>
+            <% else %>
+              <div class="alert alert-danger rounded-lg mt-0">
+                <span class="small"><%= @clinics.name %>を経由されたレポコはまだありません。</span>
+              </div>
+            <% end %>
             <% @transfer_reports.each do |transfer_report| %>
               <div class="row">
                 <div class="card col-12 mb-4 pb-0 px-0 shadow-none">
