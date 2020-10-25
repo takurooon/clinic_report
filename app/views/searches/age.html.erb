@@ -10,7 +10,18 @@
   </small>
   <div class="container-fluid main-index">
     <div class="row px-0">
-      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color">
+      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-1">
+        <div class="mt-0 mb-3 p-0">
+          <% unless @clinic_all_reports == 0 %>
+            <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
+              <span class="small"><span class="small"><%= @selected_age %>の方のレポコは&nbsp;<%= @clinic_all_reports %>件&nbsp;あります。</span></span>
+            </div>
+          <% else %>
+            <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
+              <span class="small"><span class="small"><%= @selected_age %>の方のレポコはまだありません。</span></span>
+            </div>
+          <% end %>
+        </div>
         <%= render 'reports/center' %>
       </div>
       <div class="col-lg-3 col-md-3 d-none d-md-block pl-2 pr-0">

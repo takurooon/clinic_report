@@ -19,6 +19,7 @@ class SearchesController < ApplicationController
     @selected_amh = amh[amh_value]
     @reports = Report.where(amh: amh_value, status: 0).order(created_at: :desc)
     @amh_page = Report.page(params[:page]).per(10)
+    @clinic_all_reports = @amh_page.count
   end
 
   def all_status
@@ -45,12 +46,14 @@ class SearchesController < ApplicationController
       status_value = params[:value].to_i
       @selected_word = status[status_value]
       @reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
       @selected_word_page = Report.page(params[:page]).per(10)
     else
       fertility_treatment_number = Report::HASH_FERTILITY_TREATMENT_NUMBER_SEARCH
       fertility_treatment_number_value = params[:value].to_i
       @selected_word = fertility_treatment_number[fertility_treatment_number_value]
       @reports = Report.where(fertility_treatment_number: fertility_treatment_number_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
       @selected_word_page = Report.page(params[:page]).per(10)
     end
   end
@@ -155,8 +158,10 @@ class SearchesController < ApplicationController
       a = i[0]
       b = i[1]
       @reports = Report.where(treatment_end_age: a..b, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
     else
       @reports = Report.where(treatment_end_age: age_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
     end
   end
 
@@ -205,35 +210,45 @@ class SearchesController < ApplicationController
       if params[:tags] === "疾患"
         @tag = FDisease.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       elsif params[:tags] === "手術"
         @tag = FSurgery.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       elsif params[:tags] === "基本検査"
         @tag = ClFemaleInspection.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       elsif params[:tags] === "特殊検査"
         @tag = SpecialInspection.find_by(name: params[:value])
         @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag.name })
+        @clinic_all_reports = @reports.count
       elsif params[:tags] === "不育症"
         @tag = FuikuInspection.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       elsif params[:tags] === "採卵周期の薬剤"
         @tag = SairanMedicine.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       else params[:tags] === "移植周期の薬剤"
         @tag = TransferMedicine.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       end
     else
       if params[:tags] === "疾患"
         @tag = MDisease.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       elsif params[:tags] === "手術"
         @tag = MSurgery.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       else params[:tags] === "基本検査"
         @tag = ClMaleInspection.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       end
     end
   end
@@ -244,12 +259,14 @@ class SearchesController < ApplicationController
   def area_prefecture
     @prefecture = Prefecture.find_by(name: params[:value])
     @reports = Report.where(prefecture_id: @prefecture.id, status: 0, prefecture_at_the_time_status: 0).order(created_at: :desc)
+    @clinic_all_reports = @reports.count
     # @reports = Report.joins(clinic: :prefecture).where(prefectures: {id: @prefecture.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
 
   def area_city
     @city = City.find_by(name: params[:value])
     @reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0).order(created_at: :desc)
+    @clinic_all_reports = @reports.count
     # @reports = Report.joins(clinic: :city).where(cities: {id: @city.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
 
@@ -277,12 +294,14 @@ class SearchesController < ApplicationController
       work_value = params[:value].to_i
       @selected_work = "「" + work_style[work_value] + "」"
       @reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
       @work_page = Report.page(params[:page]).per(10)
     else
       industry_type = Report::HASH_INDUSTRY_TYPE_SEARCH
       industry_type_value = params[:value].to_i
       @selected_work = "「" + industry_type[industry_type_value] + "」" + "業界で働く方"
       @reports = Report.where(industry_type: industry_type_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
       @work_page = Report.page(params[:page]).per(10)
     end
   end
@@ -321,18 +340,21 @@ class SearchesController < ApplicationController
       cost_value = params[:value].to_i
       @selected_cost = "治療費用「" + cost[cost_value] + "」"
       @reports = Report.where(cost: cost_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
       @cost_page = Report.page(params[:page]).per(10)
     elsif params[:value].include?("sairan")
       sairan_cost = Report::HASH_SAIRAN_COST_SEARCH
       sairan_cost_value = params[:value].to_i
       @selected_cost = "採卵1回あたりの費用「" + sairan_cost[sairan_cost_value] + "」"
       @reports = Report.where(sairan_cost: sairan_cost_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
       @cost_page = Report.page(params[:page]).per(10)
     elsif params[:value].include?("ishoku")
       ishoku_cost = Report::HASH_ISHOKU_COST_SEARCH
       ishoku_cost_value = params[:value].to_i
       @selected_cost = "移植1回あたりの費用「" + ishoku_cost[ishoku_cost_value] + "」"
       @reports = Report.where(ishoku_cost: ishoku_cost_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
       @cost_page = Report.page(params[:page]).per(10)
     else
       value = params[:value]
@@ -368,26 +390,31 @@ class SearchesController < ApplicationController
         a = i[0]
         b = i[1]
         @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       elsif cost_value.length == 3
         i = cost_value.split(//,2)
         a = i[0]
         b = i[1]
         @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       elsif cost_value.length == 4
         i = cost_value.scan(/.{2}/)
         a = i[0]
         b = i[1]
         @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       elsif cost_value.length == 5 
         i = cost_value.split(/\A(.{1,2})/,2)
         a = i[0]
         b = i[1]
         @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       else cost_value.length > 5
         i = cost_value.split(/\A(.{1,3})/,2)
         a = i[1]
         b = "104"
         @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+        @clinic_all_reports = @reports.count
       end
     end
   end
