@@ -75,7 +75,11 @@ class SearchesController < ApplicationController
     # cities = City.where(prefecture_id: @prefecture)
     # clinics = Clinic.where(city_id: cities.ids)
     clinics = Clinic.where(prefecture_id: @prefecture)
+    @prefecture_clinics = Clinic.where(prefecture_id: @prefecture).name_yomigana
     @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
+    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
+    @rereased_reports = Clinic.joins(:reports).where(city_id: @prefecture.id, reports: {status: 0})
+    
   end
   
   def clinic_city
@@ -92,6 +96,8 @@ class SearchesController < ApplicationController
     clinics = Clinic.where(prefecture_id: @prefecture)
     @prefecture_clinics = Clinic.where(prefecture_id: @prefecture).name_yomigana
     @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
+    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
+    @rereased_reports = Clinic.joins(:reports).where(city_id: @prefecture.id, reports: {status: 0})
   end
   
   def clinic_city_area
