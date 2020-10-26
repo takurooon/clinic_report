@@ -112,7 +112,7 @@
                   <% if report.str_treatment_end_age.present? %>
                     <span class="small"><%= report.str_treatment_end_age %></span>&nbsp;
                   <% end %>
-                  <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(10) %>
+                  <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>
                 </p>
               </div>
             </div>
