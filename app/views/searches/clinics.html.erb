@@ -30,39 +30,39 @@
         </div>
       </div>
       <script>
-      $(function() {
-        $('#select_prefecture').change(function() {
-          $.ajax('/cities_select',
-            {
-              type: 'get',
-              data: { prefecture_id: $(this).val() },
-            }
-          )
-          .done(function(data) {
-            $('#city').html(data) 
-          })
-          .fail(function() {
-            window.alert('正しい結果を得られませんでした。');
-          });
-          $('#report_clinic_id').val('');
-        });
-      });
-      $(function() {
-        $('#city').change(function() {
-          $.ajax('/clinics_select',
-            {
-              type: 'get',
-              data: { city_name: $(this).val() },
-            }
-          )
-          .done(function(data) {
-            $('#report_clinic_id').html(data) 
-          })
-          .fail(function() {
-            window.alert('正しい結果を得られませんでした。');
+        $(function() {
+          $('#select_prefecture').change(function() {
+            $.ajax('/cities_select',
+              {
+                type: 'get',
+                data: { prefecture_id: $(this).val() },
+              }
+            )
+            .done(function(data) {
+              $('#city').html(data) 
+            })
+            .fail(function() {
+              window.alert('正しい結果を得られませんでした。');
+            });
+            $('#report_clinic_id').val('');
           });
         });
-      });
+        $(function() {
+          $('#city').change(function() {
+            $.ajax('/clinics_select',
+              {
+                type: 'get',
+                data: { city_name: $(this).val() },
+              }
+            )
+            .done(function(data) {
+              $('#report_clinic_id').html(data) 
+            })
+            .fail(function() {
+              window.alert('正しい結果を得られませんでした。');
+            });
+          });
+        });
       </script>
     </div>
   </div>
