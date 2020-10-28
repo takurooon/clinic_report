@@ -1270,6 +1270,7 @@ i .fa-edit {
 	visibility: visible;
 	overflow-y: scroll;
 }
+
 .acd-content-not-overflow-y {
 	background: #F7F9F9;
 	border: 1px solid #2ECFC0;
@@ -1284,4 +1285,30 @@ i .fa-edit {
 	max-height: 500px;
 	opacity: 1;
 	visibility: visible;
+}
+
+.acd-check-cllist{
+	display: none;
+}
+.acd-cllist-label{
+	background: #2ECFC0;
+	border-radius: 5px 5px 0 0;
+	color: #ffffff;
+	display: block;
+}
+.acd-content-multiple{
+	background: #F7F9F9;
+	border: 1px solid #2ECFC0;
+	border-radius: 0 0 5px 5px;
+	height: 0;
+	opacity: 0;
+	transition: .5s;
+	visibility: hidden;
+}
+.acd-check-cllist:checked + .acd-cllist-label + .acd-content-multiple {
+	height: auto;
+	max-height: auto;
+	opacity: 1;
+	visibility: visible;
+	overflow-y: scroll;
 }

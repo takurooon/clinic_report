@@ -60,6 +60,29 @@ class SearchesController < ApplicationController
 
   def clinics
     @clinics = Clinic.all
+    @prefecture = Prefecture.where(id: 1..47)
+    @all_clinics = Clinic.all.order(prefecture_id: :asc, city_id: :asc)
+    @list = {}
+    Clinic.joins(city: :prefecture).includes(:city, :prefecture).each do |clinic| 
+      if @list[clinic.prefecture.id].nil?
+        @list[clinic.prefecture.id] = {
+          id: clinic.prefecture.id,
+          name: clinic.prefecture.name,
+          cities: {}
+        }
+      end
+      if @list[clinic.prefecture.id][:cities][clinic.city.id].nil?
+        @list[clinic.prefecture.id][:cities][clinic.city.id] = {
+          name: clinic.city.name,
+          clinics: []
+        }
+      end
+      @list[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
+        id: clinic.id,
+        name: clinic.name,
+        yomigana: clinic.yomigana
+      }
+    end
   end
 
   def clinics_area
