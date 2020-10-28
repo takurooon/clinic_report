@@ -3,7 +3,7 @@
     <div class="btn-group my-0">
       <%= link_to terminology_path, class: "btn btn-outline-primary rounded-pill mb-0 mx-1 h-75" do %>専門用語<% end %>
       <%= link_to category_clinics_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>クリニック<% end %>
-      <%= link_to  category_clinics_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>エリア<% end %>
+      <% if false %><%= link_to  category_clinics_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>エリア<% end %><% end %>
       <%= link_to category_age_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>年齢<% end %>
       <%= link_to category_status_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>ステータス<% end %>
       <%= link_to category_tags_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-75" do %>タグ<% end %>
@@ -21,7 +21,7 @@
     <div class="slide_bar">
       <div class="btn-group my-0">
         <%= link_to category_clinics_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>クリニック<% end %>
-        <%= link_to  category_clinics_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>エリア<% end %>
+        <% if false %><%= link_to  category_clinics_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>エリア<% end %><% end %>
         <%= link_to category_age_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>年齢<% end %>
         <%= link_to category_status_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>ステータス<% end %>
         <%= link_to category_tags_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>タグ<% end %>
