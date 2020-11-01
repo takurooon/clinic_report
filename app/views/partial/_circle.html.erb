@@ -1,10 +1,23 @@
-<%= link_to notifications_path, { title: "通知" } do %>
-  <% if unchecked_notifications.any? %>
-    <span class="fa-stack">
+<% unless request.path.include?("reports/new") || request.path.include?("edit")%>
+  <%= link_to notifications_path, { title: "通知" } do %>
+    <% if unchecked_notifications.any? %>
+      <span class="fa-stack">
+        <i data-feather="bell" class="feather-icon-style6"></i>
+        <i class="fas fa-circle n-circle-mobile n-circle-pc fa-stack-1x"></i>
+      </span>
+    <% else %> 
       <i data-feather="bell" class="feather-icon-style6"></i>
-      <i class="fas fa-circle n-circle-mobile n-circle-pc fa-stack-1x"></i>
-    </span>
-  <% else %> 
-    <i data-feather="bell" class="feather-icon-style6"></i>
-  <% end %> 
+    <% end %> 
+  <% end %>
+<% else %>
+  <%= link_to notifications_path, { title: "通知", data: {confirm: "ページを離れますか？未保存/未更新または未投稿のままページを離れると選択&入力したデータが消えますのでご注意ください"} } do %>
+    <% if unchecked_notifications.any? %>
+      <span class="fa-stack">
+        <i data-feather="bell" class="feather-icon-style6"></i>
+        <i class="fas fa-circle n-circle-mobile n-circle-pc fa-stack-1x"></i>
+      </span>
+    <% else %> 
+      <i data-feather="bell" class="feather-icon-style6"></i>
+    <% end %> 
+  <% end %>
 <% end %>

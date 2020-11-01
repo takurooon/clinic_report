@@ -420,3 +420,176 @@
     window.getSelection().addRange(range2);
     document.execCommand('copy');
   };
+
+
+  // 2段タブ表示
+$(function(){
+  $('.btnNext').click(function(){
+      var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().next().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().next().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').first().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .child-tab .nav-tabs li').first().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollTabTop();
+  });
+  
+  $('.btnPrevious').click(function(){
+      var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().prev().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().prev().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').last().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .child-tab .nav-tabs li').last().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollTabTop();
+  });
+
+  $('.FormBtnNext').click(function(){
+      var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().next().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().next().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').first().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .child-tab .nav-tabs li').first().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollTabTopForm();
+  });
+  
+  $('.FormBtnPrevious').click(function(){
+      var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().prev().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().prev().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').last().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .child-tab .nav-tabs li').last().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollTabTopForm();
+  });
+
+  $('.minBtnNext').click(function(){
+      var ele = $('.parent-tab-content.active .nav-tabs2 .active').parent().next().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().next().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').first().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .nav-tabs2 li').first().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollMinTabTop();
+  });
+  
+  $('.minBtnPrevious').click(function(){
+      var ele = $('.parent-tab-content.active .nav-tabs2 .active').parent().prev().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().prev().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').last().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .nav-tabs2 li').last().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollMinTabTop();
+  });
+
+  // $('.tab-item a').on('click', function (event) {
+  //     var tabEle = $(event.target).closest('ul');
+  //     var ele = $(event.target).attr('href');
+      
+  //     if (tabEle.hasClass('parent-menu')) {
+  //       $('.parent-menu a[data-toggle=tab].active').removeClass('active show');
+  //     } else if (tabEle.hasClass('child-menu')) {
+  //       $('.parent-tab-content.active .child-menu a[data-toggle=tab].active').removeClass('active show');
+  //     }
+      
+  //     if (tabEle.hasClass('nav-bottom')) {
+  //       $('ul:not(.nav-bottom) a[href=\\' + ele +']').addClass('active show');
+  //     } else {
+  //       $('ul.nav-bottom a[href=\\' + ele +']').addClass('active show');
+  //     }
+  // });
+});
+
+function scrollTabTop(){
+var offsetTop = $('.landing-point').offset().top -40;
+$("html, body").animate({ scrollTop: offsetTop }, 200);
+}
+
+function scrollTabTopForm(){
+var offsetTop = $('.landing-point').offset().top -130;
+$("html, body").animate({ scrollTop: offsetTop }, 200);
+}
+
+function scrollMinTabTop(){
+var offsetTop = $('.landing-point').offset().top +170;
+$("html, body").animate({ scrollTop: offsetTop }, 200);
+}
+
+
+
+// コメント文字数カウント
+$(function (){
+  var count = $(".js-text").text().replace(/\n/g, "改行").length;
+  var now_count = 500 - count;
+  if (count > 500) {
+    $(".js-text-count").css("color","red");
+  } else {
+    $(".js-text-count").css("color","#808080");
+  }
+  $(".js-text-count").text( "残り" + now_count + "文字");
+
+  $(".js-text").on("keyup", function() {
+    var count = $(this).val().replace(/\n/g, "改行").length;
+    var now_count = 500 - count;
+
+    if (count > 500) {
+      $(".js-text-count").css("color","red");
+      var status = (now_count * -1) + "文字オーバーしています！"
+    } else {
+      $(".js-text-count").css("color","#808080");
+      var status = "残り" + now_count + "文字"
+    }
+    $(".js-text-count").text(status);
+  });
+});
+
+// コメント欄へのページ内リンク
+$(function(){
+  $('a[href^="#comments_area"]').click(function(){
+    var adjust = 50;
+    var speed = 500;
+    var href= $(this).attr("href");
+    var target = $(href == "#" || href == "" ? 'html' : href);
+    var position = target.offset().top - adjust;
+    $("html, body").animate({scrollTop:position}, speed, "swing");
+    return false;
+  });
+});

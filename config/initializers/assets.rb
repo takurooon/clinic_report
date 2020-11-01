@@ -16,3 +16,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # 追加: 外部jsファイルの読み込み設定
 Rails.application.config.assets.precompile += %w( report_form.js )
 Rails.application.config.assets.precompile += %w( report_show.js )
+Rails.application.config.assets.precompile += %w( form_edit_alert.js )

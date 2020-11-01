@@ -1,23 +1,41 @@
+<% form_edit_link_alert_message = "【注意！】ページを離れますか？投稿/更新/保存のいずれかを行わずにページを離れると選択したデータや入力したデータは保存されず消えてしまいます。ご注意ください。" %>
 <div class="footer container-fluid py-5">
   <div class="container px-0">
     <div class="row">
       <div class="col-md-10 offset-md-1 logo-footer">
-        <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path %>
+        <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
+          <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path %>
+        <% else %>
+          <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path, data: {confirm: "#{form_edit_link_alert_message}"} %>
+        <% end %>
       </div>
       <div class="col-md-10 offset-md-1 mt-4 mb-3 small">
         <small>REPOCOは、不妊治療で妊娠出産に至った方の足跡を「治療レポート」として投稿〜検索できるサービスです。<br>具体的な治療情報はもちろんのこと、心境の変化などの心の機微についても書き記すことで、その決断に至った経緯を立体的かつよりクリアに知る事ができます。ぜひクリニック選びや治療方針を検討する際にお役立て下さい。</small>
       </div>
       <div class="col-md-5 offset-md-1 col-lg-5 offset-lg-1 mt-5">
         <ul class="links list-inline">
-          <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><a href="/repoco" class="text-muted">REPOCO（レポコ）とは</a></li>
-          <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><a href="/terms" class="text-muted">利用規約</a></li>
-          <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><a href="/privacy" class="text-muted">プライバシーポリシー</a></li>
-          <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><a href="/about" class="text-muted">運営者情報</a></li>
-          <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><a href="https://forms.gle/ZJW7qnkX4PLN7Lkc9" target="_blank" class="text-muted">お問い合わせ</a></li>
-          <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><a href="https://forms.gle/tUnFiu4f8SRNyrr19" target="_blank" class="text-muted">フィードバック</a></li>
+          <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "REPOCO（レポコ）とは", repoco_path, class: "text-muted" %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "利用規約", terms_path, class: "text-muted" %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "プライバシーポリシー", privacy_path, class: "text-muted" %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "運営者情報", about_path, class: "text-muted" %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "お問い合わせ", "https://forms.gle/ZJW7qnkX4PLN7Lkc9", class: "text-muted", target: "_blank" %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "フィードバック", "https://forms.gle/tUnFiu4f8SRNyrr19", class: "text-muted", target: "_blank" %></li>
+          <% else %>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "REPOCO（レポコ）とは", repoco_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "利用規約", terms_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "プライバシーポリシー", privacy_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "運営者情報", about_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "お問い合わせ", "https://forms.gle/ZJW7qnkX4PLN7Lkc9", class: "text-muted", target: "_blank", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "フィードバック", "https://forms.gle/tUnFiu4f8SRNyrr19", class: "text-muted", target: "_blank", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+          <% end %>
         </ul>
         <div class="copyright">
-          <span class="small text-muted">© 2020 <a href="https://repoco.net" class="text-muted">REPOCO.net</a></span>
+          <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
+            <span class="small text-muted">© 2020 <%= link_to "REPOCO.net", root_path, class: "text-muted" %></span>
+          <% else %>
+            <span class="small text-muted">© 2020 <%= link_to "REPOCO.net", root_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></span>
+          <% end %>
         </div>
       </div>
       <div class="col-md-5 offset-md-1 col-lg-4 offset-lg-1 my-5 pb-4 feedback-area">
