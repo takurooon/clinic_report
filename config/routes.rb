@@ -108,6 +108,10 @@ end
 #                         category_area GET    /category/area(.:format)                                                                 searches#all_area
 #                                       GET    /category/prefecture/:value(.:format)                                                    searches#area_prefecture
 #                                       GET    /category/city/:value(.:format)                                                          searches#area_city
+#                        category_works GET    /category/works(.:format)                                                                searches#works
+#                                       GET    /category/work/:value(.:format)                                                          searches#work
+#                category_various_costs GET    /category/various_costs(.:format)                                                        searches#various_costs
+#                                       GET    /category/cost/:value(.:format)                                                          searches#cost
 #                                 about GET    /about(.:format)                                                                         application#about
 #                                 terms GET    /terms(.:format)                                                                         application#terms
 #                               privacy GET    /privacy(.:format)                                                                       application#privacy

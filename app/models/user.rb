@@ -408,7 +408,6 @@ end
 #  first_age_to_start_art                 :integer
 #  gender                                 :integer          default("female"), not null
 #  image_url                              :string
-#  is_deleted                             :boolean          default(FALSE)
 #  last_sign_in_at                        :datetime
 #  last_sign_in_ip                        :inet
 #  link                                   :string
