@@ -1,0 +1,145 @@
+<%= render 'reports/category_header' %>
+  <div class="container-fluid main-index">
+    <div class="row px-0">
+      <div class="col-lg-11 offset-lg-1 mt-4">
+        <small class="text-muted mt-0 mb-0 d-flex align-content-start flex-wrap align-items-start">
+          <p class="mb-0"><%= link_to "ホーム", root_path %>&nbsp;&nbsp;</p>
+          <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to @clinic.prefecture.name, "/category/clinics/prefecture/#{@clinic.prefecture.name}" %>&nbsp;&nbsp;</p>
+          <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to @clinic.city.name, "/category/clinics/city/#{@clinic.city.name}" %>&nbsp;&nbsp;</p>
+          <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to @clinic.name, "/clinics/#{@clinic.id}" %></p>
+        </small>
+      </div>
+      <div class="col-lg-7 offset-lg-1 mt-5">
+        <% if @clinic.current_status == 1 %>
+          <span class="badge badge-danger mb-2">【閉院】</span>
+        <% end %>
+        <div class="d-flex align-content-start flex-wrap align-items-end">
+          <h4 class="font-weight-bold mb-0" style="letter-spacing: 3px;"><%= @clinic.name %></h4>&nbsp;&nbsp;
+          <small class="pt-2 mb-0 small text-muted">(&nbsp;<%= @clinic.yomigana %>&nbsp;)</small>
+        </div>
+        
+        <div class="tab-wrap1 mt-5">
+          <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">基本情報</label>
+          <div class="tab-content1">
+            <div class="my-2">
+              <table class="table p-0">
+                <tr>
+                  <td class="result-left-column small text-center" style="width:30%">医療機関</td>
+                  <td style="width:70%">
+                    <% if @clinic.current_status == 1 %>
+                      <span class="text-danger">【閉院】</span>
+                    <% end %>
+                    <%= @clinic.name %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small text-center">電話</td>
+                  <td><i data-feather="phone-outgoing" class="feather-icon-style1 text-primary"></i>&nbsp;&nbsp;&nbsp;<a href="tel:<%= @clinic.tel %>"><span class="text-primary"><%= @clinic.tel %></span></a></td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small text-center">住所</td>
+                  <td>〒<%= @clinic.post_code.to_s.insert(3, " - ") %><br><%= @clinic.prefecture.name %><%= @clinic.city.name %><%= @clinic.address1 %><br><%= @clinic.address2 %></td>
+                </tr>
+                <tr>
+                  <td class="result-left-column small text-center">備考</td>
+                  <td class="small">
+                    <% if @clinic.pgt != 0 %>
+                      <%= "・着床前診断(PGT)臨床指定施設" %><br>
+                    <% end %>
+                    <% if @clinic.japco != 0 %>
+                      <%= "・PGTコンソーシアム(JAPCO)加盟施設" %><br>
+                    <% end %>
+                    <% if @clinic.jis_art != 0 %>
+                      <%= "・JIS-ART登録施設" %><br>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">特徴</label>
+          <div class="tab-content1">
+          
+          </div>
+          <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">レビュー</label>
+          <div class="tab-content1">
+            <% @clinic_reports.each do |report| %>
+              <div class="my-2">
+                <div class="p-1 row">
+                  <div class="col-12 form-inline">
+                    <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
+                      <div class="icon-field py-0">
+                        <% if report.user.icon.attached? %>
+                          <%= image_tag(report.user.icon, class:"icon_image4") %>
+                        <% else %>
+                          <% if report.treatment_end_age == nil %>
+                            <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image4_border", loading: "lazy", title: "不明") %>
+                          <% elsif report.treatment_end_age < 25 %>
+                            <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image4_border", loading: "lazy", title: "〜24歳") %>
+                          <% elsif report.treatment_end_age < 30 %>
+                            <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image4_border", loading: "lazy", title: "25〜29歳") %>
+                          <% elsif report.treatment_end_age < 35 %>
+                            <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image4_border", loading: "lazy", title: "30〜34歳") %>
+                          <% elsif report.treatment_end_age < 40 %>
+                            <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image4_border", loading: "lazy", title: "35〜39歳") %>
+                          <% elsif report.treatment_end_age < 45 %>
+                            <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image4_border", loading: "lazy", title: "40〜44歳") %>
+                          <% else %>
+                            <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image4_border", loading: "lazy", title: "45歳〜") %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                    <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
+                      <p class="mb-0">
+                        &nbsp;&nbsp;<%= "#{report.user.name}さん" %>
+                        <% if report.treatment_end_age.present? %>
+                          <span class="small text-muted">(<%= report.str_treatment_end_age %>)</span>
+                        <% end %>
+                        <% if report.year_of_treatment_end.present? %>
+                          &nbsp;<span class="small text-muted"><%= "#{report.year_of_treatment_end.year}年卒業" %></span>
+                        <% end %>
+                        <% unless @rating.blank? %>
+                          <% if @rating > 4.5 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% elsif @rating > 4 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% elsif @rating > 3.5 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% elsif @rating > 3 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% elsif @rating > 2.5 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% elsif @rating > 2 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% elsif @rating > 1.5 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% elsif @rating > 1 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% elsif @rating > 0.5 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% elsif @rating > 0 %>
+                            <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-muted">評価</span>&nbsp;&nbsp;<i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= @rating %></span>
+                          <% else %>
+                            <span class="rating-star small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;スコア&nbsp;未評価</span>
+                          <% end %>
+                        <% else %>
+                          <span class="rating-star small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;スコア&nbsp;未評価</span>
+                        <% end %>
+                      </p>
+                    <% end %>
+                  </div>
+                  <div class="col-12">
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-3 d-none d-lg-block pl-2 pr-0">
+        <%= render 'reports/right' %>
+      </div>
+    </div>
+  </div>

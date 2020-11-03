@@ -2,9 +2,9 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top">
   <div class="container navbar-container">
     <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
-      <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path, class: "navbar-brand" %>
+      <%= link_to image_tag("home/logo.svg", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path, class: "navbar-brand" %>
     <% else %>
-      <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path, class: "navbar-brand", data: {confirm: "#{form_edit_link_alert_message}"} %>
+      <%= link_to image_tag("home/logo.svg", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path, class: "navbar-brand", data: {confirm: "#{form_edit_link_alert_message}"} %>
     <% end %>
     <button class="btn btn-link d-md-none" type="button" data-toggle="modal" data-target="#menuModal" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
