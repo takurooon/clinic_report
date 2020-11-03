@@ -66,18 +66,13 @@
           </table>
         </div>
 
-        <ul class="nav nav-tabs justify-content-center" id="repoco_tab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active px-1" id="left-tab" data-toggle="tab" href="#clinic_repoco" role="tab" aria-controls="home" aria-selected="true">最新&nbsp;<span class="small"><span class="small text-muted">(<%= @clinic_all_reports %>件)</span></span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-1" id="right-tab" data-toggle="tab" href="#past_repoco" role="tab" aria-controls="profile" aria-selected="false">同院を転院した方のレポコ&nbsp;<span class="small"><span class="small text-muted">(<%= @transfer_reports.count %>件)</span></span></a>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="clinic_repoco" role="tabpanel" aria-labelledby="clinic_repoco-tab">
-            <%= render 'reports/center' %></div>
-          <div class="tab-pane fade" id="past_repoco" role="tabpanel" aria-labelledby="past_repoco-tab">
+        <div class="tab-wrap1 mt-5">
+          <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">最新</label>
+          <div class="tab-content1">
+            <%= render 'reports/center' %>
+          </div>
+          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">同院を転院した方のレポコ&nbsp;<span class="small"><span class="small text-muted">(<%= @transfer_reports.count %>件)</span></span></label>
+          <div class="tab-content1">
             <% unless @transfer_reports.count == 0 %>
               <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
                 <span class="small"><span class="small"> <%= @clinics.name %>を過去に経由したレポコは&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
