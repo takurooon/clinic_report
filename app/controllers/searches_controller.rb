@@ -19,7 +19,7 @@ class SearchesController < ApplicationController
     @selected_amh = amh[amh_value]
     @reports = Report.where(amh: amh_value, status: 0).order(created_at: :desc)
     @amh_page = Report.page(params[:page]).per(10)
-    @clinic_all_reports = @amh_page.count
+    @clinic_all_reports = @reports.count
   end
 
   def all_status
