@@ -33,7 +33,6 @@ class ClinicsController < ApplicationController
     @clinic_reports.each do |report|
       if report.doctor_quality.present? || report.staff_quality.present? || report.impression_of_price.present? || report.impression_of_technology.present? || report.average_waiting_time2.present?|| report.comfort_of_space.present?
         @rating = (report.doctor_quality + report.staff_quality + report.impression_of_price + report.impression_of_technology + report.average_waiting_time2 + report.comfort_of_space) / 6.to_f
-        binding.pry
       else
         @rating = nil
       end
