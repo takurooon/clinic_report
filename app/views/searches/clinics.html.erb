@@ -9,108 +9,105 @@
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", category_search_path %>
   </small>
 
-  <div class="container-fluid main-index mt-3">
-    <div class="row">
-      <% @list.each do |key, value| %>
-        <div class="col-sm-8 offset-sm-2 mb-1 px-0">
-          <input id='acd-check-cllist<%= value[:id] %>' class="acd-check-cllist" type="checkbox">
-          <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関</span></label>
-          <div class="acd-content-multiple container mb-2">
-            <div class="row mt-0 pb-0">
-            <div class="col-12 border-bottom">
-              <%= link_to "/category/clinics/prefecture/#{value[:name]}" do %>
-                <h5 class="mt-3 mb-0 pb-2"><%= value[:name] %></h5>
-              <% end %>
-            </div>
-            <% value[:cities].sort.to_h.each do |key, value| %>
-              <div class="col-6 col-md-4 col-lg-3 my-0 pt-3 px-2 border-right border-bottom">
-                <div>
-                  <p class="small">
-                    <span class="font-weight-bold">【
-                      <%= link_to "/category/clinics/city/#{value[:name]}" do %>
-                        <%= value[:name] %>
-                      <% end %>
-                    】</span>
-                    <span class="small text-muted"><%= value[:clinics].count %>施設<span>
-                  </p>
+  <div class="row all_amh pb-5 mb-5">
+    <div class="col-md-8 offset-md-2 main-column">
+      <div class="tab-wrap1 mt-3">
+        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">一覧</label>
+        <div class="tab-content1">
+          <% @list.each do |key, value| %>
+            <input id='acd-check-cllist<%= value[:id] %>' class="acd-check-cllist" type="checkbox">
+            <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関</span></label>
+            <div class="acd-content-multiple container mb-2">
+              <div class="row mt-0 pb-0">
+                <div class="col-12 border-bottom">
+                  <%= link_to "/category/clinics/prefecture/#{value[:name]}" do %>
+                    <h5 class="mt-3 mb-0 pb-2"><%= value[:name] %></h5>
+                  <% end %>
                 </div>
-                <div>
-                  <ul class="p-0 pb-0">
-                    <% value[:clinics].each do |clinic| %>
-                      <li class="list-unstyled small mb-2">
-                      <%= link_to "/category/clinics/#{clinic[:id]}" do %>
-                        <span class="small"><%= clinic[:name] %></small>
-                      <% end %>
-                      </li>
-                    <% end %>
-                  </ul>
-                </div>
+                <% value[:cities].sort.to_h.each do |key, value| %>
+                  <div class="col-6 col-md-4 col-lg-3 my-0 pt-3 px-2 border-right border-bottom">
+                    <div>
+                      <p class="small">
+                        <span class="font-weight-bold">【
+                          <%= link_to "/category/clinics/city/#{value[:name]}" do %>
+                            <%= value[:name] %>
+                          <% end %>
+                        】</span>
+                        <span class="small text-muted"><%= value[:clinics].count %>施設<span>
+                      </p>
+                    </div>
+                    <div>
+                      <ul class="p-0 pb-0">
+                        <% value[:clinics].each do |clinic| %>
+                          <li class="list-unstyled small mb-2">
+                          <%= link_to "/category/clinics/#{clinic[:id]}" do %>
+                            <span class="small"><%= clinic[:name] %></small>
+                          <% end %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                <% end %>
               </div>
-            <% end %>
             </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-  </div>
+        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">選択</label>
+        <div class="tab-content1">
+          <div>
+            <%= select_tag :select_prefecture,
+                            options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name),
+                            {
+                              prompt: "① まず、都道府県を選択",
+                              class: "form-control mt-3"
+                            }
+            %>
+          </div><br>
 
-  <% if false %>
-  <div class="row mb-5 pb-5">
-    <div class="col-md-8 offset-md-2">
-      <div class="form-group pt-0">
-        <div>
-          <%= select_tag :select_prefecture,
-                          options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name),
-                          {
-                            prompt: "都道府県を選択する",
-                            class: "form-control"
-                          }
-          %>
-        </div><br>
-
-        <div>
-          <%= select_tag :city, options_for_select([["市区町村を選択する", 99]],), { class: "form-control" } %>
-        </div><br>
-        <div>
-          <%= select 'report', :clinic_id, @clinics, { prompt: "クリニックを選択する"}, { class: "form-control", onchange: "location = 'clinics/' + this.value" } %>
+          <div>
+            <%= select_tag :city, options_for_select([["② 次に市区町村を選択し", 99]],), { class: "form-control" } %>
+          </div><br>
+          <div>
+            <%= select 'report', :clinic_id, @clinics, { prompt: "③ クリニックを選択する"}, { class: "form-control", onchange: "location = 'clinics/' + this.value" } %>
+          </div>
+          <script>
+            $(function() {
+              $('#select_prefecture').change(function() {
+                $.ajax('/cities_select',
+                  {
+                    type: 'get',
+                    data: { prefecture_id: $(this).val() },
+                  }
+                )
+                .done(function(data) {
+                  $('#city').html(data) 
+                })
+                .fail(function() {
+                  window.alert('正しい結果を得られませんでした。');
+                });
+                $('#report_clinic_id').val('');
+              });
+            });
+            $(function() {
+              $('#city').change(function() {
+                $.ajax('/clinics_select',
+                  {
+                    type: 'get',
+                    data: { city_name: $(this).val() },
+                  }
+                )
+                .done(function(data) {
+                  $('#report_clinic_id').html(data) 
+                })
+                .fail(function() {
+                  window.alert('正しい結果を得られませんでした。');
+                });
+              });
+            });
+          </script>
         </div>
       </div>
-      <script>
-        $(function() {
-          $('#select_prefecture').change(function() {
-            $.ajax('/cities_select',
-              {
-                type: 'get',
-                data: { prefecture_id: $(this).val() },
-              }
-            )
-            .done(function(data) {
-              $('#city').html(data) 
-            })
-            .fail(function() {
-              window.alert('正しい結果を得られませんでした。');
-            });
-            $('#report_clinic_id').val('');
-          });
-        });
-        $(function() {
-          $('#city').change(function() {
-            $.ajax('/clinics_select',
-              {
-                type: 'get',
-                data: { city_name: $(this).val() },
-              }
-            )
-            .done(function(data) {
-              $('#report_clinic_id').html(data) 
-            })
-            .fail(function() {
-              window.alert('正しい結果を得られませんでした。');
-            });
-          });
-        });
-      </script>
     </div>
   </div>
-  <% end %>
 </div>

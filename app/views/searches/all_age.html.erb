@@ -11,8 +11,16 @@
   
   <div class="row all_age pb-5 mb-5">
     <div class="col-md-8 offset-md-2 main-column">
-      <%= select "report", :treatment_end_age, @age.invert, { prompt: "年齢   で絞り込み" }, { class: "form-control my-5", onchange: "location = 'age/' + this.value + '歳'" } %>
-      <%= select "report", :treatment_end_age, @age_range.invert, { prompt: "年齢層   で絞り込み" }, { class: "form-control my-5", onchange: "location = 'age/' + this.value + '歳'" } %>
+      <div class="tab-wrap1 mt-3">
+        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">年齢</label>
+        <div class="tab-content1">
+          <%= select "report", :treatment_end_age, @age.invert, { prompt: "年齢   で絞り込み" }, { class: "form-control my-3", onchange: "location = 'age/' + this.value + '歳'" } %>
+        </div>
+        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">年齢層</label>
+        <div class="tab-content1">
+          <%= select "report", :treatment_end_age, @age_range.invert, { prompt: "年齢層   で絞り込み" }, { class: "form-control my-3", onchange: "location = 'age/' + this.value + '歳'" } %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

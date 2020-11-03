@@ -11,8 +11,16 @@
 
   <div class="row all_amh pb-5 mb-5">
     <div class="col-md-8 offset-md-2 main-column">
-      <%= select "report", :work_style, @works.invert, { prompt: "働き方から探す" }, { class: "form-control my-5", onchange: "location = 'work/' + this.value + 'work_style'" } %>
-      <%= select "report", :industry_type, @industry.invert, { prompt: "業種から探す" }, { class: "form-control my-5", onchange: "location = 'work/' + this.value" } %>
+      <div class="tab-wrap1 mt-3">
+        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">働き方</label>
+        <div class="tab-content1">
+          <%= select "report", :work_style, @works.invert, { prompt: "働き方から探す" }, { class: "form-control my-3", onchange: "location = 'work/' + this.value + 'work_style'" } %>
+        </div>
+        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">業種</label>
+        <div class="tab-content1">
+          <%= select "report", :industry_type, @industry.invert, { prompt: "業種から探す" }, { class: "form-control my-3", onchange: "location = 'work/' + this.value" } %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

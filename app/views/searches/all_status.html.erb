@@ -11,8 +11,16 @@
 
   <div class="row all_amh pb-5 mb-5">
     <div class="col-md-8 offset-md-2 main-column">
-      <%= select "report", :current_state, @current_status.invert, { prompt: "投稿時のステータスから探す" }, { class: "form-control my-5", onchange: "location = 'status/' + this.value + 'current_state'" } %>
-      <%= select "report", :fertility_treatment_number, @fertility_treatment_number.invert, { prompt: "何人目治療？から探す" }, { class: "form-control my-5", onchange: "location = 'status/' + this.value" } %>
+      <div class="tab-wrap1 mt-3">
+        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">投稿時のステータス</label>
+        <div class="tab-content1">
+          <%= select "report", :current_state, @current_status.invert, { prompt: "投稿時のステータスから探す" }, { class: "form-control my-3", onchange: "location = 'status/' + this.value + 'current_state'" } %>
+        </div>
+        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">何人目治療？</label>
+        <div class="tab-content1">
+        <%= select "report", :fertility_treatment_number, @fertility_treatment_number.invert, { prompt: "何人目治療？から探す" }, { class: "form-control my-3", onchange: "location = 'status/' + this.value" } %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

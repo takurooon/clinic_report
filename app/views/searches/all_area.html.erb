@@ -11,61 +11,51 @@
 
   <div class="container all_factors px-0">
     <div class="row tab-content">
-      <div class="col-md-8 offset-md-2 px-0 mb-3">
-        <ul class="nav nav-tabs mb-3 px-2">
-          <li class="nav-item">
-            <a href="#area_prefecture" class="btn rounded-pill active" data-toggle="tab" style="font-size: 16px"><span class="font-weight-bold">都道府県･海外</span><small><small>から探す</small></small></a>
-          </il>
-          <li class="nav-item">
-            <a href="#area_city" class="btn rounded-pill" data-toggle="tab" style="font-size: 16px"><span class="font-weight-bold">市区町村･国</span><small><small>から探す</small></small></a>
-          </il>
-        </ul>
-      </div>
-      <div class="col-md-8 offset-md-2 main-column tab-pane active" id="area_prefecture">
-        <div>
-          <%= select_tag :area_prefecture,
-                          options_from_collection_for_select(Prefecture.all, :name, :name),
-                          {
-                            prompt: "都道府県･海外を選択する",
-                            class: "form-control",
-                            onchange: "location = 'prefecture/' + this.value"
-                          }
-          %>
-        </div>
-      </div>
-      <div class="col-md-8 offset-md-2 main-column tab-pane" id="area_city">
-        <div>
-          <%= select_tag :select_prefecture,
-                          options_from_collection_for_select(Prefecture.all, :id, :name),
-                          {
-                            prompt: "都道府県･海外を選択し",
-                            class: "form-control"
-                          }
-          %>
-        </div><br>
+      <div class="col-md-8 offset-md-2 main-column">
+        <div class="tab-wrap1 mt-3">
+          <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">都道府県･海外</label>
+          <div class="tab-content1">
+            <%= select_tag :area_prefecture,
+              options_from_collection_for_select(Prefecture.all, :name, :name),
+              {
+                prompt: "都道府県･海外を選択する",
+                class: "form-control my-3",
+                onchange: "location = 'prefecture/' + this.value"
+              }
+            %>
+          </div>
+          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">市区町村･国</label>
+          <div class="tab-content1">
+            <%= select_tag :select_prefecture,
+                            options_from_collection_for_select(Prefecture.all, :id, :name),
+                            {
+                              prompt: "都道府県･海外を選択し",
+                              class: "form-control mt-3"
+                            }
+            %><br>
 
-        <div>
-          <%= select_tag :city, options_for_select([["市区町村･国を選択する", 99]],), { class: "form-control", onchange: "location = 'city/' + this.value" } %></div><br>
-        </div>
+            <%= select_tag :city, options_for_select([["市区町村･国を選択する", 99]],), { class: "form-control", onchange: "location = 'city/' + this.value" } %></div><br>
 
-        <script>
-          $(function() {
-            $('#select_prefecture').change(function() {
-              $.ajax('/cities_select_area',
-                {
-                  type: 'get',
-                  data: { prefecture_id: $(this).val() },
-                }
-              )
-              .done(function(data) {
-                $('#city').html(data) 
-              })
-              .fail(function() {
-                window.alert('正しい結果を得られませんでした。');
+            <script>
+              $(function() {
+                $('#select_prefecture').change(function() {
+                  $.ajax('/cities_select_area',
+                    {
+                      type: 'get',
+                      data: { prefecture_id: $(this).val() },
+                    }
+                  )
+                  .done(function(data) {
+                    $('#city').html(data) 
+                  })
+                  .fail(function() {
+                    window.alert('正しい結果を得られませんでした。');
+                  });
+                });
               });
-            });
-          });
-        </script>
+            </script>
+          </div>
+        </div>
       </div>
     </div>
   </div>
