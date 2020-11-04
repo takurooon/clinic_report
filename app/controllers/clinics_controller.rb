@@ -40,7 +40,7 @@ class ClinicsController < ApplicationController
     @impression_of_price = clinic_reports.average(:impression_of_price).to_f
     @average_waiting_time2 = clinic_reports.average(:average_waiting_time2).to_f
     @comfort_of_space = clinic_reports.average(:comfort_of_space).to_f
-    @average_score = (@doctor_quality + @staff_quality + @impression_of_technology + @impression_of_price + @average_waiting_time2 + @comfort_of_space)/6.to_f
+    @average_score = ((@doctor_quality + @staff_quality + @impression_of_technology + @impression_of_price + @average_waiting_time2 + @comfort_of_space)/6.to_f).round(1)
     gon.clinic_name = @clinic.name
     gon.clinic_evaluation = []
     gon.clinic_evaluation << @doctor_quality << @staff_quality << @impression_of_technology << @impression_of_price << @average_waiting_time2 << @comfort_of_space
