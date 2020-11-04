@@ -10,12 +10,12 @@
   </small>
   <div class="container-fluid main-index">
     <div class="row px-0">
-      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-1">
+      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-0">
         <% unless @clinic_all_reports == 0 %>
           <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
             <span class="small"><span class="small"><%= @clinics.name %>でのレポコは&nbsp;<%= @clinic_all_reports %>件&nbsp;あります。</span></span>
             <% unless @transfer_reports.count == 0 %>
-              <br><span class="small"><span class="small">同院を過去に経由したレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
+              <br><span class="small"><span class="small">同院を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
             <% end %>
           </div>
         <% else %>
@@ -24,7 +24,7 @@
           </div>
           <% unless @transfer_reports.count == 0 %>
             <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
-              <span class="small"><span class="small">同院を過去に経由したレポコは&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
+              <span class="small"><span class="small">同院を過去に経由した方のレポコは&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
             </div>
           <% end %>
         <% end %>
@@ -71,15 +71,15 @@
           <div class="tab-content1">
             <%= render 'reports/center' %>
           </div>
-          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">同院を転院した方のレポコ&nbsp;<span class="small"><span class="small text-muted">(<%= @transfer_reports.count %>件)</span></span></label>
+          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">同院経由レポコ&nbsp;<span class="small"><span class="small text-muted">(<%= @transfer_reports.count %>件)</span></span></label>
           <div class="tab-content1">
             <% unless @transfer_reports.count == 0 %>
               <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
-                <span class="small"><span class="small"> <%= @clinics.name %>を過去に経由したレポコは&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
+                <span class="small"><span class="small"> <%= @clinics.name %>を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
               </div>
             <% else %>
               <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
-                <span class="small"><span class="small"> <%= @clinics.name %>を過去に経由したレポコはまだありません。</span></span>
+                <span class="small"><span class="small"> <%= @clinics.name %>を過去に経由した方のレポコはまだありません。</span></span>
               </div>
             <% end %>
             <% @transfer_reports.each do |transfer_report| %>

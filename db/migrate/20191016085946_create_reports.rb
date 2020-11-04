@@ -89,7 +89,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :credit_card_validity
       t.integer :creditcards_can_be_used_from_more_than
       t.integer :average_waiting_time
-      t.integer :average_waiting_time2
+      t.float :average_waiting_time2
       t.integer :reservation_method
       t.text :reservation_method_memo
       t.integer :online_consultation
@@ -104,11 +104,11 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :suspended_or_retirement_job
       t.text :about_work_and_working_style
       t.text :content
-      t.integer :staff_quality
-      t.integer :doctor_quality
-      t.integer :impression_of_price
-      t.integer :impression_of_technology
-      t.integer :comfort_of_space
+      t.float :staff_quality
+      t.float :doctor_quality
+      t.float :impression_of_price
+      t.float :impression_of_technology
+      t.float :comfort_of_space
       t.text :clinic_review
       t.text :reasons_for_choosing_this_clinic
       t.integer :status, default: 0, null: false
