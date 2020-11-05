@@ -4358,9 +4358,9 @@
         <div class="comment-area mt-2" id="comments_area">
           <div class="p-comment__list">
             <h4 class="p-comment__listTitle"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメント&nbsp;<span class="text-muted" style="font-size: 16px;">(&nbsp;<%= @report.comments.count %>件&nbsp;)</span></h4>
-            <%= render @report.comments %>
           </div>
           <% if current_user %>
+            <%= render @report.comments %>
             <%= render partial: 'comments/form', locals: { comment: @comment } %>
           <% else %>
           <div class="comment-blur">
@@ -4371,7 +4371,7 @@
           </div>
           <div class="card text-center mb-5 commnet-blur-text">
             <div class="card-body">
-              <h5 class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;ログインしてコメントしよう！</h5>
+              <p class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメントはログインが必要です。</p>
               <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
               <%=link_to 'ログイン', new_user_session_path, class: "btn btn-raised btn-info mr-2" %>
               <%=link_to '新規登録',  new_user_registration_path, class: "btn btn-info border ml-2" %>
