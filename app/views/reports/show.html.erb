@@ -104,7 +104,7 @@
               <% else %>
                 <div class="col-12">
                   <div class="row">
-                    <% if @report.user.self_introduction.present? %>
+                    <% if @report.user.self_introduction.present? && @report.comments.present? %>
                       <div class="col-6 d-flex align-items-center">
                         <div class="balloon1-left small d-flex align-items-center">
                           <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
@@ -114,39 +114,30 @@
                       </div>
                       <div class="col-6">
                         <div class="alert rounded-lg pt-2 pb-1 px-3 mt-3" style="background-color: #F7F9F9">
-                          <% if @report.comments.present? %>
-                            <a href="#comments_area">
-                              <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                              <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp<span class="small"><%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %></span>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
-                            </a>
-                          <% else %>
-                            <div class="d-flex align-items-end">
-                              <a href="#comments_area">
-                                <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>コメントして聞いてみる</span></p>
-                              </a>
-                            </div>
+                          <a href="#comments_area">
+                            <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
+                            <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp<span class="small"><%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %></span>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
+                          </a>
+                        </div>
+                      </div>
+                    <% elsif @report.user.self_introduction.present? && @report.comments.blank? %>
+                      <div class="col-12 d-flex align-items-center">
+                        <div class="balloon1-left small d-flex align-items-center">
+                          <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
+                            <span class="text-muted"><%= strip_tags(@report.user.self_introduction.to_s).gsub(/[\n]/,"").strip.truncate(100) %></span>
                           <% end %>
+                        </div>
+                      </div>
+                    <% elsif @report.user.self_introduction.blank? && @report.comments.present? %>
+                      <div class="col-12">
+                        <div class="alert rounded-lg pt-2 pb-1 px-3 mt-3" style="background-color: #F7F9F9">
+                          <a href="#comments_area">
+                            <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
+                            <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<span class="small"><%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(100) %></span>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
+                          </a>
                         </div>
                       </div>
                     <% else %>
-                      <div class="col-12">
-                        <div class="alert rounded-lg pt-2 pb-1 px-3 mt-3" style="background-color: #F7F9F9">
-                          <% if @report.comments.present? %>
-                            <a href="#comments_area">
-                              <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                              <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<span class="small"><%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(85) %></span>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
-                            </a>
-                          <% else %>
-                            <div>
-                              <a href="#comments_area">
-                                <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                                <p class="my-2 text-dark"><span class="marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントして聞いてみる&nbsp;&nbsp;</span></p>
-                              </a>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
                     <% end %>
                   </div>
                 </div>
@@ -205,27 +196,28 @@
                     <% end %>
                   </div>
                 <% else %>
-                  <div class="col-12 px-0">
-                    <div class="alert rounded-lg ml-0 mr-2 mb-0 p-0" style="background-color: #F7F9F9">
-                      <div class="pt-3 pb-0 mr-0">
-                        <% if @report.comments.present? %>
+                  <% if @report.comments.present? %>
+                    <div class="col-12 px-0">
+                      <div class="alert rounded-lg ml-0 mr-2 mb-0 p-0" style="background-color: #F7F9F9">
+                        <div class="pt-3 pb-0 mr-0">
                           <div class="small d-flex align-items-center px-3 pb-2 mb-0">
                             <a href="#comments_area">
                               <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
                               <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
                             </a> 
                           </div>
-                        <% else %>
-                          <div class="small d-flex align-items-center px-3 pb-2 mb-0">
-                            <a href="#comments_area">
-                              <p class="mb-0 small text-muted">#コメント(0件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
-                              <p class="my-2 text-dark marker-underline"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;コメントして聞いてみる</p>
-                            </a>
-                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% else %>
+                    <div class="col-12 d-flex align-items-center">
+                      <div class="balloon1-left small d-flex align-items-center">
+                        <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
+                          <span class="text-muted"><%= strip_tags(@report.user.self_introduction.to_s).gsub(/[\n]/,"").strip.truncate(50) %></span>
                         <% end %>
                       </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>

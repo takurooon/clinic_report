@@ -172,10 +172,10 @@ end
 #                                       PATCH  /clinics/:id(.:format)                                                                   clinics#update
 #                                       PUT    /clinics/:id(.:format)                                                                   clinics#update
 #                                       DELETE /clinics/:id(.:format)                                                                   clinics#destroy
-#                         cities_select GET    /cities_select(.:format)                                                                 clinics#cities_select_clinics
-#                    cities_select_area GET    /cities_select_area(.:format)                                                            clinics#cities_select_area
-#                        clinics_select GET    /clinics_select(.:format)                                                                clinics#clinics_select
-#                         clinic_select GET    /clinic_select(.:format)                                                                 clinics#clinic_select
+#                         cities_select GET    /cities_select(.:format)                                                                 searches#cities_select_clinics
+#                    cities_select_area GET    /cities_select_area(.:format)                                                            searches#cities_select_area
+#                        clinics_select GET    /clinics_select(.:format)                                                                searches#clinics_select
+#                         clinic_select GET    /clinic_select(.:format)                                                                 searches#clinic_select
 #                 address_cities_select GET    /address_cities_select(.:format)                                                         reports#address_cities_select
 #                              comments POST   /comments(.:format)                                                                      comments#create
 #                               comment DELETE /comments/:id(.:format)                                                                  comments#destroy

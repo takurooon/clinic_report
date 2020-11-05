@@ -8,7 +8,7 @@
 #  age_of_partner_at_end_of_treatment           :integer
 #  amh                                          :integer
 #  average_waiting_time                         :integer
-#  average_waiting_time2                        :integer
+#  average_waiting_time2                        :float
 #  blastocyst_grade1                            :integer
 #  blastocyst_grade1_supplementary_explanation  :text
 #  blastocyst_grade2                            :integer
@@ -20,7 +20,7 @@
 #  cl_female_inspection_memo                    :text
 #  cl_male_inspection_memo                      :text
 #  clinic_review                                :text
-#  comfort_of_space                             :integer
+#  comfort_of_space                             :float
 #  content                                      :text
 #  cost                                         :integer
 #  cost_burden_memo                             :text
@@ -31,7 +31,7 @@
 #  description_of_eggs_and_sperm_used_status    :text
 #  details_of_icsi                              :integer
 #  details_of_icsi_memo                         :text
-#  doctor_quality                               :integer
+#  doctor_quality                               :float
 #  early_embryo_grade                           :integer
 #  early_embryo_grade_supplementary_explanation :text
 #  egg_maturity                                 :integer
@@ -57,8 +57,8 @@
 #  how_long_to_continue_treatment               :integer
 #  how_long_to_continue_treatment2              :integer
 #  how_long_to_continue_treatment_memo          :text
-#  impression_of_price                          :integer
-#  impression_of_technology                     :integer
+#  impression_of_price                          :float
+#  impression_of_technology                     :float
 #  industry_type                                :integer
 #  industry_type_status                         :integer          default("show"), not null
 #  injection_memo                               :text
@@ -119,7 +119,7 @@
 #  sperm_advance_rate                           :float
 #  sperm_description                            :text
 #  sperm_motility                               :float
-#  staff_quality                                :integer
+#  staff_quality                                :float
 #  status                                       :integer          default("released"), not null
 #  suspended_or_retirement_job                  :integer
 #  time_for_ishoku                              :integer
