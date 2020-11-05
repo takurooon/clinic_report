@@ -15,103 +15,9 @@
           </div>
         <% end %>
       <% end %>
-      <div class="card mt-2">
-        <div class="row">
-          <div class="d-none d-sm-block col-3 pl-4 py-4">
-            <div class="pt-4 pl-5">
-              <% if @user.icon.attached? %>
-                <%=  link_to @user.icon, 'data-lightbox': @user.icon do %>
-                  <%= image_tag(@user.icon, alt: "icon", class: "icon_image", loading: "lazy") %>
-                <% end %>
-              <% else %>
-                <% if @user.birthday == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
-                <% elsif Time.now.year - @user.birthday.year < 25 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year < 30 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year < 35 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year < 40 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year < 45 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
-                  <% end %>
-                <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="pt-2 text-center pt-3 pl-4">
-              <h6>
-                <% if @user.birthday == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明") %>
-                <% elsif Time.now.year - @user.birthday.year < 25 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy", title: "〜24歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year < 30 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year < 35 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year < 40 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year < 45 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
-                  <% end %>
-                <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
-                <% end %>
-                <span class="small"><%= @user.name %></span>
-              </h6>
-              <small>
-                <span class="small">
-                  <% if @user.gender == "female" %>
-                    <span class="badge badge-pill badge-light text-muted">#女</span>
-                  <% else %>
-                    <span class="badge badge-pill badge-light text-muted">#男</span>
-                  <% end %>
-                </span>
-              </small>
-            </div>
-          </div>
-          <div class="d-block d-sm-none col-3 py-3 pl-4 pr-0">
+      <div class="row">
+        <div class="d-none d-sm-block col-3 pl-4 py-4">
+          <div class="pt-4 pl-5">
             <% if @user.icon.attached? %>
               <%=  link_to @user.icon, 'data-lightbox': @user.icon do %>
                 <%= image_tag(@user.icon, alt: "icon", class: "icon_image", loading: "lazy") %>
@@ -154,281 +60,374 @@
               <% end %>
             <% end %>
           </div>
-          <div class="d-none d-sm-block col-9 pt-5 pb-4">
-            <div class="px-1 pb-3">
-              <i data-feather="hash" class="feather-icon-style3 pb-2 pl-0 pr-0 mx-0"></i><h4 class="d-inline">Profile</h4>&nbsp;&nbsp;
-              <div class="d-inline">
-                <% if @user.reports.present? %>
-                  <i data-feather="home" class="feather-icon-style3 pl-2 pr-0 pt-1 pb-2 m-0"></i>
-                  <% if @user.reports.last.prefecture_at_the_time_status == "hide" %>
-                    <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(都道府県)</span></span>
-                  <% else %>
-                    <small class="d-inline"><%= @user.reports.last.prefecture.name %></small>
-                  <% end %>
-                  <% if @user.reports.last.city_at_the_time_status == "hide" %>
-                    <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(市区町村)</span></span>
-                  <% else %>
-                    <small class="d-inline"><%= @user.reports.last.city.name %></small>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="px-2 py-1 small">
-                <% if @user.link.present? %>
-                  <i data-feather="link" class="feather-icon-style1 pr-1"></i><%= text_url_to_link(h(@user.link)).html_safe %>
-                <% end %>
-              </div>
-            </div>
-            <div class="py-3 pl-2 pr-4">
-              <% if @user.first_age_to_start.present? || @user.first_age_to_start_art.present? || @user.number_of_aih.present? || @user.all_number_of_sairan.present? || @user.all_number_of_transplants.present? || @user.all_cost.present? || @user.number_of_chemical_abortions.present? || @user.number_of_early_miscarriages.present? || @user.number_of_late_miscarriages.present? || @user.number_of_times_the_grant_was_received.present? || @user.all_grant_amount.present? %>
-                <div class="row mb-5">
-                  <% if @user.first_age_to_start.present? %>
-                    <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold font-weight-bold"><span class="small text-muted">妊活開始:</span>&nbsp;<%= @user.str_first_age_to_start(@user.first_age_to_start) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.first_age_to_start_art.present? %>
-                    <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">高度治療開始:</span>&nbsp;<%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_aih.present? %>
-                    <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">人工授精:</span>&nbsp;<%= @user.str_number_of_aih(@user.number_of_aih) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.all_number_of_sairan.present? %>
-                    <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">全採卵回数:</span>&nbsp;<%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.all_number_of_transplants.present? %>
-                    <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">全移植回数:</span>&nbsp;<%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.all_cost.present? %>
-                    <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_chemical_abortions.present? %>
-                    <div class="col-sm-4 px-0">
-                      <% if @user.number_of_chemical_abortions_status == "hide" %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                      <% else %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
-                      <% end %>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_early_miscarriages.present? %>
-                    <div class="col-sm-4 px-0">
-                      <% if @user.number_of_early_miscarriages_status == "hide" %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                      <% else %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
-                      <% end %>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_late_miscarriages.present? %>
-                    <div class="col-sm-4 px-0">
-                      <% if @user.number_of_late_miscarriages_status == "hide" %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                      <% else %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
-                      <% end %>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_times_the_grant_was_received.present? %>
-                    <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.all_grant_amount.present? %>
-                    <div class="col-sm-4 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-              <% if @user.self_introduction.present? %>
-                <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
+        </div>
+        <div class="d-block d-sm-none col-3 py-3 pl-4 pr-0">
+          <% if @user.icon.attached? %>
+            <%=  link_to @user.icon, 'data-lightbox': @user.icon do %>
+              <%= image_tag(@user.icon, alt: "icon", class: "icon_image", loading: "lazy") %>
+            <% end %>
+          <% else %>
+            <% if @user.birthday == nil %>
+              <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
+            <% elsif Time.now.year - @user.birthday.year < 25 %>
+              <% if Time.now.month < @user.birthday.month %>
+                <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
               <% else %>
-                <h6 class="text-muted">プロフィールはまだ登録されていません。
-                  <% if @user == current_user %>
-                    <br><br>右上の「プロフィールを編集」から登録が可能です。ぜひ詳しいプロフィールを載せましょう！
-                  <% end %>
-                </h6>
+                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
               <% end %>
-            </div>
-          </div>
-          <div class="d-block d-sm-none col-9 pt-3">
-            <div>
-              <h5 class="d-inline">
-                <% if @user.birthday == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明") %>
-                <% elsif Time.now.year - @user.birthday.year <= 25 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy", title: "〜24歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year <= 30 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year <= 35 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year <= 40 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
-                  <% end %>
-                <% elsif Time.now.year - @user.birthday.year <= 45 %>
-                  <% if Time.now.month < @user.birthday.month %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
-                  <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
-                  <% end %>
+            <% elsif Time.now.year - @user.birthday.year < 30 %>
+              <% if Time.now.month < @user.birthday.month %>
+                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+              <% else %>
+                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+              <% end %>
+            <% elsif Time.now.year - @user.birthday.year < 35 %>
+              <% if Time.now.month < @user.birthday.month %>
+                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+              <% else %>
+                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+              <% end %>
+            <% elsif Time.now.year - @user.birthday.year < 40 %>
+              <% if Time.now.month < @user.birthday.month %>
+                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+              <% else %>
+                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+              <% end %>
+            <% elsif Time.now.year - @user.birthday.year < 45 %>
+              <% if Time.now.month < @user.birthday.month %>
+                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+              <% else %>
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+              <% end %>
+            <% else %>
+              <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="d-none d-sm-block col-9 pt-5 pb-4">
+          <div class="d-flex align-items-center pb-3">
+            <h4 class="mb-0">
+              <% if @user.birthday == nil %>
+                <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明") %>
+              <% elsif Time.now.year - @user.birthday.year < 25 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy", title: "〜24歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year < 30 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year < 35 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year < 40 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year < 45 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
                 <% else %>
                   <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
                 <% end %>
-                <span class="small"><span class="small"><%= @user.name %></span></span>
-              </5>
-              <small>
-                <span class="small">
-                  <% if @user.gender == "female" %>
-                    <span class="badge badge-pill badge-light text-muted">#女</span>
-                  <% else %>
-                    <span class="badge badge-pill badge-light text-muted">#男</span>
-                  <% end %>
-                </span>
-              </small>
-            </div>
-            <div class="d-block d-sm-none pt-2 pb-0">
+              <% else %>
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
+              <% end %>
+              <%= @user.name %>&nbsp;&nbsp;
+            </h6>
+            <small>
+              <span class="small">
+                <% if @user.gender == "female" %>
+                  <span class="badge badge-pill badge-light text-muted">#女</span>
+                <% else %>
+                  <span class="badge badge-pill badge-light text-muted">#男</span>
+                <% end %>
+              </span>
+            </small>
+          </div>
+          <div class="px-1 pb-3">
+            <i data-feather="hash" class="feather-icon-style3 pb-2 pl-0 pr-0 mx-0"></i><h4 class="d-inline">Profile</h4>&nbsp;&nbsp;
+            <div class="d-inline">
               <% if @user.reports.present? %>
-                <i data-feather="home" class="feather-icon-style3 pb-2 m-0"></i>
+                <i data-feather="home" class="feather-icon-style3 pl-2 pr-0 pt-1 pb-2 m-0"></i>
                 <% if @user.reports.last.prefecture_at_the_time_status == "hide" %>
                   <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(都道府県)</span></span>
                 <% else %>
-                  <h7 class="d-inline"><%= @user.reports.last.prefecture.name %></h7>
+                  <small class="d-inline"><%= @user.reports.last.prefecture.name %></small>
                 <% end %>
                 <% if @user.reports.last.city_at_the_time_status == "hide" %>
                   <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(市区町村)</span></span>
                 <% else %>
-                  <h7 class="d-inline"><%= @user.reports.last.city.name %></h7>
+                  <small class="d-inline"><%= @user.reports.last.city.name %></small>
                 <% end %>
               <% end %>
             </div>
-            <div class="px-1 py-0 mt-0 small">
+            <div class="px-2 py-1 small">
               <% if @user.link.present? %>
-                <i data-feather="link" class="feather-icon-style1 pl-0 pr-1"></i><%= text_url_to_link(h(@user.link)).html_safe %>
+                <i data-feather="link" class="feather-icon-style1 pr-1"></i><%= text_url_to_link(h(@user.link)).html_safe %>
               <% end %>
             </div>
           </div>
-          <div class="d-block d-sm-none col-12 pt-3 pb-3">
-            <div class="px-1 pb-2">
-              <i data-feather="hash" class="feather-icon-style3 pb-2 pl-0 pr-0 mx-0"></i><h5 class="d-inline">Profile</h5>
-            </div>
+          <div class="py-3 pl-2 pr-4">
             <% if @user.first_age_to_start.present? || @user.first_age_to_start_art.present? || @user.number_of_aih.present? || @user.all_number_of_sairan.present? || @user.all_number_of_transplants.present? || @user.all_cost.present? || @user.number_of_chemical_abortions.present? || @user.number_of_early_miscarriages.present? || @user.number_of_late_miscarriages.present? || @user.number_of_times_the_grant_was_received.present? || @user.all_grant_amount.present? %>
-              <div class="py-2 px-4 border rounded mt-0 mb-4 mx-2">
-                <div class="row mb-0">
-                  <% if @user.first_age_to_start.present? %>
-                    <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold font-weight-bold"><span class="small text-muted">妊活開始:</span>&nbsp;<%= @user.str_first_age_to_start(@user.first_age_to_start) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.first_age_to_start_art.present? %>
-                    <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">高度治療開始:</span>&nbsp;<%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_aih.present? %>
-                    <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">人工授精:</span>&nbsp;<%= @user.str_number_of_aih(@user.number_of_aih) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.all_number_of_sairan.present? %>
-                    <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">全採卵回数:</span>&nbsp;<%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.all_number_of_transplants.present? %>
-                    <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">全移植回数:</span>&nbsp;<%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.all_cost.present? %>
-                    <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_chemical_abortions.present? %>
-                    <div class="col-6 px-0">
-                      <% if @user.number_of_chemical_abortions_status == "hide" %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                      <% else %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
-                      <% end %>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_early_miscarriages.present? %>
-                    <div class="col-6 px-0">
-                      <% if @user.number_of_early_miscarriages_status == "hide" %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                      <% else %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
-                      <% end %>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_late_miscarriages.present? %>
-                    <div class="col-6 px-0">
-                      <% if @user.number_of_late_miscarriages_status == "hide" %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                      <% else %>
-                        <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
-                      <% end %>
-                    </div>
-                  <% end %>
-                  <% if @user.number_of_times_the_grant_was_received.present? %>
-                    <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
-                    </div>
-                  <% end %>
-                  <% if @user.all_grant_amount.present? %>
-                    <div class="col-6 px-0">
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
-                    </div>
-                  <% end %>
-                </div>
+              <div class="row mb-5 pl-3">
+                <% if @user.first_age_to_start.present? %>
+                  <div class="col-sm-4 px-0">
+                    <p class="mb-0 small font-weight-bold font-weight-bold"><span class="small text-muted">妊活開始:</span>&nbsp;<%= @user.str_first_age_to_start(@user.first_age_to_start) %></p>
+                  </div>
+                <% end %>
+                <% if @user.first_age_to_start_art.present? %>
+                  <div class="col-sm-4 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">高度治療開始:</span>&nbsp;<%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %></p>
+                  </div>
+                <% end %>
+                <% if @user.number_of_aih.present? %>
+                  <div class="col-sm-4 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">人工授精:</span>&nbsp;<%= @user.str_number_of_aih(@user.number_of_aih) %></p>
+                  </div>
+                <% end %>
+                <% if @user.all_number_of_sairan.present? %>
+                  <div class="col-sm-4 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">全採卵回数:</span>&nbsp;<%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %></p>
+                  </div>
+                <% end %>
+                <% if @user.all_number_of_transplants.present? %>
+                  <div class="col-sm-4 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">全移植回数:</span>&nbsp;<%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %></p>
+                  </div>
+                <% end %>
+                <% if @user.all_cost.present? %>
+                  <div class="col-sm-4 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
+                  </div>
+                <% end %>
+                <% if @user.number_of_chemical_abortions.present? %>
+                  <div class="col-sm-4 px-0">
+                    <% if @user.number_of_chemical_abortions_status == "hide" %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                    <% else %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% if @user.number_of_early_miscarriages.present? %>
+                  <div class="col-sm-4 px-0">
+                    <% if @user.number_of_early_miscarriages_status == "hide" %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                    <% else %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% if @user.number_of_late_miscarriages.present? %>
+                  <div class="col-sm-4 px-0">
+                    <% if @user.number_of_late_miscarriages_status == "hide" %>
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                    <% else %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% if @user.number_of_times_the_grant_was_received.present? %>
+                  <div class="col-sm-4 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
+                  </div>
+                <% end %>
+                <% if @user.all_grant_amount.present? %>
+                  <div class="col-sm-4 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
+                  </div>
+                <% end %>
               </div>
             <% end %>
-            <% if @user.self_introduction.blank? %>
-              <div class="pt-3 pb-2 px-4">
-                <p class="text-muted mb-0">プロフィールは未登録です。
-                  <% if @user == current_user %>
-                    <br><br>右上「プロフィールを編集」から登録が可能です。ぜひ詳しいプロフィールを載せましょう！
-                  <% end %>
-                </p>
-              </div>
+            <% if @user.self_introduction.present? %>
+              <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
+            <% else %>
+              <h6 class="text-muted">プロフィールはまだ登録されていません。
+                <% if @user == current_user %>
+                  <br><br>右上の「プロフィールを編集」から登録が可能です。ぜひ詳しいプロフィールを載せましょう！
+                <% end %>
+              </h6>
             <% end %>
-            <div class="py-2 px-4">
-              <% if @user.self_introduction.present? %>
-                <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
-              <% end %>
-            </div>
           </div>
         </div>
-      </div>
+        <div class="d-block d-sm-none col-9 pt-3">
+          <div>
+            <h5 class="d-inline">
+              <% if @user.birthday == nil %>
+                <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明") %>
+              <% elsif Time.now.year - @user.birthday.year <= 25 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "20px", class: "img-fluid", loading: "lazy", title: "〜24歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year <= 30 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "20px", class: "img-fluid", loading: "lazy", title: "25〜29歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year <= 35 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "20px", class: "img-fluid", loading: "lazy", title: "30〜34歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year <= 40 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "20px", class: "img-fluid", loading: "lazy", title: "35〜39歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
+                <% end %>
+              <% elsif Time.now.year - @user.birthday.year <= 45 %>
+                <% if Time.now.month < @user.birthday.month %>
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "20px", class: "img-fluid", loading: "lazy", title: "40〜44歳") %>
+                <% else %>
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
+                <% end %>
+              <% else %>
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜") %>
+              <% end %>
+              <span class="small"><span class="small"><%= strip_tags(@user.name).gsub(/[\n]/,"").strip.truncate(20) %></span></span>
+            </5>
+            <small>
+              <span class="small">
+                <% if @user.gender == "female" %>
+                  <span class="badge badge-pill badge-light text-muted">#女</span>
+                <% else %>
+                  <span class="badge badge-pill badge-light text-muted">#男</span>
+                <% end %>
+              </span>
+            </small>
+          </div>
+          <div class="d-block d-sm-none pt-2 pb-0">
+            <% if @user.reports.present? %>
+              <i data-feather="home" class="feather-icon-style3 pb-2 m-0"></i>
+              <% if @user.reports.last.prefecture_at_the_time_status == "hide" %>
+                <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(都道府県)</span></span>
+              <% else %>
+                <h7 class="d-inline"><%= @user.reports.last.prefecture.name %></h7>
+              <% end %>
+              <% if @user.reports.last.city_at_the_time_status == "hide" %>
+                <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(市区町村)</span></span>
+              <% else %>
+                <h7 class="d-inline"><%= @user.reports.last.city.name %></h7>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="px-1 py-0 mt-0 small">
+            <% if @user.link.present? %>
+              <i data-feather="link" class="feather-icon-style1 pl-0 pr-1"></i><%= text_url_to_link(h(@user.link)).html_safe %>
+            <% end %>
+          </div>
+        </div>
+        <div class="d-block d-sm-none col-12 pt-3 pb-3">
+          <div class="px-0 pb-2">
+            <i data-feather="hash" class="feather-icon-style3 pb-2 pl-0 pr-0 mx-0"></i><h5 class="d-inline">Profile</h5>
+          </div>
+          <% if @user.first_age_to_start.present? || @user.first_age_to_start_art.present? || @user.number_of_aih.present? || @user.all_number_of_sairan.present? || @user.all_number_of_transplants.present? || @user.all_cost.present? || @user.number_of_chemical_abortions.present? || @user.number_of_early_miscarriages.present? || @user.number_of_late_miscarriages.present? || @user.number_of_times_the_grant_was_received.present? || @user.all_grant_amount.present? %>
+            <div class="py-2 px-3 mt-0 mb-4">
+              <div class="row mb-0">
+                <% if @user.first_age_to_start.present? %>
+                  <div class="col-6 px-0">
+                    <p class="mb-0 small font-weight-bold font-weight-bold"><span class="small text-muted">妊活開始:</span>&nbsp;<%= @user.str_first_age_to_start(@user.first_age_to_start) %></p>
+                  </div>
+                <% end %>
+                <% if @user.first_age_to_start_art.present? %>
+                  <div class="col-6 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">高度治療開始:</span>&nbsp;<%= @user.str_first_age_to_start_art(@user.first_age_to_start_art) %></p>
+                  </div>
+                <% end %>
+                <% if @user.number_of_aih.present? %>
+                  <div class="col-6 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">人工授精:</span>&nbsp;<%= @user.str_number_of_aih(@user.number_of_aih) %></p>
+                  </div>
+                <% end %>
+                <% if @user.all_number_of_sairan.present? %>
+                  <div class="col-6 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">全採卵回数:</span>&nbsp;<%= @user.str_all_number_of_sairan(@user.all_number_of_sairan) %></p>
+                  </div>
+                <% end %>
+                <% if @user.all_number_of_transplants.present? %>
+                  <div class="col-6 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">全移植回数:</span>&nbsp;<%= @user.str_all_number_of_transplants(@user.all_number_of_transplants) %></p>
+                  </div>
+                <% end %>
+                <% if @user.all_cost.present? %>
+                  <div class="col-6 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
+                  </div>
+                <% end %>
+                <% if @user.number_of_chemical_abortions.present? %>
+                  <div class="col-6 px-0">
+                    <% if @user.number_of_chemical_abortions_status == "hide" %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                    <% else %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% if @user.number_of_early_miscarriages.present? %>
+                  <div class="col-6 px-0">
+                    <% if @user.number_of_early_miscarriages_status == "hide" %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                    <% else %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% if @user.number_of_late_miscarriages.present? %>
+                  <div class="col-6 px-0">
+                    <% if @user.number_of_late_miscarriages_status == "hide" %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
+                    <% else %>
+                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% if @user.number_of_times_the_grant_was_received.present? %>
+                  <div class="col-6 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
+                  </div>
+                <% end %>
+                <% if @user.all_grant_amount.present? %>
+                  <div class="col-6 px-0">
+                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+          <% if @user.self_introduction.blank? %>
+            <div class="pt-3 pb-2 px-0">
+              <p class="text-muted mb-0">プロフィールは未登録です。
+                <% if @user == current_user %>
+                  <br><br>右上「プロフィールを編集」から登録が可能です。ぜひ詳しいプロフィールを載せましょう！
+                <% end %>
+              </p>
+            </div>
+          <% end %>
+          <div class="py-2 px-0">
+            <% if @user.self_introduction.present? %>
+              <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
+            <% end %>
+          </div>
+        </div>
+      </div><hr>
+
 
       <div class="mt-5 pt-0 px-1 user-repoco-list">
-        <i data-feather="hash" class="feather-icon-style4 pb-2 pl-0 pr-0 mx-0"></i><h5 class="py-4 d-inline lead"><%= @user.name %>さんのレポコ</h5>
+        <i data-feather="hash" class="feather-icon-style4 pb-2 pl-0 pr-0 mx-0"></i><h5 class="py-4 d-inline lead"><%= strip_tags(@user.name).gsub(/[\n]/,"").strip.truncate(14) %>さんのレポコ</h5>
         <% @reports.each do |report| %>
           <div class="row">
             <div class="card col-12 my-3 pb-0 px-0 shadow-none">
