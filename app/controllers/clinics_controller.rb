@@ -34,13 +34,37 @@ class ClinicsController < ApplicationController
     @clinic_reports = clinic_reports.limit(@get_limit).order(created_at: :desc)
     @clinic_reports_count = Report.where(clinic_id: @clinic, status: 0).count
 
-    @doctor_quality = clinic_reports.average(:doctor_quality).round(1)
-    @staff_quality = clinic_reports.average(:staff_quality).round(1)
-    @impression_of_technology = clinic_reports.average(:impression_of_technology).round(1)
-    @impression_of_price = clinic_reports.average(:impression_of_price).round(1)
-    @average_waiting_time2 = clinic_reports.average(:average_waiting_time2).round(1)
-    @comfort_of_space = clinic_reports.average(:comfort_of_space).round(1)
-    @average_score = ((@doctor_quality + @staff_quality + @impression_of_technology + @impression_of_price + @average_waiting_time2 + @comfort_of_space)/6.to_f).round(1)
+    unless clinic_reports.average(:doctor_quality).nil?
+      @doctor_quality = clinic_reports.average(:doctor_quality).round(1)
+    else
+      @doctor_quality = 0
+    end
+    unless clinic_reports.average(:staff_quality).nil?
+      @staff_quality = clinic_reports.average(:staff_quality).round(1)
+    else
+      @staff_quality = 0
+    end
+    unless clinic_reports.average(:impression_of_technology).nil?
+      @impression_of_technology = clinic_reports.average(:impression_of_technology).round(1)
+    else
+      @impression_of_technology = 0
+    end
+    unless clinic_reports.average(:impression_of_price).nil?
+      @impression_of_price = clinic_reports.average(:impression_of_price).round(1)
+    else
+      @impression_of_price = 0
+    end
+    unless clinic_reports.average(:average_waiting_time2).nil?
+      @average_waiting_time2 = clinic_reports.average(:average_waiting_time2).round(1)
+    else
+      @average_waiting_time2 = 0
+    end
+    unless clinic_reports.average(:comfort_of_space).nil?
+      @comfort_of_space = clinic_reports.average(:comfort_of_space).round(1)
+    else
+      @comfort_of_space = 0
+    end
+    @average_score = ((@doctor_quality + @staff_quality + @impression_of_technology + @impression_of_price + @average_waiting_time2 + @comfort_of_space)/6).round(1)
     gon.clinic_name = @clinic.name
     gon.clinic_evaluation = []
     gon.clinic_evaluation << @doctor_quality << @staff_quality << @impression_of_technology << @impression_of_price << @average_waiting_time2 << @comfort_of_space

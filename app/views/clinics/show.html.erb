@@ -254,7 +254,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small text-center">院内設備</td>
+                    <td class="result-left-column small text-center">院内環境</td>
                     <td class="d-flex align-items-center">
                       <% unless @comfort_of_space.blank? %>
                         <% if @comfort_of_space == 5 %>
@@ -332,7 +332,7 @@
                       <% if report.doctor_quality.present? || report.staff_quality.present? || report.impression_of_technology.present? || report.impression_of_price.present? || report.average_waiting_time2.present?|| report.comfort_of_space.present? %>
                         <% rating = ((report.doctor_quality + report.staff_quality + report.impression_of_technology + report.impression_of_price + report.average_waiting_time2 + report.comfort_of_space) / 6.to_f).round(1) %>
                       <% else %>
-                        <% rating = nil %>
+                        <% rating = 0 %>
                       <% end %>
                       <p class="mb-0">
                         <% unless rating.blank? %>
