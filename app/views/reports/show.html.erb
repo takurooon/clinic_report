@@ -209,7 +209,7 @@
                         </div>
                       </div>
                     </div>
-                  <% else %>
+                  <% elsif @report.comments.blank? && @report.user.self_introduction.present? %>
                     <div class="col-12 d-flex align-items-center">
                       <div class="balloon1-left small d-flex align-items-center">
                         <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
@@ -217,6 +217,7 @@
                         <% end %>
                       </div>
                     </div>
+                  <% else %>
                   <% end %>
                 <% end %>
               </div>
