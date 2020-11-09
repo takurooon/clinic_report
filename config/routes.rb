@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'privacy' => 'application#privacy'
   get 'repoco' => 'application#repoco'
   get 'terminology' => 'application#terminology'
+  get 'example_content' => 'reports#example_content'
 
   devise_for :users, path: '', controllers: {
     registrations: 'users/registrations',
@@ -52,7 +53,7 @@ Rails.application.routes.draw do
   resources :users, shallow: true do
     resources :reports, only: %[index]
   end
-  
+
   resources :reports do
     collection do
       post :confirm
@@ -76,6 +77,13 @@ Rails.application.routes.draw do
   resources :comments, only: %i[create destroy]
 
   resources :notifications, only: :index
+
+  namespace :admin do
+    resources :users
+    resources :reports
+    resources :clinics
+    root 'admin#home'
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

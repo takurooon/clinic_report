@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="html">
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width-device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex">
+    <%= display_meta_tags(default_meta_tags) %>
+    <%= favicon_link_tag('home/repoco.ico') %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= Gon::Base.render_data %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin' %>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <div class="all-wrap">
+      <div class="container-fluid p-0">
+        <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

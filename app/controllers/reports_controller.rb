@@ -192,6 +192,9 @@ class ReportsController < ApplicationController
     @clinic_evaluation = gon.clinic_evaluation.compact
   end
 
+  def example_content
+  end
+
   def new
     @report_content = "<h1>不妊治療へ踏み切ったきっかけ・思い</h1><br><br><br><h1>不妊治療を始めて驚いたこと</h1><br><br><br><h1>治療中にもっとこうすれば良かったと思ったこと(ポイント)など</h1><br><br><br><h1>夫婦間での治療に対する温度や認識</h1><br><br><br><h1>仕事との両立</h1><br><br><br><h1>治療中気をつけたこと(お酒･食事･睡眠･サプリ他)</h1><br><br><br>"
     @report = Report.new(content: @report_content)

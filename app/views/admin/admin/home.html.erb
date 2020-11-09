@@ -1,0 +1,175 @@
+<div class="row my-0 py-1 px-0 text-center alert alert-info d-flex align-items-center">
+  <div class="col-sm-3">
+    <%= link_to admin_root_path do%><h6 class="mb-0 text-dark">REPOCO</h6><% end %>
+  </div>
+  <div class="d-none d-sm-block col-sm-3">
+    <small class="text-muted">レポコ</small>
+    <h6 class="mb-0"><%= @reports.count %>投稿</h6>
+  </div>
+  <div class="d-none d-sm-block col-sm-3">
+    <small class="text-muted">ユーザー数</small>
+    <h6 class="mb-0"><%= @users.count %>人</h6>
+  </div>
+  <div class="d-none d-sm-block col-sm-3">
+    <small class="text-muted">クリニック数</small>
+    <h6 class="mb-0"><%= @clinics.count.to_s(:delimited) %>施設</h6>
+  </div>
+</div>
+<ul class="d-block d-sm-none nav nav-tabs d-flex justify-content-between mb-3 sticky-top">
+  <li class="nav-item"><a class="list-group-item list-group-item-action active" data-toggle="list" href="#list-dashboard" role="tab">Dashboard</a></li>
+  <li class="nav-item"><a class="list-group-item list-group-item-action" data-toggle="list" href="#list-repoco" role="tab">REPOCO</a></li>
+  <li class="nav-item"><a class="list-group-item list-group-item-action" data-toggle="list" href="#list-users" role="tab">Users</a></li>
+  <li class="nav-item"><a class="list-group-item list-group-item-action" data-toggle="list" href="#list-clinics" role="tab">Clinics</a></li>
+</ul>
+<div class="row px-1">
+  <div class="d-none d-sm-block col-sm-2 dashboard-left">
+    <div class="list-group py-0" id="admin-list" role="tablist">
+      <a class="list-group-item list-group-item-action active" data-toggle="list" href="#list-dashboard" role="tab">Dashboard</a>
+      <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-repoco" role="tab">REPOCO</a>
+      <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-users" role="tab">Users</a>
+      <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-clinics" role="tab">Clinics</a>
+    </div>
+  </div>
+  <div class="col-sm-10 dashboard-main">
+    <div class="tab-content pt-3" id="nav-admin-tabContent">
+      <div class="tab-pane active" id="list-dashboard" role="tabpanel">
+        <div class="row px-5">
+          <div class="col-md-4 pb-3">
+            <small class="text-muted">レポコ</small>
+            <h4><%= @reports.count %>投稿</h4>
+          </div>
+          <div class="col-md-4 pb-3">
+            <small class="text-muted">ユーザー数</small>
+            <h4><%= @users.count %>人</h4>
+          </div>
+          <div class="col-md-4 pb-3">
+            <small class="text-muted">クリニック数</small>
+            <h4><%= @clinics.count.to_s(:delimited) %>施設</h4>
+          </div>
+        </div>
+        <div class="tab-wrap1 mt-3 px-1">
+          <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked"/><label class="tab-label" for="TAB-01">レポコ</label>
+          <div class="tab-content1">
+          </div>
+          <input id="TAB-02" type="radio" name="TAB" class="tab-switch"/><label class="tab-label" for="TAB-02">ユーザー</label>
+          <div class="tab-content1">
+          </div>
+          <input id="TAB-03" type="radio" name="TAB" class="tab-switch"/><label class="tab-label" for="TAB-03">クリニック</label>
+          <div class="tab-content1">
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="list-repoco" role="tabpanel">
+        <table class="table table-sm small">
+          <thead>
+            <tr>
+              <th scope="col">St</th>
+              <th scope="col">CL</th>
+              <th scope="col">NM</th>
+              <th scope="col" class="d-none d-sm-table-cell">CS</th>
+              <th scope="col" class="d-none d-sm-table-cell">Age</th>
+              <th scope="col" class="d-none d-sm-table-cell">GY</th>
+              <th scope="col">PT</th>
+              <th scope="col" class="d-none d-md-table-cell">Ud</th>
+              <th scope="col">LK</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reports.each do |report| %>
+              <tr>
+                <td>
+                  <% if report.status == "nonreleased" %>
+                    <span class="badge badge-danger">非</span>
+                  <% end %>
+                </td>
+                <td><%= strip_tags(report.clinic.name).gsub(/[\n]/,"").strip.truncate(15) %></td>
+                <td><%= strip_tags(report.user.name).gsub(/[\n]/,"").strip.truncate(10) %></td>
+                <td class="d-none d-sm-table-cell"><%= report.str_current_state %></td>
+                <td class="d-none d-sm-table-cell"><%= report.str_treatment_end_age %></td>
+                <td class="d-none d-sm-table-cell">
+                  <% if report.year_of_treatment_end.present? %>
+                    <%= report.year_of_treatment_end.year %>年卒
+                  <% end %>
+                </td>
+                <td>
+                  <%= report.created_at.to_s(:datetime_jp) %>
+                </td>
+                <td class="d-none d-md-table-cell">
+                  <%= report.updated_at.to_s(:datetime_jp) %>
+                </td>
+                <td>
+                  <%= link_to admin_report_path(report) do %><i data-feather="external-link" class="p-1"></i><% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane" id="list-users" role="tabpanel">
+        <table class="table table-sm small">
+          <thead>
+            <tr>
+              <th scope="col">NM</th>
+              <th scope="col">Age</th>
+              <th scope="col">PF</th>
+              <th scope="col">RP</th>
+              <th scope="col">LK</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= strip_tags(user.name).gsub(/[\n]/,"").strip.truncate(10) %></td>
+                <td>
+                  <% birthday = (user.birthday.to_s).delete("^0-9") %>
+                  <%= (Date.today.strftime('%Y%m%d').to_i - birthday[0..7].to_i) / 10000 %>歳
+                </td>
+                <td>
+                  <% if user.self_introduction.present? %>
+                    <%= strip_tags(user.self_introduction).gsub(/[\n]/,"").strip.truncate(15) %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= user.reports.count %>件
+                </td>
+                <td>
+                  <%= link_to admin_user_path(user) do %><i data-feather="external-link" class="p-1"></i><% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane" id="list-clinics" role="tabpanel">
+        <table class="table table-sm small">
+          <thead>
+            <tr>
+              <th scope="col">NM</th>
+              <th scope="col">PF</th>
+              <th scope="col">CT</th>
+              <th scope="col">RP</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @clinics_reports.each do |clinic| %>
+            <tr>
+              <td>
+                <%= clinic.name %>
+              </td>
+              <td>
+                <%= clinic.prefecture.name %>
+              </td>
+              <td>
+                <%= clinic.city.name %>
+              </td>
+              <td>
+                <%= clinic.reports.count %>件
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
