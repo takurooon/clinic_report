@@ -27,6 +27,14 @@ class ClinicsController < ApplicationController
     end
   end
 
+  def city
+    @city = City.find_by(name: params[:city])
+    @clinics = Clinic.where(city_id: @city.id).name_yomigana
+    @reports = Report.where(clinic_id: @clinics.ids, status: 0).order(created_at: :desc)
+    @clinic_all_reports = Report.where(clinic_id: @clinics.ids, status: 0).count
+    @rereased_reports = Clinic.joins(:reports).where(city_id: @city.id, reports: {status: 0})
+  end
+
   def show
     @get_limit = 5
     @clinic = Clinic.find(params[:id])

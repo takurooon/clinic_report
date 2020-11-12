@@ -75,11 +75,11 @@
           <div class="tab-content1">
             <% unless @transfer_reports.count == 0 %>
               <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
-                <span class="small"><span class="small"> <%= @clinics.name %>を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
+                <span class="small"><span class="small"><%= @clinics.name %>を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
               </div>
             <% else %>
               <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
-                <span class="small"><span class="small"> <%= @clinics.name %>を過去に経由した方のレポコはまだありません。</span></span>
+                <span class="small"><span class="small"><%= @clinics.name %>を過去に経由した方のレポコはまだありません。</span></span>
               </div>
             <% end %>
             <% @transfer_reports.each do |transfer_report| %>

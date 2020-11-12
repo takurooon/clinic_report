@@ -6,6 +6,27 @@ class ReportsController < ApplicationController
     # @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
     # @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
     @reports = Report.released.order("created_at DESC").page(params[:page]).per(10)
+    @list = {}
+    Clinic.joins(city: :prefecture).includes(:city, :prefecture).each do |clinic| 
+      if @list[clinic.prefecture.id].nil?
+        @list[clinic.prefecture.id] = {
+          id: clinic.prefecture.id,
+          name: clinic.prefecture.name,
+          cities: {}
+        }
+      end
+      if @list[clinic.prefecture.id][:cities][clinic.city.id].nil?
+        @list[clinic.prefecture.id][:cities][clinic.city.id] = {
+          name: clinic.city.name,
+          clinics: []
+        }
+      end
+      @list[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
+        id: clinic.id,
+        name: clinic.name,
+        yomigana: clinic.yomigana
+      }
+    end
   end
 
   def draft

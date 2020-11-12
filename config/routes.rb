@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   end
 
   resources :clinics
+  get "clinics/:prefecture/:city" => "clinics#city"  
   
   get "cities_select" => "searches#cities_select_clinics"
   get "cities_select_area" => "searches#cities_select_area"
