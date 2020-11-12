@@ -1,7 +1,7 @@
 <%= render 'reports/category_header' %>
 <div class="container mb-5 pb-5">
-  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>医療機関一覧</strong></h5>
-  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong>医療機関一覧</strong></h4>
+  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>全国のクリニック一覧</strong>&nbsp;<span class="small"><span class="small">(<%= Clinic.count %>施設)</span></span></h5>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong>全国のクリニック一覧</strong>&nbsp;<span class="small"><span class="small">(<%= Clinic.count %>施設)</span></span></h4>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-0">
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "ホーム", root_path %>
   </small>
@@ -13,7 +13,7 @@
       <% @list.each do |key, value| %>
         <div class="col-sm-8 offset-sm-2 mb-1 px-0">
           <input id='acd-check-cllist<%= value[:id] %>' class="acd-check-cllist" type="checkbox">
-          <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関</span></label>
+          <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(prefecture_id: value[:id]).count %>施設&nbsp;)</span></span></label>
           <div class="acd-content-multiple container mb-2">
             <div class="row mt-0 pb-0">
             <div class="col-12 border-bottom">
