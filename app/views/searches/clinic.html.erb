@@ -38,7 +38,7 @@
                 <% if @clinics.current_status == 1 %>
                   <span class="text-danger">【閉院】</span>
                 <% end %>
-                <%= @clinics.name %>
+                <%= link_to @clinics.name, clinic_path(@clinics.id), class: "text-primary", data: { "turbolinks" => false } %>
               </td>
             </tr>
             <tr>

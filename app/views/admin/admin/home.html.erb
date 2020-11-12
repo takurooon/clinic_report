@@ -1,4 +1,4 @@
-<div class="row my-0 py-1 px-0 text-center alert alert-info d-flex align-items-center">
+<div class="row my-0 py-2 px-0 text-center alert alert-info d-flex align-items-center">
   <div class="col-sm-3">
     <%= link_to root_path do%><h6 class="mb-0 text-dark">REPOCO</h6><% end %>
   </div>
@@ -22,7 +22,7 @@
   <li class="nav-item"><a class="list-group-item list-group-item-action" data-toggle="list" href="#list-clinics" role="tab">Clinics</a></li>
 </ul>
 <div class="row px-1">
-  <div class="d-none d-sm-block col-sm-2 dashboard-left">
+  <div class="d-none d-sm-block col-sm-2 dashboard-left pr-0">
     <div class="list-group py-0" id="admin-list" role="tablist">
       <a class="list-group-item list-group-item-action active" data-toggle="list" href="#list-dashboard" role="tab">Dashboard</a>
       <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-repoco" role="tab">REPOCO</a>
@@ -34,15 +34,15 @@
     <div class="tab-content pt-3" id="nav-admin-tabContent">
       <div class="tab-pane active" id="list-dashboard" role="tabpanel">
         <div class="row px-1">
-          <div class="col-4 pb-3">
+          <div class="col-4 pb-3 text-center">
             <small class="text-muted">投稿</small>
             <h5><%= @reports.count %>件</h5>
           </div>
-          <div class="col-4 pb-3">
+          <div class="col-4 pb-3 text-center">
             <small class="text-muted">ユーザー</small>
             <h5><%= @users.count %>人</h5>
           </div>
-          <div class="col-4 pb-3">
+          <div class="col-4 pb-3 text-center">
             <small class="text-muted">クリニック</small>
             <h5><%= @clinics.count.to_s(:delimited) %>施設</h5>
           </div>
