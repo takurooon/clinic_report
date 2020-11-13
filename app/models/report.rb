@@ -12,12 +12,6 @@ class Report < ApplicationRecord
   enum prefecture_at_the_time_status: { show: 0, hide: 1 }, _prefix: true
   enum city_at_the_time_status: { show: 0, hide: 1 }, _prefix: true
 
-  # PGT-Aの公開状況
-  enum pgt1_status: { show: 0, hide: 1 }, _prefix: true
-  enum pgt2_status: { show: 0, hide: 1 }, _prefix: true
-  enum pgt_supplementary_explanation_status: { show: 0, hide: 1 }, _prefix: true
-
-
   # バリデーション
   validates :title, length: { maximum: 64 }
   # validate :validate_treatment_age
@@ -761,31 +755,6 @@ class Report < ApplicationRecord
 
   def str_fuiku
     return HASH_FUIKU[self.fuiku]
-  end
-
-  # pgtの区分値(CLの実施有無)
-  HASH_PGT1 = {
-    1 => "実施していた(指定PGT臨床研究機関)",
-    2 => "非公式に実施していた",
-    3 => "実施していなかった",
-    4 => "ノーコメント",
-    5 => "わからない",
-  }
-
-  def str_pgt1
-    return HASH_PGT1[self.pgt1]
-  end
-
-  # pgtの区分値(患者側の受診有無)
-  HASH_PGT2 = {
-    1 => "受けていない",
-    2 => "このクリニックで受けた",
-    3 => "別のクリニックで受けた",
-    4 => "ノーコメント",
-  }
-
-  def str_pgt2
-    return HASH_PGT2[self.pgt2]
   end
 
   # f_other_effort_cost m_other_effort_costの区分値(CL治療以外に行なったこと/月間平均投資額)

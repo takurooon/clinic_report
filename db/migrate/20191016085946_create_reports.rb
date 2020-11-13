@@ -14,12 +14,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :treatment_end_age
       t.integer :age_of_partner_at_end_of_treatment
       t.integer :treatment_period
-      t.integer :pgt1
-      t.integer :pgt1_status, default: 0, null: false
-      t.integer :pgt2
-      t.integer :pgt2_status, default: 0, null: false
-      t.text :pgt_supplementary_explanation
-      t.integer :pgt_supplementary_explanation_status, default: 0, null: false
       t.text :f_surgery_memo
       t.text :m_surgery_memo
       t.text :f_disease_memo

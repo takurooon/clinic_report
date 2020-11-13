@@ -567,24 +567,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="spacer">
-                  </div>
-                  <div class="box26">
-                    <span class="box-title">着床前スクリーニング</span>
-                    <div class="form-group mt-0">
-                      <p class="question"><span class="select-clinic-name"></span>&nbsp;の着床前スクリーニング実施有無&nbsp;<sup class="text-success">●</sup></p>
-                      <%= f.select :pgt1, Report::HASH_PGT1.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :pgt1_status, {}, "hide", "show" %>非公開</small>
-                    </div>
-                    <div class="form-group mt-3">
-                      <p class="question">着床前スクリーニングの受診&nbsp;<sup class="text-success">●</sup></p>
-                      <%= f.select :pgt2, Report::HASH_PGT2.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :pgt2_status, {}, "hide", "show" %>非公開</small>
-                      <p class="sub-question">着床前スクリーニングの詳しい説明&nbsp;<sup class="text-success">●</sup></p>
-                      <%= f.text_area :pgt_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)クリニックへの着床前診断の相談経緯や料金など" %>
-                      <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :pgt_supplementary_explanation_status, {}, "hide", "show" %>非公開</small>
-                    </div>
-                  </div>
                   <div class="mt-3 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                     <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
