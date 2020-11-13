@@ -1140,38 +1140,6 @@
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">疾患･不育症</span></h5>
                 <div class="scroll-box">
                   <div class="box26">
-                    <span class="box-title">疾患</span>
-                    <div class="form-group mt-0">
-                      <p class="question mb-3">女性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:f_disease_ids, FDisease.all.name_yomigana, :id, :name) do |b| %>
-                        <div class="form-check checkbox">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                      <p class="sub-question">女性側の疾患の補足説明</p>
-                      <%= f.text_area :f_disease_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <p class="question mb-3">男性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:m_disease_ids, MDisease.all.name_yomigana, :id, :name) do |b| %>
-                        <div class="form-check checkbox">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                      <p class="sub-question">男性側の疾患の補足説明</p>
-                      <%= f.text_area :m_disease_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
-                    </div>
-                  </div>
-                  <div class="spacer">
-                  </div>
-                  <div class="box26">
                     <span class="box-title">不育症</span>
                     <div class="form-group mt-0">
                       <p class="question">不育症診断の有無</p>

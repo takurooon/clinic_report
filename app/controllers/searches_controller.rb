@@ -188,14 +188,6 @@ class SearchesController < ApplicationController
   end
 
   def tags
-    report_f_diseases = ReportFDisease.group(:f_disease_id).where.not(f_disease_id: nil).distinct.count
-    f_disease = report_f_diseases.keys
-    @f_diseases = FDisease.where(id: f_disease).name_yomigana
-
-    report_m_diseases = ReportMDisease.group(:m_disease_id).where.not(m_disease_id: nil).distinct.count
-    m_disease = report_m_diseases.keys
-    @m_diseases = MDisease.where(id: m_disease).name_yomigana
-
     report_fuiku_inspections = ReportFuikuInspection.group(:fuiku_inspection_id).where.not(fuiku_inspection_id: nil).distinct.count
     fuiku_inspection = report_fuiku_inspections.keys
     @fuiku_inspections = FuikuInspection.where(id: fuiku_inspection).name_yomigana
@@ -221,11 +213,7 @@ class SearchesController < ApplicationController
 
   def tag
     if params[:gender] === "女性"
-      if params[:tags] === "疾患"
-        @tag = FDisease.find_by(name: params[:value])
-        @reports = @tag.reports.order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      elsif params[:tags] === "手術"
+      if params[:tags] === "手術"
         @tag = FSurgery.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
         @clinic_all_reports = @reports.count
@@ -243,11 +231,7 @@ class SearchesController < ApplicationController
         @clinic_all_reports = @reports.count
       end
     else
-      if params[:tags] === "疾患"
-        @tag = MDisease.find_by(name: params[:value])
-        @reports = @tag.reports.order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      elsif params[:tags] === "手術"
+      if params[:tags] === "手術"
         @tag = MSurgery.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
         @clinic_all_reports = @reports.count

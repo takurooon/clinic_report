@@ -306,12 +306,6 @@ class Report < ApplicationRecord
   has_many :report_fuiku_inspections, dependent: :destroy
   has_many :fuiku_inspections, through: :report_fuiku_inspections
 
-  # 疾患(男女それぞれ)
-  has_many :report_f_diseases, dependent: :destroy
-  has_many :f_diseases, through: :report_f_diseases
-  has_many :report_m_diseases, dependent: :destroy
-  has_many :m_diseases, through: :report_m_diseases
-
   # 手術歴(男女それぞれ)
   has_many :report_f_surgeries, dependent: :destroy
   has_many :f_surgeries, through: :report_f_surgeries

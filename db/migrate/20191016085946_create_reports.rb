@@ -16,8 +16,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :treatment_period
       t.text :f_surgery_memo
       t.text :m_surgery_memo
-      t.text :f_disease_memo
-      t.text :m_disease_memo
       t.integer :amh
       t.integer :smoking_male
       t.integer :smoking_female
