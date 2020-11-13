@@ -318,10 +318,6 @@ class Report < ApplicationRecord
   has_many :report_m_surgeries, dependent: :destroy
   has_many :m_surgeries, through: :report_m_surgeries
 
-  # 採卵周期での使用薬剤
-  has_many :report_sairan_medicines, dependent: :destroy
-  has_many :sairan_medicines, through: :report_sairan_medicines
-
   # 移植周期での使用薬剤
   has_many :report_transfer_medicines, dependent: :destroy
   has_many :transfer_medicines, through: :report_transfer_medicines

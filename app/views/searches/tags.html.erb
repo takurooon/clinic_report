@@ -17,7 +17,6 @@
           <li><a href="#tab_2" data-toggle="tab">不育症</a></li>
           <li><a href="#tab_3" data-toggle="tab">手術歴</a></li>
           <li><a href="#tab_4" data-toggle="tab">検査</a></li>
-          <li><a href="#tab_5" data-toggle="tab">薬剤</a></li>
         </ul>
         <section class="parent-tab-content active mostleft-tab" id="tab_1">
           <div class="child-tab">
@@ -84,25 +83,6 @@
             <section class="child-tab-content" id="tab_4_2">
               <% @cl_male_examinations.each do |cl_male_examination| %>
                 <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to cl_male_examination.name, "/カテゴリ/基本検査/男性/#{cl_male_examination.name}" %></span>
-              <% end %>
-            </section>
-          </div>
-        </section>
-        </section>
-        <section class="parent-tab-content" id="tab_5">
-          <div class="child-tab">
-            <ul class="nav nav-tabs child-menu">
-              <li><a href="#tab_5_1" class="active" data-toggle="tab">採卵周期</a></li>
-              <li><a href="#tab_5_2" data-toggle="tab">移植周期</a></li>
-            </ul>
-            <section class="child-tab-content active" id="tab_5_1">
-              <% @sairan_medicines.each do |sairan_medicine| %>
-                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to sairan_medicine.name, "/カテゴリ/採卵周期の薬剤/女性/#{sairan_medicine.name}" %></span>
-              <% end %>
-            </section>
-            <section class="child-tab-content" id="tab_5_2">
-              <% @transfer_medicines.each do |transfer_medicine| %>
-                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to transfer_medicine.name, "/カテゴリ/移植周期の薬剤/女性/#{transfer_medicine.name}" %></span>
               <% end %>
             </section>
           </div>

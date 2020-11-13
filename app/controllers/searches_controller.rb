@@ -218,10 +218,6 @@ class SearchesController < ApplicationController
     m_surgery = report_m_surgery.keys
     @m_surgeries = MSurgery.where(id: m_surgery).name_yomigana
 
-    report_sairan_medicine = ReportSairanMedicine.group(:sairan_medicine_id).where.not(sairan_medicine_id: nil).distinct.count
-    sairan_medicine = report_sairan_medicine.keys
-    @sairan_medicines = SairanMedicine.where(id: sairan_medicine).name_yomigana
-
     report_transfer_medicine = ReportTransferMedicine.group(:transfer_medicine_id).where.not(transfer_medicine_id: nil).distinct.count
     transfer_medicine = report_transfer_medicine.keys
     @transfer_medicines = TransferMedicine.where(id: transfer_medicine).name_yomigana
@@ -247,10 +243,6 @@ class SearchesController < ApplicationController
         @clinic_all_reports = @reports.count
       elsif params[:tags] === "不育症"
         @tag = FuikuInspection.find_by(name: params[:value])
-        @reports = @tag.reports.order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      elsif params[:tags] === "採卵周期の薬剤"
-        @tag = SairanMedicine.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
         @clinic_all_reports = @reports.count
       else params[:tags] === "移植周期の薬剤"

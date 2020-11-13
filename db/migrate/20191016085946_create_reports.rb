@@ -116,7 +116,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :cost_burden_memo
       t.integer :number_of_visits_before_sairan
       t.integer :number_of_visits_before_ishoku
-      t.text :sairan_medicine_memo
       t.text :ishoku_medicine_memo
       t.text :transfer_option_memo
       t.integer :free_wifi
