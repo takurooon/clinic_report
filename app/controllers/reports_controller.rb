@@ -414,7 +414,6 @@ class ReportsController < ApplicationController
     def report_params
       params.require(:report).permit(
         :current_state,
-        :after_the_current_state_memo,
         :clinic_id,
         :prefecture_id,
         :prefecture_at_the_time_status,
