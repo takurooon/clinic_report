@@ -235,90 +235,6 @@ $(function() {
   });
 });
 
-// 用いた卵子と精子の説明①
-$(function() {
-  eggsperm($("#report_types_of_eggs_and_sperm option:selected").val());
-  $("#report_types_of_eggs_and_sperm").change(function() {
-    eggsperm($(this).val());
-  });
-})
-function eggsperm(types_of_eggs_and_sperm) {
-  if (types_of_eggs_and_sperm > "1") {
-    $(".description_of_eggs_and_sperm_used").show();
-  } else {
-    $(".description_of_eggs_and_sperm_used").hide();
-  }
-}
-// フォーム内の①卵子と精子の回答によって次項のテキストを変える
-$(function() {
-  var egg_sparm1 = $('#report_types_of_eggs_and_sperm option:selected').text();
-  var egg_sparm1_memo = egg_sparm1 + "についての詳しい説明";
-  if (egg_sparm1 === "提供卵子" || egg_sparm1 === "提供精子") {
-    $('.select-egg-sparm1').text(egg_sparm1_memo);
-    $(".egg_sparm1_default2").show();
-    $(".egg_sparm1_default").hide();
-  } else {
-    $(".egg_sparm1_default2").hide();
-    $(".egg_sparm1_default").show();
-  }
-});
-$(function() {
-  $('#report_types_of_eggs_and_sperm').change(function() {
-    var egg_sparm1 = $('#report_types_of_eggs_and_sperm option:selected').text();
-    var egg_sparm1_memo = egg_sparm1 + "についての詳しい説明";
-    if (egg_sparm1 === "提供卵子" || egg_sparm1 === "提供精子") {
-      $('.select-egg-sparm1').text(egg_sparm1_memo);
-      $(".egg_sparm1_default2").show();
-      $(".egg_sparm1_default").hide();
-    } else {
-      $(".egg_sparm1_default2").hide();
-      $(".egg_sparm1_default").show();
-    }
-  });
-});
-
-// 用いた卵子と精子の説明②
-$(function() {
-  eggsperm2($("#report_types_of_eggs_and_sperm_status option:selected").val());
-  $("#report_types_of_eggs_and_sperm_status").change(function() {
-    eggsperm2($(this).val());
-  });
-})
-function eggsperm2(types_of_eggs_and_sperm_status) {
-  if (types_of_eggs_and_sperm_status > "1") {
-    $(".description_of_eggs_and_sperm_used_status").show();
-  } else {
-    $(".description_of_eggs_and_sperm_used_status").hide();
-  }
-}
-// フォーム内の②卵子と精子の回答によって次項のテキストを変える
-$(function() {
-  var egg_sparm2 = $('#report_types_of_eggs_and_sperm_status option:selected').text();
-  var egg_sparm2_memo = egg_sparm2 + "についての詳しい説明";
-  if (egg_sparm2 === "凍結卵子" || egg_sparm2 === "凍結精子" || egg_sparm2 === "凍結卵子と凍結精子") {
-    $('.select-egg-sparm2').text(egg_sparm2_memo);
-    $(".egg_sparm2_default2").show();
-    $(".egg_sparm2_default").hide();
-  } else {
-    $(".egg_sparm2_default2").hide();
-    $(".egg_sparm2_default").show();
-  }
-});
-$(function() {
-  $('#report_types_of_eggs_and_sperm_status').change(function() {
-    var egg_sparm2 = $('#report_types_of_eggs_and_sperm_status option:selected').text();
-    var egg_sparm2_memo = egg_sparm2 + "についての詳しい説明";
-    if (egg_sparm2 === "凍結卵子" || egg_sparm2 === "凍結精子" || egg_sparm2 === "凍結卵子と凍結精子") {
-      $('.select-egg-sparm2').text(egg_sparm2_memo);
-      $(".egg_sparm2_default2").show();
-      $(".egg_sparm2_default").hide();
-    } else {
-      $(".egg_sparm2_default2").hide();
-      $(".egg_sparm2_default").show();
-    }
-  });
-});
-
 // 受精方法の詳細
 $(function() {
   fertilization_method($("#report_types_of_fertilization_methods option:selected").val());
@@ -339,21 +255,6 @@ function fertilization_method(types_of_fertilization_methods) {
   } else {
     $(".detail_of_icsi").hide();
     $(".description_of_types_of_fertilization_methods").hide();
-  }
-}
-
-// 顕微受精方法の詳細
-$(function() {
-  details_of_icsi($("#report_details_of_icsi option:selected").val());
-  $("#report_details_of_icsi").change(function() {
-    details_of_icsi($(this).val());
-  });
-})
-function details_of_icsi(report_details_of_icsi) {
-  if (report_details_of_icsi == "99") {
-    $(".description_of_details_of_icsi").show();
-  } else  {
-    $(".description_of_details_of_icsi").hide();
   }
 }
 

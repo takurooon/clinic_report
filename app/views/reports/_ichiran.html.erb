@@ -1853,23 +1853,6 @@
           <% end %>
         </td>
       </tr>
-      <tr>
-        <td class="result-left-column small text-center">費用の負担</td>
-        <td class="pl-3">
-          <% if @report.cost_burdens.present? %>
-            <% @report.cost_burdens.each do |cost_burden| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= cost_burden.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-              <span class="text-muted small">未回答</span>
-          <% end %><br>
-          <% if @report.cost_burden_memo.present? %>
-            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cost_burden_memo.split("\n"),tag(:br)))).html_safe %></span>
-          <% end %>
-        </td>
-      </tr>
     </table>
     
     <table class="table p-0 mt-5 mb-0">

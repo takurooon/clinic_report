@@ -281,35 +281,9 @@ class Report < ApplicationRecord
   has_many :special_inspections, inverse_of: :report, dependent: :destroy
   accepts_nested_attributes_for :special_inspections, reject_if: :all_blank, allow_destroy: true, update_only: true
 
-  # 基本検査(女性)
-  has_many :report_inspections, dependent: :destroy
-  has_many :inspections, through: :report_inspections
-
-  # 基本検査(男性)
-  has_many :report_male_inspections, dependent: :destroy
-  has_many :male_inspections, through: :report_male_inspections
-
-  # レポコのクリニックでの基本検査(女性)
-  has_many :report_cl_female_inspections, dependent: :destroy
-  has_many :cl_female_inspections, through: :report_cl_female_inspections
-
-  # レポコのクリニックでの基本検査(男性)
-  has_many :report_cl_male_inspections, dependent: :destroy
-  has_many :cl_male_inspections, through: :report_cl_male_inspections
-
-  # コスト負担者
-  has_many :report_cost_burdens, dependent: :destroy
-  has_many :cost_burdens, through: :report_cost_burdens
-
   # 不育症の原因
   has_many :report_fuiku_inspections, dependent: :destroy
   has_many :fuiku_inspections, through: :report_fuiku_inspections
-
-  # 手術歴(男女それぞれ)
-  has_many :report_f_surgeries, dependent: :destroy
-  has_many :f_surgeries, through: :report_f_surgeries
-  has_many :report_m_surgeries, dependent: :destroy
-  has_many :m_surgeries, through: :report_m_surgeries
 
   # 移植オプション
   has_many :report_transfer_options, dependent: :destroy
