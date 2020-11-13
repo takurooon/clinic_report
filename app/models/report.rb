@@ -1239,24 +1239,6 @@ class Report < ApplicationRecord
     return HASH_TREATMENT_SUPPORT_SYSTEM[self.treatment_support_system]
   end
 
-  # smoking_female/maleの区分値(喫煙有無)
-  HASH_SMOKING = {
-    1 => "もとから非喫煙者",
-    2 => "治療以前に禁煙済み",
-    3 => "治療のために禁煙した",
-    4 => "禁煙しなかった",
-    99 => "その他"
-  }
-
-  def str_smoking_male
-    return HASH_SMOKING[self.smoking_male]
-  end
-
-  def str_smoking_female
-    return HASH_SMOKING[self.smoking_female]
-  end
-
-
   TIMES = "回"
   OR_MORE = "以上"
   OR_LESS = "以下"

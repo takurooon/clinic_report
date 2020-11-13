@@ -15,8 +15,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :age_of_partner_at_end_of_treatment
       t.integer :treatment_period
       t.integer :amh
-      t.integer :smoking_male
-      t.integer :smoking_female
       t.integer :types_of_eggs_and_sperm
       t.integer :types_of_eggs_and_sperm_status
       t.text :description_of_eggs_and_sperm_used

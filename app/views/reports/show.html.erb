@@ -2429,21 +2429,6 @@
                       <% end %>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="result-left-column small text-center">喫煙</td>
-                    <td class="pl-3">
-                      <% if @report.smoking_female.present? %>
-                        <span class="result-text"><span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i>&nbsp;&nbsp;</span>&nbsp;<%= @report.str_smoking_female %></span><br>
-                      <% else %>
-                        <i class="fas fa-female fa-2x female-icon"></i><span class="text-muted small">&nbsp;&nbsp;未回答</span><br>
-                      <% end %>
-                      <% if @report.smoking_male.present? %>
-                        <span class="result-text"><span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i>&nbsp;&nbsp;</span>&nbsp;<%= @report.str_smoking_male %></span>
-                      <% else %>
-                        <i class="fas fa-male fa-2x male-icon"></i><span class="text-muted small">&nbsp;&nbsp;未回答</span>
-                      <% end %>
-                    </td>
-                  </tr>
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">仕事</span></h5>
                 <p class="small mb-0 pb-0"><span class="small text-muted">※&nbsp;<%= @report.clinic.name %>&nbsp;での治療当時の情報</span></p>

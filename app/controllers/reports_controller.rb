@@ -434,8 +434,6 @@ class ReportsController < ApplicationController
         :age_of_partner_at_end_of_treatment,
         :treatment_period,
         :amh,
-        :smoking_male,
-        :smoking_female,
         :types_of_eggs_and_sperm,
         :types_of_eggs_and_sperm_status,
         :description_of_eggs_and_sperm_used,
