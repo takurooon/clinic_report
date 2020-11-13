@@ -121,8 +121,12 @@
               <tr>
                 <td><%= strip_tags(user.name).gsub(/[\n]/,"").strip.truncate(10) %></td>
                 <td>
-                  <% birthday = (user.birthday.to_s).delete("^0-9") %>
-                  <%= (Date.today.strftime('%Y%m%d').to_i - birthday[0..7].to_i) / 10000 %>歳
+                  <% if user.birthday.blank? %>
+                    <span class="text-danger small">未設定</span>
+                  <% else %>
+                    <% birthday = (user.birthday.to_s).delete("^0-9") %>
+                    <%= (Date.today.strftime('%Y%m%d').to_i - birthday[0..7].to_i) / 10000 %>歳
+                  <% end %>
                 </td>
                 <td>
                   <% if user.self_introduction.present? %>
