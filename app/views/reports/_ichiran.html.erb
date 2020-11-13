@@ -1322,16 +1322,6 @@
         </tr>
       <% end %>
       <tr>
-        <td class="result-left-column small text-center">培養日数</td>
-        <td class="pl-3">
-          <% if @report.embryo_culture_days.present? %>
-            <span class="result-text"><%= @report.str_embryo_culture_days %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
         <td class="result-left-column small text-center">胚のステージ</td>
         <td class="pl-3">
           <% if @report.embryo_stage.present? %>

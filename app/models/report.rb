@@ -2413,26 +2413,6 @@ class Report < ApplicationRecord
     return HASH_PREGNANCY_DATE[self.pregnancy_date]
   end
 
-  # embryo_culture_daysの区分値(妊娠に至った胚の培養日数)
-  HASH_EMBRYO_CULTURE_DAYS = {
-    1 => "1日目",
-    2 => "2日目",
-    3 => "3日目",
-    4 => "4日目",
-    5 => "5日目",
-    6 => "6日目",
-    7 => "7日目",
-    8 => "8日目",
-    9 => "9日目",
-    10 => "10日目",
-    99 => "それ以上",
-    100 => "不明",
-  }
-
-  def str_embryo_culture_days
-    return HASH_EMBRYO_CULTURE_DAYS[self.embryo_culture_days]
-  end
-
   # free_wifiの区分値(CLにWiFiがあるかどうか)
   HASH_FREE_WIFI = {
     1 => "フリーWiFi なし",

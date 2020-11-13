@@ -458,7 +458,6 @@ class ReportsController < ApplicationController
         :number_of_transferable_embryos,
         :number_of_frozen_eggs,
         :egg_maturity,
-        :embryo_culture_days,
         :embryo_stage,
         :early_embryo_grade,
         :early_embryo_grade_supplementary_explanation,
