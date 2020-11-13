@@ -201,23 +201,11 @@ class SearchesController < ApplicationController
     report_m_examinations = ReportClMaleInspection.group(:cl_male_inspection_id).where.not(cl_male_inspection_id: nil).distinct.count
     cl_male_examination = report_m_examinations.keys
     @cl_male_examinations = ClMaleInspection.where(id: cl_male_examination).name_yomigana
-
-    report_f_surgeries = ReportFSurgery.group(:f_surgery_id).where.not(f_surgery_id: nil).distinct.count
-    f_surgery = report_f_surgeries.keys
-    @f_surgeries = FSurgery.where(id: f_surgery).name_yomigana
-
-    report_m_surgery = ReportMSurgery.group(:m_surgery_id).where.not(m_surgery_id: nil).distinct.count
-    m_surgery = report_m_surgery.keys
-    @m_surgeries = MSurgery.where(id: m_surgery).name_yomigana
   end
 
   def tag
     if params[:gender] === "女性"
-      if params[:tags] === "手術"
-        @tag = FSurgery.find_by(name: params[:value])
-        @reports = @tag.reports.order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      elsif params[:tags] === "基本検査"
+      if params[:tags] === "基本検査"
         @tag = ClFemaleInspection.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
         @clinic_all_reports = @reports.count
@@ -231,11 +219,7 @@ class SearchesController < ApplicationController
         @clinic_all_reports = @reports.count
       end
     else
-      if params[:tags] === "手術"
-        @tag = MSurgery.find_by(name: params[:value])
-        @reports = @tag.reports.order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      else params[:tags] === "基本検査"
+      if params[:tags] === "基本検査"
         @tag = ClMaleInspection.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
         @clinic_all_reports = @reports.count

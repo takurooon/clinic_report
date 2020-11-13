@@ -2208,46 +2208,6 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">手術歴<br><span class="text-muted small">(女性)</span></td>
-        <td class="pl-3">
-          <% if @report.f_surgeries.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での手術に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの手術歴。</span></p>
-            </div>
-            <% @report.f_surgeries.each do |f_surgery| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= f_surgery.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-            <span class="text-muted small">なし</span>
-          <% end %><br>
-          <% if @report.f_surgery_memo.present? %>
-            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_surgery_memo.split("\n"),tag(:br)))).html_safe %></span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center">手術歴<br><span class="text-muted small">(男性)</span></td>
-        <td class="pl-3">
-          <% if @report.m_surgeries.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での手術に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの手術歴。</span></p>
-            </div>
-            <% @report.m_surgeries.each do |m_surgery| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= m_surgery.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-              <span class="text-muted small">なし</span>
-          <% end %><br>
-          <% if @report.m_surgery_memo.present? %>
-            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_surgery_memo.split("\n"),tag(:br)))).html_safe %></span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
         <td class="result-left-column small text-center">全採卵回数</td>
         <td class="pl-3">
           <% if @report.user.all_number_of_sairan.present? %>

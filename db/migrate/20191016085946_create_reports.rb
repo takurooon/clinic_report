@@ -14,8 +14,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :treatment_end_age
       t.integer :age_of_partner_at_end_of_treatment
       t.integer :treatment_period
-      t.text :f_surgery_memo
-      t.text :m_surgery_memo
       t.integer :amh
       t.integer :smoking_male
       t.integer :smoking_female

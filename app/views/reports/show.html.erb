@@ -2695,44 +2695,6 @@
                   </tr>
                 </table>
                 <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での実施に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までに実施した回数。</span></p>
-                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">手術歴</span></h5>
-                <table class="table p-0 mb-0">
-                  <tr>
-                    <td class="result-left-column small text-center" style="width:30%">手術歴<br><span class="text-muted small">(女性)</span></td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.f_surgeries.present? %>
-                        <% @report.f_surgeries.each do |f_surgery| %>
-                          <ul class="list-unstyled mb-0">
-                            <li class="result-text small">･<%= f_surgery.name %></li>
-                          </ul>
-                        <% end %>
-                      <% else %>
-                        <span class="text-muted small">なし</span>
-                      <% end %><br>
-                      <% if @report.f_surgery_memo.present? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_surgery_memo.split("\n"),tag(:br)))).html_safe %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="result-left-column small text-center" style="width:30%">手術歴<br><span class="text-muted small">(男性)</span></td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.m_surgeries.present? %>
-                        <% @report.m_surgeries.each do |m_surgery| %>
-                          <ul class="list-unstyled mb-0">
-                            <li class="result-text small">･<%= m_surgery.name %></li>
-                          </ul>
-                        <% end %>
-                      <% else %>
-                          <span class="text-muted small">なし</span>
-                      <% end %><br>
-                      <% if @report.m_surgery_memo.present? %>
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_surgery_memo.split("\n"),tag(:br)))).html_safe %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                </table>
-                <p class="small text-muted" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での手術に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの手術歴。</span></p>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">全採卵回数</span></h5>
                 <table class="table p-0 mb-0">
                   <tr>
