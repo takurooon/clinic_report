@@ -118,8 +118,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :reason_for_transfer
       t.integer :how_long_to_continue_treatment
       t.text :how_long_to_continue_treatment_memo
-      t.integer :pregnancy_date
-      t.text :pregnancy_date_memo
       t.text :treatment_policy
       t.text :cl_female_inspection_memo
       t.text :cl_male_inspection_memo

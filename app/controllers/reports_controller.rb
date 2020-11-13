@@ -538,8 +538,6 @@ class ReportsController < ApplicationController
         :how_long_to_continue_treatment_memo,
         :cl_female_inspection_memo,
         :cl_male_inspection_memo,
-        :pregnancy_date,
-        :pregnancy_date_memo,
         :treatment_policy,
         :cost_burden_memo,
         :number_of_visits_before_sairan,

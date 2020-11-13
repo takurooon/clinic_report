@@ -977,14 +977,6 @@
                         </div>
 
                         <div class="form-group mt-3">
-                          <p class="question">移植後の初回判定日</p>
-                          <%= f.select :pregnancy_date, Report::HASH_PREGNANCY_DATE.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                          <small class="text-muted"><span class="small">判定日は移植後何日目？</span></small>
-                          <p class="sub-question">判定日の補足説明</p>
-                          <%= f.text_area :pregnancy_date_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例文入れる" %>
-                        </div>
-
-                        <div class="form-group mt-3">
                         <p class="question">貯卵数
                           <%= f.select :number_of_eggs_stored, Report::HASH_NUMBER_OF_EGGS_STORED.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">に残っている凍結胚数</span></small>
