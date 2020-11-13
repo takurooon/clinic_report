@@ -373,20 +373,6 @@ function continue_treatment(how_long_to_continue_treatment) {
   }
 }
 
-// オンライン診療
-$(function() {
-  online($("#report_online_consultation option:selected").val());
-  $("#report_online_consultation").change(function() {
-    online($(this).val());
-  });
-})
-function online(online_consultation) {
-  if (online_consultation > "1") {
-    $(".online_consultation_details").show();
-  } else {
-    $(".online_consultation_details").hide();
-  }
-}
 
 // 胚のステージへの移植方法表示(凍結or新鮮胚移植)
 $(function() {

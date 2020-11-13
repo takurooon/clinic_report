@@ -426,22 +426,6 @@
                       <small class="text-muted"><span class="small">自宅&nbsp;⇄&nbsp;<span class="select-clinic-name"></span>&nbsp;にかかる移動時間</span></small>
                     </div>
                   </div>
-                  <div class="spacer">
-                  </div>
-                  <div class="box26">
-                    <span class="box-title">予約方法･オンライン診療</span>
-                    <div class="form-group mt-3">
-                      <p class="question">オンライン診療の有無</p>
-                      <%= f.select :online_consultation, Report::HASH_ONLINE_CONSULTATION.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>のオンライン診療の有無</span></small>
-                      <p class="sub-question">オンライン診療の詳しい説明</p>
-                      <%= f.text_area :online_consultation_details, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "内容のほか、感想など(メリットデメリット)" %>
-                    </div>
-                  </div>
-                  <div class="mt-3 d-flex justify-content-between">
-                    <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
-                    <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
-                  </div>
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_2">

@@ -1358,19 +1358,6 @@ class Report < ApplicationRecord
     return HASH_CREDIT_CARD_VALIDITY[self.credit_card_validity]
   end
 
-  # online_consultationの区分値(オンライン診療の有無)
-  HASH_ONLINE_CONSULTATION = {
-    1 => "なし",
-    2 => "あり(初診は除く)",
-    3 => "あり(初診もOK)",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_online_consultation
-    return HASH_ONLINE_CONSULTATION[self.online_consultation]
-  end
-
   # average_waiting_timeの区分値(クリニックでの平均待ち時間)
   HASH_AVERAGE_WAITING_TIME = {
     1 => "30分前後",
