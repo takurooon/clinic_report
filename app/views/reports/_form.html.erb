@@ -431,14 +431,6 @@
                   <div class="box26">
                     <span class="box-title">予約方法･オンライン診療</span>
                     <div class="form-group mt-3">
-                      <p class="question">診察の予約方法</p>
-                      <%= f.select :reservation_method, Report::HASH_RESERVATION_METHOD.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                      <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>の予約方法</span></small>
-                      <p class="sub-question">予約方法の補足説明</p>
-                      <%= f.text_area :reservation_method_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "基本Webやアプリで予約できますが、初診だけは電話予約必須でした。" %>
-                    </div>
-
-                    <div class="form-group mt-3">
                       <p class="question">オンライン診療の有無</p>
                       <%= f.select :online_consultation, Report::HASH_ONLINE_CONSULTATION.invert, { prompt: "選択" }, { class: "form-control" }  %>
                       <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>のオンライン診療の有無</span></small>

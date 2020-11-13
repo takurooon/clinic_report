@@ -1358,24 +1358,6 @@ class Report < ApplicationRecord
     return HASH_CREDIT_CARD_VALIDITY[self.credit_card_validity]
   end
 
-  # reservation_methodの区分値(web予約の有無)
-  HASH_RESERVATION_METHOD = {
-    1 => "電話予約のみ",
-    2 => "web予約のみ",
-    3 => "アプリ予約のみ",
-    4 => "電話･webで予約",
-    5 => "電話･アプリで予約",
-    6 => "web･アプリで予約",
-    7 => "電話･web･アプリで予約",
-    8 => "予約不可",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_reservation_method
-    return HASH_RESERVATION_METHOD[self.reservation_method]
-  end
-
   # online_consultationの区分値(オンライン診療の有無)
   HASH_ONLINE_CONSULTATION = {
     1 => "なし",

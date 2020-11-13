@@ -512,8 +512,6 @@ class ReportsController < ApplicationController
         :creditcards_can_be_used_from_more_than,
         :average_waiting_time,
         :average_waiting_time2,
-        :reservation_method,
-        :reservation_method_memo,
         :online_consultation,
         :online_consultation_details,
         :period_of_time_spent_traveling,
