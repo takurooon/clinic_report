@@ -440,59 +440,6 @@
                         <span class="small">治療中における最新の値を選択して下さい。</span>
                       </small>
                     </div>
-
-                    <div class="form-group mt-3">
-                      <p class="question mb-3">【女性】<span class="select-clinic-name"></span>で受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:cl_female_inspection_ids, ClFemaleInspection.all.name_yomigana, :id, :name) do |b| %>
-                        <div class="form-check checkbox mb-0">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                      <p class="sub-question">【女性】<span class="select-clinic-name"></span>で受けた基本検査の補足説明</p>
-                      <%= f.text_area :cl_female_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
-                    </div>
-                    <div class="form-group mt-3">
-                      <p class="question mb-3">【女性】<span class="select-clinic-name"></span>以外でこれまでに受けた&nbsp;基本検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:inspection_ids, Inspection.all.name_yomigana, :id, :name) do |b| %>
-                        <div class="form-check checkbox">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                    </div>
-
-                    <div class="spacer">
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <p class="question mb-3">【男性】<span class="select-clinic-name"></span>で受けた&nbsp;検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:cl_male_inspection_ids, ClMaleInspection.all.name_yomigana, :id, :name) do |b| %>
-                        <div class="form-check checkbox mb-0">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                      <p class="sub-question">【男性】<span class="select-clinic-name"></span>で受けた基本検査の補足説明</p>
-                      <%= f.text_area :cl_male_inspection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "検査結果などの補足情報があれば入力して下さい" %>
-                    </div>
-                    <div class="form-group mt-3">
-                      <p class="question mb-3">【男性】<span class="select-clinic-name"></span>以外でこれまでに受けたことのある&nbsp;検査&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:male_inspection_ids, MaleInspection.all.name_yomigana, :id, :name) do |b| %>
-                        <div class="form-check checkbox">
-                          <%= b.label class: "form-check-label" do %>
-                            <%= b.check_box class: "form-check-input" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                    </div>
                   </div>
                   <div class="spacer">
                   </div>
@@ -564,12 +511,6 @@
                           <p class="question">採卵個数</p>
                           <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の採卵個数</span></small>
-                        </div>
-
-                        <div class="form-group mt-3">
-                          <p class="question">卵子(受精前)の成熟度</p>
-                          <%= f.select :egg_maturity, Report::HASH_EGG_MATURITY.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                          <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った卵子の成熟度</span></small>
                         </div>
 
                         <div class="form-group mt-3">

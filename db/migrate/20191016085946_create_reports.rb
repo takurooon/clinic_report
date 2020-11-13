@@ -29,7 +29,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :selection_of_anesthesia_type
       t.integer :total_number_of_sairan
       t.integer :number_of_eggs_collected
-      t.integer :egg_maturity
       t.integer :ova_with_ivm
       t.integer :types_of_fertilization_methods
       t.integer :details_of_icsi
@@ -95,8 +94,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :how_long_to_continue_treatment
       t.text :how_long_to_continue_treatment_memo
       t.text :treatment_policy
-      t.text :cl_female_inspection_memo
-      t.text :cl_male_inspection_memo
       t.integer :how_long_to_continue_treatment2
       t.text :cost_burden_memo
       t.integer :number_of_visits_before_sairan

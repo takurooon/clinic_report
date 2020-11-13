@@ -642,19 +642,6 @@ class Report < ApplicationRecord
     return HASH_TRANSPLANT_METHOD[self.transplant_method]
   end
 
-  # egg_maturityの区分値(妊娠に至った卵子の成熟度)
-  HASH_EGG_MATURITY =  {
-    1 => "成熟卵(M2)",
-    2 => "未成熟卵(M1)",
-    3 => "未成熟卵(GV)",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_egg_maturity
-    return HASH_EGG_MATURITY[self.egg_maturity]
-  end
-
   # embryo_stageの区分値(妊娠に至った胚のステージ)
   HASH_EMBRYO_STAGE = {
     1 => "初期胚",

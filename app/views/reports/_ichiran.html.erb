@@ -204,62 +204,6 @@
           <% end %>
         </td>
       </tr>
-      <tr>
-        <td class="result-left-column small text-center">基本検査</td>
-        <td class="pl-3">
-          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span><br>
-          <% if @report.cl_female_inspections.present? %>
-            <% @report.cl_female_inspections.each do |cl_female_inspection| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">&nbsp;&nbsp;･<%= cl_female_inspection.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
-          <% end %><br>
-          <% if @report.cl_female_inspection_memo.present? %>
-            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cl_female_inspection_memo.split("\n"),tag(:br)))).html_safe %></span><br><br>
-          <% end %><br>
-          <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span><br>
-          <% if @report.cl_male_inspections.present? %>
-            <% @report.cl_male_inspections.each do |cl_male_inspection| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">&nbsp;&nbsp;･<%= cl_male_inspection.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
-          <% end %><br>
-          <% if @report.cl_male_inspection_memo.present? %>
-            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.cl_male_inspection_memo.split("\n"),tag(:br)))).html_safe %></span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center text-center">基本検査<br><small class="small text-muted">【<%= @report.clinic.name %><span class="font-weight-bold">&nbsp;<u>以外で受けた</u>&nbsp;</span>これまでの基本検査】</small></td>
-        <td class="pl-3">
-          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span><br>
-          <% if @report.inspections.present? %>
-            <% @report.inspections.each do |inspection| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">&nbsp;&nbsp;･<%= inspection.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
-          <% end %><br><br>
-          <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span><br>
-          <% if @report.male_inspections.present? %>
-            <% @report.male_inspections.each do |male_inspection| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">&nbsp;&nbsp;･<%= male_inspection.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-            <span class="text-muted small">&nbsp;&nbsp;未検査&nbsp;<span class="small">(未回答)</span></span>
-          <% end %>
-        </td>
-      </tr>
       <% if @report.special_inspections.present? %>
         <% if @special_inspection_era.present? %>
           <tr>
@@ -1109,18 +1053,8 @@
     <% end %>
     <table class="table p-0 mb-2">
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">成熟度</td>
+        <td class="result-left-column small text-center ichirantable-left">受精個数</td>
         <td class="pl-3 ichirantable-right">
-          <% if @report.egg_maturity.present? %>
-            <span class="small text-muted"><span class="small">(妊娠に至った卵子の成熟度)</span></span><br><span class="result-text"><%= @report.str_egg_maturity %></span>
-          <% else %>
-            <span class="result-text"><span class="text-muted small">未回答</span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center">受精個数</td>
-        <td class="pl-3">
           <% if @report.number_of_fertilized_eggs.present? %>
             <span class="result-text"><%= @report.str_number_of_fertilized_eggs %><span class="small text-muted">（&nbsp;<%= @report.str_number_of_eggs_collected %>採卵）</span></span>
           <% else %>
