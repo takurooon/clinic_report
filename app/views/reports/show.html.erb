@@ -3527,16 +3527,6 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small text-center">移植後 卒業までの通院回数</td>
-                    <td class="pl-3">
-                      <% if @report.number_of_visits_before_pregnancy_date.present? %>
-                        <span class="result-text"><%= @report.str_number_of_visits_before_pregnancy_date %></span>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
                     <td class="result-left-column small text-center">卵巣刺激/排卵誘発 注射の選択<span class="small text-muted">(自己or院内注射)</span></td>
                     <td class="pl-3">
                       <% if @report.self_injection.present? %>

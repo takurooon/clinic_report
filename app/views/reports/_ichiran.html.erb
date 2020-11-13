@@ -2865,16 +2865,6 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">移植後 卒業までの通院回数</td>
-        <td class="pl-3">
-          <% if @report.number_of_visits_before_pregnancy_date.present? %>
-            <span class="result-text"><%= @report.str_number_of_visits_before_pregnancy_date %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
         <td class="result-left-column small text-center">採卵時間帯の選択</td>
         <td class="pl-3">
           <% if @report.choice_of_sairantime.present? %>

@@ -2214,10 +2214,6 @@ class Report < ApplicationRecord
   def str_number_of_visits_before_ishoku
     return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.number_of_visits_before_ishoku]
   end
-  def str_number_of_visits_before_pregnancy_date
-    return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.number_of_visits_before_pregnancy_date]
-  end
-
 
 
   # total_number_of_eggs_transplantedの区分値(全移植個数/CL単位)

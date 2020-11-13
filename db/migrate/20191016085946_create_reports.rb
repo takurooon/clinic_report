@@ -128,11 +128,9 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :how_long_to_continue_treatment2
       t.integer :followup_investigation
       t.text :followup_investigation_memo
-      t.text :treatment_schedule_memo
       t.text :cost_burden_memo
       t.integer :number_of_visits_before_sairan
       t.integer :number_of_visits_before_ishoku
-      t.integer :number_of_visits_before_pregnancy_date
       t.integer :self_injection
       t.integer :number_of_injections
       t.text :injection_memo
