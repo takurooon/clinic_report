@@ -589,49 +589,6 @@ class Report < ApplicationRecord
     return HASH_TYPES_OF_EGGS_AND_SPERM_STATUS[self.types_of_eggs_and_sperm_status]
   end
 
-  # self_injectionの区分値(自己注射の可否)
-  HASH_SELF_INJECTION = {
-    1 => "選択可(自己注射or院内注射)",
-    2 => "選択不可(自己注射のみ)",
-    3 => "選択不可(院内注射のみ)",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_self_injection
-    return HASH_SELF_INJECTION[self.self_injection]
-  end
-
-  # number_of_injectionsの区分値(注射の回数)
-  HASH_NUMBER_OF_INJECTIONS = {
-    100 => "不明",
-    1 => "1回",
-    2 => "2回",
-    3 => "3回",
-    4 => "4回",
-    5 => "5回",
-    6 => "6回",
-    7 => "7回",
-    8 => "8回",
-    9 => "9回",
-    10 => "10回",
-    11 => "11回",
-    12 => "12回",
-    13 => "13回",
-    14 => "14回",
-    15 => "15回",
-    16 => "16回",
-    17 => "17回",
-    18 => "18回",
-    19 => "19回",
-    20 => "20回",
-    99 => "それ以上",
-  }
-
-  def str_number_of_injections
-    return HASH_NUMBER_OF_INJECTIONS[self.number_of_injections]
-  end
-
   # use_of_anesthesiaの区分値(麻酔の種類)
   HASH_USE_OF_ANESTHESIA = {
     1 => "無麻酔",

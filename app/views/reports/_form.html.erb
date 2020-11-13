@@ -648,24 +648,6 @@
                         </div>
 
                         <div class="form-group mt-3">
-                          <p class="question"><small class="small text-muted">(卵巣刺激/排卵誘発)</small>注射方法の選択</p>
-                          <%= f.select :self_injection, Report::HASH_SELF_INJECTION.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                          <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期では院内注射or自己注射の選択ができたかどうか</span></small>
-                        </div>
-
-                        <div class="form-group mt-3">
-                          <p class="question"><small class="small text-muted">(卵巣刺激/排卵誘発)</small>注射の回数</p>
-                          <%= f.select :number_of_injections, Report::HASH_NUMBER_OF_INJECTIONS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                          <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期での注射実施回数(院内注射/自己注射合計)</span></small>
-                        </div>
-
-                        <div class="form-group mt-3">
-                          <p class="question">自己注射/院内注射の補足説明</p>
-                          <%= f.text_area :injection_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例) 院内注射を選択した場合には、◯◯円/回が手技料としてかかりました。/ 院内か自己注射かは選べましたがそれによって注射の中身(薬剤)が変わりました" %>
-                          <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での卵巣刺激/排卵誘発の注射について補足説明あればお書き下さい</span></small>
-                        </div>
-
-                        <div class="form-group mt-3">
                           <p class="question">採卵時の麻酔の有無と種類</p>
                           <%= f.select :use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の麻酔使用の有無</span></small>
