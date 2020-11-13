@@ -1185,46 +1185,6 @@
                 <h5 class="child-tab-title pt-3"><span class="marker-underline">サプリ･その他治療など</span></h5>
                 <div class="scroll-box">
                   <div class="box26">
-                    <span class="box-title">サプリ</span>
-                    <div class="form-group first-question-inbox">
-                      <p class="question mb-3">女性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:supplement_ids, Supplement.all.name_yomigana, :id, :name) do |b| %>
-                      <div class="form-check checkbox">
-                        <%= b.label class: "form-check-label" do %>
-                          <%= b.check_box class: "form-check-input" %>
-                          <%= b.text %>
-                        <% end %>
-                      </div>
-                      <% end %>
-                    </div>
-                    <div class="form-group mt-3">
-                      <p class="question">治療時のサプリ平均購入額(月)</p>
-                      <%= f.select :f_supplement_cost, Report::HASH_SUPPLEMENT_COST.invert, { prompt: "選択" }, { class: "form-control" } %>
-                      <p class="sub-question">サプリの補足情報</p>
-                      <%= f.text_area :f_supplement_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)最初はネットで調べて買っていましたが、途中からクリニックで販売していた〇〇サプリに切り替えました。お値段は〇〇円位でした。" %>
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <p class="question mb-3">男性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:m_supplement_ids, MSupplement.all.name_yomigana, :id, :name) do |b| %>
-                      <div class="form-check checkbox">
-                        <%= b.label class: "form-check-label" do %>
-                          <%= b.check_box class: "form-check-input" %>
-                          <%= b.text %>
-                        <% end %>
-                      </div>
-                      <% end %>
-                    </div>
-                    <div class="form-group mt-3">
-                      <p class="question">治療時のサプリ平均購入額(月)</p>
-                      <%= f.select :m_supplement_cost, Report::HASH_SUPPLEMENT_COST.invert, { prompt: "選択" }, { class: "form-control" } %>
-                      <p class="sub-question">サプリの補足情報</p>
-                      <%= f.text_area :m_supplement_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)最初はネットで調べて買っていましたが、途中からクリニックで販売していた〇〇サプリに切り替えました。お値段は〇〇円位でした。" %>
-                    </div>
-                  </div>
-                  <div class="spacer">
-                  </div>
-                  <div class="box26">
                     <span class="box-title">治療以外に行ったこと</span>
                     <div class="form-group mt-0">
                       <p class="question mb-3">女性&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>

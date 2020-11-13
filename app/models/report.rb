@@ -324,14 +324,6 @@ class Report < ApplicationRecord
   has_many :report_m_other_efforts, dependent: :destroy
   has_many :m_other_efforts, through: :report_m_other_efforts
 
-  # サプリ(女性)
-  has_many :report_supplements, dependent: :destroy
-  has_many :supplements, through: :report_supplements
-
-  # サプリ(男性)
-  has_many :report_m_supplements, dependent: :destroy
-  has_many :m_supplements, through: :report_m_supplements
-
   # CL選定理由
   has_many :report_cl_selections, dependent: :destroy
   has_many :cl_selections, through: :report_cl_selections
@@ -761,45 +753,6 @@ class Report < ApplicationRecord
 
   def str_m_other_effort_cost
     return HASH_OTHER_EFFORT_COST[self.m_other_effort_cost]
-  end
-
-  # f_supplement_cost m_supplement_costの区分値(サプリ月間平均購入額)
-  HASH_SUPPLEMENT_COST = {
-    100 => "不明",
-    1 => "1,000円未満",
-    2 => "2,000円未満",
-    3 => "3,000円未満",
-    4 => "4,000円未満",
-    5 => "5,000円未満",
-    6 => "6,000円未満",
-    7 => "7,000円未満",
-    8 => "8,000円未満",
-    9 => "9,000円未満",
-    10 => "1万円未満",
-    11 => "1.5万円未満",
-    12 => "2万円未満",
-    13 => "3万円未満",
-    14 => "4万円未満",
-    15 => "5万円未満",
-    16 => "6万円未満",
-    17 => "7万円未満",
-    18 => "8万円未満",
-    19 => "9万円未満",
-    20 => "10万円未満",
-    21 => "10万円未満",
-    22 => "15万円未満",
-    23 => "20万円未満",
-    24 => "25万円未満",
-    25 => "30万円未満",
-    99 => "30万円以上",
-  }
-
-  def str_f_supplement_cost
-    return HASH_SUPPLEMENT_COST[self.f_supplement_cost]
-  end
-
-  def str_m_supplement_cost
-    return HASH_SUPPLEMENT_COST[self.m_supplement_cost]
   end
 
   # sairan_costの区分値(CLでの1回あたりの採卵費用)

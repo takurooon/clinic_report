@@ -2411,54 +2411,6 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">サプリ</td>
-        <td class="pl-3 ichirantable-right">
-          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span><br>
-          <% if @report.supplements.present? %>
-            <% @report.supplements.each do |supplement| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">&nbsp;&nbsp;･<%= supplement.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-              <span class="text-muted small">なし</span>
-          <% end %><br>
-          <% if @report.f_supplement_memo.present? %>
-            <p class="result-text small mb-5"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.f_supplement_memo.split("\n"),tag(:br)))).html_safe %></p>
-          <% end %>
-          <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span><br>
-          <% if @report.m_supplements.present? %>
-            <% @report.m_supplements.each do |m_supplement| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">&nbsp;&nbsp;･<%= m_supplement.name %></li>
-              </ul>
-            <% end %>
-          <% else %>
-              <span class="text-muted small">なし</span>
-          <% end %><br>
-          <% if @report.m_supplement_memo.present? %>
-            <p class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.m_supplement_memo.split("\n"),tag(:br)))).html_safe %></p>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center">サプリ等月額平均購入額</td>
-        <td class="pl-3">
-          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
-          <% if @report.f_supplement_cost.present? %>
-            <span class="result-text"><%= @report.str_f_supplement_cost %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %><br>
-            <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
-          <% if @report.m_supplement_cost.present? %>
-            <span class="result-text"><%= @report.str_m_supplement_cost %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
         <td class="result-left-column small text-center">治療以外に行ったこと</td>
         <td class="pl-3">
           <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>

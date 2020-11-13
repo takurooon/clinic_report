@@ -56,10 +56,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :m_other_effort_cost
       t.text :f_other_effort_memo
       t.text :m_other_effort_memo
-      t.integer :f_supplement_cost
-      t.integer :m_supplement_cost
-      t.text :f_supplement_memo
-      t.text :m_supplement_memo
       t.integer :sairan_cost
       t.text :sairan_cost_explanation
       t.integer :ishoku_cost
