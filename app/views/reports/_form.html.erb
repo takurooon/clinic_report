@@ -276,11 +276,6 @@
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question">職場での不妊治療支援制度の有無</p>
-                    <%= f.select :treatment_support_system, Report::HASH_TREATMENT_SUPPORT_SYSTEM.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                  </div>
-
-                  <div class="form-group mt-3">
                     <p class="question">休職や退職の有無</p>
                     <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, { prompt: "選択" }, { class: "form-control" }  %>
                   </div>

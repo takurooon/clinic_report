@@ -16,7 +16,7 @@
           <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">不育症</a></li>
           <li><a href="#tab_2" data-toggle="tab">検査</a></li>
         </ul>
-        <section class="parent-tab-content" id="tab_1">
+        <section class="parent-tab-content active" id="tab_1">
           <div class="child-tab">
             <ul class="nav nav-tabs child-menu">
               <li><a href="#tab_1_1" class="active" data-toggle="tab">女性</a></li>
@@ -32,19 +32,10 @@
           <div class="child-tab">
             <ul class="nav nav-tabs child-menu">
               <li><a href="#tab_2_1" class="active" data-toggle="tab">女性</a></li>
-              <li><a href="#tab_2_2" data-toggle="tab">男性</a></li>
             </ul>
             <section class="child-tab-content active" id="tab_2_1">
               <% @special_examinations.each do |special_examination| %>
                 <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to special_examination.str_special_inspection_name(special_examination.name), "/カテゴリ/特殊検査/女性/#{special_examination.name}" %></span>
-              <% end %>
-              <% @cl_female_examinations.each do |cl_female_examination| %>
-                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to cl_female_examination.name, "/カテゴリ/基本検査/女性/#{cl_female_examination.name}" %></span>
-              <% end %>
-            </section>
-            <section class="child-tab-content" id="tab_2_2">
-              <% @cl_male_examinations.each do |cl_male_examination| %>
-                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to cl_male_examination.name, "/カテゴリ/基本検査/男性/#{cl_male_examination.name}" %></span>
               <% end %>
             </section>
           </div>

@@ -1131,20 +1131,6 @@ class Report < ApplicationRecord
     return HASH_SUSPENDED_OR_RETIREMENT_JOB[self.suspended_or_retirement_job]
   end
 
-  # treatment_support_systemの区分値(社内の不妊治療のサポート制度有無)
-  HASH_TREATMENT_SUPPORT_SYSTEM = {
-    1 => "有り",
-    2 => "無し",
-    3 => "有るが機能していない(形骸化)",
-    4 => "制度導入予定",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_treatment_support_system
-    return HASH_TREATMENT_SUPPORT_SYSTEM[self.treatment_support_system]
-  end
-
   TIMES = "回"
   OR_MORE = "以上"
   OR_LESS = "以下"

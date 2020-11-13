@@ -477,7 +477,6 @@ class ReportsController < ApplicationController
         :period_of_time_spent_traveling,
         :work_style,
         :work_style_status,
-        :treatment_support_system,
         :suspended_or_retirement_job,
         :household_net_income,
         :household_net_income_status,

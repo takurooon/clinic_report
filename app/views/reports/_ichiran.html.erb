@@ -1921,16 +1921,6 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">社内支援制度の有無</td>
-        <td class="pl-3">
-          <% if @report.treatment_support_system.present? %>
-            <span class="result-text"><%= @report.str_treatment_support_system %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
         <td class="result-left-column small text-center">治療による働き方の変化</td>
         <td class="pl-3">
           <% if @report.suspended_or_retirement_job.present? %>

@@ -192,35 +192,17 @@ class SearchesController < ApplicationController
     fuiku_inspection = report_fuiku_inspections.keys
     @fuiku_inspections = FuikuInspection.where(id: fuiku_inspection).name_yomigana
 
-    report_f_examinations = ReportClFemaleInspection.group(:cl_female_inspection_id).where.not(cl_female_inspection_id: nil).distinct.count
-    cl_female_examination = report_f_examinations.keys
-    @cl_female_examinations = ClFemaleInspection.where(id: cl_female_examination).name_yomigana
-
     @special_examinations = SpecialInspection.where.not(report_id: nil).distinct
-
-    report_m_examinations = ReportClMaleInspection.group(:cl_male_inspection_id).where.not(cl_male_inspection_id: nil).distinct.count
-    cl_male_examination = report_m_examinations.keys
-    @cl_male_examinations = ClMaleInspection.where(id: cl_male_examination).name_yomigana
   end
 
   def tag
     if params[:gender] === "女性"
-      if params[:tags] === "基本検査"
-        @tag = ClFemaleInspection.find_by(name: params[:value])
-        @reports = @tag.reports.order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      elsif params[:tags] === "特殊検査"
+      if params[:tags] === "特殊検査"
         @tag = SpecialInspection.find_by(name: params[:value])
         @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag.name })
         @clinic_all_reports = @reports.count
       else params[:tags] === "不育症"
         @tag = FuikuInspection.find_by(name: params[:value])
-        @reports = @tag.reports.order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      end
-    else
-      if params[:tags] === "基本検査"
-        @tag = ClMaleInspection.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
         @clinic_all_reports = @reports.count
       end
