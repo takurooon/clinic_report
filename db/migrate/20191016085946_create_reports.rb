@@ -18,13 +18,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :m_surgery_memo
       t.text :f_disease_memo
       t.text :m_disease_memo
-      t.float :semen_volume
-      t.integer :semen_concentration
-      t.float :sperm_advance_rate
-      t.float :sperm_motility
-      t.float :probability_of_normal_morphology_of_sperm
-      t.integer :total_amount_of_sperm
-      t.text :sperm_description
       t.integer :amh
       t.integer :smoking_male
       t.integer :smoking_female

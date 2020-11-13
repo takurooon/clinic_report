@@ -496,65 +496,6 @@
                   </div>
                   <div class="spacer">
                   </div>
-                  <div class="box26 pt-5">
-                    <span class="box-title"><span class="select-clinic-name"></span>で受けた&nbsp;最新の精液検査結果</span>
-                    <table class="table mt-4">
-                      <tr>
-                        <td class="small text-muted text-center px-0" style="width:30%">
-                          精液量
-                        </td>
-                        <td style="width:70%">
-                          <%= f.number_field :semen_volume, { step: "0.1", class: "form-control", placeholder: "半角数字入力 /ml" } %>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="small text-muted text-center px-0">
-                          精子総数
-                        </td>
-                        <td>
-                          <%= f.number_field :total_amount_of_sperm, { class: "form-control commas", placeholder: "半角数字入力"} %>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="small text-muted text-center px-0">
-                          精子濃度
-                        </td>
-                        <td>
-                          <%= f.number_field :semen_concentration, { class: "form-control commas", placeholder: "半角数字入力 /ml" } %>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="small text-muted text-center px-0">
-                          運動率
-                        </td>
-                        <td>
-                          <%= f.number_field :sperm_motility, { step: "0.1", class: "form-control", placeholder: "半角数字入力 %" } %>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="small text-muted text-center px-0">
-                          前進運動率
-                        </td>
-                        <td>
-                          <%= f.number_field :sperm_advance_rate, { step: "0.1", class: "form-control", placeholder: "半角数字入力 %" } %>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="small text-muted text-center px-0">
-                          正常形態率
-                        </td>
-                        <td>
-                          <%= f.number_field :probability_of_normal_morphology_of_sperm, { step: "0.1", class: "form-control", placeholder: "半角数字入力 %" } %>
-                        </td>
-                      </tr>
-                    </table>
-                    <div class="form-group mt-3">
-                      <p class="sub-question">精液検査の詳しい説明</p>
-                      <%= f.text_area :sperm_description, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)精液検査は毎回結果の変動が激しかったです" %>
-                    </div>
-                  </div>
-                  <div class="spacer">
-                  </div>
                   <div class="box26 pb-4">
                     <span class="box-title">特殊検査</span>
                     <div class="form-group first-question-inbox">

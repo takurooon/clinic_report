@@ -243,8 +243,6 @@ class ReportsController < ApplicationController
     @report.user_id = current_user.id
 
     # 3桁区切りの場合
-    # params[:report][:total_amount_of_sperm] = params[:report][:total_amount_of_sperm].gsub(/(\d{0,3}),(\d{3})/, '\1\2')
-    # params[:report][:semen_concentration] = params[:report][:semen_concentration].gsub(/(\d{0,3}),(\d{3})/, '\1\2')
     # params[:report][:creditcards_can_be_used_from_more_than] = params[:report][:creditcards_can_be_used_from_more_than].gsub(/(\d{0,3}),(\d{3})/, '\1\2')
 
     @report.normalize_for_create_embryo_stage
@@ -359,8 +357,6 @@ class ReportsController < ApplicationController
     end
 
     # 3桁区切りの場合
-    # params[:report][:total_amount_of_sperm] = params[:report][:total_amount_of_sperm].gsub(/(\d{0,3}),(\d{3})/, '\1\2')
-    # params[:report][:semen_concentration] = params[:report][:semen_concentration].gsub(/(\d{0,3}),(\d{3})/, '\1\2')
     # params[:report][:creditcards_can_be_used_from_more_than] = params[:report][:creditcards_can_be_used_from_more_than].gsub(/(\d{0,3}),(\d{3})/, '\1\2')
 
     @report.normalize_for_credit_card_validity
@@ -468,13 +464,6 @@ class ReportsController < ApplicationController
         :m_surgery_memo,
         :f_disease_memo,
         :m_disease_memo,
-        :semen_volume,
-        :semen_concentration,
-        :sperm_advance_rate,
-        :sperm_motility,
-        :probability_of_normal_morphology_of_sperm,
-        :total_amount_of_sperm,
-        :sperm_description,
         :fuiku,
         :fuiku_supplementary_explanation,
         :ishoku_type,
