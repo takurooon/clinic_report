@@ -1715,16 +1715,6 @@
                           </td>
                         </tr>
                         <tr>
-                          <td class="result-left-column small text-center">IVMの有無</td>
-                          <td class="pl-3">
-                            <% if @report.ova_with_ivm.present? %>
-                              <span class="result-text"><%= @report.str_ova_with_ivm %></span>
-                            <% else %>
-                              <span class="text-muted small">未回答</span>
-                            <% end %>
-                          </td>
-                        </tr>
-                        <tr>
                           <td class="result-left-column small text-center">受精個数</td>
                           <td class="pl-3">
                             <% if @report.number_of_fertilized_eggs.present? %>

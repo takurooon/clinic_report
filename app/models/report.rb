@@ -929,17 +929,6 @@ class Report < ApplicationRecord
     return HASH_PGT2[self.pgt2]
   end
 
-  # ova_with_ivmの区分値(妊娠に至った卵子へのIVMの有無)
-  HASH_OVA_WITH_IVM = {
-    1 => "なし",
-    2 => "あり",
-    100 => "不明"
-  }
-
-  def str_ova_with_ivm
-    return HASH_OVA_WITH_IVM[self.ova_with_ivm]
-  end
-
   # f_other_effort_cost m_other_effort_costの区分値(CL治療以外に行なったこと/月間平均投資額)
   HASH_OTHER_EFFORT_COST = {
     1 => "3,000円未満",

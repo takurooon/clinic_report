@@ -690,15 +690,6 @@
                         </div>
 
                         <div class="form-group mt-3">
-                          <p class="question">体外成熟培養(IVM)実施の有無</p>
-                          <%= f.select :ova_with_ivm, Report::HASH_OVA_WITH_IVM.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                          <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った卵子へのIVM実施の有無</span></small>
-                          <small id="poster-tip" class="form-text text-muted">
-                            <span class="small">→&nbsp;&nbsp;<a href="https://www.oakclinic-group.com/funin/ivm.html" rel="nofollow" target="window_name" onClick="disp('https://www.oakclinic-group.com/funin/ivm.html')"><u>IVMとは</u></a>&nbsp;&nbsp;(参考:&nbsp;医療法人オーク会)</span>
-                          </small>
-                        </div>
-
-                        <div class="form-group mt-3">
                           <p class="question">受精個数</p>
                           <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "選択" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
