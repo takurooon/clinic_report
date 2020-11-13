@@ -358,12 +358,6 @@
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question">業種&nbsp;<sup class="text-success">●</sup></p>
-                    <%= f.select :industry_type, Report::HASH_INDUSTRY_TYPE.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                    <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :industry_type_status, {}, "hide", "show" %>非公開</small>
-                  </div>
-
-                  <div class="form-group mt-3">
                     <p class="question">職場での不妊治療支援制度の有無</p>
                     <%= f.select :treatment_support_system, Report::HASH_TREATMENT_SUPPORT_SYSTEM.invert, { prompt: "選択" }, { class: "form-control" }  %>
                   </div>
@@ -380,11 +374,6 @@
                       <span class="small text-muted">所得&nbsp;=&nbsp;収入&nbsp;-&nbsp;経費</span>
                     </small>
                     <small id="poster-tip" class="form-text text-muted text-right pt-0 mt-0"><%= f.check_box :household_net_income_status, {}, "hide", "show" %>非公開</small>
-                  </div>
-
-                  <div class="form-group mt-3">
-                    <p class="sub-question">治療中の働き方の詳しい説明</p>
-                    <%= f.text_area :about_work_and_working_style, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)治療の理解がなかなか得られず配置転換を希望しなんとか治療を継続しました" %>
                   </div>
 
                   <div class="mt-5 d-flex justify-content-between">

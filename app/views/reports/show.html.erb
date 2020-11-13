@@ -2461,18 +2461,6 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="result-left-column small text-center">業種&nbsp;<sup class="text-success">●</sup></td>
-                    <td class="pl-3">
-                      <% if @report.industry_type_status == "hide" %>
-                        <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
-                      <% elsif @report.industry_type.blank? %>
-                        <span class="small text-muted"><%= "未回答" %></span>
-                      <% else %>
-                        <span class="result-text"><%= @report.str_industry_type %></span>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
                     <td class="result-left-column small text-center">社内支援制度</td>
                     <td class="pl-3">
                       <% if @report.treatment_support_system.present? %>
@@ -2504,14 +2492,6 @@
                       <% end %>
                     </td>
                   </tr>
-                  <% if @report.about_work_and_working_style.present? %>
-                    <tr>
-                      <td class="result-left-column small text-center">仕事と治療について</td>
-                      <td class="pl-3">
-                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.about_work_and_working_style.split("\n"),tag(:br)))).html_safe %></span>
-                      </td>
-                    </tr>
-                  <% end %>
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">治療の継続期限</span></h5>
                 <table class="table p-0">

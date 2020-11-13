@@ -16,10 +16,6 @@
         <div class="tab-content1">
           <%= select "report", :work_style, @works.invert, { prompt: "働き方から探す" }, { class: "form-control my-3", onchange: "location = 'work/' + this.value + 'work_style'" } %>
         </div>
-        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">業種</label>
-        <div class="tab-content1">
-          <%= select "report", :industry_type, @industry.invert, { prompt: "業種から探す" }, { class: "form-control my-3", onchange: "location = 'work/' + this.value" } %>
-        </div>
       </div>
     </div>
   </div>

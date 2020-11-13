@@ -70,12 +70,9 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :period_of_time_spent_traveling
       t.integer :work_style
       t.integer :work_style_status, default: 0, null: false
-      t.integer :industry_type
-      t.integer :industry_type_status, default: 0, null: false
       t.integer :household_net_income
       t.integer :treatment_support_system
       t.integer :suspended_or_retirement_job
-      t.text :about_work_and_working_style
       t.text :content
       t.float :staff_quality
       t.float :doctor_quality

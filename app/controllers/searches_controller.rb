@@ -252,14 +252,6 @@ class SearchesController < ApplicationController
       works.delete(wo)
     end
     @works = works
-
-    industry = Report::HASH_INDUSTRY_TYPE_SEARCH
-    reports = Report.group(:industry_type).where.not(industry_type: nil).distinct.count
-    i = industry.keys - reports.keys
-    i.each do |ind|
-      industry.delete(ind)
-    end
-    @industry = industry
   end
 
   def work
@@ -268,13 +260,6 @@ class SearchesController < ApplicationController
       work_value = params[:value].to_i
       @selected_work = "「" + work_style[work_value] + "」"
       @reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
-      @work_page = Report.page(params[:page]).per(10)
-    else
-      industry_type = Report::HASH_INDUSTRY_TYPE_SEARCH
-      industry_type_value = params[:value].to_i
-      @selected_work = "「" + industry_type[industry_type_value] + "」" + "業界で働く方"
-      @reports = Report.where(industry_type: industry_type_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
       @work_page = Report.page(params[:page]).per(10)
     end
