@@ -14,10 +14,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :age_of_partner_at_end_of_treatment
       t.integer :treatment_period
       t.integer :amh
-      t.integer :types_of_eggs_and_sperm
-      t.integer :types_of_eggs_and_sperm_status
-      t.text :description_of_eggs_and_sperm_used
-      t.text :description_of_eggs_and_sperm_used_status
       t.integer :sairan_age
       t.integer :ishoku_age
       t.integer :type_of_ovarian_stimulation
@@ -92,8 +88,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :transfer_option_memo
       t.integer :free_wifi
       t.integer :possible_to_wait_outside_cl
-      t.text :types_of_fertilization_methods_memo
-      t.text :details_of_icsi_memo
 
       t.timestamps
     end

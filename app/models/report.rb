@@ -492,31 +492,6 @@ class Report < ApplicationRecord
     return HASH_AMH_SEARCH[self.amh]
   end
 
-  # types_of_eggs_and_spermの区分値(卵子と精子の帰属)
-  HASH_TYPES_OF_EGGS_AND_SPERM = {
-    1 => "自分たちの卵子と精子",
-    2 => "提供卵子",
-    3 => "提供精子",
-    99 => "その他",
-  }
-
-  def str_types_of_eggs_and_sperm
-    return HASH_TYPES_OF_EGGS_AND_SPERM[self.types_of_eggs_and_sperm]
-  end
-
-  # types_of_eggs_and_sperm_statusの区分値(卵子と精子の状態)
-  HASH_TYPES_OF_EGGS_AND_SPERM_STATUS = {
-    1 => "未凍結卵子と未凍結精子",
-    2 => "凍結卵子と未凍結精子",
-    3 => "未凍結卵子と凍結精子",
-    4 => "凍結卵子と凍結精子",
-    99 => "その他",
-  }
-
-  def str_types_of_eggs_and_sperm_status
-    return HASH_TYPES_OF_EGGS_AND_SPERM_STATUS[self.types_of_eggs_and_sperm_status]
-  end
-
   # use_of_anesthesiaの区分値(麻酔の種類)
   HASH_USE_OF_ANESTHESIA = {
     1 => "無麻酔",
