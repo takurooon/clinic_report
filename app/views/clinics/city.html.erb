@@ -29,14 +29,14 @@
             <% end %>
             <% report_count = Report.where(clinic_id: clinic.id, status: 0) %>
             <% if report_count.present? %>
-              <div class="col-sm-6 mt-3 px-3 small">
+              <div class="col-sm-6 my-2 px-3 small">
                 <%= link_to "/clinics/#{clinic.id}", data: { "turbolinks" => false } do %>
                   <span class="text-dark font-weight-bold">#<%= clinic.name %></span>
                   &nbsp;<span class="text-dark ont-weight-bold">(&nbsp;<u><%= "#{report_count.count}" %>件)</span></u>&nbsp;
                 <% end %>
               </div>
             <% else %>
-              <div class="col-sm-6 mt-3 px-3 small">
+              <div class="col-sm-6 my-2 px-3 small">
                 <%= link_to "/clinics/#{clinic.id}", data: { "turbolinks" => false } do %>
                   <%= clinic.name %>
                   <span class="text-muted small">(0件)</span>
