@@ -357,23 +357,6 @@ function details_of_icsi(report_details_of_icsi) {
   }
 }
 
-
-// 治療継続期限
-$(function() {
-  continue_treatment($("#report_how_long_to_continue_treatment option:selected").val());
-  $("#report_how_long_to_continue_treatment").change(function() {
-    continue_treatment($(this).val());
-  });
-})
-function continue_treatment(how_long_to_continue_treatment) {
-  if (how_long_to_continue_treatment == "1") {
-    $(".how_long_to_continue_treatment2").show();
-  } else {
-    $(".how_long_to_continue_treatment2").hide();
-  }
-}
-
-
 // 胚のステージへの移植方法表示(凍結or新鮮胚移植)
 $(function() {
   var discription1 = "移植方法は「";

@@ -416,49 +416,6 @@ class Report < ApplicationRecord
     return HASH_REST_PERIOD[self.rest_period]
   end
 
-  # how_long_to_continue_treatmentの区分値(治療継続期間設定の有無)
-  HASH_HOW_LONG_TO_CONTINUE_TREATMENT = {
-    1 => "決めていた",
-    2 => "決めていなかった",
-    99 => "その他",
-    100 => "不明",
-  }
-
-  def str_how_long_to_continue_treatment
-    return HASH_HOW_LONG_TO_CONTINUE_TREATMENT[self.how_long_to_continue_treatment]
-  end
-
-  # how_long_to_continue_treatment2の区分値(具体的な治療継続期間)
-  HASH_HOW_LONG_TO_CONTINUE_TREATMENT2 = {
-    1 => "〜3ヶ月",
-    2 => "〜半年",
-    3 => "〜1年",
-    4 => "〜2年",
-    5 => "〜3年",
-    6 => "〜5年",
-    7 => "それ以上",
-    99 => "その他",
-    100 => "不明",
-  }
-
-  def str_how_long_to_continue_treatment2
-    return HASH_HOW_LONG_TO_CONTINUE_TREATMENT2[self.how_long_to_continue_treatment2]
-  end
-
-  # followup_investigationの区分地値(出産確認の連絡有無)
-  HASH_FOLLOWUP_INVESTIGATION = {
-    1 => "出産確認書類が届いた",
-    2 => "出産確認の電話があった",
-    3 => "その他連絡手段で確認あり",
-    4 => "確認はなかった",
-    99 => "その他",
-    100 => "不明",
-  }
-
-  def str_followup_investigation
-    return HASH_FOLLOWUP_INVESTIGATION[self.followup_investigation]
-  end
-
   # amhの区分値(AMH値)
   HASH_AMH = {
     100 => "不明",

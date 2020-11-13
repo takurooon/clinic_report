@@ -163,18 +163,6 @@
                       <p class="sub-question">おやすみ期間の補足説明</p>
                       <%= f.text_area :rest_period_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                     </div>
-
-                    <div class="form-group mt-3">
-                      <p class="question">不妊治療をいつまで続けるか期間を決めていたかどうか</p>
-                      <%= f.select :how_long_to_continue_treatment, Report::HASH_HOW_LONG_TO_CONTINUE_TREATMENT.invert, { prompt: "選択" }, { class: "form-control" } %>
-                      <small class="text-muted"><span class="small">特定のクリニックでの治療に限らず不妊治療自体の継続期限</span></small>
-                    </div>
-                    <div class="form-group how_long_to_continue_treatment2">
-                      <p class="question">具体的期限(期間)</p>
-                      <%= f.select :how_long_to_continue_treatment2, Report::HASH_HOW_LONG_TO_CONTINUE_TREATMENT2.invert, { prompt: "選択" }, { class: "form-control" } %>
-                    </div>
-                    <p class="sub-question mb-3">治療期限の詳しい説明</p>
-                    <%= f.text_area :how_long_to_continue_treatment_memo, class: "form-control border mb-3", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例):1年と決めてのぞみました" %>
                   </div>
 
                   <div class="spacer">
