@@ -217,10 +217,6 @@ class SearchesController < ApplicationController
     report_m_surgery = ReportMSurgery.group(:m_surgery_id).where.not(m_surgery_id: nil).distinct.count
     m_surgery = report_m_surgery.keys
     @m_surgeries = MSurgery.where(id: m_surgery).name_yomigana
-
-    report_transfer_medicine = ReportTransferMedicine.group(:transfer_medicine_id).where.not(transfer_medicine_id: nil).distinct.count
-    transfer_medicine = report_transfer_medicine.keys
-    @transfer_medicines = TransferMedicine.where(id: transfer_medicine).name_yomigana
   end
 
   def tag
@@ -241,12 +237,8 @@ class SearchesController < ApplicationController
         @tag = SpecialInspection.find_by(name: params[:value])
         @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag.name })
         @clinic_all_reports = @reports.count
-      elsif params[:tags] === "不育症"
+      else params[:tags] === "不育症"
         @tag = FuikuInspection.find_by(name: params[:value])
-        @reports = @tag.reports.order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      else params[:tags] === "移植周期の薬剤"
-        @tag = TransferMedicine.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
         @clinic_all_reports = @reports.count
       end

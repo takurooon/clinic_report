@@ -318,10 +318,6 @@ class Report < ApplicationRecord
   has_many :report_m_surgeries, dependent: :destroy
   has_many :m_surgeries, through: :report_m_surgeries
 
-  # 移植周期での使用薬剤
-  has_many :report_transfer_medicines, dependent: :destroy
-  has_many :transfer_medicines, through: :report_transfer_medicines
-
   # 移植オプション
   has_many :report_transfer_options, dependent: :destroy
   has_many :transfer_options, through: :report_transfer_options

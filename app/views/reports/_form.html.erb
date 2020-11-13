@@ -789,19 +789,6 @@
                         </div>
 
                         <div class="form-group mt-3">
-                          <p class="question">使用薬剤&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                          <%= f.collection_check_boxes(:transfer_medicine_ids, TransferMedicine.all.name_yomigana, :id, :name) do |b| %>
-                            <div class="form-check checkbox">
-                              <%= b.label class: "form-check-label" do %>
-                                <%= b.check_box class: "form-check-input" %>
-                                <%= b.text %>
-                              <% end %>
-                            </div>
-                          <% end %>
-                          <p class="sub-question">使用薬剤の補足説明</p>
-                          <%= f.text_area :ishoku_medicine_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
-                        </div>
-                        <div class="form-group mt-3">
                           <p class="question">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                           <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all.name_yomigana, :id, :name) do |b| %>
                             <div class="form-check checkbox">
