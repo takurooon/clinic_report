@@ -541,8 +541,6 @@ class ReportsController < ApplicationController
         :pregnancy_date,
         :pregnancy_date_memo,
         :treatment_policy,
-        :followup_investigation,
-        :followup_investigation_memo,
         :cost_burden_memo,
         :number_of_visits_before_sairan,
         :number_of_visits_before_ishoku,
