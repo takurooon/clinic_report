@@ -630,24 +630,6 @@ class Report < ApplicationRecord
     return HASH_TYPE_OF_OVARIAN_STIMULATION[self.type_of_ovarian_stimulation]
   end
 
-  # type_of_sairan_cycleの区分値(採卵周期小分類)
-  HASH_TYPE_OF_SAIRAN_CYCLE = {
-    1 => "完全自然周期",
-    2 => "クロミフェン(クロミッド)法",
-    3 => "hMG/rFSH法",
-    4 => "クロミフェン+hMG/rFSH法",
-    5 => "ロング法",
-    6 => "ウルトラロング法",
-    7 => "ショート法",
-    8 => "アンタゴニスト法",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_type_of_sairan_cycle
-    return HASH_TYPE_OF_SAIRAN_CYCLE[self.type_of_sairan_cycle]
-  end
-
   # types_of_fertilization_methodsの区分値(受精方法)
   HASH_TYPES_OF_FERTILIZATION_METHODS = {
     1 => "体外受精",

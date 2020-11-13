@@ -626,14 +626,6 @@
                         </div>
 
                         <div class="form-group mt-3">
-                          <p class="question">誘発方法</p>
-                          <%= f.select :type_of_sairan_cycle, Report::HASH_TYPE_OF_SAIRAN_CYCLE.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                          <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の誘発方法</span></small>
-                          <p class="sub-question">採卵誘発のメモ</p>
-                          <%= f.text_area :notes_on_type_of_sairan_cycle, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例) 私が通ったクリニックでは「〇〇法」という独自の呼び方でした。ですが内容は〇〇と一緒でした" %>
-                        </div>
-
-                        <div class="form-group mt-3">
                           <p class="question">使用薬剤&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                           <%= f.collection_check_boxes(:sairan_medicine_ids, SairanMedicine.all.name_yomigana, :id, :name) do |b| %>
                             <div class="form-check checkbox">
