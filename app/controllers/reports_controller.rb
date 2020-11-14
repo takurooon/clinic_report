@@ -490,7 +490,6 @@ class ReportsController < ApplicationController
         :comfort_of_space,
         :status,
         :rest_period,
-        :rest_period_memo,
         :reason_for_transfer,
         :treatment_policy,
         :number_of_visits_before_sairan,

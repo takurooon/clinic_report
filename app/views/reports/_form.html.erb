@@ -149,11 +149,9 @@
                   </div>
 
                   <div class="form-group mt-3">
-                    <p class="question">自主的なお休み期間</p>
+                    <p class="question">自主的なお休み期間(途中他院での治療も含む)</p>
                     <%= f.select :rest_period, Report::HASH_REST_PERIOD.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療中にとったお休み期間</span></small>
-                    <p class="sub-question">おやすみ期間の補足説明</p>
-                    <%= f.text_area :rest_period_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療中にとったお休み/他院での治療期間</span></small>
                   </div>
 
                   <div class="form-group mt-3">
