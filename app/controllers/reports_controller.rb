@@ -454,7 +454,6 @@ class ReportsController < ApplicationController
         :total_number_of_transplants,
         :total_number_of_eggs_transplanted,
         :number_of_eggs_stored,
-        :explanation_and_impression_about_ishoku,
         :sairan_cost,
         :sairan_cost_explanation,
         :ishoku_cost,
