@@ -1584,12 +1584,28 @@ class Report < ApplicationRecord
     return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.total_number_of_transplants]
   end
 
-  # 採卵前/移植前/卒業前までの通院回数質問にも利用
+  # 採卵前までの通院回数質問にも利用
+  HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN = {
+    100 => "不明",
+    1 => "〜3回",
+    2 => "4〜5回",
+    99 => "6回以上"
+  }
+
   def str_number_of_visits_before_sairan
-    return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.number_of_visits_before_sairan]
+    return HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN[self.number_of_visits_before_sairan]
   end
+
+  # 移植前までの通院回数質問にも利用
+  HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU = {
+    100 => "不明",
+    1 => "〜3回",
+    2 => "4〜5回",
+    99 => "6回以上"
+}
+
   def str_number_of_visits_before_ishoku
-    return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.number_of_visits_before_ishoku]
+    return HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU[self.number_of_visits_before_ishoku]
   end
 
 

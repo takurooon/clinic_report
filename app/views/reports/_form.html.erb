@@ -361,7 +361,7 @@
 
                         <div class="form-group mt-0 mb-2 pt-0">
                           <p class="question mb-0">採卵までの通院回数</p>
-                          <%= f.select :number_of_visits_before_sairan, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "" }, { class: "form-control" }  %>
+                          <%= f.select :number_of_visits_before_sairan, Report::HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN.invert, { prompt: "" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small">採卵周期開始から採卵日までの(おおよその)通院回数</span></small>
                         </div>
 
@@ -525,7 +525,7 @@
 
                         <div class="form-group mt-0 mb-2 pt-0">
                           <p class="question mb-0">移植までの通院回数</p>
-                          <%= f.select :number_of_visits_before_ishoku, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "" }, { class: "form-control" }  %>
+                          <%= f.select :number_of_visits_before_ishoku, Report::HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU.invert, { prompt: "" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small">移植周期開始から移植日までの(おおよその)通院回数</span></small>
                         </div>
 
