@@ -456,7 +456,6 @@ class ReportsController < ApplicationController
         :number_of_eggs_stored,
         :sairan_cost,
         :ishoku_cost,
-        :ishoku_cost_explanation,
         :cost,
         :explanation_of_cost,
         :credit_card_validity,

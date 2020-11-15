@@ -728,8 +728,6 @@
                     <p class="question mb-0">移植1回あたりの費用(概算)</p>
                     <%= f.select :ishoku_cost, Report::HASH_ISHOKU_COST.invert, { prompt: "" }, { class: "form-control" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での1回の移植費用</span></small>
-                    <p class="sub-question">移植費用の補足説明</p>
-                    <%= f.text_area :ishoku_cost_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)" %>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
