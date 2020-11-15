@@ -200,7 +200,7 @@ $(function() {
 $(function() {
   var current_state = $('#report_current_state option:selected').text();
   var status = "「" + current_state + "」";
-  if (current_state === "選択") {
+  if (current_state === "") {
     $('.select-current-status').text("現在の状況");
     $('.select-current-status2').text("現状");
   } else {
