@@ -621,26 +621,6 @@ class Report < ApplicationRecord
     return HASH_FUIKU[self.fuiku]
   end
 
-  # f_other_effort_cost m_other_effort_costの区分値(CL治療以外に行なったこと/月間平均投資額)
-  HASH_OTHER_EFFORT_COST = {
-    1 => "3,000円未満",
-    2 => "5,000円未満",
-    3 => "1万円未満",
-    4 => "3万円未満",
-    5 => "5万円未満",
-    6 => "10万円未満",
-    99 => "10万円以上",
-    100 => "不明",
-  }
-
-  def str_f_other_effort_cost
-    return HASH_OTHER_EFFORT_COST[self.f_other_effort_cost]
-  end
-
-  def str_m_other_effort_cost
-    return HASH_OTHER_EFFORT_COST[self.m_other_effort_cost]
-  end
-
   # sairan_costの区分値(CLでの1回あたりの採卵費用)
   HASH_SAIRAN_COST = {
     100 => "不明",

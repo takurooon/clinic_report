@@ -44,10 +44,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.text :explanation_and_impression_about_ishoku
       t.integer :fuiku_examination
       t.integer :fuiku
-      t.integer :f_other_effort_cost
-      t.integer :m_other_effort_cost
-      t.text :f_other_effort_memo
-      t.text :m_other_effort_memo
       t.integer :sairan_cost
       t.text :sairan_cost_explanation
       t.integer :ishoku_cost

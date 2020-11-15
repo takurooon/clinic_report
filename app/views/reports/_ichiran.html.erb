@@ -2039,23 +2039,6 @@
           <% end %>
         </td>
       </tr>
-      <tr>
-        <td class="result-left-column small text-center">(治療以外)平均月額コスト</td>
-        <td class="pl-3">
-          <span class="small text-muted"><i class="fas fa-female fa-2x female-icon"></i></span>
-          <% if @report.f_other_effort_cost.present? %>
-              <span class="result-text"><%= @report.str_f_other_effort_cost %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %><br>
-            <span class="small text-muted"><i class="fas fa-male fa-2x male-icon"></i></span>
-          <% if @report.m_other_effort_cost.present? %>
-              <span class="result-text"><%= @report.str_m_other_effort_cost %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %>
-        </td>
-      </tr>
     </table>
 
     <table class="table p-0 mt-5 mb-0">
