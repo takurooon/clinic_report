@@ -39,7 +39,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :fuiku_examination
       t.integer :fuiku
       t.integer :sairan_cost
-      t.text :sairan_cost_explanation
       t.integer :ishoku_cost
       t.text :ishoku_cost_explanation
       t.integer :cost
