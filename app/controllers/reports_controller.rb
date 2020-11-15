@@ -457,7 +457,6 @@ class ReportsController < ApplicationController
         :sairan_cost,
         :ishoku_cost,
         :cost,
-        :explanation_of_cost,
         :credit_card_validity,
         :creditcards_can_be_used_from_more_than,
         :average_waiting_time,

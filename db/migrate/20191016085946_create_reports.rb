@@ -41,7 +41,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :sairan_cost
       t.integer :ishoku_cost
       t.integer :cost
-      t.text :explanation_of_cost
       t.integer :credit_card_validity
       t.integer :creditcards_can_be_used_from_more_than
       t.integer :average_waiting_time
