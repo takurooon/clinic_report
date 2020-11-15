@@ -16,7 +16,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :sairan_age
       t.integer :ishoku_age
       t.integer :type_of_ovarian_stimulation
-      t.text :type_of_ovarian_stimulation_memo
       t.integer :use_of_anesthesia
       t.integer :selection_of_anesthesia_type
       t.integer :total_number_of_sairan

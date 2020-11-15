@@ -435,7 +435,6 @@ class ReportsController < ApplicationController
         :sairan_age,
         :ishoku_age,
         :type_of_ovarian_stimulation,
-        :type_of_ovarian_stimulation_memo,
         :use_of_anesthesia,
         :selection_of_anesthesia_type,
         :total_number_of_sairan,

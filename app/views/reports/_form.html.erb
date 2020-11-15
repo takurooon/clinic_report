@@ -42,8 +42,8 @@
                 <li class="tab-item"><a href="#tab_1_1" class="active" data-toggle="tab"><span class="text-info">必須</span></a></li>
                 <li class="tab-item"><a href="#tab_1_2" data-toggle="tab">基礎</a></li>
                 <li class="tab-item"><a href="#tab_1_3" data-toggle="tab">年齢</a></li>
-                <li class="tab-item"><a href="#tab_1_4" data-toggle="tab">転院</a></li>
-                <li class="tab-item"><a href="#tab_1_5" data-toggle="tab">仕事</a></li>
+                <li class="tab-item"><a href="#tab_1_4" data-toggle="tab">選定</a></li>
+                <li class="tab-item"><a href="#tab_1_5" data-toggle="tab">転院歴</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_1_1">
                 <div class="alert alert-info small rounded-lg text-dark" role="alert">
@@ -137,6 +137,15 @@
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-0">卵子と精子の受精方法</p>
+                    <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "" }, { class: "form-control" }  %>
+                  </div>
+                  <div class="form-group mt-0 mb-2 pt-0 detail_of_icsi">
+                    <p class="question mb-0">顕微受精の種類</p>
+                    <%= f.select :details_of_icsi, Report::HASH_DETAILS_OF_ICSI.invert, { prompt: "" }, { class: "form-control" }  %>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0">治療期間</p>
                     <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "" }, { class: "form-control" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
@@ -148,14 +157,28 @@
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療中にとったお休み/他院での治療期間</span></small>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">卵子と精子の受精方法</p>
-                    <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "" }, { class: "form-control" }  %>
-                  </div>
+                  <div class="box26 px-2">
+                    <span class="box-title">働き方</span>
+                    <small class="text-muted">&nbsp;&nbsp;&nbsp;<span class="small">(<span class="select-clinic-name"></span>での治療時の情報)</span></small>
+                    <div class="form-group mt-4 mb-2 pt-0">
+                      <p class="question mb-0">治療時の働き方&nbsp;<sup class="text-success">●</sup></p>
+                      <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, { prompt: "" }, { class: "form-control" }  %>
+                      <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
+                    </div>
 
-                  <div class="form-group mt-0 mb-2 pt-0 detail_of_icsi">
-                    <p class="question mb-0">顕微受精の種類</p>
-                    <%= f.select :details_of_icsi, Report::HASH_DETAILS_OF_ICSI.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <div class="form-group mt-0 mb-3 pt-0">
+                      <p class="question mb-0">休職や退職の有無</p>
+                      <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, { prompt: "" }, { class: "form-control" }  %>
+                    </div>
+
+                    <div class="form-group mt-0 mb-2 pt-4">
+                      <p class="question mb-0">治療時の夫婦合算所得&nbsp;<sup class="text-success">●</sup></p>
+                      <%= f.select :household_net_income, Report::HASH_HOUSEHOLD_NET_INCOME.invert, { prompt: "" }, { class: "form-control" }  %>
+                      <small id="poster-tip" class="form-text text-muted">
+                        <span class="small text-muted">所得&nbsp;=&nbsp;収入&nbsp;-&nbsp;経費</span>
+                      </small>
+                      <small id="poster-tip" class="form-text text-muted text-right pt-0 mt-0"><%= f.check_box :household_net_income_status, {}, "hide", "show" %>非公開</small>
+                    </div>
                   </div>
                   <div class="mt-3 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -206,12 +229,6 @@
               <section class="child-tab-content" id="tab_1_4">
                 <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <div class="scroll-box">
-                  <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">何院目？</p>
-                    <%= f.select :number_of_clinics, Report::HASH_NUMBER_OF_CLINICS.invert, { prompt: "" }, { class: "form-control" } %>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>は不妊治療開始後何院目ですか</span></small>
-                  </div> 
-
                   <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-0"><span class="select-clinic-name"></span>を選んだ理由<br><small class="text-muted"><span class="small">複数選択可</span></small></p>
                     <%= f.collection_check_boxes(:cl_selection_ids, ClSelection.all, :id, :name) do |b| %>
@@ -227,24 +244,14 @@
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
-                    <p class="question mb-0">前院から転院した理由</p>
+                    <p class="question mb-0">前院を転院した理由</p>
                     <%= f.text_area :reason_for_transfer, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-0">通院所要時間</p>
                     <%= f.select :period_of_time_spent_traveling, Report::HASH_PERIOD_OF_TIME_SPENT_TRAVELING.invert, { prompt: "" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small">自宅&nbsp;⇄&nbsp;<span class="select-clinic-name"></span>&nbsp;への通院にかかる時間</span></small>
-                  </div>
-
-                  <div class="form-group mt-0 mb-0 pt-2">
-                    <p class="question mb-1">転院歴</p>
-                    <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
-                      <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>
-                    <% end %>
-                    <div class="links pt-2 pl-2">
-                      <%= link_to_add_association "+ 追加", f, :itinerary_of_choosing_a_clinics %>
-                    </div>
+                    <small class="text-muted"><span class="small">自宅&nbsp;or&nbsp;職場&nbsp;&nbsp;⇄&nbsp;&nbsp;<span class="select-clinic-name"></span>&nbsp;間の通院時間</span></small>
                   </div>
 
                   <div class="mt-5 d-flex justify-content-between">
@@ -255,29 +262,22 @@
               </section>
               <section class="child-tab-content" id="tab_1_5">
                 <div class="alert alert-info small rounded-lg" role="alert">
-                  <span><span class="select-clinic-name"></span>での治療中の働き方についてお聞きします。</u></span>
+                  <span>これまでの転院歴についてお聞きします。</u></span>
                 </div>
-                <div class="scroll-box">
-                  <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">治療時の仕事&nbsp;<sup class="text-success">●</sup></p>
-                    <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, { prompt: "" }, { class: "form-control" }  %>
-                    <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
+                  <div class="scroll-box">
+                    <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-0"><span class="select-clinic-name"></span>は何院目？</p>
+                    <%= f.select :number_of_clinics, Report::HASH_NUMBER_OF_CLINICS.invert, { prompt: "" }, { class: "form-control" } %>
+                  </div> 
+                  <div class="form-group mt-0 mb-0 pt-2">
+                    <p class="question mb-1">これまでの転院歴</p>
+                    <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
+                      <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>
+                    <% end %>
+                    <div class="links pt-2 pl-2">
+                      <%= link_to_add_association "+ 追加", f, :itinerary_of_choosing_a_clinics %>
+                    </div>
                   </div>
-
-                  <div class="form-group mt-0 mb-3 pt-0">
-                    <p class="question mb-0">休職や退職の有無</p>
-                    <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, { prompt: "" }, { class: "form-control" }  %>
-                  </div>
-
-                  <div class="form-group mt-0 mb-2 pt-4">
-                    <p class="question mb-0">治療時の夫婦合算所得&nbsp;<sup class="text-success">●</sup></p>
-                    <%= f.select :household_net_income, Report::HASH_HOUSEHOLD_NET_INCOME.invert, { prompt: "" }, { class: "form-control" }  %>
-                    <small id="poster-tip" class="form-text text-muted">
-                      <span class="small text-muted">所得&nbsp;=&nbsp;収入&nbsp;-&nbsp;経費</span>
-                    </small>
-                    <small id="poster-tip" class="form-text text-muted text-right pt-0 mt-0"><%= f.check_box :household_net_income_status, {}, "hide", "show" %>非公開</small>
-                  </div>
-
                   <div class="mt-5 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                     <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
@@ -375,8 +375,6 @@
                           <p class="question">誘発タイプ</p>
                           <%= f.select :type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の誘発タイプ</span></small>
-                          <p class="sub-question">誘発タイプのメモ</p>
-                          <%= f.text_area :type_of_ovarian_stimulation_memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例) " %>
                         </div>
 
                         <div class="form-group mt-3">
