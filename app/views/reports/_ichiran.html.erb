@@ -2212,14 +2212,6 @@
           <% end %>
         </td>
       </tr>
-      <% if @report.fuiku_supplementary_explanation.present? %>
-        <tr>
-          <td class="result-left-column small text-center">不育症について</td>
-          <td class="pl-3">
-            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.fuiku_supplementary_explanation.split("\n"),tag(:br)))).html_safe %></span>
-          </td>
-        </tr>
-      <% end %>
     </table>
 
     <table class="table p-0 mt-5 mb-0">

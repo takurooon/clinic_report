@@ -453,7 +453,6 @@ class ReportsController < ApplicationController
         :blastocyst_grade2_supplementary_explanation,
         :explanation_and_impression_about_sairan,
         :fuiku,
-        :fuiku_supplementary_explanation,
         :ishoku_type,
         :ishoku_type_memo,
         :total_number_of_transplants,
