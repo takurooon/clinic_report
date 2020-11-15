@@ -146,6 +146,12 @@
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-0">移植胚</p>
+                    <%= f.select :transplant_method, Report::HASH_TRANSPLANT_METHOD.invert, { prompt: "" }, { class: "form-control" } %>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植方法</span></small>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0">治療期間</p>
                     <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "" }, { class: "form-control" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
@@ -533,12 +539,6 @@
                           <p class="question mb-0">移植時の年齢</p>
                           <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control" } %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植時の年齢</span></small>
-                        </div>
-
-                        <div class="form-group mt-0 mb-2 pt-0">
-                          <p class="question mb-0">最新移植周期の移植方法</p>
-                          <%= f.select :transplant_method, Report::HASH_TRANSPLANT_METHOD.invert, { prompt: "" }, { class: "form-control" } %>
-                          <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植方法</span></small>
                         </div>
 
                         <div class="form-group mt-0 mb-2 pt-0">

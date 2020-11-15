@@ -295,22 +295,6 @@ $(function() {
     $('.transplant_method').text(val);
     $('.transplant_method_dis1').text(discription1);
     $('.transplant_method_dis2').text(discription2);
-  } else if (val == "3") {
-    var val = "2段階移植(初期胚&胚盤胞)";
-    $('.stage-alert-none').hide();
-    $('.stage-alert').show();
-    $('.transplant_method2').text(val);
-    $('.transplant_method_dis3').text(discription1);
-    $('.transplant_method_dis4').text(discription2);
-    $('.transplant_method_dis5').text(discription3);
-  } else if (val == "4") {
-    var val = "凍結胚移植(2個戻し)";
-    $('.stage-alert-none').hide();
-    $('.stage-alert').show();
-    $('.transplant_method2').text(val);
-    $('.transplant_method_dis3').text(discription1);
-    $('.transplant_method_dis4').text(discription2);
-    $('.transplant_method_dis5').text(discription4);
   } else {
     $('.stage-alert').hide();
     $('.stage-alert-none').hide();
@@ -335,22 +319,6 @@ $(function() {
       $('.transplant_method').text(val);
       $('.transplant_method_dis1').text(discription1);
       $('.transplant_method_dis2').text(discription2);
-    } else if (val == "3") {
-      var val = "2段階移植(初期胚&胚盤胞)";
-      $('.stage-alert-none').hide();
-      $('.stage-alert').show();
-      $('.transplant_method2').text(val);
-      $('.transplant_method_dis3').text(discription1);
-      $('.transplant_method_dis4').text(discription2);
-      $('.transplant_method_dis5').text(discription3);
-    } else if (val == "4") {
-      var val = "凍結胚移植(2個戻し)";
-      $('.stage-alert-none').hide();
-      $('.stage-alert').show();
-      $('.transplant_method2').text(val);
-      $('.transplant_method_dis3').text(discription1);
-      $('.transplant_method_dis4').text(discription2);
-      $('.transplant_method_dis5').text(discription4);
     } else {
       $('.stage-alert').hide();
       $('.stage-alert-none').hide();

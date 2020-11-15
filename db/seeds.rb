@@ -58,10 +58,13 @@ end
 
 TransferOption.create([
   { name: "アシステッドハッチング(AHA)", yomigana: "アシステッドハッチング" },
+  { name: "hCG注射", yomigana: "エイチシージーチュウシャ" },
   { name: "エンブリオグルー", yomigana: "エンブリオグルー" },
   { name: "シート法(SEET)", yomigana: "シートホウ" },
   { name: "スクラッチング法", yomigana: "スクラッチングホウ" },
+  { name: "2段階移植", yomigana: "ニダンカイイショク" },
   { name: "ヒアルロン酸胚移植用培養液", yomigana: "ヒアルロンサンハイイショクヨウバイヨウエキ" },
+  { name: "複数胚移植", yomigana: "フクスウハイイショク" },
   { name: "その他", yomigana: "ンンン" },
 ])
 
