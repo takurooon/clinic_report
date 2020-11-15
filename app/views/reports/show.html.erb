@@ -976,12 +976,6 @@
                           <% end %>
                         </span>
                       </h5>
-                      <% if @report.explanation_and_impression_about_sairan.present? %>
-                        <div class="box27">
-                          <span class="box-title">採卵まとめ</span>
-                          <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)))).html_safe %></p>
-                        </div>
-                      <% end %>
                       <table class="table p-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">採卵回数</td>

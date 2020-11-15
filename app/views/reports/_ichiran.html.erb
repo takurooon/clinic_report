@@ -572,14 +572,6 @@
           </div>
         </td>
       </tr>
-      <% if @report.explanation_and_impression_about_ishoku.present? %>
-        <tr>
-          <td colspan="2" class="mx-1">
-            <div class="box27 mb-2">
-              <span class="box-title">採卵まとめ</span>
-              <p><%= text_url_to_link(h(safe_join(@report.explanation_and_impression_about_sairan.split("\n"),tag(:br)))).html_safe %></p>
-        </tr>
-      <% end %>
       <tr>
         <td class="result-left-column small text-center ichirantable-left">採卵回数</td>
         <td class="pl-3 ichirantable-right">
