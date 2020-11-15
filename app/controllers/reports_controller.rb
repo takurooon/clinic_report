@@ -485,7 +485,6 @@ class ReportsController < ApplicationController
         :treatment_policy,
         :number_of_visits_before_sairan,
         :number_of_visits_before_ishoku,
-        :transfer_option_memo,
         :free_wifi,
         :possible_to_wait_outside_cl,
         s_selection_method_ids: [],

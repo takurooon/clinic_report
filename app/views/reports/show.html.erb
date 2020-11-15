@@ -1521,9 +1521,6 @@
                               <% end %>
                             <% else %>
                               <span class="text-muted small">未回答</span>
-                            <% end %><br>
-                            <% if @report.transfer_option_memo.present? %>
-                              <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i>&nbsp;&nbsp;<%= text_url_to_link(h(safe_join(@report.transfer_option_memo.split("\n"),tag(:br)))).html_safe %></span>
                             <% end %>
                           </td>
                         </tr>
