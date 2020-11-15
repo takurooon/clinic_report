@@ -33,7 +33,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :blastocyst_grade2
       t.text :blastocyst_grade2_supplementary_explanation
       t.integer :ishoku_type
-      t.text :ishoku_type_memo
       t.integer :total_number_of_transplants
       t.integer :total_number_of_eggs_transplanted
       t.integer :number_of_eggs_stored

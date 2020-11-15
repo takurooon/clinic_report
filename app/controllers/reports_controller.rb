@@ -451,7 +451,6 @@ class ReportsController < ApplicationController
         :fuiku_examination,
         :fuiku,
         :ishoku_type,
-        :ishoku_type_memo,
         :total_number_of_transplants,
         :total_number_of_eggs_transplanted,
         :number_of_eggs_stored,
