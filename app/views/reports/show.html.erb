@@ -537,7 +537,7 @@
                 </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>で受けた</p>
                 <h4 class="child-tab-title">検査</h4>
-                <h5 class="child-tab-title"><span class="marker-underline">基本検査</span></h5>
+                <h5 class="child-tab-title"><span class="marker-underline">AMH</span></h5>
                 <table class="table p-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">AMH</td>
@@ -932,6 +932,18 @@
                       </td>
                     </tr>
                   <% end %>
+                </table>
+                <table class="table p-0">
+                  <tr>
+                    <td class="result-left-column small text-center" style="width:30%">不育症検査</td>
+                    <td class="pl-3" style="width:70%">
+                      <% if @report.fuiku_examination.present? %>
+                        <span class="result-text"><%= @report.str_fuiku_examination %></span>
+                      <% else %>
+                        <span class="text-muted small">未回答</span>
+                      <% end %>
+                    </td>
+                  </tr>
                 </table>
                 <div class="text-right mt-0 px-0">
                   <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "専門用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>

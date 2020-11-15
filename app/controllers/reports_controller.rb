@@ -452,6 +452,7 @@ class ReportsController < ApplicationController
         :blastocyst_grade2,
         :blastocyst_grade2_supplementary_explanation,
         :explanation_and_impression_about_sairan,
+        :fuiku_examination,
         :fuiku,
         :ishoku_type,
         :ishoku_type_memo,

@@ -319,12 +319,19 @@
                       <%= link_to_add_association "+ 追加", f, :special_inspections %>
                     </div>
                   </div>
+
                   <div class="form-group mt-0 mb-0 pt-0">
-                    <p class="question mb-0">不育症診断の有無</p>
+                    <p class="question mb-0">不育症「検査」の有無</p>
+                    <%= f.select :fuiku_examination, Report::HASH_FUIKU_EXAMINATION.invert, { prompt: "" }, { class: "form-control" } %>
+                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での不育症検査の有無</span></small>
+                  </div>
+
+                  <div class="form-group mt-0 mb-0 pt-0">
+                    <p class="question mb-0">不育症「診断」の有無</p>
                     <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control" } %>
                   </div>
 
-                  <div class="form-group mt-0 mb-5 pt-0">
+                  <div class="form-group mt-0 mb-5 pt-0 fuiku-factor">
                     <p class="question mb-0">不育原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                     <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
                       <div class="form-check checkbox">
@@ -335,7 +342,7 @@
                       </div>
                     <% end %>
                   </div>
-                  <div class="mt-3 d-flex justify-content-between">
+                  <div class="mt-5 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                     <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                   </div>

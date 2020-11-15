@@ -257,6 +257,22 @@ function fertilization_method(types_of_fertilization_methods) {
     $(".description_of_types_of_fertilization_methods").hide();
   }
 }
+// 不育原因の詳細
+$(function() {
+  fuiku($("#report_fuiku option:selected").val());
+  $("#report_fuiku").change(function() {
+    fuiku($(this).val());
+  });
+})
+function fuiku(fuiku) {
+  if (fuiku == "2") {
+    $(".fuiku-factor").show();
+  } else if (fuiku == "99") {
+    $(".fuiku-factor").show();
+  } else {
+    $(".fuiku-factor").hide();
+  }
+}
 
 // 胚のステージへの移植方法表示(凍結or新鮮胚移植)
 $(function() {

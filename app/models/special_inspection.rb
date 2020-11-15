@@ -45,8 +45,6 @@ end
 # Table name: special_inspections
 #
 #  id         :bigint           not null, primary key
-#  cost       :integer
-#  memo       :text
 #  name       :integer          not null
 #  place      :integer
 #  created_at :datetime         not null

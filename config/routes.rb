@@ -126,6 +126,7 @@ end
 #                               privacy GET    /privacy(.:format)                                                                       application#privacy
 #                                repoco GET    /repoco(.:format)                                                                        application#repoco
 #                           terminology GET    /terminology(.:format)                                                                   application#terminology
+#                       example_content GET    /example_content(.:format)                                                               reports#example_content
 #                      new_user_session GET    /sign_in(.:format)                                                                       users/sessions#new
 #                          user_session POST   /sign_in(.:format)                                                                       users/sessions#create
 #                  destroy_user_session DELETE /sign_out(.:format)                                                                      users/sessions#destroy
@@ -181,6 +182,7 @@ end
 #                                       PATCH  /clinics/:id(.:format)                                                                   clinics#update
 #                                       PUT    /clinics/:id(.:format)                                                                   clinics#update
 #                                       DELETE /clinics/:id(.:format)                                                                   clinics#destroy
+#                                       GET    /clinics/:prefecture/:city(.:format)                                                     clinics#city
 #                         cities_select GET    /cities_select(.:format)                                                                 searches#cities_select_clinics
 #                    cities_select_area GET    /cities_select_area(.:format)                                                            searches#cities_select_area
 #                        clinics_select GET    /clinics_select(.:format)                                                                searches#clinics_select
@@ -189,6 +191,31 @@ end
 #                              comments POST   /comments(.:format)                                                                      comments#create
 #                               comment DELETE /comments/:id(.:format)                                                                  comments#destroy
 #                         notifications GET    /notifications(.:format)                                                                 notifications#index
+#                           admin_users GET    /admin/users(.:format)                                                                   admin/users#index
+#                                       POST   /admin/users(.:format)                                                                   admin/users#create
+#                        new_admin_user GET    /admin/users/new(.:format)                                                               admin/users#new
+#                       edit_admin_user GET    /admin/users/:id/edit(.:format)                                                          admin/users#edit
+#                            admin_user GET    /admin/users/:id(.:format)                                                               admin/users#show
+#                                       PATCH  /admin/users/:id(.:format)                                                               admin/users#update
+#                                       PUT    /admin/users/:id(.:format)                                                               admin/users#update
+#                                       DELETE /admin/users/:id(.:format)                                                               admin/users#destroy
+#                         admin_reports GET    /admin/reports(.:format)                                                                 admin/reports#index
+#                                       POST   /admin/reports(.:format)                                                                 admin/reports#create
+#                      new_admin_report GET    /admin/reports/new(.:format)                                                             admin/reports#new
+#                     edit_admin_report GET    /admin/reports/:id/edit(.:format)                                                        admin/reports#edit
+#                          admin_report GET    /admin/reports/:id(.:format)                                                             admin/reports#show
+#                                       PATCH  /admin/reports/:id(.:format)                                                             admin/reports#update
+#                                       PUT    /admin/reports/:id(.:format)                                                             admin/reports#update
+#                                       DELETE /admin/reports/:id(.:format)                                                             admin/reports#destroy
+#                         admin_clinics GET    /admin/clinics(.:format)                                                                 admin/clinics#index
+#                                       POST   /admin/clinics(.:format)                                                                 admin/clinics#create
+#                      new_admin_clinic GET    /admin/clinics/new(.:format)                                                             admin/clinics#new
+#                     edit_admin_clinic GET    /admin/clinics/:id/edit(.:format)                                                        admin/clinics#edit
+#                          admin_clinic GET    /admin/clinics/:id(.:format)                                                             admin/clinics#show
+#                                       PATCH  /admin/clinics/:id(.:format)                                                             admin/clinics#update
+#                                       PUT    /admin/clinics/:id(.:format)                                                             admin/clinics#update
+#                                       DELETE /admin/clinics/:id(.:format)                                                             admin/clinics#destroy
+#                            admin_root GET    /admin(.:format)                                                                         admin/admin#home
 #                     letter_opener_web        /letter_opener                                                                           LetterOpenerWeb::Engine
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create

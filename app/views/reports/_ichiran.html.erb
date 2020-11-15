@@ -552,6 +552,16 @@
           </td>
         </tr>
       <% end %>
+      <tr>
+        <td class="result-left-column small text-center ichirantable-left">不育症検査</td>
+        <td class="pl-3 ichirantable-right">
+          <% if @report.fuiku_examination.present? %>
+            <span class="result-text"><%= @report.str_fuiku_examination %></span>
+          <% else %>
+            <span class="text-muted small">未回答</span>
+          <% end %>
+        </td>
+      </tr>
     </table>
 
     <table class="table p-0 mt-5 mb-0">

@@ -42,6 +42,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :total_number_of_eggs_transplanted
       t.integer :number_of_eggs_stored
       t.text :explanation_and_impression_about_ishoku
+      t.integer :fuiku_examination
       t.integer :fuiku
       t.integer :f_other_effort_cost
       t.integer :m_other_effort_cost
