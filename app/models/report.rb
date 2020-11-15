@@ -477,9 +477,9 @@ class Report < ApplicationRecord
   # type_of_ovarian_stimulationの区分値(採卵周期大分類)
   HASH_TYPE_OF_OVARIAN_STIMULATION = {
     1 => "刺激なし",
-    2 => "低刺激",
-    3 => "中刺激",
-    4 => "高刺激",
+    2 => "低刺激(内服のみ)",
+    3 => "中刺激(内服+注射3回程度)",
+    4 => "高刺激(それ以上)",
     99 => "その他",
     100 => "不明"
   }
