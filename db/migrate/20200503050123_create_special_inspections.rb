@@ -4,8 +4,6 @@ class CreateSpecialInspections < ActiveRecord::Migration[6.0]
       t.references :report, null: false, foreign_key: true
       t.integer :name, null: false
       t.integer :place
-      t.integer :cost
-      t.text :memo
 
       t.timestamps
     end

@@ -3,18 +3,10 @@
     <tr>
       <td class="hormon-label text-center align-middle px-0 small">検査名</td>
       <td class="hormon-label text-center small">受診</td>
-      <td class="hormon-label text-center small">費用&nbsp;<span class="small"><small class="text-muted">(円)</small></span></td>
     </tr>
     <tr>
       <td scope="row" class="et-bt-column"><%= f.select :name, SpecialInspection::HASH_SPECIAL_INSPECTION_NAME.invert, { prompt: "必須" }, { class: "form-control text-muted" } %></td>
-      <td class="et-bt-hormone-column"><%= f.select :place, SpecialInspection::HASH_SPECIAL_INSPECTION_PLACE.invert, { prompt: "選択" }, { class: "form-control text-muted" } %></td>
-      <td class="et-bt-hormone-column"><%= f.text_field :cost, { step: "1", class: "form-control commas", placeholder: "半角数字" } %></td>
-    </tr>
-    <tr>
-      <td class="hormon-label text-center small" colspan="3">メモ</td>
-    </tr>
-    <tr>
-      <td class="et-bt-hormone-column" colspan="3"><%= f.text_area :memo, { class: "form-control text-muted", placeholder: "例)検査に至った経緯や受診時期など" } %></td>
+      <td class="et-bt-hormone-column"><%= f.select :place, SpecialInspection::HASH_SPECIAL_INSPECTION_PLACE.invert, { prompt: "" }, { class: "form-control text-muted" } %></td>
     </tr>
   </table>
   <small class="float-right pr-2">
