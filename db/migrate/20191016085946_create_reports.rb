@@ -8,7 +8,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :transplant_method
       t.text :transplant_method_memo
       t.integer :number_of_clinics
-      t.integer :briefing_session
       t.integer :treatment_start_age
       t.integer :treatment_end_age
       t.integer :age_of_partner_at_end_of_treatment

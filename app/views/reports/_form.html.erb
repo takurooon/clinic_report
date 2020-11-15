@@ -238,12 +238,6 @@
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
-                    <p class="question mb-0">説明会への参加有無</p>
-                    <%= f.select :briefing_session, Report::HASH_BRIEFING_SESSION.invert, { prompt: "" }, { class: "form-control" } %>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>の説明会への参加有無(<span class="text-danger">オンライン含む</span>)</span></small>
-                  </div>
-
-                  <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-1">転院歴</p>
                     <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
                       <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>

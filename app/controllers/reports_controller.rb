@@ -420,7 +420,6 @@ class ReportsController < ApplicationController
         :city_id,
         :city_at_the_time_status,
         :number_of_clinics,
-        :briefing_session,
         :reasons_for_choosing_this_clinic,
         :year_of_treatment_end,
         :fertility_treatment_number,

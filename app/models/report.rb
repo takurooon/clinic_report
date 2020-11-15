@@ -1018,18 +1018,6 @@ class Report < ApplicationRecord
     return HASH_PERIOD_OF_TIME_SPENT_TRAVELING[self.period_of_time_spent_traveling]
   end
 
-  # briefing_sessionの区分値(説明会への有無と参加)
-  HASH_BRIEFING_SESSION = {
-    1 => "参加",
-    2 => "不参加",
-    3 => "説明会自体がなかった",
-    99 => "その他"
-    }
-
-  def str_briefing_session
-    return HASH_BRIEFING_SESSION[self.briefing_session]
-  end
-
   # work_styleの区分値(働き方)
   HASH_WORK_STYLE = {
     1 => "会社員",
