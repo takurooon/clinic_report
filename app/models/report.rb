@@ -450,14 +450,13 @@ class Report < ApplicationRecord
 
   # use_of_anesthesiaの区分値(麻酔の種類)
   HASH_USE_OF_ANESTHESIA = {
-    1 => "無麻酔",
-    2 => "全身麻酔",
-    3 => "静脈麻酔",
-    4 => "腰椎(下半身)麻酔",
-    5 => "局所麻酔",
+    1 => "局所麻酔",
+    2 => "全身麻酔(静脈麻酔)",
+    3 => "無麻酔",
     99 => "その他",
     100 => "不明"
   }
+
 
   def str_use_of_anesthesia
     return HASH_USE_OF_ANESTHESIA[self.use_of_anesthesia]
@@ -465,8 +464,8 @@ class Report < ApplicationRecord
 
   # selection_of_anesthesia_typeの区分値(麻酔の有無&種類に関しての選択の余地)
   HASH_SELECTION_OF_ANESTHESIA_TYPE = {
-    1 => "選べなかった",
-    2 => "選べた",
+    1 => "選択可",
+    2 => "選択不可",
     99 => "その他",
     100 => "不明"
   }
