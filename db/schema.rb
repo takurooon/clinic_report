@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_222944) do
+ActiveRecord::Schema.define(version: 2020_11_16_002554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,6 +219,12 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
+  create_table "pg_eplenishments", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "prefectures", force: :cascade do |t|
     t.string "name"
     t.bigint "region1_id", null: false
@@ -249,6 +255,15 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["fuiku_inspection_id"], name: "index_report_fuiku_inspections_on_fuiku_inspection_id"
     t.index ["report_id"], name: "index_report_fuiku_inspections_on_report_id"
+  end
+
+  create_table "report_pg_eplenishments", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "pg_eplenishment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pg_eplenishment_id"], name: "index_report_pg_eplenishments_on_pg_eplenishment_id"
+    t.index ["report_id"], name: "index_report_pg_eplenishments_on_report_id"
   end
 
   create_table "report_transfer_options", force: :cascade do |t|
@@ -481,6 +496,8 @@ ActiveRecord::Schema.define(version: 2020_07_08_222944) do
   add_foreign_key "report_cl_selections", "reports"
   add_foreign_key "report_fuiku_inspections", "fuiku_inspections"
   add_foreign_key "report_fuiku_inspections", "reports"
+  add_foreign_key "report_pg_eplenishments", "pg_eplenishments"
+  add_foreign_key "report_pg_eplenishments", "reports"
   add_foreign_key "report_transfer_options", "reports"
   add_foreign_key "report_transfer_options", "transfer_options"
   add_foreign_key "reports", "cities"

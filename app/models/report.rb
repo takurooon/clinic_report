@@ -301,6 +301,10 @@ class Report < ApplicationRecord
   has_many :report_cl_selections, dependent: :destroy
   has_many :cl_selections, through: :report_cl_selections
 
+  # 黄体補充
+  has_many :report_pg_eplenishments, dependent: :destroy
+  has_many :pg_eplenishments, through: :report_pg_eplenishments
+
   # 検索
   def self.search(search)
     if search

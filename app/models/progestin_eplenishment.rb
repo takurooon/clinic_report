@@ -1,2 +1,0 @@
-class ProgestinEplenishment < ApplicationRecord
-end
