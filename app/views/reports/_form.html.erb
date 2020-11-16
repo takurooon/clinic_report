@@ -150,6 +150,12 @@
                     <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植方法</span></small>
                   </div>
 
+                  <div class="form-group mt-0 mb-3 pt-0">
+                    <p class="question mb-0">休職や退職の有無</p>
+                    <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, { prompt: "" }, { class: "form-control" }  %>
+                  </div>
+
+                  <% if false %>
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0">治療期間</p>
                     <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "" }, { class: "form-control" }  %>
@@ -170,12 +176,6 @@
                       <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, { prompt: "" }, { class: "form-control" }  %>
                       <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
                     </div>
-
-                    <div class="form-group mt-0 mb-3 pt-0">
-                      <p class="question mb-0">休職や退職の有無</p>
-                      <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, { prompt: "" }, { class: "form-control" }  %>
-                    </div>
-
                     <div class="form-group mt-0 mb-2 pt-4">
                       <p class="question mb-0">治療時の夫婦合算所得&nbsp;<sup class="text-success">●</sup></p>
                       <%= f.select :household_net_income, Report::HASH_HOUSEHOLD_NET_INCOME.invert, { prompt: "" }, { class: "form-control" }  %>
@@ -185,6 +185,7 @@
                       <small id="poster-tip" class="form-text text-muted text-right pt-0 mt-0"><%= f.check_box :household_net_income_status, {}, "hide", "show" %>非公開</small>
                     </div>
                   </div>
+                  <% end %>
                   <div class="mt-3 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                     <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
@@ -233,10 +234,22 @@
               <section class="child-tab-content" id="tab_1_4">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-2">不妊原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                    <%= f.collection_check_boxes(:f_funin_factor_ids, FFuninFactor.all, :id, :name) do |b| %>
+                      <div class="form-check checkbox">
+                        <%= b.label class: "form-check-label" do %>
+                          <%= b.check_box class: "form-check-input" %>
+                          <%= b.text %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0">男性側の不妊原因の有無</p>
                     <%= f.select :male_infertility, Report::HASH_MALE_INFERTILITY.invert, { prompt: "" }, { class: "form-control" }  %>
                   </div>
-                  <div class="form-group mt-0 mb-2 pt-0">
+                  <div class="form-group mt-0 mb-2 pt-0 level_of_male_infertility">
                     <p class="question mb-0">男性不妊のレベル</p>
                     <%= f.select :level_of_male_infertility, Report::HASH_LEVEL_OF_MALE_INFERTILITY.invert, { prompt: "" }, { class: "form-control" }  %>
                   </div>
@@ -307,10 +320,10 @@
               <section class="child-tab-content active" id="tab_2_1">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-3 pt-0">
-                    <p class="question mb-0">前院での基本検査結果の再利用可否</p>
+                    <p class="question mb-0">前院での基本検査結果の再利用</p>
                     <%= f.select :reuse_of_basic_examination_results, Report::HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS.invert, { prompt: "" }, { class: "form-control" }  %>
                     <small id="poster-tip" class="form-text text-muted">
-                      <span class="small text-danger">感染症検査などを除く前院での基本検査結果の再利用</span>
+                      <span class="small text-danger">(感染症検査などを除く)前院での基本検査結果が再利用できたかどうか</span>
                     </small>
                   </div>
                   <div class="form-group mt-0 mb-3 pt-0">
@@ -320,6 +333,8 @@
                       <span class="small text-danger"><span class="select-clinic-name"></span>での最新の数値</span>
                     </small>
                   </div>
+
+                  <% if false %>
                   <div class="form-group mt-0 mb-4 pt-0">
                     <p class="question mb-0">基本検査以外に受けた検査</p>
                     <%= f.fields_for :special_inspections do |special_inspection| %>
@@ -329,7 +344,9 @@
                       <%= link_to_add_association "+ 追加", f, :special_inspections %>
                     </div>
                   </div>
+                  <% end %>
 
+                  <% if false %>
                   <div class="form-group mt-0 mb-0 pt-0">
                     <p class="question mb-0">不育症「検査」の有無</p>
                     <%= f.select :fuiku_examination, Report::HASH_FUIKU_EXAMINATION.invert, { prompt: "" }, { class: "form-control" } %>
@@ -340,6 +357,7 @@
                     <p class="question mb-0">不育症「診断」の有無</p>
                     <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control" } %>
                   </div>
+                  <% end %>
 
                   <div class="form-group mt-0 mb-5 pt-0 fuiku-factor">
                     <p class="question mb-0">不育原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
@@ -580,7 +598,7 @@
                         </div>
 
                         <div class="form-group mt-0 mb-2 pt-0">
-                          <p class="question mb-0">貯卵数
+                          <p class="question mb-0">凍結胚数
                           <%= f.select :number_of_eggs_stored, Report::HASH_NUMBER_OF_EGGS_STORED.invert, { prompt: "" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">に残っている凍結胚数</span></small>
                         </div>

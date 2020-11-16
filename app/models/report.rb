@@ -525,7 +525,8 @@ class Report < ApplicationRecord
   # male_infertilityの区分値(男性不妊因子)
   HASH_MALE_INFERTILITY = {
     1 => "なし",
-    2 => "あり"
+    2 => "あり",
+    3 => "不明"
   }
 
   def str_male_infertility
@@ -1045,17 +1046,11 @@ class Report < ApplicationRecord
 
   # period_of_time_spent_travelingの区分値(通院時間)
   HASH_PERIOD_OF_TIME_SPENT_TRAVELING = {
-    1 => "30分前後",
-    2 => "1時間前後",
-    3 => "1.5時間前後",
-    4 => "2時間前後",
-    5 => "2.5時間前後",
-    6 => "3時間前後",
-    7 => "3.5時間前後",
-    8 => "4時間前後",
-    9 => "4.5時間前後",
-    10 => "5時間前後",
-    99 => "それ以上"
+    1 => "30分圏内",
+    2 => "1時間圏内",
+    3 => "2時間圏内",
+    4 => "3時間圏内",
+    99 => "4時間以上"
   }
 
   def str_period_of_time_spent_traveling

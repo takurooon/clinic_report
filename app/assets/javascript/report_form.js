@@ -257,6 +257,7 @@ function fertilization_method(types_of_fertilization_methods) {
     $(".description_of_types_of_fertilization_methods").hide();
   }
 }
+
 // 不育原因の詳細
 $(function() {
   fuiku($("#report_fuiku option:selected").val());
@@ -271,6 +272,22 @@ function fuiku(fuiku) {
     $(".fuiku-factor").show();
   } else {
     $(".fuiku-factor").hide();
+  }
+}
+
+// 男性不妊の詳細
+$(function() {
+  fuiku($("#report_male_infertility option:selected").val());
+  $("#report_male_infertility").change(function() {
+    m_funin($(this).val());
+  });
+})
+$(".level_of_male_infertility").hide();
+function m_funin(male_infertility) {
+  if (male_infertility == "2") {
+    $(".level_of_male_infertility").show();
+  } else {
+    $(".level_of_male_infertility").hide();
   }
 }
 

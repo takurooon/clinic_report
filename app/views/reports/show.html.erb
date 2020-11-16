@@ -2470,15 +2470,19 @@
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">疾患・不妊原因</span></h5>
                 <table class="table p-0 mb-0">
                   <tr>
-                    <td class="result-left-column small text-center" style="width:30%">不妊因子</td>
+                    <td class="result-left-column small text-center" style="width:30%">原因</td>
                     <td class="pl-3" style="width:70%">
-                      <% if @report.male_infertility.present? %>
-                        <span class="result-text"><%= @report.user.str_male_infertility %></span>
+                      <% if @report.f_funin_factors.present? %>
+                        <% @report.f_funin_factors.each do |f_funin_factor| %>
+                          <ul class="list-unstyled mb-0">
+                            <li class="result-text small">･<%= f_funin_factor.name %></li>
+                          </ul>
+                        <% end %>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %>
                     </td>
-                  </tr>
+                  </tr> 
                 </table>
                 <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">男性不妊</span></h5>
                 <table class="table p-0 mb-0">

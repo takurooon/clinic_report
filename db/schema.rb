@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_002554) do
+ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,12 @@ ActiveRecord::Schema.define(version: 2020_11_16_002554) do
     t.index ["report_id"], name: "index_day_of_shokihaiishokus_on_report_id"
   end
 
+  create_table "f_funin_factors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "fuiku_inspections", force: :cascade do |t|
     t.string "name"
     t.string "yomigana"
@@ -246,6 +252,15 @@ ActiveRecord::Schema.define(version: 2020_11_16_002554) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cl_selection_id"], name: "index_report_cl_selections_on_cl_selection_id"
     t.index ["report_id"], name: "index_report_cl_selections_on_report_id"
+  end
+
+  create_table "report_f_funin_factors", force: :cascade do |t|
+    t.bigint "report_id", null: false
+    t.bigint "f_funin_factor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["f_funin_factor_id"], name: "index_report_f_funin_factors_on_f_funin_factor_id"
+    t.index ["report_id"], name: "index_report_f_funin_factors_on_report_id"
   end
 
   create_table "report_fuiku_inspections", force: :cascade do |t|
@@ -494,6 +509,8 @@ ActiveRecord::Schema.define(version: 2020_11_16_002554) do
   add_foreign_key "prefectures", "region1s"
   add_foreign_key "report_cl_selections", "cl_selections"
   add_foreign_key "report_cl_selections", "reports"
+  add_foreign_key "report_f_funin_factors", "f_funin_factors"
+  add_foreign_key "report_f_funin_factors", "reports"
   add_foreign_key "report_fuiku_inspections", "fuiku_inspections"
   add_foreign_key "report_fuiku_inspections", "reports"
   add_foreign_key "report_pg_eplenishments", "pg_eplenishments"

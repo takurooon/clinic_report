@@ -491,6 +491,7 @@ class ReportsController < ApplicationController
         transfer_option_ids: [],
         cl_selection_ids: [],
         pg_eplenishment_ids: [],
+        f_funin_factor_ids: [],
         day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
         day_of_shokihaiishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
         day_of_haibanhoishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
