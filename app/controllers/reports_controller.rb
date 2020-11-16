@@ -490,6 +490,7 @@ class ReportsController < ApplicationController
         fuiku_inspection_ids: [],
         transfer_option_ids: [],
         cl_selection_ids: [],
+        pg_eplenishment_ids: [],
         day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
         day_of_shokihaiishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],
         day_of_haibanhoishokus_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :endometrial_thickness, :_destroy],

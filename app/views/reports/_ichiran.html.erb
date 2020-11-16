@@ -1082,6 +1082,20 @@
         </td>
       </tr>
       <tr>
+        <td class="result-left-column small text-center">黄体補充</td>
+        <td class="pl-3">
+          <% if @report.pg_eplenishments.present? %>
+            <% @report.pg_eplenishments.each do |pg_eplenishment| %>
+              <ul class="list-unstyled mb-0">
+                <li class="result-text small">･<%= pg_eplenishment.name %></li>
+              </ul>
+            <% end %>
+          <% else %>
+            <span class="text-muted small">未回答</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
         <td class="result-left-column small text-center">貯卵数</td>
         <td class="pl-3">
           <% if @report.number_of_eggs_stored.present? %>

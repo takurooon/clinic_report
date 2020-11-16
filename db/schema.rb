@@ -220,7 +220,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_002554) do
   end
 
   create_table "pg_eplenishments", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

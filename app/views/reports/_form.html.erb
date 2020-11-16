@@ -124,7 +124,6 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_2">
-                <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 mb-0">投稿時点の状況</p>
@@ -193,7 +192,6 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_3">
-                <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0">クリニック卒業年</p>
@@ -233,7 +231,6 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_4">
-                <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0">男性側の不妊原因の有無</p>
@@ -250,9 +247,6 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_1_5">
-                <div class="alert alert-info small rounded-lg" role="alert">
-                  <span><span class="select-clinic-name"></span>を選んだ理由とこれまでの転院歴について教えてください。</u></span>
-                </div>
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0"><span class="select-clinic-name"></span>は何院目？</p>
@@ -365,9 +359,8 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_2">
-                <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <div class="scroll-box">
-                  <div class="parent-tab mb-0">
+                  <div class="parent-tab mt-4 mb-0">
                     <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                       <li><a href="#left_tab" class="active mostleft-tab" data-toggle="tab">最新の採卵周期</a></li>
                       <li><a href="#right_tab" data-toggle="tab">過去の採卵</a></li>
@@ -523,9 +516,8 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_3">
-                <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <div class="scroll-box">
-                  <div class="parent-tab mb-0">
+                  <div class="parent-tab mt-4 mb-0">
                     <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                       <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の移植周期</a></li>
                       <li><a href="#right_tab2" data-toggle="tab">過去の移植</a></li>
@@ -566,6 +558,18 @@
                         <div class="form-group mt-0 mb-2 pt-0">
                           <p class="question mb-0">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                           <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all.name_yomigana, :id, :name) do |b| %>
+                            <div class="form-check checkbox">
+                              <%= b.label class: "form-check-label" do %>
+                                <%= b.check_box class: "form-check-input" %>
+                                <%= b.text %>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        </div>
+
+                        <div class="form-group mt-0 mb-2 pt-0">
+                          <p class="question mb-0">黄体補充&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                          <%= f.collection_check_boxes(:pg_eplenishment_ids, PgEplenishment.all, :id, :name) do |b| %>
                             <div class="form-check checkbox">
                               <%= b.label class: "form-check-label" do %>
                                 <%= b.check_box class: "form-check-input" %>
@@ -727,7 +731,6 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_4">
-                <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0">治療費用総額</p>
@@ -773,7 +776,6 @@
                 </div>
               </section>
               <section class="child-tab-content" id="tab_2_5">
-                <div class="alert alert-info small rounded-lg select-clinic-review" role="alert"></div>
                 <div class="scroll-box">
                   <div class="form-group">
                     <div class="mt-0 pt-2">

@@ -92,3 +92,10 @@ ClSelection.create([
   { name: "広告を見て" },
   { name: "その他" },
 ])
+
+PgEplenishment.create([
+  { name: "なし" },
+  { name: "内服" },
+  { name: "経膣" },
+  { name: "注射" },
+])
