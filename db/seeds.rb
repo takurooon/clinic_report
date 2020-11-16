@@ -99,3 +99,12 @@ PgEplenishment.create([
   { name: "経膣" },
   { name: "注射" },
 ])
+
+FFuninFactor.create([
+  { name: "原因不明" },
+  { name: "PCOS" },
+  { name: "卵管性不妊" },
+  { name: "男性不妊" },
+  { name: "子宮内膜症(子宮腺筋症含む)" },
+  { name: "子宮筋腫" },
+])
