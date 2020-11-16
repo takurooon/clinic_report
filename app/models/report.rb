@@ -285,6 +285,10 @@ class Report < ApplicationRecord
   has_many :report_fuiku_inspections, dependent: :destroy
   has_many :fuiku_inspections, through: :report_fuiku_inspections
 
+  # 女性不妊の原因
+  has_many :report_f_funin_factors, dependent: :destroy
+  has_many :f_funin_factors, through: :report_f_funin_factors
+
   # 移植オプション
   has_many :report_transfer_options, dependent: :destroy
   has_many :transfer_options, through: :report_transfer_options
