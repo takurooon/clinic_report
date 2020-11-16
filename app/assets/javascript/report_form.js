@@ -168,14 +168,14 @@ $(function() {
 // クリニックを選択した時点でform内のテキストに表示させる
 $(function() {
   var clinic_name = $('#report_clinic_id option:selected').text();
-  var clinic_name_description = "「" + clinic_name + "」" + "での治療に関する情報についてお聞きします。";
-  var clinic_name_review = clinic_name + "での治療の「満足度」についてお聞きします。";
-  var clinic_name_birth = clinic_name + "での治療で妊娠し「出産された方」にお聞きします。";
+  var clinic_name_description = "「" + clinic_name + "」" + "での治療に関する情報について教えて下さい。";
+  var clinic_name_review = clinic_name + "での治療の「満足度」について教えて下さい。";
+  var clinic_name_birth = clinic_name + "での治療で妊娠し「出産された方」に教えて下さい。";
   if (clinic_name === "クリニック" ) {
     $('.select-clinic-name').text("このレポコのクリニック");
-    $('.select-clinic-description').text("このレポコのクリニックでの治療に関する情報についてお聞きします。");
-    $('.select-clinic-review').text("このレポコのクリニックでの治療の満足度についてお聞きします。");
-    $('.select-clinic-birth').text("このレポコのクリニックでの治療で妊娠し「出産された方」にお聞きします。");
+    $('.select-clinic-description').text("このレポコのクリニックでの治療に関する情報について教えて下さい。");
+    $('.select-clinic-review').text("このレポコのクリニックでの治療の満足度について教えて下さい。");
+    $('.select-clinic-birth').text("このレポコのクリニックでの治療で妊娠し「出産された方」に教えて下さい。");
   } else {
     $('.select-clinic-name').text(clinic_name);
     $('.select-clinic-description').text(clinic_name_description);
@@ -186,9 +186,9 @@ $(function() {
 $(function() {
   $('#report_clinic_id').change(function() {
     var clinic_name = $('#report_clinic_id option:selected').text();
-    var clinic_name_description = "「" + clinic_name + "」" + "での治療に関する情報についてお聞きします。";
-    var clinic_name_review = clinic_name + "での治療の「満足度」についてお聞きします。";
-    var clinic_name_birth = clinic_name + "での治療で妊娠し「出産された方」にお聞きします。";
+    var clinic_name_description = "「" + clinic_name + "」" + "での治療に関する情報について教えて下さい。";
+    var clinic_name_review = clinic_name + "での治療の「満足度」について教えて下さい。";
+    var clinic_name_birth = clinic_name + "での治療で妊娠し「出産された方」に教えて下さい。";
     $('.select-clinic-name').text(clinic_name);
     $('.select-clinic-description').text(clinic_name_description);
     $('.select-clinic-review').text(clinic_name_review);

@@ -11,7 +11,6 @@
 #  blastocyst_grade1_supplementary_explanation  :text
 #  blastocyst_grade2                            :integer
 #  blastocyst_grade2_supplementary_explanation  :text
-#  briefing_session                             :integer
 #  city_at_the_time_status                      :integer          default("show"), not null
 #  clinic_review                                :text
 #  comfort_of_space                             :float
@@ -25,11 +24,6 @@
 #  early_embryo_grade                           :integer
 #  early_embryo_grade_supplementary_explanation :text
 #  embryo_stage                                 :integer
-#  explanation_and_impression_about_ishoku      :text
-#  explanation_and_impression_about_sairan      :text
-#  explanation_of_cost                          :text
-#  f_other_effort_cost                          :integer
-#  f_other_effort_memo                          :text
 #  fertility_treatment_number                   :integer
 #  free_wifi                                    :integer
 #  fuiku                                        :integer
@@ -40,11 +34,9 @@
 #  impression_of_technology                     :float
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
-#  ishoku_cost_explanation                      :text
 #  ishoku_type                                  :integer
-#  ishoku_type_memo                             :text
-#  m_other_effort_cost                          :integer
-#  m_other_effort_memo                          :text
+#  level_of_male_infertility                    :integer
+#  male_infertility                             :integer
 #  number_of_clinics                            :integer
 #  number_of_eggs_collected                     :integer
 #  number_of_eggs_stored                        :integer
@@ -62,9 +54,9 @@
 #  reason_for_transfer                          :text
 #  reasons_for_choosing_this_clinic             :text
 #  rest_period                                  :integer
+#  reuse_of_basic_examination_results           :integer
 #  sairan_age                                   :integer
 #  sairan_cost                                  :integer
-#  sairan_cost_explanation                      :text
 #  selection_of_anesthesia_type                 :integer
 #  staff_quality                                :float
 #  status                                       :integer          default("released"), not null
@@ -73,15 +65,12 @@
 #  total_number_of_eggs_transplanted            :integer
 #  total_number_of_sairan                       :integer
 #  total_number_of_transplants                  :integer
-#  transfer_option_memo                         :text
 #  transplant_method                            :integer
-#  transplant_method_memo                       :text
 #  treatment_end_age                            :integer
 #  treatment_period                             :integer
 #  treatment_policy                             :text
 #  treatment_start_age                          :integer
 #  type_of_ovarian_stimulation                  :integer
-#  type_of_ovarian_stimulation_memo             :text
 #  types_of_fertilization_methods               :integer
 #  use_of_anesthesia                            :integer
 #  work_style                                   :integer

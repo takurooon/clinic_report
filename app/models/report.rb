@@ -514,6 +514,45 @@ class Report < ApplicationRecord
     return HASH_DETAILS_OF_ICSI[self.details_of_icsi]
   end
 
+  # male_infertilityの区分値(男性不妊因子)
+  HASH_MALE_INFERTILITY = {
+    1 => "なし",
+    2 => "あり"
+  }
+
+  def str_male_infertility
+    return HASH_MALE_INFERTILITY[self.male_infertility]
+  end
+
+  # level_of_male_infertilityの区分値(男性不妊因子のレベル)
+  HASH_LEVEL_OF_MALE_INFERTILITY = {
+    1 => "人工授精レベル",
+    2 => "顕微受精レベル",
+    3 => "TESEレベル",
+    99 => "その他",
+    100 => "不明",
+  }
+
+  def str_level_of_male_infertility
+    return HASH_LEVEL_OF_MALE_INFERTILITY[self.level_of_male_infertility]
+  end
+
+  # reuse_of_basic_examination_resultsの区分値(基本検査の再利用可否)
+  HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS = {
+    1 => "再利用可",
+    2 => "再利用可(条件あり)",
+    3 => "一部再利用可",
+    4 => "一部再利用可(条件あり)",
+    5 => "再利用不可",
+    98 => "そもそも該当しない",
+    99 => "その他",
+    100 => "不明",
+  }
+
+  def str_reuse_of_basic_examination_results
+    return HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS[self.reuse_of_basic_examination_results]
+  end
+
   # transplant_methodの区分値(移植胚の種類)
   HASH_TRANSPLANT_METHOD = {
     1 => "凍結胚",
@@ -2009,7 +2048,6 @@ end
 #  blastocyst_grade1_supplementary_explanation  :text
 #  blastocyst_grade2                            :integer
 #  blastocyst_grade2_supplementary_explanation  :text
-#  briefing_session                             :integer
 #  city_at_the_time_status                      :integer          default("show"), not null
 #  clinic_review                                :text
 #  comfort_of_space                             :float
@@ -2023,11 +2061,6 @@ end
 #  early_embryo_grade                           :integer
 #  early_embryo_grade_supplementary_explanation :text
 #  embryo_stage                                 :integer
-#  explanation_and_impression_about_ishoku      :text
-#  explanation_and_impression_about_sairan      :text
-#  explanation_of_cost                          :text
-#  f_other_effort_cost                          :integer
-#  f_other_effort_memo                          :text
 #  fertility_treatment_number                   :integer
 #  free_wifi                                    :integer
 #  fuiku                                        :integer
@@ -2038,11 +2071,9 @@ end
 #  impression_of_technology                     :float
 #  ishoku_age                                   :integer
 #  ishoku_cost                                  :integer
-#  ishoku_cost_explanation                      :text
 #  ishoku_type                                  :integer
-#  ishoku_type_memo                             :text
-#  m_other_effort_cost                          :integer
-#  m_other_effort_memo                          :text
+#  level_of_male_infertility                    :integer
+#  male_infertility                             :integer
 #  number_of_clinics                            :integer
 #  number_of_eggs_collected                     :integer
 #  number_of_eggs_stored                        :integer
@@ -2060,9 +2091,9 @@ end
 #  reason_for_transfer                          :text
 #  reasons_for_choosing_this_clinic             :text
 #  rest_period                                  :integer
+#  reuse_of_basic_examination_results           :integer
 #  sairan_age                                   :integer
 #  sairan_cost                                  :integer
-#  sairan_cost_explanation                      :text
 #  selection_of_anesthesia_type                 :integer
 #  staff_quality                                :float
 #  status                                       :integer          default("released"), not null
@@ -2071,15 +2102,12 @@ end
 #  total_number_of_eggs_transplanted            :integer
 #  total_number_of_sairan                       :integer
 #  total_number_of_transplants                  :integer
-#  transfer_option_memo                         :text
 #  transplant_method                            :integer
-#  transplant_method_memo                       :text
 #  treatment_end_age                            :integer
 #  treatment_period                             :integer
 #  treatment_policy                             :text
 #  treatment_start_age                          :integer
 #  type_of_ovarian_stimulation                  :integer
-#  type_of_ovarian_stimulation_memo             :text
 #  types_of_fertilization_methods               :integer
 #  use_of_anesthesia                            :integer
 #  work_style                                   :integer

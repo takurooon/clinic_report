@@ -71,6 +71,9 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :number_of_visits_before_ishoku
       t.integer :free_wifi
       t.integer :possible_to_wait_outside_cl
+      t.integer :reuse_of_basic_examination_results
+      t.integer :male_infertility
+      t.integer :level_of_male_infertility
 
       t.timestamps
     end

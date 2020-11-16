@@ -42,7 +42,7 @@
                 <li class="tab-item"><a href="#tab_1_1" class="active" data-toggle="tab"><span class="text-info">必須</span></a></li>
                 <li class="tab-item"><a href="#tab_1_2" data-toggle="tab">基礎</a></li>
                 <li class="tab-item"><a href="#tab_1_3" data-toggle="tab">年齢</a></li>
-                <li class="tab-item"><a href="#tab_1_4" data-toggle="tab">選定</a></li>
+                <li class="tab-item"><a href="#tab_1_4" data-toggle="tab">原因</a></li>
                 <li class="tab-item"><a href="#tab_1_5" data-toggle="tab">転院歴</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_1_1">
@@ -235,6 +235,30 @@
               <section class="child-tab-content" id="tab_1_4">
                 <div class="alert alert-info small rounded-lg select-clinic-description" role="alert"></div>
                 <div class="scroll-box">
+                  <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-0">男性側の不妊原因の有無</p>
+                    <%= f.select :male_infertility, Report::HASH_MALE_INFERTILITY.invert, { prompt: "" }, { class: "form-control" }  %>
+                  </div>
+                  <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-0">男性不妊のレベル</p>
+                    <%= f.select :level_of_male_infertility, Report::HASH_LEVEL_OF_MALE_INFERTILITY.invert, { prompt: "" }, { class: "form-control" }  %>
+                  </div>
+                  <div class="mt-5 d-flex justify-content-between">
+                    <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
+                    <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
+                  </div>
+                </div>
+              </section>
+              <section class="child-tab-content" id="tab_1_5">
+                <div class="alert alert-info small rounded-lg" role="alert">
+                  <span><span class="select-clinic-name"></span>を選んだ理由とこれまでの転院歴について教えてください。</u></span>
+                </div>
+                <div class="scroll-box">
+                  <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-0"><span class="select-clinic-name"></span>は何院目？</p>
+                    <%= f.select :number_of_clinics, Report::HASH_NUMBER_OF_CLINICS.invert, { prompt: "" }, { class: "form-control" } %>
+                  </div>
+
                   <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-0"><span class="select-clinic-name"></span>を選んだ理由<br><small class="text-muted"><span class="small">複数選択可</span></small></p>
                     <%= f.collection_check_boxes(:cl_selection_ids, ClSelection.all, :id, :name) do |b| %>
@@ -260,21 +284,6 @@
                     <small class="text-muted"><span class="small">自宅&nbsp;or&nbsp;職場&nbsp;&nbsp;⇄&nbsp;&nbsp;<span class="select-clinic-name"></span>&nbsp;間の通院時間</span></small>
                   </div>
 
-                  <div class="mt-5 d-flex justify-content-between">
-                    <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
-                    <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
-                  </div>
-                </div>
-              </section>
-              <section class="child-tab-content" id="tab_1_5">
-                <div class="alert alert-info small rounded-lg" role="alert">
-                  <span>これまでの転院歴についてお聞きします。</u></span>
-                </div>
-                  <div class="scroll-box">
-                    <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0"><span class="select-clinic-name"></span>は何院目？</p>
-                    <%= f.select :number_of_clinics, Report::HASH_NUMBER_OF_CLINICS.invert, { prompt: "" }, { class: "form-control" } %>
-                  </div> 
                   <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-1">これまでの転院歴</p>
                     <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
@@ -303,6 +312,13 @@
               </ul>
               <section class="child-tab-content active" id="tab_2_1">
                 <div class="scroll-box">
+                  <div class="form-group mt-0 mb-3 pt-0">
+                    <p class="question mb-0">前院での基本検査結果の再利用可否</p>
+                    <%= f.select :reuse_of_basic_examination_results, Report::HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <small id="poster-tip" class="form-text text-muted">
+                      <span class="small text-danger">感染症検査などを除く前院での基本検査結果の再利用</span>
+                    </small>
+                  </div>
                   <div class="form-group mt-0 mb-3 pt-0">
                     <p class="question mb-0">AMH値</p>
                     <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "" }, { class: "form-control" }  %>
@@ -360,9 +376,9 @@
                       <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                         <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った採卵周期について</span></h6>
                         <div class="form-group mt-0 mb-2 pt-0">
-                          <p class="question mb-0">この採卵は何回目の採卵ですか</p>
+                          <p class="question mb-0">何回目の採卵ですか</p>
                           <%= f.select :total_number_of_sairan, Report::HASH_TOTAL_NUMBER_OF_SAIRAN.invert, { prompt: "" }, { class: "form-control" }  %>
-                          <small class="text-muted">=&nbsp;<span class="small select-clinic-name"></span><span class="small">での全採卵回数</span></small>
+                          <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵は<span class="select-clinic-name"></span>での何回目の採卵ですか</span></small>
                         </div>
 
                         <div class="form-group mt-0 mb-2 pt-0">
@@ -396,7 +412,7 @@
                         </div>
 
                         <div class="form-group mt-0 mb-2 pt-0">
-                          <p class="question mb-0">採卵個数</p>
+                          <p class="question mb-0">採卵個数<span class="small text-danger"><span class="small">&nbsp;※変性卵は除く</span></span></p>
                           <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control" }  %>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の採卵個数</span></small>
                         </div>
