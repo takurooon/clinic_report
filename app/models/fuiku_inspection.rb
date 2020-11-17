@@ -1,10 +1,6 @@
 class FuikuInspection < ApplicationRecord
   has_many :report_fuiku_inspections, dependent: :destroy
   has_many :reports, through: :report_fuiku_inspections
-
-  def str_fuiku_inspection
-    return self.name
-  end
 end
 
 # == Schema Information

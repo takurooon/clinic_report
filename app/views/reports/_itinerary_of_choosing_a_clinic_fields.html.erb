@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       <tr>
-        <td class="text-center align-middle"><%= f.select :order_of_transfer, Report.make_select_itinerary_of_choosing_a_clinics_order_of_transfer, { prompt: "選択必須" }, { class: "form-control text-muted" } %></td>
+        <td class="text-center align-middle"><%= f.select :order_of_transfer, Report.make_select_itinerary_of_choosing_a_clinics_order_of_transfer, { prompt: "①" }, { class: "form-control text-muted" } %></td>
         <td class="text-center align-middle">
           <% if f.object.clinic.blank? %>
             <% prefecture_id = nil %>
@@ -19,21 +19,21 @@
           <%= select_tag :clinic_prefecture,
                           options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name, selected: prefecture_id),
                           {
-                            prompt: "選択",
+                            prompt: "②",
                             class: "form-control clinic_prefecture"
                           }
           %>
         </td>
         <td class="text-center align-middle">
           <% if f.object.clinic.blank? %>
-            <%= f.select :clinic_id, {}, { prompt: "選択"}, { class: "form-control itinerary_of_clinic" } %>
+            <%= f.select :clinic_id, {}, { prompt: "③"}, { class: "form-control itinerary_of_clinic" } %>
           <% else %>
             <% clinics = Clinic.where(prefecture_id: prefecture_id).order(id: "ASC") %>
             <% options = {} %>
             <% clinics.each do |clinic| %>
               <% options[clinic.name] = clinic.id %>
             <% end %>
-            <%= f.select :clinic_id, options, {prompt: "選択"}, { class: "form-control" } %>
+            <%= f.select :clinic_id, options, {prompt: "③"}, { class: "form-control" } %>
           <% end %>
         </td>
 
