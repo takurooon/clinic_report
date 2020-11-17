@@ -875,7 +875,7 @@ i .fa-edit {
 	background-color:rgb(172,252,245);
 	color: #333;
 	min-height: 150px;
-	padding: 2em 12px 12px;
+	padding: 1em 12px 12px;
 	border: 1px solid;
 	display: block;
 	border-top-right-radius: 4px;
@@ -1071,7 +1071,7 @@ i .fa-edit {
 	visibility: visible;
 }
 
-// 別ver
+// アコーディオン2
 .acd-check-cllist{
 	display: none;
 }
@@ -1081,6 +1081,7 @@ i .fa-edit {
 	color: #ffffff;
 	display: block;
 }
+
 .acd-content-multiple{
 	background: #F7F9F9;
 	border: 1px solid #2ECFC0;
@@ -1096,6 +1097,58 @@ i .fa-edit {
 	opacity: 1;
 	visibility: visible;
 	overflow-y: scroll;
+}
+
+// アコーディオン3
+.acd-check3 {
+	display: none;
+}
+.acd-label3 {
+	background: #2ECFC0;
+	color: #fff;
+	display: block;
+	margin-bottom: 1px;
+	padding: 10px;
+	position: relative;
+	border-radius: 5px 5px 0 0;
+}
+.acd-label3:after {
+	background: #2ECFC0;
+	box-sizing: border-box;
+	content: '\f0fe';
+	color: rgba(255, 75, 62, 0.9);
+	display: block;
+	font-family: "Font Awesome 5 Free";
+	height: auto;
+	padding: 10px 0 10px 10px;
+	position: absolute;
+	left: 0;
+	top: 0px;
+	border-radius: 5px 0 0 0;
+}
+.acd-content3 {
+	background: rgba(46,207,192, 0.1);
+	border-bottom: 0.5px solid #2ECFC0;
+	border-left: 0.5px solid #2ECFC0;
+	border-right: 0.5px solid #2ECFC0;
+	border-radius: 0 0 5px 5px;
+	display: block;
+	height: 0;
+	opacity: 0;
+	padding: 0 10px;
+	transition: .5s;
+	visibility: hidden;
+}
+
+.acd-check3:checked + .acd-label3:after {
+	content: '\f146';
+	color:#ffffff;
+}
+.acd-check3:checked + .acd-label3 + .acd-content3 {
+	height: auto;
+	opacity: 1;
+	padding: 10px;
+	visibility: visible;
 }
 
 // 投稿/更新/保存エリアとボタン

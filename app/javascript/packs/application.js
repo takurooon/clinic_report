@@ -18,6 +18,7 @@ require("./form_validation")
 import "../stylesheets/application"
 import 'bootstrap-material-design'
 import "@fortawesome/fontawesome-free/js/all";
+import "../stylesheets/application";
 
 // import "cocoon"
 import "cocoon";

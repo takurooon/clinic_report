@@ -9,31 +9,31 @@
         <tr>
           <td>
             <small class="text-muted">何回目の移植？</small>
-            <%= f.select :number, UnsuccessfulIshokuCycle::HASH_NUMBER_OF_ISHOKU.invert, { prompt: "選択" }, { class: "form-control" } %>
+            <%= f.select :number, UnsuccessfulIshokuCycle::HASH_NUMBER_OF_ISHOKU.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
             <small class="text-muted">↑  移植時の年齢</small>
-            <%= f.select :ishoku_age, UnsuccessfulIshokuCycle::HASH_ISHOKU_AGE.invert, { prompt: "選択" }, { class: "form-control" } %>
+            <%= f.select :ishoku_age, UnsuccessfulIshokuCycle::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
             <small class="text-muted">移植方法</small>
-            <%= f.select :transplant_method, UnsuccessfulIshokuCycle::HASH_TRANSPLANT_METHOD.invert, { prompt: "選択" }, { class: "form-control" } %>
+            <%= f.select :transplant_method, UnsuccessfulIshokuCycle::HASH_TRANSPLANT_METHOD.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
             <small class="text-muted">移植タイプ</small>
-            <%= f.select :ishoku_type, UnsuccessfulIshokuCycle::HASH_UNSUCCESSFUL_ISHOKU_TYPE.invert, { prompt: "選択" }, { class: "form-control" } %>
+            <%= f.select :ishoku_type, UnsuccessfulIshokuCycle::HASH_UNSUCCESSFUL_ISHOKU_TYPE.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
-            <small class="text-muted">補足説明</small>
-            <%= f.text_area :memo, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "詳しい説明" %>
+            <small class="text-muted">メモ</small>
+            <%= f.text_area :memo, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
           </td>
         </tr>
       </tbody>

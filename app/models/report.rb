@@ -1135,7 +1135,7 @@ class Report < ApplicationRecord
   # itinerary_of_choosing_a_clinicsのorder_of_transfer区分値(転院履歴)別モデル
   def self.make_select_itinerary_of_choosing_a_clinics_order_of_transfer
     hash = {}
-    (1..20).each do |i|
+    (1..10).each do |i|
       hash["#{i}つ前のクリニック"] = i
     end
     hash

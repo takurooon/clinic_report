@@ -33,26 +33,24 @@
           <div class="p-1">
           </div>
           <ul class="nav nav-tabs parent-menu mt-0 pt-0">
-            <li class="tab-item"><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">1.概要</a></li>
-            <li class="tab-item"><a href="#tab_2" data-toggle="tab">2.詳細</a></li>
+            <li class="tab-item"><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">基礎情報</a></li>
+            <li class="tab-item"><a href="#tab_2" data-toggle="tab">治療情報</a></li>
+            <% if false %><li class="tab-item"><a href="#tab_3" data-toggle="tab">ホルモン値</a></li><% end %>
           </ul>
           <section class="parent-tab-content active mostleft-tab" id="tab_1">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li class="tab-item"><a href="#tab_1_1" class="active" data-toggle="tab"><span class="text-info">必須</span></a></li>
-                <li class="tab-item"><a href="#tab_1_2" data-toggle="tab">基礎</a></li>
+                <li class="tab-item"><a href="#tab_1_2" data-toggle="tab">概要</a></li>
                 <li class="tab-item"><a href="#tab_1_3" data-toggle="tab">年齢</a></li>
                 <li class="tab-item"><a href="#tab_1_4" data-toggle="tab">原因</a></li>
                 <li class="tab-item"><a href="#tab_1_5" data-toggle="tab">転院歴</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_1_1">
-                <div class="alert alert-info small rounded-lg text-dark" role="alert">
-                  <span class="text-danger"><strong>このタブの項目は&nbsp;必ず選択して下さい。</strong></span><br><br>未選択での投稿/更新/保存はできません。そのほかのタブの項目を入力し、投稿/更新/保存を押してもこの項目が未入力ですと保存されず消えてしまいます。ご注意ください。
-                </div>
                 <div class="scroll-box row">
-                  <div class="col-sm-6">
-                    <div class="form-group border border-info rounded-lg p-3 mt-0">
-                      <p class="question">クリニック&nbsp;&nbsp;<span class="badge badge-danger">必須</span></p>
+                  <div class="col-sm-6 mb-3">
+                    <div class="form-group border border-info rounded-lg py-3 px-3 my-0">
+                      <p class="question pt-0 mb-1">クリニック&nbsp;&nbsp;<span class="badge badge-danger">必須</span></p>
                       <div>
                         <% if report.clinic.blank? %>
                           <% prefecture_id = nil %>
@@ -63,57 +61,52 @@
                                         options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name, selected: prefecture_id),
                                         {
                                           prompt: "都道府県",
-                                          class: "form-control",
+                                          class: "form-control py-0",
                                         }
                         %>
-                      </div><br>
+                      </div>
 
                       <div>
                         <% if report.clinic.blank? %>
                           <% city_id = nil %>
-                          <%= select_tag :city, options_for_select([["市区町村", 99]],), { class: "form-control" } %>
+                          <%= select_tag :city, options_for_select([["市区町村", 99]],), { class: "form-control py-0" } %>
                         <% else %>
                           <% city_id = report.clinic.city_id %>
                           <% cities = City.where(prefecture_id: prefecture_id).order(:id).joins(:clinics).distinct %>
-                          <%= collection_select :prefecture, :city, cities, :id, :name, { prompt: "市区町村", selected: city_id }, { class: "form-control", id: "city" } %>
+                          <%= collection_select :prefecture, :city, cities, :id, :name, { prompt: "市区町村", selected: city_id }, { class: "form-control py-0", id: "city" } %>
                         <% end %>
-                      </div><br>
+                      </div>
                       <div>
                         <% if report.clinic.blank? %>
-                          <%= f.select :clinic_id, {}, { prompt: "クリニック"}, { class: "form-control" } %>
+                          <%= f.select :clinic_id, {}, { prompt: "クリニック"}, { class: "form-control py-0" } %>
                         <% else %>
                           <% clinics = Clinic.where(city_id: city_id) %>
-                          <%= collection_select :report, :clinic_id, clinics, :id, :name, {prompt: "クリニック"}, { class: "form-control" } %>
+                          <%= collection_select :report, :clinic_id, clinics, :id, :name, {prompt: "クリニック"}, { class: "form-control py-0" } %>
                         <% end %>
-                        <small id="poster-tip" class="form-text text-muted">
-                          <small class="text-danger">選択必須</small>
-                        </small>
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="form-group border border-info rounded-lg p-3 mt-0">
-                      <p class="question">治療当時の住まい&nbsp;<sup class="text-success">●</sup>&nbsp;&nbsp;<span class="badge badge-danger">必須</span></p>
+                  <div class="col-sm-6 mb-3">
+                    <div class="form-group border border-info rounded-lg py-3 px-3 my-0">
+                      <p class="question pt-0 mb-1">治療当時の住まい&nbsp;<sup class="text-success">●</sup>&nbsp;&nbsp;<span class="badge badge-danger">必須</span></p>
                       <div>
-                        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県" }, { class: "form-control" }) %>
+                        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県" }, { class: "form-control py-0" }) %>
                       </div>
-                      <small><small class="text-danger">選択必須</small></small>
-                      <small id="poster-tip" class="form-text text-muted text-right pt-2">
-                        <%= f.check_box :prefecture_at_the_time_status, {}, "hide", "show" %>非公開<br>
-                      </small><br>
+                      <small id="poster-tip" class="form-text text-muted text-right mt-0 pt-1">
+                        <%= f.check_box :prefecture_at_the_time_status, {}, "hide", "show" %>非公開
+                      </small>
                       <div>
                         <% if report.city.blank? %>
-                          <%= f.select :city_id, {}, { prompt: "市区町村" }, { class: "form-control" } %>
+                          <%= f.select :city_id, {}, { prompt: "市区町村" }, { class: "form-control py-0" } %>
                         <% else %>
                           <% city = report.city_id %>
                           <% prefecture_id = report.prefecture_id %>
                           <% cities = City.where(prefecture_id: prefecture_id) %>
-                          <%= collection_select :report, :city_id, cities, :id, :name, { prompt: "市区町村", selected: city }, { class: "form-control" } %>
+                          <%= collection_select :report, :city_id, cities, :id, :name, { prompt: "市区町村", selected: city }, { class: "form-control py-0" } %>
                         <% end %>
                       </div>
-                      <small><small class="text-danger">選択必須</small></small>
-                      <small id="poster-tip" class="form-text text-muted text-right pt-2">
-                        <%= f.check_box :city_at_the_time_status, {}, "hide", "show" %>非公開<br>
+                      <small id="poster-tip" class="form-text text-muted text-right mt-0 pt-1">
+                        <%= f.check_box :city_at_the_time_status, {}, "hide", "show" %>非公開
                       </small>
                     </div>
                   </div>
@@ -126,66 +119,68 @@
               <section class="child-tab-content" id="tab_1_2">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0 mb-0">投稿時点の状況</p>
-                    <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, { prompt: "" }, { class: "form-control" } %>
+                    <p class="question mb-0 mb-0 pt-2">投稿時点の状況</p>
+                    <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">何人目の不妊治療</p>
-                    <%= f.select :fertility_treatment_number, Report::HASH_FERTILITY_TREATMENT_NUMBER.invert, { prompt: "" }, { class: "form-control" } %>
+                    <p class="question mb-0 pt-1">何人目の不妊治療</p>
+                    <%= f.select :fertility_treatment_number, Report::HASH_FERTILITY_TREATMENT_NUMBER.invert, { prompt: "" }, { class: "form-control py-0" } %>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">卵子と精子の受精方法</p>
-                    <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-1">卵子と精子の受精方法</p>
+                    <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                   </div>
                   <div class="form-group mt-0 mb-2 pt-0 detail_of_icsi">
-                    <p class="question mb-0">顕微受精の種類</p>
-                    <%= f.select :details_of_icsi, Report::HASH_DETAILS_OF_ICSI.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-1">顕微受精の種類</p>
+                    <%= f.select :details_of_icsi, Report::HASH_DETAILS_OF_ICSI.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">移植胚</p>
-                    <%= f.select :transplant_method, Report::HASH_TRANSPLANT_METHOD.invert, { prompt: "" }, { class: "form-control" } %>
+                    <p class="question mb-0 pt-1">移植胚</p>
+                    <%= f.select :transplant_method, Report::HASH_TRANSPLANT_METHOD.invert, { prompt: "" }, { class: "form-control py-0" } %>
                     <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植方法</span></small>
                   </div>
 
-                  <% if false %>
-                  <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">治療期間</p>
-                    <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
-                  </div>
+                  <div class="add-info mt-4 mb-5">
+                    <input id="acd-check1" class="acd-check3" type="checkbox">
+                    <label class="acd-label3" for="acd-check1">　 さらに詳しい情報を追加する</label>
+                    <div class="acd-content3">
+                      <div class="form-group mt-0 mb-2 pt-0">
+                        <p class="question mb-0 pt-1">治療期間</p>
+                        <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
+                      </div>
 
-                  <div class="form-group mt-0 mb-3 pt-0">
-                    <p class="question mb-0">休職や退職の有無</p>
-                    <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, { prompt: "" }, { class: "form-control" }  %>
-                  </div>
+                      <div class="form-group mt-0 mb-2 pt-0">
+                        <p class="question mb-0 pt-1">途中他院での治療も含むお休み期間</p>
+                        <%= f.select :rest_period, Report::HASH_REST_PERIOD.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療中にとったお休み/他院での治療期間</span></small>
+                      </div>
 
-                  <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">途中他院での治療も含むお休み期間</p>
-                    <%= f.select :rest_period, Report::HASH_REST_PERIOD.invert, { prompt: "" }, { class: "form-control" }  %>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療中にとったお休み/他院での治療期間</span></small>
-                  </div>
+                      <div class="form-group mt-4 mb-2 pt-0">
+                        <p class="question mb-0 pt-1">治療時の働き方&nbsp;<sup class="text-success">●</sup></p>
+                        <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
+                      </div>
 
-                  <div class="box26 px-2">
-                    <span class="box-title">働き方</span>
-                    <small class="text-muted">&nbsp;&nbsp;&nbsp;<span class="small">(<span class="select-clinic-name"></span>での治療時の情報)</span></small>
-                    <div class="form-group mt-4 mb-2 pt-0">
-                      <p class="question mb-0">治療時の働き方&nbsp;<sup class="text-success">●</sup></p>
-                      <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, { prompt: "" }, { class: "form-control" }  %>
-                      <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
+                      <div class="form-group mt-0 mb-3 pt-0">
+                        <p class="question mb-0 pt-1">休職や退職の有無</p>
+                        <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                      </div>
+
+                      <div class="form-group mt-0 mb-2 pt-4">
+                        <p class="question mb-0 pt-1">治療時の夫婦合算所得&nbsp;<sup class="text-success">●</sup></p>
+                        <%= f.select :household_net_income, Report::HASH_HOUSEHOLD_NET_INCOME.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <small id="poster-tip" class="form-text text-muted">
+                          <span class="small text-muted">所得&nbsp;=&nbsp;収入&nbsp;-&nbsp;経費</span>
+                        </small>
+                        <small id="poster-tip" class="form-text text-muted text-right pt-0 mt-0"><%= f.check_box :household_net_income_status, {}, "hide", "show" %>非公開</small>
+                      </div>
                     </div>
-                    <div class="form-group mt-0 mb-2 pt-4">
-                      <p class="question mb-0">治療時の夫婦合算所得&nbsp;<sup class="text-success">●</sup></p>
-                      <%= f.select :household_net_income, Report::HASH_HOUSEHOLD_NET_INCOME.invert, { prompt: "" }, { class: "form-control" }  %>
-                      <small id="poster-tip" class="form-text text-muted">
-                        <span class="small text-muted">所得&nbsp;=&nbsp;収入&nbsp;-&nbsp;経費</span>
-                      </small>
-                      <small id="poster-tip" class="form-text text-muted text-right pt-0 mt-0"><%= f.check_box :household_net_income_status, {}, "hide", "show" %>非公開</small>
-                    </div>
                   </div>
-                  <% end %>
+
                   <div class="mt-3 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                     <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
@@ -195,7 +190,7 @@
               <section class="child-tab-content" id="tab_1_3">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">クリニック卒業年</p>
+                    <p class="question mb-0 pt-2">クリニック卒業年</p>
                     <%= f.date_select :year_of_treatment_end, {
                       discard_month: true,
                       discard_day: true,
@@ -203,25 +198,25 @@
                       end_year: 2000,
                       prompt: ""
                       },
-                      { class: "form-control" } %>
+                      { class: "form-control py-0" } %>
                       <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業した年(通院を終了した年)</span></small>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-1">治療開始年齢</p>
-                    <%= f.select :treatment_start_age, Report::HASH_TREATMENT_START_AGE.invert, { prompt: "" }, { class: "form-control" } %>
+                    <%= f.select :treatment_start_age, Report::HASH_TREATMENT_START_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                     <small class="text-muted"><span class="small text-danger"><span class="select-clinic-name"></span>での治療開始年齢</span></small>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-1">卒業時の年齢</p>
-                    <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "" }, { class: "form-control" } %>
+                    <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                     <small class="text-muted"><span class="small text-danger"><span class="select-clinic-name"></span>を卒業した年齢</span></small>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-1">卒業時のパートナーの年齢</p>
-                    <%= f.select :age_of_partner_at_end_of_treatment, Report::HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <%= f.select :age_of_partner_at_end_of_treatment, Report::HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small text-danger"><span class="select-clinic-name"></span>を卒業した時のパートナーの年齢</span></small>
                   </div>
 
@@ -234,7 +229,7 @@
               <section class="child-tab-content" id="tab_1_4">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-2">不妊原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                    <p class="question mb-2 pt-2">不妊原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                     <%= f.collection_check_boxes(:f_funin_factor_ids, FFuninFactor.all, :id, :name) do |b| %>
                       <div class="form-check checkbox">
                         <%= b.label class: "form-check-label" do %>
@@ -246,12 +241,12 @@
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">男性側の不妊原因の有無</p>
-                    <%= f.select :male_infertility, Report::HASH_MALE_INFERTILITY.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-4">男性側の不妊原因の有無</p>
+                    <%= f.select :male_infertility, Report::HASH_MALE_INFERTILITY.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                   </div>
                   <div class="form-group mt-0 mb-2 pt-0 level_of_male_infertility">
-                    <p class="question mb-0">男性不妊のレベル</p>
-                    <%= f.select :level_of_male_infertility, Report::HASH_LEVEL_OF_MALE_INFERTILITY.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-1">男性不妊のレベル</p>
+                    <%= f.select :level_of_male_infertility, Report::HASH_LEVEL_OF_MALE_INFERTILITY.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                   </div>
                   <div class="mt-5 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -262,12 +257,12 @@
               <section class="child-tab-content" id="tab_1_5">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0"><span class="select-clinic-name"></span>は何院目？</p>
-                    <%= f.select :number_of_clinics, Report::HASH_NUMBER_OF_CLINICS.invert, { prompt: "" }, { class: "form-control" } %>
+                    <p class="question mb-0 pt-2"><span class="select-clinic-name"></span>は何院目？</p>
+                    <%= f.select :number_of_clinics, Report::HASH_NUMBER_OF_CLINICS.invert, { prompt: "" }, { class: "form-control py-0" } %>
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
-                    <p class="question mb-1">これまでの転院歴</p>
+                    <p class="question mb-1 pt-1">これまでの転院歴</p>
                     <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
                       <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>
                     <% end %>
@@ -277,13 +272,13 @@
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
-                    <p class="question mb-0">通院所要時間</p>
-                    <%= f.select :period_of_time_spent_traveling, Report::HASH_PERIOD_OF_TIME_SPENT_TRAVELING.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-3">通院所要時間</p>
+                    <%= f.select :period_of_time_spent_traveling, Report::HASH_PERIOD_OF_TIME_SPENT_TRAVELING.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small">自宅&nbsp;or&nbsp;職場&nbsp;&nbsp;⇄&nbsp;&nbsp;<span class="select-clinic-name"></span>&nbsp;間の通院時間</span></small>
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
-                    <p class="question mb-0"><span class="select-clinic-name"></span>を選んだ理由<br><small class="text-muted"><span class="small">複数選択可</span></small></p>
+                    <p class="question mb-0 pt-1"><span class="select-clinic-name"></span>を選んだ理由<br><small class="text-muted"><span class="small">複数選択可</span></small></p>
                     <%= f.collection_check_boxes(:cl_selection_ids, ClSelection.all, :id, :name) do |b| %>
                       <div class="form-check form-check-inline checkbox">
                         <%= b.label class: "form-check-label" do %>
@@ -292,13 +287,13 @@
                         <% end %>
                       </div>
                     <% end %>
-                    <p class="question mb-0">選んだ詳しい理由</span></p>
-                    <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                    <p class="question mb-0 pt-3">選んだ詳しい理由</span></p>
+                    <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
-                    <p class="question mb-0">前院を転院した理由</p>
-                    <%= f.text_area :reason_for_transfer, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                    <p class="question mb-0 pt-1">前院を転院した理由</p>
+                    <%= f.text_area :reason_for_transfer, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                   </div>
 
                   <div class="mt-5 d-flex justify-content-between">
@@ -321,131 +316,135 @@
               <section class="child-tab-content active" id="tab_2_1">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-3 pt-0">
-                    <p class="question mb-0">前院での基本検査結果の再利用</p>
-                    <%= f.select :reuse_of_basic_examination_results, Report::HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-2">前院での基本検査結果の再利用</p>
+                    <%= f.select :reuse_of_basic_examination_results, Report::HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small id="poster-tip" class="form-text text-muted">
                       <span class="small text-danger">(感染症検査などを除く)前院での基本検査結果が再利用できたかどうか</span>
                     </small>
                   </div>
                   <div class="form-group mt-0 mb-3 pt-0">
-                    <p class="question mb-0">AMH値</p>
-                    <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-1">AMH値</p>
+                    <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small id="poster-tip" class="form-text text-muted">
                       <span class="small text-danger"><span class="select-clinic-name"></span>での最新の数値</span>
                     </small>
                   </div>
 
-                  <% if false %>
-                  <div class="form-group mt-0 mb-4 pt-0">
-                    <p class="question mb-0">基本検査以外に受けた検査</p>
-                    <%= f.fields_for :special_inspections do |special_inspection| %>
-                      <%= render "special_inspection_fields", f: special_inspection %>
-                    <% end %>
-                    <div class="links pt-2 pl-2">
-                      <%= link_to_add_association "+ 追加", f, :special_inspections %>
-                    </div>
-                  </div>
-                  <% end %>
+                  <div class="add-info mt-4 mb-5">
+                    <input id="acd-check2" class="acd-check3" type="checkbox">
+                    <label class="acd-label3" for="acd-check2">　 さらに詳しい情報を追加する</label>
+                    <div class="acd-content3">
+                      <div class="form-group mt-0 mb-0 pt-0">
+                        <p class="question mb-0 pt-1">不育症「検査」の有無</p>
+                        <%= f.select :fuiku_examination, Report::HASH_FUIKU_EXAMINATION.invert, { prompt: "" }, { class: "form-control py-0" } %>
+                        <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での不育症検査の有無</span></small>
+                      </div>
 
-                  <% if false %>
-                  <div class="form-group mt-0 mb-0 pt-0">
-                    <p class="question mb-0">不育症「検査」の有無</p>
-                    <%= f.select :fuiku_examination, Report::HASH_FUIKU_EXAMINATION.invert, { prompt: "" }, { class: "form-control" } %>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での不育症検査の有無</span></small>
-                  </div>
+                      <div class="form-group mt-0 mb-0 pt-0">
+                        <p class="question mb-0 pt-1">不育症「診断」の有無</p>
+                        <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control py-0" } %>
+                      </div>
 
-                  <div class="form-group mt-0 mb-0 pt-0">
-                    <p class="question mb-0">不育症「診断」の有無</p>
-                    <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control" } %>
-                  </div>
-                  <% end %>
-
-                  <div class="form-group mt-0 mb-5 pt-0 fuiku-factor">
-                    <p class="question mb-0">不育原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                    <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
-                      <div class="form-check checkbox">
-                        <%= b.label class: "form-check-label" do %>
-                          <%= b.check_box class: "form-check-input" %>
-                          <%= b.text %>
+                      <div class="form-group mt-0 mb-5 pt-0 fuiku-factor">
+                        <p class="question mb-0 pt-1">不育原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                        <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
+                          <div class="form-check checkbox">
+                            <%= b.label class: "form-check-label" do %>
+                              <%= b.check_box class: "form-check-input" %>
+                              <%= b.text %>
+                            <% end %>
+                          </div>
                         <% end %>
                       </div>
-                    <% end %>
+
+                      <div class="form-group mt-0 mb-4 pt-0">
+                        <p class="question mb-0 pt-1">基本検査以外に受けた検査</p>
+                        <%= f.fields_for :special_inspections do |special_inspection| %>
+                          <%= render "special_inspection_fields", f: special_inspection %>
+                        <% end %>
+                        <div class="links pt-2 pl-2">
+                          <%= link_to_add_association "+ 追加", f, :special_inspections %>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
+
                   <div class="mt-5 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                     <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                   </div>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_2_2">
+              <section class="child-tab-content pt-0" id="tab_2_2">
                 <div class="scroll-box">
                   <div class="tab-wrap1 mt-4">
                     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">最新の採卵周期</label>
                     <div class="tab-content1">
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った採卵周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">何回目の採卵ですか</p>
-                        <%= f.select :total_number_of_sairan, Report::HASH_TOTAL_NUMBER_OF_SAIRAN.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-2">何回目の採卵ですか</p>
+                        <%= f.select :total_number_of_sairan, Report::HASH_TOTAL_NUMBER_OF_SAIRAN.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵は<span class="select-clinic-name"></span>での何回目の採卵ですか</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">採卵までの通院回数</p>
-                        <%= f.select :number_of_visits_before_sairan, Report::HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">採卵までの通院回数</p>
+                        <%= f.select :number_of_visits_before_sairan, Report::HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small">採卵周期開始から採卵日までの(おおよその)通院回数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">採卵時の年齢</p>
-                        <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control" } %>
+                        <p class="question mb-0 pt-1">採卵時の年齢</p>
+                        <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の年齢</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">誘発タイプ</p>
-                        <%= f.select :type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">誘発タイプ</p>
+                        <%= f.select :type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の誘発タイプ</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">採卵時の麻酔の有無と種類</p>
-                        <%= f.select :use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">採卵時の麻酔の有無と種類</p>
+                        <%= f.select :use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の麻酔使用の有無</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">麻酔の選択</p>
-                        <%= f.select :selection_of_anesthesia_type, Report::HASH_SELECTION_OF_ANESTHESIA_TYPE.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">麻酔の選択</p>
+                        <%= f.select :selection_of_anesthesia_type, Report::HASH_SELECTION_OF_ANESTHESIA_TYPE.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の麻酔使用の選択可否</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">採卵個数<span class="small text-danger"><span class="small">&nbsp;※変性卵は除く</span></span></p>
-                        <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">採卵個数<span class="small text-danger"><span class="small">&nbsp;※変性卵は除く</span></span></p>
+                        <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の採卵個数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">受精個数</p>
-                        <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">受精個数</p>
+                        <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">移植可能胚の数(新鮮胚含む)</p>
-                        <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">移植可能胚の数(新鮮胚含む)</p>
+                        <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の移植可能胚(受精卵)の数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">凍結胚の個数</p>
-                        <%= f.select :number_of_frozen_eggs, Report::HASH_NUMBER_OF_FROZEN_EGGS.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">凍結胚の個数</p>
+                        <%= f.select :number_of_frozen_eggs, Report::HASH_NUMBER_OF_FROZEN_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の移植可能胚(受精卵)における凍結胚の数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
                         <div class="label p-1 mb-0">
-                          <p class="question mb-0">胚のステージ</p>
+                          <p class="question mb-0 pt-1">胚のステージ</p>
                           <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚(受精卵)のステージ</span></small>
                           <div class="stage-alert-none">
                             <span class="transplant_method_dis1 small text-muted"></span>
@@ -459,52 +458,16 @@
                             <span class="transplant_method_dis5 small text-muted"></span>
                           </div>
                         </div>
-                        <%= f.select :embryo_stage, Report::HASH_EMBRYO_STAGE.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <%= f.select :embryo_stage, Report::HASH_EMBRYO_STAGE.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0"><span class="text-danger font-weight-bold">採卵日以前</span>の各ホルモン値</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における採卵日までのホルモン値</span></small>
-                        <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
-                          <%= render "sairan_hormone_fields", f: sairan_hormone %>
-                        <% end %>
-                        <div class="links pt-2 pl-2">
-                          <%= link_to_add_association "+ 追加", f, :sairan_hormones %>
-                        </div>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0"><span class="text-danger font-weight-bold">採卵日当日</span>の各ホルモン値</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の採卵日のホルモン値</span></small>
-                        <%= f.fields_for :day_of_sairans do |day_of_sairan| %>
-                          <table class="table table-sm table-bordered mb-0">
-                            <thead>
-                              <tr>
-                                <th scope="col" class="hormon-label text-center align-middle">Day</th>
-                                <th scope="col" class="hormon-label">E2</th>
-                                <th scope="col" class="hormon-label">FSH</th>
-                                <th scope="col" class="hormon-label">LH</th>
-                                <th scope="col" class="hormon-label">P4</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row" class="day-column"><%= day_of_sairan.select :day, Report.make_select_day_of_sairan, { prompt: "" }, { class: "form-control text-muted" } %></th>
-                                <td class="hormon-column"><%= day_of_sairan.number_field :e2, { step: "0.01", class: "form-control", placeholder: "pg/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_sairan.number_field :fsh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_sairan.number_field :lh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_sairan.number_field :p4, { step: "0.01", class: "form-control", placeholder: "ng/ml" } %></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        <% end %>
-                      </div>
                       <div class="mt-5 d-flex justify-content-between">
                         <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                         <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                       </div>
                     </div>
-                    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">過去の採卵</label>
+
+                    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label small" for="TAB-02">過去の採卵</label>
                     <div class="tab-content1">
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_sairan_cycles do |unsuccessful_sairan_cycle| %>
@@ -680,45 +643,44 @@
                   </div>
                 <% end %>
               </section>
-
-              <section class="child-tab-content" id="tab_2_3">
+              <section class="child-tab-content pt-0" id="tab_2_3">
                 <div class="scroll-box">
                   <div class="tab-wrap2 mt-4">
                     <input id="TAB-03" type="radio" name="TAB2" class="tab-switch2" checked="checked" /><label class="tab-label2" for="TAB-03">最新の移植周期</label>
                     <div class="tab-content2">
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った移植周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">これまでの移植総胚個数</p>
-                        <%= f.select :total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-2">これまでの移植総胚個数</p>
+                        <%= f.select :total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でこれまでに移植した胚の合計数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">これまでの総移植回数</p>
-                        <%= f.select :total_number_of_transplants, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">これまでの総移植回数</p>
+                        <%= f.select :total_number_of_transplants, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">でのこれまでの移植回数の合計数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">移植までの通院回数</p>
-                        <%= f.select :number_of_visits_before_ishoku, Report::HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">移植までの通院回数</p>
+                        <%= f.select :number_of_visits_before_ishoku, Report::HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small">移植周期開始から移植日までの(おおよその)通院回数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">移植時の年齢</p>
-                        <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control" } %>
+                        <p class="question mb-0 pt-1">移植時の年齢</p>
+                        <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植時の年齢</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">移植周期のタイプ</p>
-                        <%= f.select :ishoku_type, Report::HASH_ISHOKU_TYPE.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">移植周期のタイプ</p>
+                        <%= f.select :ishoku_type, Report::HASH_ISHOKU_TYPE.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植タイプ</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                        <p class="question mb-0 pt-1">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                         <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all.name_yomigana, :id, :name) do |b| %>
                           <div class="form-check checkbox">
                             <%= b.label class: "form-check-label" do %>
@@ -730,7 +692,7 @@
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">黄体補充&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                        <p class="question mb-0 pt-1">黄体補充&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                         <%= f.collection_check_boxes(:pg_eplenishment_ids, PgEplenishment.all, :id, :name) do |b| %>
                           <div class="form-check checkbox">
                             <%= b.label class: "form-check-label" do %>
@@ -742,124 +704,33 @@
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0">凍結胚数
-                        <%= f.select :number_of_eggs_stored, Report::HASH_NUMBER_OF_EGGS_STORED.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">凍結胚数
+                        <%= f.select :number_of_eggs_stored, Report::HASH_NUMBER_OF_EGGS_STORED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">に残っている凍結胚数</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-0 before_ishoku-hormone">
-                        <p class="question mb-0">移植前の各ホルモン値</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植周期の移植前までの数値</span></small>
-                        <%= f.fields_for :before_ishoku_hormones do |before_ishoku_hormone| %>
-                          <%= render "before_ishoku_hormone_fields", f: before_ishoku_hormone %>
-                        <% end %>
-                        <div class="links pt-2 pl-2">
-                          <%= link_to_add_association "+ 追加", f, :before_ishoku_hormones %>
-                        </div>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-0 day_of_shokihaiishoku">
-                        <p class="question mb-0">初期胚の移植当日のホルモンと内膜</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植当日の数値</span></small>
-                        <%= f.fields_for :day_of_shokihaiishokus do |day_of_shokihaiishoku| %>
-                          <table class="table table-sm table-bordered mb-0">
-                            <thead>
-                              <tr>
-                                <th scope="col" class="hormon-label text-center align-middle">Day</th>
-                                <th scope="col" class="hormon-label">E2</th>
-                                <th scope="col" class="hormon-label">FSH</th>
-                                <th scope="col" class="hormon-label">LH</th>
-                                <th scope="col" class="hormon-label">P4</th>
-                                <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row" class="day-column"><%= day_of_shokihaiishoku.select :day, Report.make_select_day_of_shokihaiishoku, { prompt: "" }, { class: "form-control text-muted" } %></td>
-                                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :e2, { step: "0.01", class: "form-control", placeholder: "pg/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :fsh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :lh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :p4, { step: "0.01", class: "form-control", placeholder: "ng/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :endometrial_thickness, { step: "0.1", class: "form-control" } %></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        <% end %>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-0 day_of_haibanhoishoku">
-                        <p class="question mb-0">胚盤胞の移植当日のホルモンと内膜</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植当日の数値</span></small>
-                        <%= f.fields_for :day_of_haibanhoishokus do |day_of_haibanhoishoku| %>
-                          <table class="table table-sm table-bordered mb-0">
-                            <thead>
-                              <tr>
-                                <th scope="col" class="hormon-label text-center align-middle">Day</th>
-                                <th scope="col" class="hormon-label">E2</th>
-                                <th scope="col" class="hormon-label">FSH</th>
-                                <th scope="col" class="hormon-label">LH</th>
-                                <th scope="col" class="hormon-label">P4</th>
-                                <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td class="hormon-column"><%= day_of_haibanhoishoku.select :day, Report.make_select_day_of_haibanhoishoku, { prompt: "" }, { class: "form-control text-muted" } %></td>
-                                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :e2, { step: "0.01", class: "form-control", placeholder: "pg/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :fsh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :lh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :p4, { step: "0.01", class: "form-control", placeholder: "ng/ml" } %></td>
-                                <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :endometrial_thickness, { step: "0.01", class: "form-control" } %></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        <% end %>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-0 shokihaiishoku-hormone">
-                        <p class="question mb-0">初期胚移植後のホルモン</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植後の数値</span></small>
-                        <%= f.fields_for :shokihaiishoku_hormones do |shokihaiishoku_hormone| %>
-                          <%= render "shokihaiishoku_hormone_fields", f: shokihaiishoku_hormone %>
-                        <% end %>
-                        <div class="links pt-2 pl-2">
-                          <%= link_to_add_association "+ 追加", f, :shokihaiishoku_hormones %>
-                        </div>
-                      </div>
-
                       <div class="form-group mt-0 mb-2 pt-0 early_embryo_grade">
-                        <p class="question mb-0">初期胚のグレード</p>
-                        <%= f.select :early_embryo_grade, Report::HASH_EARLY_EMBRYO_GRADE.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">初期胚のグレード</p>
+                        <%= f.select :early_embryo_grade, Report::HASH_EARLY_EMBRYO_GRADE.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚のグレード</span></small>
                         <p class="sub-question mb-0">初期胚のグレードについての補足説明</p>
-                        <%= f.text_area :early_embryo_grade_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)上記で〇〇を選びましたが、私のクリニックでは〇〇と呼ばれていました" %>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-0 haibanhoishoku-hormone">
-                        <p class="question mb-0">胚盤胞移植後のホルモン</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植後の数値</span></small>
-                        <%= f.fields_for :haibanhoishoku_hormones do |haibanhoishoku_hormone| %>
-                          <%= render "haibanhoishoku_hormone_fields", f: haibanhoishoku_hormone %>
-                        <% end %>
-                        <div class="links pt-2 pl-2">
-                          <%= link_to_add_association "+ 追加", f, :haibanhoishoku_hormones %>
-                        </div>
+                        <%= f.text_area :early_embryo_grade_supplementary_explanation, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)上記で〇〇を選びましたが、私のクリニックでは〇〇と呼ばれていました" %>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0 blastocyst_grade1">
-                        <p class="question mb-0">胚盤胞のグレード</p>
-                        <%= f.select :blastocyst_grade1, Report::HASH_BLASTOCYST_GRADE1.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">胚盤胞のグレード</p>
+                        <%= f.select :blastocyst_grade1, Report::HASH_BLASTOCYST_GRADE1.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞のグレード</span></small>
-                        <p class="sub-question">グレードの補足説明</p>
-                        <%= f.text_area :blastocyst_grade1_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)上記で〇〇を選びましたが、私のクリニックでは〇〇と呼ばれていました" %>
+                        <p class="sub-question mb-0">グレードの補足説明</p>
+                        <%= f.text_area :blastocyst_grade1_supplementary_explanation, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)上記で〇〇を選びましたが、私のクリニックでは〇〇と呼ばれていました" %>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0 blastocyst_grade2">
-                        <p class="question mb-0">胚盤胞の評価</p>
-                        <%= f.select :blastocyst_grade2, Report::HASH_BLASTOCYST_GRADE2.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <p class="question mb-0 pt-1">胚盤胞の評価</p>
+                        <%= f.select :blastocyst_grade2, Report::HASH_BLASTOCYST_GRADE2.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の評価</span></small>
-                        <p class="sub-question">評価の補足説明</p>
-                          <%= f.text_area :blastocyst_grade2_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)上記で〇〇を選びましたが、私のクリニックでは〇〇と呼ばれていました" %>
+                        <p class="sub-question mb-0">評価の補足説明</p>
+                          <%= f.text_area :blastocyst_grade2_supplementary_explanation, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)上記で〇〇を選びましたが、私のクリニックでは〇〇と呼ばれていました" %>
                       </div>
                       <div class="mt-5 d-flex justify-content-between">
                         <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
@@ -867,8 +738,9 @@
                       </div>
                     </div>
 
-                    <input id="TAB-04" type="radio" name="TAB2" class="tab-switch2" /><label class="tab-label2" for="TAB-04">過去の移植</label>
+                    <input id="TAB-04" type="radio" name="TAB2" class="tab-switch2" /><label class="tab-label2 small" for="TAB-04">過去の移植</label>
                     <div class="tab-content2">
+                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-clinic-name"></span>での過去移植</span></h6>
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_ishoku_cycles do |unsuccessful_ishoku_cycle| %>
                           <%= render "unsuccessful_ishoku_cycle_fields", f: unsuccessful_ishoku_cycle %>
@@ -1104,34 +976,34 @@
               <section class="child-tab-content" id="tab_2_4">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">治療費用総額</p>
-                    <%= f.select :cost, Report::HASH_COST.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-2">治療費用総額</p>
+                    <%= f.select :cost, Report::HASH_COST.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small text-danger"><span class="select-clinic-name"></span>でかかった治療費総額</span></small>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">採卵1回あたりの費用(概算)</p>
-                    <%= f.select :sairan_cost, Report::HASH_SAIRAN_COST.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-1">採卵1回あたりの費用(概算)</p>
+                    <%= f.select :sairan_cost, Report::HASH_SAIRAN_COST.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での1回の採卵費用</span></small>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">移植1回あたりの費用(概算)</p>
-                    <%= f.select :ishoku_cost, Report::HASH_ISHOKU_COST.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-1">移植1回あたりの費用(概算)</p>
+                    <%= f.select :ishoku_cost, Report::HASH_ISHOKU_COST.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での1回の移植費用</span></small>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0">クレジットカードの利用可否</p>
-                    <%= f.select :credit_card_validity, Report::HASH_CREDIT_CARD_VALIDITY.invert, { prompt: "" }, { class: "form-control" }  %>
+                    <p class="question mb-0 pt-1">クレジットカードの利用可否</p>
+                    <%= f.select :credit_card_validity, Report::HASH_CREDIT_CARD_VALIDITY.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でのクレジットカード利用可否</span></small>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0 amount_that_can_be_activated m-1">
-                    <p class="question mb-0">利用可能額</p>
+                    <p class="question mb-0 pt-1">利用可能額</p>
                     <div class="row p-0 m-0">
                       <div class="col-8 p-0 m-0">
-                        <%= f.number_field :creditcards_can_be_used_from_more_than, { class: "form-control commas", placeholder: "半角数字で入力してください" } %>
+                        <%= f.number_field :creditcards_can_be_used_from_more_than, { class: "form-control py-0 commas", placeholder: "半角数字で入力してください" } %>
                       </div>
                       <div class="col-4 p-0 m-0">
                         円以上
@@ -1150,7 +1022,7 @@
                 <div class="scroll-box">
                   <div class="form-group">
                     <div class="mt-0 pt-2">
-                      <p class="question">医師の対応や雰囲気</p>
+                      <p class="question mb-1 pt-2">医師の対応や雰囲気</p>
                       <span class="small text-muted">低</span>&nbsp;&nbsp;
                       <label class="radio-inline">
                         <%= f.radio_button :doctor_quality, 1, onclick: "radioDeselection(this, 1)" %>1
@@ -1170,7 +1042,7 @@
                     </div>
 
                     <div class="mt-0 pt-3">
-                      <p class="question">スタッフの対応や雰囲気</p>
+                      <p class="question mb-1 pt-2">スタッフの対応や雰囲気</p>
                       <span class="small text-muted">低</span>&nbsp;&nbsp;
                       <label class="radio-inline">
                         <%= f.radio_button :staff_quality, 1, onclick: "radioDeselection(this, 1)" %>1
@@ -1191,7 +1063,7 @@
                     </div>
 
                     <div class="mt-0 pt-3">
-                      <p class="question">技術の納得度</p>
+                      <p class="question mb-1 pt-2">技術の納得度</p>
                       <span class="small text-muted">低</span>&nbsp;&nbsp;
                       <label class="radio-inline">
                         <%= f.radio_button :impression_of_technology, 1, onclick: "radioDeselection(this, 1)" %>1
@@ -1211,7 +1083,7 @@
                     </div>
 
                     <div class="mt-0 pt-3">
-                      <p class="question">価格の納得度</p>
+                      <p class="question mb-1 pt-2">価格の納得度</p>
                       <span class="small text-muted">低</span>&nbsp;&nbsp;
                       <label class="radio-inline">
                         <%= f.radio_button :impression_of_price, 1, onclick: "radioDeselection(this, 1)" %>1
@@ -1231,7 +1103,7 @@
                     </div>
 
                     <div class="mt-0 pt-3">
-                      <p class="question">待ち時間</p>
+                      <p class="question mb-1 pt-2">待ち時間</p>
                       <span class="small text-muted">長</span>&nbsp;&nbsp;
                       <label class="radio-inline">
                         <%= f.radio_button :average_waiting_time2, 1, onclick: "radioDeselection(this, 1)" %>1
@@ -1250,12 +1122,12 @@
                       </label>&nbsp;&nbsp;<span class="small text-muted">短</span>
                       <div class="form-group mt-0">
                         <p class="small pt-2 mb-0">平均待ち時間</p>
-                        <%= f.select :average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <%= f.select :average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
                     </div>
 
                     <div class="mt-0 pt-0">
-                      <p class="question">院内環境</p>
+                      <p class="question mb-1 pt-2">院内環境</p>
                       <span class="small text-muted">低</span>&nbsp;&nbsp;
                       <label class="radio-inline">
                         <%= f.radio_button :comfort_of_space, 1, onclick: "radioDeselection(this, 1)" %>1
@@ -1274,16 +1146,16 @@
                       </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
                       <div class="form-group mt-4">
                         <p class="small mb-0">フリーWiFiの有無</p>
-                        <%= f.select :free_wifi, Report::HASH_FREE_WIFI.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <%= f.select :free_wifi, Report::HASH_FREE_WIFI.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
                       <div class="form-group mt-2">
                         <p class="small mb-0">待ち時間中の外出可否</p>
-                        <%= f.select :possible_to_wait_outside_cl, Report::HASH_POSSIBLE_TO_WAIT_OUTSIDE_CL.invert, { prompt: "" }, { class: "form-control" }  %>
+                        <%= f.select :possible_to_wait_outside_cl, Report::HASH_POSSIBLE_TO_WAIT_OUTSIDE_CL.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
                     </div>
                     <div class="form-group mt-2">
-                      <p class="small mb-0">その他感想など</p>
-                      <%= f.text_area :clinic_review, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)待ち時間長く、診察は秒速ですが、技術はとても高いと感じました。" %>
+                      <p class="small mb-0">レビュー</p>
+                      <%= f.text_area :clinic_review, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                     </div>
                   </div>
                   <div class="mt-5 d-flex justify-content-between">
@@ -1294,6 +1166,147 @@
               </section>
             </div>
           </section>
+          <% if false %>
+          <section class="parent-tab-content" id="tab_3">
+            <div class="child-tab">
+            <ul class="nav nav-tabs child-menu">
+              <li class="tab-item"><a href="#tab_3_1" class="active" data-toggle="tab">採卵 移植</a></li>
+            </ul>
+            <section class="child-tab-content active" id="tab_3_1">
+              <div class="scroll-box">
+                <div class="form-group mt-0 mb-2 pt-0">
+                  <p class="question mb-0 pt-1"><span class="text-danger font-weight-bold">採卵日以前</span>の各ホルモン値</p>
+                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における採卵日までのホルモン値</span></small>
+                  <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
+                    <%= render "sairan_hormone_fields", f: sairan_hormone %>
+                  <% end %>
+                  <div class="links pt-2 pl-2">
+                    <%= link_to_add_association "+ 追加", f, :sairan_hormones %>
+                  </div>
+                </div>
+
+                <div class="form-group mt-0 mb-2 pt-0">
+                  <p class="question mb-0 pt-1"><span class="text-danger font-weight-bold">採卵日当日</span>の各ホルモン値</p>
+                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の採卵日のホルモン値</span></small>
+                  <%= f.fields_for :day_of_sairans do |day_of_sairan| %>
+                    <table class="table table-sm table-bordered mb-0">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="hormon-label text-center align-middle">Day</th>
+                          <th scope="col" class="hormon-label">E2</th>
+                          <th scope="col" class="hormon-label">FSH</th>
+                          <th scope="col" class="hormon-label">LH</th>
+                          <th scope="col" class="hormon-label">P4</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="day-column"><%= day_of_sairan.select :day, Report.make_select_day_of_sairan, { prompt: "" }, { class: "form-control py-0 text-muted" } %></th>
+                          <td class="hormon-column"><%= day_of_sairan.number_field :e2, { step: "0.01", class: "form-control py-0", placeholder: "pg/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_sairan.number_field :fsh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_sairan.number_field :lh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_sairan.number_field :p4, { step: "0.01", class: "form-control py-0", placeholder: "ng/ml" } %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  <% end %>
+                </div>
+
+                <div class="form-group mt-0 mb-2 pt-0 before_ishoku-hormone">
+                  <p class="question mb-0 pt-1">移植前の各ホルモン値</p>
+                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植周期の移植前までの数値</span></small>
+                  <%= f.fields_for :before_ishoku_hormones do |before_ishoku_hormone| %>
+                    <%= render "before_ishoku_hormone_fields", f: before_ishoku_hormone %>
+                  <% end %>
+                  <div class="links pt-2 pl-2">
+                    <%= link_to_add_association "+ 追加", f, :before_ishoku_hormones %>
+                  </div>
+                </div>
+
+                <div class="form-group mt-0 mb-2 pt-0 day_of_shokihaiishoku">
+                  <p class="question mb-0 pt-1">初期胚の移植当日のホルモンと内膜</p>
+                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植当日の数値</span></small>
+                  <%= f.fields_for :day_of_shokihaiishokus do |day_of_shokihaiishoku| %>
+                    <table class="table table-sm table-bordered mb-0">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="hormon-label text-center align-middle">Day</th>
+                          <th scope="col" class="hormon-label">E2</th>
+                          <th scope="col" class="hormon-label">FSH</th>
+                          <th scope="col" class="hormon-label">LH</th>
+                          <th scope="col" class="hormon-label">P4</th>
+                          <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="day-column"><%= day_of_shokihaiishoku.select :day, Report.make_select_day_of_shokihaiishoku, { prompt: "" }, { class: "form-control py-0 text-muted" } %></td>
+                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :e2, { step: "0.01", class: "form-control py-0", placeholder: "pg/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :fsh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :lh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :p4, { step: "0.01", class: "form-control py-0", placeholder: "ng/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :endometrial_thickness, { step: "0.1", class: "form-control py-0" } %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  <% end %>
+                </div>
+
+                <div class="form-group mt-0 mb-2 pt-0 day_of_haibanhoishoku">
+                  <p class="question mb-0 pt-1">胚盤胞の移植当日のホルモンと内膜</p>
+                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植当日の数値</span></small>
+                  <%= f.fields_for :day_of_haibanhoishokus do |day_of_haibanhoishoku| %>
+                    <table class="table table-sm table-bordered mb-0">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="hormon-label text-center align-middle">Day</th>
+                          <th scope="col" class="hormon-label">E2</th>
+                          <th scope="col" class="hormon-label">FSH</th>
+                          <th scope="col" class="hormon-label">LH</th>
+                          <th scope="col" class="hormon-label">P4</th>
+                          <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="hormon-column"><%= day_of_haibanhoishoku.select :day, Report.make_select_day_of_haibanhoishoku, { prompt: "" }, { class: "form-control py-0 text-muted" } %></td>
+                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :e2, { step: "0.01", class: "form-control py-0", placeholder: "pg/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :fsh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :lh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :p4, { step: "0.01", class: "form-control py-0", placeholder: "ng/ml" } %></td>
+                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :endometrial_thickness, { step: "0.01", class: "form-control py-0" } %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  <% end %>
+                </div>
+
+                <div class="form-group mt-0 mb-2 pt-0 shokihaiishoku-hormone">
+                  <p class="question mb-0 pt-1">初期胚移植後のホルモン</p>
+                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植後の数値</span></small>
+                  <%= f.fields_for :shokihaiishoku_hormones do |shokihaiishoku_hormone| %>
+                    <%= render "shokihaiishoku_hormone_fields", f: shokihaiishoku_hormone %>
+                  <% end %>
+                  <div class="links pt-2 pl-2">
+                    <%= link_to_add_association "+ 追加", f, :shokihaiishoku_hormones %>
+                  </div>
+                </div>
+
+                <div class="form-group mt-0 mb-2 pt-0 haibanhoishoku-hormone">
+                  <p class="question mb-0 pt-1">胚盤胞移植後のホルモン</p>
+                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植後の数値</span></small>
+                  <%= f.fields_for :haibanhoishoku_hormones do |haibanhoishoku_hormone| %>
+                    <%= render "haibanhoishoku_hormone_fields", f: haibanhoishoku_hormone %>
+                  <% end %>
+                  <div class="links pt-2 pl-2">
+                    <%= link_to_add_association "+ 追加", f, :haibanhoishoku_hormones %>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+          </section>
+          <% end %>
         </div>
 
         <div class="p-1">
@@ -1307,7 +1320,7 @@
 
           <div class="form-group mt-0">
             <div><%= f.label :title, 'このレポコにタイトルをつける', class: "question-matters" %></div>
-            <%= f.text_area :title, class: "form-control title-js-text", placeholder: "最大64文字", rowa: 4 %>
+            <%= f.text_area :title, class: "form-control py-0 title-js-text", placeholder: "最大64文字", rowa: 4 %>
             <p class="title-js-text-count text-right mt-2"></p>
           </div>
         </div>

@@ -1,7 +1,15 @@
 // @import "~bootstrap/scss/bootstrap";
 @import '~bootstrap-material-design/scss/bootstrap-material-design';
-@import '@fortawesome/fontawesome-free';
+// @import '@fortawesome/fontawesome-free'; https://qiita.com/sasakura_870/items/7f72c80f89d66923f6f1を参考にこちらをoffにして下のコードをonに
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+// @face-fontがnode_modulesフォルダにインストールされたfontawesomeのwebfontを参照するように値を変更
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
 @import "./validationEngine.jquery.scss";
+
 
 // @import "base";
 // @import "reports";

@@ -96,6 +96,38 @@ $(function(){
       scrollMinTabTop();
   });
 
+  $('.minBtnNext2').click(function(){
+      var ele = $('.parent-tab-content.active .nav-tabs2 .active').parent().next().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().next().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').first().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .nav-tabs2 li').first().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollMinTabTop();
+  });
+  
+  $('.minBtnPrevious2').click(function(){
+      var ele = $('.parent-tab-content.active .nav-tabs2 .active').parent().prev().find('a');
+      if (ele.length == 0) {
+        var ele2 = $('.parent-menu .tab-item .active').parent().prev().find('a');
+        if (ele2.length == 0) {
+          $('.parent-menu .tab-item').last().find('a').trigger('click');
+        } else {
+          ele2.trigger('click');
+        }
+        $('.parent-tab-content.active .nav-tabs2 li').last().find('a').trigger('click');
+      } else {
+        ele.trigger('click');
+      }
+      scrollMinTabTop();
+  });
+
   // $('.tab-item a').on('click', function (event) {
   //     var tabEle = $(event.target).closest('ul');
   //     var ele = $(event.target).attr('href');
