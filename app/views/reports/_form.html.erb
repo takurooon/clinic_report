@@ -319,14 +319,14 @@
                     <p class="question mb-0 pt-2">前院での基本検査結果の再利用</p>
                     <%= f.select :reuse_of_basic_examination_results, Report::HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small id="poster-tip" class="form-text text-muted">
-                      <span class="small text-danger">(感染症検査などを除く)前院での基本検査結果が再利用できたかどうか</span>
+                      <span class="small text-muted">(感染症検査などを除く)前院での基本検査結果が再利用できたかどうか</span>
                     </small>
                   </div>
                   <div class="form-group mt-0 mb-3 pt-0">
                     <p class="question mb-0 pt-1">AMH値</p>
                     <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small id="poster-tip" class="form-text text-muted">
-                      <span class="small text-danger"><span class="select-clinic-name"></span>での最新の数値</span>
+                      <span class="small text-muted"><span class="select-clinic-name"></span>での最新の数値</span>
                     </small>
                   </div>
 
@@ -383,7 +383,7 @@
                     <div class="tab-content1">
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った採卵周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0 pt-2">何回目の採卵ですか</p>
+                        <p class="question mb-0 pt-2">何回目の採卵？</p>
                         <%= f.select :total_number_of_sairan, Report::HASH_TOTAL_NUMBER_OF_SAIRAN.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵は<span class="select-clinic-name"></span>での何回目の採卵ですか</span></small>
                       </div>
@@ -431,21 +431,91 @@
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0 pt-1">移植可能胚の数(新鮮胚含む)</p>
+                        <p class="question mb-0 pt-1">移植可能胚の合計数(新鮮胚含む)</p>
                         <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の移植可能胚(受精卵)の数</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における移植可能胚(受精卵)数</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0 pt-1">凍結胚の個数</p>
-                        <%= f.select :number_of_frozen_eggs, Report::HASH_NUMBER_OF_FROZEN_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の移植可能胚(受精卵)における凍結胚の数</span></small>
+                      <div class="row">
+                        <div class="col-2 px-3">
+                          <div class="ed-row row">
+                            <div class="col-6 p-0">
+                            </div>
+                            <div class="col-6 p-0 border-dark border-left">
+                            </div>
+                          </div>
+                          <div class="ed-row row">
+                            <div class="col-6 p-0">
+                            </div>
+                            <div class="col-6 p-0 border border-dark border-top-0 border-right-0 left-bottom-curve">
+                            </div>
+                          </div>
+                          <div class="ed-row row mt-2">
+                            <div class="col-6 p-0">
+                            </div>
+                            <div class="col-6 p-0 border-dark border-left">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-10 pl-1">
+                          <div class="form-group mt-0 mb-2 pt-3">
+                            <p class="question mb-0 pt-1">新鮮胚の個数&nbsp;<span class="badge badge-primary">半角数字入力</span></p>
+                            <table class="table pt-0 mt-2">
+                              <tr>
+                                <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">新鮮胚</p></td>
+                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_unfrozen_embryos, { step: "1", class: "form-control text-right", placeholder: "0" } %></td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+
+                        <div class="col-2 px-3 pb-4">
+                          <div class="ed-row row">
+                            <div class="col-6 p-0">
+                            </div>
+                            <div class="col-6 p-0 border-dark border-left">
+                            </div>
+                          </div>
+                          <div class="ed-row row">
+                            <div class="col-6 p-0">
+                            </div>
+                            <div class="col-6 p-0 border border-dark border-top-0 border-right-0 left-bottom-curve">
+                            </div>
+                          </div>
+                          <div class="ed-row row">
+                            <div class="col-6 p-0">
+                            </div>
+                            <div class="col-6 p-0">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-10 pl-1">
+                          <div class="mt-0 mb-2 pt-3">
+                            <p class="question mb-0 pt-1">凍結胚の個数&nbsp;<span class="badge badge-primary">半角数字入力</span></p>
+                            <table class="table pt-0 mt-2">
+                              <tr>
+                                <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">前核胚</p></td>
+                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_pronuclear_embryos, { step: "1", class: "form-control text-right", placeholder: "0" } %></td>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small text-center p-0"><p class="py-3 mb-0">初期胚</p></td>
+                                <td class="px-3 py-0"><%= f.number_field :number_of_early_embryos, { step: "1", class: "form-control text-right", placeholder: "0" } %></td>
+                              </tr>
+                              <tr>
+                                <td class="result-left-column small text-center p-0"><p class="py-3 mb-0">胚盤胞</p></td>
+                                <td class="px-3 py-0"><%= f.number_field :number_of_blastocysts, { step: "1", class: "form-control text-right", placeholder: "0" } %></td>
+                              </tr>
+                            </table>
+                            <% if false %>
+                            <%= f.select :number_of_frozen_eggs, Report::HASH_NUMBER_OF_FROZEN_EGGS.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                            <% end %>
+                          </div>
+                        </div>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
                         <div class="label p-1 mb-0">
-                          <p class="question mb-0 pt-1">胚のステージ</p>
-                          <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚(受精卵)のステージ</span></small>
+                          <p class="question mb-0 pt-1">移植した胚のステージ</p>
                           <div class="stage-alert-none">
                             <span class="transplant_method_dis1 small text-muted"></span>
                             <span class="transplant_method small text-danger"></span>
@@ -459,6 +529,7 @@
                           </div>
                         </div>
                         <%= f.select :embryo_stage, Report::HASH_EMBRYO_STAGE.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚(受精卵)のステージ</span></small>
                       </div>
 
                       <div class="mt-5 d-flex justify-content-between">
@@ -544,7 +615,7 @@
                           <div class="form-group mt-0 mb-2 pt-0">
                             <p class="question mb-0">移植可能胚の数(新鮮胚含む)</p>
                             <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の移植可能胚(受精卵)の数</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期みおける移植可能胚(受精卵)数</span></small>
                           </div>
 
                           <div class="form-group mt-0 mb-2 pt-0">
@@ -994,7 +1065,7 @@
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0 pt-1">クレジットカードの利用可否</p>
+                    <p class="question mb-0 pt-1">クレジットカードの利用</p>
                     <%= f.select :credit_card_validity, Report::HASH_CREDIT_CARD_VALIDITY.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でのクレジットカード利用可否</span></small>
                   </div>

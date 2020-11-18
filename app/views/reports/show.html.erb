@@ -1243,51 +1243,32 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if @report.number_of_transferable_embryos && @report.number_of_frozen_eggs %>
+                        <% if @report.number_of_transferable_embryos.present? %>
                           <tr>
                             <td class="result-left-column small text-center">移植可能胚数</td>
                             <td class="pl-3">
                               <span class="result-text"><%= @report.str_number_of_transferable_embryos %></span>
-                              <span class="small result-text text-muted">（その内&nbsp;<%= @report.str_number_of_frozen_eggs %>は凍結胚）</span>
-                            </td>
-                          </tr>
-                        <% elsif @report.number_of_transferable_embryos && @report.number_of_frozen_eggs.blank? %>
-                          <tr>
-                            <td class="result-left-column small text-center">移植可能胚</td>
-                            <td class="pl-3">
-                              <span class="result-text"><%= @report.str_number_of_transferable_embryos %></span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="result-left-column small text-center">凍結胚</td>
-                            <td class="pl-3">
-                              <span class="text-muted small">未回答</span>
-                            </td>
-                          </tr>
-                        <% elsif @report.number_of_transferable_embryos.blank? && @report.number_of_frozen_eggs %>
-                          <tr>
-                            <td class="result-left-column small text-center">移植可能胚数</td>
-                            <td class="pl-3">
-                              <span class="text-muted small">未回答</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="result-left-column small text-center">凍結胚数</td>
-                            <td class="pl-3">
-                              <span class="result-text"><%= @report.str_number_of_frozen_eggs %></span>
-                            </td>
-                          </tr>
-                        <% else %>
-                          <tr>
-                            <td class="result-left-column small text-center">移植可能胚数</td>
-                            <td class="pl-3">
-                              <span class="text-muted small">未回答</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="result-left-column small text-center">凍結胚数</td>
-                            <td class="pl-3">
-                              <span class="text-muted small">未回答</span>
+                              <% if @report.number_of_unfrozen_embryos.present? %>
+                                <p class="small result-text mb-0"><span class="text-muted small">内</span>&nbsp;新鮮胚<%= @report.number_of_unfrozen_embryos %>個</p>
+                              <% end %>
+                              <% number_of_frozen_eggs = @report.number_of_pronuclear_embryos + @report.number_of_early_embryos + @report.number_of_blastocysts %>
+                              <% if number_of_frozen_eggs > 0 %>
+                                <p class="small result-text mb-0"><span class="text-muted small">内</span>&nbsp;凍結胚<%= number_of_frozen_eggs %>個</p>
+                                <p class="small result-text text-muted mb-0">
+                                <span class="small">(
+                                  <% if @report.number_of_pronuclear_embryos.present? %>
+                                    前核胚<%= @report.number_of_pronuclear_embryos %>個
+                                  <% end %>
+                                  <% if @report.number_of_early_embryos.present? %>
+                                    初期胚<%= @report.number_of_early_embryos %>個
+                                  <% end %>
+                                  <% if @report.number_of_blastocysts.present? %>
+                                    胚盤胞<%= @report.number_of_blastocysts %>個
+                                  <% end %>
+                                )</span>
+                                </p>
+                              <% else %>
+                              <% end %>
                             </td>
                           </tr>
                         <% end %>

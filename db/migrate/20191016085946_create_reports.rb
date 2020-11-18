@@ -74,6 +74,10 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :reuse_of_basic_examination_results
       t.integer :male_infertility
       t.integer :level_of_male_infertility
+      t.integer :number_of_pronuclear_embryos, default: 0
+      t.integer :number_of_early_embryos, default: 0
+      t.integer :number_of_blastocysts, default: 0
+      t.integer :number_of_unfrozen_embryos, default: 0
 
       t.timestamps
     end

@@ -364,6 +364,10 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "reuse_of_basic_examination_results"
     t.integer "male_infertility"
     t.integer "level_of_male_infertility"
+    t.integer "number_of_pronuclear_embryos", default: 0
+    t.integer "number_of_early_embryos", default: 0
+    t.integer "number_of_blastocysts", default: 0
+    t.integer "number_of_unfrozen_embryos", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "clinic_id", null: false

@@ -537,7 +537,7 @@ class Report < ApplicationRecord
   HASH_LEVEL_OF_MALE_INFERTILITY = {
     1 => "人工授精レベル",
     2 => "顕微受精レベル",
-    3 => "TESEレベル",
+    3 => "TESE以上レベル",
     99 => "その他",
     100 => "不明",
   }
@@ -2077,12 +2077,16 @@ end
 #  ishoku_type                                  :integer
 #  level_of_male_infertility                    :integer
 #  male_infertility                             :integer
+#  number_of_blastocysts                        :integer          default(0)
 #  number_of_clinics                            :integer
+#  number_of_early_embryos                      :integer          default(0)
 #  number_of_eggs_collected                     :integer
 #  number_of_eggs_stored                        :integer
 #  number_of_fertilized_eggs                    :integer
 #  number_of_frozen_eggs                        :integer
+#  number_of_pronuclear_embryos                 :integer          default(0)
 #  number_of_transferable_embryos               :integer
+#  number_of_unfrozen_embryos                   :integer          default(0)
 #  number_of_visits_before_ishoku               :integer
 #  number_of_visits_before_sairan               :integer
 #  online_consultation                          :integer
