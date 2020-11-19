@@ -357,16 +357,15 @@
                         <% end %>
                       </div>
 
-                      <div class="form-group mt-0 mb-4 pt-0">
+                      <div class="form-group mt-0 mb-4 pt-4">
                         <p class="question mb-0 pt-1">基本検査以外に受けた検査</p>
                         <%= f.fields_for :special_inspections do |special_inspection| %>
                           <%= render "special_inspection_fields", f: special_inspection %>
                         <% end %>
-                        <div class="links pt-2 pl-2">
-                          <%= link_to_add_association "+ 追加", f, :special_inspections %>
+                        <div class="links pt-2 pl-2 text-danger">
+                          <%= link_to_add_association "+ 追加", f, :special_inspections, class: "text-danger" %>
                         </div>
                       </div>
-
                     </div>
                   </div>
 
@@ -506,9 +505,6 @@
                                 <td class="px-3 py-0"><%= f.number_field :number_of_blastocysts, { step: "1", class: "form-control text-right", placeholder: "0" } %></td>
                               </tr>
                             </table>
-                            <% if false %>
-                            <%= f.select :number_of_frozen_eggs, Report::HASH_NUMBER_OF_FROZEN_EGGS.invert, { prompt: "選択" }, { class: "form-control" }  %>
-                            <% end %>
                           </div>
                         </div>
                       </div>
@@ -772,12 +768,6 @@
                             <% end %>
                           </div>
                         <% end %>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0 pt-1">凍結胚数
-                        <%= f.select :number_of_eggs_stored, Report::HASH_NUMBER_OF_EGGS_STORED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                        <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">に残っている凍結胚数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0 early_embryo_grade">

@@ -24,7 +24,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :details_of_icsi
       t.integer :number_of_fertilized_eggs
       t.integer :number_of_transferable_embryos
-      t.integer :number_of_frozen_eggs
       t.integer :embryo_stage
       t.integer :early_embryo_grade
       t.text :early_embryo_grade_supplementary_explanation
@@ -35,7 +34,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :ishoku_type
       t.integer :total_number_of_transplants
       t.integer :total_number_of_eggs_transplanted
-      t.integer :number_of_eggs_stored
       t.integer :fuiku_examination
       t.integer :fuiku
       t.integer :sairan_cost

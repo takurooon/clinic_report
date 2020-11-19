@@ -1860,129 +1860,6 @@ class Report < ApplicationRecord
     return HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS[self.number_of_transferable_embryos]
   end
 
-  # number_of_frozen_eggsの区分値(最新周期での凍結できた数/CL単位)
-  HASH_NUMBER_OF_FROZEN_EGGS = {
-    100 => "不明",
-    0 => "0個",
-    1 => "1個",
-    2 => "2個",
-    3 => "3個",
-    4 => "4個",
-    5 => "5個",
-    6 => "6個",
-    7 => "7個",
-    8 => "8個",
-    9 => "9個",
-    10 => "10個",
-    11 => "11個",
-    12 => "12個",
-    13 => "13個",
-    14 => "14個",
-    15 => "15個",
-    16 => "16個",
-    17 => "17個",
-    18 => "18個",
-    19 => "19個",
-    20 => "20個",
-    21 => "21個",
-    22 => "22個",
-    23 => "23個",
-    24 => "24個",
-    25 => "25個",
-    26 => "26個",
-    27 => "27個",
-    28 => "28個",
-    29 => "29個",
-    30 => "30個",
-    31 => "31個",
-    32 => "32個",
-    33 => "33個",
-    34 => "34個",
-    35 => "35個",
-    36 => "36個",
-    37 => "37個",
-    38 => "38個",
-    39 => "39個",
-    40 => "40個",
-    41 => "41個",
-    42 => "42個",
-    43 => "43個",
-    44 => "44個",
-    45 => "45個",
-    46 => "46個",
-    47 => "47個",
-    48 => "48個",
-    49 => "49個",
-    50 => "50個",
-    99 => "それ以上",
-  }
-
-  def str_number_of_frozen_eggs
-    return HASH_NUMBER_OF_FROZEN_EGGS[self.number_of_frozen_eggs]
-  end
-
-  # number_of_eggs_storedの区分値(凍結胚の在庫数/CL単位)
-  HASH_NUMBER_OF_EGGS_STORED = {
-    100 => "不明",
-    0 => "0個",
-    1 => "1個",
-    2 => "2個",
-    3 => "3個",
-    4 => "4個",
-    5 => "5個",
-    6 => "6個",
-    7 => "7個",
-    8 => "8個",
-    9 => "9個",
-    10 => "10個",
-    11 => "11個",
-    12 => "12個",
-    13 => "13個",
-    14 => "14個",
-    15 => "15個",
-    16 => "16個",
-    17 => "17個",
-    18 => "18個",
-    19 => "19個",
-    20 => "20個",
-    21 => "21個",
-    22 => "22個",
-    23 => "23個",
-    24 => "24個",
-    25 => "25個",
-    26 => "26個",
-    27 => "27個",
-    28 => "28個",
-    29 => "29個",
-    30 => "30個",
-    31 => "31個",
-    32 => "32個",
-    33 => "33個",
-    34 => "34個",
-    35 => "35個",
-    36 => "36個",
-    37 => "37個",
-    38 => "38個",
-    39 => "39個",
-    40 => "40個",
-    41 => "41個",
-    42 => "42個",
-    43 => "43個",
-    44 => "44個",
-    45 => "45個",
-    46 => "46個",
-    47 => "47個",
-    48 => "48個",
-    49 => "49個",
-    50 => "50個",
-    99 => "それ以上",
-  }
-
-  def str_number_of_eggs_stored
-    return HASH_NUMBER_OF_EGGS_STORED[self.number_of_eggs_stored]
-  end
-
-
   # pregnancy_dateの区分値(妊娠に判定日数)
   HASH_PREGNANCY_DATE = {
     4 => "ET/BT 4",
@@ -2081,9 +1958,7 @@ end
 #  number_of_clinics                            :integer
 #  number_of_early_embryos                      :integer          default(0)
 #  number_of_eggs_collected                     :integer
-#  number_of_eggs_stored                        :integer
 #  number_of_fertilized_eggs                    :integer
-#  number_of_frozen_eggs                        :integer
 #  number_of_pronuclear_embryos                 :integer          default(0)
 #  number_of_transferable_embryos               :integer
 #  number_of_unfrozen_embryos                   :integer          default(0)

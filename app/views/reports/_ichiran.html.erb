@@ -88,28 +88,26 @@
           <% end %>
         </td>
       </tr>
-      <tr>
-        <td class="result-left-column small text-center">通院期間</td>
-        <td class="pl-3">
-          <% if @report.treatment_period.present? %>
+      <% if @report.treatment_period.present? %>
+        <tr>
+          <td class="result-left-column small text-center">通院期間</td>
+          <td class="pl-3">
             <span class="result-text"><%= @report.str_treatment_period %></span><br>
-          <% else %>
-            <span class="text-muted small">未回答</span><br>
-          <% end %>
-          <% if @report.treatment_period && @report.rest_period %>
-            <% if @report.rest_period === 0 %>
-              <small>
-                <span class="small text-muted">お休み期間&nbsp;</span><%= @report.str_rest_period %><span class="small text-muted"></span>
-              </small>
-            <% elsif @report.rest_period < 100 %>
-              <small>
-                <span class="small text-muted">内お休み期間&nbsp;</span><%= @report.str_rest_period %><span class="small text-muted">&nbsp;あり</span>
-              </small>
-            <% else %>
+            <% if @report.rest_period.present? %>
+              <% if @report.rest_period === 0 %>
+                <small>
+                  <span class="small text-muted">お休み期間&nbsp;</span><%= @report.str_rest_period %><span class="small text-muted"></span>
+                </small>
+              <% elsif @report.rest_period < 100 %>
+                <small>
+                  <span class="small text-muted">内お休み期間&nbsp;</span><%= @report.str_rest_period %><span class="small text-muted">&nbsp;あり</span>
+                </small>
+              <% else %>
+              <% end %>
             <% end %>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+        </tr>
+      <% end %>
       <tr>
         <td class="result-left-column small text-center">受精方法</td>
         <td class="pl-3">
@@ -534,43 +532,20 @@
             </td>
           </tr>
         <% end %>
-      <% else %>
+      <% end %>
+
+      <% if @report.fuiku_examination.present? %>
         <tr>
-          <td class="result-left-column small px-0 text-center ichirantable-left">
-            <p class="mb-1">【特殊検査】</p>
-            <ul class="small mb-0 list-unstyled text-center">
-              <li>・エラ(ERA)</li>
-              <li>・エマ(EMMA)</li>
-              <li>・アリス(ALICE)</li>
-              <li>・トリオ(TORIO)</li>
-              <li>・ERPeak</li>
-              <li>・子宮内膜組織診</li>
-              <li>・子宮内フローラ</li>
-              <li>・慢性子宮内膜炎</li>
-              <li>・子宮鏡検査</li>
-              <li>・染色体検査</li>
-              <li>・CA125</li>
-              <li>・MRI</li>
-              <li>・ビタミンD検査</li>
-              <li>・銅亜鉛検査</li>
-              <li>・クルーガーテスト</li>
-              <li>・その他</li>
-          </td>
+          <td class="result-left-column small text-center ichirantable-left">不育症検査の有無</td>
           <td class="pl-3 ichirantable-right">
-            <span class="text-muted small">未検査&nbsp;<span class="small">(未回答)</span></span>
+            <% if @report.fuiku_examination.present? %>
+              <span class="result-text"><%= @report.str_fuiku_examination %></span>
+            <% else %>
+              <span class="text-muted small">未回答</span>
+            <% end %>
           </td>
         </tr>
       <% end %>
-      <tr>
-        <td class="result-left-column small text-center ichirantable-left">不育症検査</td>
-        <td class="pl-3 ichirantable-right">
-          <% if @report.fuiku_examination.present? %>
-            <span class="result-text"><%= @report.str_fuiku_examination %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %>
-        </td>
-      </tr>
     </table>
 
     <table class="table p-0 mt-5 mb-0">
@@ -1071,16 +1046,6 @@
                 <li class="result-text small">･<%= pg_eplenishment.name %></li>
               </ul>
             <% end %>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center">貯卵数</td>
-        <td class="pl-3">
-          <% if @report.number_of_eggs_stored.present? %>
-            <span class="result-text"><%= @report.str_number_of_eggs_stored %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -1662,40 +1627,42 @@
           <% end %>
         </td>
       </tr>
-      <tr>
-        <td class="result-left-column small text-center">働き方&nbsp;<sup class="text-success">●</sup></td>
-        <td class="pl-3">
-          <% if @report.work_style_status == "hide" %>
-            <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
-          <% elsif @report.work_style.blank? %>
-            <span class="small text-muted"><%= "未回答" %></span>
-          <% else %>
-            <span class="result-text"><%= @report.str_work_style %></span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center">治療による働き方の変化</td>
-        <td class="pl-3">
-          <% if @report.suspended_or_retirement_job.present? %>
+      <% if @report.work_style.present? %>
+        <tr>
+          <td class="result-left-column small text-center">働き方&nbsp;<sup class="text-success">●</sup></td>
+          <td class="pl-3">
+            <% if @report.work_style_status == "hide" %>
+              <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
+            <% elsif @report.work_style.blank? %>
+              <span class="small text-muted"><%= "未回答" %></span>
+            <% else %>
+              <span class="result-text"><%= @report.str_work_style %></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <% if @report.suspended_or_retirement_job.present? %>
+        <tr>
+          <td class="result-left-column small text-center">治療による働き方の変化</td>
+          <td class="pl-3">
             <span class="result-text"><%= @report.str_suspended_or_retirement_job %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center">夫婦合算所得&nbsp;<sup class="text-success">●</sup></td>
-        <td class="pl-3">
-          <% if @report.household_net_income_status == "hide" %>
-            <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
-          <% elsif @report.household_net_income.blank? %>
-            <span class="small text-muted"><%= "未回答" %></span>
-          <% else %>
-            <span class="result-text"><%= @report.str_household_net_income %></span>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+        </tr>
+      <% end %>
+      <% if @report.household_net_income.present? %>
+        <tr>
+          <td class="result-left-column small text-center">夫婦合算所得&nbsp;<sup class="text-success">●</sup></td>
+          <td class="pl-3">
+            <% if @report.household_net_income_status == "hide" %>
+              <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
+            <% elsif @report.household_net_income.blank? %>
+              <span class="small text-muted"><%= "未回答" %></span>
+            <% else %>
+              <span class="result-text"><%= @report.str_household_net_income %></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     </table>
 
     <table class="table p-0 mt-5 mb-0">
@@ -1924,40 +1891,70 @@
         </td>
       </tr>
     </table>
+
     <table class="table p-0 mt-5 mb-0">
       <tr>
         <td class="result-left-column" colspan="2">
           <div class="m-0 p-0 form-inline justify-content-center">
-            <p class="m-0 p-0 text-muted small">ユーザー</p>&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1"></i>&nbsp;&nbsp;<h6 class="m-0 p-0 font-weight-bold">疾患･不育症</h6>
+            <p class="m-0 p-0 text-muted small">ユーザー</p>&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1"></i>&nbsp;&nbsp;<h6 class="m-0 p-0 font-weight-bold">不妊原因</h6>
           </div>
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">不育症</td>
+        <td class="result-left-column small text-center ichirantable-left">不妊原因・疾患</td>
         <td class="pl-3 ichirantable-right">
-          <% if @report.fuiku.present? %>
-            <span class="result-text"><%= @report.str_fuiku %></span>
+          <% if @report.f_funin_factors.present? %>
+            <% @report.f_funin_factors.each do |f_funin_factor| %>
+              <ul class="list-unstyled mb-0">
+                <li class="result-text small">･<%= f_funin_factor.name %></li>
+              </ul>
+            <% end %>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">不育原因</td>
-        <td class="pl-3">
-          <% if @report.fuiku_inspections.present? %>
-            <% @report.fuiku_inspections.each do |fuiku_inspection| %>
-              <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= fuiku_inspection.name %></li>
-              </ul>
-            <% end %>
+        <td class="result-left-column small text-center ichirantable-left">男性不妊の有無</td>
+        <td class="pl-3 ichirantable-righ">
+          <% if @report.male_infertility.present? %>
+            <span class="result-text"><%= @report.user.str_male_infertility %></span>
           <% else %>
-              <span class="text-muted small">なし</span>
+            <span class="text-muted small">未回答</span>
           <% end %>
         </td>
       </tr>
+      <% if @report.level_of_male_infertility.present? %>
+        <tr>
+          <td class="result-left-column small text-center ichirantable-left">男性不妊のレベル</td>
+          <td class="pl-3 ichirantable-righ">
+            <span class="result-text"><%= @report.user.strlevel_of_male_infertility %></span>
+          </td>
+        </tr>
+      <% end %>
+      <% if @report.fuiku.present? || @report.fuiku_inspections.present? %>
+        <% if @report.fuiku.present? %>
+          <tr>
+            <td class="result-left-column small text-center ichirantable-left">不育症</td>
+            <td class="pl-3 ichirantable-right">
+              <span class="result-text"><%= @report.str_fuiku %></span>
+            </td>
+          </tr>
+        <% end %>
+        <% if @report.fuiku_inspections.present? %>
+          <tr>
+            <td class="result-left-column small text-center">不育原因</td>
+            <td class="pl-3">
+              <% @report.fuiku_inspections.each do |fuiku_inspection| %>
+                <ul class="list-unstyled mb-0">
+                  <li class="result-text small">･<%= fuiku_inspection.name %></li>
+                </ul>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
     </table>
-
     <table class="table p-0 mt-5 mb-0">
       <tr>
         <td class="result-left-column" colspan="2">
@@ -2287,57 +2284,11 @@
           <td class="result-left-column small text-center" style="width:30%">採卵あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
           <td class="pl-3" style="width:70%">
             <% if @report.current_state == 1 || @report.current_state == 3 %>
-              <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
-                <% number_of_eggs_stored = @report.number_of_eggs_stored %>
-                <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
-                  <% if ninshinritsu_sairan <= 100.00 %>
-                    <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
-                  <% else %>
-                    <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                  <% end %>
+              <% ninshinritsu_sairan = ( 1 / @report.number_of_eggs_collected.to_f ) * 100 %>
+              <% if ninshinritsu_sairan <= 100.00 %>
+                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></small></span>
               <% else %>
-                <% ninshinritsu_sairan = ( 1 / @report.number_of_eggs_collected.to_f) * 100 %>
-                <% if ninshinritsu_sairan <= 100.00 %>
-                  <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
-                <% else %>
-                  <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                <% end %>
-              <% end %>
-            <% elsif @report.current_state == 2 || @report.current_state == 4 %>
-              <% if @report.transplant_method == 3 || @report.transplant_method == 4 %>
-                <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
-                  <% number_of_eggs_stored = @report.number_of_eggs_stored %>
-                  <% ninshinritsu_sairan = ( 2 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
-                    <% if ninshinritsu_sairan <= 100.00 %>
-                      <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
-                    <% else %>
-                      <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                    <% end %>
-                <% else %>
-                  <% ninshinritsu_sairan = ( 2 / @report.number_of_eggs_collected.to_f) * 100 %>
-                  <% if ninshinritsu_sairan <= 100.00 %>
-                    <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
-                  <% else %>
-                    <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                  <% end %>
-                <% end %>
-              <% else %>
-                <% if @report.number_of_eggs_stored.present? && @report.number_of_eggs_stored <= 50 %>
-                  <% number_of_eggs_stored = @report.number_of_eggs_stored %>
-                  <% ninshinritsu_sairan = ( 1 / (@report.number_of_eggs_collected - number_of_eggs_stored).to_f) * 100 %>
-                    <% if ninshinritsu_sairan <= 100.00 %>
-                      <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></small></span>
-                    <% else %>
-                      <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                    <% end %>
-                <% else %>
-                  <% ninshinritsu_sairan = ( 1 / @report.number_of_eggs_collected.to_f) * 100 %>
-                  <% if ninshinritsu_sairan <= 100.00 %>
-                    <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
-                  <% else %>
-                    <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= number_of_eggs_stored %>個&nbsp;)</span></span>
-                  <% end %>
-                <% end %>
+                <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></span>
               <% end %>
             <% else %>
               <span class="text-muted small">算出不可</span>
@@ -2364,20 +2315,11 @@
           <td class="pl-3" style="width:70%">
             <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted <= 50 %>
               <% if @report.current_state == 2 || @report.current_state == 4 %>
-                <% if @report.transplant_method == 3 || @report.transplant_method == 4 %>
-                  <% ninshinritsu_ishoku_kaisu = ( 2 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
-                  <% if ninshinritsu_ishoku_kaisu < 100.00 %>
-                    <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
-                  <% else %>
-                    <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
-                  <% end %>
+                <% ninshinritsu_ishoku_kaisu = ( 2 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
+                <% if ninshinritsu_ishoku_kaisu < 100.00 %>
+                  <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
                 <% else %>
-                  <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>
-                  <% if ninshinritsu_ishoku_kaisu < 100.00 %>
-                    <span class="result-text"><%= sprintf("%.2f", ninshinritsu_ishoku_kaisu) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></small></span>
-                  <% else %>
-                    <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;1個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
-                  <% end %>
+                  <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;2個&nbsp;/&nbsp;移植個数&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>(<%= @report.str_total_number_of_transplants %>)</span></span>
                 <% end %>
               <% elsif @report.current_state == 1 || @report.current_state == 3 %>
                 <% ninshinritsu_ishoku_kaisu = ( 1 / @report.total_number_of_eggs_transplanted.to_f) * 100 %>

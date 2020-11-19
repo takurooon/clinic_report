@@ -1187,10 +1187,17 @@ i .fa-edit {
 	font-size: 11px;
 }
 
+// ブランチ表現
 .ed-row {
 	height: calc(100% / 3);
 }
 
 .left-bottom-curve {
 	border-bottom-left-radius: 5px;
+}
+
+// テーブル角丸
+.table_radius {
+	border-radius: 5px;
+	background-color: #ffffff;
 }
