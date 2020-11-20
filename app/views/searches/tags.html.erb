@@ -1,7 +1,7 @@
 <%= render 'reports/category_header' %>
 <div class="container pb-5 mb-5">
-  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><span class="marker-underline"><strong>疾患･不育症</strong></span>&nbsp;からレポコを探す</h5>
-  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-4"><span class="marker-underline"><strong>疾患･不育症</strong></span>&nbsp;からレポコを探す</h4>
+  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><span class="marker-underline"><strong>不妊原因･疾患</strong></span>&nbsp;からレポコを探す</h5>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-4"><span class="marker-underline"><strong>不妊原因･疾患</strong></span>&nbsp;からレポコを探す</h4>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", category_search_path %>
   </small>
@@ -9,38 +9,17 @@
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", category_search_path %>
   </small>
 
-  <div class="row">
+  <div class="row px-3">
     <div class="col-md-8 offset-md-2 px-0">
-      <div class="parent-tab">
-        <ul class="nav nav-tabs parent-menu mt-2">
-          <li><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">不育症</a></li>
-          <li><a href="#tab_2" data-toggle="tab">検査</a></li>
-        </ul>
-        <section class="parent-tab-content active" id="tab_1">
-          <div class="child-tab">
-            <ul class="nav nav-tabs child-menu">
-              <li><a href="#tab_1_1" class="active" data-toggle="tab">女性</a></li>
-            </ul>
-            <section class="child-tab-content active" id="tab_1_1">
-              <% @fuiku_inspections.each do |fuiku_inspection| %>
-                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to fuiku_inspection.name, "/カテゴリ/不育症/女性/#{fuiku_inspection.name}" %></span>
-              <% end %>
-            </section>
-          </div>
-        </section>
-        <section class="parent-tab-content" id="tab_2">
-          <div class="child-tab">
-            <ul class="nav nav-tabs child-menu">
-              <li><a href="#tab_2_1" class="active" data-toggle="tab">女性</a></li>
-            </ul>
-            <section class="child-tab-content active" id="tab_2_1">
-              <% @special_examinations.each do |special_examination| %>
-                <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to special_examination.str_special_inspection_name(special_examination.name), "/カテゴリ/特殊検査/女性/#{special_examination.name}" %></span>
-              <% end %>
-            </section>
-          </div>
-        </section>
-      </div>
+      <% @f_funin_factors.each do |f_funin_factor| %>
+        <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to f_funin_factor.name, "/カテゴリ/不妊原因/女性/#{f_funin_factor.name}", class: "text-dark" %></span>
+      <% end %>
+      <% @special_examinations.each do |special_examination| %>
+        <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to special_examination.str_special_inspection_name(special_examination.name), "/カテゴリ/特殊検査/女性/#{special_examination.name}", class: "text-dark" %></span>
+      <% end %>
+      <% @fuiku_inspections.each do |fuiku_inspection| %>
+        <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to fuiku_inspection.name, "/カテゴリ/不育症/女性/#{fuiku_inspection.name}", class: "text-dark" %></span>
+      <% end %>
     </div>
   </div>
 </div>

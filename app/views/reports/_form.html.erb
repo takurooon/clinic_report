@@ -143,36 +143,36 @@
                     <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植方法</span></small>
                   </div>
 
-                  <div class="add-info mt-4 mb-5">
+                  <div class="add-info mt-4 mb-5 shadow">
                     <input id="acd-check1" class="acd-check3" type="checkbox">
                     <label class="acd-label3" for="acd-check1">　 さらに詳しい情報を追加する</label>
                     <div class="acd-content3">
                       <div class="form-group mt-0 mb-2 pt-0">
                         <p class="question mb-0 pt-1">治療期間</p>
-                        <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
                         <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-0">
                         <p class="question mb-0 pt-1">途中他院での治療も含むお休み期間</p>
-                        <%= f.select :rest_period, Report::HASH_REST_PERIOD.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <%= f.select :rest_period, Report::HASH_REST_PERIOD.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
                         <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療中にとったお休み/他院での治療期間</span></small>
                       </div>
 
                       <div class="form-group mt-4 mb-2 pt-0">
                         <p class="question mb-0 pt-1">治療時の働き方&nbsp;<sup class="text-success">●</sup></p>
-                        <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <%= f.select :work_style, Report::HASH_WORK_STYLE.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
                         <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
                       </div>
 
                       <div class="form-group mt-0 mb-3 pt-0">
                         <p class="question mb-0 pt-1">休職や退職の有無</p>
-                        <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <%= f.select :suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">治療時の夫婦合算所得&nbsp;<sup class="text-success">●</sup></p>
-                        <%= f.select :household_net_income, Report::HASH_HOUSEHOLD_NET_INCOME.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <%= f.select :household_net_income, Report::HASH_HOUSEHOLD_NET_INCOME.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
                         <small id="poster-tip" class="form-text text-muted">
                           <span class="small text-muted">所得&nbsp;=&nbsp;収入&nbsp;-&nbsp;経費</span>
                         </small>
@@ -330,31 +330,33 @@
                     </small>
                   </div>
 
-                  <div class="add-info mt-4 mb-5">
+                  <div class="add-info mt-4 mb-5 shadow">
                     <input id="acd-check2" class="acd-check3" type="checkbox">
                     <label class="acd-label3" for="acd-check2">　 さらに詳しい情報を追加する</label>
                     <div class="acd-content3">
                       <div class="form-group mt-0 mb-0 pt-0">
                         <p class="question mb-0 pt-1">不育症「検査」の有無</p>
-                        <%= f.select :fuiku_examination, Report::HASH_FUIKU_EXAMINATION.invert, { prompt: "" }, { class: "form-control py-0" } %>
+                        <%= f.select :fuiku_examination, Report::HASH_FUIKU_EXAMINATION.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
                         <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での不育症検査の有無</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-0 pt-0">
+                      <div class="form-group mt-3 mb-0 pt-0">
                         <p class="question mb-0 pt-1">不育症「診断」の有無</p>
-                        <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control py-0" } %>
+                        <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
                       </div>
 
-                      <div class="form-group mt-0 mb-5 pt-0 fuiku-factor">
+                      <div class="form-group mt-3 mb-0 pt-0 fuiku-factor">
                         <p class="question mb-0 pt-1">不育原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                        <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
-                          <div class="form-check checkbox">
-                            <%= b.label class: "form-check-label" do %>
-                              <%= b.check_box class: "form-check-input" %>
-                              <%= b.text %>
-                            <% end %>
-                          </div>
-                        <% end %>
+                        <div class="rounded-lg py-3 shadow-sm" style="background: #ffffff;">
+                          <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
+                            <div class="form-check checkbox">
+                              <%= b.label class: "form-check-label" do %>
+                                <%= b.check_box class: "form-check-input" %>
+                                <%= b.text %>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        </div>
                       </div>
 
                       <div class="form-group mt-0 mb-4 pt-4">
@@ -536,6 +538,7 @@
 
                     <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label small" for="TAB-02">過去の採卵</label>
                     <div class="tab-content1">
+                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の採卵</span></h6>
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_sairan_cycles do |unsuccessful_sairan_cycle| %>
                           <%= render "unsuccessful_sairan_cycle_fields", f: unsuccessful_sairan_cycle %>
@@ -801,7 +804,7 @@
 
                     <input id="TAB-04" type="radio" name="TAB2" class="tab-switch2" /><label class="tab-label2 small" for="TAB-04">過去の移植</label>
                     <div class="tab-content2">
-                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-clinic-name"></span>での過去移植</span></h6>
+                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の移植</span></h6>
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_ishoku_cycles do |unsuccessful_ishoku_cycle| %>
                           <%= render "unsuccessful_ishoku_cycle_fields", f: unsuccessful_ishoku_cycle %>
@@ -1370,19 +1373,80 @@
           <% end %>
         </div>
 
-        <div class="p-1">
-          <div class="form-group mt-0">
-            <div class="rounded mt-0 mb-4 p-2 gradation-box">
-              <%= link_to "レポコ作成のヒント", example_content_path, class: "text-dark", onclick: "window.open(this.href,'hoge', 'height=800, width=800');return false;" %>
-              <i data-feather="external-link" class="feather-icon-style1"></i>
+        <div class="tab-wrap3 mt-0 pb-0">
+          <input id="TAB-05" type="radio" name="TAB3" class="tab-switch3" checked="checked" /><label class="tab-label3 mb-0" for="TAB-05">レポコ</label>
+          <div class="tab-content3-1">
+            <div class="form-group mt-0 pt-0">
+              <%= f.rich_text_area :content, placeholder: "治療中の思いや感情をブログのように自由に治療体験記を綴ってください。右隣のタブ【作成のヒント】もぜひ参考にしてください！" %>
             </div>
-            <%= f.rich_text_area :content, placeholder: "治療中の思いや感情をブログのように自由に治療体験記を綴ってください" %>
-          </div>
 
-          <div class="form-group mt-0">
-            <div><%= f.label :title, 'このレポコにタイトルをつける', class: "question-matters" %></div>
-            <%= f.text_area :title, class: "form-control py-0 title-js-text", placeholder: "最大64文字", rowa: 4 %>
-            <p class="title-js-text-count text-right mt-2"></p>
+            <div class="form-group mt-0">
+              <div><%= f.label :title, 'このレポコにタイトルをつける', class: "question-matters" %></div>
+              <%= f.text_area :title, class: "form-control py-0 title-js-text", placeholder: "最大64文字", rowa: 4 %>
+              <p class="title-js-text-count text-right mt-2"></p>
+            </div>
+          </div>
+          <input id="TAB-06" type="radio" name="TAB3" class="tab-switch3" /><label class="tab-label3-2 small text-danger mb-0" for="TAB-06">＼&nbsp;作成のヒント<i class="fas fa-hand-point-up mx-1"></i>／</label>
+          <div class="tab-content3-2">
+            <div class="p-1">
+              <div class="m-2 p-2 rounded-lg">
+                <div class="p-2 mt-2">
+                  <h5 class="mb-3 font-weight-bold"><%= image_tag "home/hint.svg", alt: "home-top-img", width: "30px", class: "img-fluid pb-2 pl-0", loading: "lazy" %>&nbsp;<span class="marker-underline-w">レポコ作成のヒント</span></h5>
+                  <p class="small">以下は、治療中/治療を検討されている方が聞きたい項目を集めています。<br>これら以外にも上記の質問項目についての詳細なども治療中/検討中の方にとって非常に有益な情報となりますので、ぜひ詳しい情報をお載せください。</p>
+                </div>
+                <div class="row px-2">
+                  <div class="col-md-6 px-2">
+                    <div class="p-3 mb-4 rounded-lg shadow example-points">
+                      <h6 class="font-weight-bold"><span class="marker-underline">治療について</span></h6>
+                      <ul class="pl-3 mt-3 mb-2">
+                        <li class="small">・採卵から移植までの流れ</li>
+                        <li class="small">・使用薬剤</li>
+                        <li class="small">・PGT-AやERA検査などの特殊検査の詳細</li>
+                        <li class="small">・採卵/移植後のホルモン値の変化</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6 px-2">
+                    <div class="p-3 mb-4 rounded-lg shadow example-points">
+                      <h6 class="font-weight-bold"><span class="marker-underline">費用について</span></h6>
+                      <ul class="pl-3 mt-3 mb-2">
+                        <li class="small">・採卵移植費用の詳細</li>
+                        <li class="small">・PGTやERA検査などの特殊検査について</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6 px-2">
+                    <div class="p-3 mb-4 rounded-lg shadow example-points">
+                      <h6 class="font-weight-bold"><span class="marker-underline">仕事との両立について</span></h6>
+                      <ul class="pl-3 mt-3 mb-2">
+                        <li class="small">・辛かったこと大変だったこと</li>
+                        <li class="small">・支援制度など</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6 px-2">
+                    <div class="p-3 mb-4 rounded-lg shadow example-points">
+                      <h6 class="font-weight-bold"><span class="marker-underline">治療以外のこと</span></h6>
+                      <ul class="pl-3 mt-3 mb-2">
+                        <li class="small">・ステップアップした理由やきっかけ</li>
+                        <li class="small">・パートナーとの足並みや温度差など</li>
+                        <li class="small">・治療の期限など</li>
+                        <li class="small">・サプリの使用やその詳細</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6 px-2">
+                    <div class="p-3 mb-4 rounded-lg shadow example-points">
+                      <h6 class="font-weight-bold"><span class="marker-underline">その他</span></h6>
+                      <ul class="pl-3 mt-3 mb-2">
+                        <li class="small">・不妊治療を始めて驚いたこと</li>
+                        <li class="small">・もっとこうしていたら良かったと思うポイント</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

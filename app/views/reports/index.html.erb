@@ -14,16 +14,16 @@
   <div class="container-fluid main-index mt-4">
     <div class="row px-0">
       <div class="col-lg-7 offset-lg-1 main-column text-color px-0">
-        <div class="tab-wrap1 mt-4">
+        <div class="tab-wrap1 mt-0">
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label ml-3" for="TAB-01">レポコ</label>
           <div class="container tab-content1">
             <%= render 'center' %>
           </div>
-          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label mr-3 small" for="TAB-02">医療機関情報</label>
+          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label mr-3 small" for="TAB-02">クリニック情報</label>
           <div class="tab-content1">
             <div class="container mb-5 pb-5">
-              <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong>全国の医療機関一覧</strong>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h5>
-              <h4 class="d-none d-md-block col-12 mt-4 mb-5"><strong>全国の医療機関一覧</strong>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h4>
+              <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h5>
+              <h4 class="d-none d-md-block col-12 mt-4 mb-5"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h4>
               <div class="row mt-4">
                 <% @list.each do |key, value| %>
                   <div class="col-12 mb-1 px-2">

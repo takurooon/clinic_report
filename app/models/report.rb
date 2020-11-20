@@ -651,7 +651,7 @@ class Report < ApplicationRecord
   }
 
   def str_fuiku_examination
-    return HASH_FHASH_FUIKU_EXAMINATIONUIKU[self.fuiku_examination]
+    return HASH_FUIKU_EXAMINATION[self.fuiku_examination]
   end
 
   # fuikuの区分値(不育症の診断有無)

@@ -1918,7 +1918,7 @@
         <td class="result-left-column small text-center ichirantable-left">男性不妊の有無</td>
         <td class="pl-3 ichirantable-righ">
           <% if @report.male_infertility.present? %>
-            <span class="result-text"><%= @report.user.str_male_infertility %></span>
+            <span class="result-text"><%= @report.str_male_infertility %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -1928,7 +1928,7 @@
         <tr>
           <td class="result-left-column small text-center ichirantable-left">男性不妊のレベル</td>
           <td class="pl-3 ichirantable-righ">
-            <span class="result-text"><%= @report.user.strlevel_of_male_infertility %></span>
+            <span class="result-text"><%= @report.str_level_of_male_infertility %></span>
           </td>
         </tr>
       <% end %>

@@ -191,7 +191,9 @@ class SearchesController < ApplicationController
     report_fuiku_inspections = ReportFuikuInspection.group(:fuiku_inspection_id).where.not(fuiku_inspection_id: nil).distinct.count
     fuiku_inspection = report_fuiku_inspections.keys
     @fuiku_inspections = FuikuInspection.where(id: fuiku_inspection).name_yomigana
-
+    report_f_funin_factors = ReportFFuninFactor.group(:f_funin_factor_id).where.not(f_funin_factor_id: nil).distinct.count
+    f_funin_factor = report_f_funin_factors.keys
+    @f_funin_factors = FFuninFactor.where(id: f_funin_factor)
     @special_examinations = SpecialInspection.where.not(report_id: nil).distinct
   end
 
@@ -201,8 +203,13 @@ class SearchesController < ApplicationController
         @tag = SpecialInspection.find_by(name: params[:value])
         @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag.name })
         @clinic_all_reports = @reports.count
-      else params[:tags] === "不育症"
+      elsif params[:tags] === "不育症"
         @tag = FuikuInspection.find_by(name: params[:value])
+        @reports = @tag.reports.order(created_at: :desc)
+        @clinic_all_reports = @reports.count
+      elsif
+        params[:tags] === "不妊原因"
+        @tag = FFuninFactor.find_by(name: params[:value])
         @reports = @tag.reports.order(created_at: :desc)
         @clinic_all_reports = @reports.count
       end

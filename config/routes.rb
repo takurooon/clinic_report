@@ -32,7 +32,6 @@ Rails.application.routes.draw do
   get 'privacy' => 'application#privacy'
   get 'repoco' => 'application#repoco'
   get 'terminology' => 'application#terminology'
-  get 'example_content' => 'reports#example_content'
 
   devise_for :users, path: '', controllers: {
     registrations: 'users/registrations',

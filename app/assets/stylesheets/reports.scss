@@ -657,6 +657,10 @@ i .fa-edit {
 .marker-underline {
 	background:linear-gradient(transparent 60%, #C4F4F4 0%);
 }
+// マーカー風アンダーライン(白)
+.marker-underline-w {
+	background:linear-gradient(transparent 60%, #ffffff 0%);
+}
 
 // showのグラフエリア
 .grapharea {
@@ -1006,11 +1010,6 @@ i .fa-edit {
   box-sizing: border-box;
 }
 
-.gradation-box {
-	background-image: linear-gradient(-225deg, #FFE6FA 0%, #E3FDF5 80%);
-	// background-image: linear-gradient(-225deg, #D7FFFE 0%, #FFFEFF 100%);
-}
-
 // アコーディオン
 .acd-check{
 	display: none;
@@ -1200,4 +1199,17 @@ i .fa-edit {
 .table_radius {
 	border-radius: 5px;
 	background-color: #ffffff;
+}
+
+// レポコ作成のヒントの項目
+@media screen and (max-width:767px) {
+	.example-points {
+		background-color: #ffffff;
+	}
+}
+@media screen and (min-width:768px) {
+	.example-points {
+		background-color: #ffffff;
+		min-height: 160px;
+	}
 }

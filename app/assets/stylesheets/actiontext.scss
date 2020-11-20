@@ -396,4 +396,5 @@ trix-editor .attachment__metadata {
       // ツールバーの折り返し表示(追加)
       trix-toolbar .trix-button-row {
         flex-wrap: wrap;
+        padding-top: 1rem;
       }

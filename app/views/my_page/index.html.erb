@@ -172,20 +172,6 @@
                               <%= published.clinic.name %>のレポコ</h7>
                           <% end %>
                         </div>
-                        <div class="d-none d-sm-block justify-content-start mr-2">
-                          <div class="personaldata-badge pr-2">
-                            <span class="badge badge-light text-muted"><%= published.str_cost %></span>
-                            <% inspections = published.inspections.shuffle.sample(1) %>
-                            <% inspections.each do |inspection| %>
-                              <span class="badge badge-light text-muted"><%= inspection.name %></span>
-                            <% end %>
-                            <% supplements = published.supplements.shuffle.sample(1) %>
-                            <% supplements.each do |supplement| %>
-                              <span class="badge badge-light text-muted"><%= supplement.name %></span>
-                            <% end %>
-                          </div>
-                        </div>
-              
                         <div>
                           <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
                             <div class="d-none d-sm-block my-0 mr-2 clinic_address">
@@ -367,19 +353,6 @@
                               <%= draft.clinic.name %>のレポコ</h7>
                           <% end %>
                         </div>
-                        <div class="d-none d-sm-block justify-content-start mr-2">
-                          <div class="personaldata-badge pr-2">
-                            <span class="badge badge-light text-muted"><%= draft.str_cost %></span>
-                            <% inspections = draft.inspections.shuffle.sample(1) %>
-                            <% inspections.each do |inspection| %>
-                              <span class="badge badge-light text-muted"><%= inspection.name %></span>
-                            <% end %>
-                            <% supplements = draft.supplements.shuffle.sample(1) %>
-                            <% supplements.each do |supplement| %>
-                              <span class="badge badge-light text-muted"><%= supplement.name %></span>
-                            <% end %>
-                          </div>
-                        </div>
 
                         <div>
                           <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
@@ -557,19 +530,6 @@
                                 <% end %>
                                 <%= report.clinic.name %>のレポコ</h7>
                             <% end %>
-                          </div>
-                          <div class="d-none d-sm-block justify-content-start mr-2">
-                            <div class="personaldata-badge pr-2">
-                              <span class="badge badge-light text-muted"><%= report.str_cost %></span>
-                              <% inspections = report.inspections.shuffle.sample(1) %>
-                              <% inspections.each do |inspection| %>
-                                <span class="badge badge-light text-muted"><%= inspection.name %></span>
-                              <% end %>
-                              <% supplements = report.supplements.shuffle.sample(1) %>
-                              <% supplements.each do |supplement| %>
-                                <span class="badge badge-light text-muted"><%= supplement.name %></span>
-                              <% end %>
-                            </div>
                           </div>
 
                           <div>
