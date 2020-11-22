@@ -269,26 +269,42 @@ $(function() {
 
 // 受精方法の詳細
 $(function() {
-  fertilization_method($("#report_types_of_fertilization_methods option:selected").val());
+  fertilization_method($("#report_types_of_fertilization_methods option:checked").val());
   $("#report_types_of_fertilization_methods").change(function() {
     fertilization_method($(this).val());
   });
 })
 function fertilization_method(types_of_fertilization_methods) {
   if (types_of_fertilization_methods == "2") {
-    $(".detail_of_icsi").show();
-    $(".description_of_types_of_fertilization_methods").hide();
+    $("#detail_of_icsi").show();
   } else if (types_of_fertilization_methods == "3") {
-    $(".detail_of_icsi").show();
-    $(".description_of_types_of_fertilization_methods").hide();
+    $("#detail_of_icsi").show();
   } else if (types_of_fertilization_methods == "99") {
-    $(".description_of_types_of_fertilization_methods").show();
-    $(".detail_of_icsi").hide();
+    $("#detail_of_icsi").hide();
   } else {
-    $(".detail_of_icsi").hide();
-    $(".description_of_types_of_fertilization_methods").hide();
+    $("#detail_of_icsi").hide();
   }
 }
+
+
+function defineSetting (){
+  var setting = document.getElementById('setting').checked;
+  if(setting =='year'){
+      document.getElementById("cal").style.display = "none";
+
+  }else if(setting =='month'){
+      document.getElementById("cal").style.display = "unset";
+
+  }else if(setting =='week'){
+      document.getElementById("cal").style.display = "none";
+  }
+}
+
+
+
+
+
+
 
 // 不育原因の詳細
 $(function() {

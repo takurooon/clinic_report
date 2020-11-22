@@ -26,11 +26,8 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :number_of_transferable_embryos
       t.integer :embryo_stage
       t.integer :early_embryo_grade
-      t.text :early_embryo_grade_supplementary_explanation
       t.integer :blastocyst_grade1
-      t.text :blastocyst_grade1_supplementary_explanation
       t.integer :blastocyst_grade2
-      t.text :blastocyst_grade2_supplementary_explanation
       t.integer :ishoku_type
       t.integer :total_number_of_transplants
       t.integer :total_number_of_eggs_transplanted
