@@ -15,7 +15,7 @@
       <%= @tag.str_special_inspection_name(@tag.name) %>
     <% else %>
       <%= @tag.name %>
-    <% end %>    
+    <% end %>
   </strong></span>」を含むレポコ一覧</h4>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
     <%= link_to "カテゴリ一覧", category_search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to "不妊原因一覧", "/category/tags" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= @tag.name %></b></strong>

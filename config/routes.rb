@@ -125,7 +125,6 @@ end
 #                               privacy GET    /privacy(.:format)                                                                       application#privacy
 #                                repoco GET    /repoco(.:format)                                                                        application#repoco
 #                           terminology GET    /terminology(.:format)                                                                   application#terminology
-#                       example_content GET    /example_content(.:format)                                                               reports#example_content
 #                      new_user_session GET    /sign_in(.:format)                                                                       users/sessions#new
 #                          user_session POST   /sign_in(.:format)                                                                       users/sessions#create
 #                  destroy_user_session DELETE /sign_out(.:format)                                                                      users/sessions#destroy

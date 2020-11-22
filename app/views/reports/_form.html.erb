@@ -120,7 +120,7 @@
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 mb-0 pt-2">投稿時点の状況</p>
-                    <%= f.select :current_state, Report::HASH_CURRENT_STATE.invert, { prompt: "" }, { class: "form-control py-0" } %>
+                    <%= f.collection_radio_buttons :current_state, Report::HASH_CURRENT_STATE, :first, :last, { class: "form-control py-0" } %>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
@@ -1377,7 +1377,7 @@
           <input id="TAB-05" type="radio" name="TAB3" class="tab-switch3" checked="checked" /><label class="tab-label3 mb-0" for="TAB-05">レポコ</label>
           <div class="tab-content3-1">
             <div class="form-group mt-0 pt-0">
-              <%= f.rich_text_area :content, placeholder: "治療中の思いや感情をブログのように自由に治療体験記を綴ってください。右隣のタブ【作成のヒント】もぜひ参考にしてください！" %>
+              <%= f.rich_text_area :content, placeholder: "詳しい治療情報をはじめ、治療中の思いなどをブログのように自由に治療体験記として綴ってください。右隣のタブ【作成のヒント】もぜひ参考にしてください！" %>
             </div>
 
             <div class="form-group mt-0">
