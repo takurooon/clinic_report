@@ -316,11 +316,8 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "number_of_transferable_embryos"
     t.integer "embryo_stage"
     t.integer "early_embryo_grade"
-    t.text "early_embryo_grade_supplementary_explanation"
     t.integer "blastocyst_grade1"
-    t.text "blastocyst_grade1_supplementary_explanation"
     t.integer "blastocyst_grade2"
-    t.text "blastocyst_grade2_supplementary_explanation"
     t.integer "ishoku_type"
     t.integer "total_number_of_transplants"
     t.integer "total_number_of_eggs_transplanted"
@@ -488,6 +485,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "number_of_late_miscarriages_status", default: 0, null: false
     t.integer "number_of_times_the_grant_was_received"
     t.integer "all_grant_amount"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

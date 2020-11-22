@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                                     :bigint           not null, primary key
+#  admin                                  :boolean          default(FALSE)
 #  all_cost                               :integer
 #  all_grant_amount                       :integer
 #  all_number_of_sairan                   :integer

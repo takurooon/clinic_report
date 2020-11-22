@@ -286,26 +286,6 @@ function fertilization_method(types_of_fertilization_methods) {
   }
 }
 
-
-function defineSetting (){
-  var setting = document.getElementById('setting').checked;
-  if(setting =='year'){
-      document.getElementById("cal").style.display = "none";
-
-  }else if(setting =='month'){
-      document.getElementById("cal").style.display = "unset";
-
-  }else if(setting =='week'){
-      document.getElementById("cal").style.display = "none";
-  }
-}
-
-
-
-
-
-
-
 // 不育原因の詳細
 $(function() {
   fuiku($("#report_fuiku option:selected").val());
