@@ -1023,6 +1023,7 @@
                             <% end %>
                           </td>
                         </tr>
+                        <% if false %>
                         <tr>
                           <td class="result-left-column small text-center">採卵日とホルモン値</td>
                           <td class="pl-3">
@@ -1088,6 +1089,7 @@
                           <% end %>
                           </td>
                         </tr>
+                        <% end %>
                       </table>
                       <table class="table table-bordered p-0 mt-5" style="border-top:solid;">
                         <% if @sairan_hormones.present? %>
@@ -1490,165 +1492,167 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if @report.embryo_stage == 1 %>
-                          <tr>
-                            <td class="result-left-column small text-center">移植日とホルモン値&nbsp;<span class="small text-muted">(ET)</span></td>
-                            <td class="pl-3">
-                              <% @report.day_of_shokihaiishokus.each do |day_of_shokihaiishoku| %>
-                                <table class="table-borderless">
-                                  <tr>
-                                    <td class="small text-muted text-right">ET&nbsp;:</td>
-                                    <td class="font-weight-bold">
-                                      <%= day_of_shokihaiishoku.day %>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">E2&nbsp;:</td>
-                                    <% if day_of_shokihaiishoku.e2.blank? %>
+                        <% if false %>
+                          <% if @report.embryo_stage == 1 %>
+                            <tr>
+                              <td class="result-left-column small text-center">移植日とホルモン値&nbsp;<span class="small text-muted">(ET)</span></td>
+                              <td class="pl-3">
+                                <% @report.day_of_shokihaiishokus.each do |day_of_shokihaiishoku| %>
+                                  <table class="table-borderless">
+                                    <tr>
+                                      <td class="small text-muted text-right">ET&nbsp;:</td>
                                       <td class="font-weight-bold">
-                                        <span class="text-muted small">未回答</span>
+                                        <%= day_of_shokihaiishoku.day %>
                                       </td>
-                                    <% else %>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">E2&nbsp;:</td>
+                                      <% if day_of_shokihaiishoku.e2.blank? %>
+                                        <td class="font-weight-bold">
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% else %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_shokihaiishoku.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">FSH&nbsp;:</td>
+                                      <% if day_of_shokihaiishoku.fsh.blank? %>
+                                        <td class="font-weight-bold">
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% else %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_shokihaiishoku.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">LH&nbsp;:</td>
+                                      <% if day_of_shokihaiishoku.lh.blank? %>
+                                        <td class="font-weight-bold">
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% else %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_shokihaiishoku.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">P4&nbsp;:</td>
+                                      <% if day_of_shokihaiishoku.p4.blank? %>
+                                        <td class="font-weight-bold">
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% else %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_shokihaiishoku.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
+                                      <% if day_of_shokihaiishoku.endometrial_thickness.blank? %>
+                                        <td class="font-weight-bold">
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% else %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_shokihaiishoku.endometrial_thickness %>&nbsp;<span class="small text-muted"><small>mm</small></span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                  </table>
+                                <% end %>
+                              </td>
+                            </tr>
+                          <% elsif @report.embryo_stage == 2 %>
+                            <tr>
+                              <td class="result-left-column small text-center">移植日とホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
+                              <td class="pl-3">
+                                <% @report.day_of_haibanhoishokus.each do |day_of_haibanhoishoku| %>
+                                  <table class="table-borderless">
+                                    <tr>
+                                      <td class="small text-muted text-right">BT&nbsp;:</td>
                                       <td class="font-weight-bold">
-                                        <%= day_of_shokihaiishoku.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
+                                        <%= day_of_haibanhoishoku.day %>
                                       </td>
-                                    <% end %>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">FSH&nbsp;:</td>
-                                    <% if day_of_shokihaiishoku.fsh.blank? %>
-                                      <td class="font-weight-bold">
-                                        <span class="text-muted small">未回答</span>
-                                      </td>
-                                    <% else %>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_shokihaiishoku.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                      </td>
-                                    <% end %>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">LH&nbsp;:</td>
-                                    <% if day_of_shokihaiishoku.lh.blank? %>
-                                      <td class="font-weight-bold">
-                                        <span class="text-muted small">未回答</span>
-                                      </td>
-                                    <% else %>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_shokihaiishoku.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                      </td>
-                                    <% end %>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">P4&nbsp;:</td>
-                                    <% if day_of_shokihaiishoku.p4.blank? %>
-                                      <td class="font-weight-bold">
-                                        <span class="text-muted small">未回答</span>
-                                      </td>
-                                    <% else %>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_shokihaiishoku.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
-                                      </td>
-                                    <% end %>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
-                                    <% if day_of_shokihaiishoku.endometrial_thickness.blank? %>
-                                      <td class="font-weight-bold">
-                                        <span class="text-muted small">未回答</span>
-                                      </td>
-                                    <% else %>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_shokihaiishoku.endometrial_thickness %>&nbsp;<span class="small text-muted"><small>mm</small></span>
-                                      </td>
-                                    <% end %>
-                                  </tr>
-                                </table>
-                              <% end %>
-                            </td>
-                          </tr>
-                        <% elsif @report.embryo_stage == 2 %>
-                          <tr>
-                            <td class="result-left-column small text-center">移植日とホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
-                            <td class="pl-3">
-                              <% @report.day_of_haibanhoishokus.each do |day_of_haibanhoishoku| %>
-                                <table class="table-borderless">
-                                  <tr>
-                                    <td class="small text-muted text-right">BT&nbsp;:</td>
-                                    <td class="font-weight-bold">
-                                      <%= day_of_haibanhoishoku.day %>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">E2&nbsp;:</td>
-                                    <% if day_of_haibanhoishoku.e2 %>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_haibanhoishoku.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
-                                      </td>
-                                    <% else %>
-                                      <td>
-                                        <span class="text-muted small">未回答</span>
-                                      </td>
-                                    <% end %>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">FSH&nbsp;:</td>
-                                    <% if day_of_haibanhoishoku.fsh %>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_haibanhoishoku.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                      </td>
-                                    <% else %>
-                                      <td>
-                                        <span class="text-muted small">未回答</span>
-                                      </td>
-                                    <% end %>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">LH&nbsp;:</td>
-                                    <% if day_of_haibanhoishoku.lh %>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_haibanhoishoku.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                      </td>
-                                    <% else %>
-                                      <td>
-                                        <span class="text-muted small">未回答</span>
-                                      </td>
-                                    <% end %>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">P4&nbsp;:</td>
-                                    <% if day_of_haibanhoishoku.p4 %>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_haibanhoishoku.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
-                                      </td>
-                                    <% else %>
-                                      <td>
-                                        <span class="text-muted small">未回答</span>
-                                      </td>
-                                    <% end %>
-                                  </tr>
-                                  <tr>
-                                    <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
-                                    <% if day_of_haibanhoishoku.endometrial_thickness %>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_haibanhoishoku.endometrial_thickness %>&nbsp;<span class="small text-muted"><small>mm</small></span>
-                                      </td>
-                                    <% else %>
-                                      <td>
-                                        <span class="text-muted small">未回答</span>
-                                      </td>
-                                    <% end %>
-                                  </tr>
-                                </table>
-                              <% end %>
-                            </td>
-                          </tr>
-                        <% else %>
-                          <tr>
-                            <td class="result-left-column small text-center">移植日とホルモン値</td>
-                            <td class="pl-3">
-                              <span class="text-muted small">未回答</span>
-                            </td>
-                          </tr>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">E2&nbsp;:</td>
+                                      <% if day_of_haibanhoishoku.e2 %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_haibanhoishoku.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
+                                        </td>
+                                      <% else %>
+                                        <td>
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">FSH&nbsp;:</td>
+                                      <% if day_of_haibanhoishoku.fsh %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_haibanhoishoku.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
+                                        </td>
+                                      <% else %>
+                                        <td>
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">LH&nbsp;:</td>
+                                      <% if day_of_haibanhoishoku.lh %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_haibanhoishoku.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
+                                        </td>
+                                      <% else %>
+                                        <td>
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">P4&nbsp;:</td>
+                                      <% if day_of_haibanhoishoku.p4 %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_haibanhoishoku.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
+                                        </td>
+                                      <% else %>
+                                        <td>
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                    <tr>
+                                      <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
+                                      <% if day_of_haibanhoishoku.endometrial_thickness %>
+                                        <td class="font-weight-bold">
+                                          <%= day_of_haibanhoishoku.endometrial_thickness %>&nbsp;<span class="small text-muted"><small>mm</small></span>
+                                        </td>
+                                      <% else %>
+                                        <td>
+                                          <span class="text-muted small">未回答</span>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                  </table>
+                                <% end %>
+                              </td>
+                            </tr>
+                          <% else %>
+                            <tr>
+                              <td class="result-left-column small text-center">移植日とホルモン値</td>
+                              <td class="pl-3">
+                                <span class="text-muted small">未回答</span>
+                              </td>
+                            </tr>
+                          <% end %>
                         <% end %>
                       </table>
                       <table class="table table-bordered p-0 mb-0" style="border-top:solid;">

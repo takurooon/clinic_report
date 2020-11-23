@@ -1626,9 +1626,10 @@ class Report < ApplicationRecord
   # 採卵前までの通院回数質問にも利用
   HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN = {
     100 => "不明",
-    1 => "〜3回",
+    1 => "1〜3回",
     2 => "4〜5回",
-    99 => "6回以上"
+    99 => "6回以上",
+    0 => "0回",
   }
 
   def str_number_of_visits_before_sairan
@@ -1638,9 +1639,10 @@ class Report < ApplicationRecord
   # 移植前までの通院回数質問にも利用
   HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU = {
     100 => "不明",
-    1 => "〜3回",
+    1 => "1〜3回",
     2 => "4〜5回",
-    99 => "6回以上"
+    99 => "6回以上",
+    0 => "0回",
 }
 
   def str_number_of_visits_before_ishoku
