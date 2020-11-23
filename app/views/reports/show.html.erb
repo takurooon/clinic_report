@@ -3596,7 +3596,7 @@
               <div class="rank_report mt-5">
                 <% if Report.rank.present? %>
                   <div class="mb-2">
-                    <i data-feather="trending-up" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">人気のレポコ</h7>
+                    <i data-feather="trending-up" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">注目レポコ</h7>
                   </div>
                   <% Report.rank.each do |report| %>
                     <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
@@ -3862,7 +3862,7 @@
           <div class="d-block d-sm-none px-3">
             <div class="rank_report mt-5">
               <div class="mb-2">
-                <i data-feather="trending-up" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">人気のレポコ</h7>
+                <i data-feather="trending-up" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">注目レポコ</h7>
               </div>
               <% Report.rank.each do |report| %>
                 <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
