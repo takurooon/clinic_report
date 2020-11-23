@@ -644,8 +644,8 @@ class Report < ApplicationRecord
 
   # fuiku_examinationの区分値(不育症検査の有無)
   HASH_FUIKU_EXAMINATION = {
-    1 => "なし(不可)",
-    2 => "あり(可能)",
+    1 => "なし",
+    2 => "あり",
     99 => "その他",
     100 => "不明",
   }
@@ -1219,7 +1219,7 @@ class Report < ApplicationRecord
   HASH_FERTILITY_TREATMENT_NUMBER_SEARCH = {
     1 => "1人目治療",
     2 => "2人目治療",
-    3 => "3人以上治療",
+    3 => "3人目〜治療",
   }
 
   def str_fertility_treatment_number_search
