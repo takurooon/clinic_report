@@ -1174,22 +1174,31 @@
                     <small class="text-muted"><span class="small text-danger"><span class="select-clinic-name"></span>でかかった治療費総額</span></small>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-0">
+                  <div class="form-group mt-0 mb-2 pt-2">
                     <p class="question mb-0 pt-1">採卵1回あたりの費用(概算)</p>
                     <%= f.select :sairan_cost, Report::HASH_SAIRAN_COST.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での1回の採卵費用</span></small>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-0">
+                  <div class="form-group mt-0 mb-2 pt-2">
                     <p class="question mb-0 pt-1">移植1回あたりの費用(概算)</p>
                     <%= f.select :ishoku_cost, Report::HASH_ISHOKU_COST.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での1回の移植費用</span></small>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-0">
+                  <div class="form-group mt-0 mb-2 pt-2">
                     <p class="question mb-0 pt-1">クレジットカードの利用</p>
-                    <%= f.select :credit_card_validity, Report::HASH_CREDIT_CARD_VALIDITY.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でのクレジットカード利用可否</span></small>
+                    <div class="mt-2">
+                      <%= f.collection_radio_buttons(:credit_card_validity, Report::HASH_CREDIT_CARD_VALIDITY, :first, :last) do |b| %>
+                        <div class="form-check pl-2">
+                          <%= b.label class: "radio-inline mb-1" do %>
+                            <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                            <%= b.text %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0 amount_that_can_be_activated m-1">
