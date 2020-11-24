@@ -42,32 +42,32 @@ class ClinicsController < ApplicationController
     @clinic_reports = clinic_reports.limit(@get_limit).order(created_at: :desc)
     @clinic_reports_count = Report.where(clinic_id: @clinic, status: 0).count
 
-    unless clinic_reports.average(:doctor_quality).nil?
+    unless clinic_reports.average(:doctor_quality).blank?
       @doctor_quality = clinic_reports.average(:doctor_quality).round(1)
     else
       @doctor_quality = 0
     end
-    unless clinic_reports.average(:staff_quality).nil?
+    unless clinic_reports.average(:staff_quality).blank?
       @staff_quality = clinic_reports.average(:staff_quality).round(1)
     else
       @staff_quality = 0
     end
-    unless clinic_reports.average(:impression_of_technology).nil?
+    unless clinic_reports.average(:impression_of_technology).blank?
       @impression_of_technology = clinic_reports.average(:impression_of_technology).round(1)
     else
       @impression_of_technology = 0
     end
-    unless clinic_reports.average(:impression_of_price).nil?
+    unless clinic_reports.average(:impression_of_price).blank?
       @impression_of_price = clinic_reports.average(:impression_of_price).round(1)
     else
       @impression_of_price = 0
     end
-    unless clinic_reports.average(:average_waiting_time2).nil?
+    unless clinic_reports.average(:average_waiting_time2).blank?
       @average_waiting_time2 = clinic_reports.average(:average_waiting_time2).round(1)
     else
       @average_waiting_time2 = 0
     end
-    unless clinic_reports.average(:comfort_of_space).nil?
+    unless clinic_reports.average(:comfort_of_space).blank?
       @comfort_of_space = clinic_reports.average(:comfort_of_space).round(1)
     else
       @comfort_of_space = 0
