@@ -21,36 +21,6 @@
               <%= render 'partial/circle' %>
             </div>
           </li>
-          <li class="nav-item mr-3">
-            <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
-              <%= link_to root_path, { title: "ホーム" } do %>
-                <div class="pt-3 pb-0">
-                  <i data-feather="home" class="text-muted pt-1"></i>
-                </div>
-              <% end %>
-            <% else %>
-              <%= link_to root_path, { title: "ホーム", data: {confirm: "#{form_edit_link_alert_message}"} } do %>
-                <div class="pt-3 pb-0">
-                  <i data-feather="home" class="text-muted pt-1"></i>
-                </div>
-              <% end %>
-            <% end %>
-          </li>
-          <li class="nav-item mr-3">
-            <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
-              <%= link_to category_search_path, { title: "カテゴリ検索" } do %>
-                <div class="pt-3 pb-0">
-                  <i data-feather="search" class="text-muted pt-1"></i>
-                </div>
-              <% end %>
-            <% else %>
-              <%= link_to category_search_path, { title: "カテゴリ検索", data: {confirm: "#{form_edit_link_alert_message}"} } do %>
-                <div class="pt-3 pb-0">
-                  <i data-feather="search" class="text-muted pt-1"></i>
-                </div>
-              <% end %>
-            <% end %>
-          </li>
           <% unless request.path.include?("new") || request.path.include?("edit") %>
             <li class="nav-item mr-3">
               <div class="navbar-btn pt-3 pb-0">
