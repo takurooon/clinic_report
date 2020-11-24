@@ -123,7 +123,7 @@
                     <%= f.collection_radio_buttons(:current_state, Report::HASH_CURRENT_STATE, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -135,7 +135,7 @@
                     <%= f.collection_radio_buttons(:fertility_treatment_number, Report::HASH_FERTILITY_TREATMENT_NUMBER, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -152,7 +152,7 @@
                     <%= f.collection_radio_buttons(:details_of_icsi, Report::HASH_DETAILS_OF_ICSI, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -166,7 +166,7 @@
                       <%= f.collection_radio_buttons(:transplant_method, Report::HASH_TRANSPLANT_METHOD, :first, :last) do |b| %>
                         <div class="form-check pl-2">
                           <%= b.label class: "radio-inline mb-1" do %>
-                            <%= b.radio_button %>
+                            <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                             <%= b.text %>
                           <% end %>
                         </div>
@@ -196,7 +196,7 @@
                           <%= f.collection_radio_buttons(:work_style, Report::HASH_WORK_STYLE, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -211,7 +211,7 @@
                           <%= f.collection_radio_buttons(:suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -298,7 +298,7 @@
                     <%= f.collection_radio_buttons(:level_of_male_infertility, Report::HASH_LEVEL_OF_MALE_INFERTILITY, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -386,6 +386,16 @@
                     </small>
                   </div>
 
+                  <div class="form-group mt-0 mb-5 pt-4">
+                    <p class="question mb-0 pt-1">基本検査以外に受けた検査</p>
+                    <%= f.fields_for :special_inspections do |special_inspection| %>
+                      <%= render "special_inspection_fields", f: special_inspection %>
+                    <% end %>
+                    <div class="links pt-2 pl-2 text-danger">
+                      <%= link_to_add_association "+ 追加", f, :special_inspections, class: "text-danger" %>
+                    </div>
+                  </div>
+
                   <div class="add-info mt-4 mb-5 shadow">
                     <input id="acd-check2" class="acd-check3" type="checkbox">
                     <label class="acd-label3" for="acd-check2">　 さらに詳しい情報を追加する</label>
@@ -397,7 +407,7 @@
                           <%= f.collection_radio_buttons(:fuiku_examination, Report::HASH_FUIKU_EXAMINATION, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -405,7 +415,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-3 mb-0 pt-0">
+                      <div class="form-group mt-3 mb-1 pt-0">
                         <p class="question mb-0 pt-1">不育症「診断」の有無</p>
                         <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
                       </div>
@@ -421,16 +431,6 @@
                               <% end %>
                             </div>
                           <% end %>
-                        </div>
-                      </div>
-
-                      <div class="form-group mt-0 mb-4 pt-4">
-                        <p class="question mb-0 pt-1">基本検査以外に受けた検査</p>
-                        <%= f.fields_for :special_inspections do |special_inspection| %>
-                          <%= render "special_inspection_fields", f: special_inspection %>
-                        <% end %>
-                        <div class="links pt-2 pl-2 text-danger">
-                          <%= link_to_add_association "+ 追加", f, :special_inspections, class: "text-danger" %>
                         </div>
                       </div>
                     </div>
@@ -461,7 +461,7 @@
                           <%= f.collection_radio_buttons(:number_of_visits_before_sairan, Report::HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -482,7 +482,7 @@
                           <%= f.collection_radio_buttons(:type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -497,7 +497,7 @@
                           <%= f.collection_radio_buttons(:use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -512,7 +512,7 @@
                           <%= f.collection_radio_buttons(:selection_of_anesthesia_type, Report::HASH_SELECTION_OF_ANESTHESIA_TYPE, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -838,7 +838,7 @@
                           <%= f.collection_radio_buttons(:number_of_visits_before_ishoku, Report::HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -859,7 +859,7 @@
                           <%= f.collection_radio_buttons(:ishoku_type, Report::HASH_ISHOKU_TYPE, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -898,7 +898,7 @@
                           <%= f.collection_radio_buttons(:early_embryo_grade, Report::HASH_EARLY_EMBRYO_GRADE, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -913,7 +913,7 @@
                           <%= f.collection_radio_buttons(:blastocyst_grade1, Report::HASH_BLASTOCYST_GRADE1, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
