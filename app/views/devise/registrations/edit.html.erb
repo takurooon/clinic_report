@@ -245,7 +245,7 @@
                   <tr>
                     <td class="profile-item-l small text-center px-0">メールアドレス</td>
                     <td class="profile-item-r">
-                      <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+                      <%= f.text_field :email, autocomplete: "email", class: "form-control" %>
                       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                         <div><%= resource.unconfirmed_email %>に届いた認証リンク確認することで更新が完了します</div>
                       <% end %>
