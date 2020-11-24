@@ -279,7 +279,7 @@
                 <div class="scroll-box">
                   <div class="mt-0 mb-2 pt-0">
                     <p class="question mb-2 pt-2">不妊原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                    <%= f.collection_check_boxes(:f_funin_factor_ids, FFuninFactor.all, :id, :name) do |b| %>
+                    <%= f.collection_check_boxes(:f_funin_factor_ids, FFuninFactor.all.name_yomigana, :id, :name) do |b| %>
                       <div class="cp_ipcheck">
                         <%= b.label do %>
                           <%= b.check_box class: "option-input05 cb" %>

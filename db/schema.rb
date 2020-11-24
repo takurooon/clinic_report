@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "f_funin_factors", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -127,6 +127,19 @@
               <% end %>
 
               <div class="form-group text-left mt-3 justify-content-start">
+              <small><span class="small text-muted">新規登録で&nbsp</span></small>
+                <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#terms_of_service">
+                  <small><span class="small">利用規約</span></small>
+                </p>
+                <small><span class="small text-muted">･</span></small>
+                <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#privacy_policy">
+                  <small><span class="small">プライバシーボリシー</span></small>
+                </p>
+                <small><span class="small text-muted">&nbsp;に同意とみなされます。</span></small>
+              </div>
+
+              <% if false %>
+              <div class="form-group text-left mt-3 justify-content-start">
                 <%= f.check_box :agreement, :as => :boolean, checked:false, class: "mx-1 validate[required]", id: "formGroupInput" %>
                 <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#terms_of_service">
                   <small><span class="small">利用規約</span></small>
@@ -137,6 +150,7 @@
                 </p>
                 <small><span class="small text-muted">&nbsp;に同意する。</span></small>
               </div>
+              <% end %>
 
               <div class="actions mt-3">
                 <%= f.submit '登録', class: 'btn btn-raised btn-primary mx-auto d-block w-75' %>

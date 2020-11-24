@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: true
-  validates_acceptance_of :agreement, allow_nil: false, message: "※会員登録には利用規約への同意が必要です。", on: :create
+  # validates_acceptance_of :agreement, allow_nil: false, message: "※会員登録には利用規約への同意が必要です。", on: :create
   
   VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
   validates :password, format: { with: VALID_PASSWORD_REGEX },
