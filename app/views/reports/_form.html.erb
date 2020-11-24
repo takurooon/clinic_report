@@ -282,7 +282,7 @@
                     <%= f.collection_check_boxes(:f_funin_factor_ids, FFuninFactor.all, :id, :name) do |b| %>
                       <div class="cp_ipcheck">
                         <%= b.label do %>
-                          <%= b.check_box %>
+                          <%= b.check_box class: "option-input05 cb" %>
                           <%= b.text %>
                         <% end %>
                       </div>
