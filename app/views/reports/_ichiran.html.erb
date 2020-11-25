@@ -2166,7 +2166,7 @@
                     <% if @report.clinic.current_status == 1 %>
                       <span class="text-danger">【閉院】</span>
                     <% end %>
-                    <%= link_to @report.clinic.name, "/clinics/#{@report.clinic.id}" %>&nbsp;の基本情報
+                    <%= link_to @report.clinic.name, "/clinics/#{@report.clinic.id}", data: { "turbolinks" => false } %>&nbsp;の基本情報
                   </td>
                 </tr>
                 <tr>
