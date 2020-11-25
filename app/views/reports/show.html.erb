@@ -2509,7 +2509,7 @@
                       <% if @report.clinic.current_status == 1 %>
                         <span class="text-danger">【閉院】</span>
                       <% end %>
-                      <%= @report.clinic.name %>
+                        <%= link_to @report.clinic.name, "/clinics/#{@report.clinic.id}" %><i data-feather="external-link" class="p-1 mb-1"></i>
                     </td>
                   </tr>
                   <tr>
