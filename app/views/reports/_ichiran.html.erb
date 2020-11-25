@@ -1899,16 +1899,11 @@
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
+          <% if @report.level_of_male_infertility.present? %>
+            <br><span class="small text-muted">(<span class="text-dark">&nbsp;<%= @report.str_level_of_male_infertility %>&nbsp;</span>)</span>
+          <% end %>
         </td>
       </tr>
-      <% if @report.level_of_male_infertility.present? %>
-        <tr>
-          <td class="result-left-column small text-center ichirantable-left">男性不妊のレベル</td>
-          <td class="pl-3 ichirantable-righ">
-            <span class="result-text"><%= @report.str_level_of_male_infertility %></span>
-          </td>
-        </tr>
-      <% end %>
       <% if @report.fuiku.present? || @report.fuiku_inspections.present? %>
         <% if @report.fuiku.present? %>
           <tr>

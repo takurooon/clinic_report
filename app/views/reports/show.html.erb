@@ -2422,7 +2422,7 @@
                 </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.user.name %>さんの</p>
                 <h4 class="child-tab-title">不妊原因</h4>
-                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">不妊原因・疾患</span></h5>
+                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">不妊原因</span></h5>
                 <table class="table p-0 mb-0">
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">原因</td>
@@ -2438,27 +2438,19 @@
                       <% end %>
                     </td>
                   </tr> 
-                </table>
-                <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">男性不妊</span></h5>
-                <table class="table p-0 mb-0">
                   <tr>
-                    <td class="result-left-column small text-center" style="width:30%">男性不妊の有無</td>
-                    <td class="pl-3" style="width:70%">
+                    <td class="result-left-column small text-center">男性不妊の有無</td>
+                    <td class="pl-3">
                       <% if @report.male_infertility.present? %>
                         <span class="result-text"><%= @report.str_male_infertility %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %>
+                      <% if @report.level_of_male_infertility.present? %>
+                        <br><span class="small text-muted">(<span class="text-dark">&nbsp;<%= @report.str_level_of_male_infertility %>&nbsp;</span>)</span>
+                      <% end %>
                     </td>
                   </tr>
-                  <% if @report.level_of_male_infertility.present? %>
-                    <tr>
-                      <td class="result-left-column small text-center">男性不妊のレベル</td>
-                      <td class="pl-3">
-                        <span class="result-text"><%= @report.str_level_of_male_infertility %></span>
-                      </td>
-                    </tr>
-                  <% end %>
                 </table>
 
                 <% if @report.fuiku.present? || @report.fuiku_inspections.present? %>
