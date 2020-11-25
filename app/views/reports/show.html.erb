@@ -1,4 +1,4 @@
-<%= render 'category_header' %>
+
 <div class="container px-0">
   <div class="d-none d-lg-block position-fixed mt-0 pt-5">
     <div class="text-center m-0 p-0">
@@ -3221,7 +3221,7 @@
           <% else %>
           <div class="comment-blur">
             REPOCOは、不妊治療で妊娠出産に至った方や、転院または治療をやめられた方の足跡を「治療レポート」として投稿〜検索できるサービスです。
-            このサービスは情報取得が難しい不妊治療の現状を少しでも改善したいとの思いから、0からプログラミングを学習して作りました。<br>
+            このサービスは情報取得が難しい不妊治療の現状を少しでも改善したいとの思いから作りました。<br>
             もっともっと良いサービスにしていきたいと思っていますので、一緒にREPOCOを成長させてくれる方(特にエンジニアの方)を絶賛大募集中です。
             まずは、お気軽にお問い合わせください！
           </div>
@@ -3943,6 +3943,11 @@
             </div>
           </div>
         <% end %>
+
+        <div class="mt-5 text-center">
+          <p class="d-block d-sm-none text-muted">＼ <i data-feather="arrow-down" class="px-1 mb-1"></i>カテゴリからレポコを検索 <i data-feather="arrow-down" class="px-1 mb-1"></i>／</p>
+        </div>
+        <%= render 'category_header' %>
 
       </div>
     </div>
