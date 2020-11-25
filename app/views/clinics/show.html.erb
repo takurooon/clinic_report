@@ -8,13 +8,13 @@
         <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><%= @clinic.name %></strong></p>
       </small>
     </div>
-    <div class="col-lg-7 offset-lg-1 mt-5 px-1">
+    <div class="col-lg-7 offset-lg-1 mt-4 px-1">
       <% if @clinic.current_status == 1 %>
         <span class="badge badge-danger mb-2">【閉院】</span>
       <% end %>
       <div class="d-flex align-content-start flex-wrap align-items-end px-2">
-        <h3 class="d-none d-sm-block font-weight-bold mb-0" style="letter-spacing: 3px;"><%= @clinic.name %>&nbsp;&nbsp;</h3>
-        <h5 class="d-block d-sm-none font-weight-bold mb-0" style="letter-spacing: 3px;"><%= @clinic.name %>&nbsp;&nbsp;</h5>
+        <h3 class="d-none d-sm-block font-weight-bold mb-0" style="letter-spacing: 3px;"><span class="marker-underline"><%= @clinic.name %></span>&nbsp;&nbsp;</h3>
+        <h5 class="d-block d-sm-none font-weight-bold mb-0" style="letter-spacing: 3px;"><span class="marker-underline"><%= @clinic.name %></span>&nbsp;&nbsp;</h5>
         <small class="pt-2 mb-0 small text-muted">(&nbsp;<%= @clinic.yomigana %>&nbsp;)</small>
       </div>
       <div class="d-flex align-items-center pt-4 px-2">
@@ -43,7 +43,7 @@
         <% end %>
       </div>
       
-      <div class="tab-wrap1 mt-5">
+      <div class="tab-wrap1 mt-4">
         <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">基本情報</label>
         <div class="tab-content1">
           <div class="my-2">
