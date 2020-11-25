@@ -304,6 +304,26 @@
                       </div>
                     <% end %>
                   </div>
+
+                  <div class="form-group mt-4 mb-0 pt-0">
+                    <p class="question mb-0 pt-1">不育症の診断</p>
+                    <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control pl-3 py-0" } %>
+                  </div>
+
+                  <div class="form-group mt-3 mb-0 pt-0 fuiku-factor">
+                    <p class="question mb-0 pt-1">不育原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                    <div class="rounded-lg py-3 pl-3">
+                      <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
+                        <div class="cp_ipcheck">
+                          <%= b.label do %>
+                            <%= b.check_box class: "option-input05 cb" %>
+                            <%= b.text %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+
                   <div class="mt-5 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                     <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
@@ -394,46 +414,6 @@
                     <% end %>
                     <div class="links pt-2 pl-2 text-danger">
                       <%= link_to_add_association "+ 追加", f, :special_inspections, class: "text-danger" %>
-                    </div>
-                  </div>
-
-                  <div class="add-info mt-4 mb-5 shadow">
-                    <input id="acd-check2" class="acd-check3" type="checkbox">
-                    <label class="acd-label3" for="acd-check2">　 さらに詳しい情報を追加する</label>
-                    <div class="acd-content3">
-                      <div class="form-group mt-0 mb-0 pt-0">
-                        <p class="question mb-0 pt-1">不育症「検査」の有無</p>
-                        <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での不育症検査の有無</span></small>
-                        <div class="rounded-lg pt-3 pb-2 px-3" style="background: #ffffff;">
-                          <%= f.collection_radio_buttons(:fuiku_examination, Report::HASH_FUIKU_EXAMINATION, :first, :last) do |b| %>
-                            <div class="form-check pl-2">
-                              <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                <%= b.text %>
-                              <% end %>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-
-                      <div class="form-group mt-3 mb-1 pt-0">
-                        <p class="question mb-0 pt-1">不育症「診断」の有無</p>
-                        <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
-                      </div>
-
-                      <div class="form-group mt-3 mb-0 pt-0 fuiku-factor">
-                        <p class="question mb-0 pt-1">不育原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                        <div class="rounded-lg py-3 pl-3 shadow-sm" style="background: #ffffff;">
-                          <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
-                            <div class="cp_ipcheck">
-                              <%= b.label do %>
-                                <%= b.check_box class: "option-input05 cb" %>
-                                <%= b.text %>
-                              <% end %>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
                     </div>
                   </div>
 

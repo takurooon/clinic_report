@@ -440,7 +440,6 @@ class ReportsController < ApplicationController
         :early_embryo_grade,
         :blastocyst_grade1,
         :blastocyst_grade2,
-        :fuiku_examination,
         :fuiku,
         :ishoku_type,
         :total_number_of_transplants,

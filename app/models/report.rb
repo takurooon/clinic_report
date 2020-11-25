@@ -642,18 +642,6 @@ class Report < ApplicationRecord
     return HASH_BLASTOCYST_GRADE2[self.blastocyst_grade2]
   end
 
-  # fuiku_examinationの区分値(不育症検査の有無)
-  HASH_FUIKU_EXAMINATION = {
-    1 => "なし",
-    2 => "あり",
-    99 => "その他",
-    100 => "不明",
-  }
-
-  def str_fuiku_examination
-    return HASH_FUIKU_EXAMINATION[self.fuiku_examination]
-  end
-
   # fuikuの区分値(不育症の診断有無)
   HASH_FUIKU = {
     1 => "なし",
