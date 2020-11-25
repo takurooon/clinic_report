@@ -2467,7 +2467,7 @@
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li class="tab-item"><a href="#tab_3_1" class="active" data-toggle="tab">情報</a></li>
-                <li class="tab-item"><a href="#tab_3_2" data-toggle="tab">通院･予約･決済 他</a></li>
+                <li class="tab-item"><a href="#tab_3_2" data-toggle="tab">通院回数･決済 他</a></li>
                 <li class="tab-item"><a href="#tab_3_3" data-toggle="tab">レビュー</a></li>
               </ul>
               <section class="child-tab-content active" id="tab_3_1">
@@ -2522,7 +2522,7 @@
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>の</p>
-                <h4 class="child-tab-title">通院予定･予約方法 他</h4>
+                <h4 class="child-tab-title">通院回数･決済 他</h4>
                 <div class="box4 mb-2 mt-3">
                   &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんから寄せられた&nbsp;<%= @report.clinic.name %>&nbsp;の
                     <% if @report.year_of_treatment_end.present? %>
