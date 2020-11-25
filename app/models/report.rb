@@ -548,11 +548,11 @@ class Report < ApplicationRecord
 
   # reuse_of_basic_examination_resultsの区分値(基本検査の再利用可否)
   HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS = {
-    1 => "再利用可",
-    2 => "再利用可(条件あり)",
-    3 => "一部再利用可",
-    4 => "一部再利用可(条件あり)",
-    5 => "再利用不可",
+    1 => "可",
+    2 => "可(条件あり)",
+    3 => "一部可",
+    4 => "一部可(条件あり)",
+    5 => "不可",
     98 => "そもそも該当しない",
     99 => "その他",
     100 => "不明",
