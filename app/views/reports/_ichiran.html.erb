@@ -1716,14 +1716,12 @@
         <td class="result-left-column small text-center">人工授精実施回数</td>
         <td class="pl-3">
           <% if @report.user.number_of_aih.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での実施に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの手術歴。</span></p>
-            </div>
             <span class="result-text"><%= @report.user.number_of_aih %>回
               <% if user_signed_in? && @report.user_id == current_user.id %>
                 &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
               <% end %>
             </span>
+            <p class="small text-muted mt-3 mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>以外での実施も含む。</span></p>
           <% else %>
             <span class="text-muted small">未回答
               <% if user_signed_in? && @report.user_id == current_user.id %>
@@ -1737,14 +1735,12 @@
         <td class="result-left-column small text-center">全採卵回数</td>
         <td class="pl-3">
           <% if @report.user.all_number_of_sairan.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での採卵に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの全採卵回数。</span></p>
-            </div>
             <span class="result-text"><%= @report.user.str_all_number_of_sairan(@report.user.all_number_of_sairan) %>
               <% if user_signed_in? && @report.user_id == current_user.id %>
                 &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
               <% end %>
             </span>
+            <p class="small text-muted mt-3 mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>以外での採卵も含む。</span></p>
           <% else %>
             <span class="text-muted small">未回答
               <% if user_signed_in? && @report.user_id == current_user.id %>
@@ -1758,14 +1754,12 @@
         <td class="result-left-column small text-center">全移植回数</td>
         <td class="pl-3">
           <% if @report.user.all_number_of_transplants.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での移植に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの全移植回数。</span></p>
-            </div>
             <span class="result-text"><%= @report.user.str_all_number_of_transplants(@report.user.all_number_of_transplants) %>
               <% if user_signed_in? && @report.user_id == current_user.id %>
                 &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
               <% end %>
             </span>
+            <p class="small text-muted mt-3 mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>以外での移植も含む。</span></p>
           <% else %>
             <span class="text-muted small">未回答
               <% if user_signed_in? && @report.user_id == current_user.id %>
@@ -1780,14 +1774,12 @@
           <tr>
             <td class="result-left-column small text-center">化学流産</td>
             <td class="pl-3">
-              <div class="alert alert-secondary rounded p-2" role="alert">
-                <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの化学流産。</span></p>
-              </div>
               <span class="result-text"><%= @report.user.str_number_of_chemical_abortions(@report.user.number_of_chemical_abortions) %>
                 <% if user_signed_in? && @report.user_id == current_user.id %>
                   &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
                 <% end %>
               </span>
+              <p class="small text-muted mt-3 mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中だけに限らない。</span></p>
             </td>
           </tr>
         <% end %>
@@ -1795,14 +1787,12 @@
           <tr>
             <td class="result-left-column small text-center">初期流産</td>
             <td class="pl-3">
-              <div class="alert alert-secondary rounded p-2" role="alert">
-                <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの初期流産。</span></p>
-              </div>
               <span class="result-text"><%= @report.user.str_number_of_early_miscarriages(@report.user.number_of_early_miscarriages) %>
                 <% if user_signed_in? && @report.user_id == current_user.id %>
                   &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
                 <% end %>
               </span>
+              <p class="small text-muted mt-3 mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中だけに限らない。</span></p>
             </td>
           </tr>
         <% end %>
@@ -1810,14 +1800,12 @@
           <tr>
             <td class="result-left-column small text-center">後期流産</td>
             <td class="pl-3">
-              <div class="alert alert-secondary rounded p-2" role="alert">
-                <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの後期流産。</span></p>
-              </div>
               <span class="result-text"><%= @report.user.str_number_of_late_miscarriages(@report.user.number_of_late_miscarriages) %>
                 <% if user_signed_in? && @report.user_id == current_user.id %>
                   &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
                 <% end %>
               </span>
+              <p class="small text-muted mt-3 mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中だけに限らない。</span></p>
             </td>
           </tr>
         <% end %>
@@ -1826,14 +1814,12 @@
         <td class="result-left-column small text-center">治療費総額</td>
         <td class="pl-3">
           <% if @report.user.all_cost.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での費用に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの治療費用総額。</span></p>
-            </div>
             <span class="result-text"><%= @report.user.str_all_cost_report %>
               <% if user_signed_in? && @report.user_id == current_user.id %>
                 &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
               <% end %>
             </span>
+            <p class="small text-muted mt-3 mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>以外での治療費含む。</span></p>
           <% else %>
             <span class="text-muted small">未回答
               <% if user_signed_in? && @report.user_id == current_user.id %>
@@ -1847,14 +1833,12 @@
         <td class="result-left-column small text-center">受給回数</td>
         <td class="pl-3">
           <% if @report.user.number_of_times_the_grant_was_received.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療に限らず、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までに受給した回数。</span></p>
-            </div>
             <span class="result-text"><%= @report.user.str_number_of_times_the_grant_was_received(@report.user.number_of_times_the_grant_was_received) %>
               <% if user_signed_in? && @report.user_id == current_user.id %>
                 &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
               <% end %>
             </span>
+            <p class="small text-muted mt-3 mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療に限らない。</span></p>
           <% else %>
             <span class="text-muted small">未回答
               <% if user_signed_in? && @report.user_id == current_user.id %>
@@ -1868,14 +1852,12 @@
         <td class="result-left-column small text-center">受給総額</td>
         <td class="pl-3">
           <% if @report.user.all_grant_amount.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療に限らず、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までに受給した総額。</span></p>
-            </div>
             <span class="result-text"><%= @report.user.str_all_grant_amount(@report.user.all_grant_amount) %>
               <% if user_signed_in? && @report.user_id == current_user.id %>
                 &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
               <% end %>
             </span>
+            <p class="small text-muted mt-3 mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療に限らない。</span></p>
           <% else %>
             <span class="text-muted small">未回答
               <% if user_signed_in? && @report.user_id == current_user.id %>
