@@ -24,7 +24,6 @@
 #  fertility_treatment_number             :integer
 #  free_wifi                              :integer
 #  fuiku                                  :integer
-#  fuiku_examination                      :integer
 #  household_net_income                   :integer
 #  household_net_income_status            :integer          default("show"), not null
 #  impression_of_price                    :float

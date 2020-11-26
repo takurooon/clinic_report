@@ -140,9 +140,6 @@ end
 #                                       PUT    /                                                                                        users/registrations#update
 #                                       DELETE /                                                                                        users/registrations#destroy
 #                                       POST   /                                                                                        users/registrations#create
-#                 new_user_confirmation GET    /confirmation/new(.:format)                                                              users/confirmations#new
-#                     user_confirmation GET    /confirmation(.:format)                                                                  users/confirmations#show
-#                                       POST   /confirmation(.:format)                                                                  users/confirmations#create
 #                                 users GET    /users(.:format)                                                                         users#index
 #                                       POST   /users(.:format)                                                                         users#create
 #                              new_user GET    /users/new(.:format)                                                                     users#new

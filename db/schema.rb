@@ -322,7 +322,6 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "ishoku_type"
     t.integer "total_number_of_transplants"
     t.integer "total_number_of_eggs_transplanted"
-    t.integer "fuiku_examination"
     t.integer "fuiku"
     t.integer "sairan_cost"
     t.integer "ishoku_cost"
