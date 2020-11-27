@@ -7,6 +7,7 @@ class CreateClinics < ActiveRecord::Migration[6.0]
       t.string :address1
       t.string :address2
       t.string :tel
+      t.text :g_map
       t.integer :senkoishido
       t.integer :fujinkashuyo
       t.integer :shusanki

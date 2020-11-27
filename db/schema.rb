@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.string "address1"
     t.string "address2"
     t.string "tel"
+    t.text "g_map"
     t.integer "senkoishido"
     t.integer "fujinkashuyo"
     t.integer "shusanki"

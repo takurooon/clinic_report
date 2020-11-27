@@ -37,6 +37,7 @@ CSV.foreach('db/csv/clinics.csv', headers: true) do |row|
     address1: row['address1'],
     address2: row['address2'],
     tel: row['tel'],
+    g_map: row['g_map'],
     jsog_code: row['jsog_code'],
     senkoishido: row['senkoishido'],
     fujinkashuyo: row['fujinkashuyo'],

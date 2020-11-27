@@ -7,6 +7,7 @@
 #  address2             :string
 #  current_status       :integer
 #  fujinkashuyo         :integer
+#  g_map                :text
 #  hai_ranshi_toketsu   :integer
 #  ivf                  :integer
 #  japco                :integer

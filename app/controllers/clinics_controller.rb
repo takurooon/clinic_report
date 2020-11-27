@@ -77,6 +77,8 @@ class ClinicsController < ApplicationController
     gon.clinic_evaluation = []
     gon.clinic_evaluation << @doctor_quality << @staff_quality << @impression_of_technology << @impression_of_price << @average_waiting_time2 << @comfort_of_space
     @clinic_evaluation = gon.clinic_evaluation.compact
+
+    @map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207358.88062435377!2d139.61465486592607!3d35.70204801476253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b613c23c4f1%3A0x1e9358c10fa78782!2z5p2x5Lqs77yo77yh77yy77y044Kv44Oq44OL44OD44Kv!5e0!3m2!1sja!2sjp!4v1606354848699!5m2!1sja!2sjp"
   end
 
 end
