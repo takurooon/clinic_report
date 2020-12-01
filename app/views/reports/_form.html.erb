@@ -178,13 +178,7 @@
                     <input id="acd-check1" class="acd-check3" type="checkbox">
                     <label class="acd-label3" for="acd-check1">　 さらに詳しい情報を追加する</label>
                     <div class="acd-content3">
-                      <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0 pt-1">治療期間</p>
-                        <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
-                        <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
-                      </div>
-
-                      <div class="form-group mt-4 mb-2 pt-0">
+                      <div class="form-group mt-0 mb-0 pt-2">
                         <p class="question mb-0 pt-1">治療時の働き方&nbsp;<sup class="text-success">●</sup></p>
                         <div class="rounded-lg pt-3 pb-2 px-3" style="background: #ffffff;">
                           <%= f.collection_radio_buttons(:work_style, Report::HASH_WORK_STYLE, :first, :last) do |b| %>
@@ -232,6 +226,18 @@
               </section>
               <section class="child-tab-content" id="tab_1_3">
                 <div class="scroll-box">
+                  <div class="form-group mt-0 mb-2 pt-1">
+                    <p class="question mb-0 pt-1">卒業時の年齢</p>
+                    <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
+                    <small class="text-muted"><span class="small text-muted"><span class="select-clinic-name"></span>を卒業した年齢</span></small>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-0 pt-1">卒業時のパートナーの年齢</p>
+                    <%= f.select :age_of_partner_at_end_of_treatment, Report::HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                    <small class="text-muted"><span class="small text-muted"><span class="select-clinic-name"></span>を卒業した時のパートナーの年齢</span></small>
+                  </div>
+
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-2">クリニック卒業年</p>
                     <%= f.date_select :year_of_treatment_end, {
@@ -246,15 +252,9 @@
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0 pt-1">卒業時の年齢</p>
-                    <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
-                    <small class="text-muted"><span class="small text-muted"><span class="select-clinic-name"></span>を卒業した年齢</span></small>
-                  </div>
-
-                  <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0 pt-1">卒業時のパートナーの年齢</p>
-                    <%= f.select :age_of_partner_at_end_of_treatment, Report::HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                    <small class="text-muted"><span class="small text-muted"><span class="select-clinic-name"></span>を卒業した時のパートナーの年齢</span></small>
+                    <p class="question mb-0 pt-1">治療期間</p>
+                    <%= f.select :treatment_period, Report::HASH_TREATMENT_PERIOD.invert, { prompt: "" }, { class: "form-control py-0" } %>
+                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
                   </div>
 
                   <div class="mt-5 d-flex justify-content-between">
@@ -352,7 +352,7 @@
                       </div>
                     <% end %>
 
-                    <p class="question mb-0 pt-3">選んだ詳しい理由</span></p>
+                    <p class="question mb-0 pt-3"><span class="select-clinic-name"></span>を選んだ詳しい理由</span></p>
                     <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                   </div>
 
@@ -782,13 +782,13 @@
                     <div class="tab-content2">
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った移植周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0 pt-2">これまでの移植総胚個数</p>
+                        <p class="question mb-0 pt-2">これまでに移植した胚の個数</p>
                         <%= f.select :total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                        <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でこれまでに移植した胚の合計数</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でこれまでに移植した胚の合計</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-2">
-                        <p class="question mb-0 pt-1">これまでの総移植回数</p>
+                        <p class="question mb-0 pt-1">移植回数</p>
                         <%= f.select :total_number_of_transplants, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">でのこれまでの移植回数の合計数</span></small>
                       </div>
@@ -927,13 +927,13 @@
                         <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                           <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った移植周期について</span></h6>
                           <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">これまでの移植総胚個数</p>
+                            <p class="question mb-0">これまでに移植した胚の個数</p>
                             <%= f.select :total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED.invert, { prompt: "" }, { class: "form-control" }  %>
                             <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でこれまでに移植した胚の合計数</span></small>
                           </div>
 
                           <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">これまでの総移植回数</p>
+                            <p class="question mb-0">移植回数</p>
                             <%= f.select :total_number_of_transplants, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "" }, { class: "form-control" }  %>
                             <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">でのこれまでの移植回数の合計数</span></small>
                           </div>
@@ -1141,13 +1141,13 @@
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-2">
-                    <p class="question mb-0 pt-1">採卵1回あたりの費用(概算)</p>
+                    <p class="question mb-0 pt-1">採卵1回あたりの費用</p>
                     <%= f.select :sairan_cost, Report::HASH_SAIRAN_COST.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での1回の採卵費用</span></small>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-2">
-                    <p class="question mb-0 pt-1">移植1回あたりの費用(概算)</p>
+                    <p class="question mb-0 pt-1">移植1回あたりの費用</p>
                     <%= f.select :ishoku_cost, Report::HASH_ISHOKU_COST.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での1回の移植費用</span></small>
                   </div>
