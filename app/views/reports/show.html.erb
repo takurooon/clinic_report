@@ -672,18 +672,18 @@
                         </td>
                       </tr>
                     <% end %>
-                    <% if @special_inspection_endometrial_biopsy.present? %>
+                    <% if @special_inspection_hysteroscopy.present? %>
                       <tr>
-                        <td class="result-left-column small text-center" style="width:30%">子宮内膜組織診</td>
+                        <td class="result-left-column small text-center" style="width:30%">子宮鏡検査</td>
                         <td class="pl-1 pr-0 py-1" style="width:70%">
-                          <% @special_inspection_endometrial_biopsy.each do |endometrial_biopsy| %>
+                          <% @special_inspection_hysteroscopy.each do |hysteroscopy| %>
                             <div class="mb-0 mt-1 p-0 box5">
                               <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                                  <% if endometrial_biopsy.place == 1 %>
+                                  <% if hysteroscopy.place == 1 %>
                                     <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
-                                  <% elsif endometrial_biopsy.place == 2 %>
+                                  <% elsif hysteroscopy.place == 2 %>
                                     <td class="pl-3 small" style="width:80%">別のクリニックで</td>
                                   <% else %>
                                   <% end %>
@@ -716,6 +716,50 @@
                         </td>
                       </tr>
                     <% end %>
+                    <% if @special_inspection_endometrial_biopsy.present? %>
+                      <tr>
+                        <td class="result-left-column small text-center" style="width:30%">子宮内膜組織診</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_endometrial_biopsy.each do |endometrial_biopsy| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small text-center" style="width:20%">どこで</td>
+                                  <% if endometrial_biopsy.place == 1 %>
+                                    <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                                  <% elsif endometrial_biopsy.place == 2 %>
+                                    <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                                  <% else %>
+                                  <% end %>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @special_inspection_hidukeshin.present? %>
+                      <tr>
+                        <td class="result-left-column small text-center" style="width:30%">子宮内膜日付診</td>
+                        <td class="pl-1 pr-0 py-1" style="width:70%">
+                          <% @special_inspection_hidukeshin.each do |hidukeshin| %>
+                            <div class="mb-0 mt-1 p-0 box5">
+                              <table class="table p-0 mb-0">
+                                <tr>
+                                  <td class="result-left-column small text-center" style="width:20%">どこで</td>
+                                  <% if hidukeshin.place == 1 %>
+                                    <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
+                                  <% elsif hidukeshin.place == 2 %>
+                                    <td class="pl-3 small" style="width:80%">別のクリニックで</td>
+                                  <% else %>
+                                  <% end %>
+                                </tr>
+                              </table>
+                            </div>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
                     <% if @special_inspection_bce.present? %>
                       <tr>
                         <td class="result-left-column small text-center" style="width:30%">慢性子宮内膜炎<br><span class="small text-muted">(CD138/BCE)</span></td>
@@ -728,28 +772,6 @@
                                   <% if bce.place == 1 %>
                                     <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
                                   <% elsif bce.place == 2 %>
-                                    <td class="pl-3 small" style="width:80%">別のクリニックで</td>
-                                  <% else %>
-                                  <% end %>
-                                </tr>
-                              </table>
-                            </div>
-                          <% end %>
-                        </td>
-                      </tr>
-                    <% end %>
-                    <% if @special_inspection_hysteroscopy.present? %>
-                      <tr>
-                        <td class="result-left-column small text-center" style="width:30%">子宮鏡検査</td>
-                        <td class="pl-1 pr-0 py-1" style="width:70%">
-                          <% @special_inspection_hysteroscopy.each do |hysteroscopy| %>
-                            <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table p-0 mb-0">
-                                <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                                  <% if hysteroscopy.place == 1 %>
-                                    <td class="pl-3 small" style="width:80%"><%= @report.clinic.name %></td>
-                                  <% elsif hysteroscopy.place == 2 %>
                                     <td class="pl-3 small" style="width:80%">別のクリニックで</td>
                                   <% else %>
                                   <% end %>
