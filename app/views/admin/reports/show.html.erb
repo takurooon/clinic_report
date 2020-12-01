@@ -485,17 +485,6 @@
                   </div>
                   <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>で受けた</p>
                   <h4 class="child-tab-title">検査</h4>
-                  <% if @report.reuse_of_basic_examination_results.present? %>
-                    <h5 class="child-tab-title"><span class="marker-underline">前院での検査結果の再利用</span></h5>
-                    <table class="table p-0">
-                      <tr>
-                        <td class="result-left-column small text-center" style="width:30%">再利用可否</td>
-                        <td class="pl-3" style="width:70%">
-                          <span class="result-text"><%= @report.str_reuse_of_basic_examination_results %></span>
-                        </td>
-                      </tr>
-                    </table>
-                  <% end %>
                   <h5 class="child-tab-title"><span class="marker-underline">AMH</span></h5>
                   <table class="table p-0">
                     <tr>

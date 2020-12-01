@@ -474,7 +474,6 @@ class ReportsController < ApplicationController
         :number_of_visits_before_ishoku,
         :free_wifi,
         :possible_to_wait_outside_cl,
-        :reuse_of_basic_examination_results,
         :male_infertility,
         :level_of_male_infertility,
         :number_of_pronuclear_embryos,

@@ -546,22 +546,6 @@ class Report < ApplicationRecord
     return HASH_LEVEL_OF_MALE_INFERTILITY[self.level_of_male_infertility]
   end
 
-  # reuse_of_basic_examination_resultsの区分値(基本検査の再利用可否)
-  HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS = {
-    1 => "可",
-    2 => "可(条件あり)",
-    3 => "一部可",
-    4 => "一部可(条件あり)",
-    5 => "不可",
-    98 => "そもそも該当しない",
-    99 => "その他",
-    100 => "不明",
-  }
-
-  def str_reuse_of_basic_examination_results
-    return HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS[self.reuse_of_basic_examination_results]
-  end
-
   # transplant_methodの区分値(移植胚の種類)
   HASH_TRANSPLANT_METHOD = {
     1 => "凍結胚",

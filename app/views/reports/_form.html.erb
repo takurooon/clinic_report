@@ -393,14 +393,7 @@
               <section class="child-tab-content active" id="tab_2_1">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-3 pt-0">
-                    <p class="question mb-0 pt-2">前院での基本検査結果の再利用</p>
-                    <%= f.select :reuse_of_basic_examination_results, Report::HASH_REUSE_OF_BASIC_EXAMINATION_RESULTS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                    <small id="poster-tip" class="form-text text-muted">
-                      <span class="small text-muted">(感染症検査などを除く)前院での基本検査結果が再利用できたかどうか</span>
-                    </small>
-                  </div>
-                  <div class="form-group mt-0 mb-3 pt-0">
-                    <p class="question mb-0 pt-1">AMH値</p>
+                    <p class="question mb-0 pt-2">AMH値</p>
                     <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small id="poster-tip" class="form-text text-muted">
                       <span class="small text-muted"><span class="select-clinic-name"></span>での最新の数値</span>
@@ -1307,13 +1300,9 @@
                       <label class="radio-inline">
                         <%= f.radio_button :average_waiting_time2, 5, onclick: "radioDeselection(this, 5)" %>5
                       </label>&nbsp;&nbsp;<span class="small text-muted">短</span>
-                      <div class="form-group mt-0">
-                        <p class="small pt-2 mb-0">平均待ち時間</p>
-                        <%= f.select :average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                      </div>
                     </div>
 
-                    <div class="mt-0 pt-0">
+                    <div class="mt-0 pt-3">
                       <p class="question mb-1 pt-2">院内環境</p>
                       <span class="small text-muted">低</span>&nbsp;&nbsp;
                       <label class="radio-inline">
@@ -1332,6 +1321,10 @@
                         <%= f.radio_button :comfort_of_space, 5, onclick: "radioDeselection(this, 5)" %>5
                       </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
                       <div class="form-group mt-4">
+                        <p class="small mb-0">平均待ち時間</p>
+                        <%= f.select :average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                      </div>
+                      <div class="form-group mt-2">
                         <p class="small mb-0">フリーWiFiの有無</p>
                         <%= f.select :free_wifi, Report::HASH_FREE_WIFI.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>

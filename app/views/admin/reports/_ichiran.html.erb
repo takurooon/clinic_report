@@ -160,15 +160,6 @@
           </div>
         </td>
       </tr>
-      <% if @report.reuse_of_basic_examination_results.present? %>
-        <h5 class="child-tab-title"><span class="marker-underline">前院での検査結果の再利用</span></h5>
-        <tr>
-          <td class="result-left-column small text-center" style="width:30%">再利用可否</td>
-          <td class="pl-3" style="width:70%">
-            <span class="result-text"><%= @report.str_reuse_of_basic_examination_results %></span>
-          </td>
-        </tr>
-      <% end %>
       <tr>
         <td class="result-left-column small text-center ichirantable-left">AMH</td>
         <td class="pl-3 ichirantable-right">
