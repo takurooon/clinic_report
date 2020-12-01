@@ -43,7 +43,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :period_of_time_spent_traveling
       t.integer :work_style
       t.integer :work_style_status, default: 0, null: false
-      t.integer :household_net_income
       t.integer :suspended_or_retirement_job
       t.text :content
       t.float :staff_quality
@@ -56,7 +55,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :status, default: 0, null: false
       t.integer :prefecture_at_the_time_status, default: 0, null: false
       t.integer :city_at_the_time_status, default: 0, null: false
-      t.integer :household_net_income_status, default: 0, null: false
       t.text :reason_for_transfer
       t.text :treatment_policy
       t.integer :number_of_visits_before_sairan

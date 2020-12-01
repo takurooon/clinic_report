@@ -2110,7 +2110,7 @@
                     </td>
                   </tr>
                 </table>
-                <% if @report.work_style.present? || @report.suspended_or_retirement_job.present? || @report.household_net_income.present? %>
+                <% if @report.work_style.present? || @report.suspended_or_retirement_job.present? %>
                   <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">仕事</span></h5>
                   <p class="small mb-0 pb-0"><span class="small text-muted">※&nbsp;<%= @report.clinic.name %>&nbsp;での治療当時の情報</span></p>
                   <table class="table p-0">
@@ -2133,20 +2133,6 @@
                         <td class="result-left-column small text-center">治療による働き方の変化</td>
                         <td class="pl-3">
                           <span class="result-text"><%= @report.str_suspended_or_retirement_job %></span>
-                        </td>
-                      </tr>
-                    <% end %>
-                    <% if @report.household_net_income.present? %>
-                      <tr>
-                        <td class="result-left-column small text-center">夫婦合算所得&nbsp;<sup class="text-success">●</sup></td>
-                        <td class="pl-3">
-                          <% if @report.household_net_income_status == "hide" %>
-                            <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
-                          <% elsif @report.household_net_income.blank? %>
-                            <span class="small text-muted"><%= "未回答" %></span>
-                          <% else %>
-                            <span class="result-text"><%= @report.str_household_net_income %></span>
-                          <% end %>
                         </td>
                       </tr>
                     <% end %>

@@ -5,7 +5,6 @@ class Report < ApplicationRecord
 
   # 仕事セクションの(年収などの項目）公開状況 参考:https://qiita.com/emacs_hhkb/items/fce19f443e5770ad2e13
   enum work_style_status: { show: 0, hide: 1 }, _prefix: true
-  enum household_net_income_status: { show: 0, hide: 1 }, _prefix: true
 
   # 治療当時の住まいの公開状況 参考:http://mnmandahalf.hatenablog.com/entry/2017/08/20/164442
   enum prefecture_at_the_time_status: { show: 0, hide: 1 }, _prefix: true
@@ -947,7 +946,6 @@ class Report < ApplicationRecord
     1 => "可",
     2 => "不可",
     3 => "一定の額から利用可",
-    99 => "その他",
     100 => "不明"
     }
 
@@ -1011,28 +1009,6 @@ class Report < ApplicationRecord
 
   def str_work_style_search
     return HASH_WORK_STYLE_SEARCH[self.work_style]
-  end
-
-  # household_net_incomeの区分値(当時、前年の夫婦合算所得)
-  HASH_HOUSEHOLD_NET_INCOME = {
-    1 => "50万円未満",
-    2 => "100万円未満",
-    3 => "200万円未満",
-    4 => "300万円未満",
-    5 => "400万円未満",
-    6 => "500万円未満",
-    7 => "600万円未満",
-    8 => "730万円未満",
-    9 => "800万円未満",
-    10 => "905万円未満",
-    11 => "1,000万円未満",
-    12 => "1,500万円未満",
-    13 => "2,000万円未満",
-    14 => "2,000万円以上"
-  }
-
-  def str_household_net_income
-    return HASH_HOUSEHOLD_NET_INCOME[self.household_net_income]
   end
 
   # suspended_or_retirement_jobの区分値(治療に際しての働き方の変化)

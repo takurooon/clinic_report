@@ -455,8 +455,6 @@ class ReportsController < ApplicationController
         :work_style,
         :work_style_status,
         :suspended_or_retirement_job,
-        :household_net_income,
-        :household_net_income_status,
         :title,
         :content,
         :clinic_review,
