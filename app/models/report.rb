@@ -28,28 +28,6 @@ class Report < ApplicationRecord
   MAX_CONTENT_ATTACHMENT_BYTE_SIZE = MEGA_BYTES * 1_000 * ONE_KILOBYTE
   MAX_CONTENT_ATTACHMENTS_COUNT = 10
 
-  # def validate_treatment_age
-  #   return "" if self.treatment_start_age.nil?
-  #   return "" if self.treatment_end_age.nil?
-  #   if treatment_start_age > treatment_end_age
-  #     errors.add(
-  #       :base,
-  #       :treatment_end_age_is_earlier_than_treatment_start_age
-  #     )
-  #   end
-  # end
-
-  # def validate_all_treatment_age
-  #   return "" if self.first_age_to_start.nil?
-  #   return "" if self.treatment_start_age.nil?
-  #   if first_age_to_start > treatment_start_age
-  #     errors.add(
-  #       :base,
-  #       :cl_treatment_start_age_is_earlier_than_first_start_age
-  #     )
-  #   end
-  # end
-
   # def validate_all_number_of_sairan
   #   return "" if self.total_number_of_sairan.nil?
   #   return "" if self.all_number_of_sairan.nil?
@@ -1196,57 +1174,6 @@ class Report < ApplicationRecord
 
   def str_number_of_clinics
     return HASH_NUMBER_OF_CLINICS[self.number_of_clinics]
-  end
-
-  # treatment_start_ageの区分値(治療開始年齢/CL単位)
-  HASH_TREATMENT_START_AGE = {
-    100 => "不明",
-    19 => "19歳以下",
-    20 => "20歳",
-    21 => "21歳",
-    22 => "22歳",
-    23 => "23歳",
-    24 => "24歳",
-    25 => "25歳",
-    26 => "26歳",
-    27 => "27歳",
-    28 => "28歳",
-    29 => "29歳",
-    30 => "30歳",
-    31 => "31歳",
-    32 => "32歳",
-    33 => "33歳",
-    34 => "34歳",
-    35 => "35歳",
-    36 => "36歳",
-    37 => "37歳",
-    38 => "38歳",
-    39 => "39歳",
-    40 => "40歳",
-    41 => "41歳",
-    42 => "42歳",
-    43 => "43歳",
-    44 => "44歳",
-    45 => "45歳",
-    46 => "46歳",
-    47 => "47歳",
-    48 => "48歳",
-    49 => "49歳",
-    50 => "50歳",
-    51 => "51歳",
-    52 => "52歳",
-    53 => "53歳",
-    54 => "54歳",
-    55 => "55歳",
-    56 => "56歳",
-    57 => "57歳",
-    58 => "58歳",
-    59 => "59歳",
-    60 => "60歳以上",
-  }
-
-  def str_treatment_start_age
-    return HASH_TREATMENT_START_AGE[self.treatment_start_age]
   end
 
   # treatment_end_ageの区分値(治療終了年齢/CL単位)

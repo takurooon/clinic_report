@@ -423,7 +423,6 @@ class ReportsController < ApplicationController
         :types_of_fertilization_methods,
         :details_of_icsi,
         :transplant_method,
-        :treatment_start_age,
         :treatment_end_age,
         :age_of_partner_at_end_of_treatment,
         :treatment_period,

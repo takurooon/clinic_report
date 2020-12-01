@@ -246,12 +246,6 @@
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0">
-                    <p class="question mb-0 pt-1">治療開始年齢</p>
-                    <%= f.select :treatment_start_age, Report::HASH_TREATMENT_START_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
-                    <small class="text-muted"><span class="small text-danger"><span class="select-clinic-name"></span>での治療開始年齢</span></small>
-                  </div>
-
-                  <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-1">卒業時の年齢</p>
                     <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                     <small class="text-muted"><span class="small text-muted"><span class="select-clinic-name"></span>を卒業した年齢</span></small>

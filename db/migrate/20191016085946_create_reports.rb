@@ -7,7 +7,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :fertility_treatment_number
       t.integer :transplant_method
       t.integer :number_of_clinics
-      t.integer :treatment_start_age
       t.integer :treatment_end_age
       t.integer :age_of_partner_at_end_of_treatment
       t.integer :treatment_period
