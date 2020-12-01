@@ -467,7 +467,6 @@ class ReportsController < ApplicationController
         :impression_of_technology,
         :comfort_of_space,
         :status,
-        :rest_period,
         :reason_for_transfer,
         :treatment_policy,
         :number_of_visits_before_sairan,

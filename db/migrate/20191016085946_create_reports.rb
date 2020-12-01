@@ -58,7 +58,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :prefecture_at_the_time_status, default: 0, null: false
       t.integer :city_at_the_time_status, default: 0, null: false
       t.integer :household_net_income_status, default: 0, null: false
-      t.integer :rest_period
       t.text :reason_for_transfer
       t.text :treatment_policy
       t.integer :number_of_visits_before_sairan

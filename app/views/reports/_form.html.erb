@@ -184,12 +184,6 @@
                         <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療期間</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0 pt-1">途中他院での治療も含むお休み期間</p>
-                        <%= f.select :rest_period, Report::HASH_REST_PERIOD.invert, { prompt: "" }, { class: "form-control pl-3 py-0 rounded-lg shadow-sm", style: "background: #ffffff;" } %>
-                        <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での治療中にとったお休み/他院での治療期間</span></small>
-                      </div>
-
                       <div class="form-group mt-4 mb-2 pt-0">
                         <p class="question mb-0 pt-1">治療時の働き方&nbsp;<sup class="text-success">●</sup></p>
                         <div class="rounded-lg pt-3 pb-2 px-3" style="background: #ffffff;">

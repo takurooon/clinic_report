@@ -361,25 +361,6 @@ class Report < ApplicationRecord
     return HASH_TREATMENT_PERIOD[self.treatment_period]
   end
 
-  # rest_periodの区分値(休み期間/CL単位)
-  HASH_REST_PERIOD = {
-    0 => "なし",
-    1 => "〜1ヵ月",
-    2 => "〜2ヵ月",
-    3 => "〜3ヶ月",
-    4 => "〜4ヶ月",
-    5 => "〜5ヶ月",
-    6 => "〜半年",
-    7 => "〜1年",
-    8 => "〜2年",
-    99 => "3年以上",
-    100 => "不明",
-  }
-
-  def str_rest_period
-    return HASH_REST_PERIOD[self.rest_period]
-  end
-
   # amhの区分値(AMH値)
   HASH_AMH = {
     100 => "不明",
