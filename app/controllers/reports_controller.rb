@@ -454,7 +454,6 @@ class ReportsController < ApplicationController
         :period_of_time_spent_traveling,
         :work_style,
         :work_style_status,
-        :suspended_or_retirement_job,
         :title,
         :content,
         :clinic_review,

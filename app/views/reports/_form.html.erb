@@ -130,6 +130,25 @@
                     <% end %>
                   </div>
 
+                  <div class="form-group mt-0 mb-0 pt-2">
+                    <p class="question mb-0 py-2">治療時の働き方&nbsp;<sup class="text-success">●</sup></p>
+                    <%= f.collection_radio_buttons(:work_style, Report::HASH_WORK_STYLE, :first, :last) do |b| %>
+                      <div class="form-check pl-2">
+                        <%= b.label class: "radio-inline mb-1" do %>
+                          <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                          <%= b.text %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-sm-4">
+                      <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
+                    </div>
+                    <div class="d-none d-sm-block col-sm-8">
+                    </div>
+                  </div>
+
                   <div class="form-group mt-0 mb-2 pt-2">
                     <p class="question mb-0 py-2">何人目の不妊治療</p>
                     <%= f.collection_radio_buttons(:fertility_treatment_number, Report::HASH_FERTILITY_TREATMENT_NUMBER, :first, :last) do |b| %>
@@ -171,41 +190,6 @@
                           <% end %>
                         </div>
                       <% end %>
-                    </div>
-                  </div>
-
-                  <div class="add-info mt-4 mb-5 shadow">
-                    <input id="acd-check1" class="acd-check3" type="checkbox">
-                    <label class="acd-label3" for="acd-check1">　 さらに詳しい情報を追加する</label>
-                    <div class="acd-content3">
-                      <div class="form-group mt-0 mb-0 pt-2">
-                        <p class="question mb-0 pt-1">治療時の働き方&nbsp;<sup class="text-success">●</sup></p>
-                        <div class="rounded-lg pt-3 pb-2 px-3" style="background: #ffffff;">
-                          <%= f.collection_radio_buttons(:work_style, Report::HASH_WORK_STYLE, :first, :last) do |b| %>
-                            <div class="form-check pl-2">
-                              <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                <%= b.text %>
-                              <% end %>
-                            </div>
-                          <% end %>
-                        </div>
-                        <small id="poster-tip" class="form-text text-muted text-right pt-2"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
-                      </div>
-
-                      <div class="form-group mt-0 mb-3 pt-0">
-                        <p class="question mb-0 pt-1">休職や退職の有無</p>
-                        <div class="rounded-lg pt-3 pb-2 px-3" style="background: #ffffff;">
-                          <%= f.collection_radio_buttons(:suspended_or_retirement_job, Report::HASH_SUSPENDED_OR_RETIREMENT_JOB, :first, :last) do |b| %>
-                            <div class="form-check pl-2">
-                              <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                <%= b.text %>
-                              <% end %>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
                     </div>
                   </div>
 

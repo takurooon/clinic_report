@@ -43,7 +43,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :period_of_time_spent_traveling
       t.integer :work_style
       t.integer :work_style_status, default: 0, null: false
-      t.integer :suspended_or_retirement_job
       t.text :content
       t.float :staff_quality
       t.float :doctor_quality

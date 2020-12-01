@@ -1011,21 +1011,6 @@ class Report < ApplicationRecord
     return HASH_WORK_STYLE_SEARCH[self.work_style]
   end
 
-  # suspended_or_retirement_jobの区分値(治療に際しての働き方の変化)
-  HASH_SUSPENDED_OR_RETIREMENT_JOB = {
-    1 => "特に変わっていない",
-    2 => "休職した",
-    3 => "退職した",
-    4 => "転職した",
-    5 => "異動した(転部)",
-    6 => "役職を変えた",
-    99 => "その他"
-  }
-
-  def str_suspended_or_retirement_job
-    return HASH_SUSPENDED_OR_RETIREMENT_JOB[self.suspended_or_retirement_job]
-  end
-
   TIMES = "回"
   OR_MORE = "以上"
   OR_LESS = "以下"

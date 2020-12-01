@@ -1967,7 +1967,7 @@
                       </td>
                     </tr>
                   </table>
-                  <% if @report.work_style.present? || @report.suspended_or_retirement_job.present? %>
+                  <% if @report.work_style.present? %>
                     <h5 class="child-tab-title mt-5 mb-0"><span class="marker-underline">仕事</span></h5>
                     <p class="small mb-0 pb-0"><span class="small text-muted">※&nbsp;<%= @report.clinic.name %>&nbsp;での治療当時の情報</span></p>
                     <table class="table p-0">
@@ -1982,14 +1982,6 @@
                             <% else %>
                               <span class="result-text"><%= @report.str_work_style %></span>
                             <% end %>
-                          </td>
-                        </tr>
-                      <% end %>
-                      <% if @report.suspended_or_retirement_job.present? %>
-                        <tr>
-                          <td class="result-left-column small text-center">治療による働き方の変化</td>
-                          <td class="pl-3">
-                            <span class="result-text"><%= @report.str_suspended_or_retirement_job %></span>
                           </td>
                         </tr>
                       <% end %>
