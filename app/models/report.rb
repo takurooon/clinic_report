@@ -955,17 +955,11 @@ class Report < ApplicationRecord
 
   # average_waiting_timeの区分値(クリニックでの平均待ち時間)
   HASH_AVERAGE_WAITING_TIME = {
-    1 => "30分前後",
-    2 => "1時間前後",
-    3 => "1.5時間前後",
-    4 => "2時間前後",
-    5 => "2.5時間前後",
-    6 => "3時間前後",
-    7 => "3.5時間前後",
-    8 => "4時間前後",
-    9 => "4.5時間前後",
-    10 => "5時間前後",
-    99 => "それ以上"
+    1 => "〜30分",
+    2 => "〜1時間",
+    3 => "〜2時間",
+    4 => "〜3時間",
+    99 => "4時間以上"
   }
 
   def str_average_waiting_time
@@ -1742,9 +1736,9 @@ class Report < ApplicationRecord
 
   # possible_to_wait_outside_clの区分値(院外で待てるかどうか)
   HASH_POSSIBLE_TO_WAIT_OUTSIDE_CL = {
-    1 => "外出は不可",
-    2 => "外出は可能",
-    3 => "外出は可能(条件or制限付き)",
+    1 => "外出不可",
+    2 => "外出可能",
+    3 => "外出可能(条件/制限あり)",
     99 => "その他",
     100 => "不明",
   }

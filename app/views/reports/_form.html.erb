@@ -142,7 +142,7 @@
                     <% end %>
                   </div>
                   <div class="row mb-4">
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 pr-3">
                       <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
                     </div>
                     <div class="d-none d-sm-block col-sm-8">
@@ -332,7 +332,7 @@
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
-                    <p class="question mb-0 pt-1">前院を転院した理由</p>
+                    <p class="question mb-0 pt-1">前院から転院した理由</p>
                     <%= f.text_area :reason_for_transfer, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                   </div>
 
@@ -359,7 +359,7 @@
                     <p class="question mb-0 pt-2">AMH値</p>
                     <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small id="poster-tip" class="form-text text-muted">
-                      <span class="small text-muted"><span class="select-clinic-name"></span>での最新の数値</span>
+                      <span class="small text-muted"><span class="select-clinic-name"></span>での直近の数値</span>
                     </small>
                   </div>
 
@@ -502,7 +502,7 @@
                             <table class="table pt-0 mt-2">
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">新鮮胚</p></td>
-                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_unfrozen_embryos, { step: "1", class: "form-control text-right", placeholder: "0" } %></td>
+                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_unfrozen_embryos, { step: "1", class: "form-control text-right", placeholder: "半角数字" } %></td>
                               </tr>
                             </table>
                           </div>
@@ -534,15 +534,15 @@
                             <table class="table pt-0 mt-2">
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">前核胚</p></td>
-                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_pronuclear_embryos, { step: "1", class: "form-control text-right", placeholder: "0" } %></td>
+                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_pronuclear_embryos, { step: "1", class: "form-control text-right", placeholder: "半角数字" } %></td>
                               </tr>
                               <tr>
                                 <td class="result-left-column small text-center p-0"><p class="py-3 mb-0">初期胚</p></td>
-                                <td class="px-3 py-0"><%= f.number_field :number_of_early_embryos, { step: "1", class: "form-control text-right", placeholder: "0" } %></td>
+                                <td class="px-3 py-0"><%= f.number_field :number_of_early_embryos, { step: "1", class: "form-control text-right", placeholder: "半角数字" } %></td>
                               </tr>
                               <tr>
                                 <td class="result-left-column small text-center p-0"><p class="py-3 mb-0">胚盤胞</p></td>
-                                <td class="px-3 py-0"><%= f.number_field :number_of_blastocysts, { step: "1", class: "form-control text-right", placeholder: "0" } %></td>
+                                <td class="px-3 py-0"><%= f.number_field :number_of_blastocysts, { step: "1", class: "form-control text-right", placeholder: "半角数字" } %></td>
                               </tr>
                             </table>
                           </div>
@@ -1288,11 +1288,11 @@
                         <%= f.select :average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
                       <div class="form-group mt-2">
-                        <p class="small mb-0">フリーWiFiの有無</p>
+                        <p class="small mb-0">WiFi</p>
                         <%= f.select :free_wifi, Report::HASH_FREE_WIFI.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
                       <div class="form-group mt-2">
-                        <p class="small mb-0">待ち時間中の外出可否</p>
+                        <p class="small mb-0">待ち時間中の外出</p>
                         <%= f.select :possible_to_wait_outside_cl, Report::HASH_POSSIBLE_TO_WAIT_OUTSIDE_CL.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
                     </div>
@@ -1471,7 +1471,7 @@
               <div class="m-2 p-2 rounded-lg">
                 <div class="p-2 mt-2">
                   <h5 class="mb-3 font-weight-bold"><%= image_tag "home/hint.svg", alt: "home-top-img", width: "30px", class: "img-fluid pb-2 pl-0", loading: "lazy" %>&nbsp;<span class="marker-underline-w">レポコ作成のヒント</span></h5>
-                  <p class="small">以下は、治療中/治療を検討されている方が聞きたい項目を集めています。<br>これら以外にも上記の質問項目についての詳細なども治療中/検討中の方にとって非常に有益な情報となりますので、ぜひ詳しい情報をお載せください。</p>
+                  <p class="small">以下は、治療中/治療を検討されている方が知りたい項目を集めています。<br>これら以外にも上記の質問項目についての詳細なども治療中/検討中の方にとって非常に有益な情報となりますので、ぜひ詳しい情報をお載せください。</p>
                 </div>
                 <div class="row px-2">
                   <div class="col-md-6 px-2">
