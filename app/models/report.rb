@@ -270,14 +270,6 @@ class Report < ApplicationRecord
   has_many :report_transfer_options, dependent: :destroy
   has_many :transfer_options, through: :report_transfer_options
 
-  # クリニックでの治療以外に行ったこと(女性)
-  has_many :report_other_efforts, dependent: :destroy
-  has_many :other_efforts, through: :report_other_efforts
-
-  # クリニックでの治療以外に行ったこと(男性)
-  has_many :report_m_other_efforts, dependent: :destroy
-  has_many :m_other_efforts, through: :report_m_other_efforts
-
   # CL選定理由
   has_many :report_cl_selections, dependent: :destroy
   has_many :cl_selections, through: :report_cl_selections
