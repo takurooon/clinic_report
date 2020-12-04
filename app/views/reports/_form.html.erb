@@ -502,7 +502,7 @@
                             <table class="table pt-0 mt-2">
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">新鮮胚</p></td>
-                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_unfrozen_embryos, { step: "1", class: "form-control text-right", placeholder: "半角数字" } %></td>
+                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_unfrozen_embryos, { step: "1", min: 0, class: "form-control text-right", value: "" } %></td>
                               </tr>
                             </table>
                           </div>
@@ -534,15 +534,15 @@
                             <table class="table pt-0 mt-2">
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">前核胚</p></td>
-                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_pronuclear_embryos, { step: "1", class: "form-control text-right", placeholder: "半角数字" } %></td>
+                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_pronuclear_embryos, { step: "1", min: 0, class: "form-control text-right", value: "" } %></td>
                               </tr>
                               <tr>
                                 <td class="result-left-column small text-center p-0"><p class="py-3 mb-0">初期胚</p></td>
-                                <td class="px-3 py-0"><%= f.number_field :number_of_early_embryos, { step: "1", class: "form-control text-right", placeholder: "半角数字" } %></td>
+                                <td class="px-3 py-0"><%= f.number_field :number_of_early_embryos, { step: "1", min: 0, class: "form-control text-right", value: "" } %></td>
                               </tr>
                               <tr>
                                 <td class="result-left-column small text-center p-0"><p class="py-3 mb-0">胚盤胞</p></td>
-                                <td class="px-3 py-0"><%= f.number_field :number_of_blastocysts, { step: "1", class: "form-control text-right", placeholder: "半角数字" } %></td>
+                                <td class="px-3 py-0"><%= f.number_field :number_of_blastocysts, { step: "1", min: 0, class: "form-control text-right", value: "" } %></td>
                               </tr>
                             </table>
                           </div>
@@ -599,165 +599,7 @@
                       </div>
                     </div>
                   </div>
-
-                  <% if false %>
-                    <div class="parent-tab mt-4 mb-0">
-                      <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
-                        <li><a href="#left_tab" class="active mostleft-tab" data-toggle="tab">最新の採卵周期</a></li>
-                        <li><a href="#right_tab" data-toggle="tab">過去の採卵</a></li>
-                      </ul>
-                      <div class="parent-tab-content active mostleft-tab p-2" id="left_tab">
-                        <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
-                          <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った採卵周期について</span></h6>
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">何回目の採卵ですか</p>
-                            <%= f.select :total_number_of_sairan, Report::HASH_TOTAL_NUMBER_OF_SAIRAN.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵は<span class="select-clinic-name"></span>での何回目の採卵ですか</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">採卵までの通院回数</p>
-                            <%= f.select :number_of_visits_before_sairan, Report::HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small">採卵周期開始から採卵日までの(おおよその)通院回数</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">採卵時の年齢</p>
-                            <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control" } %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の年齢</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">誘発タイプ</p>
-                            <%= f.select :type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の誘発タイプ</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">採卵時の麻酔の有無と種類</p>
-                            <%= f.select :use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の麻酔使用の有無</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">麻酔の選択</p>
-                            <%= f.select :selection_of_anesthesia_type, Report::HASH_SELECTION_OF_ANESTHESIA_TYPE.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の麻酔使用の選択可否</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">採卵個数<span class="small text-danger"><span class="small">&nbsp;※変性卵は除く</span></span></p>
-                            <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の採卵個数</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">受精個数</p>
-                            <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">移植可能胚の数(新鮮胚含む)</p>
-                            <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期みおける移植可能胚(受精卵)数</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0">凍結胚の個数</p>
-                            <%= f.select :number_of_frozen_eggs, Report::HASH_NUMBER_OF_FROZEN_EGGS.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の移植可能胚(受精卵)における凍結胚の数</span></small>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <div class="label p-1 mb-0">
-                              <p class="question mb-0">胚のステージ</p>
-                              <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚(受精卵)のステージ</span></small>
-                              <div class="stage-alert-none">
-                                <span class="transplant_method_dis1 small text-muted"></span>
-                                <span class="transplant_method small text-danger"></span>
-                                <span class="transplant_method_dis2 small text-muted"></span>
-                              </div>
-                              <div class="stage-alert alert alert-primary mb-0 pb-0">
-                                <span class="transplant_method_dis3 small text-muted"></span>
-                                <span class="transplant_method2 small text-danger"></span>
-                                <span class="transplant_method_dis4 small text-muted"></span>
-                                <span class="transplant_method_dis5 small text-muted"></span>
-                              </div>
-                            </div>
-                            <%= f.select :embryo_stage, Report::HASH_EMBRYO_STAGE.invert, { prompt: "" }, { class: "form-control" }  %>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0"><span class="text-danger font-weight-bold">採卵日以前</span>の各ホルモン値</p>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における採卵日までのホルモン値</span></small>
-                            <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
-                              <%= render "sairan_hormone_fields", f: sairan_hormone %>
-                            <% end %>
-                            <div class="links pt-2 pl-2">
-                              <%= link_to_add_association "+ 追加", f, :sairan_hormones %>
-                            </div>
-                          </div>
-
-                          <div class="form-group mt-0 mb-2 pt-0">
-                            <p class="question mb-0"><span class="text-danger font-weight-bold">採卵日当日</span>の各ホルモン値</p>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の採卵日のホルモン値</span></small>
-                            <%= f.fields_for :day_of_sairans do |day_of_sairan| %>
-                              <table class="table table-sm table-bordered mb-0">
-                                <thead>
-                                  <tr>
-                                    <th scope="col" class="hormon-label text-center align-middle">Day</th>
-                                    <th scope="col" class="hormon-label">E2</th>
-                                    <th scope="col" class="hormon-label">FSH</th>
-                                    <th scope="col" class="hormon-label">LH</th>
-                                    <th scope="col" class="hormon-label">P4</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row" class="day-column"><%= day_of_sairan.select :day, Report.make_select_day_of_sairan, { prompt: "" }, { class: "form-control text-muted" } %></th>
-                                    <td class="hormon-column"><%= day_of_sairan.number_field :e2, { step: "0.01", class: "form-control", placeholder: "pg/ml" } %></td>
-                                    <td class="hormon-column"><%= day_of_sairan.number_field :fsh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
-                                    <td class="hormon-column"><%= day_of_sairan.number_field :lh, { step: "0.01", class: "form-control", placeholder: "mIU/ml" } %></td>
-                                    <td class="hormon-column"><%= day_of_sairan.number_field :p4, { step: "0.01", class: "form-control", placeholder: "ng/ml" } %></td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            <% end %>
-                          </div>
-
-                          <div class="mt-3 d-flex justify-content-end">
-                            <a class="btn minBtnNext rounded-lg pr-2 shadow">過去の採卵入力画面<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="parent-tab-content p-2" id="right_tab">
-                        <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
-                          <div class="alert alert-info rounded-lg border mt-3 mb-0" role="alert">
-                            <small class="text-muted"><span class="select-clinic-name"></span><span>での過去の採卵結果を分かる範囲で教えて下さい。<br>複数ある場合は「+追加」ボタンで追加できます。</span></small>
-                          </div>
-                          <div class="form-group first-question-inbox">
-                            <%= f.fields_for :unsuccessful_sairan_cycles do |unsuccessful_sairan_cycle| %>
-                              <%= render "unsuccessful_sairan_cycle_fields", f: unsuccessful_sairan_cycle %>
-                            <% end %>
-                            <div class="links pt-2 pl-2">
-                              <%= link_to_add_association "+ 追加", f, :unsuccessful_sairan_cycles %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="mt-3 d-flex justify-content-between">
-                          <a class="btn minBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>最新の採卵周期入力画面</a>
-                        </div>
-                      </div>
-                    </div>
-                  <% end %>
                 </div>
-                <% if false %>
-                  <div class="mt-5 d-flex justify-content-between">
-                    <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
-                    <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
-                  </div>
-                <% end %>
               </section>
               <section class="child-tab-content pt-0" id="tab_2_3">
                 <div class="scroll-box">
