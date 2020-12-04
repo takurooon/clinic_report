@@ -1097,6 +1097,33 @@ i .fa-edit {
 	overflow-y: scroll;
 }
 
+// アコーディオン2-2
+.acd-check-cllist2{
+	display: none;
+}
+.acd-cllist-label2{
+	background: #2ECFC0;
+	border-radius: 5px 5px 0 0;
+	color: #ffffff;
+	display: block;
+}
+.acd-content-multiple2{
+	background: #F7F9F9;
+	border: 1px solid #2ECFC0;
+	border-radius: 0 0 5px 5px;
+	height: 0;
+	opacity: 0;
+	transition: .5s;
+	visibility: hidden;
+}
+.acd-check-cllist2:checked + .acd-cllist-label2 + .acd-content-multiple2 {
+	height: auto;
+	max-height: auto;
+	opacity: 1;
+	visibility: visible;
+	overflow-y: scroll;
+}
+
 // アコーディオン3
 .acd-check3 {
 	display: none;

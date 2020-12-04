@@ -854,6 +854,54 @@ h1 {
 	display: none;
 }
 
+
+// タブ3(https://bagelee.com/design/css/create_tabs_using_only_css/)
+.tabs {
+  margin-top: 50px;
+  padding-bottom: 40px;
+  width: 100%;
+  margin: 0 auto;}
+
+.tab__item {
+  width: calc(100%/2);
+  border-bottom: 3px solid #ffffff;
+  background-color: #ffffff;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #979797;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab__item:hover {
+  opacity: 0.75;
+}
+
+input[name="tab__item"] {
+  display: none;
+}
+
+.tab__content {
+  display: none;
+  padding: 0;
+  clear: both;
+  overflow: hidden;
+}
+
+#all_clinics:checked ~ #all_clinics_content,
+#ivf_clinics:checked ~ #ivf_clinics_content {
+  display: block;
+}
+
+.tabs input:checked + .tab__item {
+  background-color: #ffffff;
+  border-bottom: 3px solid #2ECFC0;
+  color: #2ECFC0;
+}
+
 // グーグルマップ
 .google-maps iframe {
   width: 100%;

@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
     # @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
     @reports = Report.released.order("created_at DESC").page(params[:page]).per(10)
     @list = {}
-    Clinic.joins(city: :prefecture).includes(:city, :prefecture).each do |clinic| 
+    Clinic.joins(city: :prefecture).includes(:city, :prefecture).each do |clinic|
       if @list[clinic.prefecture.id].nil?
         @list[clinic.prefecture.id] = {
           id: clinic.prefecture.id,
@@ -18,10 +18,33 @@ class ReportsController < ApplicationController
       if @list[clinic.prefecture.id][:cities][clinic.city.id].nil?
         @list[clinic.prefecture.id][:cities][clinic.city.id] = {
           name: clinic.city.name,
-          clinics: []
+          clinics: [],
+          ivf_clinics: []
         }
       end
       @list[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
+        id: clinic.id,
+        name: clinic.name,
+        yomigana: clinic.yomigana
+      }
+    end
+    @list_ivf = {}
+    Clinic.joins(city: :prefecture).includes(:city, :prefecture).where(ivf: 1).each do |clinic|
+      if @list_ivf[clinic.prefecture.id].nil?
+        @list_ivf[clinic.prefecture.id] = {
+          id: clinic.prefecture.id,
+          name: clinic.prefecture.name,
+          cities: {}
+        }
+      end
+      if @list_ivf[clinic.prefecture.id][:cities][clinic.city.id].nil?
+        @list_ivf[clinic.prefecture.id][:cities][clinic.city.id] = {
+          name: clinic.city.name,
+          clinics: [],
+          ivf_clinics: []
+        }
+      end
+      @list_ivf[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
         id: clinic.id,
         name: clinic.name,
         yomigana: clinic.yomigana
