@@ -1,8 +1,8 @@
 // 戻るボタンを無効化
-history.pushState(null, null, location.href);
-window.addEventListener('popstate', (e) => {
-  history.go(1);
-});
+// history.pushState(null, null, location.href);
+// window.addEventListener('popstate', (e) => {
+//   history.go(1);
+// });
 
 // ブラウザが閉じるorリロードする時にアラート発動(https://qiita.com/naoki_koreeda/items/bf0f512dbd91b450c671)これを有効にした場合、以下の特定ボタン押下(createまたはupdateボタン)後にもアラートが出る。要改善。
 // $(function(){
