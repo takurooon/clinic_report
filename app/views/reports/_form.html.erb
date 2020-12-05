@@ -163,7 +163,14 @@
 
                   <div class="form-group mt-0 mb-2 pt-2">
                     <p class="question mb-0 py-2">卵子と精子の受精方法</p>
-                    <%= f.select :types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS.invert, { prompt: "選択" }, { class: "form-control" }  %>
+                    <%= f.collection_radio_buttons(:types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS, :first, :last) do |b| %>
+                      <div class="form-check pl-2">
+                        <%= b.label class: "radio-inline mb-1" do %>
+                          <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                          <%= b.text %>
+                        <% end %>
+                      </div>
+                    <% end %>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-0" id="detail_of_icsi">
@@ -254,7 +261,14 @@
 
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-4">男性側の不妊原因の有無</p>
-                    <%= f.select :male_infertility, Report::HASH_MALE_INFERTILITY.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                    <%= f.collection_radio_buttons(:male_infertility, Report::HASH_MALE_INFERTILITY, :first, :last) do |b| %>
+                      <div class="form-check pl-2">
+                        <%= b.label class: "radio-inline mb-1" do %>
+                          <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                          <%= b.text %>
+                        <% end %>
+                      </div>
+                    <% end %>
                   </div>
                   <div class="form-group mt-0 mb-2 pt-0 level_of_male_infertility">
                     <p class="question mb-0 py-2">男性不妊のレベル</p>
@@ -270,7 +284,14 @@
 
                   <div class="form-group mt-4 mb-0 pt-0">
                     <p class="question mb-0 pt-1">不育症の診断</p>
-                    <%= f.select :fuiku, Report::HASH_FUIKU.invert, { prompt: "" }, { class: "form-control pl-3 py-0" } %>
+                    <%= f.collection_radio_buttons(:fuiku, Report::HASH_FUIKU, :first, :last) do |b| %>
+                      <div class="form-check pl-2">
+                        <%= b.label class: "radio-inline mb-1" do %>
+                          <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                          <%= b.text %>
+                        <% end %>
+                      </div>
+                    <% end %>
                   </div>
 
                   <div class="form-group mt-3 mb-0 pt-0 fuiku-factor">

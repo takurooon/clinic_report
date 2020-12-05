@@ -268,29 +268,13 @@ $(function() {
 });
 
 // 受精方法の詳細
-// $(function() {
-//   fertilization_method($("#report_types_of_fertilization_methods option:checked").val());
-//   $("#report_types_of_fertilization_methods").change(function() {
-//     fertilization_method($(this).val());
-//   });
-// })
-// function fertilization_method(types_of_fertilization_methods) {
-//   if (types_of_fertilization_methods == "2") {
-//     $("#detail_of_icsi").show();
-//   } else if (types_of_fertilization_methods == "3") {
-//     $("#detail_of_icsi").show();
-//   } else if (types_of_fertilization_methods == "99") {
-//     $("#detail_of_icsi").hide();
-//   } else {
-//     $("#detail_of_icsi").hide();
-//   }
-// }
 $(function() {
   // fertilization_method($("#report_types_of_fertilization_methods option:checked").val());
-  $('input[name="report[work_style]"]:radio').change(function() {
+  $('input[name="report[types_of_fertilization_methods]"]:radio').change(function() {
     fertilization_method($(this).val());
   });
 })
+$("#detail_of_icsi").hide();
 function fertilization_method(types_of_fertilization_methods) {
   if (types_of_fertilization_methods == "2") {
     $("#detail_of_icsi").show();
@@ -305,11 +289,11 @@ function fertilization_method(types_of_fertilization_methods) {
 
 // 不育原因の詳細
 $(function() {
-  fuiku($("#report_fuiku option:selected").val());
-  $("#report_fuiku").change(function() {
+  $('input[name="report[fuiku]"]:radio').change(function() {
     fuiku($(this).val());
   });
 })
+$(".fuiku-factor").hide();
 function fuiku(fuiku) {
   if (fuiku == "2") {
     $(".fuiku-factor").show();
@@ -320,10 +304,9 @@ function fuiku(fuiku) {
   }
 }
 
-// 男性不妊の詳細
+// // 男性不妊の詳細
 $(function() {
-  fuiku($("#report_male_infertility option:selected").val());
-  $("#report_male_infertility").change(function() {
+  $('input[name="report[male_infertility]"]:radio').change(function() {
     m_funin($(this).val());
   });
 })
