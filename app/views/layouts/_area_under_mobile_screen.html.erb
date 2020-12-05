@@ -4,7 +4,12 @@
     <div class="newrepoco-circle">
       <div class="newrepoco-btn" title='レポコを投稿！'>
         <% if current_user %>
-          <%= link_to new_report_path, 'data-toggle': :modal, 'data-target': :"#reportPost" do %>
+          <% if false %>
+            <%= link_to new_report_path, 'data-toggle': :modal, 'data-target': :"#reportPost" do %>
+              <%= images_action_svg("edit.svg") %>
+            <% end %>
+          <% end %>
+          <%= link_to new_report_path do %>
             <%= images_action_svg("edit.svg") %>
           <% end %>
         <% else %>

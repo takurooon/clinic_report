@@ -13,7 +13,7 @@
             <i data-feather="search" class="text-muted"></i>
           <% end %>
         <% else %>
-          <i data-feather="edit" class="text-muted" type="image" data-toggle="modal" data-target="#reportPost"></i>
+          <%= link_to new_report_path do %><i data-feather="edit" class="text-muted" type="image"></i><% end %>
         <% end %>
       </div>
       <div>
