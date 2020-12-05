@@ -280,8 +280,6 @@ function fertilization_method(types_of_fertilization_methods) {
     $("#detail_of_icsi").show();
   } else if (types_of_fertilization_methods == "3") {
     $("#detail_of_icsi").show();
-  } else if (types_of_fertilization_methods == "99") {
-    $("#detail_of_icsi").hide();
   } else {
     $("#detail_of_icsi").hide();
   }
