@@ -23,6 +23,8 @@ class SpecialInspection < ApplicationRecord
     13 => "MRI",
     14 => "ビタミンD検査",
     15 => "銅亜鉛検査",
+    16 => "精子検査(クルーガーテスト)",
+    17 => "PGT-A",
     99 => "その他",
   }
 
