@@ -268,9 +268,26 @@ $(function() {
 });
 
 // 受精方法の詳細
+// $(function() {
+//   fertilization_method($("#report_types_of_fertilization_methods option:checked").val());
+//   $("#report_types_of_fertilization_methods").change(function() {
+//     fertilization_method($(this).val());
+//   });
+// })
+// function fertilization_method(types_of_fertilization_methods) {
+//   if (types_of_fertilization_methods == "2") {
+//     $("#detail_of_icsi").show();
+//   } else if (types_of_fertilization_methods == "3") {
+//     $("#detail_of_icsi").show();
+//   } else if (types_of_fertilization_methods == "99") {
+//     $("#detail_of_icsi").hide();
+//   } else {
+//     $("#detail_of_icsi").hide();
+//   }
+// }
 $(function() {
-  fertilization_method($("#report_types_of_fertilization_methods option:checked").val());
-  $("#report_types_of_fertilization_methods").change(function() {
+  // fertilization_method($("#report_types_of_fertilization_methods option:checked").val());
+  $('input[name="report[work_style]"]:radio').change(function() {
     fertilization_method($(this).val());
   });
 })
