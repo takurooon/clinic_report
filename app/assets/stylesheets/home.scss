@@ -22,15 +22,10 @@
   }
   .second-area .brand-color-box-rounded-head {
     height: 50px;
-    padding: 1rem 2rem 0 2rem;
-  }
-  .second-area .brand-color-box-rounded-head h5 {
-    padding-top: 0.2rem;
-    padding-left: 0.2rem;
-    line-height: 1.5;
+    padding: 2rem 2rem 0 2rem;
   }
   .second-area .brand-color-box-rounded-body {
-    padding: 0 1rem;
+    padding: 1rem 1rem 0 1rem;
   }
   .second-area .brand-color-box-rounded-inner {
     padding: 1rem 0;
@@ -93,9 +88,57 @@
   .seventh-area {
     padding: 2rem 1rem;
   }
+  .learn-more {
+    padding: 2rem 0 0 0;
+    background: rgba(184,252,246,0.7);
+  }
+  .learn-more-head {
+
+  }
+  .learn-more-head-item {
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 0.3rem 1.2rem;
+    margin: 0 0.7rem;
+  }
+  .learn-more-head-item-active {
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid;
+    border-color: #3EA8FF;
+    padding: 0.3rem 1rem;
+    margin: 0 0.7rem;
+  }
+  .learn-more-body {
+    padding: 1rem 0 0 0;
+  }
+  .learn-more-body-inner {
+    padding: 1rem;
+    border-radius: 2rem 2rem 0 0;
+    background: #ffffff;
+  }
+  .learn-more-body-inner-content {
+    padding: 1rem;
+  }
+  .learn-more-body-inner-content-head {
+    padding-top: 0;
+    text-align: center;
+  }
+  .learn-more-body-inner-content-body-item {
+    padding: 1rem 0;
+  }
+  .q-title {
+    padding: 1rem 0;
+  }
+  .q-answer  p {
+    line-height: 1.8;
+  }
 }
 
 @media screen and (min-width:768px) {
+  .about-repoco {
+    padding: 0 4rem;
+  }
   .first-area {
     position: relative;
     height: 90vh;
@@ -125,11 +168,6 @@
   .second-area .brand-color-box-rounded-head {
     height: 80px;
     padding: 2rem 1rem 0 1rem;
-  }
-  .second-area .brand-color-box-rounded-head h5 {
-    padding-top: 0.7rem;
-    padding-left: 0.5rem;
-    line-height: 1.5;
   }
   .second-area .brand-color-box-rounded-body {
     padding: 0 3rem;
@@ -206,7 +244,16 @@
   background: #3EA8FF;
   max-width: 200px;
 }
-
+.question-brand-color {
+  padding: .3rem .6rem;
+  white-space: nowrap;
+  color: #404040;
+  border-radius: .45em;
+  box-shadow: 0 3px 6px -2px rgba(100,110,167,.2);
+  background: #ACFCF5;
+  max-width: 20px;
+  margin-right: 0.5rem;
+}
 // 今すぐ始めるボタンの動き
 .about-repoco a {
   display: inline-block;

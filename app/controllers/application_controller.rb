@@ -37,4 +37,7 @@ class ApplicationController < ActionController::Base
 
   def repoco
   end
+
+  def faq
+  end
 end
