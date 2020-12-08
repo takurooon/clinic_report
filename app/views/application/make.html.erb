@@ -11,16 +11,6 @@
           </div>
         <% end %>
       </div>
-      <div class="learn-more-head-item">
-        <%= link_to faq_path, {style: "text-decoration: none;" } do %>
-          <div class="learn-more-head-item-image">
-            <%= image_tag"home/light.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
-          </div>
-          <div class="learn-more-head-item-label small text-center">
-            <small class="text-dark">FAQ</small>
-          </div>
-        <% end %>
-      </div>
       <div class="learn-more-head-item-active">
         <%= link_to make_path, {style: "text-decoration: none;" } do %>
           <div class="learn-more-head-item-image">
@@ -78,6 +68,16 @@
           </div>
           <div class="learn-more-head-item-label small text-center">
             <small class="text-dark">運営者</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to faq_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/light.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">FAQ</small>
           </div>
         <% end %>
       </div>
