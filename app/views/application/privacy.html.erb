@@ -1,5 +1,90 @@
 <div class="learn-more">
-  <div class="learn-more-menu">
+  <div class="d-none d-sm-block learn-more-menu">
+    <div class="learn-more-head">
+      <div class="learn-more-head-item">
+        <%= link_to repoco_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/logo_mark.png", width: "50px", class: "img-fluid pt-2", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">レポコ</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to faq_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/light.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">FAQ</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to make_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/writing_hand.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">作り方</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to hack_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/analysis.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">探し方</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to statistic_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/bar_chart.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">統計</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item-active">
+        <%= link_to privacy_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/cookie.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark"><span>PP</span></small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to terms_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/book.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">利用規約</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to about_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/smile.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">運営者</small>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-block d-sm-none learn-more-menu">
     <div class="learn-more-head">
       <div class="learn-more-head-item">
         <%= link_to repoco_path, {style: "text-decoration: none;" } do %>
