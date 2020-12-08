@@ -1,13 +1,102 @@
-<div class="row">
-  <div class="offset-lg-2 col-lg-8 terms-h">
-    <div class="py-4 px-2">
-      <i data-feather="chevron-left" class="feather-icon-style1" style="color:#56B5AB"></i><%= link_to '戻る', 'javascript:history.back()' %>
+<div class="learn-more">
+  <div class="learn-more-menu">
+    <div class="learn-more-head">
+      <div class="learn-more-head-item">
+        <%= link_to repoco_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/logo_mark.png", width: "50px", class: "img-fluid pt-2", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">レポコ</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to faq_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/light.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">FAQ</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to make_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/writing_hand.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">作り方</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to hack_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/analysis.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">探し方</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to statistic_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/bar_chart.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">統計</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to privacy_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/cookie.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark"><span>PP</span></small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item-active">
+        <%= link_to terms_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/book.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">利用規約</small>
+          </div>
+        <% end %>
+      </div>
+      <div class="learn-more-head-item">
+        <%= link_to about_path, {style: "text-decoration: none;" } do %>
+          <div class="learn-more-head-item-image">
+            <%= image_tag"home/smile.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="learn-more-head-item-label small text-center">
+            <small class="text-dark">運営者</small>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="card mt-2 mb-3 mx-1 p-md-5 p-4 small">
-      <%= render "terms" %>
-    </div>
-    <div class="py-5 px-3 text-right">
-      <i data-feather="chevron-left" class="feather-icon-style1" style="color:#56B5AB"></i><%= link_to '戻る', 'javascript:history.back()' %>
+  </div>
+
+  <div class="learn-more-body">
+    <div class="learn-more-body-inner">
+      <div class="learn-more-body-inner-content">
+        <div class="learn-more-body-inner-content-head">
+          <h4 class="m-0">利用規約</h4>
+        </div>
+        <hr>
+        <div class="learn-more-body-inner-content-body">
+          <div class="px-2">
+            <%= render "terms" %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

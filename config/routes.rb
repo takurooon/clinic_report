@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   get 'repoco' => 'application#repoco'
   get 'terminology' => 'application#terminology'
   get 'faq' => 'application#faq'
+  get 'make' => 'application#make'
+  get 'hack' => 'application#hack'
+  get 'statistic' => 'application#statistic'
 
   devise_for :users, path: '', controllers: {
     registrations: 'users/registrations',

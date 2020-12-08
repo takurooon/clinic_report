@@ -92,16 +92,27 @@
     padding: 2rem 0 0 0;
     background: rgba(184,252,246,0.7);
   }
+  .learn-more-menu {
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0;
+  }
   .learn-more-head {
-
+    display: flex;
+    // 横スクロールの右端余白はこのwidthで調整↓
+    width: 750px; 
   }
   .learn-more-head-item {
+    min-width: 80px;
     border-radius: 50%;
     background: #ffffff;
     padding: 0.3rem 1.2rem;
     margin: 0 0.7rem;
+    display: block;
   }
   .learn-more-head-item-active {
+    min-width: 80px;
     border-radius: 50%;
     background: #ffffff;
     border: 3px solid;
@@ -118,11 +129,14 @@
     background: #ffffff;
   }
   .learn-more-body-inner-content {
-    padding: 1rem;
+    padding: 1rem 0;
   }
   .learn-more-body-inner-content-head {
     padding-top: 0;
     text-align: center;
+  }
+  .learn-more-body-inner-content-body {
+    padding-top: 1rem;
   }
   .learn-more-body-inner-content-body-item {
     padding: 1rem 0;
@@ -130,8 +144,13 @@
   .q-title {
     padding: 1rem 0;
   }
+  .q-title h5 {
+    line-height: 1.5;
+    font-weight: bold;
+  }
   .q-answer  p {
     line-height: 1.8;
+    padding: 0 0.3rem;
   }
 }
 
@@ -231,6 +250,65 @@
   .seventh-area {
     padding: 3rem 1rem;
   }
+  .learn-more {
+    padding: 2rem 10rem 0;
+    background: rgba(184,252,246,0.7);
+  }
+  .learn-more-head {
+    display: flex;
+  }
+  .learn-more-menu {
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 1rem;
+  }
+  .learn-more-head-item {
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 0.3rem 1.2rem;
+    margin: 0 0.7rem;
+  }
+  .learn-more-head-item-active {
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid;
+    border-color: #3EA8FF;
+    padding: 0.3rem 1rem;
+    margin: 0 0.7rem;
+  }
+  .learn-more-body {
+    padding: 1.5rem 0 5rem 0;
+  }
+  .learn-more-body-inner {
+    padding: 1rem 3rem;
+    border-radius: 2rem 2rem 2rem 2rem;
+    background: #ffffff;
+  }
+  .learn-more-body-inner-content {
+    padding: 1rem 0;
+  }
+  .learn-more-body-inner-content-head {
+    padding-top: 0;
+    text-align: center;
+  }
+  .learn-more-body-inner-content-body {
+    padding-top: 2rem;
+  }
+  .learn-more-body-inner-content-body-item {
+    padding: 1rem 0;
+  }
+  .q-title {
+    padding: 1rem 0;
+  }
+  .q-title h5 {
+    line-height: 1.5;
+    font-weight: bold;
+  }
+  .q-answer  p {
+    line-height: 1.8;
+    padding: 0 0.3rem;
+  }
 }
 
 .btn-blue {
@@ -251,7 +329,8 @@
   border-radius: .45em;
   box-shadow: 0 3px 6px -2px rgba(100,110,167,.2);
   background: #ACFCF5;
-  max-width: 20px;
+  max-width: 30px;
+  max-height: 35px;
   margin-right: 0.5rem;
 }
 // 今すぐ始めるボタンの動き
@@ -259,6 +338,14 @@
   display: inline-block;
 }
 .about-repoco a:hover {
+  -webkit-animation: zoom .3s;
+  animation: zoom .3s;
+  opacity: 0.7;
+}
+.learn-more a {
+  display: inline-block;
+}
+.learn-more a:hover {
   -webkit-animation: zoom .3s;
   animation: zoom .3s;
   opacity: 0.7;
