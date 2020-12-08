@@ -1,131 +1,220 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 p-5">
-      <%= image_tag "home/home_top_img.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
+<div class="about-repoco">
+  <div class="first-area">
+    <div class="px-2 logo_mark_area">
+      <div class="pt-5">
+        <%= image_tag "home/logo_mark.png", alt: "home-top-img", width: "80px", class: "img-fluid", loading: "lazy" %>
       </div>
-    <div class="col-sm-6 d-flex align-items-center justify-content-center">
-      <div class="d-block d-sm-none mb-5">
-        <h4 class="mb-4 text-center">のこす&nbsp;みえる&nbsp;ふみだせる</h4>
-        <p class="px-2">みんなの のこした治療レポート(&nbsp;=&nbsp;レポコ&nbsp;)をみて、ふみだそう！</p>
-        <div class="pt-3 text-center">
-          <%= link_to root_path, { title: "レポコ一覧", style: "text-decoration: none;" } do %>
-            <button class="brand_btn"><span style="color:#2F2E41;">レポコ一覧</span></button>
+      <div class="pt-3 px-2">
+        <h1 class="d-none d-sm-block text-dark" style="line-height: 1.5"><strong>経験をカタチに&nbsp;&nbsp;情報をエールに</strong></h1>
+        <h2 class="d-block d-sm-none text-dark" style="line-height: 1.5"><strong>経験をカタチに<br>&nbsp;&nbsp;&nbsp;&nbsp;情報をエールに</strong></h2>
+      </div>
+      <div class="mt-4 px-2">
+        <p class="d-none d-sm-block text-muted mx-5 px-5" style="line-height: 2;">レポコは不妊治療を卒業された方が、治療経験をレポートとして残せるサービスです。今、そして未来の治療に踏み出す誰かへのエールとして、経験や知見をカタチとして残しましょう。</p>
+        <p class="d-block d-sm-none small text-muted" style="line-height: 1.8;">レポコは不妊治療を卒業された方が、治療経験をレポートとして残せるサービスです。今、そして未来の治療に踏み出す誰かへのエールとして、経験や知見をカタチとして残しましょう。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="second-area my-5">
+    <div class="text-center text-dark">
+      <h2 class="d-none d-sm-block mb-5 font-weight-bold">What is Repoco?</h2>
+      <h4 class="d-block d-sm-none mt-5 pt-5 font-weight-bold">What is Repoco?</h4>
+    </div>
+    <div class="x-scroll">
+      <div class="brand-color-box-rounded-area">
+        <div class="brand-color-box-rounded">
+          <div class="brand-color-box-rounded-head d-flex justify-content-center">
+            <%= image_tag "home/think_face.svg", width:"40px", class: "img-fluid", loading: "lazy" %>
+            <h5 class="text-center mb-3 font-weight-bold">のこす</h5>
+          </div>
+          <div class="brand-color-box-rounded-body">
+            <%= image_tag "home/book.svg", class: "img-fluid", loading: "lazy" %>
+          </div>
+        </div>
+        <div class="brand-color-box-rounded-inner">
+          <p class="small text-muted" style="line-height: 1.8;">詳細な治療情報を簡単にカタチにして残すことができます。</p>
+        </div>
+      </div>
+      <div class="brand-color-box-rounded-area">
+        <div class="brand-color-box-rounded">
+          <div class="brand-color-box-rounded-head d-flex justify-content-center">
+            <%= image_tag "home/watch.svg", width:"40px", class: "img-fluid", loading: "lazy" %>
+            <h5 class="text-center mb-3 font-weight-bold">みえる</h5>
+          </div>
+          <div class="brand-color-box-rounded-body">
+            <%= image_tag "home/telescope.svg", class: "img-fluid", loading: "lazy" %>
+          </div>
+        </div>
+        <div class="brand-color-box-rounded-inner">
+          <p class="small text-muted" style="line-height: 1.8;">多くの方が治療情報を残すことで、不透明な不妊治療の環境を少しでもクリアにできます。</p>
+        </div>
+      </div>
+      <div class="brand-color-box-rounded-area">
+        <div class="brand-color-box-rounded">
+          <div class="brand-color-box-rounded-head d-flex justify-content-center">
+            <%= image_tag "home/smile_face.svg", width:"40px", class: "img-fluid", loading: "lazy" %>
+            <h5 class="text-center mb-3 font-weight-bold">ふみだせる</h5>
+          </div>
+          <div class="brand-color-box-rounded-body">
+            <%= image_tag "home/step.svg", class: "img-fluid", loading: "lazy" %>
+          </div>
+        </div>
+        <div class="brand-color-box-rounded-inner">
+          <p class="small text-muted" style="line-height: 1.8;">治療を始めようと考えている方、転院を迷っている方の一歩踏み出す力になります。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="third-area my-5 px-2 row">
+    <div class="col-md-4 pl-4 pb-3">
+      <h4 style="line-height: 1.5;">治療に挑む方が情報の海に溺れないように</h4>
+    </div>
+    <div class="col-md-8 px-2">
+      <p class="px-2" style="line-height: 1.8;">治療に挑む全ての方が、治療方針やクリニック選びに納得感を持って選択できるために</p>
+    </div>
+  </div>
+
+  <div class="fourth-area my-5">
+    <div class="text-center text-dark">
+      <h2 class="d-none d-sm-block mb-5 font-weight-bold">How it works</h2>
+      <h4 class="d-block d-sm-none mt-5 pt-5 font-weight-bold">How it works</h4>
+    </div>
+    <div class="x-scroll">
+      <div class="brand-color-box-rounded-area">
+        <div class="brand-color-box-rounded p-3">
+          <div class="brand-color-box-rounded-head">
+            <h5 class="text-center mb-3 font-weight-bold" style="line-height: 1.5;">レポコの投稿は簡単</h5>
+          </div>
+          <div class="brand-color-box-rounded-body">
+            <%= image_tag "home/check_box.svg", class: "img-fluid", loading: "lazy" %>
+          </div>
+        </div>
+        <p class="brand-color-box-rounded-inner my-3 small text-muted" style="line-height: 1.8;">ほとんどがチェック方式なのでサクサク簡単に作成できます。</p>
+      </div>
+      <div class="brand-color-box-rounded-area">
+        <div class="brand-color-box-rounded p-3">
+          <div class="brand-color-box-rounded-head">
+            <h5 class="text-center mb-3 font-weight-bold" style="line-height: 1.5;">気持ちを綴れる</h5>
+          </div>
+          <div class="brand-color-box-rounded-body">
+            <%= image_tag "home/thinking.svg", class: "img-fluid", loading: "lazy" %>
+          </div>
+        </div>
+        <p class="brand-color-box-rounded-inner my-3 small text-muted" style="line-height: 1.8;">ブログのようにかけるテキストエリアに治療中の気持ちを綴ることができます。</p>
+      </div>
+      <div class="brand-color-box-rounded-area">
+        <div class="brand-color-box-rounded p-3">
+          <div class="brand-color-box-rounded-head">
+            <h5 class="text-center mb-3 font-weight-bold" style="line-height: 1.5;">シェアできる</h5>
+          </div>
+          <div class="brand-color-box-rounded-body">
+            <%= image_tag "home/tweetstorm.svg", class: "img-fluid", loading: "lazy" %>
+          </div>
+        </div>
+        <p class="brand-color-box-rounded-inner my-3 small text-muted" style="line-height: 1.8;">Twitterの <%= link_to "#不妊治療戦士たちの通院先と実績", "https://twitter.com/search?q=%23%E4%B8%8D%E5%A6%8A%E6%B2%BB%E7%99%82%E6%88%A6%E5%A3%AB%E3%81%9F%E3%81%A1%E3%81%AE%E9%80%9A%E9%99%A2%E5%85%88%E3%81%A8%E5%AE%9F%E7%B8%BE&src=typed_query", style: "color: #3EA8FF;" %>&nbsp;ハッシュタグとしてシェアできます。</p>
+      </div>
+      <div class="brand-color-box-rounded-area">
+        <div class="brand-color-box-rounded p-3">
+          <div class="brand-color-box-rounded-head">
+            <h5 class="text-center mb-3 font-weight-bold" style="line-height: 1.5;">誰かの力になれる</h5>
+          </div>
+          <div class="brand-color-box-rounded-body">
+            <%= image_tag "home/repoco_women.svg", class: "img-fluid", loading: "lazy" %>
+          </div>
+        </div>
+        <p class="brand-color-box-rounded-inner my-3 small text-muted" style="line-height: 1.8;">あなたの詳細なレポコが、クリニック選びで迷う方の力になります。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fifth-area my-5">
+    <div class="text-center mb-4">
+      <h2 class="text-dark font-weight-bold">Learn more</h2>
+    </div>
+    <div class="row px-2">
+      <div class="col-6 col-md-3 py-3">
+        <%= link_to repoco_path, class: "m-0 p-0", style: "width: 100%; text-decoration: none;" do %>
+          <div class="about-link shadow-sm">
+            <div class="about-link-head text-center">
+              <%= image_tag "home/light.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="about-link-body text-center">
+              <p class="mb-0 text-muted font-weight-bold">Q & A</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-6 col-md-3 py-3">
+        <%= link_to repoco_path, class: "m-0 p-0", style: "width: 100%; text-decoration: none;" do %>
+          <div class="about-link shadow-sm">
+            <div class="about-link-head text-center">
+              <%= image_tag "home/writing_hand.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="about-link-body text-center">
+              <p class="mb-0 text-muted font-weight-bold">レポコの作り方</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-6 col-md-3 py-3">
+        <%= link_to repoco_path, class: "m-0 p-0", style: "width: 100%; text-decoration: none;" do %>
+          <div class="about-link shadow-sm">
+            <div class="about-link-head text-center">
+              <%= image_tag "home/analysis.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="about-link-body text-center">
+              <p class="mb-0 text-muted font-weight-bold">レポコの探し方</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-6 col-md-3 py-3">
+        <%= link_to repoco_path, class: "m-0 p-0", style: "width: 100%; text-decoration: none;" do %>
+          <div class="about-link shadow-sm">
+            <div class="about-link-head text-center">
+              <%= image_tag "home/bar_chart.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="about-link-body text-center">
+              <p class="mb-0 text-muted font-weight-bold">
+                データ分析
+                <small class="text-muted"><span class="small">準備中</span></small>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="sixth-area">
+    <div class="row join-repoco">
+      <div class="col-md-5 py-3">
+        <h2 class="text-dark font-weight-bold">Join Repoco</h2>
+        <p class="mt-4 text-muted">あなたの治療体験をシェアしよう</p>
+        <% if user_signed_in? %>
+          <%= link_to new_report_path, style:"text-decoration: none;" do %>
+            <div class="btn-blue text-center font-weight-bold">今すぐレポコを書く</div>
           <% end %>
-        </div>
-      </div>
-      <div class="d-none d-sm-block">
-        <h2 class="mb-4">のこす&nbsp;みえる&nbsp;ふみだせる</h2>
-        <p class="px-5">みんなの のこした治療レポート(&nbsp;=&nbsp;レポコ&nbsp;)をみて、ふみだそう！</p>
-        <div class="pt-3 text-center">
-          <%= link_to root_path, { title: "レポコ一覧", style: "text-decoration: none;" } do %>
-            <button class="brand_btn"><span style="color:#2F2E41;">レポコ一覧</span></button>
+        <% else %>
+          <%= link_to new_user_registration_path, style:"text-decoration: none;" do %>
+            <div class="btn-blue text-center font-weight-bold">今すぐはじめる</div>
           <% end %>
-        </div>
+        <% end %>
+      </div>
+      <div class="col-md-7 py-3">
+        <%= image_tag "home/lets_go.svg", class: "img-fluid", loading: "lazy" %>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-6 d-flex align-items-center justify-content-center">
-      <div class="d-block d-sm-none p-4 py-5">
-        <%= image_tag "home/repoco_women.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
-      </div>
-      <div class="d-none d-sm-block">
-        <h2 class="mb-4">治療データを参考にしよう</h2>
-        <p class="px-5">不妊治療を卒業した方や転院した方のレポコを参考に、治療方針やクリニック選びにお役立てください。</p>
-      </div>
-    </div>
-    <div class="col-sm-6 d-flex align-items-center justify-content-center">
-      <div class="d-block d-sm-none mb-5">
-        <h4 class="mb-4 text-center">治療データを参考にしよう</h4>
-        <p class="px-2">不妊治療を卒業した方や転院した方のレポコを参考に、治療方針やクリニック選びにお役立てください。</p>
-      </div>
-      <div class="d-none d-sm-block p-5">
-        <%= image_tag "home/repoco_women.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
-      </dv>
-    </div>
+  <div class="seventh-area text-center">
+    <h4 class="d-none d-sm-block mb-3">＼&nbsp;まずは登録せずにレポコを見る&nbsp;／</h4>
+    <h6 class="d-block d-sm-none mb-3">＼&nbsp;まずは登録せずにレポコを見る&nbsp;／</h6>
+    <p class="mb-3"><i data-feather="chevrons-down"></i></p>
+    <%= link_to root_path, { title: "レポコ一覧", style: "text-decoration: none;" } do %>
+      <div class="btn-blue text-center font-weight-bold">レポコ一覧</div>
+    <% end %>
   </div>
 
-  <div class="row">
-    <div class="col-sm-6 p-5">
-      <%= image_tag "home/comment_men.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
-    </div>
-    <div class="col-sm-6 d-flex align-items-center justify-content-center">
-      <div class="d-block d-sm-none mb-5">
-        <h4 class="mb-4 px-4 text-center">コメントしてみよう</h4>
-        <p class="px-3">レポコの投稿者に直接コメントすることができます。</p>
-      </div>
-      <div class="d-none d-sm-block">
-        <h2 class="mb-4">コメントしてみよう</h2>
-        <p class="px-5">レポコの投稿者に直接コメントすることができます。</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6 d-flex align-items-center justify-content-center">
-      <div class="d-block d-sm-none p-4 py-5">
-        <%= image_tag "home/search_women.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
-      </div>
-      <div class="d-none d-sm-block">
-        <h2 class="mb-4">カテゴリから検索してみよう</h2>
-        <p class="px-5">クリニック、年齢、AMH、疾患、仕事など、いろんな角度から自身と似た方のレポコを検索できます。</p>
-      </div>
-    </div>
-    <div class="col-sm-6 d-flex align-items-center justify-content-center">
-      <div class="d-block d-sm-none mb-5">
-        <h4 class="mb-4 px-4 text-center">カテゴリから検索してみよう</h4>
-        <p class="px-3">クリニック、年齢、AMH、疾患、仕事など、いろんな角度から自身と似た方のレポコを検索できます。</p>
-      </div>
-      <div class="d-none d-sm-block p-5">
-        <%= image_tag "home/search_women.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6 p-5">
-      <%= image_tag "home/like.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
-    </div>
-    <div class="col-sm-6 d-flex align-items-center justify-content-center">
-      <div class="d-block d-sm-none mb-5">
-        <h4 class="mb-4 px-4 text-center">レポコをストックしよう</h4>
-        <p class="px-3">ストックボタン(いいね)を押すとマイページにストックすることができます。気になったレポコをストックしておけばいつでもすぐに読みかえすことができます。</p>
-      </div>
-      <div class="d-none d-sm-block">
-        <h2 class="mb-4">レポコをストックしよう</h2>
-        <p class="px-5">ストックボタン(いいね)を押すとマイページにストックすることができます。気になったレポコをストックしておけばいつでもすぐに読みかえすことができます。</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6 d-flex align-items-center justify-content-center">
-      <div class="d-block d-sm-none p-4 py-5">
-        <%= image_tag "home/analysis_women.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
-      </div>
-      <div class="d-none d-sm-block">
-        <h2 class="mb-4">統計データを参考にしよう</h2>
-        <p class="px-5">統計データを自身の属性と照らし合わせることができます。(準備中)</p>
-      </div>
-    </div>
-    <div class="col-sm-6 d-flex align-items-center justify-content-center">
-      <div class="d-block d-sm-none mb-5">
-        <h4 class="mb-4 px-4 text-center">統計データを参考にしよう</h4>
-        <p class="px-3">統計データを自身の属性と照らし合わせることができます。(準備中)</p>
-      </div>
-      <div class="d-none d-sm-block p-5">
-        <%= image_tag "home/analysis_women.svg", alt: "home-top-img", width: "1000px", class: "img-fluid", loading: "lazy" %>
-        <div class="py-3">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="mt-3 text-center">
-  <h5 class="mb-4">＼&nbsp;レポコを見てみよう&nbsp;／</h5>
-  <%= link_to root_path, { title: "レポコ一覧", style: "text-decoration: none;" } do %>
-    <button class="brand_btn"><span style="color:#2F2E41;">レポコ一覧</span></button>
-  <% end %>
 </div>

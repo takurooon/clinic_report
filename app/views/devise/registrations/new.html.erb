@@ -1,38 +1,36 @@
 <div class="container signup-in">
   <div class="row">
     <div class="col-md-6 offset-md-3 mt-md-5 mb-md-5">
-      <div class="card text-center">
-        <div class="card-header">
-          <h2><i data-feather="pen-tool" style="wtidth:20px" class="text-muted"></i>&nbsp;&nbsp;新規登録</h2>
+      <div class="card text-center mt-4">
+        <div class="pt-4">
+          <h3 class="mb-0 text-dark font-weight-bold">Sign Up</h3>
         </div>
-        <div class="card-body">
-          <h5 class="card-title">アカウント作成</h5>
-          <p class="card-text mt-4">以下項目を入力/選択の上、登録してください<br><small><span class="small text-muted">(全て必須。登録後に変更可能)</span></small></p>
-          <div class="p-3">
+        <div class="card-body pt-0">
+          <div class="pt-0">
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
 
-              <div class="form-group mt-0 text-left">
+              <div class="form-group mt-0 pt-4 text-left">
                 <%= f.label :name, 'ユーザー名', for: "formGroupInput", class: "bmd-label-floating" %>
                 <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control signup-name-js-text validate[required]', id: "formGroupInput" %>
                 <span class="bmd-help">1〜20文字以内で入力してください。</span>
                 <p class="signup-name-js-text-count small text-right mt-2"></p>
               </div>
 
-              <div class="form-group mt-0 text-left">
+              <div class="form-group mt-0 pt-4 text-left">
                 <%= f.label :email, 'メール', for: "formGroupInput", class: "bmd-label-floating" %>
                 <%= f.email_field :email, autocomplete: "email", class: 'form-control validate[required, custom[email]]', id: "formGroupInput" %>
                 <span class="bmd-help">登録頂いたメールアドレスに認証リンクをお送りします。</span>
               </div>
 
-              <div class="form-group mt-0 text-left">
+              <div class="form-group mt-0 mb-0 pt-4 text-left">
                 <%= f.label :password, 'パスワード', for: "formGroupInput", class: "bmd-label-floating" %>
                 <%= f.password_field :password, autocomplete: "new-password", class: 'form-control signup-pass1-js-text', id: "password" %>
                 <span class="bmd-help">6文字以上〜16文字以内、半角英数字記号で入力ください。</span>
-                <p class="signup-pass1-js-text-count small text-right mt-2"></p>
+                <p class="signup-pass1-js-text-count small text-right pt-3 mb-0"></p>
               </div>
 
-              <div class="form-group mt-0 mb-3 text-left">
+              <div class="form-group mt-0 pt-4 text-left">
                 <%= f.label :password_confirmation, 'パスワード（確認）', for: "formGroupInput", class: "bmd-label-floating" %>
                 <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control signup-pass2-js-text validate[required, equals[password]]', id: "formGroupInput" %>
                 <span class="bmd-help">前項と同じパスワードを入力してください。</span>
@@ -100,7 +98,7 @@
                 });
               </script>
 
-              <div class="form-group radio mt-0 pt-4 text-left">
+              <div class="form-group radio mt-0 mb-0 pt-3 text-left">
                 <%= f.label :gender, "性別", class:"pl-0" %>
                 <%= f.label :female, "女" %>
                 <%= f.radio_button :gender, :female, class: "mr-0" %>
@@ -126,8 +124,8 @@
               </div>
               <% end %>
 
-              <div class="form-group text-left mt-3 justify-content-start">
-              <small><span class="small text-muted">新規登録で&nbsp</span></small>
+              <div class="form-group text-left mt-0 justify-content-start">
+              <small><span class="small text-muted">新規登録で</span></small>
                 <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#terms_of_service">
                   <small><span class="small">利用規約</span></small>
                 </p>
@@ -135,7 +133,7 @@
                 <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#privacy_policy">
                   <small><span class="small">プライバシーボリシー</span></small>
                 </p>
-                <small><span class="small text-muted">&nbsp;に同意とみなされます。</span></small>
+                <small><span class="small text-muted">に同意とみなされます。</span></small>
               </div>
 
               <% if false %>

@@ -1,22 +1,22 @@
 <div class="container signup-in">
   <div class="row">
     <div class="col-md-6 offset-md-3 mt-md-5 mb-md-5">
-      <div class="card text-center">
-        <div class="card-header">
-          <h2><i data-feather="log-in" style="wtidth:20px" class="text-muted"></i>&nbsp;&nbsp;ログイン</h2>
+      <div class="card text-center mt-4">
+        <div class="pt-4">
+          <h2 class="mb-0 text-dark font-weight-bold">Log in</h2>
         </div>
-        <div class="card-body">
-          <div class="p-3">
+        <div class="card-body pt-0">
+          <div class="pt-0">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
 
-              <div class="form-group mt-0 text-left">
+              <div class="form-group mt-0 mb-0 pt-4 text-left">
                 <%= f.label :email, 'メール', for: "formGroupInput", class: "bmd-label-floating" %><br />
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control validate[required, custom[email]]', id: "formGroupInput" %>
                 <span class="bmd-help">登録したメールアドレスを入力してください。</span>
               </div>
 
-              <div class="form-group mt-0 text-left">
+              <div class="form-group mt-0 mb-0 pt-4 text-left">
                 <%= f.label :password, 'パスワード', for: "formGroupInput", class: "bmd-label-floating" %><br />
                 <%= f.password_field :password, autocomplete: "current-password", class: 'form-control validate[required, minSize[6]]', id: "formGroupInput" %>
                 <span class="bmd-help">登録したパスワードを入力してください(6〜16文字)</span>
