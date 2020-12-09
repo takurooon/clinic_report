@@ -314,36 +314,21 @@ class ReportsController < ApplicationController
       return
     end
 
+    if @report.number_of_unfrozen_embryos != 0
+      @unfrozen_embryos = @report.number_of_unfrozen_embryos
+    end
+    if @report.number_of_pronuclear_embryos != 0
+      @pronuclear_embryos = @report.number_of_pronuclear_embryos
+    end
+    if @report.number_of_early_embryos != 0
+      @early_embryos = @report.number_of_early_embryos
+    end
+    if @report.number_of_blastocysts != 0
+      @blastocysts = @report.number_of_blastocysts
+    end
+
     if @report.itinerary_of_choosing_a_clinics.count == 0
       @report.itinerary_of_choosing_a_clinics.build
-    end
-
-    if @report.sairan_hormones.count == 0
-      @report.sairan_hormones.build
-    end
-
-    if @report.day_of_sairans.count == 0
-      @report.day_of_sairans.build
-    end
-
-    if @report.before_ishoku_hormones.count == 0
-      @report.before_ishoku_hormones.build
-    end
-
-    if @report.day_of_shokihaiishokus.count == 0
-      @report.day_of_shokihaiishokus.build
-    end
-
-    if @report.day_of_haibanhoishokus.count == 0
-      @report.day_of_haibanhoishokus.build
-    end
-
-    if @report.shokihaiishoku_hormones.count == 0
-      @report.shokihaiishoku_hormones.build
-    end
-
-    if @report.haibanhoishoku_hormones.count == 0
-      @report.haibanhoishoku_hormones.build
     end
 
     if @report.special_inspections.count == 0

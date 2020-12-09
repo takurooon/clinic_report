@@ -524,7 +524,7 @@
                             <table class="table pt-0 mt-2">
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">新鮮胚</p></td>
-                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_unfrozen_embryos, { step: "1", min: 0, class: "form-control text-right", value: "" } %></td>
+                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_unfrozen_embryos, { step: "1", min: 0, class: "form-control text-right", value: "#{@unfrozen_embryos}" } %></td>
                               </tr>
                             </table>
                           </div>
@@ -556,15 +556,15 @@
                             <table class="table pt-0 mt-2">
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">前核胚</p></td>
-                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_pronuclear_embryos, { step: "1", min: 0, class: "form-control text-right", value: "" } %></td>
+                                <td class="px-3 py-0" style="width:70%"><%= f.number_field :number_of_pronuclear_embryos, { step: "1", min: 0, class: "form-control text-right", value: "#{@pronuclear_embryos}" } %></td>
                               </tr>
                               <tr>
                                 <td class="result-left-column small text-center p-0"><p class="py-3 mb-0">初期胚</p></td>
-                                <td class="px-3 py-0"><%= f.number_field :number_of_early_embryos, { step: "1", min: 0, class: "form-control text-right", value: "" } %></td>
+                                <td class="px-3 py-0"><%= f.number_field :number_of_early_embryos, { step: "1", min: 0, class: "form-control text-right", value: "#{@early_embryos}" } %></td>
                               </tr>
                               <tr>
                                 <td class="result-left-column small text-center p-0"><p class="py-3 mb-0">胚盤胞</p></td>
-                                <td class="px-3 py-0"><%= f.number_field :number_of_blastocysts, { step: "1", min: 0, class: "form-control text-right", value: "" } %></td>
+                                <td class="px-3 py-0"><%= f.number_field :number_of_blastocysts, { step: "1", min: 0, class: "form-control text-right", value: "#{@blastocysts}" } %></td>
                               </tr>
                             </table>
                           </div>
