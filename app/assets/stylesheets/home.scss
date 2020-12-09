@@ -105,6 +105,7 @@
     display: flex;
     // 横スクロールの右端余白はこのwidthで調整↓
     width: 680px; 
+    padding: 0.1rem 0;
   }
   .learn-more-head-item {
     width: 75px;
@@ -270,6 +271,7 @@
   }
   .learn-more-head {
     display: flex;
+    padding: 0.2rem 0;
   }
   .learn-more-menu {
     white-space: nowrap;
