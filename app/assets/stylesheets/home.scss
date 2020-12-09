@@ -222,18 +222,18 @@
     vertical-align:top;
   }
   .fourth-area .brand-color-box-rounded-height {
-    height: 200px;
+    min-height: 200px;
   }
-  .fourth-area .brand-color-box-rounded {
+  .fourth-area .brand-color-box-rounded-height .brand-color-box-rounded {
     height: 100%;
     border-radius: 1rem;
     background: rgb(184,252,246);
   }
-  .fourth-area .brand-color-box-rounded-head {
+  .fourth-area .brand-color-box-rounded-height .brand-color-box-rounded-head {
     height: 80px;
     padding: 1rem;
   }
-  .fourth-area .brand-color-box-rounded-body {
+  .fourth-area .brand-color-box-rounded-height .brand-color-box-rounded-body {
     margin: 1rem auto 0;
     position: relative;
     width: 80%;
