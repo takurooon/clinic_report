@@ -30,6 +30,9 @@
   .second-area .brand-color-box-rounded-inner {
     padding: 1rem 0;
   }
+  .third-area {
+    padding: 0 1rem;
+  }
   .fourth-area .x-scroll {
     overflow-x: auto;
     overflow-y: hidden;
@@ -157,18 +160,19 @@
 }
 
 @media screen and (min-width:768px) {
-  .about-repoco {
-    padding: 0 4rem;
-  }
   .first-area {
     text-align: center;
     position: relative;
     height: 90vh;
+    padding: 0 4rem;
   }
   .logo_mark_area {
     text-align: center;
     position: absolute;
     top: 18%;
+  }
+  .second-area {
+    padding: 0 4rem;
   }
   .second-area .x-scroll {
     display: table;
@@ -194,6 +198,12 @@
   .second-area .brand-color-box-rounded-body {
     padding: 0 3rem;
   }
+  .third-area {
+    padding: 5rem 5rem;
+  }
+  .fourth-area {
+    padding: 0 4rem;
+  }
   .fourth-area .x-scroll {
     display: table;
     table-layout: fixed;
@@ -207,7 +217,7 @@
     vertical-align:top;
   }
   .fourth-area .brand-color-box-rounded {
-    min-height: 330px;
+    height: 300px;
     border-radius: 1rem;
     background: rgb(184,252,246);
   }
@@ -218,20 +228,15 @@
   .fourth-area .brand-color-box-rounded-body {
     padding: 1rem;
   }
-  .third-area {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
   .fifth-area {
-    // background: rgb(184,252,246);
+    background:#EBF5FF;
     padding: 4rem 1rem;
-    border-radius: 1rem;
   }
   .about-link {
     border-radius: 1rem;
     height: 140px;
     // background: rgb(184,252,246);
-    background:#EBF5FF;
+    background:#ffffff;
     padding: 1rem;
   }
   .about-link-head {
@@ -242,7 +247,7 @@
     height: 30%;
   }
   .sixth-area {
-    padding: 1rem 3rem;
+    padding: 1rem 7rem;
   }
   .join-repoco {
     min-height: 300px;
@@ -251,7 +256,7 @@
     padding: 3rem 4rem;
   }
   .seventh-area {
-    padding: 3rem 1rem;
+    padding: 3rem 4rem;
   }
   .learn-more-head {
     display: flex;
@@ -330,7 +335,7 @@
 }
 @media screen and (min-width:1200px) {
   .learn-more {
-    padding: 2rem 10rem 0;
+    padding: 2rem 15rem 0;
     background: rgba(184,252,246,0.7);
   }
 }
