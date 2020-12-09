@@ -29,6 +29,7 @@
         <ul class="links list-inline">
           <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
             <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "REPOCO（レポコ）とは", repoco_path, class: "text-muted" %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "FAQ", faq_path, class: "text-muted" %></li>
             <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "利用規約", terms_path, class: "text-muted" %></li>
             <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "プライバシーポリシー", privacy_path, class: "text-muted" %></li>
             <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "運営者情報", about_path, class: "text-muted" %></li>
@@ -36,6 +37,7 @@
             <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "フィードバック", "https://forms.gle/tUnFiu4f8SRNyrr19", class: "text-muted", target: "_blank" %></li>
           <% else %>
             <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "REPOCO（レポコ）とは", repoco_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+            <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "FAQ", faq_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
             <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "利用規約", terms_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
             <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "プライバシーポリシー", privacy_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
             <li class="list-inline-item small"><i data-feather="chevron-right" class="feather-icon-style1"></i><%= link_to "運営者情報", about_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></li>
