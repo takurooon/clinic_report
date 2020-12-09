@@ -101,24 +101,26 @@
   .learn-more-head {
     display: flex;
     // 横スクロールの右端余白はこのwidthで調整↓
-    width: 750px; 
+    width: 680px; 
   }
   .learn-more-head-item {
-    min-width: 80px;
-    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%; 
+    margin: 0 auto;
     background: #ffffff;
     padding: 0.3rem 1.2rem;
-    margin: 0 0.7rem;
-    display: block;
+    // display: block;
   }
   .learn-more-head-item-active {
-    min-width: 80px;
-    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%; 
+    margin: 0 auto;
     background: #ffffff;
     border: 3px solid;
     border-color: #3EA8FF;
     padding: 0.3rem 1rem;
-    margin: 0 0.7rem;
   }
   .learn-more-body {
     padding: 1rem 0 0 0;
@@ -159,6 +161,7 @@
     padding: 0 4rem;
   }
   .first-area {
+    text-align: center;
     position: relative;
     height: 90vh;
   }
@@ -250,10 +253,6 @@
   .seventh-area {
     padding: 3rem 1rem;
   }
-  .learn-more {
-    padding: 2rem 10rem 0;
-    background: rgba(184,252,246,0.7);
-  }
   .learn-more-head {
     display: flex;
   }
@@ -264,18 +263,23 @@
     padding: 0 1rem;
   }
   .learn-more-head-item {
-    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%; 
+    margin: 0 auto;
     background: #ffffff;
     padding: 0.3rem 1.2rem;
-    margin: 0 0.7rem;
+    // display: block;
   }
   .learn-more-head-item-active {
-    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%; 
+    margin: 0 auto;
     background: #ffffff;
     border: 3px solid;
     border-color: #3EA8FF;
     padding: 0.3rem 1rem;
-    margin: 0 0.7rem;
   }
   .learn-more-body {
     padding: 1.5rem 0 5rem 0;
@@ -308,6 +312,26 @@
   .q-answer  p {
     line-height: 1.8;
     padding: 0 0.3rem;
+  }
+}
+
+// 横の余白の設定
+@media screen and (min-width:767px) {
+  .learn-more {
+    padding: 2rem 2rem 0;
+    background: rgba(184,252,246,0.7);
+  }
+}
+@media screen and (min-width:992px) {
+  .learn-more {
+    padding: 2rem 5rem 0;
+    background: rgba(184,252,246,0.7);
+  }
+}
+@media screen and (min-width:1200px) {
+  .learn-more {
+    padding: 2rem 10rem 0;
+    background: rgba(184,252,246,0.7);
   }
 }
 
