@@ -159,6 +159,27 @@
     line-height: 1.8;
     padding: 0 0.3rem;
   }
+  .howto-area {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 0.1rem;
+  }
+  .howto-sm-l {
+    width: 60%;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    padding: 0.5rem;
+    background: rgba(184,252,246,0.7);
+  }
+  .howto-sm-r {
+    width: 40%;
+    padding: 1rem 0 1rem 0.7rem;
+  }
+  .howto-sm-r p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
 }
 
 @media screen and (min-width:768px) {
@@ -331,6 +352,13 @@
   .q-answer  p {
     line-height: 1.8;
     padding: 0 0.3rem;
+  }
+
+  .howto-sm-l {
+    display:none;
+  }
+  .howto-sm-r {
+    display:none;
   }
 }
 
