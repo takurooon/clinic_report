@@ -172,6 +172,12 @@
     padding: 0.5rem;
     background: rgba(184,252,246,0.7);
   }
+  .howto-sm-l-2 {
+    width: 60%;
+    height: 100%;
+    padding: 0.5rem;
+    background: rgba(184,252,246,0.7);
+  }
   .howto-sm-r {
     width: 40%;
     padding: 1rem 0 1rem 0.7rem;
@@ -353,8 +359,10 @@
     line-height: 1.8;
     padding: 0 0.3rem;
   }
-
   .howto-sm-l {
+    display:none;
+  }
+  .howto-sm-l-2 {
     display:none;
   }
   .howto-sm-r {
