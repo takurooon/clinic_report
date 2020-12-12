@@ -299,7 +299,6 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "fertility_treatment_number"
     t.integer "transplant_method"
     t.integer "number_of_clinics"
-    t.integer "treatment_start_age"
     t.integer "treatment_end_age"
     t.integer "age_of_partner_at_end_of_treatment"
     t.integer "treatment_period"
@@ -336,8 +335,6 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "period_of_time_spent_traveling"
     t.integer "work_style"
     t.integer "work_style_status", default: 0, null: false
-    t.integer "household_net_income"
-    t.integer "suspended_or_retirement_job"
     t.text "content"
     t.float "staff_quality"
     t.float "doctor_quality"
@@ -349,15 +346,12 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "status", default: 0, null: false
     t.integer "prefecture_at_the_time_status", default: 0, null: false
     t.integer "city_at_the_time_status", default: 0, null: false
-    t.integer "household_net_income_status", default: 0, null: false
-    t.integer "rest_period"
     t.text "reason_for_transfer"
     t.text "treatment_policy"
     t.integer "number_of_visits_before_sairan"
     t.integer "number_of_visits_before_ishoku"
     t.integer "free_wifi"
     t.integer "possible_to_wait_outside_cl"
-    t.integer "reuse_of_basic_examination_results"
     t.integer "male_infertility"
     t.integer "level_of_male_infertility"
     t.integer "number_of_pronuclear_embryos", default: 0
