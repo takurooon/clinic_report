@@ -106,8 +106,7 @@
                 <%= f.radio_button :gender, :male %>
               </div>
 
-              <% if false %>
-              <div class="form-group mt-0 pt-3 text-left text-muted">
+              <div class="form-group mt-0 pt-3 text-left text-muted d-flex align-items-end">
                 生年月&nbsp;&nbsp;
                   <%= raw sprintf(
                     f.date_select(
@@ -121,8 +120,8 @@
                         ), # 年月日区切りをそれぞれ指定
                     '年 ') + '月'
                   %>
+                  <small class="text-muted ml-2"><span class="small">※自分以外には表示されません。</span></small>
               </div>
-              <% end %>
 
               <div class="form-group text-left mt-0 justify-content-start">
               <small><span class="small text-muted">新規登録により</span></small>
