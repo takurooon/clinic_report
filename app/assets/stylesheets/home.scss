@@ -186,6 +186,15 @@
     font-size: 13px;
     line-height: 1.7;
   }
+  .howto-pc-l {
+    display:none;
+  }
+  .howto-pc-l-2 {
+    display:none;
+  }
+  .howto-pc-r {
+    display:none;
+  }
 }
 
 @media screen and (min-width:768px) {
@@ -367,6 +376,33 @@
   }
   .howto-sm-r {
     display:none;
+  }
+  .howto-area {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 0.1rem;
+  }
+  .howto-pc-l {
+    width: 60%;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    padding: 0.5rem;
+    background: rgba(184,252,246,0.7);
+  }
+  .howto-pc-l-2 {
+    width: 60%;
+    height: 100%;
+    padding: 0.5rem;
+    background: rgba(184,252,246,0.7);
+  }
+  .howto-pc-r {
+    width: 40%;
+    padding: 0 1rem 1rem;
+  }
+  .howto-pc-r p {
+    font-size: 15px;
+    line-height: 1.8;
   }
 }
 

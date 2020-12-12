@@ -145,7 +145,7 @@
         </div>
         <hr>
         <div class="learn-more-body-inner-content-body">
-          <h5>【新規投稿】</h5>
+          <h5 class="mb-4">【新規投稿】</h5>
           <div class="howto-area">
             <div class="howto-sm-l">
               <%= image_tag"howto/sm_1.png", class: "img-fluid", loading: "lazy" %>
@@ -153,13 +153,25 @@
             <div class="howto-sm-r">
               <p>画面右下にあるペン型の新規作成アイコンをタップします。</p>
             </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_1.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
+              <p>画面右上にある「投稿」ボタンをクリックします。</p>
+            </div>
           </div>
           <div class="howto-area">
             <div class="howto-sm-l">
               <%= image_tag"howto/sm_2.png", class: "img-fluid", loading: "lazy" %>
             </div>
             <div class="howto-sm-r">
-              <p>投稿画面の全体は、上半分が質問への回答形式となり、下半分が自由記述のテキスト部分になります。</p>
+              <p>投稿画面の全体は、上半分が質問への回答形式となり、下半分が自由記述のテキスト部分です。</p>
+            </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_2.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
+              <p>投稿画面の全体は、上半分が質問への回答形式となり、下半分が自由記述のテキスト部分です。</p>
             </div>
           </div>
           <div class="howto-area">
@@ -167,6 +179,13 @@
               <%= image_tag"howto/sm_3.png", class: "img-fluid", loading: "lazy" %>
             </div>
             <div class="howto-sm-r">
+              <p>投稿に最低限必要な項目は「クリニック」と「治療当時の住まい」の2つです。住まいは非公開にもできます。</p>
+              <p>各タブの下に「前後ボタン」があるので、こちらで隣のタブを開くことができます。もちろん上部にあるタブをタップすれば好きなタブに移動できます。</p>
+            </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_3.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
               <p>投稿に最低限必要な項目は「クリニック」と「治療当時の住まい」の2つです。住まいは非公開にもできます。</p>
               <p>各タブの下に「前後ボタン」があるので、こちらで隣のタブを開くことができます。もちろん上部にあるタブをタップすれば好きなタブに移動できます。</p>
             </div>
@@ -180,12 +199,27 @@
               <p>フォームを増やす時は左下の「追加」ボタンを押すとフォームを増やせます
             。削除する場合には右下にある「削除」ボタンで削除できます。</p>
             </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_clinic.gif", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
+              <p>基本はチェックボックスなどの選択式ですが、転院歴/特殊検査/過去の採卵･移植の項目では左のようなフォームを増減できる項目があります。</p>
+              <p>フォームを増やす時は左下の「追加」ボタンを押すとフォームを増やせます
+            。削除する場合には右下にある「削除」ボタンで削除できます。</p>
+            </div>
           </div>
           <div class="howto-area">
             <div class="howto-sm-l">
               <%= image_tag"howto/sm_4.png", class: "img-fluid", loading: "lazy" %>
             </div>
             <div class="howto-sm-r">
+              <p>転院歴とクリニック評価タブにテキスト入力欄があります(計3つ)。</p>
+              <p>こちらも関心度の高い項目ですのでぜひ入力してみてください。</p>
+            </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_4.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
               <p>転院歴とクリニック評価タブにテキスト入力欄があります(計3つ)。</p>
               <p>こちらも関心度の高い項目ですのでぜひ入力してみてください。</p>
             </div>
@@ -197,6 +231,12 @@
             <div class="howto-sm-r">
               <p>採卵タブにある、選択式の「移植可能胚の合計数」にぶら下がる「新鮮胚」「胚盤胞」などの数の内訳については、半角数字での入力になります。</p>
             </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_5.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
+              <p>採卵タブにある、選択式の「移植可能胚の合計数」にぶら下がる「新鮮胚」「胚盤胞」などの数の内訳については、半角数字での入力になります。</p>
+            </div>
           </div>
           <div class="howto-area">
             <div class="howto-sm-l">
@@ -206,14 +246,26 @@
               <p>下半分のレポコのコアとなるテキスト部分には、治療体験をはじめ治療中の気持ちなど、ぜひ自由に記述してください。</p>
               <p>何を書けばいいか迷ってしまう場合には、上半分の回答に関連したことや、右隣タブにある「作成のヒント」をぜひ参考にしてみてください。</p>
             </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_repoco_text.gif", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
+              <p>下半分のレポコのコアとなるテキスト部分には、治療体験をはじめ治療中の気持ちなど、ぜひ自由に記述してください。</p>
+              <p>何を書けばいいか迷ってしまう場合には、上半分の回答に関連したことや、右隣タブにある「作成のヒント」をぜひ参考にしてみてください。</p>
+            </div>
           </div>
           <div class="howto-area">
             <div class="howto-sm-l">
               <%= image_tag"howto/sm_6.png", class: "img-fluid", loading: "lazy" %>
             </div>
             <div class="howto-sm-r">
-              <p>レポコにタイトルをつけることもできます。</p>
-              <p>タイトルは一覧画面での表示に反映されます。</p>
+              <p>テキスト欄では左記のように装飾や画像の貼付ができます。</p>
+            </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_6.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
+              <p>テキスト欄では左記のように装飾や画像の貼付ができます。</p>
             </div>
           </div>
           <div class="howto-area">
@@ -221,6 +273,29 @@
               <%= image_tag"howto/sm_7.png", class: "img-fluid", loading: "lazy" %>
             </div>
             <div class="howto-sm-r">
+              <p>レポコにタイトルをつけることもできます。</p>
+              <p>タイトルは一覧画面での表示に反映されます。</p>
+            </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_7.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
+              <p>レポコにタイトルをつけることもできます。</p>
+              <p>タイトルは一覧画面での表示に反映されます。</p>
+            </div>
+          </div>
+          <div class="howto-area">
+            <div class="howto-sm-l">
+              <%= image_tag"howto/sm_8.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-sm-r">
+              <p>投稿は画面右上にある「投稿」ボタンを押すと投稿できます。</p>
+              <p>「投稿」ボタン横の「保存」ボタンを押せば下書きとして保存しておくことができます。入力の途中で時々「保存」ボタンを押してセーブしておくとさらに安心です。</p>
+            </div>
+            <div class="howto-pc-l">
+              <%= image_tag"howto/pc_8.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
               <p>投稿は画面右上にある「投稿」ボタンを押すと投稿できます。</p>
               <p>「投稿」ボタン横の「保存」ボタンを押せば下書きとして保存しておくことができます。入力の途中で時々「保存」ボタンを押してセーブしておくとさらに安心です。</p>
             </div>
@@ -229,9 +304,19 @@
           <di class="howto-area">
             <div class="howto-sm-l-2">
               <%= image_tag"howto/sm_draft.gif", class: "img-fluid", loading: "lazy" %><hr class="my-5">
-              <%= image_tag"howto/sm_8.png", class: "img-fluid", loading: "lazy" %>
+              <%= image_tag"howto/sm_9.png", class: "img-fluid", loading: "lazy" %>
             </div>
             <div class="howto-sm-r">
+              <p>保存した下書きは「マイページ」にあります。画面右下のアイコンをタップするとマイページに飛びます。</p>
+              <p>レポコ/下書きタブに保存した非公開レポコがありますので、それを開いて、公開する場合は右上の「公開」ボタンを、編集する場合にはその隣の「編集」を押すと編集できます。</p>
+              <p>編集後更新ボタンを押すと、下書きとして非公開のまま更新されます。公開する場合は更新後「公開」ボタンを押してください。</p>
+              <p>公開後の編集は、編集したいレポコを開き、右上の「編集」ボタンから編集してください。非公開にしたい場合は「編集」ボタン左の「非公開」ボタンからできます。</p>
+            </div>
+            <div class="howto-pc-l-2">
+              <%= image_tag"howto/pc_draft.gif", class: "img-fluid", loading: "lazy" %><hr class="my-5">
+              <%= image_tag"howto/pc_9.png", class: "img-fluid", loading: "lazy" %>
+            </div>
+            <div class="howto-pc-r">
               <p>保存した下書きは「マイページ」にあります。画面右下のアイコンをタップするとマイページに飛びます。</p>
               <p>レポコ/下書きタブに保存した非公開レポコがありますので、それを開いて、公開する場合は右上の「公開」ボタンを、編集する場合にはその隣の「編集」を押すと編集できます。</p>
               <p>編集後更新ボタンを押すと、下書きとして非公開のまま更新されます。公開する場合は更新後「公開」ボタンを押してください。</p>
