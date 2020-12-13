@@ -6,26 +6,26 @@
 #  age_of_partner_at_end_of_treatment     :integer
 #  amh                                    :integer
 #  average_waiting_time                   :integer
-#  average_waiting_time2                  :float
+#  average_waiting_time2                  :integer
 #  blastocyst_grade1                      :integer
 #  blastocyst_grade2                      :integer
 #  city_at_the_time_status                :integer          default("show"), not null
 #  clinic_review                          :text
-#  comfort_of_space                       :float
+#  comfort_of_space                       :integer
 #  content                                :text
 #  cost                                   :integer
 #  credit_card_validity                   :integer
 #  creditcards_can_be_used_from_more_than :integer
 #  current_state                          :integer
 #  details_of_icsi                        :integer
-#  doctor_quality                         :float
+#  doctor_quality                         :integer
 #  early_embryo_grade                     :integer
 #  embryo_stage                           :integer
 #  fertility_treatment_number             :integer
 #  free_wifi                              :integer
 #  fuiku                                  :integer
-#  impression_of_price                    :float
-#  impression_of_technology               :float
+#  impression_of_price                    :integer
+#  impression_of_technology               :integer
 #  ishoku_age                             :integer
 #  ishoku_cost                            :integer
 #  ishoku_type                            :integer
@@ -41,8 +41,6 @@
 #  number_of_unfrozen_embryos             :integer          default(0)
 #  number_of_visits_before_ishoku         :integer
 #  number_of_visits_before_sairan         :integer
-#  online_consultation                    :integer
-#  online_consultation_details            :text
 #  ova_with_ivm                           :integer
 #  period_of_time_spent_traveling         :integer
 #  possible_to_wait_outside_cl            :integer
@@ -52,7 +50,7 @@
 #  sairan_age                             :integer
 #  sairan_cost                            :integer
 #  selection_of_anesthesia_type           :integer
-#  staff_quality                          :float
+#  staff_quality                          :integer
 #  status                                 :integer          default("released"), not null
 #  title                                  :string
 #  total_number_of_eggs_transplanted      :integer

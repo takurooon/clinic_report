@@ -1015,14 +1015,14 @@
                     </div>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-0 amount_that_can_be_activated m-1">
-                    <p class="question mb-0 pt-1">利用可能額</p>
-                    <div class="row p-0 m-0">
+                  <div class="form-group mt-0 mb-2 pt-2 amount_that_can_be_activated m-1">
+                    <p class="question mb-0 pt-1">クレジットカード利用可能額</p>
+                    <div class="row p-0 m-0 d-flex align-items-end">
                       <div class="col-8 p-0 m-0">
-                        <%= f.number_field :creditcards_can_be_used_from_more_than, { class: "form-control py-0 commas", placeholder: "半角数字で入力してください" } %>
+                        <%= f.number_field :creditcards_can_be_used_from_more_than, { class: "form-control py-0 commas", placeholder: "" } %>
                       </div>
                       <div class="col-4 p-0 m-0">
-                        円以上
+                        <p class="mb-0 ml-2 small">円から利用可</p>
                       </div>
                     </div>
                     <small class="text-muted"><span class="small text-warning">「半角数字」入力</span></small>
@@ -1039,123 +1039,98 @@
                   <div class="form-group mt-0 pt-0">
                     <div class="mt-0 pt-2">
                       <p class="question mb-1 pt-2">医師&nbsp;&nbsp;<span class="small text-muted">(満足度)</span></p>
-                      <span class="small text-muted">低</span>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :doctor_quality, 1, onclick: "radioDeselection(this, 1)" %>1
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :doctor_quality, 2, onclick: "radioDeselection(this, 2)" %>2
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :doctor_quality, 3, onclick: "radioDeselection(this, 3)" %>3
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :doctor_quality, 4, onclick: "radioDeselection(this, 4)" %>4
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :doctor_quality, 5, onclick: "radioDeselection(this, 5)" %>5
-                      </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
+                      <div class="d-flex align-items-center flex-nowrap">
+                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <%= f.collection_radio_buttons(:doctor_quality, Report::HASH_RATING, :first, :last) do |b| %>
+                          <div class="form-check p-1">
+                            <%= b.label class: "radio-inline" do %>
+                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                              <%= b.text %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <p class="small text-muted mb-2 ml-2">高</p>
+                      </div>
                     </div>
 
                     <div class="mt-0 pt-3">
                       <p class="question mb-1 pt-2">スタッフ&nbsp;&nbsp;<span class="small text-muted">(満足度)</span></p>
-                      <span class="small text-muted">低</span>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :staff_quality, 1, onclick: "radioDeselection(this, 1)" %>1
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :staff_quality, 2, onclick: "radioDeselection(this, 2)" %>2
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :staff_quality, 3, onclick: "radioDeselection(this, 3)" %>3
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :staff_quality, 4, onclick: "radioDeselection(this, 4)" %>4
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :staff_quality, 5, onclick: "radioDeselection(this, 5)" %>5
-                      </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
-                      
+                      <div class="d-flex align-items-center flex-nowrap">
+                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <%= f.collection_radio_buttons(:staff_quality, Report::HASH_RATING, :first, :last) do |b| %>
+                          <div class="form-check p-1">
+                            <%= b.label class: "radio-inline" do %>
+                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                              <%= b.text %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <p class="small text-muted mb-2 ml-2">高</p>
+                      </div>
                     </div>
 
                     <div class="mt-0 pt-3">
                       <p class="question mb-1 pt-2">技術&nbsp;&nbsp;<span class="small text-muted">(納得度)</span></p>
-                      <span class="small text-muted">低</span>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_technology, 1, onclick: "radioDeselection(this, 1)" %>1
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_technology, 2, onclick: "radioDeselection(this, 2)" %>2
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_technology, 3, onclick: "radioDeselection(this, 3)" %>3
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_technology, 4, onclick: "radioDeselection(this, 4)" %>4
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_technology, 5, onclick: "radioDeselection(this, 5)" %>5
-                      </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
+                      <div class="d-flex align-items-center flex-nowrap">
+                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <%= f.collection_radio_buttons(:impression_of_technology, Report::HASH_RATING, :first, :last) do |b| %>
+                          <div class="form-check p-1">
+                            <%= b.label class: "radio-inline" do %>
+                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                              <%= b.text %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <p class="small text-muted mb-2 ml-2">高</p>
+                      </div>
                     </div>
 
                     <div class="mt-0 pt-3">
-                      <p class="question mb-1 pt-2">価格&nbsp;&nbsp;<span class="small text-muted">(納得度)</span></p>
-                      <span class="small text-muted">低</span>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_price, 1, onclick: "radioDeselection(this, 1)" %>1
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_price, 2, onclick: "radioDeselection(this, 2)" %>2
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_price, 3, onclick: "radioDeselection(this, 3)" %>3
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_price, 4, onclick: "radioDeselection(this, 4)" %>4
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :impression_of_price, 5, onclick: "radioDeselection(this, 5)" %>5
-                      </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
+                      <p class="question mb-1 pt-2">価格&nbsp;&nbsp;<span class="small text-muted">(</span><span class="small text-danger">納得度</span><span class="small text-muted">)</span></p>
+                      <div class="d-flex align-items-center flex-nowrap">
+                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <%= f.collection_radio_buttons(:impression_of_price, Report::HASH_RATING, :first, :last) do |b| %>
+                          <div class="form-check p-1">
+                            <%= b.label class: "radio-inline" do %>
+                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                              <%= b.text %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <p class="small text-muted mb-2 ml-2">高</p>
+                      </div>
                     </div>
 
                     <div class="mt-0 pt-3">
                       <p class="question mb-1 pt-2">待ち時間&nbsp;&nbsp;<span class="small text-muted">(体感)</span></p>
-                      <span class="small text-muted">長</span>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 1, onclick: "radioDeselection(this, 1)" %>1
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 2, onclick: "radioDeselection(this, 2)" %>2
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 3, onclick: "radioDeselection(this, 3)" %>3
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 4, onclick: "radioDeselection(this, 4)" %>4
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :average_waiting_time2, 5, onclick: "radioDeselection(this, 5)" %>5
-                      </label>&nbsp;&nbsp;<span class="small text-muted">短</span>
+                      <div class="d-flex align-items-center flex-nowrap">
+                        <p class="small text-dark mb-2 mr-2 font-weight-bold">長</p>
+                        <%= f.collection_radio_buttons(:average_waiting_time2, Report::HASH_RATING, :first, :last) do |b| %>
+                          <div class="form-check p-1">
+                            <%= b.label class: "radio-inline" do %>
+                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                              <%= b.text %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <p class="small text-dark mb-2 ml-2 font-weight-bold">短</p>
+                      </div>
                     </div>
 
                     <div class="mt-0 pt-3">
                       <p class="question mb-1 pt-2">院内環境&nbsp;&nbsp;<span class="small text-muted">(満足度)</span></p>
-                      <span class="small text-muted">低</span>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :comfort_of_space, 1, onclick: "radioDeselection(this, 1)" %>1
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :comfort_of_space, 2, onclick: "radioDeselection(this, 2)" %>2
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :comfort_of_space, 3, onclick: "radioDeselection(this, 3)" %>3
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :comfort_of_space, 4, onclick: "radioDeselection(this, 4)" %>4
-                      </label>&nbsp;&nbsp;
-                      <label class="radio-inline">
-                        <%= f.radio_button :comfort_of_space, 5, onclick: "radioDeselection(this, 5)" %>5
-                      </label>&nbsp;&nbsp;<span class="small text-muted">高</span>
+                      <div class="d-flex align-items-center flex-nowrap">
+                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <%= f.collection_radio_buttons(:comfort_of_space, Report::HASH_RATING, :first, :last) do |b| %>
+                          <div class="form-check p-1">
+                            <%= b.label class: "radio-inline" do %>
+                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                              <%= b.text %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <p class="small text-muted mb-2 ml-2">高</p>
+                      </div>
                       <div class="form-group mt-4">
                         <p class="mb-2">平均待ち時間</p>
                         <%= f.collection_radio_buttons(:average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME, :first, :last) do |b| %>

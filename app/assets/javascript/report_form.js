@@ -412,12 +412,31 @@ $(function() {
   });
 })
 function cost(credit_card_validity) {
-  if (credit_card_validity === "3") {
+  if (credit_card_validity == "3") {
     $(".amount_that_can_be_activated").show();
   } else {
     $(".amount_that_can_be_activated").hide();
   }
 }
+
+
+$(function() {
+  $('input[name="report[credit_card_validity]"]:radio').change(function() {
+    cost($(this).val());
+  });
+})
+$(".amount_that_can_be_activated").hide();
+function cost(credit_card_validity) {
+  if (credit_card_validity == "3") {
+    $(".amount_that_can_be_activated").show();
+  } else {
+    $(".amount_that_can_be_activated").hide();
+  }
+}
+
+
+
+
 
 // 業種一覧別ウィンドウ
 function disp(url){
