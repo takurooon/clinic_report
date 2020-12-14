@@ -20,9 +20,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do                                             # 他はdeviseの機能をそのまま流用する
+      resource.update(confirmed_at: Time .now.utc)       # Welcomeメールを送信した上で、skip_confirmation!と同一処理を行い自動で認証クローズさせる
+      #↓と同じ意味
+      # resource.skip_confirmation!
+      # resource.save
+    end
+  end
 
   # GET /resource/edit
   def edit
@@ -80,8 +85,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up for inactive accounts.
   # サインアップ後に飛ばす先を指定
-  def after_inactive_sign_up_path_for(resource)
-    flash[:notice] = "まだ登録は完了していません。認証リンクを確認し登録を完了してください"
-    thanks_path
-  end
+  # def after_inactive_sign_up_path_for(resource)
+  #   flash[:notice] = "まだ登録は完了していません。認証リンクを確認し登録を完了してください"
+  #   thanks_path
+  # end
 end
