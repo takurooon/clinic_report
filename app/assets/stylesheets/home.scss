@@ -242,8 +242,11 @@
     padding: 0 3rem;
   }
   .third-area {
-    background:#B8FCF6;
+    // background:#B8FCF6;
     padding: 5rem 5rem;
+    background: -moz-linear-gradient(to bottom,#999999,#B8FCF6 40%,#FFF); 
+    background: -webkit-linear-gradient(to bottom,#999999,#B8FCF6 40%,#FFF); 
+    background: linear-gradient(to bottom,#999999,#B8FCF6 40%,#FFF); 
   }
   .fourth-area {
     padding: 0 4rem;
