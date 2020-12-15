@@ -15,9 +15,11 @@
   <% end %>
 </div>
 
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "確認メールの再送信", new_confirmation_path(resource_name) %><br />
-<% end %>
+<div class="py-2">
+  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+    <%= link_to "確認メールの再送信", new_confirmation_path(resource_name), class: "small" %><br />
+  <% end %>
+</div>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <%= link_to "アカウント凍結解除メールの再送信", new_unlock_path(resource_name) %><br />
