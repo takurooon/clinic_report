@@ -1,6 +1,10 @@
 <%= render 'category_header' %>
 
-  <div class="container main-index mt-4 m-bottom">
+  <div class="container main-index mt-3 m-bottom">
+    <div class="d-block d-sm-none d-flex flex-row-reverse small pb-3">
+      <%= link_to "レポコの作り方", make_path, class:"small" %>
+      <%= image_tag "home/writing_hand.svg", width: "15px", class: "img-fluid pb-2", loading: "lazy" %>
+    </div>
     <div class="row px-0">
       <div class="col-lg-7 offset-lg-1 main-column text-color px-0">
         <div class="tab-wrap1 mt-0">
