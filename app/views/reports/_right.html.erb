@@ -1,18 +1,24 @@
 
 <div class="sticky-area px-0 py-3">
-  <% if false %>
-  <form action="https://docs.google.com/forms/u/2/d/e/1FAIpQLSdSe_vOEPPdpsZI0Wn5YuYUl7LTqaYeq8x_yBLGaOhiM4eiuQ/formResponse" target="_self" method="POST" class="text-right">
-    <textarea class="feedback-textarea" rows="7" placeholder="REPOCOに関するご意見やご要望をお聞かせください。どんな些細なことでもウェルカムです！" name="entry.1597222762" required></textarea><br>
-    <button type="submit" class="btn btn-outline-primary feedback-sidebar">意見を送る&nbsp;<i data-feather="send" class="feather-icon-style1"></i></button>
-  </form>
-  <% end %>
+  <div class="sidebar_promote_item mt-3">
+    <div class="sidebar_promote_card">
+      <div class="sidebar_promote_card_header row">
+        <div class="col-2 sidebar_promote_card_header_left pl-3 pr-0">
+          <%= image_tag "home/writing_hand.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+        </div>
+        <div class="col-10 sidebar_promote_card_header_right mt-1">
+          <p class="mb-0 font-weight-bold"><%= link_to "レポコの作り方", make_path %></p>
+        </div>
+      </div>
+    </div>
+  </div>
   <% if user_signed_in? %>
     <% if current_user.registration_status1 || current_user.registration_status2 == true %>
       <div class="sidebar_promote_item mt-3">
         <div class="sidebar_promote_card">
           <div class="sidebar_promote_card_header row">
-            <div class="col-2 sidebar_promote_card_header_left">
-              <i data-feather="settings" class="pl-1" style="color: #646262"></i>
+            <div class="col-2 sidebar_promote_card_header_left pl-3 pr-0">
+              <%= image_tag "home/heart.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
             </div>
             <div class="col-10 sidebar_promote_card_header_right">
               <% if request.path.include?("reports") %>
@@ -34,8 +40,8 @@
     <div class="sidebar_promote_item mt-3">
       <div class="sidebar_promote_card">
         <div class="sidebar_promote_card_header row">
-          <div class="col-2 sidebar_promote_card_header_left">
-            <i data-feather="heart" class="pl-1" style="color: #646262"></i>
+          <div class="col-2 sidebar_promote_card_header_left pl-3 pr-0">
+            <%= image_tag "home/heart.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
           </div>
           <div class="col-10 sidebar_promote_card_header_right">
             <p>参考になるレポコをいつでも読み返せるストック機能を利用するには&nbsp;<%= link_to "ユーザー登録", new_user_registration_path %>&nbsp;または&nbsp;<%= link_to "ログイン", new_user_session_path %>&nbsp;が必要です。ユーザー登録はこちらから10秒ほどで簡単に登録できます <i data-feather="arrow-down" class="px-1" style="color: #646262"></i></p>
