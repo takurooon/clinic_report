@@ -15,10 +15,8 @@
   <% end %>
 </div>
 
-<% if false %>
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <%= link_to "確認メールの再送信", new_confirmation_path(resource_name) %><br />
-<% end %>
 <% end %>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
