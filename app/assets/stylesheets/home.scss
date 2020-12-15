@@ -33,6 +33,18 @@
   .third-area {
     background:#B8FCF6;
     padding: 3rem 1rem;
+    background: -moz-linear-gradient(to bottom,#999999,#B8FCF6 40%,#FFF); 
+    background: -webkit-linear-gradient(to bottom,#999999,#B8FCF6 40%,#FFF); 
+    background: linear-gradient(to bottom,#999999,#B8FCF6 40%,#FFF); 
+  }
+  .third-area .third-area-pc-title {
+    display: none;
+  }
+  .third-area .third-area-content {
+    padding: 1rem 1rem 5rem;
+  }
+  .third-area .third-area-content .message {
+    text-align: center;
   }
   .fourth-area .x-scroll {
     overflow-x: auto;
@@ -247,6 +259,12 @@
     background: -moz-linear-gradient(to bottom,#999999,#B8FCF6 40%,#FFF); 
     background: -webkit-linear-gradient(to bottom,#999999,#B8FCF6 40%,#FFF); 
     background: linear-gradient(to bottom,#999999,#B8FCF6 40%,#FFF); 
+  }
+  .third-area .third-area-pc-title {
+    padding: 1rem 1rem 5rem;
+  }
+  .third-area .third-area-content {
+    padding: 1rem 2rem 7rem;
   }
   .fourth-area {
     padding: 0 4rem;
