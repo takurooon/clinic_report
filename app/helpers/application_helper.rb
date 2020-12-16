@@ -24,11 +24,11 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: 'のこす、みえる、ふみだせる。不妊治療レポート投稿アプリ',
-      title: 'REPOCO | のこす、みえる、ふみだせる。',
+      title: 'REPOCO | のこす、みえる、ふみだせる。経験をカタチに 情報をエールに',
       reverse: true,
       charset: 'utf-8',
-      description: '#不妊治療戦士達の通院先と実績 を投稿できるアプリ「REPOCO (レポコ)」。治療レポートを投稿しよう！',
-      keywords: '不妊治療,体外受精,顕微受精',
+      description: '不妊治療体験をレポートとして投稿できるアプリ「REPOCO (レポコ)」。経験をカタチに、情報をエールに。さぁ、レポコを投稿してみよう！',
+      keywords: '不妊治療戦士達の通院先と実績,不妊治療,体外受精,顕微受精',
       canonical: request.original_url,
       separator: '-',
       icon: [
