@@ -262,6 +262,8 @@
   }
   .third-area .third-area-pc-title {
     padding: 1rem 1rem 5rem;
+    display: flex;
+    align-items: center;
   }
   .third-area .third-area-pc-title h4 {
     text-align: center;
@@ -498,4 +500,13 @@
   50% {
     transform: scale(1.05);
   }
+}
+
+// 上下反転
+.vertical-flip {
+  transform: scale(1,-1);
+}
+// 左右反転
+.align-flip {
+  transform: scale(-1,1);
 }

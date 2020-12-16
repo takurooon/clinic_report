@@ -1241,7 +1241,7 @@ class Report < ApplicationRecord
     8 => "8個",
     9 => "9個",
     10 => "10個",
-    11 => "11回以上",
+    11 => "11個以上",
   }
 
   def str_total_number_of_eggs_transplanted

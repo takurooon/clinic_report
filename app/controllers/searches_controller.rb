@@ -18,9 +18,7 @@ class SearchesController < ApplicationController
     amh_value = params[:value].to_i
     @selected_amh = amh[amh_value]
     @reports = Report.where(amh: amh_value, status: 0).order(created_at: :desc)
-    @amh_page = Report.page(params[:page]).per(10)
     @clinic_all_reports = @reports.count
-    @page = @reports.page(params[:page]).per(10)
   end
 
   def all_status
@@ -48,14 +46,12 @@ class SearchesController < ApplicationController
       @selected_word = status[status_value]
       @reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
-      @selected_word_page = Report.page(params[:page]).per(10)
     else
       fertility_treatment_number = Report::HASH_FERTILITY_TREATMENT_NUMBER_SEARCH
       fertility_treatment_number_value = params[:value].to_i
       @selected_word = fertility_treatment_number[fertility_treatment_number_value]
       @reports = Report.where(fertility_treatment_number: fertility_treatment_number_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
-      @selected_word_page = Report.page(params[:page]).per(10)
     end
   end
 
@@ -251,7 +247,6 @@ class SearchesController < ApplicationController
       @selected_work = "「" + work_style[work_value] + "」"
       @reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
-      @work_page = Report.page(params[:page]).per(10)
     end
   end
 
@@ -290,21 +285,18 @@ class SearchesController < ApplicationController
       @selected_cost = "治療費用「" + cost[cost_value] + "」"
       @reports = Report.where(cost: cost_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
-      @cost_page = Report.page(params[:page]).per(10)
     elsif params[:value].include?("sairan")
       sairan_cost = Report::HASH_SAIRAN_COST_SEARCH
       sairan_cost_value = params[:value].to_i
       @selected_cost = "採卵1回あたりの費用「" + sairan_cost[sairan_cost_value] + "」"
       @reports = Report.where(sairan_cost: sairan_cost_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
-      @cost_page = Report.page(params[:page]).per(10)
     elsif params[:value].include?("ishoku")
       ishoku_cost = Report::HASH_ISHOKU_COST_SEARCH
       ishoku_cost_value = params[:value].to_i
       @selected_cost = "移植1回あたりの費用「" + ishoku_cost[ishoku_cost_value] + "」"
       @reports = Report.where(ishoku_cost: ishoku_cost_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
-      @cost_page = Report.page(params[:page]).per(10)
     else
       value = params[:value]
       cost_value = value.delete("^0-9")
