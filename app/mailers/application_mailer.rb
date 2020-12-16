@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'info@repoco.net'
+  default from: 'support@repoco.net'
   layout 'mailer'
 end

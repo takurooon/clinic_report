@@ -112,7 +112,7 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   # 追加
-  host = 'clinic-report.herokuapp.com'
+  host = 'repoco.net'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
