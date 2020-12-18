@@ -371,36 +371,26 @@ $(function() {
 
 // 胚のステージ選択
 $(function() {
-  init($('#report_embryo_stage option:selected').val());
-  $("#report_embryo_stage").change(function() {
-    init($(this).val());
+  $('input[name="report[embryo_stage]"]:radio').change(function() {
+    stage($(this).val());
   });
 })
-function init(embryo_stage) {
-  if (embryo_stage === "1") {
-    $(".day_of_shokihaiishoku").show();
+$(".early_embryo_grade").hide();
+$(".blastocyst_grade1").hide();
+$(".blastocyst_grade2").hide();
+function stage(embryo_stage) {
+  if (embryo_stage == "1") {
     $(".early_embryo_grade").show();
-    $(".shokihaiishoku-hormone").show();
-    $(".day_of_haibanhoishoku").hide();
     $(".blastocyst_grade1").hide();
     $(".blastocyst_grade2").hide();
-    $(".haibanhoishoku-hormone").hide();
-  } else if (embryo_stage === "2") {
-    $(".day_of_shokihaiishoku").hide();
+  } else if (embryo_stage == "2") {
     $(".early_embryo_grade").hide();
-    $(".shokihaiishoku-hormone").hide();
-    $(".day_of_haibanhoishoku").show();
     $(".blastocyst_grade1").show();
     $(".blastocyst_grade2").show();
-    $(".haibanhoishoku-hormone").show();
   } else {
-    $(".day_of_shokihaiishoku").hide();
     $(".early_embryo_grade").hide();
-    $(".shokihaiishoku-hormone").hide();
-    $(".day_of_haibanhoishoku").hide();
     $(".blastocyst_grade1").hide();
     $(".blastocyst_grade2").hide();
-    $(".haibanhoishoku-hormone").hide();
   }
 }
 
@@ -419,7 +409,6 @@ function cost(credit_card_validity) {
   }
 }
 
-
 $(function() {
   $('input[name="report[credit_card_validity]"]:radio').change(function() {
     cost($(this).val());
@@ -433,10 +422,6 @@ function cost(credit_card_validity) {
     $(".amount_that_can_be_activated").hide();
   }
 }
-
-
-
-
 
 // 業種一覧別ウィンドウ
 function disp(url){
