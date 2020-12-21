@@ -39,8 +39,10 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <small class="tab-popup m-0 p-0">
               <%= strip_tags(current_user.name.to_s).gsub(/[\n]/,"").strip.truncate(10) %>
-              <% if current_user.registration_status1 || current_user.registration_status2 == true %>
-                  <i class="fas fa-circle tab-popup-circle fa-stack-1x"></i>
+              <% unless request.path.include?("new") || request.path.include?("edit") %>
+                <% if current_user.registration_status1 || current_user.registration_status2 == true %>
+                    <i class="fas fa-circle tab-popup-circle fa-stack-1x"></i>
+                <% end %>
               <% end %>
             </small>
             </a>

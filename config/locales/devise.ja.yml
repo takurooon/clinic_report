@@ -18,7 +18,7 @@ ja:
       unconfirmed: 'メールアドレスの本人確認が必要です。お手数ですが「確認メールの再送信」より本人確認を完了してください。'
     mailer:
       confirmation_instructions:
-        subject: 'アカウントの有効化について'
+        subject: '【アカウント認証】ご登録ありがとうございます！アカウントの認証を完了させて下さい。'
       reset_password_instructions:
         subject: 'パスワードの再設定について'
       unlock_instructions:
