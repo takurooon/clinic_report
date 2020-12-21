@@ -314,19 +314,6 @@ class ReportsController < ApplicationController
       return
     end
 
-    if @report.number_of_unfrozen_embryos != 0
-      @unfrozen_embryos = @report.number_of_unfrozen_embryos
-    end
-    if @report.number_of_pronuclear_embryos != 0
-      @pronuclear_embryos = @report.number_of_pronuclear_embryos
-    end
-    if @report.number_of_early_embryos != 0
-      @early_embryos = @report.number_of_early_embryos
-    end
-    if @report.number_of_blastocysts != 0
-      @blastocysts = @report.number_of_blastocysts
-    end
-
     if @report.itinerary_of_choosing_a_clinics.count == 0
       @report.itinerary_of_choosing_a_clinics.build
     end

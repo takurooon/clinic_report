@@ -810,7 +810,7 @@
               <% if @report.number_of_transferable_embryos.present? %>
                 <span class="text-muted small">内</span>
               <% end %>
-              &nbsp;新鮮胚<%= @report.number_of_unfrozen_embryos %>個</p>
+              &nbsp;新鮮胚<%= @report.str_number_of_unfrozen_embryos %></p>
             <% end %>
             <% number_of_frozen_eggs = @report.number_of_pronuclear_embryos.to_i + @report.number_of_early_embryos.to_i + @report.number_of_blastocysts.to_i %>
             <% if number_of_frozen_eggs > 0 %>
@@ -822,13 +822,13 @@
               <p class="small result-text text-muted mb-0">
               <span class="small">(
                 <% if @report.number_of_pronuclear_embryos.present? %>
-                  前核胚<%= @report.number_of_pronuclear_embryos %>個
+                  前核胚<%= @report.str_number_of_pronuclear_embryos %>
                 <% end %>
                 <% if @report.number_of_early_embryos.present? %>
-                  初期胚<%= @report.number_of_early_embryos %>個
+                  初期胚<%= @report.str_number_of_early_embryos %>
                 <% end %>
                 <% if @report.number_of_blastocysts.present? %>
-                  胚盤胞<%= @report.number_of_blastocysts %>個
+                  胚盤胞<%= @report.str_number_of_blastocysts %>
                 <% end %>
               )</span>
               </p>
