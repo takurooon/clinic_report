@@ -54,7 +54,7 @@
                   <% if @clinic.current_status == 1 %>
                     <span class="text-danger">【閉院】</span>
                   <% end %>
-                  <%= @clinic.name %>
+                  <%= link_to @clinic.name, "/category/clinics/#{@clinic.id}" %>
                 </td>
               </tr>
               <tr>
