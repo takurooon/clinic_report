@@ -1,12 +1,13 @@
 <% notification = @notifications.where.not(visitor_id: current_user.id) %>
-
-<% if notification.exists? %>
-  <div class="col-md-6 mx-auto">
-    <h5 class="my-5 px-5 text-muted">通知</h5>
-  </div>
-  <%= render notification %>
-<% else %>
-  <div class="col-md-6 mx-auto">
-    <h5 class="my-5 px-5 text-muted">通知はありません。</h5>
-  </div>
-<% end %>
+<div class="container m-bottom">
+  <% if notification.exists? %>
+    <div class="col-md-6 mx-auto">
+      <h5 class="my-5 px-5 text-muted">通知</h5>
+    </div>
+    <%= render notification %>
+  <% else %>
+    <div class="col-md-6 mx-auto">
+      <h5 class="my-5 px-5 text-muted">通知はありません。</h5>
+    </div>
+  <% end %>
+</div>

@@ -1188,145 +1188,145 @@
             </div>
           </section>
           <% if false %>
-          <section class="parent-tab-content" id="tab_3">
-            <div class="child-tab">
-            <ul class="nav nav-tabs child-menu">
-              <li class="tab-item"><a href="#tab_3_1" class="active" data-toggle="tab">採卵 移植</a></li>
-            </ul>
-            <section class="child-tab-content active" id="tab_3_1">
-              <div class="scroll-box">
-                <div class="form-group mt-0 mb-2 pt-0">
-                  <p class="question mb-0 pt-1"><span class="text-danger font-weight-bold">採卵日以前</span>の各ホルモン値</p>
-                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における採卵日までのホルモン値</span></small>
-                  <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
-                    <%= render "sairan_hormone_fields", f: sairan_hormone %>
-                  <% end %>
-                  <div class="links pt-2 pl-2">
-                    <%= link_to_add_association "+ 追加", f, :sairan_hormones %>
+            <section class="parent-tab-content" id="tab_3">
+              <div class="child-tab">
+              <ul class="nav nav-tabs child-menu">
+                <li class="tab-item"><a href="#tab_3_1" class="active" data-toggle="tab">採卵 移植</a></li>
+              </ul>
+              <section class="child-tab-content active" id="tab_3_1">
+                <div class="scroll-box">
+                  <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-0 pt-1"><span class="text-danger font-weight-bold">採卵日以前</span>の各ホルモン値</p>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における採卵日までのホルモン値</span></small>
+                    <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
+                      <%= render "sairan_hormone_fields", f: sairan_hormone %>
+                    <% end %>
+                    <div class="links pt-2 pl-2">
+                      <%= link_to_add_association "+ 追加", f, :sairan_hormones %>
+                    </div>
                   </div>
-                </div>
 
-                <div class="form-group mt-0 mb-2 pt-0">
-                  <p class="question mb-0 pt-1"><span class="text-danger font-weight-bold">採卵日当日</span>の各ホルモン値</p>
-                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の採卵日のホルモン値</span></small>
-                  <%= f.fields_for :day_of_sairans do |day_of_sairan| %>
-                    <table class="table table-sm table-bordered mb-0">
-                      <thead>
-                        <tr>
-                          <th scope="col" class="hormon-label text-center align-middle">Day</th>
-                          <th scope="col" class="hormon-label">E2</th>
-                          <th scope="col" class="hormon-label">FSH</th>
-                          <th scope="col" class="hormon-label">LH</th>
-                          <th scope="col" class="hormon-label">P4</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row" class="day-column"><%= day_of_sairan.select :day, Report.make_select_day_of_sairan, { prompt: "" }, { class: "form-control py-0 text-muted" } %></th>
-                          <td class="hormon-column"><%= day_of_sairan.number_field :e2, { step: "0.01", class: "form-control py-0", placeholder: "pg/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_sairan.number_field :fsh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_sairan.number_field :lh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_sairan.number_field :p4, { step: "0.01", class: "form-control py-0", placeholder: "ng/ml" } %></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  <% end %>
-                </div>
-
-                <div class="form-group mt-0 mb-2 pt-0 before_ishoku-hormone">
-                  <p class="question mb-0 pt-1">移植前の各ホルモン値</p>
-                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植周期の移植前までの数値</span></small>
-                  <%= f.fields_for :before_ishoku_hormones do |before_ishoku_hormone| %>
-                    <%= render "before_ishoku_hormone_fields", f: before_ishoku_hormone %>
-                  <% end %>
-                  <div class="links pt-2 pl-2">
-                    <%= link_to_add_association "+ 追加", f, :before_ishoku_hormones %>
+                  <div class="form-group mt-0 mb-2 pt-0">
+                    <p class="question mb-0 pt-1"><span class="text-danger font-weight-bold">採卵日当日</span>の各ホルモン値</p>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の採卵日のホルモン値</span></small>
+                    <%= f.fields_for :day_of_sairans do |day_of_sairan| %>
+                      <table class="table table-sm table-bordered mb-0">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="hormon-label text-center align-middle">Day</th>
+                            <th scope="col" class="hormon-label">E2</th>
+                            <th scope="col" class="hormon-label">FSH</th>
+                            <th scope="col" class="hormon-label">LH</th>
+                            <th scope="col" class="hormon-label">P4</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" class="day-column"><%= day_of_sairan.select :day, Report.make_select_day_of_sairan, { prompt: "" }, { class: "form-control py-0 text-muted" } %></th>
+                            <td class="hormon-column"><%= day_of_sairan.number_field :e2, { step: "0.01", class: "form-control py-0", placeholder: "pg/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_sairan.number_field :fsh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_sairan.number_field :lh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_sairan.number_field :p4, { step: "0.01", class: "form-control py-0", placeholder: "ng/ml" } %></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    <% end %>
                   </div>
-                </div>
 
-                <div class="form-group mt-0 mb-2 pt-0 day_of_shokihaiishoku">
-                  <p class="question mb-0 pt-1">初期胚の移植当日のホルモンと内膜</p>
-                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植当日の数値</span></small>
-                  <%= f.fields_for :day_of_shokihaiishokus do |day_of_shokihaiishoku| %>
-                    <table class="table table-sm table-bordered mb-0">
-                      <thead>
-                        <tr>
-                          <th scope="col" class="hormon-label text-center align-middle">Day</th>
-                          <th scope="col" class="hormon-label">E2</th>
-                          <th scope="col" class="hormon-label">FSH</th>
-                          <th scope="col" class="hormon-label">LH</th>
-                          <th scope="col" class="hormon-label">P4</th>
-                          <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row" class="day-column"><%= day_of_shokihaiishoku.select :day, Report.make_select_day_of_shokihaiishoku, { prompt: "" }, { class: "form-control py-0 text-muted" } %></td>
-                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :e2, { step: "0.01", class: "form-control py-0", placeholder: "pg/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :fsh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :lh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :p4, { step: "0.01", class: "form-control py-0", placeholder: "ng/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :endometrial_thickness, { step: "0.1", class: "form-control py-0" } %></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  <% end %>
-                </div>
-
-                <div class="form-group mt-0 mb-2 pt-0 day_of_haibanhoishoku">
-                  <p class="question mb-0 pt-1">胚盤胞の移植当日のホルモンと内膜</p>
-                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植当日の数値</span></small>
-                  <%= f.fields_for :day_of_haibanhoishokus do |day_of_haibanhoishoku| %>
-                    <table class="table table-sm table-bordered mb-0">
-                      <thead>
-                        <tr>
-                          <th scope="col" class="hormon-label text-center align-middle">Day</th>
-                          <th scope="col" class="hormon-label">E2</th>
-                          <th scope="col" class="hormon-label">FSH</th>
-                          <th scope="col" class="hormon-label">LH</th>
-                          <th scope="col" class="hormon-label">P4</th>
-                          <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="hormon-column"><%= day_of_haibanhoishoku.select :day, Report.make_select_day_of_haibanhoishoku, { prompt: "" }, { class: "form-control py-0 text-muted" } %></td>
-                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :e2, { step: "0.01", class: "form-control py-0", placeholder: "pg/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :fsh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :lh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :p4, { step: "0.01", class: "form-control py-0", placeholder: "ng/ml" } %></td>
-                          <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :endometrial_thickness, { step: "0.01", class: "form-control py-0" } %></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  <% end %>
-                </div>
-
-                <div class="form-group mt-0 mb-2 pt-0 shokihaiishoku-hormone">
-                  <p class="question mb-0 pt-1">初期胚移植後のホルモン</p>
-                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植後の数値</span></small>
-                  <%= f.fields_for :shokihaiishoku_hormones do |shokihaiishoku_hormone| %>
-                    <%= render "shokihaiishoku_hormone_fields", f: shokihaiishoku_hormone %>
-                  <% end %>
-                  <div class="links pt-2 pl-2">
-                    <%= link_to_add_association "+ 追加", f, :shokihaiishoku_hormones %>
+                  <div class="form-group mt-0 mb-2 pt-0 before_ishoku-hormone">
+                    <p class="question mb-0 pt-1">移植前の各ホルモン値</p>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植周期の移植前までの数値</span></small>
+                    <%= f.fields_for :before_ishoku_hormones do |before_ishoku_hormone| %>
+                      <%= render "before_ishoku_hormone_fields", f: before_ishoku_hormone %>
+                    <% end %>
+                    <div class="links pt-2 pl-2">
+                      <%= link_to_add_association "+ 追加", f, :before_ishoku_hormones %>
+                    </div>
                   </div>
-                </div>
 
-                <div class="form-group mt-0 mb-2 pt-0 haibanhoishoku-hormone">
-                  <p class="question mb-0 pt-1">胚盤胞移植後のホルモン</p>
-                  <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植後の数値</span></small>
-                  <%= f.fields_for :haibanhoishoku_hormones do |haibanhoishoku_hormone| %>
-                    <%= render "haibanhoishoku_hormone_fields", f: haibanhoishoku_hormone %>
-                  <% end %>
-                  <div class="links pt-2 pl-2">
-                    <%= link_to_add_association "+ 追加", f, :haibanhoishoku_hormones %>
+                  <div class="form-group mt-0 mb-2 pt-0 day_of_shokihaiishoku">
+                    <p class="question mb-0 pt-1">初期胚の移植当日のホルモンと内膜</p>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植当日の数値</span></small>
+                    <%= f.fields_for :day_of_shokihaiishokus do |day_of_shokihaiishoku| %>
+                      <table class="table table-sm table-bordered mb-0">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="hormon-label text-center align-middle">Day</th>
+                            <th scope="col" class="hormon-label">E2</th>
+                            <th scope="col" class="hormon-label">FSH</th>
+                            <th scope="col" class="hormon-label">LH</th>
+                            <th scope="col" class="hormon-label">P4</th>
+                            <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" class="day-column"><%= day_of_shokihaiishoku.select :day, Report.make_select_day_of_shokihaiishoku, { prompt: "" }, { class: "form-control py-0 text-muted" } %></td>
+                            <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :e2, { step: "0.01", class: "form-control py-0", placeholder: "pg/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :fsh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :lh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :p4, { step: "0.01", class: "form-control py-0", placeholder: "ng/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_shokihaiishoku.number_field :endometrial_thickness, { step: "0.1", class: "form-control py-0" } %></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    <% end %>
                   </div>
-                </div>
 
-              </div>
+                  <div class="form-group mt-0 mb-2 pt-0 day_of_haibanhoishoku">
+                    <p class="question mb-0 pt-1">胚盤胞の移植当日のホルモンと内膜</p>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植当日の数値</span></small>
+                    <%= f.fields_for :day_of_haibanhoishokus do |day_of_haibanhoishoku| %>
+                      <table class="table table-sm table-bordered mb-0">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="hormon-label text-center align-middle">Day</th>
+                            <th scope="col" class="hormon-label">E2</th>
+                            <th scope="col" class="hormon-label">FSH</th>
+                            <th scope="col" class="hormon-label">LH</th>
+                            <th scope="col" class="hormon-label">P4</th>
+                            <th scope="col" class="hormon-label">内膜<span class="small text-muted"><small>(mm)</small></span></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="hormon-column"><%= day_of_haibanhoishoku.select :day, Report.make_select_day_of_haibanhoishoku, { prompt: "" }, { class: "form-control py-0 text-muted" } %></td>
+                            <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :e2, { step: "0.01", class: "form-control py-0", placeholder: "pg/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :fsh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :lh, { step: "0.01", class: "form-control py-0", placeholder: "mIU/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :p4, { step: "0.01", class: "form-control py-0", placeholder: "ng/ml" } %></td>
+                            <td class="hormon-column"><%= day_of_haibanhoishoku.number_field :endometrial_thickness, { step: "0.01", class: "form-control py-0" } %></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    <% end %>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-0 shokihaiishoku-hormone">
+                    <p class="question mb-0 pt-1">初期胚移植後のホルモン</p>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植後の数値</span></small>
+                    <%= f.fields_for :shokihaiishoku_hormones do |shokihaiishoku_hormone| %>
+                      <%= render "shokihaiishoku_hormone_fields", f: shokihaiishoku_hormone %>
+                    <% end %>
+                    <div class="links pt-2 pl-2">
+                      <%= link_to_add_association "+ 追加", f, :shokihaiishoku_hormones %>
+                    </div>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-0 haibanhoishoku-hormone">
+                    <p class="question mb-0 pt-1">胚盤胞移植後のホルモン</p>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植後の数値</span></small>
+                    <%= f.fields_for :haibanhoishoku_hormones do |haibanhoishoku_hormone| %>
+                      <%= render "haibanhoishoku_hormone_fields", f: haibanhoishoku_hormone %>
+                    <% end %>
+                    <div class="links pt-2 pl-2">
+                      <%= link_to_add_association "+ 追加", f, :haibanhoishoku_hormones %>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
             </section>
-          </section>
           <% end %>
         </div>
 
