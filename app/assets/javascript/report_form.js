@@ -319,55 +319,68 @@ function m_funin(male_infertility) {
 
 // 胚のステージへの移植方法表示(凍結or新鮮胚移植)
 $(function() {
-  var discription1 = "移植方法は「";
-  var discription2 = "」が選択されています。";
-  var discription3 = "以降の項目(採卵/移植周期のホルモン値・グレード等)は、「初期胚」か「胚盤胞」のどちらか一方の胚の情報についてのみ選択&入力して下さい。";
-  var discription4 = "以降の項目(採卵/移植周期のホルモン値・グレード等)は、2個の胚のうちどちらか一方の胚の情報についてのみ選択&入力して下さい。";
-  var val = $('#report_transplant_method').val();
-  if (val == "1") {
-    var val = "凍結胚移植";
-    $('.stage-alert-none').show();
-    $('.stage-alert').hide();
-    $('.transplant_method').text(val);
-    $('.transplant_method_dis1').text(discription1);
-    $('.transplant_method_dis2').text(discription2);
-  } else if (val == "2") {
-    var val = "新鮮胚移植";
-    $('.stage-alert-none').show();
-    $('.stage-alert').hide();
-    $('.transplant_method').text(val);
-    $('.transplant_method_dis1').text(discription1);
-    $('.transplant_method_dis2').text(discription2);
-  } else {
-    $('.stage-alert').hide();
-    $('.stage-alert-none').hide();
-  }
-  $('#report_transplant_method').change(function() {
-    var discription1 = "移植方法は「";
-    var discription2 = "」が選択されています。";
-    var discription3 = "以降の項目(採卵/移植周期のホルモン値・グレード等)は、「初期胚」か「胚盤胞」のどちらか一方の胚の情報についてのみ選択&入力して下さい。";
-    var discription4 = "以降の項目(採卵/移植周期のホルモン値・グレード等)は、2個の胚のうちどちらか一方の胚の情報についてのみ選択&入力して下さい。";
+  $('input[name="report[transplant_method]"]:radio').change(function() {
+    var discription1 = "移植胚は「";
+    var discription2 = "」を概要タブにて選択しています。";
     var val = $(this).val();
     if (val == "1") {
       var val = "凍結胚移植";
-      $('.stage-alert-none').show();
-      $('.stage-alert').hide();
+      $('.stage-alert').show();
       $('.transplant_method').text(val);
       $('.transplant_method_dis1').text(discription1);
       $('.transplant_method_dis2').text(discription2);
     } else if (val == "2") {
       var val = "新鮮胚移植";
-      $('.stage-alert-none').show();
-      $('.stage-alert').hide();
+      $('.stage-alert').show();
+      $('.transplant_method').text(val);
+      $('.transplant_method_dis1').text(discription1);
+      $('.transplant_method_dis2').text(discription2);
+    } else if (val == "99") {
+      var val = "その他";
+      $('.stage-alert').show();
+      $('.transplant_method').text(val);
+      $('.transplant_method_dis1').text(discription1);
+      $('.transplant_method_dis2').text(discription2);
+    } else if (val == "100") {
+      var val = "不明";
+      $('.stage-alert').show();
       $('.transplant_method').text(val);
       $('.transplant_method_dis1').text(discription1);
       $('.transplant_method_dis2').text(discription2);
     } else {
       $('.stage-alert').hide();
-      $('.stage-alert-none').hide();
     }
   });
 });
+
+// report_transfer_option_ids_6は二段階移植.移植オプションで二段階移植(val=6)を選んだら以下を表示
+$(function(){
+  $('#report_transfer_option_ids_6').on('keyup change',function(e){
+    var discription1 = "二段階移植の場合は「";
+    var discription2 = "胚盤胞";
+    var discription3 = "」を選択下さい。";
+    var val = $(this).prop("checked");
+    if (val == true) {
+      $('.option-alert').show();
+      $('.transfer_option_dis1').text(discription1);
+      $('.transfer_option_dis2').text(discription2);
+      $('.transfer_option_dis3').text(discription3);
+    } else {
+      $('.option-alert').hide();
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
 
 // 胚のステージ選択
 $(function() {
@@ -529,7 +542,3 @@ $(function (){
 //     updateTextView($(this));
 //   });
 // });
-
-
-
-

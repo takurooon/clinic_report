@@ -413,7 +413,7 @@
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵は<span class="select-clinic-name"></span>での何回目の採卵ですか</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">採卵までの通院回数</p>
                         <small class="text-muted"><span class="small">採卵周期開始から採卵日までの(おおよその)通院回数</span></small>
                         <div class="mt-2">
@@ -428,13 +428,13 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">採卵時の年齢</p>
                         <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の年齢</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">誘発タイプ</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の誘発タイプ</span></small>
                         <div class="mt-2">
@@ -449,7 +449,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">麻酔の種類</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の麻酔使用の有無</span></small>
                         <div class="mt-2">
@@ -464,7 +464,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">麻酔の選択</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の麻酔使用の選択可否</span></small>
                         <div class="mt-2">
@@ -479,19 +479,19 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">採卵個数<span class="small text-danger"><span class="small">&nbsp;※変性卵は除く</span></span></p>
                         <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の採卵個数</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">受精個数</p>
                         <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植可能胚の合計数</p>
                         <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における移植可能胚(受精卵)数</span></small>
@@ -580,33 +580,6 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-0">
-                        <div class="label p-1 mb-0">
-                          <p class="question mb-0 pt-1">移植した胚のステージ</p>
-                          <div class="stage-alert-none">
-                            <span class="transplant_method_dis1 small text-muted"></span>
-                            <span class="transplant_method small text-danger"></span>
-                            <span class="transplant_method_dis2 small text-muted"></span>
-                          </div>
-                          <div class="stage-alert alert alert-primary mb-0 pb-0">
-                            <span class="transplant_method_dis3 small text-muted"></span>
-                            <span class="transplant_method2 small text-danger"></span>
-                            <span class="transplant_method_dis4 small text-muted"></span>
-                            <span class="transplant_method_dis5 small text-muted"></span>
-                          </div>
-                        </div>
-                        <div class="pt-2">
-                          <%= f.collection_radio_buttons(:embryo_stage, Report::HASH_EMBRYO_STAGE, :first, :last) do |b| %>
-                            <div class="form-check pl-2">
-                              <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                <%= b.text %>
-                              <% end %>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-
                       <div class="mt-5 d-flex justify-content-between">
                         <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                         <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
@@ -644,13 +617,13 @@
                         <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でこれまでに移植した胚の合計</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植回数</p>
                         <%= f.select :total_number_of_transplants, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">でのこれまでの移植回数の合計数</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植までの通院回数</p>
                         <small class="text-muted"><span class="small">移植周期開始から移植日までの(おおよその)通院回数</span></small>
                         <div class="mt-2">
@@ -665,13 +638,13 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植時の年齢</p>
                         <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植時の年齢</span></small>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植周期のタイプ</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植タイプ</span></small>
                         <div class="mt-2">
@@ -686,7 +659,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                         <div class="pt-2 pl-2">
                           <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all.name_yomigana, :id, :name) do |b| %>
@@ -700,7 +673,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-2">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">黄体補充&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                         <div class="pt-2 pl-2">
                           <%= f.collection_check_boxes(:pg_eplenishment_ids, PgEplenishment.all, :id, :name) do |b| %>
@@ -713,6 +686,33 @@
                           <% end %>
                         </div>
                       </div>
+
+                      <div class="form-group mt-0 mb-2 pt-5">
+                        <div class="label p-1 mb-0">
+                          <p class="question mb-0 pt-1">移植した胚のステージ</p>
+                          <div class="stage-alert small">
+                            <span class="transplant_method_dis1 small text-muted"></span>
+                            <span class="transplant_method small text-danger"></span>
+                            <span class="transplant_method_dis2 small text-muted"></span>
+                          </div>
+                          <div class="option-alert small">
+                            <span class="transfer_option_dis1 small text-muted"></span>
+                            <span class="transfer_option_dis2 small text-danger"></span>
+                            <span class="transfer_option_dis3 small text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="pt-2">
+                          <%= f.collection_radio_buttons(:embryo_stage, Report::HASH_EMBRYO_STAGE, :first, :last) do |b| %>
+                            <div class="form-check pl-2">
+                              <%= b.label class: "radio-inline mb-1" do %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                                <%= b.text %>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+
 
                       <div class="form-group mt-0 mb-2 pt-2 early_embryo_grade">
                         <p class="question mb-0 pt-1">初期胚のグレード</p>
