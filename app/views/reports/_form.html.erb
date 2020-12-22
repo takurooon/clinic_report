@@ -25,13 +25,16 @@
         <div class="mt-5">
         </div>
 
-        <p class="my-0 py-0 px-2 small">
-          <span class="small text-secondary">※投稿･更新･保存に必要な回答項目は「必須」タブ内のみです。</span>
-        </p>
+        <div class="d-flex justify-content-between pt-2">
+          <p class="m-0 p-1 small">
+            <span class="small text-secondary">※投稿･更新･保存は「必須」タブの回答必須。</span>
+          </p>
+          <p class="m-0 p-1 small text-right">
+            <%= link_to "レポコの作り方", make_path, class: "text-primary small", target: :_blank %>
+          </p>
+        </div>
 
         <div class="parent-tab landing-point">
-          <div class="p-1">
-          </div>
           <ul class="nav nav-tabs parent-menu mt-0 pt-0">
             <li class="tab-item"><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">基礎情報</a></li>
             <li class="tab-item"><a href="#tab_2" data-toggle="tab">治療情報</a></li>
@@ -187,7 +190,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-2">
                     <p class="question mb-0 pt-1">移植胚</p>
-                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植方法</span></small>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植胚</span></small>
                     <div class="pt-2">
                       <%= f.collection_radio_buttons(:transplant_method, Report::HASH_TRANSPLANT_METHOD, :first, :last) do |b| %>
                         <div class="form-check pl-2">
