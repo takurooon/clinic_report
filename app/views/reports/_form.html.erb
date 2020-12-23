@@ -676,20 +676,21 @@
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
-                        <p class="question mb-0 pt-1">移植胚</p>
-                        <div class="option-alert small">
+                        <p class="question mb-0 pt-1">移植胚&nbsp;&nbsp;<span class="small"><small class="text-muted"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植胚</small></span></p>
+                        <div class="transfer_option_alert1 small">
                           <p class="mb-0">
                             <span class="transfer_option_dis1 small text-muted"></span>
                             <span class="transfer_option_dis2 small text-danger"></span>
                             <span class="transfer_option_dis3 small text-muted"></span>
                           </p>
+                        </div>
+                        <div class="transfer_option_alert2 small">
                           <p class="mb-0">
                             <span class="transfer_option_dis4 small text-muted"></span>
                             <span class="transfer_option_dis5 small text-danger"></span>
                             <span class="transfer_option_dis6 small text-muted"></span>
                           </p>
                         </div>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植胚</span></small>
                         <div class="pt-2">
                           <%= f.collection_radio_buttons(:transplant_method, Report::HASH_TRANSPLANT_METHOD, :first, :last) do |b| %>
                             <div class="form-check pl-2">
@@ -713,12 +714,14 @@
                             <span class="transplant_method_dis4 small text-danger"></span>
                             <span class="transplant_method_dis5 small text-muted"></span>
                           </div>
-                          <div class="option-alert small">
+                          <div class="transfer_option_alert3 small">
                             <p class="mb-0">
                               <span class="transfer_option_dis2_1 small text-muted"></span>
                               <span class="transfer_option_dis2_2 small text-danger"></span>
                               <span class="transfer_option_dis2_3 small text-muted"></span>
                             </p>
+                          </div>
+                          <div class="transfer_option_alert4 small">
                             <p class="mb-0">
                               <span class="transfer_option_dis2_4 small text-muted"></span>
                               <span class="transfer_option_dis2_5 small text-danger"></span>

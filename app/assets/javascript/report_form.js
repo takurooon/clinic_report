@@ -229,29 +229,6 @@ $(function() {
 });
 
 // ステータスを選択した時点でform内のテキストに表示させる
-// $(function() {
-//   $('input[name="report[current_state]"]:radio').change(function() {
-//     var current_state = $('input[name="report[current_state]"]:radio:radio:checked').val();
-//     var status = "現在の状況"
-//     $('.select-current-status').text(status);
-//     if (current_state == 1) {
-//       var status = "妊娠中"
-//       $('.select-current-status').text(status);
-//     } else if (current_state == 2) {
-//       var status = "妊娠中(多胎)"
-//       $('.select-current-status').text(status);
-//     } else if (current_state == 3) {
-//       var status = "出産"
-//       $('.select-current-status').text(status);
-//     } else if (current_state == 4) {
-//       var status = "出産(多胎)"
-//       $('.select-current-status').text(status);
-//     } else {
-//       var status = "現在の状況"
-//       $('.select-current-status').text(status);
-//     }
-//   });
-// })
 $(function(){
   $('.default-current-status').text("現在の状況");
   $('#report_current_state_1').on('keyup change',function(e){
@@ -408,36 +385,36 @@ $(function() {
   });
 });
 
-// report_transfer_option_ids_1は二段階移植,report_transfer_option_ids_1は複数胚移植を選んだら「移植胚」の項目に以下を表示
+// report_transfer_option_ids_1は二段階移植,report_transfer_option_ids_2は複数胚移植、これらを選んだら「移植胚」の項目に以下を表示
 $(function(){
   $('#report_transfer_option_ids_1').on('keyup change',function(e){
-    var discription1 = "移植オプションは「";
+    var discription1 = "(前問の)移植オプションで「";
     var discription2 = "二段階移植";
     var discription3 = "」を選択されています。";
     var val = $(this).prop("checked");
     if (val == true) {
-      $('.option-alert').show();
+      $('.transfer_option_alert1').show();
       $('.transfer_option_dis1').text(discription1);
       $('.transfer_option_dis2').text(discription2);
       $('.transfer_option_dis3').text(discription3);
     } else {
-      $('.option-alert').hide();
+      $('.transfer_option_alert1').hide();
     }
   });
 });
 $(function(){
   $('#report_transfer_option_ids_2').on('keyup change',function(e){
-    var discription1 = "移植オプションは「";
+    var discription1 = "(前問の)移植オプションで「";
     var discription2 = "複数胚移植";
     var discription3 = "」を選択されています。";
     var val = $(this).prop("checked");
     if (val == true) {
-      $('.option-alert').show();
+      $('.transfer_option_alert2').show();
       $('.transfer_option_dis4').text(discription1);
       $('.transfer_option_dis5').text(discription2);
       $('.transfer_option_dis6').text(discription3);
     } else {
-      $('.option-alert').hide();
+      $('.transfer_option_alert2').hide();
     }
   });
 });
@@ -448,12 +425,12 @@ $(function(){
     var discription3 = "」を選択下さい。";
     var val = $(this).prop("checked");
     if (val == true) {
-      $('.option-alert').show();
+      $('.transfer_option_alert3').show();
       $('.transfer_option_dis2_1').text(discription1);
       $('.transfer_option_dis2_2').text(discription2);
       $('.transfer_option_dis2_3').text(discription3);
     } else {
-      $('.option-alert').hide();
+      $('.transfer_option_alert3').hide();
     }
   });
 });
@@ -464,12 +441,12 @@ $(function(){
     var discription3 = "」を選択下さい。";
     var val = $(this).prop("checked");
     if (val == true) {
-      $('.option-alert').show();
+      $('.transfer_option_alert4').show();
       $('.transfer_option_dis2_4').text(discription1);
       $('.transfer_option_dis2_5').text(discription2);
       $('.transfer_option_dis2_6').text(discription3);
     } else {
-      $('.option-alert').hide();
+      $('.transfer_option_alert4').hide();
     }
   });
 });
