@@ -298,8 +298,13 @@ class ReportsController < ApplicationController
         format.html { render :new }
       elsif @report.save
         # @report.save_tags(tag_list)
-        format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
-        format.json { render :show, status: :created, location: @report }
+        if params[:status1].present?
+          format.html { redirect_to report_path(@report), notice: 'レポコを保存しました。' }
+          format.json { render :show, status: :created, location: @report }
+        else
+          format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
+          format.json { render :show, status: :created, location: @report }
+        end
       else
         @report = Report.new(report_params)
         format.html { render :new }
@@ -334,13 +339,13 @@ class ReportsController < ApplicationController
   def release
     report =  Report.find(params[:id])
     report.released! unless report.released?
-    redirect_to report_path(report), notice: 'このレポコを公開しました'
+    redirect_to report_path(report), notice: 'レポコを公開しました'
   end
 
   def nonrelease
     report =  Report.find(params[:id])
     report.nonreleased! unless report.nonreleased?
-    redirect_to report_path(report), notice: 'このレポコを非公開にしました'
+    redirect_to report_path(report), notice: 'レポコを非公開にしました'
   end
 
   def update
@@ -372,8 +377,13 @@ class ReportsController < ApplicationController
       if params[:back]
         format.html { render :edit }
       elsif @report.update(report_params)
-        format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
-        format.json { render :show, status: :created, location: @report }
+        if @report.status == "nonreleased"
+          format.html { redirect_to report_path(@report), notice: 'レポコの下書きを更新しました。' }
+          format.json { render :show, status: :created, location: @report }
+        else
+          format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
+          format.json { render :show, status: :created, location: @report }
+        end
       else
         @report.attributes(report_params)
         format.html { render :new }
