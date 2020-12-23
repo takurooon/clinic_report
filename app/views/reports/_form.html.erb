@@ -415,10 +415,10 @@
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-3 pt-0">
                     <p class="question mb-0 pt-2">AMH値</p>
-                    <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                     <small id="poster-tip" class="form-text text-muted">
                       <span class="small text-muted"><span class="select-clinic-name"></span>での直近の数値</span>
                     </small>
+                    <%= f.select :amh, Report::HASH_AMH.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                   </div>
 
                   <div class="form-group mt-0 mb-5 pt-4">
@@ -479,8 +479,8 @@
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">採卵時の年齢</p>
-                        <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の年齢</span></small>
+                        <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
@@ -532,20 +532,20 @@
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">採卵個数<span class="small text-danger"><span class="small">&nbsp;※変性卵は除く</span></span></p>
-                        <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の採卵個数</span></small>
+                        <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">受精個数</p>
-                        <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
+                        <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植可能胚の合計数</p>
-                        <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵周期における移植可能胚(受精卵)数</span></small>
+                        <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
 
                       <div class="row">
@@ -715,8 +715,8 @@
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植時の年齢</p>
-                        <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植時の年齢</span></small>
+                        <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">

@@ -342,7 +342,7 @@ $(function() {
   $('input[name="report[transplant_method]"]:radio').change(function() {
     var discription1 = "移植胚は「";
     var discription2 = "」を選択されています。";
-    var discription3 = "初期胚と胚盤胞両方を移植した場合には「";
+    var discription3 = "初期胚と胚盤胞両方を移植した場合は「";
     var discription4 = "胚盤胞";
     var discription5 = "」を選択下さい。";
     var val = $(this).val();
