@@ -188,21 +188,6 @@
                     <% end %>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-2">
-                    <p class="question mb-0 pt-1">移植胚</p>
-                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植胚</span></small>
-                    <div class="pt-2">
-                      <%= f.collection_radio_buttons(:transplant_method, Report::HASH_TRANSPLANT_METHOD, :first, :last) do |b| %>
-                        <div class="form-check pl-2">
-                          <%= b.label class: "radio-inline mb-1" do %>
-                            <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                            <%= b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                    </div>
-                  </div>
-
                   <div class="mt-3 d-flex justify-content-between">
                     <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
                     <a class="btn FormBtnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
@@ -409,11 +394,11 @@
                   <div class="tab-wrap1 mt-4">
                     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">最新の採卵周期</label>
                     <div class="tab-content1">
-                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った採卵周期について</span></h6>
+                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-0">
                         <p class="question mb-0 pt-2">何回目の採卵？</p>
                         <%= f.select :total_number_of_sairan, Report::HASH_TOTAL_NUMBER_OF_SAIRAN.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵は<span class="select-clinic-name"></span>での何回目の採卵ですか</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵は、<span class="select-clinic-name"></span>での何回目の採卵ですか</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
@@ -434,12 +419,12 @@
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">採卵時の年齢</p>
                         <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の年齢</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の年齢</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">誘発タイプ</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の誘発タイプ</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の誘発タイプ</span></small>
                         <div class="mt-2">
                           <%= f.collection_radio_buttons(:type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION, :first, :last) do |b| %>
                             <div class="form-check pl-2">
@@ -454,7 +439,7 @@
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">麻酔の種類</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の麻酔使用の有無</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の麻酔使用の有無</span></small>
                         <div class="mt-2">
                           <%= f.collection_radio_buttons(:use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA, :first, :last) do |b| %>
                             <div class="form-check pl-2">
@@ -469,7 +454,7 @@
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">麻酔の選択</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の麻酔使用の選択可否</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の麻酔使用の選択可否</span></small>
                         <div class="mt-2">
                           <%= f.collection_radio_buttons(:selection_of_anesthesia_type, Report::HASH_SELECTION_OF_ANESTHESIA_TYPE, :first, :last) do |b| %>
                             <div class="form-check pl-2">
@@ -485,19 +470,19 @@
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">採卵個数<span class="small text-danger"><span class="small">&nbsp;※変性卵は除く</span></span></p>
                         <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の採卵個数</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の採卵個数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">受精個数</p>
                         <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植可能胚の合計数</p>
                         <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における移植可能胚(受精卵)数</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵周期における移植可能胚(受精卵)数</span></small>
                       </div>
 
                       <div class="row">
@@ -613,7 +598,7 @@
                   <div class="tab-wrap2 mt-4">
                     <input id="TAB-03" type="radio" name="TAB2" class="tab-switch2" checked="checked" /><label class="tab-label2" for="TAB-03">最新の移植周期</label>
                     <div class="tab-content2">
-                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った移植周期について</span></h6>
+                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-0">
                         <p class="question mb-0 pt-2">これまでに移植した胚の個数</p>
                         <%= f.select :total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
@@ -644,31 +629,17 @@
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植時の年齢</p>
                         <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植時の年齢</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植時の年齢</span></small>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植周期のタイプ</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植タイプ</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植タイプ</span></small>
                         <div class="mt-2">
                           <%= f.collection_radio_buttons(:ishoku_type, Report::HASH_ISHOKU_TYPE, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
                                 <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                <%= b.text %>
-                              <% end %>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-5">
-                        <p class="question mb-0 pt-1">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                        <div class="pt-2 pl-2">
-                          <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all.name_yomigana, :id, :name) do |b| %>
-                            <div class="cp_ipcheck">
-                              <%= b.label do %>
-                                <%= b.check_box class: "option-input05 cb" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -691,17 +662,68 @@
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
+                        <p class="question mb-0 pt-1">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
+                        <div class="pt-2 pl-2">
+                          <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
+                            <div class="cp_ipcheck">
+                              <%= b.label do %>
+                                <%= b.check_box class: "option-input05 cb" %>
+                                <%= b.text %>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+
+                      <div class="form-group mt-0 mb-2 pt-5">
+                        <p class="question mb-0 pt-1">移植胚</p>
+                        <div class="option-alert small">
+                          <p class="mb-0">
+                            <span class="transfer_option_dis1 small text-muted"></span>
+                            <span class="transfer_option_dis2 small text-danger"></span>
+                            <span class="transfer_option_dis3 small text-muted"></span>
+                          </p>
+                          <p class="mb-0">
+                            <span class="transfer_option_dis4 small text-muted"></span>
+                            <span class="transfer_option_dis5 small text-danger"></span>
+                            <span class="transfer_option_dis6 small text-muted"></span>
+                          </p>
+                        </div>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植胚</span></small>
+                        <div class="pt-2">
+                          <%= f.collection_radio_buttons(:transplant_method, Report::HASH_TRANSPLANT_METHOD, :first, :last) do |b| %>
+                            <div class="form-check pl-2">
+                              <%= b.label class: "radio-inline mb-1" do %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                                <%= b.text %>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <div class="label p-1 mb-0">
                           <p class="question mb-0 pt-1">移植した胚のステージ</p>
                           <div class="stage-alert small">
                             <span class="transplant_method_dis1 small text-muted"></span>
                             <span class="transplant_method small text-danger"></span>
                             <span class="transplant_method_dis2 small text-muted"></span>
+                            <span class="transplant_method_dis3 small text-muted"></span>
+                            <span class="transplant_method_dis4 small text-danger"></span>
+                            <span class="transplant_method_dis5 small text-muted"></span>
                           </div>
                           <div class="option-alert small">
-                            <span class="transfer_option_dis1 small text-muted"></span>
-                            <span class="transfer_option_dis2 small text-danger"></span>
-                            <span class="transfer_option_dis3 small text-muted"></span>
+                            <p class="mb-0">
+                              <span class="transfer_option_dis2_1 small text-muted"></span>
+                              <span class="transfer_option_dis2_2 small text-danger"></span>
+                              <span class="transfer_option_dis2_3 small text-muted"></span>
+                            </p>
+                            <p class="mb-0">
+                              <span class="transfer_option_dis2_4 small text-muted"></span>
+                              <span class="transfer_option_dis2_5 small text-danger"></span>
+                              <span class="transfer_option_dis2_6 small text-muted"></span>
+                            </p>
                           </div>
                         </div>
                         <div class="pt-2">
@@ -719,7 +741,7 @@
 
                       <div class="form-group mt-0 mb-2 pt-2 early_embryo_grade">
                         <p class="question mb-0 pt-1">初期胚のグレード</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚のグレード</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った初期胚のグレード</span></small>
                         <div class="mt-2">
                           <%= f.collection_radio_buttons(:early_embryo_grade, Report::HASH_EARLY_EMBRYO_GRADE, :first, :last) do |b| %>
                             <div class="form-check pl-2">
@@ -734,7 +756,7 @@
 
                       <div class="form-group mt-0 mb-2 pt-2 blastocyst_grade1">
                         <p class="question mb-0 pt-1">胚盤胞のグレード</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞のグレード</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った胚盤胞のグレード</span></small>
                         <div class="mt-2">
                           <%= f.collection_radio_buttons(:blastocyst_grade1, Report::HASH_BLASTOCYST_GRADE1, :first, :last) do |b| %>
                             <div class="form-check pl-2">
@@ -750,7 +772,7 @@
                       <div class="form-group mt-0 mb-2 pt-2 blastocyst_grade2">
                         <p class="question mb-0 pt-1">胚盤胞の評価</p>
                         <%= f.select :blastocyst_grade2, Report::HASH_BLASTOCYST_GRADE2.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の評価</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った胚盤胞の評価</span></small>
                       </div>
 
                       <div class="mt-5 d-flex justify-content-between">
@@ -785,7 +807,7 @@
                       </ul>
                       <div class="parent-tab-content active mostleft-tab p-2" id="left_tab2">
                         <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
-                          <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った移植周期について</span></h6>
+                          <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植周期について</span></h6>
                           <div class="form-group mt-0 mb-2 pt-0">
                             <p class="question mb-0">これまでに移植した胚の個数</p>
                             <%= f.select :total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED.invert, { prompt: "" }, { class: "form-control" }  %>
@@ -807,13 +829,13 @@
                           <div class="form-group mt-0 mb-2 pt-0">
                             <p class="question mb-0">移植時の年齢</p>
                             <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control" } %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植時の年齢</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植時の年齢</span></small>
                           </div>
 
                           <div class="form-group mt-0 mb-2 pt-0">
                             <p class="question mb-0">移植周期のタイプ</p>
                             <%= f.select :ishoku_type, Report::HASH_ISHOKU_TYPE.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植タイプ</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植タイプ</span></small>
                           </div>
 
                           <div class="form-group mt-0 mb-2 pt-0">
@@ -848,7 +870,7 @@
 
                           <div class="form-group mt-0 mb-2 pt-0 before_ishoku-hormone">
                             <p class="question mb-0">移植前の各ホルモン値</p>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植周期の移植前までの数値</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植周期の移植前までの数値</span></small>
                             <%= f.fields_for :before_ishoku_hormones do |before_ishoku_hormone| %>
                               <%= render "before_ishoku_hormone_fields", f: before_ishoku_hormone %>
                             <% end %>
@@ -859,7 +881,7 @@
 
                           <div class="form-group mt-0 mb-2 pt-0 day_of_shokihaiishoku">
                             <p class="question mb-0">初期胚の移植当日のホルモンと内膜</p>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植当日の数値</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った初期胚の移植当日の数値</span></small>
                             <%= f.fields_for :day_of_shokihaiishokus do |day_of_shokihaiishoku| %>
                               <table class="table table-sm table-bordered mb-0">
                                 <thead>
@@ -888,7 +910,7 @@
 
                           <div class="form-group mt-0 mb-2 pt-0 day_of_haibanhoishoku">
                             <p class="question mb-0">胚盤胞の移植当日のホルモンと内膜</p>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植当日の数値</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った胚盤胞の移植当日の数値</span></small>
                             <%= f.fields_for :day_of_haibanhoishokus do |day_of_haibanhoishoku| %>
                               <table class="table table-sm table-bordered mb-0">
                                 <thead>
@@ -917,7 +939,7 @@
 
                           <div class="form-group mt-0 mb-2 pt-0 shokihaiishoku-hormone">
                             <p class="question mb-0">初期胚移植後のホルモン</p>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植後の数値</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った初期胚の移植後の数値</span></small>
                             <%= f.fields_for :shokihaiishoku_hormones do |shokihaiishoku_hormone| %>
                               <%= render "shokihaiishoku_hormone_fields", f: shokihaiishoku_hormone %>
                             <% end %>
@@ -929,14 +951,14 @@
                           <div class="form-group mt-0 mb-2 pt-0 early_embryo_grade">
                             <p class="question mb-0">初期胚のグレード</p>
                             <%= f.select :early_embryo_grade, Report::HASH_EARLY_EMBRYO_GRADE.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚のグレード</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った初期胚のグレード</span></small>
                             <p class="sub-question mb-0">初期胚のグレードについての補足説明</p>
                             <%= f.text_area :early_embryo_grade_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)上記で〇〇を選びましたが、私のクリニックでは〇〇と呼ばれていました" %>
                           </div>
 
                           <div class="form-group mt-0 mb-2 pt-0 haibanhoishoku-hormone">
                             <p class="question mb-0">胚盤胞移植後のホルモン</p>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植後の数値</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った胚盤胞の移植後の数値</span></small>
                             <%= f.fields_for :haibanhoishoku_hormones do |haibanhoishoku_hormone| %>
                               <%= render "haibanhoishoku_hormone_fields", f: haibanhoishoku_hormone %>
                             <% end %>
@@ -948,7 +970,7 @@
                           <div class="form-group mt-0 mb-2 pt-0 blastocyst_grade1">
                             <p class="question mb-0">胚盤胞のグレード</p>
                             <%= f.select :blastocyst_grade1, Report::HASH_BLASTOCYST_GRADE1.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞のグレード</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った胚盤胞のグレード</span></small>
                             <p class="sub-question">グレードの補足説明</p>
                             <%= f.text_area :blastocyst_grade1_supplementary_explanation, class: "form-control border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "例)上記で〇〇を選びましたが、私のクリニックでは〇〇と呼ばれていました" %>
                           </div>
@@ -956,7 +978,7 @@
                           <div class="form-group mt-0 mb-2 pt-0 blastocyst_grade2">
                             <p class="question mb-0">胚盤胞の評価</p>
                             <%= f.select :blastocyst_grade2, Report::HASH_BLASTOCYST_GRADE2.invert, { prompt: "" }, { class: "form-control" }  %>
-                            <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の評価</span></small>
+                            <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った胚盤胞の評価</span></small>
                           </div>
 
                           <div class="mt-3 d-flex justify-content-end">
@@ -1200,7 +1222,7 @@
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-1"><span class="text-danger font-weight-bold">採卵日以前</span>の各ホルモン値</p>
-                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における採卵日までのホルモン値</span></small>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵周期における採卵日までのホルモン値</span></small>
                     <%= f.fields_for :sairan_hormones do |sairan_hormone| %>
                       <%= render "sairan_hormone_fields", f: sairan_hormone %>
                     <% end %>
@@ -1211,7 +1233,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-1"><span class="text-danger font-weight-bold">採卵日当日</span>の各ホルモン値</p>
-                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の採卵日のホルモン値</span></small>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵周期の採卵日のホルモン値</span></small>
                     <%= f.fields_for :day_of_sairans do |day_of_sairan| %>
                       <table class="table table-sm table-bordered mb-0">
                         <thead>
@@ -1238,7 +1260,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-0 before_ishoku-hormone">
                     <p class="question mb-0 pt-1">移植前の各ホルモン値</p>
-                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植周期の移植前までの数値</span></small>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植周期の移植前までの数値</span></small>
                     <%= f.fields_for :before_ishoku_hormones do |before_ishoku_hormone| %>
                       <%= render "before_ishoku_hormone_fields", f: before_ishoku_hormone %>
                     <% end %>
@@ -1249,7 +1271,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-0 day_of_shokihaiishoku">
                     <p class="question mb-0 pt-1">初期胚の移植当日のホルモンと内膜</p>
-                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植当日の数値</span></small>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った初期胚の移植当日の数値</span></small>
                     <%= f.fields_for :day_of_shokihaiishokus do |day_of_shokihaiishoku| %>
                       <table class="table table-sm table-bordered mb-0">
                         <thead>
@@ -1278,7 +1300,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-0 day_of_haibanhoishoku">
                     <p class="question mb-0 pt-1">胚盤胞の移植当日のホルモンと内膜</p>
-                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植当日の数値</span></small>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った胚盤胞の移植当日の数値</span></small>
                     <%= f.fields_for :day_of_haibanhoishokus do |day_of_haibanhoishoku| %>
                       <table class="table table-sm table-bordered mb-0">
                         <thead>
@@ -1307,7 +1329,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-0 shokihaiishoku-hormone">
                     <p class="question mb-0 pt-1">初期胚移植後のホルモン</p>
-                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った初期胚の移植後の数値</span></small>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った初期胚の移植後の数値</span></small>
                     <%= f.fields_for :shokihaiishoku_hormones do |shokihaiishoku_hormone| %>
                       <%= render "shokihaiishoku_hormone_fields", f: shokihaiishoku_hormone %>
                     <% end %>
@@ -1318,7 +1340,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-0 haibanhoishoku-hormone">
                     <p class="question mb-0 pt-1">胚盤胞移植後のホルモン</p>
-                    <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った胚盤胞の移植後の数値</span></small>
+                    <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った胚盤胞の移植後の数値</span></small>
                     <%= f.fields_for :haibanhoishoku_hormones do |haibanhoishoku_hormone| %>
                       <%= render "haibanhoishoku_hormone_fields", f: haibanhoishoku_hormone %>
                     <% end %>

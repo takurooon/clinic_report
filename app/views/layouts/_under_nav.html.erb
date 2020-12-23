@@ -1,14 +1,20 @@
+<% path = request.path %>
 <% form_edit_link_alert_message = "【注意！】ページを離れますか？投稿/更新/保存のいずれかを行わずにページを離れると選択したデータや入力したデータは保存されず消えてしまいます。ご注意ください。" %>
 <div class="under-nav-area">
   <% if current_user %>
     <div class="d-flex justify-content-around pt-2">
       <div>
-        <%= link_to root_path, data: {confirm: "#{form_edit_link_alert_message}"} do %>
-          <i data-feather="home" class="text-muted"></i>
+        <% unless path.include?("new") || path.include?("edit") %>
+          <%= link_to root_path do %>
+            <i data-feather="home" class="text-muted"></i>
+          <% end %>
+        <% else %>
+          <%= link_to root_path, data: {confirm: "#{form_edit_link_alert_message}"} do %>
+            <i data-feather="home" class="text-muted"></i>
+          <% end %>
         <% end %>
       </div>
       <div>
-        <% path = request.path %>
         <% unless path.include?("reports") || path.include?("my_page") || path.include?("sign_in") || path.include?("sign_up") || path.include?("my_page") || path.include?("edit") || path.include?("notifications") %>
           <%= link_to category_search_path do %>
             <i data-feather="search" class="text-muted"></i>

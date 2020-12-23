@@ -229,25 +229,68 @@ $(function() {
 });
 
 // ステータスを選択した時点でform内のテキストに表示させる
-$(function() {
-  var current_state = $('#report_current_state option:selected').text();
-  var status = "「" + current_state + "」";
-  if (current_state === "") {
-    $('.select-current-status').text("現在の状況");
-    $('.select-current-status2').text("現状");
-  } else {
-    $('.select-current-status').text(status);
-    $('.select-current-status2').text(status);
-  }
-});
-$(function() {
-  $('#report_current_state').change(function() {
-    var current_state = $('#report_current_state option:selected').text();
-    var status = "「" + current_state + "」";
-    $('.select-current-status').text(status);
-    $('.select-current-status2').text(status);
+// $(function() {
+//   $('input[name="report[current_state]"]:radio').change(function() {
+//     var current_state = $('input[name="report[current_state]"]:radio:radio:checked').val();
+//     var status = "現在の状況"
+//     $('.select-current-status').text(status);
+//     if (current_state == 1) {
+//       var status = "妊娠中"
+//       $('.select-current-status').text(status);
+//     } else if (current_state == 2) {
+//       var status = "妊娠中(多胎)"
+//       $('.select-current-status').text(status);
+//     } else if (current_state == 3) {
+//       var status = "出産"
+//       $('.select-current-status').text(status);
+//     } else if (current_state == 4) {
+//       var status = "出産(多胎)"
+//       $('.select-current-status').text(status);
+//     } else {
+//       var status = "現在の状況"
+//       $('.select-current-status').text(status);
+//     }
+//   });
+// })
+$(function(){
+  $('.default-current-status').text("現在の状況");
+  $('#report_current_state_1').on('keyup change',function(e){
+    var val = $(this).prop("checked");
+    if (val == true) {
+      $('.select-current-status').text("「妊娠中」");
+      $('.default-current-status').text("");
+    }
+  });
+  $('#report_current_state_2').on('keyup change',function(e){
+    var val = $(this).prop("checked");
+    if (val == true) {
+      $('.select-current-status').text("「妊娠中(多胎)」");
+      $('.default-current-status').text("");
+    }
+  });
+  $('#report_current_state_3').on('keyup change',function(e){
+    var val = $(this).prop("checked");
+    if (val == true) {
+      $('.select-current-status').text("「出産」");
+      $('.default-current-status').text("");
+    }
+  });
+  $('#report_current_state_4').on('keyup change',function(e){
+    var val = $(this).prop("checked");
+    if (val == true) {
+      $('.select-current-status').text("「出産(多胎)」");
+      $('.default-current-status').text("");
+    }
+  });
+  $('#report_current_state_99').on('keyup change',function(e){
+    var val = $(this).prop("checked");
+    if (val == true) {
+      $('.select-current-status').text("現在の状況「その他」");
+      $('.default-current-status').text("");
+    }
   });
 });
+
 
 // 治療当時の住まい選択
 $(function() {
@@ -321,7 +364,10 @@ function m_funin(male_infertility) {
 $(function() {
   $('input[name="report[transplant_method]"]:radio').change(function() {
     var discription1 = "移植胚は「";
-    var discription2 = "」を概要タブにて選択しています。";
+    var discription2 = "」を選択されています。";
+    var discription3 = "初期胚と胚盤胞両方を移植した場合には「";
+    var discription4 = "胚盤胞";
+    var discription5 = "」を選択下さい。";
     var val = $(this).val();
     if (val == "1") {
       var val = "凍結胚移植";
@@ -335,6 +381,15 @@ $(function() {
       $('.transplant_method').text(val);
       $('.transplant_method_dis1').text(discription1);
       $('.transplant_method_dis2').text(discription2);
+    } else if (val == "3") {
+      var val = "新鮮胚と凍結胚を移植";
+      $('.stage-alert').show();
+      $('.transplant_method').text(val);
+      $('.transplant_method_dis1').text(discription1);
+      $('.transplant_method_dis2').text(discription2);
+      $('.transplant_method_dis3').text(discription3);
+      $('.transplant_method_dis4').text(discription4);
+      $('.transplant_method_dis5').text(discription5);
     } else if (val == "99") {
       var val = "その他";
       $('.stage-alert').show();
@@ -353,12 +408,12 @@ $(function() {
   });
 });
 
-// report_transfer_option_ids_6は二段階移植.移植オプションで二段階移植(val=6)を選んだら以下を表示
+// report_transfer_option_ids_1は二段階移植,report_transfer_option_ids_1は複数胚移植を選んだら「移植胚」の項目に以下を表示
 $(function(){
-  $('#report_transfer_option_ids_6').on('keyup change',function(e){
-    var discription1 = "二段階移植の場合は「";
-    var discription2 = "胚盤胞";
-    var discription3 = "」を選択下さい。";
+  $('#report_transfer_option_ids_1').on('keyup change',function(e){
+    var discription1 = "移植オプションは「";
+    var discription2 = "二段階移植";
+    var discription3 = "」を選択されています。";
     var val = $(this).prop("checked");
     if (val == true) {
       $('.option-alert').show();
@@ -370,17 +425,54 @@ $(function(){
     }
   });
 });
-
-
-
-
-
-
-
-
-
-
-
+$(function(){
+  $('#report_transfer_option_ids_2').on('keyup change',function(e){
+    var discription1 = "移植オプションは「";
+    var discription2 = "複数胚移植";
+    var discription3 = "」を選択されています。";
+    var val = $(this).prop("checked");
+    if (val == true) {
+      $('.option-alert').show();
+      $('.transfer_option_dis4').text(discription1);
+      $('.transfer_option_dis5').text(discription2);
+      $('.transfer_option_dis6').text(discription3);
+    } else {
+      $('.option-alert').hide();
+    }
+  });
+});
+$(function(){
+  $('#report_transfer_option_ids_1').on('keyup change',function(e){
+    var discription1 = "二段階移植 の場合は「";
+    var discription2 = "胚盤胞";
+    var discription3 = "」を選択下さい。";
+    var val = $(this).prop("checked");
+    if (val == true) {
+      $('.option-alert').show();
+      $('.transfer_option_dis2_1').text(discription1);
+      $('.transfer_option_dis2_2').text(discription2);
+      $('.transfer_option_dis2_3').text(discription3);
+    } else {
+      $('.option-alert').hide();
+    }
+  });
+});
+$(function(){
+  $('#report_transfer_option_ids_2').on('keyup change',function(e){
+    var discription1 = "複数胚移植 で初期胚と胚盤胞の両方がある場合は「";
+    var discription2 = "胚盤胞";
+    var discription3 = "」を選択下さい。";
+    var val = $(this).prop("checked");
+    if (val == true) {
+      $('.option-alert').show();
+      $('.transfer_option_dis2_4').text(discription1);
+      $('.transfer_option_dis2_5').text(discription2);
+      $('.transfer_option_dis2_6').text(discription3);
+    } else {
+      $('.option-alert').hide();
+    }
+  });
+});
 
 // 胚のステージ選択
 $(function() {

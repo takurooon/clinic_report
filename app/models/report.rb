@@ -497,6 +497,7 @@ class Report < ApplicationRecord
   HASH_TRANSPLANT_METHOD = {
     1 => "凍結胚",
     2 => "新鮮胚",  
+    3 => "新鮮胚と凍結胚", 
     99 => "その他",
     100 => "不明"
   }

@@ -484,7 +484,7 @@
                     </tr>
                   <% end %>
                   <tr>
-                    <td class="result-left-column small text-center">移植方法</td>
+                    <td class="result-left-column small text-center">移植胚</td>
                     <td class="pl-3">
                       <% if @report.transplant_method.present? %>
                         <span class="result-text"><%= @report.str_transplant_method %></span>
@@ -945,7 +945,7 @@
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "専門用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
-                <h4 class="child-tab-title">採卵･受精･培養</h4>
+                <h4 class="child-tab-title">採卵･受精･培養･胚</h4>
 
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
@@ -1188,7 +1188,7 @@
                           <canvas id="sairanFshLh"></canvas>
                         </div>
                       <% end %>
-                      <h5 class="child-tab-title mt-4"><span class="marker-underline">受精･培養</span></h5>
+                      <h5 class="child-tab-title mt-4"><span class="marker-underline">受精･培養･胚</span></h5>
                       <table class="table p-0">
                         <tr>
                           <td class="result-left-column small text-center" style="width:30%">受精個数</td>
@@ -1980,7 +1980,7 @@
                                   </td>
                                 </tr>
                                 <tr>
-                                  <td class="result-left-column small text-center">移植方法</td>
+                                  <td class="result-left-column small text-center">移植胚</td>
                                   <td class="pl-3">
                                     <% if unsuccessful_ishoku_cycle.transplant_method.present? %>
                                       <%= unsuccessful_ishoku_cycle.str_unsuccessful_ishoku_cycle_transplant_method(unsuccessful_ishoku_cycle.transplant_method) %>
@@ -3009,9 +3009,9 @@
                       </li>
                       <li>
                         <% if @report.transplant_method.present? %>
-                          <span class="text-muted small">　移植方法</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_transplant_method %></span>
+                          <span class="text-muted small">　移植胚</span>&nbsp;：&nbsp;<span class="small"><%= @report.str_transplant_method %></span>
                         <% else %>
-                          <span class="text-muted small">　移植方法</span>&nbsp;：&nbsp;<span class="small">未回答</span>
+                          <span class="text-muted small">　移植胚</span>&nbsp;：&nbsp;<span class="small">未回答</span>
                         <% end %>
                       </li>
                       <li>
