@@ -420,8 +420,8 @@ class Report < ApplicationRecord
 
   # selection_of_anesthesia_typeの区分値(麻酔の有無&種類に関しての選択の余地)
   HASH_SELECTION_OF_ANESTHESIA_TYPE = {
-    1 => "選択できた",
-    2 => "選択できなかった",
+    1 => "選択可",
+    2 => "選択不可",
     99 => "その他",
     100 => "不明"
   }
@@ -939,7 +939,7 @@ class Report < ApplicationRecord
     8 => "8院目",
     9 => "9院目",
     10 => "10院目",
-    11 => "11院目以上",
+    11 => "11院以上",
     100 => "不明",
   }
 
@@ -1154,7 +1154,7 @@ class Report < ApplicationRecord
     8 => "8回",
     9 => "9回",
     10 => "10回",
-    11 => "11回以上",
+    11 => "11回〜",
   }
 
   def str_total_number_of_sairan
@@ -1241,7 +1241,7 @@ class Report < ApplicationRecord
     8 => "8個",
     9 => "9個",
     10 => "10個",
-    11 => "11個以上",
+    11 => "11個〜",
   }
 
   def str_total_number_of_eggs_transplanted

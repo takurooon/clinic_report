@@ -388,7 +388,7 @@ $(function() {
 // report_transfer_option_ids_1は二段階移植,report_transfer_option_ids_2は複数胚移植、これらを選んだら「移植胚」の項目に以下を表示
 $(function(){
   $('#report_transfer_option_ids_1').on('keyup change',function(e){
-    var discription1 = "(前問の)移植オプションで「";
+    var discription1 = "移植オプションで「";
     var discription2 = "二段階移植";
     var discription3 = "」を選択されています。";
     var val = $(this).prop("checked");
@@ -404,7 +404,7 @@ $(function(){
 });
 $(function(){
   $('#report_transfer_option_ids_2').on('keyup change',function(e){
-    var discription1 = "(前問の)移植オプションで「";
+    var discription1 = "移植オプションで「";
     var discription2 = "複数胚移植";
     var discription3 = "」を選択されています。";
     var val = $(this).prop("checked");
