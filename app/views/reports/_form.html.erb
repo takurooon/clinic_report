@@ -545,7 +545,7 @@
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植可能胚の合計数</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵周期における移植可能胚(受精卵)数</span></small>
-                        <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" } %>
                       </div>
 
                       <div class="row">
@@ -576,7 +576,7 @@
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">新鮮胚</p></td>
                                 <td class="px-3 py-0" style="width:70%">
-                                  <%= f.select :number_of_unfrozen_embryos, Report::HASH_NUMBER_OF_UNFROZEN_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                                  <%= f.select :number_of_unfrozen_embryos, Report::HASH_NUMBER_OF_UNFROZEN_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" } %>
                                 </td>
                               </tr>
                             </table>
@@ -610,7 +610,6 @@
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">前核胚</p></td>
                                 <td class="px-3 py-0" style="width:70%">
-                                  
                                   <%= f.select :number_of_pronuclear_embryos, Report::HASH_NUMBER_OF_PRONUCLEAR_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                                 </td>
                               </tr>
