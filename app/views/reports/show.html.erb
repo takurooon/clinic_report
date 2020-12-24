@@ -1426,8 +1426,10 @@
                       <%= @report.str_blastocyst_grade1 %>&nbsp;&nbsp;<%= @report.str_blastocyst_grade2 %>&nbsp;の<br>
                     <% end %>
                   <% end %>
-                  <% if @report.transplant_method.present? && @report.transplant_method < 5 %>
+                  <% if @report.transplant_method.present? && @report.transplant_method < 2 %>
                     <%= @report.str_transplant_method %>
+                  <% elsif @report.transplant_method.present? && @report.transplant_method = 3 %>
+                    凍結胚
                   <% else %>
                     移植
                   <% end %>
