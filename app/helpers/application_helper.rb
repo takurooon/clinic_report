@@ -27,7 +27,7 @@ module ApplicationHelper
       title: 'REPOCO | のこす、みえる、ふみだせる。経験をカタチに 情報をエールに',
       reverse: true,
       charset: 'utf-8',
-      description: '不妊治療体験をレポートとして投稿できるアプリ「REPOCO (レポコ)」。経験をカタチに、情報をエールに。さぁ、レポコを投稿してみよう！',
+      description: '不妊治療経験をレポートとして投稿できる「REPOCO (レポコ)」経験をカタチに情報をエールに。さぁレポコしよう！',
       keywords: '不妊治療戦士達の通院先と実績,不妊治療,体外受精,顕微受精',
       canonical: request.original_url,
       separator: '-',
