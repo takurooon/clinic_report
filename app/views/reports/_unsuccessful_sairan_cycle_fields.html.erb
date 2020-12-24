@@ -9,37 +9,37 @@
         <tr>
           <td>
             <small class="text-muted">何回目の採卵？</small>
-            <%= f.select :number, UnsuccessfulSairanCycle::HASH_NUMBER_OF_SAIRAN.invert, { prompt: "" }, { class: "form-control py-0" } %>
+            <%= f.select :un_sairan_number, UnsuccessfulSairanCycle::HASH_NUMBER_OF_SAIRAN.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
             <small class="text-muted">↑  採卵時の年齢</small>
-            <%= f.select :sairan_age, UnsuccessfulSairanCycle::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
+            <%= f.select :un_sairan_age, UnsuccessfulSairanCycle::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
             <small class="text-muted">誘発タイプ</small>
-            <%= f.select :type_of_ovarian_stimulation, UnsuccessfulSairanCycle::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "" }, { class: "form-control py-0" } %>
+            <%= f.select :un_sairan_type_of_ovarian_stimulation, UnsuccessfulSairanCycle::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
             <small class="text-muted">採卵個数</small>
-            <%= f.select :number_of_eggs_collected, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "" }, { class: "form-control py-0" } %>
+            <%= f.select :un_sairan_number_of_eggs_collected, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
             <small class="text-muted">受精個数</small>
-            <%= f.select :number_of_fertilized_eggs, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "" }, { class: "form-control py-0" } %>
+            <%= f.select :un_sairan_number_of_fertilized_eggs, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
             <small class="text-muted">移植可能胚数(新鮮胚含む)</small>
-            <%= f.select :number_of_transferable_embryos, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "" }, { class: "form-control py-0" } %>
+            <%= f.select :un_sairan_number_of_transferable_embryos, UnsuccessfulSairanCycle::HASH_NUMBER_OF_EGGS.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
@@ -51,7 +51,7 @@
         <tr>
           <td>
             <small class="text-muted">メモ</small>
-            <%= f.text_area :memo, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+            <%= f.text_area :un_sairan_memo, class: "form-control py-0 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
           </td>
         </tr>
       </tbody>

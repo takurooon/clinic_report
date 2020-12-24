@@ -485,10 +485,10 @@ class ReportsController < ApplicationController
       itinerary_of_choosing_a_clinics_attributes: [:id, :order_of_transfer, :clinic_id, :_destroy],
       cl_selection_ids: [],
       special_inspections_attributes: [:id, :name, :place, :cost, :memo, :_destroy],
-      unsuccessful_sairan_cycles_attributes: [:id, :number, :sairan_age, :type_of_ovarian_stimulation, :number_of_eggs_collected, :number_of_fertilized_eggs,:number_of_transferable_embryos, :number_of_frozen_eggs, :memo, :_destroy],
+      unsuccessful_sairan_cycles_attributes: [:id, :un_sairan_number, :un_sairan_age, :un_sairan_type_of_ovarian_stimulation, :un_sairan_number_of_eggs_collected, :un_sairan_number_of_fertilized_eggs,:un_sairan_number_of_transferable_embryos, :un_sairan_number_of_frozen_eggs, :un_sairan_memo, :_destroy],
       transfer_option_ids: [],
       pg_eplenishment_ids: [],
-      unsuccessful_ishoku_cycles_attributes: [:id, :number, :ishoku_age, :transplant_method, :ishoku_type, :memo, :_destroy],
+      unsuccessful_ishoku_cycles_attributes: [:id, :un_ishoku_number, :un_ishoku_age, :un_ishoku_transplant_method, :un_ishoku_type, :un_ishoku_memo, :_destroy],
 
       # 以下は未使用
       day_of_sairans_attributes: [:id, :day, :e2, :fsh, :lh, :p4, :_destroy],
