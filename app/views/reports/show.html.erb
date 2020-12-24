@@ -1443,13 +1443,81 @@
                   <div class="parent-tab-content active mostleft-tab p-2" id="left_tab2">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
                       <h5 class="child-tab-title">
-                        <span class="marker-underline">
+                        <span class="small"><span class="small">
                           <% if @report.current_state.present? %>
-                            「<%= @report.str_current_state %>」に至った移植
-                          <% else %>
-                            移植
+                            「<%= @report.str_current_state %>」に至った
                           <% end %>
-                        </span>
+                          <% if @report.transfer_options.present? %>
+                            <% transfer_options = [] %>
+                            <% @report.transfer_options.each do |transfer_option| %>
+                              <% if transfer_option.id == 1 %>
+                                <span class="marker-underline">「二段階移植」</span>
+                              <% elsif transfer_option.id == 2 %>
+                                <span class="marker-underline">「複数胚移植」</span>
+                              <% end %>
+                              <% transfer_options << transfer_option.id %>
+                            <% end %>
+                            <% if transfer_options.include?(1 || 2)%>
+                              にて<br>
+                            <% end %>
+                          <% end %>
+                          <% if @report.transplant_method.present? %>
+                            <% if @report.transplant_method == 1 %>
+                              <% if @report.embryo_stage == 1 %>
+                                <span class="marker-underline">凍結胚&nbsp;(初期胚
+                                <% if early_embryo_grade.present? %>
+                                  <%= @report.str_early_embryo_grade %>
+                                <% end %>)</span>
+                              <% elsif @report.embryo_stage == 2 %>
+                                <span class="marker-underline">凍結胚&nbsp;(胚盤胞
+                                <% if blastocyst_grade1.present? %>
+                                  <%= @report.str_blastocyst_grade1_show %>
+                                <% end %>
+                                <% if blastocyst_grade2.present? %>
+                                  <%= @report.str_blastocyst_grade2_show %>
+                                <% end %>)</span>
+                              <% else %>
+                              <% end %>
+                              移植
+                            <% elsif @report.transplant_method == 2 %>
+                              <% if @report.embryo_stage == 1 %>
+                                <span class="marker-underline">新鮮胚&nbsp;(初期胚
+                                <% if @report.early_embryo_grade.present? %>
+                                  <%= @report.str_early_embryo_grade %>
+                                <% end %>)</span>
+                              <% elsif @report.embryo_stage == 2 %>
+                                <span class="marker-underline">新鮮胚&nbsp;(胚盤胞
+                                <% if @report.blastocyst_grade1.present? %>
+                                  <%= @report.str_blastocyst_grade1_show %>
+                                <% end %>
+                                <% if @report.blastocyst_grade2.present? %>
+                                  <%= @report.str_blastocyst_grade2_show %>
+                                <% end %>)</span>
+                              <% else %>
+                              <% end %>
+                              移植
+                            <% elsif @report.transplant_method == 3 %>
+                              <% if @report.embryo_stage == 1 %>
+                                <span class="marker-underline">凍結胚&nbsp;(初期胚
+                                <% if @report.early_embryo_grade.present? %>
+                                  <%= @report.str_early_embryo_grade %>
+                                <% end %>)</span>
+                              <% elsif @report.embryo_stage == 2 %>
+                                <span class="marker-underline">凍結胚&nbsp;(胚盤胞
+                                <% if @report.blastocyst_grade1.present? %>
+                                  <%= @report.str_blastocyst_grade1_show %>
+                                <% end %>
+                                <% if @report.blastocyst_grade2.present? %>
+                                  <%= @report.str_blastocyst_grade2_show %>
+                                <% end %>)</span>
+                              <% else %>
+                              <% end %>
+                              移植
+                            <% else %>
+                              移植
+                            <% end %>
+                          <% end %>
+                        </span></span>
                       </h5>
                       <table class="table p-0 mb-0">
                         <tr>

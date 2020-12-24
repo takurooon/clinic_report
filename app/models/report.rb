@@ -547,6 +547,21 @@ class Report < ApplicationRecord
   def str_blastocyst_grade1
     return HASH_BLASTOCYST_GRADE1[self.blastocyst_grade1]
   end
+  # ↓show用
+  HASH_BLASTOCYST_GRADE1_SHOW = {
+    1 => "1",
+    2 => "2",
+    3 => "3",
+    4 => "4",
+    5 => "5",
+    6 => "6",
+    99 => "",
+    100 => ""
+  }
+
+  def str_blastocyst_grade1_show
+    return HASH_BLASTOCYST_GRADE1_SHOW[self.blastocyst_grade1]
+  end
 
   # blastocyst_grade2の区分値(胚盤胞以上の評価/ICM/TE)
   HASH_BLASTOCYST_GRADE2 = {
@@ -571,6 +586,30 @@ class Report < ApplicationRecord
 
   def str_blastocyst_grade2
     return HASH_BLASTOCYST_GRADE2[self.blastocyst_grade2]
+  end
+  # ↓show用
+  HASH_BLASTOCYST_GRADE2_SHOW = {
+    100 => "",
+    1 => "AA",
+    2 => "AB",
+    3 => "AC",
+    4 => "BA",
+    5 => "BB",
+    6 => "BC",
+    7 => "CA",
+    8 => "CB",
+    9 => "CC",
+    10 => "A + ?",
+    11 => "B + ?",
+    12 => "C + ?",
+    13 => "? + A",
+    14 => "? + B",
+    15 => "? + C",
+    99 => "",
+  }
+
+  def str_blastocyst_grade2_show
+    return HASH_BLASTOCYST_GRADE2_SHOW[self.blastocyst_grade2]
   end
 
   # fuikuの区分値(不育症の診断有無)
