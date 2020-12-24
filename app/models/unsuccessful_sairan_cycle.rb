@@ -173,18 +173,18 @@ end
 #
 # Table name: unsuccessful_sairan_cycles
 #
-#  id                             :bigint           not null, primary key
-#  memo                           :text
-#  number                         :integer
-#  number_of_eggs_collected       :integer
-#  number_of_fertilized_eggs      :integer
-#  number_of_frozen_eggs          :integer
-#  number_of_transferable_embryos :integer
-#  sairan_age                     :integer
-#  type_of_ovarian_stimulation    :integer
-#  created_at                     :datetime         not null
-#  updated_at                     :datetime         not null
-#  report_id                      :bigint           not null
+#  id                                       :bigint           not null, primary key
+#  un_sairan_age                            :integer
+#  un_sairan_memo                           :text
+#  un_sairan_number                         :integer
+#  un_sairan_number_of_eggs_collected       :integer
+#  un_sairan_number_of_fertilized_eggs      :integer
+#  un_sairan_number_of_frozen_eggs          :integer
+#  un_sairan_number_of_transferable_embryos :integer
+#  un_sairan_type_of_ovarian_stimulation    :integer
+#  created_at                               :datetime         not null
+#  updated_at                               :datetime         not null
+#  report_id                                :bigint           not null
 #
 # Indexes
 #

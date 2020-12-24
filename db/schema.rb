@@ -413,11 +413,11 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "unsuccessful_ishoku_cycles", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "number"
-    t.integer "ishoku_age"
-    t.integer "transplant_method"
-    t.integer "ishoku_type"
-    t.text "memo"
+    t.integer "un_ishoku_number"
+    t.integer "un_ishoku_age"
+    t.integer "un_ishoku_transplant_method"
+    t.integer "un_ishoku_type"
+    t.text "un_ishoku_memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id"], name: "index_unsuccessful_ishoku_cycles_on_report_id"
@@ -425,14 +425,14 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "unsuccessful_sairan_cycles", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "number"
-    t.integer "sairan_age"
-    t.integer "type_of_ovarian_stimulation"
-    t.integer "number_of_eggs_collected"
-    t.integer "number_of_fertilized_eggs"
-    t.integer "number_of_transferable_embryos"
-    t.integer "number_of_frozen_eggs"
-    t.text "memo"
+    t.integer "un_sairan_number"
+    t.integer "un_sairan_age"
+    t.integer "un_sairan_type_of_ovarian_stimulation"
+    t.integer "un_sairan_number_of_eggs_collected"
+    t.integer "un_sairan_number_of_fertilized_eggs"
+    t.integer "un_sairan_number_of_transferable_embryos"
+    t.integer "un_sairan_number_of_frozen_eggs"
+    t.text "un_sairan_memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id"], name: "index_unsuccessful_sairan_cycles_on_report_id"

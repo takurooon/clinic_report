@@ -2,15 +2,15 @@
 #
 # Table name: unsuccessful_ishoku_cycles
 #
-#  id                :bigint           not null, primary key
-#  ishoku_age        :integer
-#  ishoku_type       :integer
-#  memo              :text
-#  number            :integer
-#  transplant_method :integer
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  report_id         :bigint           not null
+#  id                          :bigint           not null, primary key
+#  un_ishoku_age               :integer
+#  un_ishoku_memo              :text
+#  un_ishoku_number            :integer
+#  un_ishoku_transplant_method :integer
+#  un_ishoku_type              :integer
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  report_id                   :bigint           not null
 #
 # Indexes
 #
