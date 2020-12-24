@@ -496,8 +496,8 @@ class Report < ApplicationRecord
   # transplant_methodの区分値(移植胚の種類)
   HASH_TRANSPLANT_METHOD = {
     1 => "凍結胚",
-    2 => "新鮮胚",  
-    3 => "新鮮胚と凍結胚", 
+    2 => "新鮮胚",
+    3 => "新鮮胚と凍結胚",
     99 => "その他",
     100 => "不明"
   }
@@ -530,6 +530,20 @@ class Report < ApplicationRecord
 
   def str_early_embryo_grade
     return HASH_EARLY_EMBRYO_GRADE[self.early_embryo_grade]
+  end
+  # ↓show用
+  HASH_EARLY_EMBRYO_GRADE_SHOW = {
+    1 => "グレード1",
+    2 => "グレード2",
+    3 => "グレード3",
+    4 => "グレード4",
+    5 => "グレード5",
+    9 => "",
+    100 => ""
+  }
+
+  def str_early_embryo_grade_show
+    return HASH_EARLY_EMBRYO_GRADE_SHOW[self.early_embryo_grade]
   end
 
   # blastocyst_grade1の区分値(胚盤胞以上のグレード)
