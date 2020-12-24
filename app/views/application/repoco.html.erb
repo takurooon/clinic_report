@@ -68,7 +68,7 @@
         <%= image_tag "home/moonlight_dark2.svg", class: "img-fluid vertical-flip", loading: "lazy" %>
       </div>
     </div>
-    <div class="third-area-content col-md-7">
+    <div class="third-area-content col-md-7 pt-0">
       <div class="d-none d-md-block text-center pb-5">
         <h4 class="font-weight-bold" style="line-height: 1.5;">不透明な不妊治療の世界</h4>
       </div>
@@ -76,9 +76,9 @@
         <h5 class="font-weight-bold" style="line-height: 1.5;">不透明な不妊治療の世界</h5>
       </div>
       <p style="line-height: 1.8;">不妊治療は保険のきかない自費診療です。その費用はとても高額で数百万円かかることも珍しいことではありません。そして、そんな高額なお金を払っても結果が約束されないのが不妊治療です。</p>
-      <p style="line-height: 1.8;">その上クリニックの情報や実績は公正に開示されていません。仮にクリニック独自の方法で開示していたとしてもそれが信用できるものかどうか私たちでは判断がつきません。</p>
+      <p style="line-height: 1.8;">その上クリニックの情報や実績は公正に開示されていません。仮にクリニック独自の方法で開示されていたとしてもそれが信用できるものかどうか私たちでは判断がつきません。</p>
       <p style="line-height: 1.8;">また治療ガイドラインもなく、治療方針はクリニックによって実に様々です。さらには不安を煽る広告や、エビデンスに乏しく怪しい不妊治療ビジネスも横行しています。</p>
-      <h6 class="font-weight-bold" style="line-height: 1.8;">治療に踏み出す方たちはこんな不透明な環境の中で、まさにギャンブルともいえるクリニック選びをしいられています。</h6>
+      <h6 class="font-weight-bold" style="line-height: 1.8;">治療に踏み出す方たちはこんな不透明な環境の中で、まさにギャンブルともいえるほど難しいクリニック選びをしいられています。</h6>
       <div class="d-block d-md-none mt-5 px-3">
         <%= image_tag "home/moonlight_dark.svg", class: "img-fluid", loading: "lazy" %>
       </div>
@@ -253,8 +253,14 @@
         <h2 class="text-dark font-weight-bold">Join Repoco</h2>
         <p class="mt-4 text-muted">あなたの治療体験をシェアしよう</p>
         <% if user_signed_in? %>
-          <%= link_to new_report_path, style:"text-decoration: none;" do %>
-            <div class="btn-blue text-center font-weight-bold">今すぐレポコを書く</div>
+          <% if current_user.reports.present? %>
+            <%= link_to my_page_path, style:"text-decoration: none;" do %>
+              <div class="btn-blue-lg text-center font-weight-bold">レポコをさらに充実させる</div>
+            <% end %>
+          <% else %>
+            <%= link_to new_report_path, style:"text-decoration: none;" do %>
+              <div class="btn-blue text-center font-weight-bold">今すぐレポコを書く</div>
+            <% end %>
           <% end %>
         <% else %>
           <%= link_to new_user_registration_path, style:"text-decoration: none;" do %>

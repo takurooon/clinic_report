@@ -464,6 +464,17 @@
   background: #3EA8FF;
   max-width: 200px;
 }
+.btn-blue-lg {
+  padding: .6em 1.5em;
+  white-space: nowrap;
+  background: var(--c-primary);
+  color: #fff;
+  border-radius: .45em;
+  box-shadow: 0 3px 6px -2px rgba(100,110,167,.2);
+  border: 1px solid rgba(92,147,187,.15);
+  background: #3EA8FF;
+  max-width: 300px;
+}
 .question-brand-color {
   padding: .3rem .6rem;
   white-space: nowrap;

@@ -206,19 +206,19 @@
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-1">
                     <p class="question mb-0 pt-1">卒業時の年齢</p>
-                    <small class="text-muted"><span class="small text-muted"><span class="select-clinic-name"></span>を卒業した年齢</span></small>
+                    <small class="text-muted"><span class="small text-muted"><span class="select-clinic-name"></span>&nbsp;卒業(通院終了)時の年齢</span></small>
                     <%= f.select :treatment_end_age, Report::HASH_TREATMENT_END_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-2">
                     <p class="question mb-0 pt-1">卒業時のパートナーの年齢</p>
-                    <small class="text-muted"><span class="small text-muted"><span class="select-clinic-name"></span>を卒業した時のパートナーの年齢</span></small>
+                    <small class="text-muted"><span class="small text-muted"><span class="select-clinic-name"></span>&nbsp;卒業(通院終了)時のパートナーの年齢</span></small>
                     <%= f.select :age_of_partner_at_end_of_treatment, Report::HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-2">
                     <p class="question mb-0 pt-2">クリニック卒業年</p>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業した年(通院を終了した年)</span></small>
+                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>を卒業(通院を終了)した年</span></small>
                     <%= f.date_select :year_of_treatment_end, {
                       discard_month: true,
                       discard_day: true,
