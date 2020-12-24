@@ -70,8 +70,8 @@ class ReportsController < ApplicationController
       Clinic.find(c).name
     end
 
-    @unsuccessful_sairan_cycles = @report.unsuccessful_sairan_cycles.order(number: "asc")
-    @unsuccessful_ishoku_cycles = @report.unsuccessful_ishoku_cycles.order(number: "asc")
+    @unsuccessful_sairan_cycles = @report.unsuccessful_sairan_cycles.order(un_sairan_number: "asc")
+    @unsuccessful_ishoku_cycles = @report.unsuccessful_ishoku_cycles.order(un_ishoku_number: "asc")
 
     @special_inspection_era = @report.special_inspections.where(name: 1)
     @special_inspection_emma = @report.special_inspections.where(name: 2)
