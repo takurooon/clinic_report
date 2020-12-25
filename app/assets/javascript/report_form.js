@@ -337,54 +337,6 @@ function m_funin(male_infertility) {
   }
 }
 
-// 胚のステージへの移植方法表示(凍結or新鮮胚移植)
-$(function() {
-  $('input[name="report[transplant_method]"]:radio').change(function() {
-    var discription1 = "移植胚は「";
-    var discription2 = "」を選択されています。";
-    var discription3 = "初期胚と胚盤胞両方を移植した場合は「";
-    var discription4 = "胚盤胞";
-    var discription5 = "」を選択下さい。";
-    var val = $(this).val();
-    if (val == "1") {
-      var val = "凍結胚移植";
-      $('.stage-alert').show();
-      $('.transplant_method').text(val);
-      $('.transplant_method_dis1').text(discription1);
-      $('.transplant_method_dis2').text(discription2);
-    } else if (val == "2") {
-      var val = "新鮮胚移植";
-      $('.stage-alert').show();
-      $('.transplant_method').text(val);
-      $('.transplant_method_dis1').text(discription1);
-      $('.transplant_method_dis2').text(discription2);
-    } else if (val == "3") {
-      var val = "新鮮胚と凍結胚を移植";
-      $('.stage-alert').show();
-      $('.transplant_method').text(val);
-      $('.transplant_method_dis1').text(discription1);
-      $('.transplant_method_dis2').text(discription2);
-      $('.transplant_method_dis3').text(discription3);
-      $('.transplant_method_dis4').text(discription4);
-      $('.transplant_method_dis5').text(discription5);
-    } else if (val == "99") {
-      var val = "その他";
-      $('.stage-alert').show();
-      $('.transplant_method').text(val);
-      $('.transplant_method_dis1').text(discription1);
-      $('.transplant_method_dis2').text(discription2);
-    } else if (val == "100") {
-      var val = "不明";
-      $('.stage-alert').show();
-      $('.transplant_method').text(val);
-      $('.transplant_method_dis1').text(discription1);
-      $('.transplant_method_dis2').text(discription2);
-    } else {
-      $('.stage-alert').hide();
-    }
-  });
-});
-
 // report_transfer_option_ids_1は二段階移植,report_transfer_option_ids_2は複数胚移植、これらを選んだら「移植胚」の項目に以下を表示
 $(function(){
   $('#report_transfer_option_ids_1').on('keyup change',function(e){
@@ -418,38 +370,19 @@ $(function(){
     }
   });
 });
-$(function(){
-  $('#report_transfer_option_ids_1').on('keyup change',function(e){
-    var discription1 = "二段階移植 の場合は「";
-    var discription2 = "胚盤胞";
-    var discription3 = "」を選択下さい。";
-    var val = $(this).prop("checked");
-    if (val == true) {
-      $('.transfer_option_alert3').show();
-      $('.transfer_option_dis2_1').text(discription1);
-      $('.transfer_option_dis2_2').text(discription2);
-      $('.transfer_option_dis2_3').text(discription3);
-    } else {
-      $('.transfer_option_alert3').hide();
-    }
+$(function() {
+  $('input[name="report[total_number_of_eggs_transplanted]"]:radio').change(function() {
+    eggs($(this).val());
   });
-});
-$(function(){
-  $('#report_transfer_option_ids_2').on('keyup change',function(e){
-    var discription1 = "複数胚移植 で初期胚と胚盤胞の両方がある場合は「";
-    var discription2 = "胚盤胞";
-    var discription3 = "」を選択下さい。";
-    var val = $(this).prop("checked");
-    if (val == true) {
-      $('.transfer_option_alert4').show();
-      $('.transfer_option_dis2_4').text(discription1);
-      $('.transfer_option_dis2_5').text(discription2);
-      $('.transfer_option_dis2_6').text(discription3);
-    } else {
-      $('.transfer_option_alert4').hide();
-    }
-  });
-});
+})
+$(".number_of_eggs").hide();
+function eggs(eggs_number) {
+  if (eggs_number > 1 && eggs_number < 6) {
+    $(".number_of_eggs").show();
+  } else {
+    $(".number_of_eggs").hide();
+  }
+};
 
 // 胚のステージ選択
 $(function() {

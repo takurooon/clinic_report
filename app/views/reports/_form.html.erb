@@ -733,8 +733,21 @@
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-4">
-                        <p class="question mb-0 pt-2">移植個数</p>
-                        <small class="text-muted"><span class="small">この周期に移植した胚の個数</span></small>
+                        <p class="question mb-0 pt-2">移植個数&nbsp;&nbsp;<span class="small"><small class="text-muted"><span class="select-current-status"></span><span class="default-current-status"></span>に至った周期に移植した胚の数</small></span></p>
+                        <div class="transfer_option_alert1 small">
+                          <p class="mb-0">
+                            <span class="transfer_option_dis1 small text-muted"></span>
+                            <span class="transfer_option_dis2 small text-danger"></span>
+                            <span class="transfer_option_dis3 small text-muted"></span>
+                          </p>
+                        </div>
+                        <div class="transfer_option_alert2 small">
+                          <p class="mb-0">
+                            <span class="transfer_option_dis4 small text-muted"></span>
+                            <span class="transfer_option_dis5 small text-danger"></span>
+                            <span class="transfer_option_dis6 small text-muted"></span>
+                          </p>
+                        </div>
                         <div class="mt-2">
                           <%= f.collection_radio_buttons(:total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED, :first, :last) do |b| %>
                             <div class="form-check pl-2">
@@ -749,18 +762,9 @@
 
                       <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植胚&nbsp;&nbsp;<span class="small"><small class="text-muted"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植胚</small></span></p>
-                        <div class="transfer_option_alert1 small">
+                        <div class="number_of_eggs small">
                           <p class="mb-0">
-                            <span class="transfer_option_dis1 small text-muted"></span>
-                            <span class="transfer_option_dis2 small text-danger"></span>
-                            <span class="transfer_option_dis3 small text-muted"></span>
-                          </p>
-                        </div>
-                        <div class="transfer_option_alert2 small">
-                          <p class="mb-0">
-                            <span class="transfer_option_dis4 small text-muted"></span>
-                            <span class="transfer_option_dis5 small text-danger"></span>
-                            <span class="transfer_option_dis6 small text-muted"></span>
+                            <span class="small text-muted">凍結胚と新鮮胚の両方がある場合は「<span class="text-danger">凍結胚</span>」を選択ください。</span>
                           </p>
                         </div>
                         <div class="pt-2">
@@ -778,26 +782,9 @@
                       <div class="form-group mt-0 mb-2 pt-4">
                         <div class="label p-1 mb-0">
                           <p class="question mb-0 pt-1">移植した胚のステージ</p>
-                          <div class="stage-alert small">
-                            <span class="transplant_method_dis1 small text-muted"></span>
-                            <span class="transplant_method small text-danger"></span>
-                            <span class="transplant_method_dis2 small text-muted"></span>
-                            <span class="transplant_method_dis3 small text-muted"></span>
-                            <span class="transplant_method_dis4 small text-danger"></span>
-                            <span class="transplant_method_dis5 small text-muted"></span>
-                          </div>
-                          <div class="transfer_option_alert3 small">
+                          <div class="number_of_eggs small">
                             <p class="mb-0">
-                              <span class="transfer_option_dis2_1 small text-muted"></span>
-                              <span class="transfer_option_dis2_2 small text-danger"></span>
-                              <span class="transfer_option_dis2_3 small text-muted"></span>
-                            </p>
-                          </div>
-                          <div class="transfer_option_alert4 small">
-                            <p class="mb-0">
-                              <span class="transfer_option_dis2_4 small text-muted"></span>
-                              <span class="transfer_option_dis2_5 small text-danger"></span>
-                              <span class="transfer_option_dis2_6 small text-muted"></span>
+                              <span class="small text-muted">初期胚と胚盤胞の両方がある場合は「<span class="text-danger">胚盤胞</span>」を選択ください。</span>
                             </p>
                           </div>
                         </div>
@@ -1105,7 +1092,7 @@
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-2">治療費総額</p>
                     <small class="text-muted"><span class="small text-danger"><span class="select-clinic-name"></span>でかかった治療費総額</span></small>
-                    <div class="row pl-2 pt-2">
+                    <div class="row pl-2 pt-3">
                       <%= f.collection_radio_buttons(:cost, Report::HASH_COST, :first, :last) do |b| %>
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
@@ -1119,10 +1106,10 @@
                     </div>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-3">
+                  <div class="form-group mt-0 mb-2 pt-5">
                     <p class="question mb-0 pt-1">採卵1回あたりのおおよその費用</p>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での採卵1回あたりのおおよその費用</span></small>
-                    <div class="row pl-2 pt-2">
+                    <div class="row pl-2 pt-3">
                       <%= f.collection_radio_buttons(:sairan_cost, Report::HASH_SAIRAN_COST, :first, :last) do |b| %>
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
@@ -1136,10 +1123,10 @@
                     </div>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-3">
+                  <div class="form-group mt-0 mb-2 pt-5">
                     <p class="question mb-0 pt-1">移植1回あたりのおおよその費用</p>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での移植1回あたりのおおよその費用</span></small>
-                    <div class="row pl-2 pt-2">
+                    <div class="row pl-2 pt-3">
                       <%= f.collection_radio_buttons(:ishoku_cost, Report::HASH_ISHOKU_COST, :first, :last) do |b| %>
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
@@ -1153,7 +1140,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-2">
+                  <div class="form-group mt-0 mb-2 pt-5">
                     <p class="question mb-0 pt-1">クレジットカードの利用</p>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でのクレジットカード利用可否</span></small>
                     <div class="mt-2">

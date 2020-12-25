@@ -315,13 +315,14 @@ class Report < ApplicationRecord
 
   # treatment_periodの区分値(休み期間除く正味治療期間/CL単位)
   HASH_TREATMENT_PERIOD = {
-    100 => "不明",
     1 => "〜3ヵ月",
     2 => "〜半年",
     3 => "〜1年",
     4 => "〜2年",
     5 => "〜3年",
-    99 => "〜4年以上",
+    6 => "〜4年",
+    99 => "5年以上",
+    100 => "不明",
   }
 
   def str_treatment_period
@@ -840,7 +841,8 @@ class Report < ApplicationRecord
     1 => "1時間圏内",
     2 => "2時間圏内",
     3 => "3時間圏内",
-    4 => "4時間以上"
+    4 => "4時間圏内",
+    99 => "5時間以上"
   }
 
   def str_period_of_time_spent_traveling
