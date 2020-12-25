@@ -37,7 +37,7 @@
         <div class="parent-tab landing-point">
           <ul class="nav nav-tabs parent-menu mt-0 pt-0">
             <li class="tab-item"><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">基礎情報</a></li>
-            <li class="tab-item"><a href="#tab_2" data-toggle="tab">治療情報</a></li>
+            <li class="tab-item"><a href="#tab_2" data-toggle="tab">治療詳細</a></li>
             <% if false %><li class="tab-item"><a href="#tab_3" data-toggle="tab">ホルモン値</a></li><% end %>
           </ul>
           <section class="parent-tab-content active mostleft-tab" id="tab_1">
@@ -123,15 +123,13 @@
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 py-2">投稿時点の状況</p>
-                    <div class="row pl-3 pt-2">
+                    <div class="mt-2">
                       <%= f.collection_radio_buttons(:current_state, Report::HASH_CURRENT_STATE, :first, :last) do |b| %>
-                        <div class="col-6 col-sm-4 col-lg-12 px-0">
-                          <div class="form-check pl-2">
-                            <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                              <%= b.text %>
-                            <% end %>
-                          </div>
+                        <div class="form-check pl-2">
+                          <%= b.label class: "radio-inline mb-1" do %>
+                            <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                            <%= b.text %>
+                          <% end %>
                         </div>
                       <% end %>
                     </div>
@@ -185,6 +183,40 @@
                     <div class="row pl-3 pt-2">
                       <%= f.collection_radio_buttons(:details_of_icsi, Report::HASH_DETAILS_OF_ICSI, :first, :last) do |b| %>
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
+                          <div class="form-check pl-2">
+                            <%= b.label class: "radio-inline mb-1" do %>
+                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                              <%= b.text %>
+                            <% end %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-2">
+                    <p class="question mb-0 pt-2">採卵回数</p>
+                    <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">でのこれまでの採卵回数</span></small>
+                    <div class="row pl-3 pt-2">
+                      <%= f.collection_radio_buttons(:total_number_of_sairan, Report::HASH_TOTAL_NUMBER_OF_SAIRAN, :first, :last) do |b| %>
+                        <div class="col-4 col-lg-12 px-0">
+                          <div class="form-check pl-2">
+                            <%= b.label class: "radio-inline mb-1" do %>
+                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                              <%= b.text %>
+                            <% end %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-2">
+                    <p class="question mb-0 pt-1">移植回数</p>
+                    <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">でのこれまでの移植回数</span></small>
+                    <div class="row pl-3 pt-2">
+                      <%= f.collection_radio_buttons(:total_number_of_transplants, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS, :first, :last) do |b| %>
+                        <div class="col-4 col-sm-3 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
                               <%= b.radio_button onclick: "radioDeselection(this, value)" %>
@@ -268,15 +300,13 @@
 
                   <div class="form-group mt-0 mb-2 pt-0">
                     <p class="question mb-0 pt-4 pb-2">男性側の不妊原因の有無</p>
-                    <div class="row pl-3 pt-2">
+                    <div class="mt-2">
                       <%= f.collection_radio_buttons(:male_infertility, Report::HASH_MALE_INFERTILITY, :first, :last) do |b| %>
-                        <div class="col-4 col-sm-12 px-0">
-                          <div class="form-check pl-2">
-                            <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                              <%= b.text %>
-                            <% end %>
-                          </div>
+                        <div class="form-check pl-2">
+                          <%= b.label class: "radio-inline mb-1" do %>
+                            <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                            <%= b.text %>
+                          <% end %>
                         </div>
                       <% end %>
                     </div>
@@ -295,15 +325,13 @@
 
                   <div class="form-group mt-4 mb-0 pt-0">
                     <p class="question mb-0 pt-1 pb-2">不育症の診断</p>
-                    <div class="row pl-3 pt-2">
+                    <div class="mt-2">
                       <%= f.collection_radio_buttons(:fuiku, Report::HASH_FUIKU, :first, :last) do |b| %>
-                        <div class="col-4 col-sm-12 px-0">
-                          <div class="form-check pl-2">
-                            <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                              <%= b.text %>
-                            <% end %>
-                          </div>
+                        <div class="form-check pl-2">
+                          <%= b.label class: "radio-inline mb-1" do %>
+                            <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                            <%= b.text %>
+                          <% end %>
                         </div>
                       <% end %>
                     </div>
@@ -357,7 +385,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group mt-0 mb-0 pt-3">
+                  <div class="form-group mt-0 mb-0 pt-5">
                     <p class="question mb-0 pt-3">通院アクセス</p>
                     <small class="text-muted"><span class="small">自宅&nbsp;or&nbsp;職場&nbsp;&nbsp;⇄&nbsp;&nbsp;<span class="select-clinic-name"></span>&nbsp;間の通院時間</span></small>
                     <div class="row pl-2 pt-2">
@@ -374,7 +402,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group mt-0 mb-0 pt-3">
+                  <div class="form-group mt-0 mb-0 pt-5">
                     <p class="question mb-2 pt-1"><span class="select-clinic-name"></span>を選んだ理由&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                     <%= f.collection_check_boxes(:cl_selection_ids, ClSelection.all, :id, :name) do |b| %>
                       <div class="cp_ipcheck">
@@ -443,47 +471,28 @@
                     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">最新の採卵周期</label>
                     <div class="tab-content1">
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵周期について</span></h6>
-                      <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0 pt-2">何回目の採卵？</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵は、<span class="select-clinic-name"></span>での何回目の採卵ですか</span></small>
-                        <div class="row pl-3 pt-2">
-                          <%= f.collection_radio_buttons(:total_number_of_sairan, Report::HASH_TOTAL_NUMBER_OF_SAIRAN, :first, :last) do |b| %>
-                            <div class="col-4 col-lg-12 px-0">
-                              <div class="form-check pl-2">
-                                <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                  <%= b.text %>
-                                <% end %>
-                              </div>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">採卵までの通院回数</p>
-                        <small class="text-muted"><span class="small">採卵周期開始から採卵日までの(おおよその)通院回数</span></small>
-                        <div class="row pl-3 pt-2">
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵周期の周期開始から採卵日までの通院回数</span></small>
+                        <div class="mt-2">
                           <%= f.collection_radio_buttons(:number_of_visits_before_sairan, Report::HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN, :first, :last) do |b| %>
-                            <div class="col-6 col-sm-4 col-lg-12 px-0">
-                              <div class="form-check pl-2">
-                                <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                  <%= b.text %>
-                                <% end %>
-                              </div>
+                            <div class="form-check pl-2">
+                              <%= b.label class: "radio-inline mb-1" do %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                                <%= b.text %>
+                              <% end %>
                             </div>
                           <% end %>
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">採卵時の年齢</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の年齢</span></small>
                         <%= f.select :sairan_age, Report::HASH_SAIRAN_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">誘発タイプ</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の誘発タイプ</span></small>
                         <div class="mt-2">
@@ -498,7 +507,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">麻酔の種類</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の麻酔使用の有無</span></small>
                         <div class="mt-2">
@@ -513,36 +522,34 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">麻酔の選択</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の麻酔使用の選択可否</span></small>
-                        <div class="row pl-3 pt-2">
+                        <div class="mt-2">
                           <%= f.collection_radio_buttons(:selection_of_anesthesia_type, Report::HASH_SELECTION_OF_ANESTHESIA_TYPE, :first, :last) do |b| %>
-                            <div class="col-6 col-sm-4 col-lg-12 px-0">
-                              <div class="form-check pl-2">
-                                <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                  <%= b.text %>
-                                <% end %>
-                              </div>
+                            <div class="form-check pl-2">
+                              <%= b.label class: "radio-inline mb-1" do %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                                <%= b.text %>
+                              <% end %>
                             </div>
                           <% end %>
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">採卵個数<span class="small text-danger"><span class="small">&nbsp;※変性卵は除く</span></span></p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の採卵個数</span></small>
                         <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">受精個数</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
                         <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植可能胚の合計数</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った採卵周期における移植可能胚(受精卵)数</span></small>
                         <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" } %>
@@ -661,64 +668,28 @@
                     <input id="TAB-03" type="radio" name="TAB2" class="tab-switch2" checked="checked" /><label class="tab-label2" for="TAB-03">最新の移植周期</label>
                     <div class="tab-content2">
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植周期について</span></h6>
-                      <div class="form-group mt-0 mb-2 pt-0">
-                        <p class="question mb-0 pt-2">これまでに移植した胚の個数</p>
-                        <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でこれまでに移植した胚の合計</span></small>
-                        <div class="row pl-3 pt-2">
-                          <%= f.collection_radio_buttons(:total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED, :first, :last) do |b| %>
-                            <div class="col-4 col-sm-3 col-lg-12 px-0">
-                              <div class="form-check pl-2">
-                                <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                  <%= b.text %>
-                                <% end %>
-                              </div>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-5">
-                        <p class="question mb-0 pt-1">移植回数</p>
-                        <small class="text-muted"><span class="small select-clinic-name"></span><span class="small">でのこれまでの移植回数の合計数</span></small>
-                        <div class="row pl-3 pt-2">
-                          <%= f.collection_radio_buttons(:total_number_of_transplants, Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS, :first, :last) do |b| %>
-                            <div class="col-4 col-sm-3 col-lg-12 px-0">
-                              <div class="form-check pl-2">
-                                <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                  <%= b.text %>
-                                <% end %>
-                              </div>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植までの通院回数</p>
-                        <small class="text-muted"><span class="small">移植周期開始から移植日までの(おおよその)通院回数</span></small>
-                        <div class="row pl-3 pt-2">
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植周期の周期開始から移植日までの通院回数</span></small>
+                        <div class="mt-2">
                           <%= f.collection_radio_buttons(:number_of_visits_before_ishoku, Report::HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU, :first, :last) do |b| %>
-                            <div class="col-6 col-sm-4 col-lg-12 px-0">
-                              <div class="form-check pl-2">
-                                <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                                  <%= b.text %>
-                                <% end %>
-                              </div>
+                            <div class="form-check pl-2">
+                              <%= b.label class: "radio-inline mb-1" do %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                                <%= b.text %>
+                              <% end %>
                             </div>
                           <% end %>
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植時の年齢</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植時の年齢</span></small>
                         <%= f.select :ishoku_age, Report::HASH_ISHOKU_AGE.invert, { prompt: "" }, { class: "form-control py-0" } %>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植周期のタイプ</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植タイプ</span></small>
                         <div class="mt-2">
@@ -733,7 +704,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">黄体補充&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                         <div class="pt-2 pl-2">
                           <%= f.collection_check_boxes(:pg_eplenishment_ids, PgEplenishment.all, :id, :name) do |b| %>
@@ -747,7 +718,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                         <div class="pt-2 pl-2">
                           <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
@@ -761,7 +732,22 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
+                        <p class="question mb-0 pt-2">移植個数</p>
+                        <small class="text-muted"><span class="small">この周期に移植した胚の個数</span></small>
+                        <div class="mt-2">
+                          <%= f.collection_radio_buttons(:total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED, :first, :last) do |b| %>
+                            <div class="form-check pl-2">
+                              <%= b.label class: "radio-inline mb-1" do %>
+                                <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                                <%= b.text %>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植胚&nbsp;&nbsp;<span class="small"><small class="text-muted"><span class="select-current-status"></span><span class="default-current-status"></span>に至った移植胚</small></span></p>
                         <div class="transfer_option_alert1 small">
                           <p class="mb-0">
@@ -789,7 +775,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-5">
+                      <div class="form-group mt-0 mb-2 pt-4">
                         <div class="label p-1 mb-0">
                           <p class="question mb-0 pt-1">移植した胚のステージ</p>
                           <div class="stage-alert small">

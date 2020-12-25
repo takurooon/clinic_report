@@ -1014,6 +1014,16 @@
         </td>
       </tr>
       <tr>
+        <td class="result-left-column small text-center">移植胚個数</td>
+        <td class="pl-3">
+          <% if @report.total_number_of_eggs_transplanted.present? %>
+            <span class="result-text"><%= @report.str_total_number_of_eggs_transplanted %><span class="small text-muted">&nbsp;&nbsp;/&nbsp;<span class="small">回</span></span></span>
+          <% else %>
+            <span class="text-muted small">未回答</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
         <td class="result-left-column small text-center">移植胚</td>
         <td class="pl-3">
           <% if @report.transplant_method.present? %>
@@ -1873,7 +1883,7 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">不妊原因・疾患</td>
+        <td class="result-left-column small text-center ichirantable-left">女性</td>
         <td class="pl-3 ichirantable-right">
           <% if @report.f_funin_factors.present? %>
             <% @report.f_funin_factors.each do |f_funin_factor| %>
@@ -1887,7 +1897,7 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">男性不妊の有無</td>
+        <td class="result-left-column small text-center ichirantable-left">男性<br><span class="small text-muted">(男性不妊有無)</span></td>
         <td class="pl-3 ichirantable-righ">
           <% if @report.male_infertility.present? %>
             <span class="result-text"><%= @report.str_male_infertility %></span>

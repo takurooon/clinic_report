@@ -85,10 +85,8 @@ class UnsuccessfulIshokuCycle < ApplicationRecord
 
   # transplant_methodの区分値(移植方法)
   HASH_TRANSPLANT_METHOD = {
-    1 => "凍結胚移植",
-    4 => "凍結胚移植（2個戻し）",
-    2 => "新鮮胚移植",
-    3 => "2段階移植（初期胚&胚盤胞）",
+    1 => "凍結胚",
+    2 => "新鮮胚",
     99 => "その他",
     100 => "不明"
   }

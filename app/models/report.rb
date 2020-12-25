@@ -497,7 +497,6 @@ class Report < ApplicationRecord
   HASH_TRANSPLANT_METHOD = {
     1 => "凍結胚",
     2 => "新鮮胚",
-    3 => "新鮮胚と凍結胚",
     99 => "その他",
     100 => "不明"
   }
@@ -1196,7 +1195,6 @@ class Report < ApplicationRecord
 
   # total_number_of_sairanの区分値(全採卵回数/CL単位)
   HASH_TOTAL_NUMBER_OF_SAIRAN = {
-    100 => "不明",
     1 => "1回",
     2 => "2回",
     3 => "3回",
@@ -1207,7 +1205,12 @@ class Report < ApplicationRecord
     8 => "8回",
     9 => "9回",
     10 => "10回",
-    11 => "11回〜",
+    11 => "11回",
+    12 => "12回",
+    13 => "13回",
+    14 => "14回",
+    15 => "15回〜",
+    100 => "不明",
   }
 
   def str_total_number_of_sairan
@@ -1228,7 +1231,6 @@ class Report < ApplicationRecord
 
   # total_number_of_transplantsの区分値(全移植回数/CL単位)
   HASH_TOTAL_NUMBER_OF_TRANSPLANTS = {
-    100 => "不明",
     1 => "1回",
     2 => "2回",
     3 => "3回",
@@ -1243,13 +1245,8 @@ class Report < ApplicationRecord
     12 => "12回",
     13 => "13回",
     14 => "14回",
-    15 => "15回",
-    16 => "16回",
-    17 => "17回",
-    18 => "18回",
-    19 => "19回",
-    20 => "20回",
-    21 => "それ以上",
+    15 => "15回〜",
+    100 => "不明",
   }
 
   def str_total_number_of_transplants
@@ -1283,18 +1280,12 @@ class Report < ApplicationRecord
 
   # total_number_of_eggs_transplantedの区分値(全移植個数/CL単位)
   HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED = {
-    100 => "不明",
     1 => "1個",
     2 => "2個",
     3 => "3個",
     4 => "4個",
-    5 => "5個",
-    6 => "6個",
-    7 => "7個",
-    8 => "8個",
-    9 => "9個",
-    10 => "10個",
-    11 => "11個〜",
+    5 => "5個以上",
+    100 => "不明",
   }
 
   def str_total_number_of_eggs_transplanted
