@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
     # @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
     @reports = Report.released.order("created_at DESC").page(params[:page]).per(30)
     @list = {}
-    Clinic.joins(city: :prefecture).includes(:city, :prefecture).each do |clinic|
+    Clinic.joins(city: :prefecture).includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
       if @list[clinic.prefecture.id].nil?
         @list[clinic.prefecture.id] = {
           id: clinic.prefecture.id,
@@ -29,7 +29,7 @@ class ReportsController < ApplicationController
       }
     end
     @list_ivf = {}
-    Clinic.joins(city: :prefecture).includes(:city, :prefecture).where(ivf: 1).each do |clinic|
+    Clinic.joins(city: :prefecture).includes(:city, :prefecture).where(ivf: 1).order(:prefecture_id, :city_id).each do |clinic|
       if @list_ivf[clinic.prefecture.id].nil?
         @list_ivf[clinic.prefecture.id] = {
           id: clinic.prefecture.id,

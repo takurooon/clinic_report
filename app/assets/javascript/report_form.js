@@ -1,3 +1,11 @@
+$(function(){
+  reflesh();
+});
+function reflesh() {
+  fertilization_method($('input[name="report[types_of_fertilization_methods]"]:checked').val());
+  current_status();
+}
+
 // 2段タブ表示
 $(function(){
   $('.btnNext').click(function(){
@@ -228,22 +236,15 @@ $(function() {
   });
 });
 
+
 // ステータスを選択した時点でform内のテキストに表示させる
 $(function(){
   $('.default-current-status').text("現在の状況");
   $('#report_current_state_1').on('keyup change',function(e){
-    var val = $(this).prop("checked");
-    if (val == true) {
-      $('.select-current-status').text("「妊娠中」");
-      $('.default-current-status').text("");
-    }
+    current_status();
   });
   $('#report_current_state_2').on('keyup change',function(e){
-    var val = $(this).prop("checked");
-    if (val == true) {
-      $('.select-current-status').text("「妊娠中(多胎)」");
-      $('.default-current-status').text("");
-    }
+    current_status();
   });
   $('#report_current_state_3').on('keyup change',function(e){
     var val = $(this).prop("checked");
@@ -267,6 +268,30 @@ $(function(){
     }
   });
 });
+
+function current_status() {
+  console.log($('input[name="report[current_state]"]:checked').val());
+  val = $('input[name="report[current_state]"]:checked').val();
+  if (val === "1") {
+    $('.select-current-status').text("「妊娠中」");
+    $('.default-current-status').text("");
+  } else if (val === "2") {
+    $('.select-current-status').text("「妊娠中(多胎)」");
+    $('.default-current-status').text("");
+  } else if (val === "3") {
+    $('.select-current-status').text("「出産」");
+    $('.default-current-status').text("");
+  } else if (val === "4") {
+    $('.select-current-status').text("「出産(多胎)」");
+    $('.default-current-status').text("");
+  } else if (val === "99") {
+    $('.select-current-status').text("「その他」");
+    $('.default-current-status').text("");
+  } else {
+    $('.select-current-status').text("");
+    $('.default-current-status').text("現在の状況");
+  }
+}
 
 
 // 治療当時の住まい選択
@@ -294,7 +319,7 @@ $(function() {
     fertilization_method($(this).val());
   });
 })
-$("#detail_of_icsi").hide();
+// $("#detail_of_icsi").hide();
 function fertilization_method(types_of_fertilization_methods) {
   if (types_of_fertilization_methods == "2") {
     $("#detail_of_icsi").show();
@@ -302,6 +327,7 @@ function fertilization_method(types_of_fertilization_methods) {
     $("#detail_of_icsi").show();
   } else {
     $("#detail_of_icsi").hide();
+    $('input[name="report[details_of_icsi]"]:checked').prop('checked', false);
   }
 }
 
@@ -409,6 +435,25 @@ function stage(embryo_stage) {
   }
 }
 
+
+$(function(){
+  // form要素を取得
+  var element = document.getElementById( "current_state_area" ) ;
+  var name_state = $('input[name^=report][name*=current_state]');
+  // form要素内のラジオボタングループ(name="hoge")を取得
+  var radioNodeList = element.name_state ;
+  
+
+  // 選択状態の値(value)を取得 (Bが選択状態なら"b"が返る)
+  var a = $(radioNodeList).val() ;
+  if ( a === 1 ) {
+    // 未選択状態
+  } else {
+    // aには選択状態の値が代入されている
+    console.log( a ) ;
+  }
+});
+
 // クレジットカードの使用可否
 $(function() {
   cost($('#report_credit_card_validity option:selected').val());
@@ -464,6 +509,7 @@ function radioDeselection(already, numeric) {
   } else {
     remove = numeric;
   }
+  reflesh();
 }
 
 // コメント文字数カウント
