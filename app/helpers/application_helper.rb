@@ -39,13 +39,13 @@ module ApplicationHelper
         description: :description,
         type: 'website',
         url: request.original_url,
-        image: image_url('home/home_top_img.svg'),
+        image: image_url('home/home_top_img.png'),
         local: 'ja-JP',
       },
       twitter: {
         card: 'summary_large_image',
-        site: '@pocoloooog',
-        image: image_url('home/home_top_img.svg'),
+        # site: '@pocoloooog',
+        image: image_url('home/home_top_img.png'),
         width: 100,
         height: 100
       }
