@@ -4,6 +4,10 @@ $(function(){
 function reflesh() {
   fertilization_method($('input[name="report[types_of_fertilization_methods]"]:checked').val());
   current_status();
+  fuiku_checked($('input[name="report[fuiku]"]:checked').val());
+  m_funin_checked($('input[name="report[male_infertility]"]:checked').val());
+  embryo_stage_checked($('input[name="report[embryo_stage]"]:checked').val());
+  cost_checked($('input[name="report[credit_card_validity]"]:checked').val());
 }
 
 // 2段タブ表示
@@ -247,30 +251,16 @@ $(function(){
     current_status();
   });
   $('#report_current_state_3').on('keyup change',function(e){
-    var val = $(this).prop("checked");
-    if (val == true) {
-      $('.select-current-status').text("「出産」");
-      $('.default-current-status').text("");
-    }
+    current_status();
   });
   $('#report_current_state_4').on('keyup change',function(e){
-    var val = $(this).prop("checked");
-    if (val == true) {
-      $('.select-current-status').text("「出産(多胎)」");
-      $('.default-current-status').text("");
-    }
+    current_status();
   });
   $('#report_current_state_99').on('keyup change',function(e){
-    var val = $(this).prop("checked");
-    if (val == true) {
-      $('.select-current-status').text("現在の状況「その他」");
-      $('.default-current-status').text("");
-    }
+    current_status();
   });
 });
-
 function current_status() {
-  console.log($('input[name="report[current_state]"]:checked').val());
   val = $('input[name="report[current_state]"]:checked').val();
   if (val === "1") {
     $('.select-current-status').text("「妊娠中」");
@@ -293,7 +283,6 @@ function current_status() {
   }
 }
 
-
 // 治療当時の住まい選択
 $(function() {
   $('#report_prefecture_id').change(function() {
@@ -314,16 +303,14 @@ $(function() {
 
 // 受精方法の詳細
 $(function() {
-  // fertilization_method($("#report_types_of_fertilization_methods option:checked").val());
   $('input[name="report[types_of_fertilization_methods]"]:radio').change(function() {
     fertilization_method($(this).val());
   });
 })
-// $("#detail_of_icsi").hide();
 function fertilization_method(types_of_fertilization_methods) {
-  if (types_of_fertilization_methods == "2") {
+  if (types_of_fertilization_methods === "2") {
     $("#detail_of_icsi").show();
-  } else if (types_of_fertilization_methods == "3") {
+  } else if (types_of_fertilization_methods === "3") {
     $("#detail_of_icsi").show();
   } else {
     $("#detail_of_icsi").hide();
@@ -334,32 +321,32 @@ function fertilization_method(types_of_fertilization_methods) {
 // 不育原因の詳細
 $(function() {
   $('input[name="report[fuiku]"]:radio').change(function() {
-    fuiku($(this).val());
+    fuiku_checked($(this).val());
   });
 })
-$(".fuiku-factor").hide();
-function fuiku(fuiku) {
-  if (fuiku == "2") {
+function fuiku_checked(fuiku) {
+  if (fuiku === "2") {
     $(".fuiku-factor").show();
-  } else if (fuiku == "99") {
+  } else if (fuiku === "99") {
     $(".fuiku-factor").show();
   } else {
     $(".fuiku-factor").hide();
+    $('input[name="report[fuiku_inspection_ids][]"]:checked').prop('checked', false);
   }
 }
 
-// // 男性不妊の詳細
+// 男性不妊の詳細
 $(function() {
   $('input[name="report[male_infertility]"]:radio').change(function() {
-    m_funin($(this).val());
+    m_funin_checked($(this).val());
   });
 })
-$(".level_of_male_infertility").hide();
-function m_funin(male_infertility) {
-  if (male_infertility == "2") {
+function m_funin_checked(male_infertility) {
+  if (male_infertility === "2") {
     $(".level_of_male_infertility").show();
   } else {
     $(".level_of_male_infertility").hide();
+    $('input[name="report[level_of_male_infertility]"]:checked').prop('checked', false);
   }
 }
 
@@ -413,73 +400,47 @@ function eggs(eggs_number) {
 // 胚のステージ選択
 $(function() {
   $('input[name="report[embryo_stage]"]:radio').change(function() {
-    stage($(this).val());
+    embryo_stage_checked($(this).val());
   });
 })
-$(".early_embryo_grade").hide();
-$(".blastocyst_grade1").hide();
-$(".blastocyst_grade2").hide();
-function stage(embryo_stage) {
+// $(".early_embryo_grade").hide();
+// $(".blastocyst_grade1").hide();
+// $(".blastocyst_grade2").hide();
+function embryo_stage_checked(embryo_stage) {
   if (embryo_stage == "1") {
     $(".early_embryo_grade").show();
     $(".blastocyst_grade1").hide();
+    $('input[name="report[blastocyst_grade1]"]:checked').prop('checked', false);
     $(".blastocyst_grade2").hide();
+    $('input[name="report[blastocyst_grade2]"]:checked').prop('checked', false);
   } else if (embryo_stage == "2") {
     $(".early_embryo_grade").hide();
+    $('input[name="report[early_embryo_grade]"]:checked').prop('checked', false);
     $(".blastocyst_grade1").show();
     $(".blastocyst_grade2").show();
   } else {
     $(".early_embryo_grade").hide();
+    $('input[name="report[early_embryo_grade]"]:checked').prop('checked', false);
     $(".blastocyst_grade1").hide();
+    $('input[name="report[blastocyst_grade1]"]:checked').prop('checked', false);
     $(".blastocyst_grade2").hide();
+    $('input[name="report[blastocyst_grade2]"]:checked').prop('checked', false);
   }
 }
-
-
-$(function(){
-  // form要素を取得
-  var element = document.getElementById( "current_state_area" ) ;
-  var name_state = $('input[name^=report][name*=current_state]');
-  // form要素内のラジオボタングループ(name="hoge")を取得
-  var radioNodeList = element.name_state ;
-  
-
-  // 選択状態の値(value)を取得 (Bが選択状態なら"b"が返る)
-  var a = $(radioNodeList).val() ;
-  if ( a === 1 ) {
-    // 未選択状態
-  } else {
-    // aには選択状態の値が代入されている
-    console.log( a ) ;
-  }
-});
 
 // クレジットカードの使用可否
 $(function() {
-  cost($('#report_credit_card_validity option:selected').val());
-  $("#report_credit_card_validity").change(function() {
-    cost($(this).val());
-  });
-})
-function cost(credit_card_validity) {
-  if (credit_card_validity == "3") {
-    $(".amount_that_can_be_activated").show();
-  } else {
-    $(".amount_that_can_be_activated").hide();
-  }
-}
-
-$(function() {
   $('input[name="report[credit_card_validity]"]:radio').change(function() {
-    cost($(this).val());
+    cost_checked($(this).val());
   });
 })
-$(".amount_that_can_be_activated").hide();
-function cost(credit_card_validity) {
+// $(".amount_that_can_be_activated").hide();
+function cost_checked(credit_card_validity) {
   if (credit_card_validity == "3") {
     $(".amount_that_can_be_activated").show();
   } else {
     $(".amount_that_can_be_activated").hide();
+    $('input[name="report[creditcards_can_be_used_from_more_than]"]').val("");
   }
 }
 
