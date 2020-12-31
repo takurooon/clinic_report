@@ -376,7 +376,11 @@ class SearchesController < ApplicationController
   end
 
   def clinics_select
-    city = City.find_by(name: params[:city_name])
+    if (/^[+-]?[0-9]+$/ =~ params[:city_name].to_s)
+      city = City.find_by(id: params[:city_name])
+    else 
+      city = City.find_by(name: params[:city_name])
+    end
     @clinics = Clinic.where(city_id: city.id).clinic_name_yomigana
     render partial: 'address/clinics'
   end
