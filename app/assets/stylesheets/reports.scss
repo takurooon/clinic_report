@@ -1304,3 +1304,31 @@ i .fa-edit {
 	border: none;
 	margin-left: 10px;
 }
+
+// reports/indexリンクホバー時のズーム
+.main-column a {
+  display: inline-block;
+}
+.main-column a:hover {
+  -webkit-animation: zoom .3s;
+  animation: zoom .3s;
+  opacity: 0.7;
+}
+.main-contents a {
+  display: inline-block;
+}
+.main-contents a:hover {
+  -webkit-animation: zoom .3s;
+  animation: zoom .3s;
+  opacity: 0.7;
+}
+@-webkit-keyframes zoom {
+  50% {
+    -webkit-transform: scale(1.05);
+  }
+}
+@keyframes zoom {
+  50% {
+    transform: scale(1.05);
+  }
+}
