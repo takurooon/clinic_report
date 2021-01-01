@@ -1,19 +1,23 @@
-<div class="mt-5">
-  <h3 class="d-none d-md-block col-lg-10 offset-lg-1 offset-md-0 pl-5 mt-5 mb-4 lead">&nbsp;&nbsp;<span class="marker-underline">カテゴリ</span>からレポコを探す</h3>
-  <h3 class="d-sm d-md-none mt-4 text-center mb-5 lead"><span class="marker-underline">カテゴリ</span>からレポコを探す</h3>
-</div>
+<div class="container search-page">
+  <div class="search-page m-bottom">
+    <div class="mt-5">
+      <h3 class="d-none d-md-block pl-5 lead"><span class="marker-underline">カテゴリ</span>からレポコを探す</h3>
+      <h3 class="d-sm d-md-none text-center lead"><span class="marker-underline">カテゴリ</span>からレポコを探す</h3>
+    </div>
 
-<div class="form-group mt-5 text-center mb-4 px-4 m-bottom">
-  <%= link_to hack_path, class: "btn btn-outline-primary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-primary font-weight-bold">探し方</span><% end %>
-  <%= link_to category_clinics_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">クリニック</span>&nbsp;<small><small>から探す</small></small><% end %>
-  <% if false %>
-  <%= link_to category_clinics_area_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">エリア</span>&nbsp;<small><small>から探す</small></small><% end %>
-  <% end %>
-  <%= link_to category_age_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">年齢</span>&nbsp;<small><small>から探す</small></small><% end %>
-  <%= link_to category_status_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">ステータス</span>&nbsp;<small><small>から探す</small></small><% end %>
-  <%= link_to category_tags_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">原因･疾患</span>&nbsp;<small><small>から探す</small></small><% end %>
-  <%= link_to category_amh_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">AMH</span>&nbsp;<small><small>から探す</small></small><% end %>
-  <%= link_to category_area_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">住まい</span>&nbsp;<small><small>から探す</small></small><% end %>
-  <%= link_to category_various_costs_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">治療費</span>&nbsp;<small><small>から探す</small></small><% end %>
-  <%= link_to category_works_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">仕事</span>&nbsp;<small><small>から探す</small></small><% end %>
+    <div class="mt-5 text-center">
+      <%= link_to hack_path, class: "btn btn-outline-primary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-primary font-weight-bold">探し方</span><% end %>
+      <%= link_to category_clinics_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">クリニック</span>&nbsp;<small><small>から探す</small></small><% end %>
+      <% if false %>
+      <%= link_to category_clinics_area_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">エリア</span>&nbsp;<small><small>から探す</small></small><% end %>
+      <% end %>
+      <%= link_to category_age_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">年齢</span>&nbsp;<small><small>から探す</small></small><% end %>
+      <%= link_to category_status_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">ステータス</span>&nbsp;<small><small>から探す</small></small><% end %>
+      <%= link_to category_tags_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">原因･疾患</span>&nbsp;<small><small>から探す</small></small><% end %>
+      <%= link_to category_amh_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">AMH</span>&nbsp;<small><small>から探す</small></small><% end %>
+      <%= link_to category_area_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">住まい</span>&nbsp;<small><small>から探す</small></small><% end %>
+      <%= link_to category_various_costs_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">治療費</span>&nbsp;<small><small>から探す</small></small><% end %>
+      <%= link_to category_works_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">仕事</span>&nbsp;<small><small>から探す</small></small><% end %>
+    </div>
+  </div>
 </div>

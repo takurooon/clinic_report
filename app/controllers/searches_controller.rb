@@ -376,6 +376,7 @@ class SearchesController < ApplicationController
   end
 
   def clinics_select
+    # 新規投稿はvalueがname、編集はvalueがidなので以下で判定
     if (/^[+-]?[0-9]+$/ =~ params[:city_name].to_s)
       city = City.find_by(id: params[:city_name])
     else 
