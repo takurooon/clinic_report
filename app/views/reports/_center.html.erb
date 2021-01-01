@@ -83,9 +83,9 @@
                     <%= report.str_current_state %>&nbsp;&nbsp;
                   <% end %>
                   <% if report.user.gender == "female" %>
-                    女&nbsp;&nbsp;
+                    女性&nbsp;&nbsp;
                   <% else %>
-                    男&nbsp;&nbsp;
+                    男性&nbsp;&nbsp;
                   <% end %>
                   <% unless report.fertility_treatment_number.blank? %>
                     <%= report.str_fertility_treatment_number %>&nbsp;&nbsp;
@@ -93,9 +93,9 @@
                 </small>
                 <small class="text-muted d-block d-sm-none">
                   <% if report.user.gender == "female" %>
-                    女&nbsp;&nbsp;
+                    女性&nbsp;&nbsp;
                   <% else %>
-                    男&nbsp;&nbsp;
+                    男性&nbsp;&nbsp;
                   <% end %>
                   <% unless report.current_state.blank? %>
                     <%= report.str_current_state %>&nbsp;&nbsp;
