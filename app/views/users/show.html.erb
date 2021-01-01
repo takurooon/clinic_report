@@ -162,12 +162,12 @@
                 <% if @user.reports.last.prefecture_at_the_time_status == "hide" %>
                   <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(都道府県)</span></span>
                 <% else %>
-                  <small class="d-inline"><%= @user.reports.last.prefecture.name %></small>
+                  <small class="d-inline"><%= link_to "##{@user.reports.last.prefecture.name}", "/category/prefecture/#{@user.reports.last.prefecture.name}", class: "text-dark" %></small>
                 <% end %>
                 <% if @user.reports.last.city_at_the_time_status == "hide" %>
                   <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(市区町村)</span></span>
                 <% else %>
-                  <small class="d-inline"><%= @user.reports.last.city.name %></small>
+                  <small class="d-inline"><%= link_to "##{@user.reports.last.city.name}", "/category/city/#{@user.reports.last.city.name}", class: "text-dark" %></small>
                 <% end %>
               <% end %>
             </div>
