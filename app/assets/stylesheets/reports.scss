@@ -1332,3 +1332,27 @@ i .fa-edit {
     transform: scale(1.05);
   }
 }
+
+// カテゴリヘッダー
+.category-header-list {
+	position: relative;
+	height: 100px;
+}
+.category-mask {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	// background: rgba(255, 255, 255, 0.8);
+	-webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+	filter: blur(4px);
+}
+.category-header-list-annotation {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	padding-top: 35px;
+}

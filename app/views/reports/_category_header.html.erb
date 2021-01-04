@@ -1,22 +1,41 @@
-<div class="container mt-3">
-  <div class="p-0 text-center">
-    <%= link_to category_search_path do %>
-      <button type="button" class="btn text-muted rounded-pill">＼ <i data-feather="arrow-down" class="px-1 mb-1"></i>カテゴリからレポコを検索 <i data-feather="arrow-down" class="px-1 mb-1"></i>／</button>
+<!-- カテゴリ検索hide --!>
+<div class="container mt-3 category-header-list">
+  <div class="category-header-list-annotation">
+    <h6><%= image_tag"home/constraction.svg", width: "45px", class: "img-fluid pt-0 pb-2", loading: "lazy" %>&nbsp;<span class="text-dark">「カテゴリ検索」準備中</span></h6>
+  </div>
+  <div class="p-0 text-center category-mask">
+    <% if false %>
+      <%= link_to category_search_path do %>
+        <button type="button" class="btn text-muted rounded-pill">＼ <i data-feather="arrow-down" class="px-1 mb-1"></i>カテゴリからレポコを検索 <i data-feather="arrow-down" class="px-1 mb-1"></i>／</button>
+      <% end %>
     <% end %>
+    <button type="button" class="btn text-muted rounded-pill">＼ <i data-feather="arrow-down" class="px-1 mb-1"></i>カテゴリからレポコを検索 <i data-feather="arrow-down" class="px-1 mb-1"></i>／</button>
     <br>
     <div class="slide_bar">
       <div class="btn-group my-0">
-        <%= link_to hack_path, class: "btn btn-outline-primary rounded-pill mb-0 mx-1 h-100" do %>探し方<% end %>
-        <%= link_to category_clinics_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>クリニック<% end %>
-        <% if false %><%= link_to  category_clinics_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>エリア<% end %><% end %>
-        <%= link_to category_age_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>年齢<% end %>
-        <%= link_to category_status_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>ステータス<% end %>
-        <%= link_to category_tags_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>原因･疾患<% end %>
-        <%= link_to category_amh_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>AMH<% end %>
-        <%= link_to category_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>住まい<% end %>
-        <%= link_to category_various_costs_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>費用<% end %>
-        <%= link_to category_works_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>仕事<% end %>
+          <button class="btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100">クリニック</button>
+          <button class="btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100">エリア</button>
+          <button class="btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100">年齢</button>
+          <button class="btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100">ステータス</button>
+          <button class="btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100">原因･疾患</button>
+          <button class="btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100">AMH</button>
+          <button class="btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100">住まい</button>
+          <button class="btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100">費用</button>
+          <button class="btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100">仕事</button>
+          <% if false %>
+            <%= link_to hack_path, class: "btn btn-outline-primary rounded-pill mb-0 mx-1 h-100" do %>探し方<% end %>
+            <%= link_to category_clinics_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>クリニック<% end %>
+            <% if false %><%= link_to  category_clinics_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>エリア<% end %><% end %>
+            <%= link_to category_age_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>年齢<% end %>
+            <%= link_to category_status_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>ステータス<% end %>
+            <%= link_to category_tags_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>原因･疾患<% end %>
+            <%= link_to category_amh_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>AMH<% end %>
+            <%= link_to category_area_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>住まい<% end %>
+            <%= link_to category_various_costs_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>費用<% end %>
+            <%= link_to category_works_path, class: "btn btn-outline-secondary rounded-pill mb-0 mx-1 h-100" do %>仕事<% end %>
+          <% end %>
       </div>
     </div>
   </div>
 </div>
+<!-- ここまで --!>
