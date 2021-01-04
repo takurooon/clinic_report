@@ -3,12 +3,12 @@
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong><span class="marker-underline"><%= @city.name %></span></strong>&nbsp;にあるクリニック一覧</h4>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-0">
     <%= link_to "ホーム", root_path %>&nbsp;&nbsp;
-    <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "都道府県", clinics_path %>&nbsp;&nbsp;
+    <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to @city.prefecture.name, clinics_path %>&nbsp;&nbsp;
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<strong><%= @city.name %></strong>
   </small>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-0">
     <%= link_to "ホーム", root_path %>&nbsp;&nbsp;
-    <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "都道府県", clinics_path %>&nbsp;&nbsp;
+    <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to @city.prefecture.name, clinics_path %>&nbsp;&nbsp;
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<strong><%= @city.name %></strong>
   </small>
 
