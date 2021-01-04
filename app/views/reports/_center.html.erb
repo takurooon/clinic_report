@@ -180,12 +180,12 @@
                   </div>
                   <div class="action_area pl-1 pr-0 py-2">
                     <div class="row">
-                      <div class="col-1 form-inline">
+                      <div class="col-2 pr-0 form-inline">
                         <div class="likes_buttons_<%= report.id %>">
                           <%= render partial: 'likes/like', locals: { report: report} %>
                         </div>
                       </div>
-                      <div class="col-11">
+                      <div class="col-10">
                         <div class="pt-2 text-right">
                           <%= link_to "##{report.clinic.name}", "/category/clinics/#{report.clinic.id}" %>
                           &nbsp;&nbsp;&nbsp;&nbsp;<span class="small"><%= link_to "##{report.clinic.city.prefecture.name}", "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}", class:"text-muted" %></span>
@@ -212,12 +212,12 @@
               </div>
               <div class="px-0 py-0">
                 <div class="row">
-                  <div class="col-3 mt-2">
+                  <div class="col-3 mt-2 pr-0">
                     <div class="likes_buttons_<%= report.id %>">
                       <%= render partial: 'likes/like', locals: { report: report} %>
                     </div>
                   </div>
-                  <div class="col-9 pt-0 pl-0 pr-4 text-right">
+                  <div class="col-9 pt-0 pl-0 pr-3 text-right">
                     <div class="pt-2 text-right">
                       <%= link_to "##{report.clinic.name}", "/category/clinics/#{report.clinic.id}" %>
                     </div>

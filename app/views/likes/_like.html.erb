@@ -1,35 +1,35 @@
 <% if user_signed_in? %>
   <% if current_user.already_liked?(report) %>
     <div class="like-circle">
-      <div class="like-btn" title='ストック'>
+      <div class="like-btn d-flex align-items-end" title='ストック'>
         <%= link_to report_likes_path(report), style:" text-decoration: none;", method: :delete, remote: true do %>
-        <%= images_action_svg("like.svg") %>
+          <%= images_action_svg("like.svg") %>
         <% end %>
         <% if report.likes.present? %>
-          <span class="text-danger like-counter">&nbsp;&nbsp;<%= report.likes.count %></span>
+          <span class="text-danger like-counter small">&nbsp;<small><%= report.likes.count %></small></span>
         <% end %>
       </div>
     </div>
   <% else %>
     <div class="unlike-circle">
-      <div class="unlike-btn" title='ストック'>
+      <div class="unlike-btn d-flex align-items-end" title='ストック'>
         <%= link_to report_likes_path(report), style:" text-decoration: none;", method: :post, remote: true do %>
           <%= images_action_svg("unlike.svg") %>
         <% end %>
         <% if report.likes.present? %>
-          <span class="text-muted like-counter">&nbsp;&nbsp;<%= report.likes.count %></span>
+          <span class="text-muted like-counter small">&nbsp;<small><%= report.likes.count %></small></span>
         <% end %>
       </div>
     </div>
   <% end %>
 <% else %>
   <div class="unlike-circle">
-    <div class="unlike-btn" title='ストックするにはログインが必要です'>
+    <div class="unlike-btn d-flex align-items-end" title='ストックするにはログインが必要です'>
       <%= link_to new_user_session_path, "data-toggle": "modal", "data-target": "#signinLikeModal" do %>
         <%= images_action_svg("unlike.svg") %>
       <% end %>
       <% if report.likes.present? %>
-        <span class="text-muted like-counter">&nbsp;&nbsp;<%= report.likes.count %></span>
+        <span class="text-muted like-counter small">&nbsp;<small><%= report.likes.count %></small></span>
       <% end %>
     </div>
   </div>
