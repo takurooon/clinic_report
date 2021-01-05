@@ -51,9 +51,9 @@
         </ul>
         <div class="copyright">
           <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
-            <span class="small text-muted">© 2020 <%= link_to "REPOCO.net", root_path, class: "text-muted" %></span>
+            <span class="small text-muted">© <%= Time.now.year %> <%= link_to "REPOCO.net", root_path, class: "text-muted" %></span>
           <% else %>
-            <span class="small text-muted">© 2020 <%= link_to "REPOCO.net", root_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></span>
+            <span class="small text-muted">© <%= Time.now.year %> <%= link_to "REPOCO.net", root_path, class: "text-muted", data: {confirm: "#{form_edit_link_alert_message}"} %></span>
           <% end %>
         </div>
       </div>
