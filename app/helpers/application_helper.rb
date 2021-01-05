@@ -44,10 +44,10 @@ module ApplicationHelper
       },
       twitter: {
         card: 'summary_large_image',
-        # site: '@pocoloooog',
+        site: '@REPOCO_OFFICIAL',
         image: image_url('home/home_top_img.png'),
-        width: 100,
-        height: 100
+        # width: 100,
+        # height: 100
       }
     }
   end
