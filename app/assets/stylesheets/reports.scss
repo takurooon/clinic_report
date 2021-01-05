@@ -537,10 +537,10 @@ i .fa-edit {
 }
 
 .box27 {
-    position: relative;
-    margin: 2em 0;
-    padding: 0.5em 1em;
-		border: solid 3px #62c1ce;
+	position: relative;
+	margin: 2em 0 0 0;
+	padding: 0.5em 1em;
+	border: solid 3px #62c1ce;
 }
 .box27 .box-title {
 	position: absolute;
@@ -558,8 +558,8 @@ i .fa-edit {
 	line-height: 1.5em
 }
 .box27 p {
-    margin: 0; 
-    padding: 0;
+	margin: 0; 
+	padding: 0;
 }
 
 .box16{
@@ -1355,4 +1355,9 @@ i .fa-edit {
 	width: 100%;
 	text-align: center;
 	padding-top: 15px;
+}
+
+
+.fixed-w-col {
+	width: 90px;
 }
