@@ -1547,7 +1547,7 @@
                           <td class="result-left-column small text-center">移植胚個数</td>
                           <td class="pl-3">
                             <% if @report.total_number_of_eggs_transplanted.present? %>
-                              <span class="result-text"><%= @report.str_total_number_of_eggs_transplanted %><span class="small text-muted">&nbsp;&nbsp;/&nbsp;<span class="small">回</span></span></span>
+                              <span class="result-text"><%= @report.str_total_number_of_eggs_transplanted %></span>
                             <% else %>
                               <span class="text-muted small">未回答</span>
                             <% end %>
@@ -3101,10 +3101,10 @@
                     </div>
                     <div class="flex-grow-1">
                       <% if @report.types_of_fertilization_methods.present? %>
-                        <span class="small font-weight-bold">
-                          <%= @report.str_types_of_fertilization_methods %>
+                        <span class="small">
+                          <span class="font-weight-bold"><%= @report.str_types_of_fertilization_methods %></span>
                           <% if @report.details_of_icsi.present? && @report.details_of_icsi <= 3 %>
-                            &nbsp;<span class="text-muted">(<%= @report.str_details_of_icsi %>)</span>
+                            &nbsp;<span class="text-muted small">(<%= @report.str_details_of_icsi %>)</span>
                           <% end %>
                         </span>
                       <% else %>

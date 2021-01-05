@@ -1033,7 +1033,7 @@
         <td class="result-left-column small text-center">移植胚個数</td>
         <td class="pl-3">
           <% if @report.total_number_of_eggs_transplanted.present? %>
-            <span class="result-text"><%= @report.str_total_number_of_eggs_transplanted %><span class="small text-muted">&nbsp;&nbsp;/&nbsp;<span class="small">回</span></span></span>
+            <span class="result-text"><%= @report.str_total_number_of_eggs_transplanted %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
