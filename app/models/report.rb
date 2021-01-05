@@ -421,8 +421,8 @@ class Report < ApplicationRecord
 
   # selection_of_anesthesia_typeの区分値(麻酔の有無&種類に関しての選択の余地)
   HASH_SELECTION_OF_ANESTHESIA_TYPE = {
-    1 => "選択可",
-    2 => "選択不可",
+    1 => "選択できた",
+    2 => "選択できなかった",
     99 => "その他",
     100 => "不明"
   }
