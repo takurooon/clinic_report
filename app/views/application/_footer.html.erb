@@ -3,7 +3,7 @@
   <div class="container px-0">
     <div class="row">
       <div class="col-md-10 offset-md-1 logo-footer">
-        <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
+        <% unless request.path.include?("reports/new") || request.path.include?("edit") %>
           <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path %>
         <% else %>
           <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path, data: {confirm: "#{form_edit_link_alert_message}"} %>
