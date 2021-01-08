@@ -6,8 +6,9 @@ end
 #
 # Table name: region1s
 #
-#  id         :bigint           not null, primary key
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :bigint           not null, primary key
+#  name          :string
+#  name_alphabet :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #

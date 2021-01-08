@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
+    t.string "name_alphabet"
     t.integer "code"
     t.string "yomigana"
     t.bigint "prefecture_id", null: false
@@ -235,6 +236,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "prefectures", force: :cascade do |t|
     t.string "name"
+    t.string "name_alphabet"
     t.bigint "region1_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -243,6 +245,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "region1s", force: :cascade do |t|
     t.string "name"
+    t.string "name_alphabet"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

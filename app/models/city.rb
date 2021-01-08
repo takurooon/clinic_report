@@ -11,6 +11,7 @@ end
 #  id            :bigint           not null, primary key
 #  code          :integer
 #  name          :string
+#  name_alphabet :string
 #  yomigana      :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
