@@ -82,10 +82,6 @@ class SearchesController < ApplicationController
     end
   end
 
-  def clinics_area
-    @clinics = Clinic.all
-  end
-
   def clinic
     @clinics = Clinic.find_by(id: params[:value])
     @reports = Report.where(clinic_id: @clinics.id, status: 0)
@@ -94,24 +90,8 @@ class SearchesController < ApplicationController
     @clinic_all_reports = Report.where(clinic_id: @clinics.id, status: 0).count
   end
 
-  def clinic_prefecture
-    @prefecture = Prefecture.find_by(name: params[:value])
-    # cities = City.where(prefecture_id: @prefecture)
-    # clinics = Clinic.where(city_id: cities.ids)
-    clinics = Clinic.where(prefecture_id: @prefecture)
-    @prefecture_clinics = Clinic.where(prefecture_id: @prefecture).name_yomigana
-    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
-    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
-    @rereased_reports = Clinic.joins(:reports).where(city_id: @prefecture.id, reports: {status: 0})
-  end
-  
-  def clinic_city
-    @city = City.find_by(name: params[:value])
-    clinics = Clinic.where(city_id: @city.id)
-    @city_clinics = Clinic.where(city_id: @city.id).name_yomigana
-    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
-    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
-    @rereased_reports = Clinic.joins(:reports).where(city_id: @city.id, reports: {status: 0})
+  def clinics_area
+    @clinics = Clinic.all
   end
 
   def clinic_prefecture_area
@@ -214,20 +194,6 @@ class SearchesController < ApplicationController
   end
 
   def all_area
-  end
-
-  def area_prefecture
-    @prefecture = Prefecture.find_by(name: params[:value])
-    @reports = Report.where(prefecture_id: @prefecture.id, status: 0, prefecture_at_the_time_status: 0).order(created_at: :desc)
-    @clinic_all_reports = @reports.count
-    # @reports = Report.joins(clinic: :prefecture).where(prefectures: {id: @prefecture.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
-  end
-
-  def area_city
-    @city = City.find_by(name: params[:value])
-    @reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0).order(created_at: :desc)
-    @clinic_all_reports = @reports.count
-    # @reports = Report.joins(clinic: :city).where(cities: {id: @city.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
 
   def works

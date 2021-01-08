@@ -7,8 +7,8 @@
     <%= link_to "カテゴリ一覧", category_search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
     <% end %>
     <!-- ここまで --!>
-
-    <strong><b><%= @prefecture.name %></b></strong>
+    
+    <%= link_to "全国", "/clinics" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= @prefecture.name %></b></strong>
   </small>
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-5">「<span class="marker-underline"><strong><%= @prefecture.name %></strong></span>」にあるクリニックでのレポコ一覧</h4>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
@@ -19,7 +19,7 @@
     <% end %>
     <!-- ここまで --!>
 
-    <strong><b><%= @prefecture.name %></b></strong>
+    <%= link_to "全国", "/clinics" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= @prefecture.name %></b></strong>
   </small>
   <div class="container main-index">
     <div class="row px-0">
@@ -42,7 +42,7 @@
                   <% report_count = Report.where(clinic_id: clinic.id, status: 0) %>
                   <% if report_count.present? %>
                     <div class="col-sm-6 mb-1 px-3 small">
-                      <%= link_to "/category/clinics/#{clinic.id}" do %>
+                      <%= link_to "/clinic/#{clinic.id}" do %>
                         <span class="font-weight-bold">#<%= clinic.name %></span>
                         &nbsp;<span class="text-muted">(&nbsp;<span style="color: #2ECFC0;"><span class="font-weight-bold"><u><%= "#{report_count.count}" %></span>件</u></span>&nbsp;)</span>
                       <% end %>
@@ -51,7 +51,7 @@
                     <div class="col-sm-6 mb-1 px-3">
                       <span class="small text-muted">
                         <span class="small">
-                          <%= link_to "/category/clinics/#{clinic.id}" do %>
+                          <%= link_to "/clinic/#{clinic.id}" do %>
                             <%= clinic.name %>
                             (0件)
                           <% end %>

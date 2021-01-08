@@ -12,12 +12,14 @@ class ReportsController < ApplicationController
         @list[clinic.prefecture.id] = {
           id: clinic.prefecture.id,
           name: clinic.prefecture.name,
+          name_alphabet: clinic.prefecture.name_alphabet,
           cities: {}
         }
       end
       if @list[clinic.prefecture.id][:cities][clinic.city.id].nil?
         @list[clinic.prefecture.id][:cities][clinic.city.id] = {
           name: clinic.city.name,
+          name_alphabet: clinic.city.name_alphabet,
           clinics: [],
           ivf_clinics: []
         }
@@ -41,6 +43,7 @@ class ReportsController < ApplicationController
       if @list_ivf[clinic.prefecture.id][:cities][clinic.city.id].nil?
         @list_ivf[clinic.prefecture.id][:cities][clinic.city.id] = {
           name: clinic.city.name,
+          name_alphabet: clinic.city.name_alphabet,
           clinics: [],
           ivf_clinics: []
         }

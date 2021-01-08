@@ -99,12 +99,12 @@
                               <% if published.prefecture_at_the_time_status == "hide" %>
                                 <span class="small text-muted">−−</span>
                               <% else %>
-                                <span class="small text-muted"><%= link_to published.city.prefecture.name, "/category/area/prefecture/#{published.city.prefecture.name}", class: "text-muted" %></span>
+                                <span class="small text-muted"><%= link_to published.city.prefecture.name, "/users_/#{published.city.prefecture.name_alphabet}", class: "text-muted" %></span>
                               <% end %>
                               <% if published.city_at_the_time_status == "hide" %>
                                 <span class="small text-muted">−−</span>
                               <% else %>
-                                <span class="small text-muted"><%= link_to published.city.name, "/category/area/city/#{published.city.name}", class: "text-muted" %></span>
+                                <span class="small text-muted"><%= link_to published.city.name, "/users_/#{published.city.prefecture.name_alphabet}/#{published.city.name_alphabet}", class: "text-muted" %></span>
                               <% end %>
                             </p>
                             <p class="text-center m-0 py-0 small">
@@ -175,11 +175,11 @@
                         <div>
                           <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
                             <div class="d-none d-sm-block my-0 mr-2 clinic_address">
-                              <%= link_to published.clinic.name, "/category/clinics/#{published.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to published.clinic.city.prefecture.name, "/category/clinics/prefecture/#{published.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to published.clinic.city.name, "/category/clinics/city/#{published.clinic.city.name}", class:"text-muted" %></span>
+                              <%= link_to published.clinic.name, "/clinic/#{published.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to published.clinic.city.prefecture.name, "/clinics_/#{published.clinic.city.prefecture.name_alphabet}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to published.clinic.city.name, "/clinics/#{published.clinic.city.prefecture.name_alphabet}/#{published.clinic.city.name_alphabet}", class:"text-muted" %></span>
                             </div>
                             <div class="d-block d-sm-none mb-0 mr-2 clinic_address">
                               <div class="col-12 pl-0 small">
-                                <%= link_to published.clinic.name, "/category/clinics/#{published.clinic.id}", class: "text-muted small" %>
+                                <%= link_to published.clinic.name, "/clinic/#{published.clinic.id}", class: "text-muted small" %>
                               </div>
                             </div>
                           </div>
@@ -280,12 +280,12 @@
                               <% if draft.prefecture_at_the_time_status == "hide" %>
                                 <span class="small text-muted">−−</span>
                               <% else %>
-                                <span class="small text-muted"><%= link_to draft.city.prefecture.name, "/category/area/prefecture/#{draft.city.prefecture.name}", class: "text-muted" %></span>
+                                <span class="small text-muted"><%= link_to draft.city.prefecture.name, "/clinics_/#{draft.city.prefecture.name_alphabet}", class: "text-muted" %></span>
                               <% end %>
                               <% if draft.city_at_the_time_status == "hide" %>
                                 <span class="small text-muted">−−</span>
                               <% else %>
-                                <span class="small text-muted"><%= link_to draft.city.name, "/category/area/city/#{draft.city.name}", class: "text-muted" %></span>
+                                <span class="small text-muted"><%= link_to draft.city.name, "/clinics/#{draft.city.prefecture.name_alphabet}/#{draft.city.name_alphabet}", class: "text-muted" %></span>
                               <% end %>
                             </p>
                             <p class="text-center m-0 py-0 small">
@@ -357,11 +357,11 @@
                         <div>
                           <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
                             <div class="d-none d-sm-block my-0 mr-2 clinic_address">
-                              <%= link_to draft.clinic.name, "/category/clinics/#{draft.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to draft.clinic.city.prefecture.name, "/category/clinics/prefecture/#{draft.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to draft.clinic.city.name, "/category/clinics/city/#{draft.clinic.city.name}", class:"text-muted" %></span>
+                              <%= link_to draft.clinic.name, "/clinic/#{draft.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to draft.clinic.city.prefecture.name, "/clinics_/#{draft.clinic.city.prefecture.name_alphabet}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light"><%= link_to draft.clinic.city.name, "/clinics/#{draft.clinic.city.prefecture.name_alphabet}/#{draft.clinic.city.name_alphabet}", class:"text-muted" %></span>
                             </div>
                             <div class="d-block d-sm-none mb-0 mr-2 clinic_address">
                               <div class="col-12 pl-0 small">
-                                <%= link_to draft.clinic.name, "/category/clinics/#{draft.clinic.id}", class: "text-muted small" %>
+                                <%= link_to draft.clinic.name, "/clinic/#{draft.clinic.id}", class: "text-muted small" %>
                               </div>
                             </div>
                           </div>
@@ -458,12 +458,12 @@
                                 <% if report.prefecture_at_the_time_status == "hide" %>
                                   <span class="small text-muted">−−</span>
                                 <% else %>
-                                  <span class="small text-muted"><%= link_to report.city.prefecture.name, "/category/area/prefecture/#{report.city.prefecture.name}", class: "text-muted" %></span>
+                                  <span class="small text-muted"><%= link_to report.city.prefecture.name, "/clinics_/#{report.city.prefecture.name_alphabet}", class: "text-muted" %></span>
                                 <% end %>
                                 <% if report.city_at_the_time_status == "hide" %>
                                   <span class="small text-muted">−−</span>
                                 <% else %>
-                                  <span class="small text-muted"><%= link_to report.city.name, "/category/area/city/#{report.city.name}", class: "text-muted" %></span>
+                                  <span class="small text-muted"><%= link_to report.city.name, "/clinics/#{report.city.prefecture.name_alphabet}/#{report.city.name_alphabet}", class: "text-muted" %></span>
                                 <% end %>
                               </p>
                               <p class="text-center m-0 py-0 small">
@@ -535,13 +535,13 @@
                           <div>
                             <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
                               <div class="d-none d-sm-block my-0 mr-2 clinic_address">
-                                <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light">
-                                <%= link_to report.clinic.city.prefecture.name, "/category/clinics/prefecture/#{report.clinic.city.prefecture.name}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light">
-                                <%= link_to report.clinic.city.name, "/category/clinics/city/#{report.clinic.city.name}", class:"text-muted" %></span>
+                                <%= link_to report.clinic.name, "/clinic/#{report.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light">
+                                <%= link_to report.clinic.city.prefecture.name, "/clinics_/#{report.clinic.city.prefecture.name_alphabet}", class:"text-muted" %></span>&nbsp;<span class="badge badge-light">
+                                <%= link_to report.clinic.city.name, "/clinics/#{report.clinic.city.prefecture.name_alphabet}/#{report.clinic.city.name_alphabet}", class:"text-muted" %></span>
                               </div>
                               <div class="d-block d-sm-none mb-0 mr-2 clinic_address">
                                 <div class="col-12 pl-0 small">
-                                  <%= link_to report.clinic.name, "/category/clinics/#{report.clinic.id}", class: "text-muted small" %>
+                                  <%= link_to report.clinic.name, "/clinic/#{report.clinic.id}", class: "text-muted small" %>
                                 </div>
                               </div>
                             </div>

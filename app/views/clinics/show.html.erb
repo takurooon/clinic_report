@@ -3,8 +3,8 @@
     <div class="col-lg-11 offset-lg-1 mt-4">
       <small class="text-muted mt-0 mb-0 d-flex align-content-start flex-wrap align-items-start">
         <p class="mb-0"><%= link_to "ホーム", root_path %>&nbsp;&nbsp;</p>
-        <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to @clinic.prefecture.name, "/clinics/" %>&nbsp;&nbsp;</p>
-        <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to @clinic.city.name, "/clinics/city/#{@clinic.city.name}" %>&nbsp;&nbsp;</p>
+        <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to @clinic.prefecture.name, "/clinics_/#{@clinic.prefecture.name_alphabet}" %>&nbsp;&nbsp;</p>
+        <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to @clinic.city.name, "/clinics/#{@clinic.city.prefecture.name_alphabet}/#{@clinic.city.name_alphabet}" %>&nbsp;&nbsp;</p>
         <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><%= @clinic.name %></strong></p>
       </small>
     </div>
@@ -54,7 +54,7 @@
                   <% if @clinic.current_status == 1 %>
                     <span class="text-danger">【閉院】</span>
                   <% end %>
-                  <%= link_to @clinic.name, "/category/clinics/#{@clinic.id}" %>
+                  <%= link_to @clinic.name, "/clinic/#{@clinic.id}" %>
                 </td>
               </tr>
               <tr>

@@ -9,20 +9,18 @@ Rails.application.routes.draw do
   get 'category/amh/:value' => 'searches#amh'
   get 'category/status' => 'searches#all_status'
   get 'category/status/:value' => 'searches#status'
-  get 'category/clinics' => 'searches#clinics'
+
+  get 'search/clinics' => 'searches#clinics'
+
   get 'category/clinics_area' => 'searches#clinics_area'
-  get 'category/clinics/:value' => 'searches#clinic'
-  get 'category/clinics/prefecture/:value' => 'searches#clinic_prefecture'
   get 'category/clinics_area/prefecture/:value' => 'searches#clinic_prefecture_area'
-  get 'category/clinics/city/:value' => 'searches#clinic_city'
   get 'category/clinics_area/city/:value' => 'searches#clinic_city_area'
   get 'category/age' => 'searches#all_age'
   get 'category/age/:value' => 'searches#age'
   get 'category/tags' => 'searches#tags'
   get ':category/:tags/:gender/:value' => 'searches#tag'
   get 'category/area' => 'searches#all_area'
-  get 'category/prefecture/:value' => 'searches#area_prefecture'
-  get 'category/city/:value' => 'searches#area_city'
+
   get 'category/works' => 'searches#works'
   get 'category/work/:value' => 'searches#work'
   get 'category/various_costs' => 'searches#various_costs'
@@ -53,6 +51,11 @@ Rails.application.routes.draw do
   resources :users
     put "/users/:id/hide" => "users#hide", as: 'users_hide'
 
+    # centerの各レポコ中央部のuserの住まい,(prefecture, city)のリンク↓
+    get 'users_/:prefecture' => 'users#area_prefecture'
+    get 'users_/:prefecture/:city' => 'users#area_city'
+    # ここまで
+
   resources :users, shallow: true do
     resources :reports, only: %[index]
   end
@@ -70,7 +73,13 @@ Rails.application.routes.draw do
   end
 
   resources :clinics
-  get "clinics/:prefecture/:city" => "clinics#city"  
+  get "clinics/:prefecture/:value" => "clinics#city"
+
+  # centerの各レポコ下部のclinic, prefecture, cityのリンク↓
+  get 'clinic/:value' => 'clinics#clinic_report'
+  get 'clinics_/:prefecture' => 'clinics#prefecture'
+  get 'clinics/:prefecture/:value' => 'clinics#city'
+  # ここまで
 
   get "cities_select" => "searches#cities_select_clinics"
   get "cities_select_area" => "searches#cities_select_area"

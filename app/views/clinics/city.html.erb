@@ -1,56 +1,74 @@
-<div class="container mb-5 pb-5">
-  <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><strong><span class="marker-underline"><%= @city.name %></span></strong>&nbsp;にあるクリニック一覧</h5>
-  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5"><strong><span class="marker-underline"><%= @city.name %></span></strong>&nbsp;にあるクリニック一覧</h4>
-  <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-0">
-    <%= link_to "ホーム", root_path %>&nbsp;&nbsp;
-    <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to @city.prefecture.name, clinics_path %>&nbsp;&nbsp;
-    <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<strong><%= @city.name %></strong>
-  </small>
-  <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-0">
-    <%= link_to "ホーム", root_path %>&nbsp;&nbsp;
-    <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to @city.prefecture.name, clinics_path %>&nbsp;&nbsp;
-    <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<strong><%= @city.name %></strong>
-  </small>
+<div class="container px-2 m-bottom">
+  <h5 class="d-sm d-md-none mt-5 text-center">「<span class="marker-underline"><strong><%= @city.name %></strong></span>」にあるクリニックでの<br>レポコ一覧</h5>
+  <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
 
-  <div class="row pb-5 mt-3">
-    <div class="col-md-8 offset-md-2 main-column">
-      <input id="acd-check" class="acd-check" type="checkbox" checked>
-      <label class="acd-label small mb-0 px-1 py-2" for="acd-check"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<%= @city.name %>の医療機関&nbsp;<span class="small">(全<%= @city.clinics.count %>施設)</span>&nbsp;のレポコ&nbsp;<span class="small">(<%= @clinic_all_reports %>件)</span></label>
-      <div class="acd-content-not-overflow-y2 container">
-        <div class="row">
-          <% @clinics.each_with_index do |clinic, num| %>
-            <% if @rereased_reports.blank? && num == 0 %>
-              <div class="col-12 px-2 small">
-                <div class="alert alert-danger rounded-lg mt-0">
-                  <p class="mb-0"><%= clinic.city.name %>のクリニックでのレポコはまだありません。</p>
-                </div>
-              </div>
-            <% end %>
-            <% report_count = Report.where(clinic_id: clinic.id, status: 0) %>
-            <% if report_count.present? %>
-              <div class="col-sm-6 my-2 px-3 small">
-                <%= link_to "/clinics/#{clinic.id}", data: { "turbolinks" => false } do %>
-                  <span class="text-dark font-weight-bold">#<%= clinic.name %></span>
-                  &nbsp;<span class="text-dark ont-weight-bold">(&nbsp;<u><%= "#{report_count.count}" %>件)</span></u>&nbsp;
+    <!-- カテゴリ検索hide --!>
+    <% if false %>
+    <%= link_to "カテゴリ一覧", category_search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
+    <% end %>
+    <!-- ここまで --!>
+
+    <%= link_to "全国", "/clinics" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to @city.prefecture.name, "/clinics_/#{@city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= @city.name %></b></strong>
+  </small>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-5">「<span class="marker-underline"><strong><%= @city.name %></strong></span>」にあるクリニックでのレポコ一覧</h4>
+  <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
+
+    <!-- カテゴリ検索hide --!>
+    <% if false %>
+    <%= link_to "カテゴリ一覧", category_search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
+    <% end %>
+    <!-- ここまで --!>
+
+    <%= link_to "全国", "/clinics" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to @city.prefecture.name, "/clinics_/#{@city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= @city.name %></b></strong>
+  </small>
+  <div class="container main-index">
+    <div class="row">
+      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-1">
+        <div class="row mb-3">
+          <div class="col-12">
+            <input id="acd-check1" class="acd-check" type="checkbox" checked>
+            <label class="acd-label small mb-0 px-1 py-2" for="acd-check1"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<%= @city.name %>の医療機関&nbsp;<span class="small">(全<%= @city.clinics.count %>施設)</span>&nbsp;のレポコ&nbsp;<span class="small">(<%= @clinic_all_reports %>件)</span></label>
+
+            <div class="acd-content container">
+              <div class="row mt-2 pb-3">
+                <% @city_clinics.each_with_index do |clinic, num| %>
+                  <% if @rereased_reports.blank? && num == 0 %>
+                    <div class="col-12 px-2 small">
+                      <div class="alert alert-danger rounded-lg mt-0">
+                        <p class="mb-0"><%= clinic.city.name %>のクリニックでのレポコはまだありません。</p>
+                      </div>
+                    </div>
+                  <% end %>
+                  <% report_count = Report.where(clinic_id: clinic.id, status: 0) %>
+                  <% if report_count.present? %>
+                    <div class="col-sm-6 mb-1 px-3 small">
+                      <%= link_to "/clinic/#{clinic.id}" do %>
+                        <span class="font-weight-bold">#<%= clinic.name %></span>
+                        &nbsp;<span class="text-muted">(&nbsp;<span style="color: #2ECFC0;"><span class="font-weight-bold"><u><%= "#{report_count.count}" %></span>件</u></span>&nbsp;)</span>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <div class="col-sm-6 mb-1 px-3">
+                      <span class="small text-muted">
+                        <span class="small">
+                          <%= link_to "/clinic/#{clinic.id}" do %>
+                            <%= clinic.name %>
+                            (0件)
+                          <% end %>
+                        </span>
+                      </span>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
-            <% else %>
-              <div class="col-sm-6 my-2 px-3 small">
-                <%= link_to "/clinics/#{clinic.id}", data: { "turbolinks" => false } do %>
-                  <%= clinic.name %>
-                  <span class="text-muted small">(0件)</span>
-                <% end %>
-              </div>
-            <% end %>
-          <% end %>
+            </div>
+          </div>
         </div>
+        <%= render 'reports/center' %>
       </div>
-      <div class="mt-5 text-center text-dark">
-        <% unless @rereased_reports.blank? %>
-          <p class="mb-0"><strong>「<%= @city.name %>」</strong>&nbsp;にあるクリニックのレポコ一覧</p>
-        <% end %>
+      <div class="col-lg-3 col-md-3 d-none d-md-block pl-2 pr-0">
+        <%= render 'reports/right' %>
       </div>
-      <%= render 'reports/center' %>
     </div>
   </div>
 </div>
