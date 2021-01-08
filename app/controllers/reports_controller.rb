@@ -34,6 +34,7 @@ class ReportsController < ApplicationController
         @list_ivf[clinic.prefecture.id] = {
           id: clinic.prefecture.id,
           name: clinic.prefecture.name,
+          name_alphabet: clinic.prefecture.name_alphabet,
           cities: {}
         }
       end

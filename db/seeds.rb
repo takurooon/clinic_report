@@ -10,13 +10,15 @@ require "csv"
 
 CSV.foreach('db/csv/region1.csv', headers: true) do |row|
   Region1.create(
-    name: row['name']
+    name: row['name'],
+    name_alphabet: row['name_alphabet'],
   )
 end
 
 CSV.foreach('db/csv/prefecture.csv', headers: true) do |row|
   Prefecture.create(
     name: row['name'],
+    name_alphabet: row['name_alphabet'],
     region1_id: row['region1_id']
   )
 end
@@ -24,6 +26,7 @@ end
 CSV.foreach('db/csv/city.csv', headers: true) do |row|
   City.create(
     name: row['name'],
+    name_alphabet: row['name_alphabet'],
     code: row['code'],
     yomigana: row['yomigana'],
     prefecture_id: row['prefecture_id']
