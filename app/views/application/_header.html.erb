@@ -232,7 +232,7 @@
       <div class="modal-body">
         <ul style="list-style-type:none;">
           <li><%= link_to "レポコ一覧", root_path %></li>
-          <li><%= link_to "カテゴリ", category_search_path %></li>
+          <li><%= link_to "カテゴリ", search_path %></li>
           <% if current_user %>
             <li><%= link_to "マイページ", my_page_path %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>

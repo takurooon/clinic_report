@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'my_page' => 'my_page#index'
   get 'my_page/draft' => 'reports#draft'
   get 'thanks' => 'my_page#thanks'
-  get 'category/search' => 'searches#search'
+  get 'search' => 'searches#search'
   get 'category/amh' => 'searches#all_amh'
   get 'category/amh/:value' => 'searches#amh'
   get 'category/status' => 'searches#all_status'

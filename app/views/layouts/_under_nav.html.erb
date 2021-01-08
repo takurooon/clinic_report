@@ -16,7 +16,7 @@
       </div>
       <div>
         <% unless path.include?("reports") || path.include?("my_page") || path.include?("sign_in") || path.include?("sign_up") || path.include?("my_page") || path.include?("edit") || path.include?("notifications") %>
-          <%= link_to category_search_path do %>
+          <%= link_to search_path do %>
             <i data-feather="search" class="text-muted"></i>
           <% end %>
         <% else %>
@@ -71,7 +71,7 @@
         <% end %>
       </div>
       <div>
-        <%= link_to category_search_path do %>
+        <%= link_to search_path do %>
           <i data-feather="search" class="text-muted"></i>
         <% end %> 
       </div>
