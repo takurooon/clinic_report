@@ -207,13 +207,11 @@ class SearchesController < ApplicationController
   end
 
   def work
-    if params[:value].include?("work_style")
-      work_style = Report::HASH_WORK_STYLE_SEARCH
-      work_value = params[:value].to_i
-      @selected_work = "「" + work_style[work_value] + "」"
-      @reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
-    end
+    work_style = Report::HASH_WORK_STYLE_SEARCH
+    work_value = params[:value].to_i
+    @selected_work = "「" + work_style[work_value] + "」"
+    @reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
+    @clinic_all_reports = @reports.count
   end
 
   def various_costs
