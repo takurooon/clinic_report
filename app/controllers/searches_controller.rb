@@ -40,17 +40,17 @@ class SearchesController < ApplicationController
   end
 
   def status
-    if params[:value].include?("current_state")
-      status = Report::HASH_CURRENT_STATE_SEARCH
-      status_value = params[:value].to_i
-      @selected_word = status[status_value]
-      @reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
-    else
+    if params[:value].include?("child")
       fertility_treatment_number = Report::HASH_FERTILITY_TREATMENT_NUMBER_SEARCH
       fertility_treatment_number_value = params[:value].to_i
       @selected_word = fertility_treatment_number[fertility_treatment_number_value]
       @reports = Report.where(fertility_treatment_number: fertility_treatment_number_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = @reports.count
+    else
+      status = Report::HASH_CURRENT_STATE_SEARCH
+      status_value = params[:value].to_i
+      @selected_word = status[status_value]
+      @reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
     end
   end

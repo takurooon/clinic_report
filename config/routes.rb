@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get 'search' => 'searches#search'
   get 'amh' => 'searches#all_amh'
   get 'amh/:value' => 'searches#amh'
-  get 'category/status' => 'searches#all_status'
-  get 'category/status/:value' => 'searches#status'
+  get 'status' => 'searches#all_status'
+  get 'status/:value' => 'searches#status'
 
   get 'search/clinics' => 'searches#clinics'
 
