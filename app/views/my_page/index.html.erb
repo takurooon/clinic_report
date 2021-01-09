@@ -94,7 +94,7 @@
                                 <span class="badge badge-pill badge-light text-muted p-0">男</span>
                               <% end %>
                               <% unless published.treatment_end_age.blank? %>
-                                <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to published.treatment_end_age, "/category/age/#{published.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
+                                <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to published.treatment_end_age, "/age/#{published.treatment_end_age}", class: "text-muted" %>歳</span>
                               <% end %>
                               <% if published.prefecture_at_the_time_status == "hide" %>
                                 <span class="small text-muted">−−</span>
@@ -275,7 +275,7 @@
                                 <span class="badge badge-pill badge-light text-muted p-0">男</span>
                               <% end %>
                               <% unless draft.treatment_end_age.blank? %>
-                                <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to draft.treatment_end_age, "/category/age/#{draft.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
+                                <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to draft.treatment_end_age, "/age/#{draft.treatment_end_age}", class: "text-muted" %>歳</span>
                               <% end %>
                               <% if draft.prefecture_at_the_time_status == "hide" %>
                                 <span class="small text-muted">−−</span>
@@ -453,7 +453,7 @@
                                   <span class="badge badge-pill badge-light text-muted p-0">男</span>
                                 <% end %>
                                 <% unless report.treatment_end_age.blank? %>
-                                  <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/category/age/#{report.treatment_end_age}#{"歳"}", class: "text-muted" %>歳</span>
+                                  <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/age/#{report.treatment_end_age}", class: "text-muted" %>歳</span>
                                 <% end %>
                                 <% if report.prefecture_at_the_time_status == "hide" %>
                                   <span class="small text-muted">−−</span>

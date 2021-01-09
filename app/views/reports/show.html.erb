@@ -236,7 +236,7 @@
 
       <div class="mt-3 mb-1 px-2 small">
         <% if @report.treatment_end_age.present? %>
-          <%= link_to "/category/age/#{@report.treatment_end_age}", style: "text-decoration: none;" do %>
+          <%= link_to "/age/#{@report.treatment_end_age}", style: "text-decoration: none;" do %>
             <span class="badge badge-light text-muted">#<%= @report.treatment_end_age %>歳</span>
           <% end %>
         <% end %>

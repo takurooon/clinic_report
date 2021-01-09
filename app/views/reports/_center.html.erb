@@ -134,7 +134,7 @@
 
               <div class="d-none d-sm-block justify-content-start mr-2 my-2">
                 <% unless report.treatment_end_age.blank? %>
-                  &nbsp;&nbsp;<span class="small"><%= link_to "##{report.treatment_end_age}歳", "/category/age/#{report.treatment_end_age}#{"歳"}", class: "text-muted" %></span>
+                  &nbsp;&nbsp;<span class="small"><%= link_to "##{report.treatment_end_age}歳", "/age/#{report.treatment_end_age}", class: "text-muted" %></span>
                 <% end %>
                 <% if report.prefecture_at_the_time_status == "hide" %>
                   &nbsp;&nbsp;<span class="small text-muted ">−−</span>
@@ -150,7 +150,7 @@
 
               <div class="d-block d-sm-none justify-content-start mr-2 mt-2 mb-1">
                 <% unless report.treatment_end_age.blank? %>
-                  &nbsp;&nbsp;<span class="small"><%= link_to "##{report.treatment_end_age}歳", "/category/age/#{report.treatment_end_age}#{"歳"}", class: "text-muted" %></span>
+                  &nbsp;&nbsp;<span class="small"><%= link_to "##{report.treatment_end_age}歳", "/age/#{report.treatment_end_age}", class: "text-muted" %></span>
                 <% end %>
                 <% if report.prefecture_at_the_time_status == "hide" %>
                   &nbsp;&nbsp;<span class="small text-muted">−−</span>

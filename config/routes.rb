@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'my_page/draft' => 'reports#draft'
   get 'thanks' => 'my_page#thanks'
   get 'search' => 'searches#search'
+  get 'age' => 'searches#all_age'
+  get 'age/:value' => 'searches#age'
   get 'amh' => 'searches#all_amh'
   get 'amh/:value' => 'searches#amh'
   get 'status' => 'searches#all_status'
@@ -15,8 +17,7 @@ Rails.application.routes.draw do
   get 'category/clinics_area' => 'searches#clinics_area'
   get 'category/clinics_area/prefecture/:value' => 'searches#clinic_prefecture_area'
   get 'category/clinics_area/city/:value' => 'searches#clinic_city_area'
-  get 'category/age' => 'searches#all_age'
-  get 'category/age/:value' => 'searches#age'
+
   get 'category/tags' => 'searches#tags'
   get ':category/:tags/:gender/:value' => 'searches#tag'
   get 'category/area' => 'searches#all_area'
