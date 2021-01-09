@@ -214,7 +214,7 @@ class SearchesController < ApplicationController
     @clinic_all_reports = @reports.count
   end
 
-  def various_costs
+  def costs
     total_costs = Report::HASH_COST_SEARCH
     reports = Report.group(:cost).where.not(cost: nil).distinct.count
     v_cost = total_costs.keys - reports.keys
@@ -243,19 +243,19 @@ class SearchesController < ApplicationController
   end
 
   def cost
-    if params[:value].include?("cost")
+    if params[:value].include?("_all")
       cost = Report::HASH_COST_SEARCH
       cost_value = params[:value].to_i
       @selected_cost = "治療費用「" + cost[cost_value] + "」"
       @reports = Report.where(cost: cost_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
-    elsif params[:value].include?("sairan")
+    elsif params[:value].include?("_sairan")
       sairan_cost = Report::HASH_SAIRAN_COST_SEARCH
       sairan_cost_value = params[:value].to_i
       @selected_cost = "採卵1回あたりの費用「" + sairan_cost[sairan_cost_value] + "」"
       @reports = Report.where(sairan_cost: sairan_cost_value, status: 0).order(created_at: :desc)
       @clinic_all_reports = @reports.count
-    elsif params[:value].include?("ishoku")
+    elsif params[:value].include?("_ishoku")
       ishoku_cost = Report::HASH_ISHOKU_COST_SEARCH
       ishoku_cost_value = params[:value].to_i
       @selected_cost = "移植1回あたりの費用「" + ishoku_cost[ishoku_cost_value] + "」"
