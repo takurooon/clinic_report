@@ -45,14 +45,14 @@
     <% end %>
 
     <div class="text-center my-2">
-      <%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?text=#{sns_text}&hashtags=レポコ&hashtags=REPOCO", class: 'twitter', title: 'Twitter', target: '_blank' %>
+      <%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "55px", class: "img-fluid", loading: "lazy"), "https://twitter.com/intent/tweet?text=#{sns_text}&url=#{request.url}&hashtags=レポコ&hashtags=REPOCO", class: 'twitter', title: 'Twitter', target: '_blank' %>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
-      <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
-      <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
+    <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
+    <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Helvetica_40:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_650,c_fit/v1579444928/ogp_800_420_brandcolor_uc1cw8.png"} %>
 
+    <div class="col-sm-12 offset-md-0 offset-lg-1 col-lg-8 main-column">
       <div class="d-none d-sm-block">
         <div class="row pt-3 pb-0">
           <div class="col-2 mt-2 d-flex align-items-center justify-content-center">

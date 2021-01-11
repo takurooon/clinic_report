@@ -11,16 +11,13 @@ Rails.application.routes.draw do
   get 'amh/:value' => 'searches#amh'
   get 'status' => 'searches#all_status'
   get 'status/:value' => 'searches#status'
-
   get 'search/clinics' => 'searches#clinics'
 
   get 'category/clinics_area' => 'searches#clinics_area'
   get 'category/clinics_area/prefecture/:value' => 'searches#clinic_prefecture_area'
   get 'category/clinics_area/city/:value' => 'searches#clinic_city_area'
-
   get 'category/tags' => 'searches#tags'
   get ':category/:tags/:gender/:value' => 'searches#tag'
-  get 'category/area' => 'searches#all_area'
 
   get 'works' => 'searches#works'
   get 'work/:value' => 'searches#work'
@@ -53,8 +50,10 @@ Rails.application.routes.draw do
     put "/users/:id/hide" => "users#hide", as: 'users_hide'
 
     # centerの各レポコ中央部のuserの住まい,(prefecture, city)のリンク↓
+    get 'users_area' => 'users#all_area'
     get 'users_/:prefecture' => 'users#area_prefecture'
     get 'users_/:prefecture/:city' => 'users#area_city'
+    get "cities_select_area" => "users#cities_select_area"
     # ここまで
 
   resources :users, shallow: true do
@@ -82,9 +81,11 @@ Rails.application.routes.draw do
   get 'clinics/:prefecture/:value' => 'clinics#city'
   # ここまで
 
+  # formでも利用
   get "cities_select" => "searches#cities_select_clinics"
-  get "cities_select_area" => "searches#cities_select_area"
   get "clinics_select" => "searches#clinics_select"
+  # ここまで
+
   get "clinic_select" => "searches#clinic_select"
 
   get "address_cities_select" => "reports#address_cities_select"
