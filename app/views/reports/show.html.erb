@@ -3288,7 +3288,7 @@
                       <% if haibanho_rate <= 100.00 %>
                         <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.number_of_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></small></span>
                       <% else %>
-                        <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;<%= @report.number_of_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;</span></span>
+                        <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;<%= @report.number_of_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></span>
                       <% end %>
                     </td>
                   </tr>
