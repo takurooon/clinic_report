@@ -308,8 +308,7 @@ h1 {
   // ストックやSNSの表示エリア(スマホ表示のみ、sns_barからの読み込み)
   .area_under_mobile_screen {
     position: fixed;
-    bottom: 1.3rem;
-    // bottom: 3.2rem; ※←スマホunder_navアクティブ時の高さ
+    bottom: 3.2rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 0);
     z-index: 10000;

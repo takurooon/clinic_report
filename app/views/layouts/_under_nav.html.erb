@@ -1,5 +1,3 @@
-<% if false %> 一旦スマホのunder_navbarはカテゴリが充実するまで非アクティブに
-
 <% path = request.path %>
 <% form_edit_link_alert_message = "【注意！】ページを離れますか？投稿/更新/保存のいずれかを行わずにページを離れると選択したデータや入力したデータは保存されず消えてしまいます。ご注意ください。" %>
 <div class="under-nav-area">
@@ -17,6 +15,8 @@
         <% end %>
       </div>
       <div>
+
+      <% if false  %> ※カテゴリページをopenするまで非アクティブ化。本コード直下のコードでひとまず対応
         <% unless path.include?("reports") || path.include?("my_page") || path.include?("sign_in") || path.include?("sign_up") || path.include?("my_page") || path.include?("edit") || path.include?("notifications") %>
           <%= link_to search_path do %>
             <i data-feather="search" class="text-muted"></i>
@@ -24,6 +24,15 @@
         <% else %>
           <%= link_to new_report_path, data: {confirm: "#{form_edit_link_alert_message}"} do %><i data-feather="edit" class="text-muted" type="image"></i><% end %>
         <% end %>
+      <% end %>
+
+        <% if false %>以下コードでひとまず対応<% end %>
+        <% unless path.include?("new") || path.include?("edit") %>
+          <%= link_to terminology_path do %><i data-feather="book" class="text-muted" type="image"></i><% end %> 
+        <% else %>
+          <%= link_to terminology_path, data: {confirm: "#{form_edit_link_alert_message}"} do %><i data-feather="book" class="text-muted" type="image"></i><% end %> 
+        <% end %>
+
       </div>
       <div>
         <% unless path.include?("new") || path.include?("edit") %>
@@ -73,8 +82,13 @@
         <% end %>
       </div>
       <div>
-        <%= link_to search_path do %>
-          <i data-feather="search" class="text-muted"></i>
+        <% if false %>カテゴリページのopenまで非アクティブ。次の専門用語リンクでひとまず対応
+          <%= link_to search_path do %>
+            <i data-feather="search" class="text-muted"></i>
+          <% end %> 
+        <% end %> 
+        <%= link_to terminology_path do %>
+          <i data-feather="book" class="text-muted"></i>
         <% end %> 
       </div>
       <div>
@@ -107,5 +121,3 @@
     </div>
   </div>
 </div>
-
-<% end %>
