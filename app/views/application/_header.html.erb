@@ -49,7 +49,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
                 <%= link_to "マイページ", my_page_path, class: 'dropdown-item pt-5' %><br>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item', data: {confirm: "ログアウトしますか？"}%>
                 <% if notice %>
                   <p class="alert alert-notice"><%= notice %></p>
                 <% end %>
@@ -231,12 +231,25 @@
       </div>
       <div class="modal-body">
         <ul style="list-style-type:none;">
-          <li><%= link_to "レポコ一覧", root_path %></li>
-          <li><%= link_to "カテゴリ", search_path %></li>
           <% if current_user %>
-            <li><%= link_to "マイページ", my_page_path %></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% unless request.path.include?("reports/new") || request.path.include?("edit")%>
+              <li><%= link_to "レポコ一覧", root_path %></li>
+              <li><%= link_to "レポコ作成", new_report_path %></li>
+              <li><%= link_to "マイページ", my_page_path %></li>
+              <% if false %>これは一旦非表示<li><%= link_to "カテゴリ", search_path %></li><% end %>
+              <li><%= link_to "通知", notifications_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか？"} %></li>
+            <% else %>
+              <li><%= link_to "レポコ一覧", root_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+              <li><%= link_to "レポコ作成", new_report_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+              <li><%= link_to "マイページ", my_page_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+              <% if false %>これは一旦非表示<li><%= link_to "カテゴリ", search_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li><% end %>
+              <li><%= link_to "通知", notifications_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+            <% end %>
           <% else %>
+            <li><%= link_to "レポコ一覧", root_path %></li>
+            <% if false %>これは一旦非表示<li><%= link_to "カテゴリ", search_path %></li><% end %>
             <li><%= link_to "ログイン", new_user_session_path %></li>
             <li><%= link_to "新規登録", new_user_registration_path %></li>
           <% end %>
