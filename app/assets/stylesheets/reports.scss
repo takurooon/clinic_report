@@ -780,9 +780,6 @@ i .fa-edit {
 	vertical-align: top;
 }
 
-
-
-
 // 2段タブスタイル
 .parent-tab {
 	margin: 0 0 2em;
@@ -1306,32 +1303,32 @@ i .fa-edit {
 }
 
 // reports/indexリンクホバー時のズーム
-.main-column a {
-  display: inline-block;
-}
-.main-column a:hover {
-  -webkit-animation: zoom .3s;
-  animation: zoom .3s;
-  opacity: 0.7;
-}
-.main-contents a {
-  display: inline-block;
-}
-.main-contents a:hover {
-  -webkit-animation: zoom .3s;
-  animation: zoom .3s;
-  opacity: 0.7;
-}
-@-webkit-keyframes zoom {
-  50% {
-    -webkit-transform: scale(1.05);
-  }
-}
-@keyframes zoom {
-  50% {
-    transform: scale(1.05);
-  }
-}
+// .main-column a {
+//   display: inline-block;
+// }
+// .main-column a:hover {
+//   -webkit-animation: zoom .3s;
+//   animation: zoom .3s;
+//   opacity: 0.7;
+// }
+// .main-contents a {
+//   display: inline-block;
+// }
+// .main-contents a:hover {
+//   -webkit-animation: zoom .3s;
+//   animation: zoom .3s;
+//   opacity: 0.7;
+// }
+// @-webkit-keyframes zoom {
+//   50% {
+//     -webkit-transform: scale(1.05);
+//   }
+// }
+// @keyframes zoom {
+//   50% {
+//     transform: scale(1.05);
+//   }
+// }
 
 // カテゴリヘッダー
 .category-header-list {
@@ -1357,7 +1354,7 @@ i .fa-edit {
 	padding-top: 15px;
 }
 
-
+// 90pxの固定幅
 .fixed-w-col {
 	width: 90px;
 }

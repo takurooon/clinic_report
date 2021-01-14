@@ -3,10 +3,12 @@
   color: #ffffff;
 }
 
-li {
-  list-style: none;
-  margin: 0;
-}
+// なぜかこれを有効化するとformのactiontextのリスト類のスタイルが表示されない(黒丸やナンバー)
+// li {
+//   list-style: none;
+//   margin: 0;
+// }
+
 li .btn {
   padding: 0.5rem 1rem;
   font-weight: 50; 
