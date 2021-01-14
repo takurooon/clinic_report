@@ -26,7 +26,7 @@
               <div class="form-group mt-0 mb-0 pt-4 text-left">
                 <%= f.label :password, 'パスワード', for: "formGroupInput", class: "bmd-label-floating" %>
                 <%= f.password_field :password, autocomplete: "new-password", class: 'form-control signup-pass1-js-text', id: "password" %>
-                <span class="bmd-help">6文字以上〜16文字以内、半角英数字記号で入力ください。</span>
+                <span class="bmd-help">8文字以上〜16文字以内、半角英数字記号で入力ください。</span>
                 <p class="signup-pass1-js-text-count small text-right pt-3 mb-0"></p>
               </div>
 
@@ -64,12 +64,12 @@
 
                 $(function (){
                   var count = $(".signup-pass1-js-text").text().replace(/\n/g, "改行").length;
-                  var now_min_count = 6 - count;
+                  var now_min_count = 8 - count;
                   var now_max_count = count - 16;
-                  if (count < 6) {
+                  if (count < 8) {
                     $(".signup-pass1-js-text-count").css("color","red");
                     var status = "あと" + now_min_count + "文字足りません！(半角英数字)"
-                  } else if (count >= 6 && count < 17) {
+                  } else if (count >= 8 && count < 17) {
                     $(".signup-pass1-js-text-count").css("color","#808080");
                     var status = ""
                   } else {
@@ -80,13 +80,13 @@
 
                   $(".signup-pass1-js-text").on("keyup", function() {
                     var count = $(this).val().replace(/\n/g, "改行").length;
-                    var now_min_count = 6 - count;
+                    var now_min_count = 8 - count;
                     var now_max_count = count - 16;
 
-                    if (count < 6) {
+                    if (count < 8) {
                       $(".signup-pass1-js-text-count").css("color","red");
                       var status = "あと" + now_min_count + "文字足りません！(半角英数字)"
-                    } else if (count >= 6 && count < 17) {
+                    } else if (count >= 8 && count < 17) {
                       $(".signup-pass1-js-text-count").css("color","#808080");
                       var status = ""
                     } else {

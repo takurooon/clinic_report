@@ -386,13 +386,12 @@ trix-editor .attachment__metadata {
       flex-basis: 50%;
       max-width: 50%; }
 
-      // 独自追加
+      // 独自追加入力領域の制限
       trix-editor {
         min-height: 20em;
-        max-height: 20em;
-        overflow-y: auto;
+        // max-height: 20em;
+        // overflow-y: auto;
       }
-
       // ツールバーの折り返し表示(追加)
       trix-toolbar .trix-button-row {
         flex-wrap: wrap;

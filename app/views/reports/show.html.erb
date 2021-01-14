@@ -3370,12 +3370,12 @@
         <% if @report.content.present? %>
           <% if @report.status == "nonreleased" %>
             <% if @report.user == current_user %>
-              <div class="px-2 pt-0">
+              <div class="px-3 pt-0">
                 <%= @report.content %>
               </div>
             <% end %>
           <% else %>
-            <div class="px-2 pt-0">
+            <div class="px-3 pt-0">
               <%= @report.content %>
             </div>
           <% end %>
@@ -4148,7 +4148,7 @@
             </div>
             <div class="row">
               <div class="col-md-8 offset-md-2">
-                <%= link_to "https://twitter.com/REPOCO_OFFICIAL", {class: "text-decoration-none w-100"} do %>
+                <%= link_to "https://twitter.com/REPOCO_OFFICIAL", {class: "text-decoration-none w-100", target: :_blank} do %>
                   <button class="tw_blue_btn"><%= image_tag"action/Twitter_Social_Icon_Rounded_Square_Color.svg", width: "35px", class: "img-fluid", loading: "lazy" %>公式Twitterをフォローする</button>
                 <% end %>
               </div>
