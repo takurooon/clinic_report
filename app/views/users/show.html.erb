@@ -161,12 +161,12 @@
               <% if @user.reports.first.prefecture_at_the_time_status == "hide" %>
                 <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(都道府県)</span></span>
               <% else %>
-                <small class="d-inline"><%= link_to "##{@user.reports.first.prefecture.name}", "/category/prefecture/#{@user.reports.first.prefecture.name}", class: "text-dark" %></small>
+                <small class="d-inline"><%= link_to "##{@user.reports.first.prefecture.name}", "/users_/#{@user.reports.first.city.prefecture.name_alphabet}", class: "text-dark" %></small>
               <% end %>
               <% if @user.reports.first.city_at_the_time_status == "hide" %>
                 <span class="small"><span class="d-inline small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i>非公開&nbsp;(市区町村)</span></span>
               <% else %>
-                <small class="d-inline"><%= link_to "##{@user.reports.first.city.name}", "/category/city/#{@user.reports.first.city.name}", class: "text-dark" %></small>
+                <small class="d-inline"><%= link_to "##{@user.reports.first.city.name}", "/users_/#{@user.reports.first.city.prefecture.name_alphabet}/#{@user.reports.first.city.name_alphabet}", class: "text-dark" %></small>
               <% end %>
             <% end %>
           </div>
