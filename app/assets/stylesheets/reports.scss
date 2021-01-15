@@ -1330,6 +1330,26 @@ i .fa-edit {
 //   }
 // }
 
+// ホバー時のポップアップ動作
+	.popup_area a {
+	  display: inline-block;
+	}
+	.popup_area a:hover {
+		-webkit-animation: zoom .3s;
+		animation: zoom .3s;
+		opacity: 0.7;
+	}
+	@-webkit-keyframes zoom {
+		50% {
+			-webkit-transform: scale(1.05);
+		}
+	}
+	@keyframes zoom {
+		50% {
+			transform: scale(1.05);
+		}
+	}
+
 // カテゴリヘッダー
 .category-header-list {
 	position: relative;

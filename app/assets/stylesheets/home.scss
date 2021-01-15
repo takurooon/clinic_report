@@ -486,33 +486,6 @@
   max-height: 35px;
   margin-right: 0.5rem;
 }
-// 今すぐ始めるボタンの動き
-.about-repoco a {
-  display: inline-block;
-}
-.about-repoco a:hover {
-  -webkit-animation: zoom .3s;
-  animation: zoom .3s;
-  opacity: 0.7;
-}
-.learn-more a {
-  display: inline-block;
-}
-.learn-more a:hover {
-  -webkit-animation: zoom .3s;
-  animation: zoom .3s;
-  opacity: 0.7;
-}
-@-webkit-keyframes zoom {
-  50% {
-    -webkit-transform: scale(1.05);
-  }
-}
-@keyframes zoom {
-  50% {
-    transform: scale(1.05);
-  }
-}
 
 // 上下反転
 .vertical-flip {

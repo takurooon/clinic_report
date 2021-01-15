@@ -23,7 +23,7 @@ module ApplicationHelper
   # OGP設定 参考:https://pgmg-rails.com/blogs/16 https://qiita.com/kenzoukenzou104809/items/fe3122abd8e98f9089ba
   def default_meta_tags
     {
-      site: '経験をカタチに情報をエールに。のこす、みえる、ふみだせる。不妊治療レポート投稿アプリ',
+      site: '経験をカタチに情報をエールに。不妊治療レポート投稿アプリREPOCO',
       title: 'REPOCO | のこす みえる ふみだせる',
       reverse: true,
       charset: 'utf-8',
