@@ -36,7 +36,8 @@ class UsersController < ApplicationController
   end
 
   def area_city
-    @city = City.find_by(name_alphabet: params[:city])
+    prefecture = Prefecture.find_by(name_alphabet: params[:prefecture])
+    @city = City.find_by(prefecture_id: prefecture.id, name_alphabet: params[:city])
     @reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0).order(created_at: :desc)
     @clinic_all_reports = @reports.count
     # @reports = Report.joins(clinic: :city).where(cities: {id: @city.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索

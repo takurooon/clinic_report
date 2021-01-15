@@ -66,7 +66,8 @@ class ClinicsController < ApplicationController
   end
 
   def city
-    @city = City.find_by(name_alphabet: params[:value])
+    prefecture = Prefecture.find_by(name_alphabet: params[:prefecture])
+    @city = City.find_by(prefecture_id: prefecture.id, name_alphabet: params[:value])
     clinics = Clinic.where(city_id: @city.id)
     @city_clinics = Clinic.where(city_id: @city.id).name_yomigana
     @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
