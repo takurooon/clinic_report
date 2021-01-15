@@ -113,29 +113,23 @@ end
 #                               my_page GET    /my_page(.:format)                                                                       my_page#index
 #                         my_page_draft GET    /my_page/draft(.:format)                                                                 reports#draft
 #                                thanks GET    /thanks(.:format)                                                                        my_page#thanks
-#                       category_search GET    /category/search(.:format)                                                               searches#search
-#                          category_amh GET    /category/amh(.:format)                                                                  searches#all_amh
-#                                       GET    /category/amh/:value(.:format)                                                           searches#amh
-#                       category_status GET    /category/status(.:format)                                                               searches#all_status
-#                                       GET    /category/status/:value(.:format)                                                        searches#status
-#                      category_clinics GET    /category/clinics(.:format)                                                              searches#clinics
+#                                search GET    /search(.:format)                                                                        searches#search
+#                                   age GET    /age(.:format)                                                                           searches#all_age
+#                                       GET    /age/:value(.:format)                                                                    searches#age
+#                                   amh GET    /amh(.:format)                                                                           searches#all_amh
+#                                       GET    /amh/:value(.:format)                                                                    searches#amh
+#                                status GET    /status(.:format)                                                                        searches#all_status
+#                                       GET    /status/:value(.:format)                                                                 searches#status
+#                        search_clinics GET    /search/clinics(.:format)                                                                searches#clinics
 #                 category_clinics_area GET    /category/clinics_area(.:format)                                                         searches#clinics_area
-#                                       GET    /category/clinics/:value(.:format)                                                       searches#clinic
-#                                       GET    /category/clinics/prefecture/:value(.:format)                                            searches#clinic_prefecture
 #                                       GET    /category/clinics_area/prefecture/:value(.:format)                                       searches#clinic_prefecture_area
-#                                       GET    /category/clinics/city/:value(.:format)                                                  searches#clinic_city
 #                                       GET    /category/clinics_area/city/:value(.:format)                                             searches#clinic_city_area
-#                          category_age GET    /category/age(.:format)                                                                  searches#all_age
-#                                       GET    /category/age/:value(.:format)                                                           searches#age
 #                         category_tags GET    /category/tags(.:format)                                                                 searches#tags
 #                                       GET    /:category/:tags/:gender/:value(.:format)                                                searches#tag
-#                         category_area GET    /category/area(.:format)                                                                 searches#all_area
-#                                       GET    /category/prefecture/:value(.:format)                                                    searches#area_prefecture
-#                                       GET    /category/city/:value(.:format)                                                          searches#area_city
-#                        category_works GET    /category/works(.:format)                                                                searches#works
-#                                       GET    /category/work/:value(.:format)                                                          searches#work
-#                category_various_costs GET    /category/various_costs(.:format)                                                        searches#various_costs
-#                                       GET    /category/cost/:value(.:format)                                                          searches#cost
+#                                 works GET    /works(.:format)                                                                         searches#works
+#                                       GET    /work/:value(.:format)                                                                   searches#work
+#                                 costs GET    /costs(.:format)                                                                         searches#costs
+#                                       GET    /cost/:value(.:format)                                                                   searches#cost
 #                                 about GET    /about(.:format)                                                                         application#about
 #                                 terms GET    /terms(.:format)                                                                         application#terms
 #                               privacy GET    /privacy(.:format)                                                                       application#privacy
@@ -172,6 +166,10 @@ end
 #                                       PUT    /users/:id(.:format)                                                                     users#update
 #                                       DELETE /users/:id(.:format)                                                                     users#destroy
 #                            users_hide PUT    /users/:id/hide(.:format)                                                                users#hide
+#                            users_area GET    /users_area(.:format)                                                                    users#all_area
+#                                       GET    /users_/:prefecture(.:format)                                                            users#area_prefecture
+#                                       GET    /users_/:prefecture/:city(.:format)                                                      users#area_city
+#                    cities_select_area GET    /cities_select_area(.:format)                                                            users#cities_select_area
 #                          user_reports GET    /users/:user_id/reports(.:format)                                                        reports#index
 #                                       GET    /users(.:format)                                                                         users#index
 #                                       POST   /users(.:format)                                                                         users#create
@@ -203,9 +201,11 @@ end
 #                                       PATCH  /clinics/:id(.:format)                                                                   clinics#update
 #                                       PUT    /clinics/:id(.:format)                                                                   clinics#update
 #                                       DELETE /clinics/:id(.:format)                                                                   clinics#destroy
-#                                       GET    /clinics/:prefecture/:city(.:format)                                                     clinics#city
+#                                       GET    /clinics/:prefecture/:value(.:format)                                                    clinics#city
+#                                       GET    /clinic/:value(.:format)                                                                 clinics#clinic_report
+#                                       GET    /clinics_/:prefecture(.:format)                                                          clinics#prefecture
+#                                       GET    /clinics/:prefecture/:value(.:format)                                                    clinics#city
 #                         cities_select GET    /cities_select(.:format)                                                                 searches#cities_select_clinics
-#                    cities_select_area GET    /cities_select_area(.:format)                                                            searches#cities_select_area
 #                        clinics_select GET    /clinics_select(.:format)                                                                searches#clinics_select
 #                         clinic_select GET    /clinic_select(.:format)                                                                 searches#clinic_select
 #                 address_cities_select GET    /address_cities_select(.:format)                                                         reports#address_cities_select
