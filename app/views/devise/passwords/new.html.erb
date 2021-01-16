@@ -1,4 +1,5 @@
 <div class="container password-remind m-bottom">
+  <%= render "devise/shared/error_messages", resource: resource %>
   <div class="row">
     <div class="col-md-6 offset-md-3 mt-md-5 mb-md-5">
       <div class="card text-center mt-4">
@@ -8,7 +9,6 @@
         <div class="card-body pt-0">
           <div class="pt-0">
             <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-              <%= render "devise/shared/error_messages", resource: resource %>
               <div class="form-group mt-0 text-left">
                 <%= f.label :email, '登録済みのメールアドレスを入力してください', for: "formGroupInput", class: "bmd-label-floating" %><br />
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', id: "formGroupInput" %>

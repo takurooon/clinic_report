@@ -1,4 +1,6 @@
 <div class="container signup-in m-bottom">
+  <%= render "devise/shared/error_messages", resource: resource %>
+
   <div class="row">
     <div class="col-md-6 offset-md-3 mt-md-5 mb-md-5">
       <div class="card text-center mt-4">
@@ -8,7 +10,6 @@
         <div class="card-body pt-0">
           <div class="pt-0">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-              <%= render "devise/shared/error_messages", resource: resource %>
 
               <div class="form-group mt-0 mb-0 pt-4 text-left">
                 <%= f.label :email, 'メール', for: "formGroupInput", class: "bmd-label-floating" %><br />

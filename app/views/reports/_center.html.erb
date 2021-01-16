@@ -47,8 +47,8 @@
                     <% else %>
                       <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜"), user_path(report.user_id) %>
                     <% end %>
-                    <%= link_to user_path(report.user_id) do %>
-                      <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %>
+                    <%= link_to user_path(report.user_id), {class: "small"} do %>
+                      <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(14) %>
                     <% end %>
                   </p>
                 </div>
@@ -70,8 +70,8 @@
                   <% else %>
                     <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "17px", class: "px-0", loading: "lazy", title: "45歳〜"), user_path(report.user_id) %>
                   <% end %>
-                  <%= link_to user_path(report.user_id) do %>
-                    <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>
+                  <%= link_to user_path(report.user_id), {class: "small"} do %>
+                    <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %>
                   <% end %>
                 </p>
               </div>
