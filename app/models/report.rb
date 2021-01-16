@@ -883,11 +883,18 @@ class Report < ApplicationRecord
 
   # itinerary_of_choosing_a_clinicsのorder_of_transfer区分値(転院履歴)別モデル
   def self.make_select_itinerary_of_choosing_a_clinics_order_of_transfer
-    hash = {}
-    (1..10).each do |i|
-      hash["#{i}つ前のクリニック"] = i
-    end
-    hash
+    hash = {
+      1 => "1つ前のクリニック",
+      2 => "2つ前のクリニック",
+      3 => "3つ前のクリニック",
+      4 => "4つ前のクリニック",
+      5 => "5つ前のクリニック",
+      6 => "6つ前のクリニック",
+      7 => "7つ前のクリニック",
+      8 => "8つ前のクリニック",
+      9 => "9つ前のクリニック",
+      99 => "それ以上前のクリニック",
+    }
   end
 
   # day_of_sairanの区分値(採卵当日のホルモン値)別モデル

@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       <tr>
-        <td class="text-center align-middle"><%= f.select :order_of_transfer, Report.make_select_itinerary_of_choosing_a_clinics_order_of_transfer, { prompt: "①" }, { class: "form-control text-muted" } %></td>
+        <td class="text-center align-middle"><%= f.select :order_of_transfer, Report.make_select_itinerary_of_choosing_a_clinics_order_of_transfer.invert, { prompt: "①" }, { class: "form-control text-muted" } %></td>
         <td class="text-center align-middle">
           <% if f.object.clinic.blank? %>
             <% prefecture_id = nil %>
