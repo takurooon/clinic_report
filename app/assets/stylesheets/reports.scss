@@ -1339,6 +1339,12 @@ i .fa-edit {
 		animation: zoom .3s;
 		opacity: 0.7;
 	}
+	.popup_area2 a:hover {
+		-webkit-animation: zoom .3s;
+		animation: zoom .3s;
+		opacity: 0.7;
+	}
+
 	@-webkit-keyframes zoom {
 		50% {
 			-webkit-transform: scale(1.05);
