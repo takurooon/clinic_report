@@ -579,7 +579,6 @@ class Report < ApplicationRecord
 
   # blastocyst_grade2の区分値(胚盤胞以上の評価/ICM/TE)
   HASH_BLASTOCYST_GRADE2 = {
-    100 => "不明",
     1 => "AA",
     2 => "AB",
     3 => "AC",
@@ -589,13 +588,8 @@ class Report < ApplicationRecord
     7 => "CA",
     8 => "CB",
     9 => "CC",
-    10 => "A不明",
-    11 => "B不明",
-    12 => "C不明",
-    13 => "不明A",
-    14 => "不明B",
-    15 => "不明C",
     99 => "その他",
+    100 => "不明"
   }
 
   def str_blastocyst_grade2
