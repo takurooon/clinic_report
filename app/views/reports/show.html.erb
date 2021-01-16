@@ -2724,7 +2724,7 @@
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>への</p>
-                <h4 class="child-tab-title"><%= @report.user.name %>さんのレビュー</h4>
+                <h5 class="child-tab-title"><%= @report.user.name %>さんのレビュー</h5>
                 <div class="box27 mt-5">
                   <span class="box-title">クリニックの満足度</span>
                   <div class="row">
@@ -3370,12 +3370,12 @@
         <% if @report.content.present? %>
           <% if @report.status == "nonreleased" %>
             <% if @report.user == current_user %>
-              <div class="px-3 pt-0">
+              <div class="px-2 pt-0">
                 <%= @report.content %>
               </div>
             <% end %>
           <% else %>
-            <div class="px-3 pt-0">
+            <div class="px-2 pt-0">
               <%= @report.content %>
             </div>
           <% end %>
