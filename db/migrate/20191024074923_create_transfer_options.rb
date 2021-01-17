@@ -3,6 +3,7 @@ class CreateTransferOptions < ActiveRecord::Migration[6.0]
     create_table :transfer_options do |t|
       t.string :name
       t.string :yomigana
+      t.integer :number
 
       t.timestamps
     end

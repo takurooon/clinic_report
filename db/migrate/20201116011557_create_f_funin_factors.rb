@@ -3,6 +3,7 @@ class CreateFFuninFactors < ActiveRecord::Migration[6.0]
     create_table :f_funin_factors do |t|
       t.string :name
       t.string :yomigana
+      t.integer :number
 
       t.timestamps
     end

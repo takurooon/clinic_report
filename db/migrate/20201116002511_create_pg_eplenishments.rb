@@ -3,6 +3,7 @@ class CreatePgEplenishments < ActiveRecord::Migration[6.0]
     create_table :pg_eplenishments do |t|
       t.string :name
       t.string :yomigana
+      t.integer :number
 
       t.timestamps
     end
