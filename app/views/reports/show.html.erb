@@ -3327,7 +3327,13 @@
 
         <div class="comment-area mt-2" id="comments_area">
           <div class="p-comment__list">
-            <h4 class="p-comment__listTitle"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメント&nbsp;<span class="text-muted" style="font-size: 16px;">(&nbsp;<%= @report.comments.count %>件&nbsp;)</span></h4>
+            <h4 class="p-comment__listTitle">
+              <i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;
+              コメント&nbsp;
+              <% if user_signed_in? %>
+                <span class="text-muted" style="font-size: 16px;">(&nbsp;<%= @report.comments.count %>件&nbsp;)</span>
+              <% end %>
+            </h4>
           </div>
           <% if current_user %>
             <%= render @report.comments %>
