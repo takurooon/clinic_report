@@ -31,9 +31,11 @@
                   <h5 class="pt-3 mb-0 mr-2">&nbsp;<%= user.name %>
                     <span class="small">
                       <% if user.gender == "female" %>
-                        <span class="badge badge-pill badge-light text-muted p-0">#女</span>
+                        <span class="badge badge-pill badge-light text-muted p-0">女</span>
+                      <% elsif user.gender == "male" %>
+                        <span class="badge badge-pill badge-light text-muted p-0">男</span>
                       <% else %>
-                        <span class="badge badge-pill badge-light text-muted p-0">#男</span>
+                        <span class="badge badge-pill badge-light text-muted p-0">無回答</span>
                       <% end %>
                     </span>
                   </h5>

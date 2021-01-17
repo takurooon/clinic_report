@@ -147,8 +147,9 @@
             <span class="small">
               <% if @user.gender == "female" %>
                 <span class="badge badge-pill badge-light text-muted">女性</span>
-              <% else %>
+              <% elsif @user.gender == "male" %>
                 <span class="badge badge-pill badge-light text-muted">男性</span>
+              <% else %>
               <% end %>
             </span>
           </small>
@@ -266,8 +267,9 @@
             <span class="small">
               <% if @user.gender == "female" %>
                 <span class="badge badge-pill badge-light text-muted">女性</span>
-              <% else %>
+              <% elsif @user.gender == "male" %>
                 <span class="badge badge-pill badge-light text-muted">男性</span>
+              <% else %>
               <% end %>
             </span>
           </small>

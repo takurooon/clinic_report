@@ -148,28 +148,6 @@
                                   <%= strip_tags(transfer_report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %>
                                 <% end %>
                               </p>
-                              <% if false %>
-                              <p class="text-center mb-0 pb-0">
-                                <% if transfer_report.user.gender == "female" %>
-                                  <span class="badge badge-pill badge-light text-muted p-0">女</span>
-                                <% else %>
-                                  <span class="badge badge-pill badge-light text-muted p-0">男</span>
-                                <% end %>
-                                <% unless transfer_report.treatment_end_age.blank? %>
-                                  <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to "##{transfer_report.treatment_end_age}歳", "/category/age/#{transfer_report.treatment_end_age}#{"歳"}", class: "text-muted small" %></span><br>
-                                <% end %>
-                                <% if transfer_report.prefecture_at_the_time_status == "hide" %>
-                                  <span class="small text-muted small">−−</span>
-                                <% else %>
-                                  <span class="small text-muted small"><%= link_to "##{transfer_report.city.prefecture.name}", "/category/prefecture/#{transfer_report.city.prefecture.name}", class: "text-muted small" %></span>
-                                <% end %>
-                                <% if transfer_report.city_at_the_time_status == "hide" %>
-                                  <span class="small text-muted">−−</span>
-                                <% else %>
-                                  < class="small text-muted"><%= link_to "##{transfer_report.city.name}", "/category/city/#{transfer_report.city.name}", class: "text-muted small" %></>
-                                <% end %>
-                              </p>
-                              <% end %>
                             </div>
                           </div>
                           <div class="d-block d-sm-none pl-0 pr-2">
@@ -203,8 +181,9 @@
                               <% end %>
                               <% if transfer_report.user.gender == "female" %>
                                 女性&nbsp;&nbsp;
-                              <% else %>
+                              <% elsif transfer_report.user.gender == "male" %>
                                 男性&nbsp;&nbsp;
+                              <% else %>
                               <% end %>
                               <% unless transfer_report.fertility_treatment_number.blank? %>
                                 <%= transfer_report.str_fertility_treatment_number %>&nbsp;&nbsp;
@@ -213,8 +192,9 @@
                             <small class="text-muted d-block d-sm-none">
                               <% if transfer_report.user.gender == "female" %>
                                 女性&nbsp;&nbsp;
-                              <% else %>
+                              <% elsif transfer_report.user.gender == "male" %>
                                 男性&nbsp;&nbsp;
+                              <% else %>
                               <% end %>
                               <% unless transfer_report.current_state.blank? %>
                                 <%= transfer_report.str_current_state %>&nbsp;&nbsp;
@@ -336,13 +316,6 @@
                                       &nbsp;&nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/category/clinics/prefecture/#{transfer_report.clinic.city.prefecture.name}", class:"text-muted small" %></span>
                                       &nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.name}", "/category/clinics/city/#{transfer_report.clinic.city.name}", class:"text-muted small" %></span>
                                     </div>
-            
-                                    <% if false %>
-                                    <div class="float-right"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
-                                    <div class="float-right mr-2"><%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
-                                    <div class="float-right mr-2"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
-                                    <div class="float-right mr-2"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
-                                    <% end %>
                                   </div>
                                 </div>
                               </div>
@@ -377,13 +350,6 @@
                                   &nbsp;&nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/category/clinics/prefecture/#{transfer_report.clinic.city.prefecture.name}", class:"text-muted small" %></span>
                                   &nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.name}", "/category/clinics/city/#{transfer_report.clinic.city.name}", class:"text-muted small" %></span>
                                 </div>
-            
-                                <% if false %>
-                                <div class="float-right"><%= link_to image_tag("icon/note_side_brandcolor_icon.png", alt: "note_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://note.mu/intent/post?url=#{request.url}&text=タイトル", class: 'note', title: 'note', target: '_blank' %></div>
-                                <div class="float-right mr-1"><%= link_to image_tag("icon/line_side_brandcolor_icon.png", alt: "line_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "http://line.me/R/msg/text/?#{request.url}&text=タイトル", class: 'line', title: 'LINE', target: '_blank' %></div>
-                                <div class="float-right mr-1"><%= link_to image_tag("icon/facebook_side_brandcolor_icon.png", alt: "facebook_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' %></div>
-                                <div class="float-right mr-1"><%= link_to image_tag("icon/twitter_side_brandcolor_icon.png", alt: "twitter_side_brandcolor_icon", width: "30px", class: "img-fluid", loading: "lazy"), "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' %></div>
-                                <% end %>
                               </div>
                             </div>
                           </div>

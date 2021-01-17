@@ -103,6 +103,8 @@
                 <%= f.radio_button :gender, :female, class: "mr-0" %>
                 <%= f.label :male, "男", class:"pl-3" %>
                 <%= f.radio_button :gender, :male %>
+                <%= f.label :male, "無回答", class:"pl-3" %>
+                <%= f.radio_button :gender, :third_gender %>
               </div>
 
               <div class="form-group mt-0 pt-3 text-left text-muted d-flex align-items-end">

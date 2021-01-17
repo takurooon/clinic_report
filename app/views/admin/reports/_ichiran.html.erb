@@ -1510,8 +1510,10 @@
         <td class="pl-3 ichirantable-right">
           <% if @report.user.gender == "female" %>
             <span class="result-text">女性</span>
-          <% else %>
+          <% elsif @report.user.gender == "male" %>
             <span class="result-text">男性</span>
+          <% else %>
+            <span class="result-text">その他</span>
           <% end %>
         </td>
       </tr>

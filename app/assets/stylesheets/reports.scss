@@ -676,11 +676,12 @@ i .fa-edit {
 }
 
 // 男女アイコン
-.female-icon {
-	color: rgba(137, 234, 234, 0.8);
+.human-icon1 {
+	// color: rgba(137, 234, 234, 0.8);
+	color: rgba(137, 234, 234, 1);
 }
-.male-icon {
-	color: rgba(137, 234, 234, 0.8);
+.human-icon2 {
+	color: rgba(137, 234, 234, 0.4);
 }
 
 // 治療一覧表示のテーブル

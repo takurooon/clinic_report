@@ -30,7 +30,7 @@ class User < ApplicationRecord
   # carrierwave→activestrage変更に伴いmount解除(user/iconカラムも削除済み)↓
   # mount_uploader :icon, ImageUploader
 
-  enum gender: { female: 0, male: 1 }
+  enum gender: { female: 0, male: 1, third_gender: 2 }
 
   # ゲストログイン機能(参考: https://qiita.com/take18k_tech/items/35f9b5883f5be4c6e104)
   # def self.guest

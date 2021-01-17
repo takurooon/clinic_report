@@ -90,8 +90,9 @@
                             <p class="text-center mb-0 pb-0">
                               <% if published.user.gender == "female" %>
                                 <span class="badge badge-pill badge-light text-muted p-0">女</span>
-                              <% else %>
+                              <% elsif published.user.gender == "male" %>
                                 <span class="badge badge-pill badge-light text-muted p-0">男</span>
+                              <% else %>
                               <% end %>
                               <% unless published.treatment_end_age.blank? %>
                                 <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to published.treatment_end_age, "/age/#{published.treatment_end_age}", class: "text-muted" %>歳</span>
@@ -271,8 +272,9 @@
                             <p class="text-center mb-0 pb-0">
                               <% if draft.user.gender == "female" %>
                                 <span class="badge badge-pill badge-light text-muted p-0">女</span>
-                              <% else %>
+                              <% elsif draft.user.gender == "male" %>
                                 <span class="badge badge-pill badge-light text-muted p-0">男</span>
+                              <% else %>
                               <% end %>
                               <% unless draft.treatment_end_age.blank? %>
                                 <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to draft.treatment_end_age, "/age/#{draft.treatment_end_age}", class: "text-muted" %>歳</span>
@@ -449,8 +451,9 @@
                               <p class="text-center mb-0 pb-0">
                                 <% if report.user.gender == "female" %>
                                   <span class="badge badge-pill badge-light text-muted p-0">女</span>
-                                <% else %>
+                                <% elsif report.user.gender == "male" %>
                                   <span class="badge badge-pill badge-light text-muted p-0">男</span>
+                                <% else %>
                                 <% end %>
                                 <% unless report.treatment_end_age.blank? %>
                                   <span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to report.treatment_end_age, "/age/#{report.treatment_end_age}", class: "text-muted" %>歳</span>
@@ -763,6 +766,8 @@
                       女性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% elsif @user.gender === "male" %>
                       男性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
+                    <% elsif @user.gender === "third_gender" %>
+                      無回答&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="small"><%= link_to "変更", edit_user_registration_path, { style: "color:#009688;"} %></span></small>
                     <% else %>
                       <span class="notset">未設定</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= link_to "設定", edit_user_registration_path, { style: "color:#009688;"} %></small>
                     <% end %>
