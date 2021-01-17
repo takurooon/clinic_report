@@ -13,15 +13,15 @@
             <%= render 'center' %>
           </div>
           <input id="TAB-02" type="radio" name="TAB" class="tab-switch" />
-          <label class="tab-label mr-3 small" for="TAB-02">クリニック情報</label>
+          <label class="tab-label mr-3 small" for="TAB-02">クリニック</label>
           <div class="tab-content1">
             <div class="container mb-5 pb-5">
               <div class="row">
                   <div class="tabs">
                     <input id="ivf_clinics" type="radio" name="tab__item" checked>
-                    <label class="tab__item" for="ivf_clinics">体外受精実施機関</label>
+                    <label class="tab__item" for="ivf_clinics">IVF</label>
                     <input id="all_clinics" type="radio" name="tab__item">
-                    <label class="tab__item" for="all_clinics">全医療機関</label>
+                    <label class="tab__item" for="all_clinics">ALL</label>
                     <div class="tab__content" id="ivf_clinics_content">
                       <div class="my-3">
                         <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.where(ivf: 1).count.to_s(:delimited) %>施設)</span></span></h5>
