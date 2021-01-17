@@ -3371,12 +3371,12 @@
           <% if @report.status == "nonreleased" %>
             <% if @report.user == current_user %>
               <div class="px-2 pt-0">
-                <%= @report.content %>
+                <%= text_url_to_link(h(@report.content)).html_safe %>
               </div>
             <% end %>
           <% else %>
             <div class="px-2 pt-0">
-              <%= @report.content %>
+              <%= text_url_to_link(h(@report.content)).html_safe %>
             </div>
           <% end %>
         <% end %>
