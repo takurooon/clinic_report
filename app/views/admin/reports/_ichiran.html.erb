@@ -1681,53 +1681,6 @@
           <% end %>
         </td>
       </tr>
-      <% if (@report.user.number_of_chemical_abortions.present? && @report.user.number_of_chemical_abortions > 1) || (@report.user.number_of_early_miscarriages.present? && @report.user.number_of_early_miscarriages > 1) || (@report.user.number_of_late_miscarriages.present? && @report.user.number_of_late_miscarriages > 1) %>
-        <% if @report.user.number_of_chemical_abortions.present? && @report.user.number_of_chemical_abortions > 1 %>
-          <tr>
-            <td class="result-left-column small text-center">化学流産</td>
-            <td class="pl-3">
-              <div class="alert alert-secondary rounded p-2" role="alert">
-                <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの化学流産。</span></p>
-              </div>
-              <span class="result-text"><%= @report.user.str_number_of_chemical_abortions(@report.user.number_of_chemical_abortions) %>
-                <% if user_signed_in? && @report.user_id == current_user.id %>
-                  &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
-                <% end %>
-              </span>
-            </td>
-          </tr>
-        <% end %>
-        <% if @report.user.number_of_early_miscarriages.present? && @report.user.number_of_early_miscarriages > 1 %>
-          <tr>
-            <td class="result-left-column small text-center">初期流産</td>
-            <td class="pl-3">
-              <div class="alert alert-secondary rounded p-2" role="alert">
-                <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの初期流産。</span></p>
-              </div>
-              <span class="result-text"><%= @report.user.str_number_of_early_miscarriages(@report.user.number_of_early_miscarriages) %>
-                <% if user_signed_in? && @report.user_id == current_user.id %>
-                  &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
-                <% end %>
-              </span>
-            </td>
-          </tr>
-        <% end %>
-        <% if @report.user.number_of_late_miscarriages.present? && @report.user.number_of_late_miscarriages > 1 %>
-          <tr>
-            <td class="result-left-column small text-center">後期流産</td>
-            <td class="pl-3">
-              <div class="alert alert-secondary rounded p-2" role="alert">
-                <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療中に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの後期流産。</span></p>
-              </div>
-              <span class="result-text"><%= @report.user.str_number_of_late_miscarriages(@report.user.number_of_late_miscarriages) %>
-                <% if user_signed_in? && @report.user_id == current_user.id %>
-                  &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
-                <% end %>
-              </span>
-            </td>
-          </tr>
-        <% end %>
-      <% end %>
       <tr>
         <td class="result-left-column small text-center">治療費総額</td>
         <td class="pl-3">
@@ -1736,48 +1689,6 @@
               <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での費用に限らない、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までの治療費用総額。</span></p>
             </div>
             <span class="result-text"><%= @report.user.str_all_cost_report %>
-              <% if user_signed_in? && @report.user_id == current_user.id %>
-                &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
-              <% end %>
-            </span>
-          <% else %>
-            <span class="text-muted small">未回答
-              <% if user_signed_in? && @report.user_id == current_user.id %>
-                &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path %>
-              <% end %>
-            </span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center">受給回数</td>
-        <td class="pl-3">
-          <% if @report.user.number_of_times_the_grant_was_received.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療に限らず、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までに受給した回数。</span></p>
-            </div>
-            <span class="result-text"><%= @report.user.str_number_of_times_the_grant_was_received(@report.user.number_of_times_the_grant_was_received) %>
-              <% if user_signed_in? && @report.user_id == current_user.id %>
-                &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
-              <% end %>
-            </span>
-          <% else %>
-            <span class="text-muted small">未回答
-              <% if user_signed_in? && @report.user_id == current_user.id %>
-                &nbsp;&nbsp;<%= link_to "→ 回答する", edit_user_registration_path %>
-              <% end %>
-            </span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td class="result-left-column small text-center">受給総額</td>
-        <td class="pl-3">
-          <% if @report.user.all_grant_amount.present? %>
-            <div class="alert alert-secondary rounded p-2" role="alert">
-              <p class="small text-muted mb-0" style="line-height: 100%;"><span class="small">※<%= @report.clinic.name %>での治療に限らず、現在(〜<%= Date.today.strftime("%Y/%m/%d") %>)までに受給した総額。</span></p>
-            </div>
-            <span class="result-text"><%= @report.user.str_all_grant_amount(@report.user.all_grant_amount) %>
               <% if user_signed_in? && @report.user_id == current_user.id %>
                 &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
               <% end %>

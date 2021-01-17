@@ -178,7 +178,7 @@
             </div>
           </div>
           <div class="py-3 pl-2 pr-4">
-            <% if @user.first_age_to_start.present? || @user.first_age_to_start_art.present? || @user.number_of_aih.present? || @user.all_number_of_sairan.present? || @user.all_number_of_transplants.present? || @user.all_cost.present? || @user.number_of_chemical_abortions.present? || @user.number_of_early_miscarriages.present? || @user.number_of_late_miscarriages.present? || @user.number_of_times_the_grant_was_received.present? || @user.all_grant_amount.present? %>
+            <% if @user.first_age_to_start.present? || @user.first_age_to_start_art.present? || @user.number_of_aih.present? || @user.all_number_of_sairan.present? || @user.all_number_of_transplants.present? || @user.all_cost.present? %>
               <div class="row mb-5 pl-3">
                 <% if @user.first_age_to_start.present? %>
                   <div class="col-sm-4 px-0">
@@ -208,43 +208,6 @@
                 <% if @user.all_cost.present? %>
                   <div class="col-sm-4 px-0">
                     <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
-                  </div>
-                <% end %>
-                <% if @user.number_of_chemical_abortions.present? %>
-                  <div class="col-sm-4 px-0">
-                    <% if @user.number_of_chemical_abortions_status == "hide" %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                    <% else %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
-                    <% end %>
-                  </div>
-                <% end %>
-                <% if @user.number_of_early_miscarriages.present? %>
-                  <div class="col-sm-4 px-0">
-                    <% if @user.number_of_early_miscarriages_status == "hide" %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                    <% else %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
-                    <% end %>
-                  </div>
-                <% end %>
-                <% if @user.number_of_late_miscarriages.present? %>
-                  <div class="col-sm-4 px-0">
-                    <% if @user.number_of_late_miscarriages_status == "hide" %>
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                    <% else %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
-                    <% end %>
-                  </div>
-                <% end %>
-                <% if @user.number_of_times_the_grant_was_received.present? %>
-                  <div class="col-sm-4 px-0">
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
-                  </div>
-                <% end %>
-                <% if @user.all_grant_amount.present? %>
-                  <div class="col-sm-4 px-0">
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
                   </div>
                 <% end %>
               </div>
@@ -335,7 +298,7 @@
           <div class="px-0 pb-2">
             <i data-feather="hash" class="feather-icon-style3 pb-2 pl-0 pr-0 mx-0"></i><h5 class="d-inline">Profile</h5>
           </div>
-          <% if @user.first_age_to_start.present? || @user.first_age_to_start_art.present? || @user.number_of_aih.present? || @user.all_number_of_sairan.present? || @user.all_number_of_transplants.present? || @user.all_cost.present? || @user.number_of_chemical_abortions.present? || @user.number_of_early_miscarriages.present? || @user.number_of_late_miscarriages.present? || @user.number_of_times_the_grant_was_received.present? || @user.all_grant_amount.present? %>
+          <% if @user.first_age_to_start.present? || @user.first_age_to_start_art.present? || @user.number_of_aih.present? || @user.all_number_of_sairan.present? || @user.all_number_of_transplants.present? || @user.all_cost.present? %>
             <div class="py-2 px-3 mt-0 mb-4">
               <div class="row mb-0">
                 <% if @user.first_age_to_start.present? %>
@@ -366,43 +329,6 @@
                 <% if @user.all_cost.present? %>
                   <div class="col-6 px-0">
                     <p class="mb-0 small font-weight-bold"><span class="small text-muted">治療費総額:</span>&nbsp;<%= @user.str_all_cost(@user.all_cost) %></p>
-                  </div>
-                <% end %>
-                <% if @user.number_of_chemical_abortions.present? %>
-                  <div class="col-6 px-0">
-                    <% if @user.number_of_chemical_abortions_status == "hide" %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                    <% else %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">化学流産:</span>&nbsp;<%= @user.str_number_of_chemical_abortions(@user.number_of_chemical_abortions) %></p>
-                    <% end %>
-                  </div>
-                <% end %>
-                <% if @user.number_of_early_miscarriages.present? %>
-                  <div class="col-6 px-0">
-                    <% if @user.number_of_early_miscarriages_status == "hide" %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                    <% else %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">初期流産:</span>&nbsp;<%= @user.str_number_of_early_miscarriages(@user.number_of_early_miscarriages) %></p>
-                    <% end %>
-                  </div>
-                <% end %>
-                <% if @user.number_of_late_miscarriages.present? %>
-                  <div class="col-6 px-0">
-                    <% if @user.number_of_late_miscarriages_status == "hide" %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<i data-feather="lock" class="my-1 py-1 pl-2 pr-1 text-muted"></i><span class="small text-muted">非公開</span></p>
-                    <% else %>
-                      <p class="mb-0 small font-weight-bold"><span class="small text-muted">後期流産:</span>&nbsp;<%= @user.str_number_of_late_miscarriages(@user.number_of_late_miscarriages) %></p>
-                    <% end %>
-                  </div>
-                <% end %>
-                <% if @user.number_of_times_the_grant_was_received.present? %>
-                  <div class="col-6 px-0">
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給回数:</span>&nbsp;<%= @user.str_number_of_times_the_grant_was_received(@user.number_of_times_the_grant_was_received) %></p>
-                  </div>
-                <% end %>
-                <% if @user.all_grant_amount.present? %>
-                  <div class="col-6 px-0">
-                    <p class="mb-0 small font-weight-bold"><span class="small text-muted">助成金受給額:</span>&nbsp;<%= @user.str_all_grant_amount(@user.all_grant_amount) %></p>
                   </div>
                 <% end %>
               </div>

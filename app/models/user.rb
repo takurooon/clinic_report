@@ -32,10 +32,6 @@ class User < ApplicationRecord
 
   enum gender: { female: 0, male: 1 }
 
-  enum number_of_chemical_abortions_status: { show: 0, hide: 1 }, _prefix: true
-  enum number_of_early_miscarriages_status: { show: 0, hide: 1 }, _prefix: true
-  enum number_of_late_miscarriages_status: { show: 0, hide: 1 }, _prefix: true
-
   # ゲストログイン機能(参考: https://qiita.com/take18k_tech/items/35f9b5883f5be4c6e104)
   # def self.guest
   #   find_or_create_by!(email: 'guest@example.com') do |user|
@@ -61,7 +57,7 @@ class User < ApplicationRecord
 
   def registration_status1
     registration_status1 = []
-    registration_status1 = [self.first_age_to_start, self.first_age_to_start_art, self.number_of_aih, self.all_number_of_sairan, self.all_number_of_transplants, self.all_cost, self.number_of_times_the_grant_was_received, self.all_grant_amount]
+    registration_status1 = [self.first_age_to_start, self.first_age_to_start_art, self.number_of_aih, self.all_number_of_sairan, self.all_number_of_transplants, self.all_cost, self.all_grant_amount]
     if registration_status1.include?(nil)
       true
     else
@@ -317,74 +313,6 @@ class User < ApplicationRecord
     return HASH_ALL_COST[self.all_cost]
   end
 
-  # 助成金
-  HASH_JOSEIKIN = {
-    100 => "不明",
-    0 => "なし",
-    1 => "〜5万円未満",
-    2 => "〜10万円未満",
-    3 => "〜15万円未満",
-    4 => "〜20万円未満",
-    5 => "〜25万円未満",
-    6 => "〜30万円未満",
-    7 => "〜35万円未満",
-    8 => "〜40万円未満",
-    9 => "〜45万円未満",
-    10 => "〜50万円未満",
-    11 => "〜55万円未満",
-    12 => "〜60万円未満",
-    13 => "〜65万円未満",
-    14 => "〜70万円未満",
-    15 => "〜75万円未満",
-    16 => "〜80万円未満",
-    17 => "〜85万円未満",
-    18 => "〜90万円未満",
-    19 => "〜95万円未満",
-    20 => "〜100万円未満",
-    99 => "100万円以上",
-  }
-
-  def str_all_grant_amount(josei)
-    return HASH_JOSEIKIN[josei]
-  end
-
-  # 助成金受給回数
-  HASH_JOSEIKIN_COUNT = {
-    0 => "0回",
-    1 => "1回",
-    2 => "2回",
-    3 => "3回",
-    4 => "4回",
-    5 => "5回",
-    6 => "6回",
-    99 => "その他",
-    100 => "不明"
-  }
-
-  def str_number_of_times_the_grant_was_received(josei)
-    return HASH_JOSEIKIN_COUNT[josei]
-  end
-
-  # 流産回数
-  HASH_RYUZAN_COUNT = {
-    1 => "なし",
-    2 => "1回",
-    3 => "2回",
-    4 => "3回以上",
-    0 => "無回答",
-  }
-
-  def str_number_of_chemical_abortions(chemical)
-    return HASH_RYUZAN_COUNT[chemical]
-  end
-
-  def str_number_of_early_miscarriages(early)
-    return HASH_RYUZAN_COUNT[early]
-  end
-
-  def str_number_of_late_miscarriages(late)
-    return HASH_RYUZAN_COUNT[late]
-  end
 end
 
 # == Schema Information

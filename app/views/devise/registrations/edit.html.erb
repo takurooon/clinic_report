@@ -56,7 +56,7 @@
                     <td>
                       <%= f.select :number_of_aih, User::HASH_AIH_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
                       <small class="text-muted">
-                        <span class="small">体外・顕微受精治療をスタートする前に行った人工授精の回数</span>
+                        <span class="small">これまでに行った人工授精の累計回数</span>
                       </small>
                     </td>
                   </tr>
@@ -65,7 +65,7 @@
                     <td>
                       <%= f.select :all_number_of_sairan, User::HASH_IVF_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
                       <small class="text-muted">
-                        <span class="small">特定のクリニックに限らず体外・顕微授精全体で行った全採卵回数</span>
+                        <span class="small">これまでに行った採卵の累計回数</span>
                       </small>
                     </td>
                   </tr>
@@ -74,7 +74,7 @@
                     <td>
                       <%= f.select :all_number_of_transplants, User::HASH_IVF_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
                       <small class="text-muted">
-                        <span class="small">特定のクリニックに限らず体外・顕微授精全体で行った全移植回数</span>
+                        <span class="small">これまでに行った移植の累計回数</span>
                       </small>
                     </td>
                   </tr>
@@ -83,55 +83,7 @@
                     <td>
                       <%= f.select :all_cost, User::HASH_ALL_COST.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
                       <small class="text-muted">
-                        <span class="small">特定のクリニックに限らず体外・顕微授精全体で行った全治療費用</span>
-                      </small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="small text-center px-0">化学流産経験</td>
-                    <td>
-                      <%= f.select :number_of_chemical_abortions, User::HASH_RYUZAN_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
-                      <small class="text-muted">
-                        <span class="small">胎嚢確認前の流産</span>
-                      </small>
-                      <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :number_of_chemical_abortions_status, {}, "hide", "show" %><span class="small">非公開</span></small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="small text-center px-0">初期流産経験</td>
-                    <td>
-                      <%= f.select :number_of_early_miscarriages, User::HASH_RYUZAN_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
-                      <small class="text-muted">
-                        <span class="small">12w未満の流産</span>
-                      </small>
-                      <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :number_of_early_miscarriages_status, {}, "hide", "show" %><span class="small">非公開</span></small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="small text-center px-0">後期流産経験</td>
-                    <td>
-                      <%= f.select :number_of_late_miscarriages, User::HASH_RYUZAN_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" } %>
-                      <small class="text-muted">
-                        <span class="small">12w以降の流産</span>
-                      </small>
-                      <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :number_of_late_miscarriages_status, {}, "hide", "show" %><span class="small">非公開</span></small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="small text-center px-0">助成金受給回数</td>
-                    <td>
-                      <%= f.select :number_of_times_the_grant_was_received, User::HASH_JOSEIKIN_COUNT.invert, { prompt: "選択して下さい" }, { class: "form-control" }  %>
-                      <small class="text-muted">
-                        <span class="small">全受給回数を選択して下さい</span>
-                      </small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="small text-center px-0">助成金受給金額</td>
-                    <td>
-                      <%= f.select :all_grant_amount, User::HASH_JOSEIKIN.invert, {prompt: "選択して下さい"}, { class: "form-control" } %>
-                      <small class="text-muted">
-                        <span class="small">受給総額を選択して下さい</span>
+                        <span class="small">これまでの治療費の総額</span>
                       </small>
                     </td>
                   </tr>
@@ -263,10 +215,11 @@
                   <tr>
                     <td class="small text-center px-0">パスワード確認</td>
                     <td>
-                      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
                       <small>上記と同じパスワードを入力してください</small>
                     </td>
                   </tr>
+
                   <tr>
                     <td class="small text-center px-0">性別</td>
                     <td>
