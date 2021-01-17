@@ -389,8 +389,8 @@ trix-editor .attachment__metadata {
       // 独自追加入力領域の制限
       trix-editor {
         min-height: 20em;
-        // max-height: 20em;
-        // overflow-y: auto;
+        max-height: 25em;
+        overflow-y: auto;
       }
       // ツールバーの折り返し表示(追加)
       trix-toolbar .trix-button-row {
