@@ -84,26 +84,26 @@ FuikuInspection.create([
 ])
 
 ClSelection.create([
-  { name: "自宅からの通いやすい" },
-  { name: "職場からの通いやすい" },
-  { name: "口コミサイトでの評価をみて" },
-  { name: "SNSでの評判をみて" },
-  { name: "知人が通っていたから" },
-  { name: "知人からの勧め" },
-  { name: "パートナーからの勧め" },
-  { name: "家族や親戚からの勧め" },
-  { name: "信頼する医師がいたから" },
-  { name: "説明会に参加して納得したから" },
-  { name: "ホームページをみて" },
-  { name: "広告を見て" },
-  { name: "その他" },
+  { name: "自宅からの通いやすさ", yomigana: "アア" },
+  { name: "職場からの通いやすさ", yomigana: "アイ" },
+  { name: "口コミサイトでの評価をみて", yomigana: "アウ" },
+  { name: "SNSでの評判をみて", yomigana: "アエ" },
+  { name: "知人が通っていたから", yomigana: "アオ" },
+  { name: "知人からの勧め", yomigana: "アカ" },
+  { name: "パートナーからの勧め", yomigana: "アキ" },
+  { name: "家族や親戚からの勧め", yomigana: "アク" },
+  { name: "信頼する医師がいたから", yomigana: "アケ" },
+  { name: "説明会に参加して納得したから", yomigana: "アコ" },
+  { name: "ホームページをみて", yomigana: "アサ" },
+  { name: "広告を見て", yomigana: "アシ" },
+  { name: "その他", yomigana: "ンン" },
 ])
 
 PgEplenishment.create([
-  { name: "なし" },
-  { name: "内服" },
-  { name: "経膣" },
-  { name: "注射" },
+  { name: "なし", yomigana: "アア"  },
+  { name: "内服", yomigana: "アイ"  },
+  { name: "経膣", yomigana: "アウ"  },
+  { name: "注射", yomigana: "アエ"  },
 ])
 
 FFuninFactor.create([

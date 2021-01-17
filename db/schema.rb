@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "cl_selections", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -230,6 +231,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "pg_eplenishments", force: :cascade do |t|
     t.string "name"
+    t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
