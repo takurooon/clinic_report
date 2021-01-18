@@ -24,8 +24,9 @@
                     <label class="tab__item" for="all_clinics">ALL</label>
                     <div class="tab__content" id="ivf_clinics_content">
                       <div class="my-3">
-                        <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.where(ivf: 1).count.to_s(:delimited) %>施設)</span></span></h5>
-                        <h4 class="d-none d-md-block col-12 mt-4 mb-5"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.where(ivf: 1).count.to_s(:delimited) %>施設)</span></span></h4>
+                        <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.where(ivf: 1).count.to_s(:delimited) %>施設)</span></span></h5>
+                        <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.where(ivf: 1).count.to_s(:delimited) %>施設)</span></span></h4>
+                        <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
                       </div>
                       <% @list_ivf.each do |key, value| %>
                         <div class="col-12 mb-1 px-2">
@@ -69,8 +70,9 @@
                     </div>
                     <div class="tab__content" id="all_clinics_content">
                       <div class="my-3">
-                        <h5 class="d-sm d-md-none mt-4 mb-5 text-center"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h5>
-                        <h4 class="d-none d-md-block col-12 mt-4 mb-5"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h4>
+                        <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h5>
+                        <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h4>
+                        <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
                       </div>
                       <% @list.each do |key, value| %>
                         <div class="col-12 mb-1 px-2">
