@@ -38,9 +38,7 @@
 #  number_of_frozen_early_embryos         :integer
 #  number_of_frozen_pronuclear_embryos    :integer
 #  number_of_transferable_embryos         :integer
-#  number_of_unfrozen_blastocysts         :integer
-#  number_of_unfrozen_early_embryos       :integer
-#  number_of_unfrozen_pronuclear_embryos  :integer
+#  number_of_unfrozen_embryos             :integer
 #  number_of_visits_before_ishoku         :integer
 #  number_of_visits_before_sairan         :integer
 #  ova_with_ivm                           :integer

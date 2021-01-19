@@ -413,11 +413,14 @@ function embryo_stage_checked(embryo_stage) {
     $('input[name="report[blastocyst_grade1]"]:checked').prop('checked', false);
     $(".blastocyst_grade2").hide();
     $('input[name="report[blastocyst_grade2]"]:checked').prop('checked', false);
+    $(".culture_days").hide();
+    $('input[name="report[culture_days]"]:checked').prop('checked', false);
   } else if (embryo_stage == "2") {
     $(".early_embryo_grade").hide();
     $('input[name="report[early_embryo_grade]"]:checked').prop('checked', false);
     $(".blastocyst_grade1").show();
     $(".blastocyst_grade2").show();
+    $(".culture_days").show();
   } else {
     $(".early_embryo_grade").hide();
     $('input[name="report[early_embryo_grade]"]:checked').prop('checked', false);
@@ -425,6 +428,8 @@ function embryo_stage_checked(embryo_stage) {
     $('input[name="report[blastocyst_grade1]"]:checked').prop('checked', false);
     $(".blastocyst_grade2").hide();
     $('input[name="report[blastocyst_grade2]"]:checked').prop('checked', false);
+    $(".culture_days").hide();
+    $('input[name="report[culture_days]"]:checked').prop('checked', false);
   }
 }
 

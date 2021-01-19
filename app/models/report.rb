@@ -541,7 +541,6 @@ class Report < ApplicationRecord
     9 => "",
     100 => ""
   }
-
   def str_early_embryo_grade_show
     return HASH_EARLY_EMBRYO_GRADE_SHOW[self.early_embryo_grade]
   end
@@ -572,7 +571,6 @@ class Report < ApplicationRecord
     99 => "",
     100 => ""
   }
-
   def str_blastocyst_grade1_show
     return HASH_BLASTOCYST_GRADE1_SHOW[self.blastocyst_grade1]
   end
@@ -618,6 +616,19 @@ class Report < ApplicationRecord
 
   def str_blastocyst_grade2_show
     return HASH_BLASTOCYST_GRADE2_SHOW[self.blastocyst_grade2]
+  end
+
+  # culture_daysの区分値(培養日数)
+  HASH_CULTURE_DAYS = {
+    5 => "5日目",
+    6 => "6日目",
+    7 => "7日目",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_culture_days
+    return HASH_CULTURE_DAYS[self.culture_days]
   end
 
   # fuikuの区分値(不育症の診断有無)
@@ -1798,9 +1809,7 @@ end
 #  number_of_frozen_early_embryos         :integer
 #  number_of_frozen_pronuclear_embryos    :integer
 #  number_of_transferable_embryos         :integer
-#  number_of_unfrozen_blastocysts         :integer
-#  number_of_unfrozen_early_embryos       :integer
-#  number_of_unfrozen_pronuclear_embryos  :integer
+#  number_of_unfrozen_embryos             :integer
 #  number_of_visits_before_ishoku         :integer
 #  number_of_visits_before_sairan         :integer
 #  ova_with_ivm                           :integer

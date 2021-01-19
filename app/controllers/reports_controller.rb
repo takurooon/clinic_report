@@ -467,6 +467,7 @@ class ReportsController < ApplicationController
       :early_embryo_grade,
       :blastocyst_grade1,
       :blastocyst_grade2,
+      :culture_days,
       :cost,
       :sairan_cost,
       :ishoku_cost,

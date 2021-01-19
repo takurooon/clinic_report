@@ -64,6 +64,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :number_of_frozen_pronuclear_embryos
       t.integer :number_of_frozen_early_embryos
       t.integer :number_of_frozen_blastocysts
+      t.integer :culture_days
 
       t.timestamps
     end
