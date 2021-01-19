@@ -364,6 +364,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "number_of_frozen_pronuclear_embryos"
     t.integer "number_of_frozen_early_embryos"
     t.integer "number_of_frozen_blastocysts"
+    t.integer "culture_days"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "clinic_id", null: false

@@ -1388,15 +1388,15 @@ i .fa-edit {
 
 // ゆらゆら https://commte.net/6312
 .fluffy {
-  animation: fluffy1 5s ease infinite;
+  animation: fluffy1 3s ease infinite;
 }
 @keyframes fluffy1 {
   0% { transform:translateY(0) }
   5% { transform:translateY(0) }
   10% { transform:translateY(0) }
-  20% { transform:translateY(-7px) }
+  20% { transform:translateY(-10px) }
   25% { transform:translateY(0) }
-  30% { transform:translateY(-7px) }
+  30% { transform:translateY(-10px) }
   50% { transform:translateY(0) }
   100% { transform:translateY(0) }
 }

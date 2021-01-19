@@ -16,6 +16,7 @@
 #  cost                                   :integer
 #  credit_card_validity                   :integer
 #  creditcards_can_be_used_from_more_than :integer
+#  culture_days                           :integer
 #  current_state                          :integer
 #  details_of_icsi                        :integer
 #  doctor_quality                         :integer
