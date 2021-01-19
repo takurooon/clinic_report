@@ -1400,3 +1400,16 @@ i .fa-edit {
   50% { transform:translateY(0) }
   100% { transform:translateY(0) }
 }
+.fluffy-b {
+  animation: fluffy2 5s ease infinite;
+}
+@keyframes fluffy2 {
+  0% { transform:translateY(0) }
+  5% { transform:translateY(0) }
+  10% { transform:translateY(0) }
+  20% { transform:translateY(-7px) }
+  25% { transform:translateY(0) }
+  30% { transform:translateY(-7px) }
+  50% { transform:translateY(0) }
+  100% { transform:translateY(0) }
+}
