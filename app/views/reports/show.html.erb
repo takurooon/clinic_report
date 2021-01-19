@@ -1467,10 +1467,11 @@
                                 <%= @report.str_early_embryo_grade %>
                               <% end %>)</span>
                             <% elsif @report.embryo_stage == 2 %>
-                              <span class="marker-underline">凍結胚&nbsp;(胚盤胞
+                              <span class="marker-underline">凍結胚&nbsp;(
                               <% if @report.culture_days.present? %>
                                 <%= @report.str_culture_days %>
                               <% end %>
+                              胚盤胞
                               <% if @report.blastocyst_grade1.present? %>
                                 <%= @report.str_blastocyst_grade1_show %>
                               <% end %>
@@ -1486,10 +1487,11 @@
                                 <%= @report.str_early_embryo_grade %>
                               <% end %>)</span>
                             <% elsif @report.embryo_stage == 2 %>
-                              <span class="marker-underline">新鮮胚&nbsp;(胚盤胞
+                              <span class="marker-underline">新鮮胚&nbsp;(
                               <% if @report.culture_days.present? %>
                                 <%= @report.str_culture_days %>
                               <% end %>
+                                胚盤胞
                               <% if @report.blastocyst_grade1.present? %>
                                 <%= @report.str_blastocyst_grade1_show %>
                               <% end %>
