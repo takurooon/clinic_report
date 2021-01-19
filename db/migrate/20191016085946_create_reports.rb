@@ -60,9 +60,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :possible_to_wait_outside_cl
       t.integer :male_infertility
       t.integer :level_of_male_infertility
-      t.integer :number_of_unfrozen_pronuclear_embryos
-      t.integer :number_of_unfrozen_early_embryos
-      t.integer :number_of_unfrozen_blastocysts
+      t.integer :number_of_unfrozen_embryos
       t.integer :number_of_frozen_pronuclear_embryos
       t.integer :number_of_frozen_early_embryos
       t.integer :number_of_frozen_blastocysts

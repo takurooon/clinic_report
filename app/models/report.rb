@@ -1477,8 +1477,8 @@ class Report < ApplicationRecord
     return HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS[self.number_of_transferable_embryos]
   end
 
-  # number_of_unfrozen_pronuclear_embryosの区分値(最新採卵周期での新鮮胚数/CL単位)
-  HASH_NUMBER_OF_UNFROZEN_PRONUCLEAR_EMBRYOS = {
+  # number_of_unfrozen_embryosの区分値(最新採卵周期での新鮮胚数/CL単位)
+  HASH_NUMBER_OF_UNFROZEN_EMBRYOS = {
     100 => "不明",
     0 => "0個",
     1 => "1個",
@@ -1534,130 +1534,8 @@ class Report < ApplicationRecord
     51 => "51個以上",
   }
 
-  def str_number_of_unfrozen_pronuclear_embryos
-    return HASH_NUMBER_OF_UNFROZEN_PRONUCLEAR_EMBRYOS[self.number_of_unfrozen_pronuclear_embryos]
-  end
-
-  # number_of_unfrozen_early_embryosの区分値(最新採卵周期での新鮮胚数/CL単位)
-  HASH_NUMBER_OF_UNFROZEN_EARLY_EMBRYOS = {
-    100 => "不明",
-    0 => "0個",
-    1 => "1個",
-    2 => "2個",
-    3 => "3個",
-    4 => "4個",
-    5 => "5個",
-    6 => "6個",
-    7 => "7個",
-    8 => "8個",
-    9 => "9個",
-    10 => "10個",
-    11 => "11個",
-    12 => "12個",
-    13 => "13個",
-    14 => "14個",
-    15 => "15個",
-    16 => "16個",
-    17 => "17個",
-    18 => "18個",
-    19 => "19個",
-    20 => "20個",
-    21 => "21個",
-    22 => "22個",
-    23 => "23個",
-    24 => "24個",
-    25 => "25個",
-    26 => "26個",
-    27 => "27個",
-    28 => "28個",
-    29 => "29個",
-    30 => "30個",
-    31 => "31個",
-    32 => "32個",
-    33 => "33個",
-    34 => "34個",
-    35 => "35個",
-    36 => "36個",
-    37 => "37個",
-    38 => "38個",
-    39 => "39個",
-    40 => "40個",
-    41 => "41個",
-    42 => "42個",
-    43 => "43個",
-    44 => "44個",
-    45 => "45個",
-    46 => "46個",
-    47 => "47個",
-    48 => "48個",
-    49 => "49個",
-    50 => "50個",
-    51 => "51個以上",
-  }
-
-  def str_number_of_unfrozen_early_embryos
-    return HASH_NUMBER_OF_UNFROZEN_EARLY_EMBRYOS[self.number_of_unfrozen_early_embryos]
-  end
-
-  # number_of_unfrozen_blastocystsの区分値(最新採卵周期での新鮮胚数/CL単位)
-  HASH_NUMBER_OF_UNFROZEN_BLASTOCYSTS = {
-    100 => "不明",
-    0 => "0個",
-    1 => "1個",
-    2 => "2個",
-    3 => "3個",
-    4 => "4個",
-    5 => "5個",
-    6 => "6個",
-    7 => "7個",
-    8 => "8個",
-    9 => "9個",
-    10 => "10個",
-    11 => "11個",
-    12 => "12個",
-    13 => "13個",
-    14 => "14個",
-    15 => "15個",
-    16 => "16個",
-    17 => "17個",
-    18 => "18個",
-    19 => "19個",
-    20 => "20個",
-    21 => "21個",
-    22 => "22個",
-    23 => "23個",
-    24 => "24個",
-    25 => "25個",
-    26 => "26個",
-    27 => "27個",
-    28 => "28個",
-    29 => "29個",
-    30 => "30個",
-    31 => "31個",
-    32 => "32個",
-    33 => "33個",
-    34 => "34個",
-    35 => "35個",
-    36 => "36個",
-    37 => "37個",
-    38 => "38個",
-    39 => "39個",
-    40 => "40個",
-    41 => "41個",
-    42 => "42個",
-    43 => "43個",
-    44 => "44個",
-    45 => "45個",
-    46 => "46個",
-    47 => "47個",
-    48 => "48個",
-    49 => "49個",
-    50 => "50個",
-    51 => "51個以上",
-  }
-
-  def str_number_of_unfrozen_blastocysts
-    return HASH_NUMBER_OF_UNFROZEN_BLASTOCYSTS[self.number_of_unfrozen_blastocysts]
+  def str_number_of_unfrozen_embryos
+    return HASH_NUMBER_OF_UNFROZEN_EMBRYOS[self.number_of_unfrozen_embryos]
   end
 
   # number_of_frozen_pronuclear_embryosの区分値(最新採卵周期での前核胚数/CL単位)
@@ -1913,14 +1791,16 @@ end
 #  ishoku_type                            :integer
 #  level_of_male_infertility              :integer
 #  male_infertility                       :integer
-#  number_of_blastocysts                  :integer
 #  number_of_clinics                      :integer
-#  number_of_early_embryos                :integer
 #  number_of_eggs_collected               :integer
 #  number_of_fertilized_eggs              :integer
-#  number_of_pronuclear_embryos           :integer
+#  number_of_frozen_blastocysts           :integer
+#  number_of_frozen_early_embryos         :integer
+#  number_of_frozen_pronuclear_embryos    :integer
 #  number_of_transferable_embryos         :integer
-#  number_of_unfrozen_embryos             :integer
+#  number_of_unfrozen_blastocysts         :integer
+#  number_of_unfrozen_early_embryos       :integer
+#  number_of_unfrozen_pronuclear_embryos  :integer
 #  number_of_visits_before_ishoku         :integer
 #  number_of_visits_before_sairan         :integer
 #  ova_with_ivm                           :integer

@@ -1205,17 +1205,17 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if @report.number_of_transferable_embryos.present? || @report.number_of_unfrozen_pronuclear_embryos.present? || @report.number_of_frozen_pronuclear_embryos.present? || @report.number_of_frozen_early_embryos.present? || @report.number_of_frozen_blastocysts.present? %>
+                        <% if @report.number_of_transferable_embryos.present? || @report.number_of_unfrozen_embryos.present? || @report.number_of_frozen_pronuclear_embryos.present? || @report.number_of_frozen_early_embryos.present? || @report.number_of_frozen_blastocysts.present? %>
                           <tr>
                             <td class="result-left-column small text-center">移植可能胚数</td>
                             <td class="pl-3">
                               <span class="result-text"><%= @report.str_number_of_transferable_embryos %></span>
-                              <% if @report.number_of_unfrozen_pronuclear_embryos.present? %>
+                              <% if @report.number_of_unfrozen_embryos.present? %>
                                 <p class="small result-text mb-0">
                                   <% if @report.number_of_transferable_embryos.present? %>
                                     <span class="text-muted small">内</span>
                                   <% end %>
-                                  &nbsp;新鮮胚<%= @report.str_number_of_unfrozen_pronuclear_embryos %></p>
+                                  &nbsp;新鮮胚<%= @report.str_number_of_unfrozen_embryos %></p>
                               <% end %>
                               <% number_of_frozen_eggs = @report.number_of_frozen_pronuclear_embryos.to_i + @report.number_of_frozen_early_embryos.to_i + @report.number_of_frozen_blastocysts.to_i %>
                               <% if number_of_frozen_eggs > 0 %>
@@ -3068,7 +3068,7 @@
                   </div>
                   <div class="d-flex">
                     <div class="fixed-w-col text-right">
-                      <span class="text-muted small">移植可能数</span>&nbsp;：
+                      <span class="text-muted small">移植可能胚</span>&nbsp;：
                     </div>
                     <div class="flex-grow-1">
                       <% if @report.number_of_transferable_embryos.present? %>
@@ -3156,17 +3156,17 @@
                     <td class="result-left-column small text-center" style="width:30%">胚盤胞到達率<span class="small text-muted">(対 採卵数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.embryo_stage == 1 %>
-                        <% if @report.str_current_state.present? %>
+                        <% if @report.current_state.present? %>
                           <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
                         <% else %>
                           <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
                         <% end %>
                       <% end %>
-                      <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_eggs_collected.to_f ) * 100 %>
+                      <% haibanho_rate = ( @report.number_of_blastocysts.to_f / @report.number_of_eggs_collected.to_f ) * 100 %>
                       <% if haibanho_rate <= 100.00 %>
-                        <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></small></span>
+                        <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.number_of_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></small></span>
                       <% else %>
-                        <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></span>
+                        <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;<%= @report.number_of_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></span>
                       <% end %>
                     </td>
                   </tr>
@@ -3174,17 +3174,17 @@
                     <td class="result-left-column small text-center" style="width:30%">胚盤胞到達率<span class="small text-muted">(対 受精個数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.embryo_stage == 1 %>
-                        <% if @report.str_current_state.present? %>
+                        <% if @report.current_state.present? %>
                           <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
                         <% else %>
                           <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
                         <% end %>
                       <% end %>
-                      <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_fertilized_eggs.to_f ) * 100 %>
+                      <% haibanho_rate = ( @report.number_of_blastocysts.to_f / @report.number_of_fertilized_eggs.to_f ) * 100 %>
                       <% if haibanho_rate <= 100.00 %>
-                        <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;</span></small></span>
+                        <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.number_of_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;</span></small></span>
                       <% else %>
-                        <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;</span></span>
+                        <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;<%= @report.number_of_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;</span></span>
                       <% end %>
                     </td>
                   </tr>
@@ -3192,17 +3192,17 @@
                     <td class="result-left-column small text-center" style="width:30%">胚盤胞到達率<span class="small text-muted">(対 移植可能胚数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.embryo_stage == 1 %>
-                        <% if @report.str_current_state.present? %>
+                        <% if @report.current_state.present? %>
                           <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
                         <% else %>
                           <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
                         <% end %>
                       <% end %>
-                      <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_transferable_embryos.to_f ) * 100 %>
+                      <% haibanho_rate = ( @report.number_of_blastocysts.to_f / @report.number_of_transferable_embryos.to_f ) * 100 %>
                       <% if haibanho_rate <= 100.00 %>
-                        <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></small></span>
+                        <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.number_of_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></small></span>
                       <% else %>
-                        <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></span>
+                        <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;<%= @report.number_of_blastocysts %>個&nbsp;/&nbsp;採卵数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></span>
                       <% end %>
                     </td>
                   </tr>
