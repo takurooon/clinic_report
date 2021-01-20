@@ -102,8 +102,10 @@ ClSelection.create([
 PgEplenishment.create([
   { name: "なし", yomigana: "ンンン", number: 101 },
   { name: "内服", yomigana: "ナイフク", number: 102 },
-  { name: "経膣", yomigana: "ケイチツ", number: 103 },
+  { name: "膣剤", yomigana: "チツザイ", number: 103 },
   { name: "注射", yomigana: "チュウシャ", number: 104 },
+  { name: "塗布薬(ジェルなど)", yomigana: "トフヤク", number: 105 },
+  { name: "貼付薬(テープなど)", yomigana: "テンプヤク", number: 106 },
 ])
 
 FFuninFactor.create([
