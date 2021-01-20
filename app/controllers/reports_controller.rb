@@ -469,6 +469,7 @@ class ReportsController < ApplicationController
       :blastocyst_grade2,
       :culture_days,
       :cost,
+      :explanation_of_costs,
       :sairan_cost,
       :ishoku_cost,
       :credit_card_validity,

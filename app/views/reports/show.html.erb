@@ -2175,6 +2175,14 @@
                       <% end %>
                     </td>
                   </tr>
+                  <% if @report.explanation_of_costs.present? %>
+                    <tr>
+                      <td class="result-left-column small text-center">治療費用メモ</td>
+                      <td class="pl-3">
+                        <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.explanation_of_costs.split("\n"),tag(:br)))).html_safe %></span>
+                      </td>
+                    </tr>
+                  <% end %>
                 </table>
                 <div class="text-right mt-0 px-0">
                   <small><i data-feather="book" class="px-0 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology"  } %></small>
@@ -2321,7 +2329,6 @@
                       <% end %>
                     </td>
                   </tr>
-                  
                   <tr>
                     <td class="result-left-column small text-center">前院からの転院理由</td>
                     <td class="pl-3">

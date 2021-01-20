@@ -22,6 +22,7 @@
 #  doctor_quality                         :integer
 #  early_embryo_grade                     :integer
 #  embryo_stage                           :integer
+#  explanation_of_costs                   :text
 #  fertility_treatment_number             :integer
 #  free_wifi                              :integer
 #  fuiku                                  :integer
