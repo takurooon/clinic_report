@@ -483,9 +483,8 @@ class Report < ApplicationRecord
 
   # level_of_male_infertilityの区分値(男性不妊因子のレベル)
   HASH_LEVEL_OF_MALE_INFERTILITY = {
-    1 => "人工授精レベル",
-    2 => "顕微授精レベル",
-    3 => "TESE以上レベル",
+    1 => "顕微授精レベル",
+    2 => "TESE以上レベル",
     99 => "その他",
     100 => "不明",
   }
@@ -856,10 +855,11 @@ class Report < ApplicationRecord
 
   # work_styleの区分値(働き方)
   HASH_WORK_STYLE = {
-    1 => "会社員",
-    2 => "自営業/フリーランス",
-    3 => "パート",
-    4 => "無職",
+    1 => "会社役員",
+    2 => "会社員",
+    3 => "自営業/フリーランス",
+    4 => "パート",
+    5 => "無職",
     99 => "その他"
   }
 
@@ -869,10 +869,11 @@ class Report < ApplicationRecord
 
   # 検索画面用のwork_styleの区分値(働き方)
   HASH_WORK_STYLE_SEARCH= {
-    1 => "会社員",
-    2 => "自営業/フリーランス",
-    3 => "パート",
-    4 => "無職",
+    1 => "会社役員",
+    2 => "会社員",
+    3 => "自営業/フリーランス",
+    4 => "パート",
+    5 => "無職",
     99 => "その他"
   }
 
