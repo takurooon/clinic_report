@@ -7,7 +7,7 @@
         <%= strip_tags(@report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %>&nbsp;<span class="text-muted small">さんの</span>&nbsp;
       <% end %>
       <%= link_to @report.clinic.name, "/clinic/#{@report.clinic.id}" %><br>
-      <span class="text-muted small">での</span>&nbsp;<span class="font-weight-bold">治療情報 一括縦表示</span>
+      <span class="text-muted small">での</span>&nbsp;<span class="font-weight-bold">治療情報 一括表示</span>
     </div>
 
     <table class="table p-0 mt-0">
