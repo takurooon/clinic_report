@@ -24,7 +24,8 @@ class SpecialInspection < ApplicationRecord
     14 => "ビタミンD検査",
     15 => "銅亜鉛検査",
     16 => "精子検査(クルーガーテスト)",
-    17 => "PGT-A",
+    17 => "DFI検査",
+    18 => "着床前診断",
     99 => "その他",
   }
 

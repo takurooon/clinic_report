@@ -93,7 +93,8 @@ class ReportsController < ApplicationController
     @special_inspection_vitamin_d = @report.special_inspections.where(name: 14)
     @special_inspection_copper_zinc = @report.special_inspections.where(name: 15)
     @special_inspection_kruger = @report.special_inspections.where(name: 16)
-    @special_inspection_pgta = @report.special_inspections.where(name: 17)
+    @special_inspection_dfi = @report.special_inspections.where(name: 17)
+    @special_inspection_pgta = @report.special_inspections.where(name: 18)
     @special_inspection_other_inspection = @report.special_inspections.where(name: 99)
 
     day_of_sairans = @report.day_of_sairans
