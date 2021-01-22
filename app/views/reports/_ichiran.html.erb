@@ -2340,13 +2340,14 @@
         <td class="result-left-column small text-center" style="width:30%">採卵個数あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
         <td class="pl-3" style="width:70%">
           <% if @report.current_state.present? && @report.current_state < 5 %>
+            <% choran = ( @report.number_of_unfrozen_embryos.to_i + @report.number_of_frozen_pronuclear_embryos.to_i + @report.number_of_frozen_early_embryos.to_i + @report.number_of_frozen_blastocysts.to_i ) - @report.total_number_of_eggs_transplanted %>
             <% if @report.current_state == 1 || @report.current_state == 3 %>
-              <% ninshinritsu_sairan = ( 1 / @report.number_of_eggs_collected.to_f) * 100 %>
-              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></small>
+              <% ninshinritsu_sairan = ( 1 / ( @report.number_of_eggs_collected.to_f - choran.to_i ) ) * 100 %>
+              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= choran %>個&nbsp;)&nbsp;</span></small>
             <% elsif @report.current_state == 2 || @report.current_state == 4 %>
               <% if @report.total_number_of_eggs_transplanted == 2 || @report.total_number_of_eggs_transplanted == 3 || @report.total_number_of_eggs_transplanted == 4 %>
-                <% ninshinritsu_sairan2 = ( @report.total_number_of_eggs_transplanted.to_f / @report.number_of_eggs_collected.to_f ) * 100 %>
-                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan2) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.total_number_of_eggs_transplanted %>個&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></small>
+                <% ninshinritsu_sairan2 = ( @report.total_number_of_eggs_transplanted.to_f / ( @report.number_of_eggs_collected.to_f - choran.to_i ) ) * 100 %>
+                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan2) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.total_number_of_eggs_transplanted %>個&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= choran %>個&nbsp;)&nbsp;</span></small>
               <% else %>
                 <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;<%= @report.total_number_of_eggs_transplanted %>個&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></span>
               <% end %>
