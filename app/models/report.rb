@@ -507,7 +507,7 @@ class Report < ApplicationRecord
 
   # embryo_stageの区分値(妊娠に至った胚のステージ)
   HASH_EMBRYO_STAGE = {
-    1 => "初期胚",
+    1 => "〜初期胚",
     2 => "胚盤胞",
     100 => "不明"
   }

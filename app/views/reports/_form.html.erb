@@ -716,9 +716,54 @@
                             </div>
                           <% end %>
                         </div>
+                        <div class="px-2">
+                          <details class="mb-2 pt-3">
+                            <summary class="text-muted small mb-2">参考: 具体的な薬品名の一例はこちら</summary>
+                            <table class="table bg-light rounded-lg text-dark">
+                              <thead>
+                                <tr>
+                                  <td class="small text-muted text-center py-1">種類</td>
+                                  <td class="small text-muted text-center py-1">薬品名一例</td>
+                                </tr>
+                              </thead>
+                              <tbody class="small">
+                                <tr>
+                                  <td class="font-weight-bold pl-3">内服</td>
+                                  <td>
+                                    <ul class="pl-2">
+                                      <li>ウストロゲスタン</li>
+                                      <li>ルティナス</li>
+                                      <li>ルテウム</li>
+                                      <li>ワンクリノン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">など</span></li>
+                                    </ul>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="font-weight-bold pl-3">経膣</td>
+                                  <td>
+                                    <ul class="pl-2">
+                                      <li>ジュリナ</li>
+                                      <li>プレマリン</li>
+                                      <li>プロギノーバ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">など</span></li>
+                                    </ul>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="font-weight-bold pl-3">注射</td>
+                                  <td>
+                                    <ul class="pl-2">
+                                      <li>プロゲステロン</li>
+                                      <li>プロゲデポー&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">など</span></li>
+                                    </ul>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </details>
+                        </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-4">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
                         <div class="pt-2 pl-2">
                           <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
