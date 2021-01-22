@@ -25,7 +25,6 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :types_of_fertilization_methods
       t.integer :details_of_icsi
       t.integer :number_of_fertilized_eggs
-      t.integer :abnormal_fertilized_eggs
       t.integer :number_of_transferable_embryos
       t.integer :embryo_stage
       t.integer :early_embryo_grade

@@ -3,7 +3,6 @@
 # Table name: reports
 #
 #  id                                     :bigint           not null, primary key
-#  abnormal_fertilized_eggs               :integer
 #  age_of_partner_at_end_of_treatment     :integer
 #  amh                                    :integer
 #  average_waiting_time                   :integer

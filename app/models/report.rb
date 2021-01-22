@@ -1612,67 +1612,6 @@ class Report < ApplicationRecord
     return HASH_NUMBER_OF_FERTILIZED_EGGS[self.number_of_fertilized_eggs]
   end
 
-  # abnormal_fertilized_eggsの区分値(最新採卵周期での受精した個数/CL単位)
-  HASH_ABNORMAL_FERTILIZED_EGGS = {
-    0 => "0個",
-    1 => "1個",
-    2 => "2個",
-    3 => "3個",
-    4 => "4個",
-    5 => "5個",
-    6 => "6個",
-    7 => "7個",
-    8 => "8個",
-    9 => "9個",
-    10 => "10個",
-    11 => "11個",
-    12 => "12個",
-    13 => "13個",
-    14 => "14個",
-    15 => "15個",
-    16 => "16個",
-    17 => "17個",
-    18 => "18個",
-    19 => "19個",
-    20 => "20個",
-    21 => "21個",
-    22 => "22個",
-    23 => "23個",
-    24 => "24個",
-    25 => "25個",
-    26 => "26個",
-    27 => "27個",
-    28 => "28個",
-    29 => "29個",
-    30 => "30個",
-    31 => "31個",
-    32 => "32個",
-    33 => "33個",
-    34 => "34個",
-    35 => "35個",
-    36 => "36個",
-    37 => "37個",
-    38 => "38個",
-    39 => "39個",
-    40 => "40個",
-    41 => "41個",
-    42 => "42個",
-    43 => "43個",
-    44 => "44個",
-    45 => "45個",
-    46 => "46個",
-    47 => "47個",
-    48 => "48個",
-    49 => "49個",
-    50 => "50個",
-    51 => "51個以上",
-    100 => "不明",
-  }
-
-  def str_abnormal_fertilized_eggs
-    return HASH_ABNORMAL_FERTILIZED_EGGS[self.abnormal_fertilized_eggs]
-  end
-
   # number_of_transferable_embryosの区分値(最新採卵周期での移植可能胚数/CL単位)
   HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS = {
     0 => "0個",
@@ -1974,7 +1913,6 @@ end
 # Table name: reports
 #
 #  id                                     :bigint           not null, primary key
-#  abnormal_fertilized_eggs               :integer
 #  age_of_partner_at_end_of_treatment     :integer
 #  amh                                    :integer
 #  average_waiting_time                   :integer

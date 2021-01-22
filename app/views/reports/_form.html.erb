@@ -586,44 +586,9 @@
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-4">
-                        <p class="question mb-0 pt-1">受精個数</p>
+                        <p class="question mb-0 pt-1">受精個数<span class="small text-danger"><span class="small">&nbsp;※異常受精は除く(2PNのみ選択)</span></span></p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
                         <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
-                      </div>
-                      <div class="row">
-                        <div class="col-2 px-3 pb-0">
-                          <div class="ed-row row">
-                            <div class="col-6 p-0">
-                            </div>
-                            <div class="col-6 p-0 border-dark border-left">
-                            </div>
-                          </div>
-                          <div class="ed-row row">
-                            <div class="col-6 p-0">
-                            </div>
-                            <div class="col-6 p-0 border border-dark border-top-0 border-right-0 left-bottom-curve">
-                            </div>
-                          </div>
-                          <div class="ed-row row mt-2">
-                            <div class="col-6 p-0">
-                            </div>
-                            <div class="col-6 p-0">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-10 pl-1">
-                          <div class="mt-0 mb-2 pt-0">
-                            <p class="question mb-0 pt-1">内、異常受精の個数</p>
-                            <table class="table pt-0 mt-2">
-                              <tr>
-                                <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">異常受精卵</p></td>
-                                <td class="px-3 py-0" style="width:70%">
-                                  <%= f.select :abnormal_fertilized_eggs, Report::HASH_ABNORMAL_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" } %>
-                                </td>
-                              </tr>
-                            </table>
-                          </div>
-                        </div>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
@@ -632,7 +597,7 @@
                         <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" } %>
                       </div>
 
-                      <div class="row">
+                      <div class="row transferable_embryos_count_area">
                         <div class="col-2 px-3 pb-0">
                           <div class="ed-row row">
                             <div class="col-6 p-0">

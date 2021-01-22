@@ -351,12 +351,33 @@ $(function() {
 })
 $(".sairan_count_area").hide();
 function sairan_count(sairan_count) {
-  if (sairan_count === null) {
+  if (sairan_count == null) {
+    $(".sairan_count_area").hide();
+  } else if (sairan_count == 0 ) {
     $(".sairan_count_area").hide();
   } else if (sairan_count > 51 ) {
     $(".sairan_count_area").hide();
   } else {
-    $('.sairan_count_area').show();
+    $(".sairan_count_area").show();
+  }
+}
+
+// 移植可能胚数を選んだら新鮮胚と凍結胚の選択欄を表示させる
+$(function() {
+  $('#report_number_of_transferable_embryos').change(function() {
+    transferable_embryos_count_area($(this).val());
+  });
+})
+$(".transferable_embryos_count_area").hide();
+function transferable_embryos_count_area(transferable_embryos_count_area) {
+  if (transferable_embryos_count_area == null) {
+    $(".transferable_embryos_count_area").hide();
+  } else if (transferable_embryos_count_area == 0 ) {
+    $(".transferable_embryos_count_area").hide();
+  } else if (transferable_embryos_count_area > 51 ) {
+    $(".transferable_embryos_count_area").hide();
+  } else {
+    $(".transferable_embryos_count_area").show();
   }
 }
 

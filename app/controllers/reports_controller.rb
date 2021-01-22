@@ -457,7 +457,6 @@ class ReportsController < ApplicationController
       :egg_m1,
       :egg_gv,
       :number_of_fertilized_eggs,
-      :abnormal_fertilized_eggs,
       :number_of_transferable_embryos,
       :number_of_unfrozen_embryos,
       :number_of_frozen_pronuclear_embryos,

@@ -1364,35 +1364,13 @@
                             <% else %>
                               <p class="text-muted small mb-2">未回答</p>
                             <% end %>
-                            <% if @report.abnormal_fertilized_eggs.present? && @report.abnormal_fertilized_eggs <= 51 %>
-                              <p class="small result-text mb-0">
-                                <span class="text-muted small">内</span>
-                                &nbsp;異常受精卵&nbsp;<%= @report.str_abnormal_fertilized_eggs %>
-                              </p>
-                              <% if @report.number_of_fertilized_eggs.present? && @report.abnormal_fertilized_eggs < 51 %>
-                                <% normal_eggs = @report.number_of_fertilized_eggs - @report.abnormal_fertilized_eggs %>
-                                <% if normal_eggs.to_i < 0 %>
-                                  <p class="small text-muted result-text mb-0"><span class="small">(&nbsp;≒&nbsp;正常受精卵&nbsp;<span class="text-danger"><%= normal_eggs %>個</span>&nbsp;)</span></p>
-                                <% else %>
-                                  <p class="small text-muted result-text mb-0"><span class="small">(&nbsp;≒&nbsp;正常受精卵&nbsp;<%= normal_eggs %>個</span>&nbsp;)</p>
-                                <% end %>
-                              <% end %>
-                            <% end %>
                           </td>
                         </tr>
                         <% if @report.number_of_transferable_embryos.present? || @report.number_of_unfrozen_embryos.present? || @report.number_of_frozen_pronuclear_embryos.present? || @report.number_of_frozen_early_embryos.present? || @report.number_of_frozen_blastocysts.present? %>
                         <tr>
                           <td class="result-left-column small text-center">移植可能胚数</td>
                           <td class="pl-3">
-                            <p class="result-text mb-2">
-                              <%= @report.str_number_of_transferable_embryos %>
-                              <% if @report.number_of_transferable_embryos.present? && normal_eggs.to_i >= 0 %>
-                                <% transferable_embryos = @report.number_of_transferable_embryos - normal_eggs.to_i %>
-                                <% if transferable_embryos > 0 %>
-                                  <span class="small text-muted"><span class="small">※&nbsp;異常受精卵<%= transferable_embryos %>個含む</span></span>
-                                <% end %>
-                              <% end %>
-                            </p>
+                            <p class="result-text mb-2"><%= @report.str_number_of_transferable_embryos %></p>
                             <% if @report.number_of_unfrozen_embryos.present? && @report.number_of_unfrozen_embryos > 0 %>
                               <p class="small result-text mb-0">
                                 <% if @report.number_of_transferable_embryos.present? %>
