@@ -663,19 +663,19 @@
           <% else %>
             <p class="text-muted small mb-2">未回答</p>
           <% end %>
-          <% if @report.egg_m2.present? %>
+          <% if @report.egg_m2.present? && @report.egg_m2 <= 51 %>
             <p class="small result-text mb-0">
               <span class="text-muted small">内</span>
-              &nbsp;M1<span class="text-muted small">(成熟卵):</span>&nbsp;&nbsp;<%= @report.str_egg_m2 %>
+              &nbsp;M2<span class="text-muted small">(成熟卵):</span>&nbsp;&nbsp;<%= @report.str_egg_m2 %>
             </p>
           <% end %>
-          <% if @report.egg_m1.present? %>
+          <% if @report.egg_m1.present? && @report.egg_m1 <= 51 %>
             <p class="small result-text mb-0">
               <span class="text-muted small">内</span>
-              &nbsp;M2<span class="text-muted small">(未熟卵):</span>&nbsp;&nbsp;<%= @report.str_egg_m1 %>
+              &nbsp;M1<span class="text-muted small">(未熟卵):</span>&nbsp;&nbsp;<%= @report.str_egg_m1 %>
             </p>
           <% end %>
-          <% if @report.egg_gv.present? %>
+          <% if @report.egg_gv.present? && @report.egg_gv <= 51 %>
             <p class="small result-text mb-0">
               <span class="text-muted small">内</span>
               &nbsp;GV<span class="text-muted small">(未熟卵):</span>&nbsp;&nbsp;<%= @report.str_egg_gv %>
