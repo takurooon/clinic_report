@@ -533,7 +533,7 @@
                           <% end %>
                           <%= @report.clinic.name %>での
                           <% if @report.total_number_of_sairan.present? %>
-                            <b><u><%= @report.str_total_number_of_sairan %>目の採卵</u></b>&nbsp;で採れた卵子の
+                            <b><u>採卵</u></b>&nbsp;で採れた卵子の
                             <% if @report.total_number_of_transplants.present? %>
                               <b><u><%= @report.str_total_number_of_transplants %>目の移植</u></b>&nbsp;情報。
                             <% else %>
@@ -3691,7 +3691,7 @@
                                 <% end %>
                               </div>
                               <div class="d-flex align-items-center">
-                                <p class="m-0 pt-1 text-dark"><%= @report.previous.clinic.name %><span class="text-muted" style="font-size: 5px">(<%= @report.clinic.prefecture.name %>)</span>での<%= @report.previous.user.name %>さんのレポコ</p>
+                                <p class="m-0 pt-1 text-dark"><%= @report.previous.clinic.name %><span class="text-muted" style="font-size: 5px">(<%= @report.previous.clinic.prefecture.name %>)</span>での<%= @report.previous.user.name %>さんのレポコ</p>
                               </div>
                             </div>
                           <% end %>
@@ -3774,7 +3774,7 @@
                                 <% end %>
                               </div>
                               <div class="d-flex align-items-center">
-                                <p class="m-0 pt-1 text-dark"><%= @report.next.clinic.name %><span class="text-muted" style="font-size: 5px">(<%= @report.clinic.prefecture.name %>)</span>での<%= @report.next.user.name %>さんのレポコ</p>
+                                <p class="m-0 pt-1 text-dark"><%= @report.next.clinic.name %><span class="text-muted" style="font-size: 5px">(<%= @report.next.clinic.prefecture.name %>)</span>での<%= @report.next.user.name %>さんのレポコ</p>
                               </div>
                             </div>
                           <% end %>
@@ -3865,7 +3865,7 @@
                                 <% end %>
                               </div>
                               <div class="d-flex align-items-center">
-                                <p class="m-0 pt-1 text-dark"><%= @report.previous.clinic.name %><span class="text-muted" style="font-size: 5px">(<%= @report.clinic.prefecture.name %>)</span>での<%= @report.previous.user.name %>さんのレポコ</p>
+                                <p class="m-0 pt-1 text-dark"><%= @report.previous.clinic.name %><span class="text-muted" style="font-size: 5px">(<%= @report.previous.clinic.prefecture.name %>)</span>での<%= @report.previous.user.name %>さんのレポコ</p>
                               </div>
                             </div>
                           <% end %>
@@ -3946,7 +3946,7 @@
                                 <% end %>
                               </div>
                               <div class="d-flex align-items-center">
-                                <p class="m-0 pt-1 text-dark"><%= @report.next.clinic.name %><span class="text-muted" style="font-size: 5px">(<%= @report.clinic.prefecture.name %>)</span>での<%= @report.next.user.name %>さんのレポコ</p>
+                                <p class="m-0 pt-1 text-dark"><%= @report.next.clinic.name %><span class="text-muted" style="font-size: 5px">(<%= @report.next.clinic.prefecture.name %>)</span>での<%= @report.next.user.name %>さんのレポコ</p>
                               </div>
                             </div>
                           <% end %>
