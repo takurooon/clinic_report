@@ -592,8 +592,14 @@
                       <div class="flex-grow-1">
                         <% if @report.number_of_fertilized_eggs.present? %>
                           <span class="font-weight-bold"><%= @report.str_number_of_fertilized_eggs %></span>
+                          <% if @report.egg_m2.present? && @report.egg_m2 <= 50 %>
+                            <span class="small text-muted"><span class="small">&nbsp;内&nbsp;M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %></span></span>
+                          <% end %>
                         <% else %>
                           <span class="small"><span class="small text-muted">未回答</span></span>
+                          <% if @report.egg_m2.present? && @report.egg_m2 <= 50 %>
+                            <span class="small text-muted"><span class="small">M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %></span></span>
+                          <% end %>
                         <% end %>
                       </div>
                     </div>
@@ -3305,8 +3311,14 @@
                     <div class="flex-grow-1">
                       <% if @report.number_of_fertilized_eggs.present? %>
                         <span class="small font-weight-bold"><%= @report.str_number_of_fertilized_eggs %></span>
+                        <% if @report.egg_m2.present? && @report.egg_m2 <= 50 %>
+                          <span class="small text-muted"><span class="small">&nbsp;内&nbsp;M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %></span></span>
+                        <% end %>
                       <% else %>
                         <span class="small"><span class="small text-muted">未回答</span></span>
+                        <% if @report.egg_m2.present? && @report.egg_m2 <= 50 %>
+                          <span class="small text-muted"><span class="small">M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %></span></span>
+                        <% end %>
                       <% end %>
                     </div>
                   </div>
@@ -3366,12 +3378,12 @@
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">受精率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
-                      <% if @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 %>
-                        <% juseiritsu = (@report.number_of_fertilized_eggs.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
+                      <% if @report.egg_m2.present? && @report.egg_m2 <= 50 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 %>
+                        <% juseiritsu = (@report.number_of_fertilized_eggs.to_f / @report.egg_m2.to_f) * 100 %>
                           <% if juseiritsu <= 100.00 %>
-                            <span class="result-text"><%= sprintf("%.2f", juseiritsu) %>%<small><br><span class="small text-muted">=&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+                            <span class="result-text"><%= sprintf("%.2f", juseiritsu) %>%<small><br><span class="small text-muted">=&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;÷&nbsp;M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %></span></small></span>
                           <% else %>
-                            <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></span>
+                            <span class="result-text">100%<span class="text-muted small"><br><span class="small text-muted">=&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;÷&nbsp;M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %></span></span></span>
                           <% end %>
                       <% else %>
                         <span class="text-muted small">算出不可</span>
