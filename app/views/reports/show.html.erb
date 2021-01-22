@@ -3241,7 +3241,7 @@
                       <% if @report.transplant_method.present? %>
                         <span class="small"><span class="small">(<%= @report.str_transplant_method %>)</span></span>
                       <% end %>
-                      <% if @report.embryo_stage != 1 && @report.embryo_stage < 2 && @report.early_embryo_grade.blank? && @report.blastocyst_grade1.blank? && @report.blastocyst_grade2.blank? && @report.culture_days.blank? && @report.transplant_method.blank? %>
+                      <% if @report.embryo_stage != 99 && @report.embryo_stage != 100 && @report.early_embryo_grade.blank? && @report.blastocyst_grade1.blank? && @report.blastocyst_grade2.blank? && @report.culture_days.blank? && @report.transplant_method.blank? %>
                         <span class="small"><span class="small text-muted">未回答</span></span>
                       <% end %>
                     </div>
