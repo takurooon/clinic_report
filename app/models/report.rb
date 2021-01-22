@@ -1871,7 +1871,7 @@ class Report < ApplicationRecord
     return HASH_NUMBER_OF_FROZEN_BLASTOCYSTS[self.number_of_frozen_blastocysts]
   end
 
-  # shoranの区分値(最新採卵周期での胚盤胞数/CL単位)
+  # choranの区分値(最新採卵周期での胚盤胞数/CL単位)
   HASH_CHORAN = {
     0 => "0個",
     1 => "1個",
@@ -1928,8 +1928,8 @@ class Report < ApplicationRecord
     100 => "不明",
   }
 
-  def str_shoran
-    return HASH_CHORAN[self.shoran]
+  def str_choran
+    return HASH_CHORAN[self.choran]
   end
 
   # CL評価の区分値(CL評価)

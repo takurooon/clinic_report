@@ -473,7 +473,7 @@
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った採卵周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">採卵までの通院回数</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の周期開始から採卵日までの通院回数</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の周期開始から採卵日当日までの通院回数</span></small>
                         <div class="mt-2">
                           <%= f.collection_radio_buttons(:number_of_visits_before_sairan, Report::HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN, :first, :last) do |b| %>
                             <div class="form-check pl-2">
@@ -712,7 +712,7 @@
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った移植周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植までの通院回数</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植周期の周期開始から移植日までの通院回数</span></small>
+                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植周期の周期開始から移植日当日までの通院回数</span></small>
                         <div class="mt-2">
                           <%= f.collection_radio_buttons(:number_of_visits_before_ishoku, Report::HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU, :first, :last) do |b| %>
                             <div class="form-check pl-2">
