@@ -2288,7 +2288,7 @@
           <% if @report.embryo_stage == 1 %>
             <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
           <% end %>
-          <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts != 0 && @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected != 0 %>
+          <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 %>
             <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_eggs_collected.to_f ) * 100 %>
             <% if haibanho_rate <= 100.00 %>
               <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></small></span>
@@ -2306,7 +2306,7 @@
           <% if @report.embryo_stage == 1 %>
             <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
           <% end %>
-          <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts != 0 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs != 0 %>
+          <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 %>
             <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_fertilized_eggs.to_f ) * 100 %>
             <% if haibanho_rate <= 100.00 %>
               <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;</span></small></span>
@@ -2324,7 +2324,7 @@
           <% if @report.embryo_stage == 1 %>
             <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
           <% end %>
-          <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts != 0 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos != 0 %>
+          <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>
             <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_transferable_embryos.to_f ) * 100 %>
             <% if haibanho_rate <= 100.00 %>
               <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;移植可能胚数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></small></span>
