@@ -18,10 +18,14 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :selection_of_anesthesia_type
       t.integer :total_number_of_sairan
       t.integer :number_of_eggs_collected
+      t.integer :egg_m2
+      t.integer :egg_m1
+      t.integer :egg_gv
       t.integer :ova_with_ivm
       t.integer :types_of_fertilization_methods
       t.integer :details_of_icsi
       t.integer :number_of_fertilized_eggs
+      t.integer :abnormal_fertilized_eggs
       t.integer :number_of_transferable_embryos
       t.integer :embryo_stage
       t.integer :early_embryo_grade

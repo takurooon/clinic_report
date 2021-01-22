@@ -242,8 +242,47 @@ $(function() {
 
 
 // ステータスを選択した時点でform内のテキストに表示させる
+// $(function(){
+//   $('.default-current-status').text("現在の状況");
+//   $('#report_current_state_1').on('keyup change',function(e){
+//     current_status();
+//   });
+//   $('#report_current_state_2').on('keyup change',function(e){
+//     current_status();
+//   });
+//   $('#report_current_state_3').on('keyup change',function(e){
+//     current_status();
+//   });
+//   $('#report_current_state_4').on('keyup change',function(e){
+//     current_status();
+//   });
+//   $('#report_current_state_99').on('keyup change',function(e){
+//     current_status();
+//   });
+// });
+// function current_status() {
+//   val = $('input[name="report[current_state]"]:checked').val();
+//   if (val === "1") {
+//     $('.select-current-status').text("「妊娠中」");
+//     $('.default-current-status').text("");
+//   } else if (val === "2") {
+//     $('.select-current-status').text("「妊娠中(多胎)」");
+//     $('.default-current-status').text("");
+//   } else if (val === "3") {
+//     $('.select-current-status').text("「出産」");
+//     $('.default-current-status').text("");
+//   } else if (val === "4") {
+//     $('.select-current-status').text("「出産(多胎)」");
+//     $('.default-current-status').text("");
+//   } else if (val === "99") {
+//     $('.select-current-status').text("「その他」");
+//     $('.default-current-status').text("");
+//   } else {
+//     $('.select-current-status').text("");
+//     $('.default-current-status').text("現在の状況");
+//   }
+// }
 $(function(){
-  $('.default-current-status').text("現在の状況");
   $('#report_current_state_1').on('keyup change',function(e){
     current_status();
   });
@@ -264,22 +303,16 @@ function current_status() {
   val = $('input[name="report[current_state]"]:checked').val();
   if (val === "1") {
     $('.select-current-status').text("「妊娠中」");
-    $('.default-current-status').text("");
   } else if (val === "2") {
     $('.select-current-status').text("「妊娠中(多胎)」");
-    $('.default-current-status').text("");
   } else if (val === "3") {
     $('.select-current-status').text("「出産」");
-    $('.default-current-status').text("");
   } else if (val === "4") {
     $('.select-current-status').text("「出産(多胎)」");
-    $('.default-current-status').text("");
   } else if (val === "99") {
     $('.select-current-status').text("「その他」");
-    $('.default-current-status').text("");
   } else {
-    $('.select-current-status').text("");
-    $('.default-current-status').text("現在の状況");
+    $('.select-current-status').text("現在の状況");
   }
 }
 

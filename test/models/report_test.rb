@@ -3,6 +3,7 @@
 # Table name: reports
 #
 #  id                                     :bigint           not null, primary key
+#  abnormal_fertilized_eggs               :integer
 #  age_of_partner_at_end_of_treatment     :integer
 #  amh                                    :integer
 #  average_waiting_time                   :integer
@@ -21,6 +22,9 @@
 #  details_of_icsi                        :integer
 #  doctor_quality                         :integer
 #  early_embryo_grade                     :integer
+#  egg_gv                                 :integer
+#  egg_m1                                 :integer
+#  egg_m2                                 :integer
 #  embryo_stage                           :integer
 #  explanation_of_costs                   :text
 #  fertility_treatment_number             :integer

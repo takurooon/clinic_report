@@ -514,7 +514,7 @@
                         <% if @report.sairan_cost.present? %>
                           <p class="small mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">採卵:</span>&nbsp;<%= @report.str_sairan_cost %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
                         <% end %>
-                        <% if %>
+                        <% if @report.ishoku_cost.present? %>
                           <p class="small mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">移植:</span>&nbsp;<%= @report.str_ishoku_cost %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
                         <% end %>
                       <% end %>
@@ -1160,158 +1160,176 @@
                           <td class="result-left-column small text-center">採卵個数</td>
                           <td class="pl-3">
                             <% if @report.number_of_eggs_collected.present? %>
-                              <span class="result-text"><%= @report.str_number_of_eggs_collected %></span>
+                              <p class="result-text mb-2"><%= @report.str_number_of_eggs_collected %></p>
                             <% else %>
-                              <span class="text-muted small">未回答</span>
+                              <p class="text-muted small mb-2">未回答</p>
+                            <% end %>
+                            <% if @report.egg_m2.present? %>
+                              <p class="small result-text mb-0">
+                                <span class="text-muted small">内</span>
+                                &nbsp;M1<span class="text-muted small">(成熟卵):</span>&nbsp;&nbsp;<%= @report.str_egg_m2 %>
+                              </p>
+                            <% end %>
+                            <% if @report.egg_m1.present? %>
+                              <p class="small result-text mb-0">
+                                <span class="text-muted small">内</span>
+                                &nbsp;M2<span class="text-muted small">(未熟卵):</span>&nbsp;&nbsp;<%= @report.str_egg_m1 %>
+                              </p>
+                            <% end %>
+                            <% if @report.egg_gv.present? %>
+                              <p class="small result-text mb-0">
+                                <span class="text-muted small">内</span>
+                                &nbsp;GV<span class="text-muted small">(未熟卵):</span>&nbsp;&nbsp;<%= @report.str_egg_gv %>
+                              </p>
                             <% end %>
                           </td>
                         </tr>
                         <% if false %>
-                        <tr>
-                          <td class="result-left-column small text-center">採卵日とホルモン値</td>
-                          <td class="pl-3">
-                          <% if @report.day_of_sairans.present? %>
-                            <% @report.day_of_sairans.each do |day_of_sairan| %>
-                              <table class="table-borderless">
-                                <tr>
-                                  <td class="small text-muted text-right">Day&nbsp;:</td>
-                                  <td class="font-weight-bold">
-                                    <%= day_of_sairan.day %>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="small text-muted text-right">E2&nbsp;:</td>
-                                  <% if day_of_sairan.e2.blank? %>
+                          <tr>
+                            <td class="result-left-column small text-center">採卵日とホルモン値</td>
+                            <td class="pl-3">
+                            <% if @report.day_of_sairans.present? %>
+                              <% @report.day_of_sairans.each do |day_of_sairan| %>
+                                <table class="table-borderless">
+                                  <tr>
+                                    <td class="small text-muted text-right">Day&nbsp;:</td>
                                     <td class="font-weight-bold">
-                                      <span class="text-muted small">未回答</span>
+                                      <%= day_of_sairan.day %>
                                     </td>
-                                  <% else %>
-                                    <td class="font-weight-bold">
-                                      <%= day_of_sairan.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
-                                    </td>
-                                  <% end %>
-                                </tr>
-                                <tr>
-                                  <td class="small text-muted text-right">FSH&nbsp;:</td>
-                                  <% if day_of_sairan.fsh.blank? %>
-                                    <td class="font-weight-bold">
-                                      <span class="text-muted small">未回答</span>
-                                    </td>
-                                  <% else %>
-                                    <td class="font-weight-bold">
-                                      <%= day_of_sairan.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                    </td>
-                                  <% end %>
-                                </tr>
-                                <tr>
-                                  <td class="small text-muted text-right">LH&nbsp;:</td>
-                                  <% if day_of_sairan.lh.blank? %>
-                                    <td class="font-weight-bold">
-                                      <span class="text-muted small">未回答</span>
-                                  <% else %>
-                                    <td class="font-weight-bold">
-                                      <%= day_of_sairan.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                    </td>
-                                  <% end %>
-                                </tr>
-                                <tr>
-                                  <td class="small text-muted text-right">P4&nbsp;:</td>
-                                  <% if day_of_sairan.p4.blank? %>
-                                    <td class="font-weight-bold">
-                                      <span class="text-muted small">未回答</span>
-                                  <% else %>
-                                    <td class="font-weight-bold">
-                                      <%= day_of_sairan.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
-                                    </td>
-                                  <% end %>
-                                </tr>
-                              </table>
+                                  </tr>
+                                  <tr>
+                                    <td class="small text-muted text-right">E2&nbsp;:</td>
+                                    <% if day_of_sairan.e2.blank? %>
+                                      <td class="font-weight-bold">
+                                        <span class="text-muted small">未回答</span>
+                                      </td>
+                                    <% else %>
+                                      <td class="font-weight-bold">
+                                        <%= day_of_sairan.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                  <tr>
+                                    <td class="small text-muted text-right">FSH&nbsp;:</td>
+                                    <% if day_of_sairan.fsh.blank? %>
+                                      <td class="font-weight-bold">
+                                        <span class="text-muted small">未回答</span>
+                                      </td>
+                                    <% else %>
+                                      <td class="font-weight-bold">
+                                        <%= day_of_sairan.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                  <tr>
+                                    <td class="small text-muted text-right">LH&nbsp;:</td>
+                                    <% if day_of_sairan.lh.blank? %>
+                                      <td class="font-weight-bold">
+                                        <span class="text-muted small">未回答</span>
+                                    <% else %>
+                                      <td class="font-weight-bold">
+                                        <%= day_of_sairan.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                  <tr>
+                                    <td class="small text-muted text-right">P4&nbsp;:</td>
+                                    <% if day_of_sairan.p4.blank? %>
+                                      <td class="font-weight-bold">
+                                        <span class="text-muted small">未回答</span>
+                                    <% else %>
+                                      <td class="font-weight-bold">
+                                        <%= day_of_sairan.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                </table>
+                              <% end %>
+                            <% else %>
+                              <span class="text-muted small">未回答</span>
                             <% end %>
-                          <% else %>
-                            <span class="text-muted small">未回答</span>
-                          <% end %>
-                          </td>
-                        </tr>
+                            </td>
+                          </tr>
                         <% end %>
                       </table>
 
                       <% if false %>
-                      <table class="table table-bordered p-0 mt-5" style="border-top:solid;">
-                        <% if @sairan_hormones.present? %>
-                          <tr>
-                            <td class="text-center result-left-column" colspan="5"><h6 class="p-0 m-0">採卵前&nbsp;〜</h6></td>
-                          </tr>
-                          <tr class="test-muted small">
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              Day
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              E2
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              FSH
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              LH
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              P4
-                            </th>
-                          </tr>
-                          <% @sairan_hormones.in_groups_of(5) do |row| %>
+                        <table class="table table-bordered p-0 mt-5" style="border-top:solid;">
+                          <% if @sairan_hormones.present? %>
                             <tr>
+                              <td class="text-center result-left-column" colspan="5"><h6 class="p-0 m-0">採卵前&nbsp;〜</h6></td>
+                            </tr>
+                            <tr class="test-muted small">
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                Day
+                              </th>
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                E2
+                              </th>
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                FSH
+                              </th>
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                LH
+                              </th>
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                P4
+                              </th>
+                            </tr>
+                            <% @sairan_hormones.in_groups_of(5) do |row| %>
+                              <tr>
+                                <% row.each_with_index do |hormone, i| %>
+                                  <td class="small text-center">
+                                    <% if hormone.nil? %>
+                                      <small class="text-muted">未回答</small>
+                                    <% elsif i == 0 || i % 5 == 0 %>
+                                      <span class="font-weight-bold">D<%= hormone %></span>
+                                    <% else %>
+                                      <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                    <% end %>
+                                  </td>
+                                <% end %>
+                              </tr>
+                            <% end %>
+                          <% end %>
+                          <% if @day_of_sairans.present? %>
+                            <tr>
+                              <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">採卵日</h6></td>
+                            </tr>
+                            <tr class="test-muted small">
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                Day
+                              </th>
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                E2
+                              </th>
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                FSH
+                              </th>
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                LH
+                              </th>
+                              <th class="result-left-column small text-center text-center" style="width:20%">
+                                P4
+                              </th>
+                            </tr>
+                            <% @day_of_sairans.in_groups_of(5) do |row| %>
+                              <tr>
                               <% row.each_with_index do |hormone, i| %>
                                 <td class="small text-center">
                                   <% if hormone.nil? %>
                                     <small class="text-muted">未回答</small>
-                                  <% elsif i == 0 || i % 5 == 0 %>
+                                  <% elsif i == 0 %>
                                     <span class="font-weight-bold">D<%= hormone %></span>
                                   <% else %>
                                     <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
                                   <% end %>
                                 </td>
                               <% end %>
-                            </tr>
-                          <% end %>
-                        <% end %>
-                        <% if @day_of_sairans.present? %>
-                          <tr>
-                            <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">採卵日</h6></td>
-                          </tr>
-                          <tr class="test-muted small">
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              Day
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              E2
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              FSH
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              LH
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              P4
-                            </th>
-                          </tr>
-                          <% @day_of_sairans.in_groups_of(5) do |row| %>
-                            <tr>
-                            <% row.each_with_index do |hormone, i| %>
-                              <td class="small text-center">
-                                <% if hormone.nil? %>
-                                  <small class="text-muted">未回答</small>
-                                <% elsif i == 0 %>
-                                  <span class="font-weight-bold">D<%= hormone %></span>
-                                <% else %>
-                                  <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                <% end %>
-                              </td>
+                              </tr>
                             <% end %>
-                            </tr>
                           <% end %>
-                        <% end %>
-                      </table>
+                        </table>
                       <% end %>
 
                       <% if @sairan_hormones.present? || @day_of_sairans.present? %>
@@ -1336,9 +1354,23 @@
                           <td class="result-left-column small text-center" style="width:30%">受精個数</td>
                           <td class="pl-3" style="width:70%">
                             <% if @report.number_of_fertilized_eggs.present? %>
-                              <span class="result-text"><%= @report.str_number_of_fertilized_eggs %><span class="small text-muted">（&nbsp;<%= @report.str_number_of_eggs_collected %>採卵）</span></span>
+                              <p class="result-text mb-2"><%= @report.str_number_of_fertilized_eggs %><span class="small text-muted">&nbsp;&nbsp;(&nbsp;<%= @report.str_number_of_eggs_collected %>採卵&nbsp;)</span></p>
                             <% else %>
-                              <span class="text-muted small">未回答</span>
+                              <p class="text-muted small mb-2">未回答</p>
+                            <% end %>
+                            <% if @report.abnormal_fertilized_eggs.present? && @report.abnormal_fertilized_eggs <= 51 %>
+                              <p class="small result-text mb-0">
+                                <span class="text-muted small">内</span>
+                                &nbsp;異常受精卵&nbsp;<%= @report.str_abnormal_fertilized_eggs %>
+                              </p>
+                              <% if @report.number_of_fertilized_eggs.present? && @report.abnormal_fertilized_eggs < 51 %>
+                                <% normal_eggs = @report.number_of_fertilized_eggs - @report.abnormal_fertilized_eggs %>
+                                <% if normal_eggs < 0 %>
+                                  <p class="small text-muted result-text mb-0"><span class="small">(&nbsp;≒&nbsp;正常受精卵&nbsp;<span class="text-danger"><%= normal_eggs %>個</span>&nbsp;)</span></p>
+                                <% else %>
+                                  <p class="small text-muted result-text mb-0"><span class="small">(&nbsp;≒&nbsp;正常受精卵&nbsp;<%= normal_eggs %>個</span>&nbsp;)</p>
+                                <% end %>
+                              <% end %>
                             <% end %>
                           </td>
                         </tr>
