@@ -876,7 +876,15 @@
         <tr>
           <td class="result-left-column small text-center">移植可能胚数</td>
           <td class="pl-3">
-            <span class="result-text"><%= @report.str_number_of_transferable_embryos %></span>
+            <p class="result-text mb-2">
+              <%= @report.str_number_of_transferable_embryos %>
+              <% if @report.number_of_transferable_embryos.present? && normal_eggs >= 0 %>
+                <% transferable_embryos = @report.number_of_transferable_embryos - normal_eggs %>
+                <% if transferable_embryos > 0 %>
+                  <span class="small text-muted"><span class="small">※&nbsp;異常受精卵<%= transferable_embryos %>個含む</span></span>
+                <% end %>
+              <% end %>
+            </p>
             <% if @report.number_of_unfrozen_embryos.present? && @report.number_of_unfrozen_embryos > 0 %>
               <p class="small result-text mb-0">
               <% if @report.number_of_transferable_embryos.present? %>
