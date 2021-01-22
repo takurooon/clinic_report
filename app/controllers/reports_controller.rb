@@ -472,6 +472,7 @@ class ReportsController < ApplicationController
       :blastocyst_grade1,
       :blastocyst_grade2,
       :culture_days,
+      :choran,
       :cost,
       :explanation_of_costs,
       :sairan_cost,

@@ -1871,6 +1871,67 @@ class Report < ApplicationRecord
     return HASH_NUMBER_OF_FROZEN_BLASTOCYSTS[self.number_of_frozen_blastocysts]
   end
 
+  # shoranの区分値(最新採卵周期での胚盤胞数/CL単位)
+  HASH_CHORAN = {
+    0 => "0個",
+    1 => "1個",
+    2 => "2個",
+    3 => "3個",
+    4 => "4個",
+    5 => "5個",
+    6 => "6個",
+    7 => "7個",
+    8 => "8個",
+    9 => "9個",
+    10 => "10個",
+    11 => "11個",
+    12 => "12個",
+    13 => "13個",
+    14 => "14個",
+    15 => "15個",
+    16 => "16個",
+    17 => "17個",
+    18 => "18個",
+    19 => "19個",
+    20 => "20個",
+    21 => "21個",
+    22 => "22個",
+    23 => "23個",
+    24 => "24個",
+    25 => "25個",
+    26 => "26個",
+    27 => "27個",
+    28 => "28個",
+    29 => "29個",
+    30 => "30個",
+    31 => "31個",
+    32 => "32個",
+    33 => "33個",
+    34 => "34個",
+    35 => "35個",
+    36 => "36個",
+    37 => "37個",
+    38 => "38個",
+    39 => "39個",
+    40 => "40個",
+    41 => "41個",
+    42 => "42個",
+    43 => "43個",
+    44 => "44個",
+    45 => "45個",
+    46 => "46個",
+    47 => "47個",
+    48 => "48個",
+    49 => "49個",
+    50 => "50個",
+    51 => "51個以上",
+    100 => "不明",
+  }
+
+  def str_shoran
+    return HASH_CHORAN[self.shoran]
+  end
+
   # CL評価の区分値(CL評価)
   HASH_RATING = {
     1 => "1",
@@ -1919,6 +1980,7 @@ end
 #  average_waiting_time2                  :integer
 #  blastocyst_grade1                      :integer
 #  blastocyst_grade2                      :integer
+#  choran                                 :integer
 #  city_at_the_time_status                :integer          default("show"), not null
 #  clinic_review                          :text
 #  comfort_of_space                       :integer

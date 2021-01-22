@@ -9,6 +9,7 @@
 #  average_waiting_time2                  :integer
 #  blastocyst_grade1                      :integer
 #  blastocyst_grade2                      :integer
+#  choran                                 :integer
 #  city_at_the_time_status                :integer          default("show"), not null
 #  clinic_review                          :text
 #  comfort_of_space                       :integer
