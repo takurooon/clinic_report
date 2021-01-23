@@ -1098,12 +1098,14 @@
             <%= @report.str_embryo_stage %>
             <%= @report.str_early_embryo_grade_show %>
           <% elsif @report.embryo_stage == 2 %>
-            <% if @report.blastocyst_grade1.present? || @report.blastocyst_grade2.present? %>
-              胚盤胞<%= @report.str_blastocyst_grade1_show %><%= @report.str_blastocyst_grade2 %>
+            <% if @report.blastocyst_grade1.present? || @report.blastocyst_grade2.present? || @report.culture_days.present? %>
+              <%= @report.str_culture_days %>胚盤胞&nbsp;<%= @report.str_blastocyst_grade1_show %><%= @report.str_blastocyst_grade2 %>
             <% end %>
           <% end %>
           <% if @report.transplant_method.present? %>
-            <span class="result-text small">(<%= @report.str_transplant_method %>)</span>
+            <span class="result-text small">&nbsp;<%= @report.str_transplant_method %></span>
+          <% else %>
+            <span class="text-muted small">未回答</span>
           <% end %>
         </td>
       </tr>
