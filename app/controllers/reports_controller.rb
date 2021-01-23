@@ -430,6 +430,7 @@ class ReportsController < ApplicationController
       :current_state,
       :work_style,
       :work_style_status,
+      :changes_in_working_style,
       :fertility_treatment_number,
       :types_of_fertilization_methods,
       :details_of_icsi,

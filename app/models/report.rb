@@ -866,6 +866,21 @@ class Report < ApplicationRecord
     return HASH_WORK_STYLE[self.work_style]
   end
 
+  # changes_in_working_styleの区分値(働き方の変化)
+  HASH_CHANGES_IN_WORKING_STYLE = {
+    1 => "変わらず",
+    2 => "休職(業)した",
+    3 => "退職した",
+    4 => "異動した",
+    5 => "転職した",
+    6 => "就職した",
+    99 => "その他"
+  }
+
+  def str_changes_in_working_style
+    return HASH_CHANGES_IN_WORKING_STYLE[self.changes_in_working_style]
+  end
+
   # 検索画面用のwork_styleの区分値(働き方)
   HASH_WORK_STYLE_SEARCH= {
     1 => "会社役員",

@@ -50,6 +50,7 @@ class CreateReports < ActiveRecord::Migration[6.0]
       t.integer :period_of_time_spent_traveling
       t.integer :work_style
       t.integer :work_style_status, default: 0, null: false
+      t.integer :changes_in_working_style
       t.text :content
       t.text :reasons_for_choosing_this_clinic
       t.integer :status, default: 0, null: false
