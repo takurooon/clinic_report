@@ -271,8 +271,6 @@ function current_status() {
     $('.select-current-status').text("「出産」");
   } else if (val === "4") {
     $('.select-current-status').text("「出産(多胎)」");
-  } else if (val === "99") {
-    $('.select-current-status').text("「その他」");
   } else {
     $('.select-current-status').text("現在の状況");
   }

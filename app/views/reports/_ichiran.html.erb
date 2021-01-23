@@ -2233,10 +2233,24 @@
               <% if juseiritsu <= 100.00 %>
                 <span class="result-text"><%= sprintf("%.2f", juseiritsu) %>%<small><br><span class="small text-muted">=&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;÷&nbsp;M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %></span></small></span>
               <% else %>
-                <span class="result-text">100%<span class="text-muted small"><br><span class="small text-muted">=&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;÷&nbsp;M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %></span></span></span>
+                <span class="text-muted small">100%<br><span class="small text-muted">=&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;÷&nbsp;M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %></span></span>
               <% end %>
           <% else %>
-            <span class="text-muted small">算出不可</span>
+            <span class="text-muted small">算出不可</span><br>
+            <% if @report.number_of_fertilized_eggs.blank? %>
+              <span class="small text-muted"><span class="small">(&nbsp;受精個数&nbsp;未回答</span></span>
+            <% elsif @report.number_of_fertilized_eggs > 50 %>
+              <span class="small text-muted"><span class="small">(&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">(</span></span>
+            <% end %>
+            <% if @report.egg_m2.blank? %>
+              <span class="small text-muted"><span class="small">&nbsp;M2(成熟)卵子&nbsp;未回答)</span></span>
+            <% elsif @report.egg_m2 > 50 %>
+              <span class="small text-muted"><span class="small">&nbsp;M2(成熟)卵子&nbsp;<%= @report.str_egg_m2 %>)</span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">)</span></span>
+            <% end %>
           <% end %>
         </td>
       </tr>
@@ -2246,12 +2260,26 @@
           <% if @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>
             <% ishokukanouhai_sairan = (@report.number_of_transferable_embryos.to_f / @report.number_of_eggs_collected.to_f) * 100 %>
             <% if ishokukanouhai_sairan <= 100.00 %>
-              <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_sairan) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
+              <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_sairan) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;÷&nbsp;採卵個数&nbsp;<%= @report.str_number_of_eggs_collected %></span></small></span>
             <% else %>
-              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %></span></span>
+              <span class="text-muted small">100%<br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;÷&nbsp;採卵個数&nbsp;<%= @report.str_number_of_eggs_collected %></span></span>
             <% end %>
           <% else %>
-            <span class="text-muted small">算出不可</span>
+            <span class="text-muted small">算出不可</span><br>
+            <% if @report.number_of_transferable_embryos.blank? %>
+              <span class="small text-muted"><span class="small">(&nbsp;移植可能胚&nbsp;未回答</span></span>
+            <% elsif @report.number_of_transferable_embryos > 50 %>
+              <span class="small text-muted"><span class="small">(&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %></span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">(</span></span>
+            <% end %>
+            <% if @report.number_of_eggs_collected.blank? %>
+              <span class="small text-muted"><span class="small">&nbsp;採卵個数&nbsp;未回答)</span></span>
+            <% elsif @report.number_of_eggs_collected > 50 %>
+              <span class="small text-muted"><span class="small">&nbsp;採卵個数&nbsp;<%= @report.str_number_of_eggs_collected %>)</span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">)</span></span>
+            <% end %>
           <% end %>
         </td>
       </tr>
@@ -2263,10 +2291,24 @@
             <% if ishokukanouhai_juseiran <= 100.00 %>
               <span class="result-text"><%= sprintf("%.2f", ishokukanouhai_juseiran) %>%<small><br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;÷&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></small></span>
             <% else %>
-              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;÷&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></span>
+              <span class="text-muted small">100%<br><span class="small text-muted">=&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;÷&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %></span></span>
             <% end %>
           <% else %>
-            <span class="text-muted small">算出不可</span>
+            <span class="text-muted small">算出不可</span><br>
+            <% if @report.number_of_transferable_embryos.blank? %>
+              <span class="small text-muted"><span class="small">(&nbsp;移植可能胚&nbsp;未回答</span></span>
+            <% elsif @report.number_of_transferable_embryos > 50 %>
+              <span class="small text-muted"><span class="small">(&nbsp;移植可能胚&nbsp;<%= @report.str_number_of_transferable_embryos %></span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">(</span></span>
+            <% end %>
+            <% if @report.number_of_fertilized_eggs.blank? %>
+              <span class="small text-muted"><span class="small">&nbsp;受精個数&nbsp;未回答)</span></span>
+            <% elsif @report.number_of_fertilized_eggs > 50 %>
+              <span class="small text-muted"><span class="small">&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>)</span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">)</span></span>
+            <% end %>
           <% end %>
         </td>
       </tr>
@@ -2274,17 +2316,35 @@
         <td class="result-left-column small text-center" style="width:30%">胚盤胞到達率<span class="small text-muted">(対 採卵数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
         <td class="pl-3" style="width:70%">
           <% if @report.embryo_stage == 1 %>
-            <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
+            <% if @report.current_state.present? %>
+              <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+            <% else %>
+              <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+            <% end %>
           <% end %>
           <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 %>
             <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_eggs_collected.to_f ) * 100 %>
             <% if haibanho_rate <= 100.00 %>
-              <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></small></span>
+              <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;採卵個数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></small></span>
             <% else %>
-              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></span>
+              <span class="text-muted small">100%<br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;採卵個数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;</span></span>
             <% end %>
           <% else %>
-            <span class="text-muted small">算出不可</span>
+            <span class="text-muted small">算出不可</span><br>
+            <% if @report.number_of_frozen_blastocysts.blank? %>
+              <span class="small text-muted"><span class="small">(&nbsp;胚盤胞数&nbsp;未回答</span></span>
+            <% elsif @report.number_of_frozen_blastocysts > 50 %>
+              <span class="small text-muted"><span class="small">(&nbsp;胚盤胞数&nbsp;<%= @report.str_number_of_frozen_blastocysts %></span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">(</span></span>
+            <% end %>
+            <% if @report.number_of_eggs_collected.blank? %>
+              <span class="small text-muted"><span class="small">&nbsp;採卵個数&nbsp;未回答)</span></span>
+            <% elsif @report.number_of_eggs_collected > 50 %>
+              <span class="small text-muted"><span class="small">&nbsp;採卵個数&nbsp;<%= @report.str_number_of_eggs_collected %>)</span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">)</span></span>
+            <% end %>
           <% end %>
         </td>
       </tr>
@@ -2292,17 +2352,35 @@
         <td class="result-left-column small text-center" style="width:30%">胚盤胞到達率<span class="small text-muted">(対 受精個数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
         <td class="pl-3" style="width:70%">
           <% if @report.embryo_stage == 1 %>
-            <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
+            <% if @report.current_state.present? %>
+              <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+            <% else %>
+              <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+            <% end %>
           <% end %>
           <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 %>
             <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_fertilized_eggs.to_f ) * 100 %>
             <% if haibanho_rate <= 100.00 %>
               <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;</span></small></span>
             <% else %>
-              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;</span></span>
+              <span class="text-muted small">100%<br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>&nbsp;</span></span>
             <% end %>
           <% else %>
-            <span class="text-muted small">算出不可</span>
+            <span class="text-muted small">算出不可</span><br>
+            <% if @report.number_of_frozen_blastocysts.blank? %>
+              <span class="small text-muted"><span class="small">(&nbsp;胚盤胞数&nbsp;未回答</span></span>
+            <% elsif @report.number_of_frozen_blastocysts > 50 %>
+              <span class="small text-muted"><span class="small">(&nbsp;胚盤胞数&nbsp;<%= @report.str_number_of_frozen_blastocysts %></span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">(</span></span>
+            <% end %>
+            <% if @report.number_of_fertilized_eggs.blank? %>
+              <span class="small text-muted"><span class="small">&nbsp;受精個数&nbsp;未回答)</span></span>
+            <% elsif @report.number_of_fertilized_eggs > 50 %>
+              <span class="small text-muted"><span class="small">&nbsp;受精個数&nbsp;<%= @report.str_number_of_fertilized_eggs %>)</span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">)</span></span>
+            <% end %>
           <% end %>
         </td>
       </tr>
@@ -2310,17 +2388,35 @@
         <td class="result-left-column small text-center" style="width:30%">胚盤胞到達率<span class="small text-muted">(対 移植可能胚数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
         <td class="pl-3" style="width:70%">
           <% if @report.embryo_stage == 1 %>
-            <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく「〜初期胚」を使用</span></p>
+            <% if @report.current_state.present? %>
+              <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+            <% else %>
+              <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+            <% end %>
           <% end %>
           <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>
             <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_transferable_embryos.to_f ) * 100 %>
             <% if haibanho_rate <= 100.00 %>
               <span class="result-text"><%= sprintf("%.2f", haibanho_rate) %>%<small><br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;移植可能胚数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></small></span>
             <% else %>
-              <span class="text-muted small">算出不可<br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;移植可能胚数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></span>
+              <span class="text-muted small">100%<br><span class="small text-muted">=&nbsp;胚盤胞&nbsp;<%= @report.number_of_frozen_blastocysts %>個&nbsp;÷&nbsp;移植可能胚数&nbsp;<%= @report.str_number_of_transferable_embryos %>&nbsp;</span></span>
             <% end %>
           <% else %>
-            <span class="text-muted small">算出不可</span>
+            <span class="text-muted small">算出不可</span><br>
+            <% if @report.number_of_frozen_blastocysts.blank? %>
+              <span class="small text-muted"><span class="small">(&nbsp;胚盤胞数&nbsp;未回答</span></span>
+            <% elsif @report.number_of_frozen_blastocysts > 50 %>
+              <span class="small text-muted"><span class="small">(&nbsp;胚盤胞数&nbsp;<%= @report.str_number_of_frozen_blastocysts %></span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">(</span></span>
+            <% end %>
+            <% if @report.number_of_transferable_embryos.blank? %>
+              <span class="small text-muted"><span class="small">&nbsp;移植可能胚数&nbsp;未回答)</span></span>
+            <% elsif @report.number_of_transferable_embryos > 50 %>
+              <span class="small text-muted"><span class="small">&nbsp;移植可能胚数&nbsp;<%= @report.str_number_of_transferable_embryos %>)</span></span>
+            <% else %>
+              <span class="small text-muted"><span class="small">)</span></span>
+            <% end %>
           <% end %>
         </td>
       </tr>
