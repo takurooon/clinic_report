@@ -3873,7 +3873,7 @@
                       <div class="col-11 px-3 pt-2 pb-3">
                         <% if @report.previous.present? %>
                           <% if @report.previous.title.present? %>
-                            <span class="badge badge-info pt-1"><%= @report.previous.clinic.name %>&nbsp;(<%= @report.clinic.prefecture.name %>)</span>
+                            <span class="badge badge-info pt-1"><%= @report.previous.clinic.name %>&nbsp;(<%= @report.previous.clinic.prefecture.name %>)</span>
                             <% if @report.previous.year_of_treatment_end.present? %>
                               <span class="badge badge-light"><%= @report.previous.year_of_treatment_end.year %>年卒業</span>
                             <% end %>
@@ -3954,7 +3954,7 @@
                       <div class="col-11 px-3 pt-2 pb-3">
                         <% if @report.next.present? %>
                           <% if @report.next.title.present? %>
-                            <span class="badge badge-info pt-1"><%= @report.next.clinic.name %>&nbsp;(<%= @report.clinic.prefecture.name %>)</span>
+                            <span class="badge badge-info pt-1"><%= @report.next.clinic.name %>&nbsp;(<%= @report.next.clinic.prefecture.name %>)</span>
                             <% if @report.next.year_of_treatment_end.present? %>
                               <span class="badge badge-light"><%= @report.next.year_of_treatment_end.year %>年卒業</span>
                             <% end %>
