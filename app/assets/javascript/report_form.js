@@ -8,6 +8,8 @@ function reflesh() {
   m_funin_checked($('input[name="report[male_infertility]"]:checked').val());
   embryo_stage_checked($('input[name="report[embryo_stage]"]:checked').val());
   cost_checked($('input[name="report[credit_card_validity]"]:checked').val());
+  sairan_count($('#report_number_of_eggs_collected').val());
+  transferable_embryos_count_area($('#report_number_of_transferable_embryos').val());
 }
 
 // 2段タブ表示
@@ -349,14 +351,22 @@ $(function() {
     sairan_count($(this).val());
   });
 })
-$(".sairan_count_area").hide();
 function sairan_count(sairan_count) {
   if (sairan_count == null) {
     $(".sairan_count_area").hide();
+    $('#report_egg_m2').val(null);
+    $('#report_egg_m1').val(null);
+    $('#report_egg_gv').val(null);
   } else if (sairan_count == 0 ) {
     $(".sairan_count_area").hide();
+    $('#report_egg_m2').val(null);
+    $('#report_egg_m1').val(null);
+    $('#report_egg_gv').val(null);
   } else if (sairan_count > 51 ) {
     $(".sairan_count_area").hide();
+    $('#report_egg_m2').val(null);
+    $('#report_egg_m1').val(null);
+    $('#report_egg_gv').val(null);
   } else {
     $(".sairan_count_area").show();
   }
@@ -372,10 +382,24 @@ $(".transferable_embryos_count_area").hide();
 function transferable_embryos_count_area(transferable_embryos_count_area) {
   if (transferable_embryos_count_area == null) {
     $(".transferable_embryos_count_area").hide();
+    $("#report_number_of_unfrozen_embryos").val(null);
+    $("#report_number_of_frozen_pronuclear_embryos").val(null);
+    $("#report_number_of_frozen_early_embryos").val(null);
+    $("#report_number_of_frozen_blastocysts").val(null);
   } else if (transferable_embryos_count_area == 0 ) {
     $(".transferable_embryos_count_area").hide();
+    $(".transferable_embryos_count_area").hide();
+    $("#report_number_of_unfrozen_embryos").val(null);
+    $("#report_number_of_frozen_pronuclear_embryos").val(null);
+    $("#report_number_of_frozen_early_embryos").val(null);
+    $("#report_number_of_frozen_blastocysts").val(null);
   } else if (transferable_embryos_count_area > 51 ) {
     $(".transferable_embryos_count_area").hide();
+    $(".transferable_embryos_count_area").hide();
+    $("#report_number_of_unfrozen_embryos").val(null);
+    $("#report_number_of_frozen_pronuclear_embryos").val(null);
+    $("#report_number_of_frozen_early_embryos").val(null);
+    $("#report_number_of_frozen_blastocysts").val(null);
   } else {
     $(".transferable_embryos_count_area").show();
   }
