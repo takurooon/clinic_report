@@ -10,7 +10,99 @@ function reflesh() {
   cost_checked($('input[name="report[credit_card_validity]"]:checked').val());
   sairan_count($('#report_number_of_eggs_collected').val());
   transferable_embryos_count_area($('#report_number_of_transferable_embryos').val());
+  eggs_calc();
+  transferble_embryos_calc();
 }
+
+// 卵子内訳足し算
+$(function(){
+  $('#report_number_of_eggs_collected').on('change keyup', function(){ 
+    var eggs = $('#report_number_of_eggs_collected').val();
+    eggs_calc();
+  });
+  $(".egg_details select").on("change keyup",function(){
+    eggs_calc();
+  });
+});
+function eggs_calc() {
+  var sum = 0;
+  $(".egg_details select").each(function(){
+    var selected = $(this).val();
+    if (selected <= 51) {
+      var val = Number(selected);
+      sum += val;
+      eggs_calc2(sum);
+    }
+  });
+  $(".egg_m2_m1_gv").text(sum + "個");
+};
+function eggs_calc2(sum) {
+  var sabun = $('#report_number_of_eggs_collected').val() - sum
+  if (sabun === 0){
+    $(".egg_count_result").text("");
+    $(".egg_count_result_annotation1").text("");
+    $(".egg_count_result_annotation2").text("");
+    $(".egg_count_result_annotation3").text("");
+  } else if (sabun < 0) {
+    var result = -(sabun)
+    $(".egg_count_result").css('color','red').text("採卵個数計より" + result + "個多いです");
+    $(".egg_count_result_annotation1").text("内訳の合計");
+    $(".egg_count_result_annotation2").text(" ≠ ");
+    $(".egg_count_result_annotation3").text("採卵個数 でも投稿はできます");
+  } else if (sabun > 0) {
+    $(".egg_count_result").css('color','red').text("採卵個数計より" + sabun + "個少ないです");
+    $(".egg_count_result_annotation1").text("内訳の合計");
+    $(".egg_count_result_annotation2").text(" ≠ ");
+    $(".egg_count_result_annotation3").text("採卵個数 でも投稿はできます");
+  };
+  $(".egg_m2_m1_gv").text(sum + "個");
+};
+
+// 移植可能胚足し算
+$(function(){
+  $('#report_number_of_transferable_embryos').on('change keyup', function(){ 
+    var transferble_embryos = $('#report_number_of_transferable_embryos').val();
+    transferble_embryos_calc();
+  });
+  $(".transferable_embryos_count_area select").on("change keyup",function(){
+    transferble_embryos_calc();
+  });
+});
+function transferble_embryos_calc() {
+  var sum = 0;
+  $(".transferable_embryos_count_area select").each(function(){
+    var selected = $(this).val();
+    if (selected <= 51) {
+      var val = Number(selected);
+      sum += val;
+      transferble_embryos_calc2(sum);
+    }
+  });
+  $(".transferable_embryos_count").text(sum + "個");
+};
+function transferble_embryos_calc2(sum) {
+  var sabun = $('#report_number_of_transferable_embryos').val() - sum
+  if (sabun === 0){
+    $(".transferable_embryos_result").text("");
+    $(".transferable_embryos_result_annotation1").text("");
+    $(".transferable_embryos_result_annotation2").text("");
+    $(".transferable_embryos_result_annotation3").text("");
+  } else if (sabun < 0) {
+    var result = -(sabun)
+    $(".transferable_embryos_result").css('color','red').text("移植可能胚計より" + result + "個多いです");
+    $(".transferable_embryos_result_annotation1").text("内訳の合計");
+    $(".transferable_embryos_result_annotation2").text(" ≠ ");
+    $(".transferable_embryos_result_annotation3").text("移植可能胚数 でも投稿はできます");
+  } else if (sabun > 0) {
+    $(".transferable_embryos_result").css('color','red').text("移植可能胚計より" + sabun + "個少ないです");
+    $(".transferable_embryos_result_annotation1").text("内訳の合計");
+    $(".transferable_embryos_result_annotation2").text(" ≠ ");
+    $(".transferable_embryos_result_annotation3").text("移植可能胚数 でも投稿はできます");
+  };
+  $(".transferable_embryos_count").text(sum + "個");
+};
+
+
 
 // 2段タブ表示
 $(function(){
@@ -242,7 +334,6 @@ $(function() {
   });
 });
 
-
 // ステータスを選択した時点でform内のテキストに表示させる
 $(function(){
   $('#report_current_state_1').on('keyup change',function(e){
@@ -262,7 +353,7 @@ $(function(){
   });
 });
 function current_status() {
-  val = $('input[name="report[current_state]"]:checked').val();
+  let val = $('input[name="report[current_state]"]:checked').val();
   if (val === "1") {
     $('.select-current-status').text("「妊娠中」");
   } else if (val === "2") {

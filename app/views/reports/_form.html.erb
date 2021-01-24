@@ -549,7 +549,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-4">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">採卵個数<span class="small text-danger"><span class="small">&nbsp;※変性卵は除く</span></span></p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の採卵個数</span></small>
                         <%= f.select :number_of_eggs_collected, Report::HASH_NUMBER_OF_EGGS_COLLECTED.invert, { prompt: "" }, { class: "form-control py-0" }  %>
@@ -571,9 +571,9 @@
                           </div>
                         </div>
                         <div class="col-10 pl-1">
-                          <div class="mt-0 mb-2 pt-0">
+                          <div class="mt-0 mb-0 pt-0">
                             <p class="question mb-0 pt-1">卵子の内訳</p>
-                            <table class="table pt-0 mt-2">
+                            <table class="table pt-0 mt-2 mb-0 egg_details">
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="pt-2 mb-0">M2</p><p class="small text-muted mb-0 pb-2">(成熟卵)</p></td>
                                 <td class="px-3 py-0" style="width:70%">
@@ -595,16 +595,23 @@
                             </table>
                           </div>
                         </div>
+                        <div class="col-12">
+                          <div class="d-flex justify-content-end">
+                            <p class="mb-0 pt-1 small"><span class="egg_count_result"></span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="mb-0 pr-3"><span class="small text-muted">計&nbsp;</span><u><span class="egg_m2_m1_gv"></span></u></p>
+                          </div>
+                          <p class="text-right small mb-1 pr-3"><u><span class="egg_count_result_annotation1 small text-muted"></span><span class="egg_count_result_annotation2 text-warning">≠</span><span class="egg_count_result_annotation3 small text-muted"></span></u></p>
+                        </div>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-4">
-                        <p class="question mb-0 pt-1">受精個数<span class="small text-danger"><span class="small">&nbsp;※異常受精は除く(2PNのみ選択)</span></span></p>
+                      <div class="form-group mt-0 mb-2 pt-5">
+                        <p class="question mb-0 pt-1">受精個数(2PNのみ)<span class="small text-danger"><span class="small">&nbsp;※異常受精は除く</span></span></p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
                         <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
-                        <p class="question mb-0 pt-1">移植可能胚の合計数</p>
+                        <p class="question mb-0 pt-1">移植可能胚数</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期における移植可能胚(受精卵)数</span></small>
                         <%= f.select :number_of_transferable_embryos, Report::HASH_NUMBER_OF_TRANSFERABLE_EMBRYOS.invert, { prompt: "" }, { class: "form-control py-0" } %>
                       </div>
@@ -665,9 +672,9 @@
                           </div>
                         </div>
                         <div class="col-10 pl-1">
-                          <div class="mt-0 mb-2 pt-3">
+                          <div class="mt-0 mb-0">
                             <p class="question mb-0 pt-1">凍結胚の個数</p>
-                            <table class="table pt-0 mt-2">
+                            <table class="table pt-0 mt-2 mb-0">
                               <tr>
                                 <td class="result-left-column small text-center p-0" style="width:30%"><p class="py-3 mb-0">前核胚</p></td>
                                 <td class="px-3 py-0" style="width:70%">
@@ -688,6 +695,13 @@
                               </tr>
                             </table>
                           </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="d-flex justify-content-end">
+                            <p class="mb-0 pt-1 small"><span class="transferable_embryos_result"></span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="mb-0 pr-3"><span class="small text-muted">計&nbsp;</span><u><span class="transferable_embryos_count"></span></u></p>
+                          </div>
+                          <p class="text-right small mb-1 pr-3"><u><span class="transferable_embryos_result_annotation1 small text-muted"></span><span class="transferable_embryos_result_annotation2 text-warning">≠</span><span class="transferable_embryos_result_annotation3 small text-muted"></span></u></p>
                         </div>
                       </div>
 
