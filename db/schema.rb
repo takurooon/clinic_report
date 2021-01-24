@@ -350,7 +350,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "period_of_time_spent_traveling"
     t.integer "work_style"
     t.integer "work_style_status", default: 0, null: false
-    t.integer "changes_in_working_style"
+    t.integer "switching_work_styles"
     t.text "content"
     t.text "reasons_for_choosing_this_clinic"
     t.integer "status", default: 0, null: false

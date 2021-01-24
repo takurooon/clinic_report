@@ -866,8 +866,8 @@ class Report < ApplicationRecord
     return HASH_WORK_STYLE[self.work_style]
   end
 
-  # changes_in_working_styleの区分値(働き方の変化)
-  HASH_CHANGES_IN_WORKING_STYLE = {
+  # switching_work_stylesの区分値(働き方の変化)
+  HASH_SWITCHING_WORK_STYLES = {
     1 => "変わらず",
     2 => "休職(業)した",
     3 => "退職した",
@@ -877,8 +877,8 @@ class Report < ApplicationRecord
     99 => "その他"
   }
 
-  def str_changes_in_working_style
-    return HASH_CHANGES_IN_WORKING_STYLE[self.changes_in_working_style]
+  def str_switching_work_styles
+    return HASH_SWITCHING_WORK_STYLES[self.switching_work_styles]
   end
 
   # 検索画面用のwork_styleの区分値(働き方)
@@ -1994,7 +1994,6 @@ end
 #  average_waiting_time2                  :integer
 #  blastocyst_grade1                      :integer
 #  blastocyst_grade2                      :integer
-#  changes_in_working_style               :integer
 #  choran                                 :integer
 #  city_at_the_time_status                :integer          default("show"), not null
 #  clinic_review                          :text
@@ -2044,6 +2043,7 @@ end
 #  selection_of_anesthesia_type           :integer
 #  staff_quality                          :integer
 #  status                                 :integer          default("released"), not null
+#  switching_work_styles                  :integer
 #  title                                  :string
 #  total_number_of_eggs_transplanted      :integer
 #  total_number_of_sairan                 :integer

@@ -9,7 +9,6 @@
 #  average_waiting_time2                  :integer
 #  blastocyst_grade1                      :integer
 #  blastocyst_grade2                      :integer
-#  changes_in_working_style               :integer
 #  choran                                 :integer
 #  city_at_the_time_status                :integer          default("show"), not null
 #  clinic_review                          :text
@@ -59,6 +58,7 @@
 #  selection_of_anesthesia_type           :integer
 #  staff_quality                          :integer
 #  status                                 :integer          default("released"), not null
+#  switching_work_styles                  :integer
 #  title                                  :string
 #  total_number_of_eggs_transplanted      :integer
 #  total_number_of_sairan                 :integer

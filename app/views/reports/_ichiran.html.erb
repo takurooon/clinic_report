@@ -1744,7 +1744,7 @@
           <% end %>
         </td>
       </tr>
-      <% if @report.work_style.present? || @report.changes_in_working_style.present? %>
+      <% if @report.work_style.present? || @report.switching_work_styles.present? %>
         <tr>
           <td class="result-left-column small text-center" style="width:30%">治療開始時の働き方&nbsp;<sup class="text-success">●</sup></td>
           <td class="pl-3" style="width:70%">
@@ -1760,8 +1760,8 @@
         <tr>
           <td class="result-left-column small text-center" style="width:30%">治療中の働き方の変化</td>
           <td class="pl-3" style="width:70%">
-            <% if @report.changes_in_working_style.present? %>
-              <span class="result-text"><%= @report.str_changes_in_working_style %></span>
+            <% if @report.switching_work_styles.present? %>
+              <span class="result-text"><%= @report.str_switching_work_styles %></span>
             <% else %>
               <span class="small text-muted"><%= "未回答" %></span>
             <% end %>

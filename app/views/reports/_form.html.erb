@@ -156,7 +156,7 @@
 
                   <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-0 py-2">治療中の働き方の変化</p>
-                    <%= f.collection_radio_buttons(:changes_in_working_style, Report::HASH_CHANGES_IN_WORKING_STYLE, :first, :last) do |b| %>
+                    <%= f.collection_radio_buttons(:switching_work_styles, Report::HASH_SWITCHING_WORK_STYLES, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
                           <%= b.radio_button onclick: "radioDeselection(this, value)" %>
