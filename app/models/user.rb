@@ -142,7 +142,6 @@ class User < ApplicationRecord
 
   # 年齢
   HASH_AGE = {
-    100 => "不明",
     19 => "19歳以下",
     20 => "20歳",
     21 => "21歳",

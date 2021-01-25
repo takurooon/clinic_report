@@ -1029,7 +1029,6 @@ class Report < ApplicationRecord
 
   # treatment_end_ageの区分値(治療終了年齢/CL単位)
   HASH_TREATMENT_END_AGE = {
-    100 => "不明",
     19 => "20歳未満",
     20 => "20歳",
     21 => "21歳",
@@ -1069,7 +1068,6 @@ class Report < ApplicationRecord
   end
   # searchでの年齢検索用の区分値(治療終了年齢/CL単位)
   HASH_TREATMENT_END_AGE_SEARCH = {
-    100 => "不明",
     19 => "20歳未満",
     20 => "20歳",
     21 => "21歳",
@@ -1110,7 +1108,6 @@ class Report < ApplicationRecord
 
   # age_of_partner_at_end_of_treatmentの区分値(治療終了時のパートナーの年齢/CL単位)
   HASH_AGE_OF_PARTNER_AT_END_OF_TREATMENT = {
-    100 => "不明",
     19 => "20歳未満",
     20 => "20歳",
     21 => "21歳",
@@ -1151,7 +1148,6 @@ class Report < ApplicationRecord
 
   # sairan_ageの区分値(採卵時の年齢)
   HASH_SAIRAN_AGE = {
-    100 => "不明",
     19 => "20歳未満",
     20 => "20歳",
     21 => "21歳",
@@ -1187,7 +1183,6 @@ class Report < ApplicationRecord
 
   # ishoku_ageの区分値(移植時の年齢)
   HASH_ISHOKU_AGE = {
-    100 => "不明",
     19 => "20歳未満",
     20 => "20歳",
     21 => "21歳",

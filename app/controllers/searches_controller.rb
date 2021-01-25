@@ -144,7 +144,7 @@ class SearchesController < ApplicationController
     when 45
       @selected_age = "45歳以上"
     when 19
-      @selected_age = age_value.to_s + "歳以下"
+      @selected_age = "20歳未満"
     when 20..59
       @selected_age = age_value.to_s + "歳"
     when 60
