@@ -1793,11 +1793,11 @@
       <tr>
         <td class="result-left-column small text-center ichirantable-left"><%= @report.clinic.name %>は何院目</td>
         <td class="pl-3 ichirantable-right">
-          <% if @report.number_of_clinics.present? %>
+          <% if @report.number_of_clinics.present? && @report.number_of_clinics != 100 %>
             <span class="small text-muted"><span class="small"><%= @report.clinic.name %>は</span></span><br>
             <span class="result-text"><%= @report.str_number_of_clinics %></span>
-          <% else %>
-            <span class="text-muted small">未回答</span>
+          <% elsif @report.number_of_clinics == 100 %>
+            <span class="result-text"><%= @report.str_number_of_clinics %></span>
           <% end %><br>
           <% if @clinics.present? %><span class="small text-muted">(</span>
             <% @clinics.each do |c| %>

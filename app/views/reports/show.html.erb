@@ -2477,11 +2477,11 @@
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">何院目</td>
                     <td class="pl-3" style="width:70%">
-                      <% if @report.number_of_clinics.present? %>
+                      <% if @report.number_of_clinics.present? && @report.number_of_clinics != 100 %>
                         <span class="small text-muted"><span class="small"><%= @report.clinic.name %>は</span></span><br>
                         <span class="result-text"><%= @report.str_number_of_clinics %></span>
-                      <% else %>
-                        <span class="text-muted small">未回答</span>
+                      <% elsif @report.number_of_clinics == 100 %>
+                        <span class="result-text"><%= @report.str_number_of_clinics %></span>
                       <% end %><br>
                       <% if @clinics.present? %><span class="small text-muted">(</span>
                         <% @clinics.each do |c| %>
