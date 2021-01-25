@@ -293,7 +293,6 @@ class Report < ApplicationRecord
     2 => "妊娠中(多胎)",
     3 => "出産",
     4 => "出産(多胎)",
-    99 => "その他"
   }
 
   def str_current_state
