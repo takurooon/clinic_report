@@ -1,7 +1,7 @@
 <div class="p-comment__item">
   <p><%= simple_format(text_url_to_link(h(safe_join((comment.comment).split("\n"),tag(:br)))).html_safe) %></p>
   <div class="p-comment__bottomLine">
-    <span class="mr-0"><strong><%= comment.user.name %></strong></span>
+    <span class="mr-0"><strong><%= link_to comment.user.name, user_path(comment.user.id) %></strong></span>
     <span class="mr-0"><%= comment.created_at.to_s(:datetime_jp) %></span>
     <% if comment.user == current_user %>
       <span class="mx-0"><%= link_to '削除', comment, method: :delete, data: { confirm: '削除してもよろしいですか？'}, class: "btn btn-danger btn-sm" %></span>
