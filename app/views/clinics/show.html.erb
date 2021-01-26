@@ -331,7 +331,7 @@
                     </p>
                   <% end %>
                   <%= link_to report_path(report.id), data: { "turbolinks" => false } do %>
-                    <% rating = ((@doctor_quality + @staff_quality + @impression_of_technology + @impression_of_price + @average_waiting_time2 + @comfort_of_space) / 6.to_f).round(1) %>
+                    <% rating = ((report.doctor_quality.to_i + report.staff_quality.to_i + report.impression_of_technology.to_i + report.impression_of_price.to_i + report.average_waiting_time2.to_i + report.comfort_of_space.to_i) / 6.to_f).round(1) %>
                     <p class="mb-0">
                       <% unless rating.blank? %>
                         <% if rating == 5 %>

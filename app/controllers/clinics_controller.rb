@@ -78,9 +78,9 @@ class ClinicsController < ApplicationController
   def show
     @get_limit = 5
     @clinic = Clinic.find(params[:id])
-    clinic_reports = Report.where(clinic_id: @clinic, status: 0)
+    clinic_reports = Report.where(clinic_id: @clinic.id, status: 0)
     @clinic_reports = clinic_reports.limit(@get_limit).order(created_at: :desc)
-    @clinic_reports_count = Report.where(clinic_id: @clinic, status: 0).count
+    @clinic_reports_count = Report.where(clinic_id: @clinic.id, status: 0).count
 
     unless clinic_reports.average(:doctor_quality).blank?
       @doctor_quality = clinic_reports.average(:doctor_quality).round(1)
