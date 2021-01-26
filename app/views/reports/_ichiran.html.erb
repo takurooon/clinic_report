@@ -1838,7 +1838,7 @@
         <td class="result-left-column small text-center">人工授精実施回数</td>
         <td class="pl-3">
           <% if @report.user.number_of_aih.present? %>
-            <span class="result-text"><%= @report.user.number_of_aih %>回
+            <span class="result-text"><%= @report.user.str_number_of_aih %>
               <% if user_signed_in? && @report.user_id == current_user.id %>
                 &nbsp;&nbsp;<span class="small"><%= link_to "→ 変更", edit_user_registration_path %></span>
               <% end %>
