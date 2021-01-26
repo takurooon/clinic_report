@@ -41,45 +41,14 @@
             </div>
           <% end %>
         <% end %>
-        <input id="acd-check1" class="acd-check" type="checkbox" checked>
-        <label class="acd-label small mb-0 px-1 py-2" for="acd-check1"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<%= @clinics.name %>の基本情報</label>
-        <div class="acd-content-not-overflow-y container small pt-3 mb-4">
-          <table class="table p-0">
-            <tr>
-              <td class="result-left-column small text-center" style="width:30%">医療機関</td>
-              <td style="width:70%">
-                <% if @clinics.current_status == 1 %>
-                  <span class="text-danger">【閉院】</span>
-                <% end %>
-                <%= link_to @clinics.name, clinic_path(@clinics.id), class: "text-primary", data: { "turbolinks" => false } %>
-              </td>
-            </tr>
-            <tr>
-              <td class="result-left-column small text-center">電話</td>
-              <td><i data-feather="phone-outgoing" class="feather-icon-style1 text-primary"></i>&nbsp;&nbsp;&nbsp;<a href="tel:<%= @clinics.tel %>"><span class="text-primary"><%= @clinics.tel %></span></a></td>
-            </tr>
-            <tr>
-              <td class="result-left-column small text-center">住所</td>
-              <td>〒<%= @clinics.post_code.to_s.insert(3, " - ") %><br><%= @clinics.city.prefecture.name %><%= @clinics.city.name %><%= @clinics.address1 %><br><%= @clinics.address2 %></td>
-            </tr>
-            <tr>
-              <td class="result-left-column small text-center">備考</td>
-              <td class="small">
-                <% if @clinics.pgt != 0 %>
-                  <%= "・着床前診断(PGT)臨床指定施設" %><br>
-                <% end %>
-                <% if @clinics.japco != 0 %>
-                  <%= "・PGTコンソーシアム(JAPCO)加盟施設" %><br>
-                <% end %>
-                <% if @clinics.jis_art != 0 %>
-                  <%= "・JIS-ART登録施設" %><br>
-                <% end %>
-              </td>
-            </tr>
-          </table>
+        <div class="my-3 py-3 px-1 text-center bg-light rounded-lg">
+          <% if @clinics.current_status == 1 %>
+            <span class="text-danger">【閉院】</span>
+          <% end %>
+          <%= link_to @clinics.name, clinic_path(@clinics.id), class: "text-primary font-weight-bold", data: { "turbolinks" => false } %><i data-feather="external-link" class="text-primary pb-1"></i>
         </div>
 
-        <div class="tab-wrap1 mt-5">
+        <div class="tab-wrap1 mt-4">
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">最新</label>
           <div class="tab-content1 px-2">
             <%= render 'reports/center' %>
