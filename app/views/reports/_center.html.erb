@@ -110,8 +110,8 @@
               <div class="d-none d-sm-block">
                 <%= link_to report, data: { "turbolinks" => false } do %>
                   <h5 class="mb-0 mt-2 mx-0 mb-1">
-                    <% if report.treatment_end_age %>
-                      <%= report.treatment_end_age %>歳&nbsp;
+                    <% if report.treatment_end_age.present? %>
+                      <%= report.str_treatment_end_age %>&nbsp;
                     <% end %>
                     <%= report.clinic.name %>のレポコ
                     <% unless report.year_of_treatment_end.blank? %>
@@ -123,8 +123,8 @@
               <div class="d-block d-sm-none">
                 <%= link_to report, data: { "turbolinks" => false } do %>
                   <h6 class="mb-0 mt-2 mx-0 mb-1">
-                    <% if report.treatment_end_age %>
-                      <%= report.treatment_end_age %>歳&nbsp;
+                    <% if report.treatment_end_age.present? %>
+                      <%= report.str_treatment_end_age %>&nbsp;
                     <% end %>
                     <%= report.clinic.name %>のレポコ
                     <% unless report.year_of_treatment_end.blank? %>

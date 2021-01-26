@@ -124,6 +124,6 @@ class ClinicsController < ApplicationController
     @reports = Report.where(clinic_id: @clinics.id, status: 0)
     @clinic_reports = Report.where(activated: true).search(params[:search]).order(created_at: :desc)
     @transfer_reports = Report.joins(:itinerary_of_choosing_a_clinics).where(status: 0, itinerary_of_choosing_a_clinics: {clinic_id: @clinics.id}).distinct
-    @clinic_all_reports = Report.where(clinic_id: @clinics.id, status: 0).count
+    @clinic_reports_count = Report.where(clinic_id: @clinics.id, status: 0).count
   end
 end

@@ -24,9 +24,9 @@
   <div class="container-fluid main-index">
     <div class="row px-0">
       <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-0">
-        <% unless @clinic_all_reports == 0 %>
+        <% unless @clinic_reports_count == 0 %>
           <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
-            <span class="small"><span class="small"><%= @clinics.name %>でのレポコは&nbsp;<%= @clinic_all_reports %>件&nbsp;あります。</span></span>
+            <span class="small"><span class="small"><%= @clinics.name %>でのレポコは&nbsp;<%= @clinic_reports_count %>件&nbsp;あります。</span></span>
             <% unless @transfer_reports.count == 0 %>
               <br><span class="small"><span class="small">同院を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
             <% end %>
