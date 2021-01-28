@@ -201,7 +201,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "itinerary_of_choosing_a_clinics", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.bigint "clinic_id", null: false
+    t.bigint "clinic_id"
     t.integer "order_of_transfer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -71,7 +71,11 @@ class ReportsController < ApplicationController
     itinerary_of_choosing_a_clinics = @report.itinerary_of_choosing_a_clinics.order(order_of_transfer: "desc")
     clinics = itinerary_of_choosing_a_clinics.map { |i| i[:clinic_id] }
     @clinics = clinics.map do |c|
-      Clinic.find(c).name
+      if c.present?
+        Clinic.find(c).name
+      else
+        "未選択"
+      end
     end
 
     @unsuccessful_sairan_cycles = @report.unsuccessful_sairan_cycles.order(un_sairan_number: "asc")

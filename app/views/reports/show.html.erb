@@ -2479,13 +2479,21 @@
                     <td class="pl-3" style="width:70%">
                       <% if @report.number_of_clinics.present? && @report.number_of_clinics != 100 %>
                         <span class="small text-muted"><span class="small"><%= @report.clinic.name %>は</span></span><br>
-                        <span class="result-text"><%= @report.str_number_of_clinics %></span>
+                        <span class="result-text"><%= @report.str_number_of_clinics %></span><br>
                       <% elsif @report.number_of_clinics == 100 %>
-                        <span class="result-text"><%= @report.str_number_of_clinics %></span>
-                      <% end %><br>
+                        <span class="result-text"><%= @report.str_number_of_clinics %></span><br>
+                      <% else %>
+                        <span class="text-muted small">未回答</span><br>
+                      <% end %>
                       <% if @clinics.present? %><span class="small text-muted">(</span>
                         <% @clinics.each do |c| %>
-                          <span class="result-text small"><%= c %></span>&nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
+                          <span class="result-text small">
+                            <% if c === "未選択" %>
+                              <span class="text-muted small"><%= c %></span>
+                            <% else %>
+                              <%= c %>
+                            <% end %>
+                          </span>&nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
                         <% end %>
                         <span class="result-text small"><%= @report.clinic.name %></span><span class="small text-muted">&nbsp;)</span>
                       <% end %>
@@ -2501,8 +2509,8 @@
                           </ul>
                         <% end %>
                       <% else %>
-                          <span class="text-muted small">特にない</span>
-                      <% end %><br>
+                          <span class="text-muted small">未回答</span><br>
+                      <% end %>
                       <% if @report.reasons_for_choosing_this_clinic.present? %>
                         <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
                       <% end %>

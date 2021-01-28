@@ -11,7 +11,7 @@ end
 #  order_of_transfer :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  clinic_id         :bigint           not null
+#  clinic_id         :bigint
 #  report_id         :bigint           not null
 #
 # Indexes
