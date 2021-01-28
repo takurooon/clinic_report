@@ -1,7 +1,7 @@
 class SpecialInspection < ApplicationRecord
   belongs_to :report, inverse_of: :special_inspections
 
-  validates :name, presence: true, numericality: true
+  validates :name, numericality: true
 
 
   # special_inspectionの区分値(特殊検査)
@@ -49,7 +49,7 @@ end
 # Table name: special_inspections
 #
 #  id         :bigint           not null, primary key
-#  name       :integer          not null
+#  name       :integer
 #  place      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

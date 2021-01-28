@@ -412,7 +412,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
 
   create_table "special_inspections", force: :cascade do |t|
     t.bigint "report_id", null: false
-    t.integer "name", null: false
+    t.integer "name"
     t.integer "place"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

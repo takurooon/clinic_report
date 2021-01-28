@@ -3,7 +3,7 @@
 # Table name: special_inspections
 #
 #  id         :bigint           not null, primary key
-#  name       :integer          not null
+#  name       :integer
 #  place      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
