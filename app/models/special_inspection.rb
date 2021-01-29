@@ -1,9 +1,6 @@
 class SpecialInspection < ApplicationRecord
   belongs_to :report, inverse_of: :special_inspections
 
-  validates :name, numericality: true
-
-
   # special_inspectionの区分値(特殊検査)
   # この順番を変えたら必ずreportコントローラのshow部分を確認すること！
   # name
