@@ -833,7 +833,7 @@
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                        <p class="small"><small class="small text-muted"><span class="text-warning">PGT-A は「検査」タブの「基本検査以外に受けた検査」で選択できます。</span></small></p>
+                        <p class="small"><small class="small text-muted"><span class="text-warning">着床前診断 は「検査」タブの「基本検査以外に受けた検査」で選択できます。</span></small></p>
                         <div class="pt-2 pl-2">
                           <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
                             <div class="cp_ipcheck">
@@ -1420,7 +1420,7 @@
                         <li class="small">移植オプションなど</li>
                         <li class="small">投薬/注射などの詳細</li>
                         <li class="small">使用薬剤について</li>
-                        <li class="small">PGT-AやERAなどのオプション検査の詳細</li>
+                        <li class="small">着床前診断やERAなどのオプション検査の詳細</li>
                       </ul>
                     </div>
                   </div>

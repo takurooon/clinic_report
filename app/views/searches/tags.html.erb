@@ -15,7 +15,7 @@
       <% end %>
       <% @special_examinations.each do |special_examination| %>
         <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3">
-        <%= link_to special_examination.str_special_inspection_name(special_examination.name), "/カテゴリ/追加検査/女性/#{special_examination.name}", class: "text-dark" %>
+        <%= link_to special_examination.str_special_inspection_name(special_examination.name), "/カテゴリ/オプション検査/女性/#{special_examination.name}", class: "text-dark" %>
         </span>
       <% end %>
       <% @fuiku_inspections.each do |fuiku_inspection| %>

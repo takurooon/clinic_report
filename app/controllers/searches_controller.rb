@@ -176,7 +176,7 @@ class SearchesController < ApplicationController
 
   def tag
     if params[:gender] === "女性"
-      if params[:tags] === "追加検査"
+      if params[:tags] === "オプション検査"
         @tag = SpecialInspection.find_by(name: params[:value])
         @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag.name }, reports: {status: 0})
         @clinic_all_reports = @reports.count

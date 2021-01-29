@@ -44,49 +44,7 @@
       </div>
       
       <div class="tab-wrap1 mt-4">
-        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">基本情報</label>
-        <div class="tab-content1">
-          <div class="my-2">
-            <table class="table p-0">
-              <tr>
-                <td class="result-left-column small text-center" style="width:30%">医療機関</td>
-                <td style="width:70%">
-                  <% if @clinic.current_status == 1 %>
-                    <span class="text-danger">【閉院】</span>
-                  <% end %>
-                  <%= link_to @clinic.name, "/clinic/#{@clinic.id}" %>
-                </td>
-              </tr>
-              <tr>
-                <td class="result-left-column small text-center">電話</td>
-                <td><i data-feather="phone-outgoing" class="feather-icon-style1 text-primary"></i>&nbsp;&nbsp;&nbsp;<a href="tel:<%= @clinic.tel %>"><span class="text-primary"><%= @clinic.tel %></span></a></td>
-              </tr>
-              <tr>
-                <td class="result-left-column small text-center">住所</td>
-                <td>〒<%= @clinic.post_code.to_s.insert(3, " - ") %><br><%= @clinic.prefecture.name %><%= @clinic.city.name %><%= @clinic.address1 %><br><%= @clinic.address2 %></td>
-              </tr>
-              <tr>
-                <td class="result-left-column small text-center">備考</td>
-                <td class="small">
-                  <% if @clinic.pgt != 0 %>
-                    <%= "・着床前診断(PGT)臨床指定施設" %><br>
-                  <% end %>
-                  <% if @clinic.japco != 0 %>
-                    <%= "・PGTコンソーシアム(JAPCO)加盟施設" %><br>
-                  <% end %>
-                  <% if @clinic.jis_art != 0 %>
-                    <%= "・JIS-ART登録施設" %><br>
-                  <% end %>
-                </td>
-              </tr>
-            </table>
-          </div>
-          <p class="google-maps gray">
-            <iframe src="<%= @clinic.g_map %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-          </p>
-        </div>
-        
-        <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">レポコ<span class="small">&nbsp;<span class="small text-muted">(<%= @clinic_reports_count %>件)</span></span></label>
+        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">レポコ<span class="small">&nbsp;<span class="small text-muted">(<%= @clinic_reports_count %>件)</span></span></label>
         <div class="tab-content1">
           <div class="row">
             <div class="col-sm-6 chart-container px-auto">
@@ -388,6 +346,48 @@
               <% end %>
             </div>
           <% end %>
+        </div>
+        
+        <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">基本情報</label>
+        <div class="tab-content1">
+          <div class="my-2">
+            <table class="table p-0">
+              <tr>
+                <td class="result-left-column small text-center" style="width:30%">医療機関</td>
+                <td style="width:70%">
+                  <% if @clinic.current_status == 1 %>
+                    <span class="text-danger">【閉院】</span>
+                  <% end %>
+                  <%= link_to @clinic.name, "/clinic/#{@clinic.id}" %>
+                </td>
+              </tr>
+              <tr>
+                <td class="result-left-column small text-center">電話</td>
+                <td><i data-feather="phone-outgoing" class="feather-icon-style1 text-primary"></i>&nbsp;&nbsp;&nbsp;<a href="tel:<%= @clinic.tel %>"><span class="text-primary"><%= @clinic.tel %></span></a></td>
+              </tr>
+              <tr>
+                <td class="result-left-column small text-center">住所</td>
+                <td>〒<%= @clinic.post_code.to_s.insert(3, " - ") %><br><%= @clinic.prefecture.name %><%= @clinic.city.name %><%= @clinic.address1 %><br><%= @clinic.address2 %></td>
+              </tr>
+              <tr>
+                <td class="result-left-column small text-center">備考</td>
+                <td class="small">
+                  <% if @clinic.pgt != 0 %>
+                    <%= "・着床前診断(PGT)臨床指定施設" %><br>
+                  <% end %>
+                  <% if @clinic.japco != 0 %>
+                    <%= "・PGTコンソーシアム(JAPCO)加盟施設" %><br>
+                  <% end %>
+                  <% if @clinic.jis_art != 0 %>
+                    <%= "・JIS-ART登録施設" %><br>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <p class="google-maps gray">
+            <iframe src="<%= @clinic.g_map %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          </p>
         </div>
       </div>
 
