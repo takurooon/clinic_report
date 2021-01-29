@@ -609,13 +609,7 @@
         <td class="result-left-column small text-center ichirantable-left">採卵回数</td>
         <td class="pl-3 ichirantable-right">
           <% if @report.total_number_of_sairan.present? %>
-            <span class="result-text">
-              <% if @report.total_number_of_sairan == 100 %>
-                <%= @report.str_total_number_of_sairan %>
-              <% else %>
-                <%= @report.str_total_number_of_sairan %>目の採卵
-              <% end %>
-            </span>
+            <span class="result-text"><%= @report.str_total_number_of_sairan %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -1071,13 +1065,7 @@
         <td class="result-left-column small text-center ichirantable-left">移植回数</td>
         <td class="pl-3 ichirantable-right">
           <% if @report.total_number_of_transplants.present? %>
-            <span class="result-text">
-              <% if @report.total_number_of_transplants == 100 %>
-                <%= @report.str_total_number_of_transplants %>
-              <% else %>
-                <%= @report.str_total_number_of_transplants %>目の移植
-              <% end %>
-            </span>
+            <span class="result-text"><%= @report.str_total_number_of_transplants %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
