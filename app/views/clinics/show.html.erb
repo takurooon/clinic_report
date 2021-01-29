@@ -44,7 +44,7 @@
       </div>
       
       <div class="tab-wrap1 mt-4">
-        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">レポコ<span class="small">&nbsp;<span class="small text-muted">(<%= @clinic_reports_count %>件)</span></span></label>
+        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">評価<span class="small">&nbsp;<span class="small text-muted">(<%= @clinic_reports_count %>件)</span></span></label>
         <div class="tab-content1">
           <div class="row">
             <div class="col-sm-6 chart-container px-auto">
@@ -77,10 +77,10 @@
                       <% elsif @doctor_quality > 0 %>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted"><%= @doctor_quality %></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small"><i class="fas fa-star-half"></i></span>
                       <% else %>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                       <% end %>
                     <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                     <% end %>
                   </td>
                 </tr>
@@ -109,10 +109,10 @@
                       <% elsif @staff_quality > 0 %>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted"><%= @staff_quality %></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small"><i class="fas fa-star-half"></i></span>
                       <% else %>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                       <% end %>
                     <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                     <% end %>
                   </td>
                   </td>
@@ -142,10 +142,10 @@
                       <% elsif @impression_of_technology > 0 %>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted"><%= @impression_of_technology %></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small"><i class="fas fa-star-half"></i></span>
                       <% else %>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                       <% end %>
                     <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                     <% end %>
                   </td>
                 </tr>
@@ -174,10 +174,10 @@
                       <% elsif @impression_of_price > 0 %>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted"><%= @impression_of_price %></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small"><i class="fas fa-star-half"></i></span>
                       <% else %>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                       <% end %>
                     <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                     <% end %>
                   </td>
                 </tr>
@@ -206,10 +206,10 @@
                       <% elsif @average_waiting_time2 > 0 %>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted"><%= @average_waiting_time2 %></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small"><i class="fas fa-star-half"></i></span>
                       <% else %>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                       <% end %>
                     <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                     <% end %>
                   </td>
                 </tr>
@@ -238,10 +238,10 @@
                       <% elsif @comfort_of_space > 0 %>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted"><%= @comfort_of_space %></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small"><i class="fas fa-star-half"></i></span>
                       <% else %>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                       <% end %>
                     <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rating-star small text-muted"><span class="rating-star small"><i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i>&nbsp;<i class="fas fa-star text-muted small"></i></span></span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコアなし</span>
                     <% end %>
                   </td>
                 </tr>
