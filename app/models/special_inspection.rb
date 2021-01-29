@@ -1,7 +1,7 @@
 class SpecialInspection < ApplicationRecord
   belongs_to :report, inverse_of: :special_inspections
 
-  # special_inspectionの区分値(特殊検査)
+  # special_inspectionの区分値(追加検査)
   # この順番を変えたら必ずreportコントローラのshow部分を確認すること！
   # name
   HASH_SPECIAL_INSPECTION_NAME = {

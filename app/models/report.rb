@@ -254,7 +254,7 @@ class Report < ApplicationRecord
   has_many :haibanhoishoku_hormones, inverse_of: :report, dependent: :destroy
   accepts_nested_attributes_for :haibanhoishoku_hormones, reject_if: :all_blank, allow_destroy: true, update_only: true
 
-  # 特殊検査（ERAなど）
+  # 追加検査（ERAなど）
   has_many :special_inspections, inverse_of: :report, dependent: :destroy
   accepts_nested_attributes_for :special_inspections, reject_if: :all_blank, allow_destroy: true, update_only: true
 
