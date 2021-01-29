@@ -1062,13 +1062,7 @@
                     </div>
                   </div>
 
-                  <details class=" mb-2 pt-4">
-                    <summary class="text-primary font-weight-bold fluffy mb-2">費用の補足説明はここを"タップ</summary>
-                    <p class="mb-0">費用についての補足説明</p>
-                    <%= f.text_area :explanation_of_costs, class: "form-control p-2 border", style: "background: rgb(232, 254, 252); line-height: 1.5; font-size: 13px;", rows: 7, placeholder: "記入例)\n\n成功報酬制度があり、妊娠して治療終了後に成功報酬を支払う形だったので、回数によって1回あたりの採卵/移植費用は変わってきます。上記のそれぞれの金額は最大値としてチェックしています。" %>
-                  </details>
-
-                  <div class="form-group mt-0 mb-2 pt-5">
+                  <div class="form-group mt-0 mb-2 pt-3">
                     <p class="question mb-0 pt-1">クレジットカードの利用</p>
                     <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>でのクレジットカード利用可否</span></small>
                     <div class="mt-2">
@@ -1081,6 +1075,11 @@
                         </div>
                       <% end %>
                     </div>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-3">
+                    <p class="question mb-0 pt-1">費用についての補足説明</p>
+                    <%= f.text_area :explanation_of_costs, class: "form-control p-2 border", style: "background: rgb(232, 254, 252); line-height: 1.5; font-size: 13px;", rows: 7, placeholder: "記入例)\n\n成功報酬制度があり、妊娠して治療終了後に成功報酬を支払う形だったので、回数によって1回あたりの採卵/移植費用は変わってきます。上記のそれぞれの金額は最大値としてチェックしています。" %>
                   </div>
 
                   <div class="form-group mt-0 mb-2 pt-2 amount_that_can_be_activated m-1">
