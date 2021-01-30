@@ -1154,7 +1154,10 @@
                     </div>
 
                     <div class="mt-0 pt-3">
-                      <p class="question mb-1 pt-2">価格&nbsp;&nbsp;<span class="small text-muted">(</span><span class="small text-danger font-weight-bold">納得度</span><span class="small text-muted">)</span></p>
+                      <div class="d-flex">
+                        <p class="question mb-1 pt-2">価格</p>
+                        <p class="mb-1 pt-2 fluffy-b">&nbsp;&nbsp;<span class="small text-muted">(</span><span class="small text-danger font-weight-bold">納得度</span><span class="small text-muted">)</span></p>
+                      </div>
                       <div class="d-flex align-items-center flex-nowrap">
                         <p class="small text-muted mb-2 mr-2">低</p>
                         <%= f.collection_radio_buttons(:impression_of_price, Report::HASH_RATING, :first, :last) do |b| %>
@@ -1172,7 +1175,7 @@
                     <div class="mt-0 pt-3">
                       <p class="question mb-1 pt-2">待ち時間</span></p>
                       <div class="d-flex align-items-center flex-nowrap">
-                        <p class="small text-danger mb-2 mr-2 font-weight-bold">長</p>
+                        <p class="small text-danger mb-2 mr-2 font-weight-bold fluffy-b">長</p>
                         <%= f.collection_radio_buttons(:average_waiting_time2, Report::HASH_RATING, :first, :last) do |b| %>
                           <div class="form-check p-1">
                             <%= b.label class: "radio-inline" do %>
