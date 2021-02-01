@@ -3026,7 +3026,7 @@
                           </table>
                         </div>
                       </div>
-                      <div class="col-md-8 chart-container px-auto">
+                      <div class="col-md-8 chart-container px-auto mt-4">
                         <% if @clinic_evaluation.blank? %>
                           <p class="text-center py-3" style="color:#6D757D;">
                             <%= @report.clinic.name %>
@@ -3440,9 +3440,9 @@
                     <td class="pl-3" style="width:70%">
                       <% if @report.embryo_stage == 1 %>
                         <% if @report.current_state.present? %>
-                          <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+                          <p class="small text-danger"><span class="small">※「<%= @report.str_current_state %>」に至った移植胚は初期胚を使用</span></p>
                         <% else %>
-                          <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+                          <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は初期胚を使用</span></p>
                         <% end %>
                       <% end %>
                       <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 %>
@@ -3476,9 +3476,9 @@
                     <td class="pl-3" style="width:70%">
                       <% if @report.embryo_stage == 1 %>
                         <% if @report.current_state.present? %>
-                          <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+                          <p class="small text-danger"><span class="small">※「<%= @report.str_current_state %>」に至った移植胚は初期胚を使用</span></p>
                         <% else %>
-                          <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+                          <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は初期胚を使用</span></p>
                         <% end %>
                       <% end %>
                       <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 %>
@@ -3512,9 +3512,9 @@
                     <td class="pl-3" style="width:70%">
                       <% if @report.embryo_stage == 1 %>
                         <% if @report.current_state.present? %>
-                          <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+                          <p class="small text-danger"><span class="small">※「<%= @report.str_current_state %>」に至った移植胚は初期胚を使用</span></p>
                         <% else %>
-                          <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+                          <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は初期胚を使用</span></p>
                         <% end %>
                       <% end %>
                       <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>

@@ -2044,217 +2044,215 @@
 
     <table class="table p-0 mt-5 mb-0">
       <tr>
-        <td class="result-left-column" colspan="2">
+        <td class="result-left-column">
           <div class="m-0 p-0 form-inline justify-content-center">
             <p class="m-0 p-0 text-muted small">クリニック</p>&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1"></i>&nbsp;&nbsp;<h6 class="m-0 p-0 font-weight-bold">レビュー</h6>
           </div>
         </td>
       </tr>
       <tr>
-        <td colspan="2">
+        <td>
           <div class="box4 mt-0 mb-3">
             &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんによる満足度評価&nbsp;(5段階)</small>
           </div>
           <br>
-          <div class="clinic-review-area">
-            <div class="box27 mt-2 mb-0">
-              <span class="box-title">クリニック評価</span>
-              <div class="row">
-                <div class="col-12 chart-container mb-4">
-                  <% if @clinic_evaluation.blank? %>
-                    <p class="text-center py-3" style="color:#6D757D;">
-                      <%= @report.clinic.name %>
-                    </p>
-                    <%= image_tag("home/unrated_graph.png", alt: "unrated_graph", class: "img-fluid py-2 px-3", loading: "lazy") %>
-                  <% else %>
-                    <canvas id="clinicEvaluation_ichiran"></canvas>
-                  <% end %>
-                </div>
-              </div>
-              <table class="table p-0">
-                <tr>
-                  <td class="result-left-column small text-center ichirantable-left">医師</td>
-                  <td class="pl-3 ichirantable-right">
-                    <% if @report.doctor_quality.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.doctor_quality == 1 %>
-                      <span class="rating-star small">★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 2 %>
-                      <span class="rating-star small">★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 3 %>
-                      <span class="rating-star small">★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 4%>
-                      <span class="rating-star small">★★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.doctor_quality == 5 %>
-                      <span class="rating-star small">★★★★★</span><% end %>
-                    <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="result-left-column small text-center ichirantable-left">スタッフ</td>
-                  <td class="pl-3 ichirantable-right">
-                    <% if @report.staff_quality.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.staff_quality == 1 %>
-                      <span class="rating-star small">★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 2 %>
-                      <span class="rating-star small">★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 3 %>
-                      <span class="rating-star small">★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 4%>
-                      <span class="rating-star small">★★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.staff_quality == 5 %>
-                      <span class="rating-star small">★★★★★</span><% end %>
-                    <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="result-left-column small text-center ichirantable-left">技術</td>
-                  <td class="pl-3 ichirantable-right">
-                    <% if @report.impression_of_technology.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_technology == 1 %>
-                      <span class="rating-star small">★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 2 %>
-                      <span class="rating-star small">★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 3 %>
-                      <span class="rating-star small">★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 4%>
-                      <span class="rating-star small">★★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.impression_of_technology == 5 %>
-                      <span class="rating-star small">★★★★★</span><% end %>
-                    <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="result-left-column small text-center ichirantable-left">価格</td>
-                  <td class="pl-3 ichirantable-right">
-                    <% if @report.impression_of_price.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_price == 1 %>
-                      <span class="rating-star small">★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 2 %>
-                      <span class="rating-star small">★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 3 %>
-                      <span class="rating-star small">★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 4%>
-                      <span class="rating-star small">★★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.impression_of_price == 5 %>
-                      <span class="rating-star small">★★★★★</span><% end %>
-                    <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="result-left-column small text-center ichirantable-left">待ち時間</td>
-                  <td class="pl-3 ichirantable-right">
-                    <% if @report.average_waiting_time2.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.average_waiting_time2 == 1 %>
-                      <span class="rating-star small">★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 2 %>
-                      <span class="rating-star small">★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 3 %>
-                      <span class="rating-star small">★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 4%>
-                      <span class="rating-star small">★★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.average_waiting_time2 == 5 %>
-                      <span class="rating-star small">★★★★★</span><% end %>
-                      <% if @report.str_average_waiting_time %>
-                        <small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
-                      <% end %>
-                    <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="result-left-column small text-center ichirantable-left">施設の環境</td>
-                  <td class="pl-3 ichirantable-right">
-                    <% if @report.comfort_of_space.present? %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.comfort_of_space == 1 %>
-                      <span class="rating-star small">★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 2 %>
-                      <span class="rating-star small">★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 3 %>
-                      <span class="rating-star small">★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 4%>
-                      <span class="rating-star small">★★★★</span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<% else @report.comfort_of_space == 5 %>
-                      <span class="rating-star small">★★★★★</span><% end %>
-                    <% else %>
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
-                    <% end %>
-                  </td>
-                </tr>
-                <% if (@report.free_wifi.present? && @report.free_wifi <= 3) || (@report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3) || @report.credit_card_validity.present? || (@report.credit_card_validity == 3 && @report.creditcards_can_be_used_from_more_than.present?) %>
-                  <tr>
-                    <td class="result-left-column small text-center ichirantable-left">備考</td>
-                    <td class="pl-3 ichirantable-right">
-                      <% if @report.free_wifi.present? && @report.free_wifi <= 3 %>
-                        <small>･<span class="small font-weight-bold">&nbsp;<%= @report.str_free_wifi %></span></small><br>
-                      <% end %>
-                      <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
-                        <small>･<span class="small font-weight-bold">&nbsp;待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small><br>
-                      <% end %>
-                      <% if @report.credit_card_validity.present? %>
-                        <small>･<span class="small">&nbsp;クレジットカード:&nbsp;<span class="font-weight-bold"><%= @report.str_credit_card_validity %></span></span></small>
-                      <% end %>
-                      <% if @report.credit_card_validity == 3 %>
-                        <% if @report.creditcards_can_be_used_from_more_than.present? %>
-                          <small><span class="text-muted small">(<%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から利用可能)</span></small>
-                        <% end %>
-                      <% end %>
-                    </td>
-                  </tr>
+          <div class="box27 mt-2 mb-0 px-2">
+            <span class="box-title">クリニック評価</span>
+            <div class="row">
+              <div class="col-10 offset-1 chart-container mb-4">
+                <% if @clinic_evaluation.blank? %>
+                  <p class="text-center py-3" style="color:#6D757D;">
+                    <%= @report.clinic.name %>
+                  </p>
+                  <%= image_tag("home/unrated_graph.png", alt: "unrated_graph", class: "img-fluid py-2 px-3", loading: "lazy") %>
+                <% else %>
+                  <canvas id="clinicEvaluation_ichiran"></canvas>
                 <% end %>
-              </table>
-              <% if @report.clinic_review.present? %>
-                <div class="p-3">
-                  <i data-feather="edit-3" class="feather-icon-style4 pl-0 py-1 mx-0"></i>&nbsp;&nbsp;レビュー<br>
-                  <div class="small pt-3"><%= text_url_to_link(h(safe_join(@report.clinic_review.split("\n"),tag(:br)))).html_safe %></div>
-                </div>
-              <% end %>
-              <small class="my-3"><span class="small text-muted">※&nbsp;<%= @report.user.name %> さんの治療当時の情報です。最新情報は直接クリニックに確認して下さい。</span></small>
-              <table class="table rounded table-dark p-0 mt-5 mb-2">
-                <tr>
-                  <td class="small text-center" colspan="2">
-                    <% if @report.clinic.current_status == 1 %>
-                      <span class="text-danger">【閉院】</span>
-                    <% end %>
-                    <%= link_to @report.clinic.name, "/clinics/#{@report.clinic.id}", data: { "turbolinks" => false } %>&nbsp;の基本情報
-                  </td>
-                </tr>
-                <tr>
-                  <td class="small text-center ichirantable-left">電話</td>
-                  <td class="pl-3 ichirantable-right"><i data-feather="phone-outgoing" class="feather-icon-style1 text-primary"></i>&nbsp;&nbsp;&nbsp;<a href="tel:<%= @report.clinic.tel %>"><span class="text-primary"><%= @report.clinic.tel %></span></a></td>
-                </tr>
-                <tr>
-                  <td class="small text-center">住所</td>
-                  <td class="pl-3 small">〒<%= @report.clinic.post_code.to_s.insert(3, " - ") %><br><%= @report.clinic.city.prefecture.name %><%= @report.clinic.city.name %><%= @report.clinic.address1 %><br><%= @report.clinic.address2 %></td>
-                </tr>
-                <tr>
-                  <td class="small text-center">備考</td>
-                  <td class="pl-3 small">
-                    <% if @report.clinic.pgt != 0 %>
-                      <%= "・PGT-A臨床研究参加施設" %><br>
-                    <% end %>
-                    <% if @report.clinic.japco != 0 %>
-                      <%= "・PGTコンソーシアム(JAPCO)加盟施設" %><br>
-                    <% end %>
-                    <% if @report.clinic.jis_art != 0 %>
-                      <%= "・JIS-ART登録施設" %><br>
-                    <% end %>
-                  </td>
-                </tr>
-              </table>
-              <div class="pt-3">
-                <p class="google-maps gray">
-                  <iframe src="<%= @report.clinic.g_map %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                </p>
               </div>
+            </div>
+            <table class="table p-0">
+              <tr>
+                <td class="result-left-column small text-center ichirantable-left">医師</td>
+                <td class="pl-3 ichirantable-right">
+                  <% if @report.doctor_quality.present? %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.doctor_quality == 1 %>
+                    <span class="rating-star small">★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 2 %>
+                    <span class="rating-star small">★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 3 %>
+                    <span class="rating-star small">★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 4%>
+                    <span class="rating-star small">★★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.doctor_quality == 5 %>
+                    <span class="rating-star small">★★★★★</span><% end %>
+                  <% else %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="result-left-column small text-center ichirantable-left">スタッフ</td>
+                <td class="pl-3 ichirantable-right">
+                  <% if @report.staff_quality.present? %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.staff_quality == 1 %>
+                    <span class="rating-star small">★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 2 %>
+                    <span class="rating-star small">★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 3 %>
+                    <span class="rating-star small">★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 4%>
+                    <span class="rating-star small">★★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.staff_quality == 5 %>
+                    <span class="rating-star small">★★★★★</span><% end %>
+                  <% else %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="result-left-column small text-center ichirantable-left">技術</td>
+                <td class="pl-3 ichirantable-right">
+                  <% if @report.impression_of_technology.present? %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_technology == 1 %>
+                    <span class="rating-star small">★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 2 %>
+                    <span class="rating-star small">★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 3 %>
+                    <span class="rating-star small">★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 4%>
+                    <span class="rating-star small">★★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.impression_of_technology == 5 %>
+                    <span class="rating-star small">★★★★★</span><% end %>
+                  <% else %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="result-left-column small text-center ichirantable-left">価格</td>
+                <td class="pl-3 ichirantable-right">
+                  <% if @report.impression_of_price.present? %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_price == 1 %>
+                    <span class="rating-star small">★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 2 %>
+                    <span class="rating-star small">★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 3 %>
+                    <span class="rating-star small">★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 4%>
+                    <span class="rating-star small">★★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.impression_of_price == 5 %>
+                    <span class="rating-star small">★★★★★</span><% end %>
+                  <% else %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="result-left-column small text-center ichirantable-left">待ち時間</td>
+                <td class="pl-3 ichirantable-right">
+                  <% if @report.average_waiting_time2.present? %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.average_waiting_time2 == 1 %>
+                    <span class="rating-star small">★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 2 %>
+                    <span class="rating-star small">★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 3 %>
+                    <span class="rating-star small">★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 4%>
+                    <span class="rating-star small">★★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.average_waiting_time2 == 5 %>
+                    <span class="rating-star small">★★★★★</span><% end %>
+                    <% if @report.str_average_waiting_time %>
+                      <small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
+                    <% end %>
+                  <% else %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="result-left-column small text-center ichirantable-left">施設の環境</td>
+                <td class="pl-3 ichirantable-right">
+                  <% if @report.comfort_of_space.present? %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.comfort_of_space == 1 %>
+                    <span class="rating-star small">★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 2 %>
+                    <span class="rating-star small">★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 3 %>
+                    <span class="rating-star small">★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 4%>
+                    <span class="rating-star small">★★★★</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% else @report.comfort_of_space == 5 %>
+                    <span class="rating-star small">★★★★★</span><% end %>
+                  <% else %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
+                  <% end %>
+                </td>
+              </tr>
+              <% if (@report.free_wifi.present? && @report.free_wifi <= 3) || (@report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3) || @report.credit_card_validity.present? || (@report.credit_card_validity == 3 && @report.creditcards_can_be_used_from_more_than.present?) %>
+                <tr>
+                  <td class="result-left-column small text-center ichirantable-left">備考</td>
+                  <td class="pl-3 ichirantable-right">
+                    <% if @report.free_wifi.present? && @report.free_wifi <= 3 %>
+                      <small>･<span class="small font-weight-bold">&nbsp;<%= @report.str_free_wifi %></span></small><br>
+                    <% end %>
+                    <% if @report.possible_to_wait_outside_cl.present? && @report.possible_to_wait_outside_cl <= 3 %>
+                      <small>･<span class="small font-weight-bold">&nbsp;待ち時間中の<%= @report.str_possible_to_wait_outside_cl %></span></small><br>
+                    <% end %>
+                    <% if @report.credit_card_validity.present? %>
+                      <small>･<span class="small">&nbsp;クレジットカード:&nbsp;<span class="font-weight-bold"><%= @report.str_credit_card_validity %></span></span></small>
+                    <% end %>
+                    <% if @report.credit_card_validity == 3 %>
+                      <% if @report.creditcards_can_be_used_from_more_than.present? %>
+                        <small><span class="text-muted small">(<%= @report.creditcards_can_be_used_from_more_than.to_s(:delimited) %>円から利用可能)</span></small>
+                      <% end %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+            <% if @report.clinic_review.present? %>
+              <div class="p-3">
+                <i data-feather="edit-3" class="feather-icon-style4 pl-0 py-1 mx-0"></i>&nbsp;&nbsp;レビュー<br>
+                <div class="small pt-3"><%= text_url_to_link(h(safe_join(@report.clinic_review.split("\n"),tag(:br)))).html_safe %></div>
+              </div>
+            <% end %>
+            <small class="my-3"><span class="small text-muted">※&nbsp;<%= @report.user.name %> さんの治療当時の情報です。最新情報は直接クリニックに確認して下さい。</span></small>
+            <table class="table rounded table-dark p-0 mt-5 mb-2">
+              <tr>
+                <td class="small text-center" colspan="2">
+                  <% if @report.clinic.current_status == 1 %>
+                    <span class="text-danger">【閉院】</span>
+                  <% end %>
+                  <%= link_to @report.clinic.name, "/clinics/#{@report.clinic.id}", data: { "turbolinks" => false } %>&nbsp;の基本情報
+                </td>
+              </tr>
+              <tr>
+                <td class="small text-center ichirantable-left">電話</td>
+                <td class="pl-3 ichirantable-right"><i data-feather="phone-outgoing" class="feather-icon-style1 text-primary"></i>&nbsp;&nbsp;&nbsp;<a href="tel:<%= @report.clinic.tel %>"><span class="text-primary"><%= @report.clinic.tel %></span></a></td>
+              </tr>
+              <tr>
+                <td class="small text-center">住所</td>
+                <td class="pl-3 small">〒<%= @report.clinic.post_code.to_s.insert(3, " - ") %><br><%= @report.clinic.city.prefecture.name %><%= @report.clinic.city.name %><%= @report.clinic.address1 %><br><%= @report.clinic.address2 %></td>
+              </tr>
+              <tr>
+                <td class="small text-center">備考</td>
+                <td class="pl-3 small">
+                  <% if @report.clinic.pgt != 0 %>
+                    <%= "・PGT-A臨床研究参加施設" %><br>
+                  <% end %>
+                  <% if @report.clinic.japco != 0 %>
+                    <%= "・PGTコンソーシアム(JAPCO)加盟施設" %><br>
+                  <% end %>
+                  <% if @report.clinic.jis_art != 0 %>
+                    <%= "・JIS-ART登録施設" %><br>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+            <div class="pt-3">
+              <p class="google-maps gray">
+                <iframe src="<%= @report.clinic.g_map %>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+              </p>
             </div>
           </div>
         </td>
@@ -2361,9 +2359,9 @@
         <td class="pl-3" style="width:70%">
           <% if @report.embryo_stage == 1 %>
             <% if @report.current_state.present? %>
-              <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+              <p class="small text-danger"><span class="small">※「<%= @report.str_current_state %>」に至った移植胚は初期胚を使用</span></p>
             <% else %>
-              <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+              <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は初期胚を使用</span></p>
             <% end %>
           <% end %>
           <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 %>
@@ -2397,9 +2395,9 @@
         <td class="pl-3" style="width:70%">
           <% if @report.embryo_stage == 1 %>
             <% if @report.current_state.present? %>
-              <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+              <p class="small text-danger"><span class="small">※「<%= @report.str_current_state %>」に至った移植胚は初期胚を使用</span></p>
             <% else %>
-              <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+              <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は初期胚を使用</span></p>
             <% end %>
           <% end %>
           <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 %>
@@ -2433,9 +2431,9 @@
         <td class="pl-3" style="width:70%">
           <% if @report.embryo_stage == 1 %>
             <% if @report.current_state.present? %>
-              <p class="small text-danger"><span class="small">※<%= @report.str_current_state %>に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+              <p class="small text-danger"><span class="small">※「<%= @report.str_current_state %>」に至った移植胚は初期胚を使用</span></p>
             <% else %>
-              <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は胚盤胞ではなく初期胚を使用</span></p>
+              <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は初期胚を使用</span></p>
             <% end %>
           <% end %>
           <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>
