@@ -1798,7 +1798,7 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left"><%= @report.clinic.name %>は何院目</td>
+        <td class="result-left-column small text-center ichirantable-left"><%= @report.clinic.name %>は何院目&nbsp;<sup class="text-success">●</sup></td>
         <td class="pl-3 ichirantable-right">
           <% if @report.number_of_clinics.present? && @report.number_of_clinics != 100 %>
             <span class="small text-muted"><span class="small"><%= @report.clinic.name %>は</span></span><br>

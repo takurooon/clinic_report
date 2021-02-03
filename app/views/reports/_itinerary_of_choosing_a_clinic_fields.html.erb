@@ -1,4 +1,4 @@
-<div class="nested-fields well well-compact">
+<div class="nested-fields well well-compact mb-4">
   <table class="table table-sm table-bordered table-hover mb-0">
     <thead>
       <tr>
@@ -62,10 +62,12 @@
       </tr>
     </tbody>
   </table>
-  <small id="poster-tip" class="form-text text-muted text-right mt-0 pt-1">
-    <%= f.check_box :public_status, {}, "hide", "show" %>非公開
-  </small>
-  <small class="float-right pr-2">
-    <%= link_to_remove_association "削除", f, class: "text-secondary" %>
-  </small>
+  <div class="d-flex justify-content-end align-items-center">
+    <small id="poster-tip" class="form-text text-muted text-right m-0 mr-4 pt-2 pb-2">
+      <%= f.check_box :public_status, {}, "hide", "show" %>&nbsp;非公開
+    </small>
+    <div class="m-0 pt-2 pb-2 pr-2">
+      <%= link_to_remove_association "削除", f, class: "text-secondary" %>
+    </div>
+  </div>
 </div>

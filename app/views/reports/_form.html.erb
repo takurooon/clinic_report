@@ -96,7 +96,7 @@
                         <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県" }, { class: "form-control py-0" }) %>
                       </div>
                       <small id="poster-tip" class="form-text text-muted text-right mt-0 pt-1">
-                        <%= f.check_box :prefecture_at_the_time_status, {}, "hide", "show" %>非公開
+                        <%= f.check_box :prefecture_at_the_time_status, {}, "hide", "show" %>&nbsp;非公開
                       </small>
                       <div>
                         <% if report.city.blank? %>
@@ -109,7 +109,7 @@
                         <% end %>
                       </div>
                       <small id="poster-tip" class="form-text text-muted text-right mt-0 pt-1">
-                        <%= f.check_box :city_at_the_time_status, {}, "hide", "show" %>非公開
+                        <%= f.check_box :city_at_the_time_status, {}, "hide", "show" %>&nbsp;非公開
                       </small>
                     </div>
                   </div>
@@ -148,7 +148,7 @@
                   </div>
                   <div class="row mb-4">
                     <div class="col-sm-4 pr-3">
-                      <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :work_style_status, {}, "hide", "show" %>非公開</small>
+                      <small id="poster-tip" class="form-text text-muted text-right mt-0"><%= f.check_box :work_style_status, {}, "hide", "show" %>&nbsp;非公開</small>
                     </div>
                     <div class="d-none d-sm-block col-sm-8">
                     </div>
@@ -388,7 +388,7 @@
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
-                    <p class="question mb-1 pt-3">これまでの転院歴</p>
+                    <p class="question mb-1 pt-3">これまでの転院歴&nbsp;<sup class="text-success">●</sup></p>
                     <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
                       <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>
                     <% end %>
