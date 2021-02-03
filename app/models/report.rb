@@ -12,42 +12,15 @@ class Report < ApplicationRecord
 
   # バリデーション
   validates :title, length: { maximum: 64 }
-  # validate :validate_treatment_age
-  # validate :validate_all_treatment_age
-  # validate :validate_all_number_of_sairan
-  # validate :validate_all_number_of_transplants
   validate :validate_content_length
   validate :validate_content_attachment_byte_size
   validate :validate_content_attachments_count
-  # validate :validate_content_report_count
 
   MAX_CONTENT_LENGTH = 100000
   MEGA_BYTES = 5
   ONE_KILOBYTE = 1024
   MAX_CONTENT_ATTACHMENT_BYTE_SIZE = MEGA_BYTES * 1_000 * ONE_KILOBYTE
   MAX_CONTENT_ATTACHMENTS_COUNT = 10
-
-  # def validate_all_number_of_sairan
-  #   return "" if self.total_number_of_sairan.nil?
-  #   return "" if self.all_number_of_sairan.nil?
-  #   if total_number_of_sairan > all_number_of_sairan
-  #     errors.add(
-  #       :base,
-  #       :the_number_of_sairan_at_this_clinic_exceeds_the_cumulative_total
-  #     )
-  #   end
-  # end
-
-  # def validate_all_number_of_transplants
-  #   return "" if self.total_number_of_transplants.nil?
-  #   return "" if self.all_number_of_transplants.nil?
-  #   if total_number_of_transplants > all_number_of_transplants
-  #     errors.add(
-  #       :base,
-  #       :number_of_transplants_at_this_clinic_exceeds_cumulative_total
-  #     )
-  #   end
-  # end
 
   def previous
     Report.where("id < ?", self.id).where(status: 0).order("id DESC").first

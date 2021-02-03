@@ -4,6 +4,7 @@
 #
 #  id                :bigint           not null, primary key
 #  order_of_transfer :integer
+#  public_status     :integer          default("show"), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  clinic_id         :bigint

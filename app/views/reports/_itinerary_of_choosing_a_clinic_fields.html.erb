@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       <tr>
-        <td class="text-center align-middle"><%= f.select :order_of_transfer, Report.make_select_itinerary_of_choosing_a_clinics_order_of_transfer.invert, { prompt: "①" }, { class: "form-control text-muted" } %></td>
+        <td class="text-center align-middle"><%= f.select :order_of_transfer, Report.make_select_itinerary_of_choosing_a_clinics_order_of_transfer.invert, { prompt: "① →" }, { class: "form-control text-muted" } %></td>
         <td class="text-center align-middle">
           <% if f.object.clinic.blank? %>
             <% prefecture_id = nil %>
@@ -19,7 +19,7 @@
           <%= select_tag :clinic_prefecture,
                           options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name, selected: prefecture_id),
                           {
-                            prompt: "②",
+                            prompt: "② →",
                             class: "form-control clinic_prefecture"
                           }
           %>
@@ -62,6 +62,9 @@
       </tr>
     </tbody>
   </table>
+  <small id="poster-tip" class="form-text text-muted text-right mt-0 pt-1">
+    <%= f.check_box :public_status, {}, "hide", "show" %>非公開
+  </small>
   <small class="float-right pr-2">
     <%= link_to_remove_association "削除", f, class: "text-secondary" %>
   </small>

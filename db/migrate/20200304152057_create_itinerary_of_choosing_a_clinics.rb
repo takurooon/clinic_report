@@ -4,6 +4,7 @@ class CreateItineraryOfChoosingAClinics < ActiveRecord::Migration[6.0]
       t.references :report, null: false, foreign_key: true
       t.references :clinic, foreign_key: true
       t.integer :order_of_transfer
+      t.integer :public_status, default: 0, null: false
 
       t.timestamps
     end

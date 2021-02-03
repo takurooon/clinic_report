@@ -2492,17 +2492,19 @@
                       <% else %>
                         <span class="text-muted small">未回答</span><br>
                       <% end %>
-                      <% if @clinics.present? %><span class="small text-muted">(</span>
+                     <% if @clinics_exist.any? { |e| e.present? } %><span class="small text-muted">(</span>
                         <% @clinics.each do |c| %>
                           <span class="result-text small">
-                            <% if c === "未選択" %>
-                              <span class="text-muted small"><%= c %></span>
+                            <% if c.clinic_id.present? && c.public_status == "show" %>
+                              <span class="font-weight-bold"><%= Clinic.find_by(id: c.clinic_id).name %></span>
+                            <% elsif c.clinic_id.present? && c.public_status == "hide" %>
+                              <span class="text-muted font-weight-bold">非公開</span>
                             <% else %>
-                              <%= c %>
+                              <span class="text-muted small">未選択</span>
                             <% end %>
                           </span>&nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
                         <% end %>
-                        <span class="result-text text-muted small"><%= @report.clinic.name %></span><span class="small text-muted">&nbsp;)</span>
+                        <span class="result-text text-muted small"><span class="small"><%= @report.clinic.name %></span></span><span class="small text-muted">&nbsp;)</span>
                       <% end %>
                     </td>
                   </tr>

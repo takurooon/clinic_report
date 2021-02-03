@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.bigint "report_id", null: false
     t.bigint "clinic_id"
     t.integer "order_of_transfer"
+    t.integer "public_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["clinic_id"], name: "index_itinerary_of_choosing_a_clinics_on_clinic_id"

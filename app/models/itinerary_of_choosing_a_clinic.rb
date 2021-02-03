@@ -1,6 +1,9 @@
 class ItineraryOfChoosingAClinic < ApplicationRecord
   belongs_to :report
   belongs_to :clinic, optional: true
+
+  # 転院歴の非公開化
+  enum public_status: { show: 0, hide: 1 }, _prefix: true
 end
 
 # == Schema Information
@@ -9,6 +12,7 @@ end
 #
 #  id                :bigint           not null, primary key
 #  order_of_transfer :integer
+#  public_status     :integer          default("show"), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  clinic_id         :bigint
