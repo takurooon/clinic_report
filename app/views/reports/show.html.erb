@@ -2505,7 +2505,7 @@
                             <% elsif c.clinic_id.present? && c.public_status == "hide" %>
                               <span class="text-muted font-weight-bold">非公開
                                 <% if clinic.senmon == 1 || clinic.senmon == 2 %>
-                                    <sup class="small text-dark font-weight-bold">＊</sup>
+                                  <sup class="small text-dark font-weight-bold">＊</sup>
                                 <% end %>
                               </span>
                             <% else %>
@@ -2513,7 +2513,11 @@
                             <% end %>
                           </span>&nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
                         <% end %>
-                        <span class="result-text small"><span class="small"><%= link_to @report.clinic.name, "/clinic/#{@report.clinic.id}", class: "text-primary" %></span></span><span class="small text-muted">&nbsp;)</span>
+                        <span class="result-text small"><span class="small"><%= link_to @report.clinic.name, "/clinic/#{@report.clinic.id}", class: "text-primary" %></span></span><span class="small text-muted">
+                          <% if @report.clinic.senmon == 1 || @report.clinic.senmon == 2 %>
+                            <sup class="small text-dark font-weight-bold">＊</sup>
+                          <% end %>
+                        &nbsp;)</span>
                         <div class="small text-right pt-3">
                           <small class="text-muted"><span class="text-dark font-weight-bold">＊</span>は不妊治療専門CL</small>
                         </div>
