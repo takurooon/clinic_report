@@ -108,7 +108,9 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.integer "pgt"
     t.integer "jis_art"
     t.integer "japco"
+    t.integer "senmon"
     t.integer "current_status"
+    t.integer "jsog_status"
     t.string "yomigana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

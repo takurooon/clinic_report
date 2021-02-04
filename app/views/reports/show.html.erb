@@ -2492,11 +2492,11 @@
                       <% else %>
                         <span class="text-muted small">未回答</span><br>
                       <% end %>
-                     <% if @clinics_exist.any? { |e| e.present? } %><span class="small text-muted">(</span>
+                      <% if @clinics_exist.any? { |e| e.present? } %><span class="small text-muted">(</span>
                         <% @clinics.each do |c| %>
                           <span class="result-text small">
                             <% if c.clinic_id.present? && c.public_status == "show" %>
-                              <span class="font-weight-bold"><%= link_to Clinic.find_by(id: c.clinic_id).name, "/clinic/#{c.clinic.id}", class: "text-primary" %></span>
+                              <span class="font-weight-bold"><%= link_to Clinic.find_by(id: c.clinic_id).name, "/clinic/#{c.clinic.id}", class: "text-primary" %>&nbsp;<sup class="text-info">＊</sup></span>
                             <% elsif c.clinic_id.present? && c.public_status == "hide" %>
                               <span class="text-muted font-weight-bold">非公開</span>
                             <% else %>

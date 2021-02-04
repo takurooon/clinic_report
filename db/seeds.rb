@@ -53,8 +53,10 @@ CSV.foreach('db/csv/clinics.csv', headers: true) do |row|
     pgt: row['pgt'],
     jis_art: row['jis_art'],
     japco: row['japco'],
-    yomigana: row['yomigana'],
+    senmon: row['senmon'],
     current_status: row['current_status'],
+    jsog_status: row['jsog_status'],
+    yomigana: row['yomigana'],
     prefecture_id: row['prefecture_id'],
     city_id: row['city_id']
   )

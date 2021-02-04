@@ -27,11 +27,13 @@ end
 #  japco                :integer
 #  jis_art              :integer
 #  jsog_code            :integer
+#  jsog_status          :integer
 #  kenbijusei           :integer
 #  name                 :string
 #  pgt                  :integer
 #  post_code            :string
 #  senkoishido          :integer
+#  senmon               :integer
 #  shusanki             :integer
 #  social_ranshitoketsu :integer
 #  teikyoseishi_aih     :integer

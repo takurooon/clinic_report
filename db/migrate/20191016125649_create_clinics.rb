@@ -19,7 +19,9 @@ class CreateClinics < ActiveRecord::Migration[6.0]
       t.integer :pgt
       t.integer :jis_art
       t.integer :japco
+      t.integer :senmon
       t.integer :current_status
+      t.integer :jsog_status
       t.string :yomigana
 
       t.timestamps
