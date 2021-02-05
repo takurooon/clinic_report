@@ -1799,7 +1799,7 @@
                             <% if @report.transfer_options.present? %>
                               <% @report.transfer_options.each do |transfer_option| %>
                                 <ul class="list-unstyled mb-0">
-                                  <li class="result-text small">･<%= transfer_option.name %></li>
+                                  <li class="result-text small">･&nbsp;&nbsp;<%= transfer_option.name %></li>
                                 </ul>
                               <% end %>
                             <% else %>
@@ -1813,7 +1813,7 @@
                             <% if @report.pg_eplenishments.present? %>
                               <% @report.pg_eplenishments.each do |pg_eplenishment| %>
                                 <ul class="list-unstyled mb-0">
-                                  <li class="result-text small">･<%= pg_eplenishment.name %></li>
+                                  <li class="result-text small">･&nbsp;&nbsp;<%= pg_eplenishment.name %></li>
                                 </ul>
                               <% end %>
                             <% else %>
@@ -2691,7 +2691,7 @@
                       <% if @report.f_funin_factors.present? %>
                         <% @report.f_funin_factors.each do |f_funin_factor| %>
                           <ul class="list-unstyled mb-0">
-                            <li class="result-text small">･<%= f_funin_factor.name %></li>
+                            <li class="result-text small">･&nbsp;&nbsp;<%= f_funin_factor.name %></li>
                           </ul>
                         <% end %>
                       <% else %>
@@ -2731,7 +2731,7 @@
                         <td class="pl-3">
                           <% @report.fuiku_inspections.each do |fuiku_inspection| %>
                             <ul class="list-unstyled mb-0">
-                              <li class="result-text small">･<%= fuiku_inspection.name %></li>
+                              <li class="result-text small">･&nbsp;&nbsp;<%= fuiku_inspection.name %></li>
                             </ul>
                           <% end %>
                         </td>
