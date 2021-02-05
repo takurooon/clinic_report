@@ -1846,7 +1846,7 @@
           <% if @report.cl_selections.present? %>
             <% @report.cl_selections.each do |cl_selection| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text small">･<%= cl_selection.name %></li>
+                <li class="result-text small">･&nbsp;&nbsp;<%= cl_selection.name %></li>
               </ul>
             <% end %>
           <% else %>
