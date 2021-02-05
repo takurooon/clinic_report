@@ -1850,10 +1850,10 @@
               </ul>
             <% end %>
           <% else %>
-              <span class="text-muted small">未回答</span><br>
+              <span class="text-muted small">未回答</span>
           <% end %>
           <% if @report.reasons_for_choosing_this_clinic.present? %>
-            <span class="result-text small"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></span>
+            <p class="result-text small pt-3 mb-0"><i data-feather="edit-3" class="feather-icon-style4 pl-0 pt-1 pb-2 mx-0"></i><%= text_url_to_link(h(safe_join(@report.reasons_for_choosing_this_clinic.split("\n"),tag(:br)))).html_safe %></p>
           <% end %>
         </td>
       </tr>
