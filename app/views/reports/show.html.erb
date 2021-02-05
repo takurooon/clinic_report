@@ -106,11 +106,13 @@
                 <div class="col-12">
                   <div class="row">
                     <% if @report.user.self_introduction.present? && @report.comments.present? %>
-                      <div class="col-6 d-flex align-items-center">
-                        <div class="balloon1-left small d-flex align-items-center">
-                          <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
-                            <span class="text-muted"><%= strip_tags(@report.user.self_introduction.to_s).gsub(/[\n]/,"").strip.truncate(50) %></span>
-                          <% end %>
+                      <div class="col-6">
+                        <div class="d-flex align-items-center mt-3">
+                          <div class="balloon1-left small d-flex align-items-center">
+                            <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
+                              <span class="text-muted"><%= strip_tags(@report.user.self_introduction.to_s).gsub(/[\n]/,"").strip.truncate(50) %></span>
+                            <% end %>
+                          </div>
                         </div>
                       </div>
                       <div class="col-6">
