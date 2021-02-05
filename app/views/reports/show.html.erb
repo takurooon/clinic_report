@@ -197,7 +197,7 @@
                     <% end %>
                   </div>
                 <% else %>
-                  <% if @report.comments.present? %>
+                  <% if @report.comments.present? && @report.user.self_introduction.blank? %>
                     <div class="col-12 px-0">
                       <div class="alert rounded-lg ml-0 mr-2 mb-0 p-0" style="background-color: #F7F9F9">
                         <div class="pt-3 pb-0 mr-0">
@@ -216,6 +216,35 @@
                         <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
                           <span class="text-muted"><%= strip_tags(@report.user.self_introduction.to_s).gsub(/[\n]/,"").strip.truncate(50) %></span>
                         <% end %>
+                      </div>
+                    </div>
+
+                  <% elsif @report.comments.present? && @report.user.self_introduction.present? %>
+                    <div class="col-12 px-0">
+                      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <div class="alert rounded-lg ml-0 mr-2 mb-0 p-0" style="background-color: #F7F9F9">
+                              <div class="pt-3 pb-0 mr-0">
+                                <div class="small d-flex align-items-center px-3 pb-2 mb-0">
+                                  <a href="#comments_area">
+                                    <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
+                                    <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
+                                  </a> 
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="carousel-item">
+                            <div class="px-3 py-0 my-0">
+                              <div class="balloon1-left small my-0">
+                                <%= link_to user_path(@report.user_id), data: { "turbolinks" => false } do %>
+                                  <span class="text-muted"><%= strip_tags(@report.user.self_introduction.to_s).gsub(/[\n]/,"").strip.truncate(50) %></span>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   <% else %>
