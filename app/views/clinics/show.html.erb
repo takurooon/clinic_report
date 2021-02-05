@@ -11,10 +11,29 @@
     <div class="col-lg-7 offset-lg-1 mt-4 px-1">
       <% if @clinic.current_status == 1 %>
         <span class="badge badge-danger mb-2">【閉院】</span>
+      <% elsif @clinic.current_status == 2 %>
+        <span class="badge badge-success mb-2">【休診】</span>
+      <% else %>
       <% end %>
       <div class="d-flex align-content-start flex-wrap align-items-end px-2">
-        <h3 class="d-none d-sm-block font-weight-bold mb-0" style="letter-spacing: 3px;"><span class="marker-underline"><%= @clinic.name %></span>&nbsp;&nbsp;</h3>
-        <h5 class="d-block d-sm-none font-weight-bold mb-0" style="letter-spacing: 3px;"><span class="marker-underline"><%= @clinic.name %></span>&nbsp;&nbsp;</h5>
+        <h3 class="d-none d-sm-block font-weight-bold mb-0" style="letter-spacing: 3px;">
+          <span class="marker-underline"><%= @clinic.name %></span>
+            <sup class="text-dark">
+              <% if @clinic.senmon == 1 || @clinic.senmon == 2 %>
+                <span class="small">＊</span>
+              <% end %>
+            </sup>
+          &nbsp;&nbsp;
+        </h3>
+        <h5 class="d-block d-sm-none font-weight-bold mb-0" style="letter-spacing: 3px;">
+          <span class="marker-underline"><%= @clinic.name %></span>
+            <sup class="text-dark">
+              <% if @clinic.senmon == 1 || @clinic.senmon == 2 %>
+                <span class="small">＊</span>
+              <% end %>
+            </sup>
+          &nbsp;&nbsp;
+        </h5>
         <small class="pt-2 mb-0 small text-muted">(&nbsp;<%= @clinic.yomigana %>&nbsp;)</small>
       </div>
       <div class="d-flex align-items-center pt-4 px-2">
