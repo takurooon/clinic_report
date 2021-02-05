@@ -10,9 +10,9 @@
     </div>
     <div class="col-lg-7 offset-lg-1 mt-4 px-1">
       <% if @clinic.current_status == 1 %>
-        <span class="badge badge-danger mb-2">【閉院】</span>
+        &nbsp;&nbsp;<span class="badge badge-danger mb-2">【閉院】</span>
       <% elsif @clinic.current_status == 2 %>
-        <span class="badge badge-success mb-2">【休診】</span>
+        &nbsp;&nbsp;<span class="badge badge-success mb-2">【休診】</span>
       <% else %>
       <% end %>
       <div class="d-flex align-content-start flex-wrap align-items-end px-2">
