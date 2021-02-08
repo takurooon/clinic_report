@@ -2237,7 +2237,7 @@
                     <div class="d-flex align-items-center justify-content-center">
                       <%= link_to user_path(@report.user_id), data: { "turbolinks" => false }, style: "text-decoration: none;" do %>
                         <% if @report.user.icon.attached? %>
-                          <%= image_tag(@report.user.icon, alt: "icon", class: "img-fluid", loading: "lazy") %>
+                          <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image_fluid", loading: "lazy") %>
                         <% else %>
                           <% if @report.treatment_end_age == nil %>
                             <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border_fluid", loading: "lazy", title: "不明") %>
