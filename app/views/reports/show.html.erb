@@ -3729,28 +3729,40 @@
             <%= render @report.comments %>
             <%= render partial: 'comments/form', locals: { comment: @comment } %>
           <% else %>
-          <div class="comment-blur">
-            REPOCOは、不妊治療で妊娠出産に至った方や、転院または治療をやめられた方の足跡を「治療レポート」として投稿〜検索できるサービスです。
-            このサービスは情報取得が難しい不妊治療の現状を少しでも改善したいとの思いから作りました。<br>
-            もっともっと良いサービスにしていきたいと思っていますので、一緒にREPOCOを成長させてくれる方(特にエンジニアの方)を絶賛大募集中です。
-            まずは、お気軽にお問い合わせください！
-          </div>
-          <div class="card text-center mb-5 commnet-blur-text">
-            <div class="card-body">
-              <p class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメントはログインが必要です。</p>
-              <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
+            <div class="comment-body">
+              <div class="comment-blur">
+                <p>REPOCOは、不妊治療で妊娠出産に至った方や、転院または治療をやめられた方の足跡を「治療レポート」として投稿〜検索できるサービスです。</p><br>
+                <p>このサービスは情報取得が難しい不妊治療の現状を少しでも改善したいとの思いから作りました。</p><br>
+                <p>もっともっと良いサービスにしていきたいと思っていますので、一緒にREPOCOを成長させてくれる方(特にエンジニアの方)を絶賛大募集中です。</p>
+                <p>まずは、お気軽にお問い合わせください！</p>
+              </div>
               <div class="d-flex justify-content-center">
-                <%= link_to new_user_session_path, { style: "text-decoration: none;" } do %>
-                  <div style="color: #2ECFC0; height: 2.3rem; width: 5rem;" class="m-0 p-1 rounded-lg text-center mx-2"><p class="pb-0 pt-1" style="color: #2ECFC0;">ログイン</p></div>
-                <% end %>
-                <%= link_to new_user_session_path, { style: "text-decoration: none;" } do %>
-                  <div style="background-color: #2ECFC0; height: 2.3rem; width: 5rem;" class="m-0 p-1 rounded-lg text-center mx-2"><p class="pb-0 pt-1" style="color: #ffffff;">新規登録</p></div>
-                <% end %>
+                <div class="commnet-blur-text">
+                  <div class="card text-center mb-5">
+                    <div class="card-body">
+                      <p class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメントはログインが必要です。</p>
+                      <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
+                      <div class="d-flex justify-content-center">
+                        <%= link_to new_user_session_path, { style: "text-decoration: none;" } do %>
+                          <div style="color: #2ECFC0; height: 2.3rem; width: 5rem;" class="m-0 p-1 rounded-lg text-center mx-2"><p class="pb-0 pt-1" style="color: #2ECFC0;">ログイン</p></div>
+                        <% end %>
+                        <%= link_to new_user_session_path, { style: "text-decoration: none;" } do %>
+                          <div style="background-color: #2ECFC0; height: 2.3rem; width: 5rem;" class="m-0 p-1 rounded-lg text-center mx-2"><p class="pb-0 pt-1" style="color: #ffffff;">新規登録</p></div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
           <% end %>
         </div>
+
+        <% if current_user %>
+        <% else %>
+          <div class="py-3">
+          </div>
+        <% end %>
 
         <div class="row mb-0 pr-1">
           <div class="col-12 pr-4">

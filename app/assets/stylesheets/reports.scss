@@ -636,14 +636,18 @@ i .fa-edit {
 }
 
 // 未ログインでのshow画面のコメント欄(ブラー)
+.comment-body {
+	position: relative;
+}
 .comment-blur {
 	width: 100%;
-	position: relative;
 	-ms-filter: blur(6px);
   filter: blur(6px);
 }
 .commnet-blur-text {
+	top: 2.7rem;
 	position: absolute;
+	width: 90%;
 }
 
 // showの子タブの中のタイトル
