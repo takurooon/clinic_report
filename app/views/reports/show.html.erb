@@ -61,20 +61,24 @@
                 <% if @report.user.icon.attached? %>
                   <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
                 <% else %>
-                  <% if @report.treatment_end_age == nil %>
-                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
-                  <% elsif @report.treatment_end_age < 25 %>
-                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
-                  <% elsif @report.treatment_end_age < 30 %>
-                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
-                  <% elsif @report.treatment_end_age < 35 %>
-                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
-                  <% elsif @report.treatment_end_age < 40 %>
-                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
-                  <% elsif @report.treatment_end_age < 45 %>
-                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                  <% if @report.content.embeds.present? %>
+                    <%= image_tag(@report.content.embeds.first.blob, alt: "icon", class: "icon_image2", loading: "lazy") %>
                   <% else %>
-                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                    <% if @report.treatment_end_age == nil %>
+                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                    <% elsif @report.treatment_end_age < 25 %>
+                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                    <% elsif @report.treatment_end_age < 30 %>
+                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                    <% elsif @report.treatment_end_age < 35 %>
+                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                    <% elsif @report.treatment_end_age < 40 %>
+                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                    <% elsif @report.treatment_end_age < 45 %>
+                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                    <% else %>
+                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                    <% end %>
                   <% end %>
                 <% end %><br>
                 <div class="m-0 pt-1 small text-center text-dark">
@@ -155,22 +159,26 @@
           <div class="col-3 pl-4 pr-2 pt-3 pb-2 d-flex align-items-center justify-content-center">
             <%= link_to user_path(@report.user_id), data: { "turbolinks" => false }, style: "text-decoration: none;" do %>
               <% if @report.user.icon.attached? %>
-                  <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
+                <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
               <% else %>
-                <% if @report.treatment_end_age == nil %>
-                  <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image3_border", loading: "lazy", title: "不明") %>
-                <% elsif @report.treatment_end_age < 25 %>
-                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image3_border", loading: "lazy", title: "〜24歳") %>
-                <% elsif @report.treatment_end_age < 30 %>
-                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image3_border", loading: "lazy", title: "25〜29歳") %>
-                <% elsif @report.treatment_end_age < 35 %>
-                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image3_border", loading: "lazy", title: "30〜34歳") %>
-                <% elsif @report.treatment_end_age < 40 %>
-                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image3_border", loading: "lazy", title: "35〜39歳") %>
-                <% elsif @report.treatment_end_age < 45 %>
-                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image3_border", loading: "lazy", title: "40〜44歳") %>
+                <% if @report.content.embeds.present? %>
+                  <%= image_tag(@report.content.embeds.first.blob, alt: "icon", class: "icon_image3", loading: "lazy") %>
                 <% else %>
-                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image3_border", loading: "lazy", title: "45歳〜") %>
+                  <% if @report.treatment_end_age == nil %>
+                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image3_border", loading: "lazy", title: "不明") %>
+                  <% elsif @report.treatment_end_age < 25 %>
+                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image3_border", loading: "lazy", title: "〜24歳") %>
+                  <% elsif @report.treatment_end_age < 30 %>
+                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image3_border", loading: "lazy", title: "25〜29歳") %>
+                  <% elsif @report.treatment_end_age < 35 %>
+                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image3_border", loading: "lazy", title: "30〜34歳") %>
+                  <% elsif @report.treatment_end_age < 40 %>
+                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image3_border", loading: "lazy", title: "35〜39歳") %>
+                  <% elsif @report.treatment_end_age < 45 %>
+                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image3_border", loading: "lazy", title: "40〜44歳") %>
+                  <% else %>
+                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image3_border", loading: "lazy", title: "45歳〜") %>
+                  <% end %>
                 <% end %>
               <% end %><br>
               <div class="m-0 pt-0 small text-center text-dark">
