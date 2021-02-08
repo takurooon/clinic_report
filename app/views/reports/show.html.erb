@@ -3229,12 +3229,41 @@
                       </div>
 
                       <% if @report.clinic_review.present? %>
-                        <div class="p-3">
+                        <div class="mt-3 p-2">
                           <i data-feather="edit-3" class="feather-icon-style4 pl-0 py-1 mx-0"></i>&nbsp;&nbsp;レビュー<br>
-                          <div class="small pt-3"><%= text_url_to_link(h(safe_join(@report.clinic_review.split("\n"),tag(:br)))).html_safe %></div>
+                          <div class="row mt-2">
+                            <div class="col-3 col-md-2 pl-4">
+                              <div class="d-flex align-items-center justify-content-center">
+                                <%= link_to user_path(@report.user_id), data: { "turbolinks" => false }, style: "text-decoration: none;" do %>
+                                  <% if @report.user.icon.attached? %>
+                                    <%= image_tag(@report.user.icon, alt: "icon", class: "img-fluid", loading: "lazy") %>
+                                  <% else %>
+                                    <% if @report.treatment_end_age == nil %>
+                                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border_fluid", loading: "lazy", title: "不明") %>
+                                    <% elsif @report.treatment_end_age < 25 %>
+                                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border_fluid", loading: "lazy", title: "〜24歳") %>
+                                    <% elsif @report.treatment_end_age < 30 %>
+                                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border_fluid", loading: "lazy", title: "25〜29歳") %>
+                                    <% elsif @report.treatment_end_age < 35 %>
+                                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border_fluid", loading: "lazy", title: "30〜34歳") %>
+                                    <% elsif @report.treatment_end_age < 40 %>
+                                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border_fluid", loading: "lazy", title: "35〜39歳") %>
+                                    <% elsif @report.treatment_end_age < 45 %>
+                                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border_fluid", loading: "lazy", title: "40〜44歳") %>
+                                    <% else %>
+                                      <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border_fluid", loading: "lazy", title: "45歳〜") %>
+                                    <% end %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="balloon1-top small d-flex align-items-center px-3">
+                            <%= text_url_to_link(h(safe_join(@report.clinic_review.split("\n"),tag(:br)))).html_safe %>
+                          </div>
                         </div>
                       <% end %>
-                      <small class="px-2 my-3"><span class="small text-muted">※&nbsp;<%= @report.user.name %> さんの治療当時の情報です。<br>&nbsp;&nbsp;最新の情報は直接クリニックに確認して下さい。</span></small>
+                      <small class="px-2 my-2"><span class="small text-muted">※&nbsp;<%= @report.user.name %> さんの治療当時の情報です。最新の情報は直接クリニックに確認して下さい。</span></small>
                     </div>
                   </div>
                 </div>
@@ -3710,8 +3739,14 @@
             <div class="card-body">
               <p class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメントはログインが必要です。</p>
               <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
-              <%=link_to 'ログイン', new_user_session_path, class: "btn btn-raised btn-info mr-2" %>
-              <%=link_to '新規登録',  new_user_registration_path, class: "btn btn-info border ml-2" %>
+              <div class="d-flex justify-content-center">
+                <%= link_to new_user_session_path, { style: "text-decoration: none;" } do %>
+                  <div style="color: #2ECFC0; height: 2.3rem; width: 5rem;" class="m-0 p-1 rounded-lg text-center mx-2"><p class="pb-0 pt-1" style="color: #2ECFC0;">ログイン</p></div>
+                <% end %>
+                <%= link_to new_user_session_path, { style: "text-decoration: none;" } do %>
+                  <div style="background-color: #2ECFC0; height: 2.3rem; width: 5rem;" class="m-0 p-1 rounded-lg text-center mx-2"><p class="pb-0 pt-1" style="color: #ffffff;">新規登録</p></div>
+                <% end %>
+              </div>
             </div>
           </div>
           <% end %>
