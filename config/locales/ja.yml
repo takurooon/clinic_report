@@ -28,6 +28,8 @@ ja:
       report:
         title: タイトル
         content: 感想(体験記)
+      comment:
+        comment: コメント
       clinic_reviews:
         review: クリニックレビュー
       messages:

@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
       @report.create_notification_comment!(current_user, @comment.id)
       redirect_to @comment.report, flash: {notice: 'コメントを投稿しました'}
     else
-      flash[:alert] = comment.errors.full_messages
-      redirect_back(fallback_location: comment.report)
+      flash[:alert] = @comment.errors.full_messages
+      redirect_back(fallback_location: @comment.report)
     end
   end
 
