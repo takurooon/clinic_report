@@ -315,13 +315,11 @@
         <% end %>
         
         <div class="action_area pl-2 py-0 mx-0 my-1">
-          <div class="row">
-            <div class="col-12 form-inline">
-              <div class="likes_buttons_<%= @report.id %>">
-                <%= render partial: 'likes/like', locals: { report: @report}, style:"text-decoration: none;"  %>
-              </div>
+          <div class="d-flex">
+            <div class="likes_buttons_<%= @report.id %> fluffy-c">
+              <%= render partial: 'likes/like', locals: { report: @report}, style:"text-decoration: none;" %>
+              <p class="mb-0 text-muted pt-1" style="font-size: 5px;">Stock&nbsp;!</p>
             </div>
-            <p class="mb-0 text-muted pl-2 pt-0" style="font-size: 5px;">&nbsp;&nbsp;Stock&nbsp;!</p>
           </div>
         </div>
 
@@ -3712,14 +3710,12 @@
           </button>
         </div>
 
-        <div class="action_area pl-4 pr-0 py-0">
-          <div class="row">
-            <div class="col-12 form-inline">
-              <div class="likes_buttons_<%= @report.id %>">
-                <%= render partial: 'likes/like', locals: { report: @report}, style:"text-decoration: none;"  %>
-              </div>
+        <div class="action_area pr-2">
+          <div class="d-flex justify-content-end">
+            <div class="likes_buttons_<%= @report.id %> fluffy-c">
+              <%= render partial: 'likes/like', locals: { report: @report}, style:"text-decoration: none;" %>
+              <p class="mb-0 text-muted pt-1" style="font-size: 5px;">Stock&nbsp;!</p>
             </div>
-            <p class="mb-0 text-muted pl-2 pt-1" style="font-size: 5px;">&nbsp;&nbsp;Stock&nbsp;!</p>
           </div>
         </div>
 
@@ -3745,7 +3741,7 @@
                 <p>まずは、お気軽にお問い合わせください！</p>
               </div>
               <div class="d-flex justify-content-center">
-                <div class="commnet-blur-text">
+                <div class="commnet-blur-text  fluffy-d">
                   <div class="card text-center mb-5">
                     <div class="card-body">
                       <p class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメントはログインが必要です。</p>
