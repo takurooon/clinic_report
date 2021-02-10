@@ -122,6 +122,9 @@
                       <p class="text-muted"><span class="text-primary filesize1"></span><span class="text-danger filesize2"></span></p>
                       <small class="text-muted">画像をクリックするとアイコン画像の選択ができます。</small>
                       <%= f.file_field :icon, class: "form-control", style: "display:none;", id: "file" %>
+                      <% if @user.icon.present? %>
+                        <%= check_box :user_icon, "delete" %>
+                      <% end %>
                     </td>
                   </tr>
                   <script>

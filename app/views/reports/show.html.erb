@@ -61,7 +61,7 @@
                 <% if @report.user.icon.attached? %>
                   <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
                 <% else %>
-                  <% if @report.content.embeds.present? %>
+                  <% if @report.content.embeds.attached? %>
                     <%= image_tag(@report.content.embeds.first.blob, alt: "icon", class: "icon_image2", loading: "lazy") %>
                   <% else %>
                     <% if @report.treatment_end_age == nil %>
@@ -161,7 +161,7 @@
               <% if @report.user.icon.attached? %>
                 <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
               <% else %>
-                <% if @report.content.embeds.present? %>
+                <% if @report.content.embeds.attached? %>
                   <%= image_tag(@report.content.embeds.first.blob, alt: "icon", class: "icon_image3", loading: "lazy") %>
                 <% else %>
                   <% if @report.treatment_end_age == nil %>
@@ -3721,7 +3721,7 @@
 
         <div class="comment-area mt-2" id="comments_area">
           <div class="p-comment__list">
-            <h4 class="p-comment__listTitle">
+            <h4 class="p-comment__listTitle pl-2">
               <i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;
               コメント&nbsp;
               <% if user_signed_in? %>

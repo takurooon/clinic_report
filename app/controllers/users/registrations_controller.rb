@@ -66,6 +66,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if account_update_params[:icon].present?
       resource.icon.attach(account_update_params[:icon])
     end
+    # if params[:icon] == 1
+    #   @user.icon.purge
+    # end
   end
 
   # If you have extra params to permit, append them to the sanitizer.

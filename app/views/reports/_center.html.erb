@@ -10,7 +10,7 @@
                   <% if report.user.icon.attached? %>
                     <%= image_tag(report.user.icon, class:"icon_image") %>
                   <% else %>
-                    <% if report.content.embeds.present? %>
+                    <% if report.content.embeds.attached? %>
                       <%= image_tag(report.content.embeds.first.blob, class: "icon_image", loading: "lazy") %>
                     <% else %>
                       <% if report.treatment_end_age == nil %>
