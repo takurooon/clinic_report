@@ -154,9 +154,11 @@ class ReportsController < ApplicationController
       elsif @report.save
         # @report.save_tags(tag_list)
         if params[:status1].present?
+          DeleteUnreferencedBlobJob.perform_later
           format.html { redirect_to report_path(@report), notice: 'レポコを保存しました。' }
           format.json { render :show, status: :created, location: @report }
         else
+          DeleteUnreferencedBlobJob.perform_later
           format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
           format.json { render :show, status: :created, location: @report }
         end
@@ -233,9 +235,11 @@ class ReportsController < ApplicationController
         format.html { render :edit }
       elsif @report.update(report_params)
         if @report.status == "nonreleased"
+          DeleteUnreferencedBlobJob.perform_later
           format.html { redirect_to report_path(@report), notice: 'レポコの下書きを更新しました。' }
           format.json { render :show, status: :created, location: @report }
         else
+          DeleteUnreferencedBlobJob.perform_later
           format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
           format.json { render :show, status: :created, location: @report }
         end
@@ -252,6 +256,7 @@ class ReportsController < ApplicationController
       redirect_to root_path, alert: '削除権限がありません' 
       return
     end
+    DeleteUndreferencedBlobJob.perform_later if @post.destroy
     @report.destroy
     respond_to do |format|
       format.html { redirect_to reports_url, notice: 'レポコを削除しました。' }
