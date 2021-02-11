@@ -109,11 +109,11 @@
                         <small class="capacity-limit-attention"><small class="text-danger">※最大5MB</small></small>
                       </div><br>
 
-                      <% if false %> deviseの中でどうやって削除paramsを取得するか？
+                      <% if false %>
                         <% if @user.icon.attached? %>
                           <div class="checkbox">
                             <label>
-                              <input type="checkbox" name="user[user_icon]" value="off"><span class="small">アイコンを削除</span>
+                              <input type="checkbox" name="[user_icon]" value="delete"><span class="small">アイコンを削除</span>
                             </label>
                           </div>
                         <% end %>
@@ -122,9 +122,6 @@
                       <p class="text-muted"><span class="text-primary filesize1"></span><span class="text-danger filesize2"></span></p>
                       <small class="text-muted">画像をクリックするとアイコン画像の選択ができます。</small>
                       <%= f.file_field :icon, class: "form-control", style: "display:none;", id: "file" %>
-                      <% if @user.icon.present? %>
-                        <%= check_box :user_icon, "delete" %>
-                      <% end %>
                     </td>
                   </tr>
                   <script>
