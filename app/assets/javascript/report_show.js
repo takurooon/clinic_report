@@ -423,7 +423,6 @@ document.addEventListener("turbolinks:load", function() {
       document.execCommand('copy');
     };
 
-
     // 2段タブ表示
   $(function(){
     $('.btnNext').click(function(){
