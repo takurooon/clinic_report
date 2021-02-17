@@ -346,8 +346,8 @@
                       <%= strip_tags(report.clinic_review).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
                     <% elsif report.reasons_for_choosing_this_clinic.present? %>
                       <%= strip_tags(report.reasons_for_choosing_this_clinic).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
-                    <% elsif report.summarize_content.present? %>
-                      <%= strip_tags(report.summarize_content).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
+                    <% elsif report.content.to_s.present? %>
+                      <%= strip_tags(report.content.to_s).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
                     <% elsif report.title.present? %>
                       <%= strip_tags(report.title).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
                     <% else %>

@@ -111,12 +111,12 @@ class Report < ApplicationRecord
     end
   end
 
-  require 'nokogiri'
-  def summarize_content
-    doc = Nokogiri::HTML::DocumentFragment.parse(self.content.to_s)
-    summary_content = doc.xpath('div/div').text
-    return summary_content
-  end
+  # require 'nokogiri'
+  # def summarize_content
+  #   doc = Nokogiri::HTML::DocumentFragment.parse(self.content.to_s)
+  #   summary_content = doc.xpath('div/div').text
+  #   return summary_content
+  # end
 
   # アクションテキスト
   has_rich_text :content
