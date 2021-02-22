@@ -1,4 +1,13 @@
 class Report < ApplicationRecord
+  before_save :actiontext_contains_incorrect_data
+
+  def actiontext_contains_incorrect_data
+    content = self.content.to_s
+    if content.include?("blob:http")
+      raise ActiveRecord::Rollback
+    else
+    end
+  end
 
   # レポートの公開状況 参考:https://qiita.com/tomoharutt/items/f1a70babaddcf7ab47be
   enum status: { released: 0, nonreleased: 1 }
