@@ -118,17 +118,8 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user_id = current_user.id
 
-    # 3桁区切りの場合
-    # params[:report][:creditcards_can_be_used_from_more_than] = params[:report][:creditcards_can_be_used_from_more_than].gsub(/(\d{0,3}),(\d{3})/, '\1\2')
-
     @report.normalize_for_create_embryo_stage
     @report.normalize_for_credit_card_validity
-
-    # if params[:temp].blank?
-    #   @report.status = params[:status2]
-    # else
-    #   @report.status = params[:status1]
-    # end
 
     if params[:status1] || params[:status2]
       @report.status = "nonreleased"
@@ -209,16 +200,7 @@ class ReportsController < ApplicationController
       return
     end
 
-    # 3桁区切りの場合
-    # params[:report][:creditcards_can_be_used_from_more_than] = params[:report][:creditcards_can_be_used_from_more_than].gsub(/(\d{0,3}),(\d{3})/, '\1\2')
-
     @report.normalize_for_credit_card_validity
-
-    # if params[:temp].blank?
-    #   @report.status = params[:status2]
-    # else
-    #   @report.status = params[:status1]
-    # end
 
     if params[:status1] || params[:status2]
       @report.status = "nonreleased"
