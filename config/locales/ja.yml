@@ -20,6 +20,7 @@ ja:
             content:
               too_long: が上限の%{max_content_length}文字を超えています。[%{length}/%{max_content_length}文字]
               attachments_count_too_big: の添付画像が%{max_content_attachments_count}を超えています。
+              actiontext_contains_incorrect_data: に不正な画像またはデータが含まれています。テキストと画像を一括でコピーアンドペーストしたりすると正常なデータとして読み込めない場合があります。テキストと画像をそれぞれコピーアンドペーストの上、再度投稿/更新してください。
         clinic_review:
           attributes:
             review:
@@ -27,7 +28,10 @@ ja:
     attributes:
       report:
         title: タイトル
-        content: 感想(体験記)
+        content: レポコのテキスト部分(画面下部の大きなテキストエリア)
+        clinic: 「クリニック」
+        prefecture: 「都道府県」
+        city: 「市区町村」
       comment:
         comment: コメント
       clinic_reviews:
@@ -165,7 +169,7 @@ ja:
       odd: は奇数にしてください
       other_than: は%{count}以外の値にしてください
       present: は入力しないでください
-      required: を入力してください
+      required: を選択してください
       taken: はすでに存在します
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください

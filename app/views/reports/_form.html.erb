@@ -12,13 +12,18 @@
 
       <%= form_with(model: report, local: true) do |f| %>
         <% if report.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(report.errors.count, "error") %> 件の未入力または誤った入力があります</h2>
-            <ul>
-              <% report.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+          <div id="error_explanation" class="mt-5 pt-5 px-2">
+            <div class="bg-danger rounded-lg p-4">
+              <h5><%= pluralize(report.errors.count, "") %> 件の未入力または誤った入力があります。</h5>
+              <ul class="pt-3 list-unstyled">
+                <% report.errors.full_messages.each do |message| %>
+                  <li class="pl-2 pb-2 d-flex">
+                    <div class="my-box flex-shrink-1">👉</div>
+                    <div class="my-box flex-fill"><%= message %></div>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
           </div>
         <% end %>
 

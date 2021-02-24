@@ -152,7 +152,7 @@ class ReportsController < ApplicationController
           format.json { render :show, status: :created, location: @report }
         end
       else
-        @report = Report.new(report_params)
+        # @report = Report.new(report_params)
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
@@ -222,8 +222,8 @@ class ReportsController < ApplicationController
           format.json { render :show, status: :created, location: @report }
         end
       else
-        @report.update_attributes(report_params)
-        format.html { render :new }
+        # @report.update_attributes(report_params)
+        format.html { render :edit }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
