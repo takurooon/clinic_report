@@ -63,6 +63,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     resource.update_without_current_password(params)
 
+    # 参考URL https://qiita.com/eitches/items/6f1d80b21287e09a7477
     if account_update_params[:icon].present?
       resource.icon.attach(account_update_params[:icon])
     end
