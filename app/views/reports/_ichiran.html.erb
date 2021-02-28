@@ -974,6 +974,16 @@
           </td>
         </tr>
       <% end %>
+      <tr>
+        <td class="result-left-column small text-center">通院回数</td>
+        <td class="pl-3">
+          <% if @report.number_of_visits_before_sairan.present? %>
+            <span class="result-text"><%= @report.str_number_of_visits_before_sairan %></span>
+          <% else %>
+            <span class="text-muted small">未回答</span>
+          <% end %>
+        </td>
+      </tr>
     </table>
     <% if @unsuccessful_sairan_cycles.present? %>
       <div class="border rounded mx-2 mb-0">
@@ -1171,6 +1181,16 @@
         <td class="pl-3">
           <% if @report.choran.present? %>
             <span class="result-text"><%= @report.str_choran %></span>
+          <% else %>
+            <span class="text-muted small">未回答</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td class="result-left-column small text-center">通院回数</td>
+        <td class="pl-3">
+          <% if @report.number_of_visits_before_ishoku.present? %>
+            <span class="result-text"><%= @report.str_number_of_visits_before_ishoku %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
