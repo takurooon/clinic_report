@@ -436,17 +436,12 @@
                     <% end %>
 
                     <p class="question mb-0 pt-4"><span class="select-clinic-name"></span>を選んだ詳しい理由</span></p>
-                    <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control p-2 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
-                  </div>
-                  <div class="text-right small pt-2">
-                    <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
-                      口コミガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
-                    <% end %>
+                    <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-0 pt-1">前院から転院した理由</p>
-                    <%= f.text_area :reason_for_transfer, class: "form-control p-2 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                    <%= f.text_area :reason_for_transfer, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                   </div>
                   <div class="text-right small pt-2">
                     <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
@@ -1113,7 +1108,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-3">
                     <p class="question mb-0 pt-1">費用についての補足説明</p>
-                    <%= f.text_area :explanation_of_costs, class: "form-control p-2 border", style: "background: rgb(232, 254, 252); line-height: 1.5; font-size: 13px;", rows: 7, placeholder: "記入例)\n\n成功報酬制度があり、妊娠して治療終了後に成功報酬を支払う形だったので、回数によって1回あたりの採卵/移植費用は変わってきます。上記のそれぞれの金額は最大値としてチェックしています。" %>
+                    <%= f.text_area :explanation_of_costs, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252); line-height: 1.5; font-size: 13px;", rows: 7, placeholder: "記入例)\n\n成功報酬制度があり、妊娠して治療終了後に成功報酬を支払う形だったので、回数によって1回あたりの採卵/移植費用は変わってきます。上記のそれぞれの金額は最大値としてチェックしています。" %>
                     <div class="text-right small pt-1">
                       <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
                         口コミガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
@@ -1228,7 +1223,7 @@
                         <p class="small text-muted mb-2 ml-2">高</p>
                       </div>
                       <div class="form-group mt-4">
-                        <p class="mb-2">平均待ち時間</p>
+                        <p class="question mb-2">平均待ち時間</p>
                         <%= f.collection_radio_buttons(:average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME, :first, :last) do |b| %>
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
@@ -1239,7 +1234,7 @@
                         <% end %>
                       </div>
                       <div class="form-group mt-2">
-                        <p class="mb-2">WiFi</p>
+                        <p class="question mb-2">WiFi</p>
                         <%= f.collection_radio_buttons(:free_wifi, Report::HASH_FREE_WIFI, :first, :last) do |b| %>
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
@@ -1250,7 +1245,7 @@
                         <% end %>
                       </div>
                       <div class="form-group mt-2">
-                        <p class="mb-2">待ち時間中の外出</p>
+                        <p class="question mb-2">待ち時間中の外出</p>
                         <%= f.collection_radio_buttons(:possible_to_wait_outside_cl, Report::HASH_POSSIBLE_TO_WAIT_OUTSIDE_CL, :first, :last) do |b| %>
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
@@ -1262,8 +1257,8 @@
                       </div>
                     </div>
                     <div class="form-group mt-2">
-                      <p class="mb-0"><span class="select-clinic-name"></span>のレビュー</p>
-                      <%= f.text_area :clinic_review, class: "form-control p-2 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                      <p class="question mb-0"><span class="select-clinic-name"></span>のレビュー</p>
+                      <%= f.text_area :clinic_review, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                       <div class="text-right small pt-1">
                         <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
                           口コミガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
