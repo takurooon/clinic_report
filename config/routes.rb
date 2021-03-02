@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'about' => 'application#about'
   get 'terms' => 'application#terms'
   get 'privacy' => 'application#privacy'
+  get 'guideline' => 'application#guideline'
   get 'repoco' => 'application#repoco'
   get 'terminology' => 'application#terminology'
   get 'faq' => 'application#faq'

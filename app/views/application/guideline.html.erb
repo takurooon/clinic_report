@@ -41,7 +41,7 @@
           <small class="text-dark">利用規約</small>
         </div>
       <% end %>
-      <%= link_to privacy_path, {style: "text-decoration: none;", class: "learn-more-head-item-active"} do %>
+      <%= link_to privacy_path, {style: "text-decoration: none;", class: "learn-more-head-item"} do %>
         <div class="learn-more-head-item-image">
           <%= image_tag"home/cookie.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
         </div>
@@ -49,7 +49,7 @@
           <small class="text-dark"><span>PP</span></small>
         </div>
       <% end %>
-      <%= link_to guideline_path, {style: "text-decoration: none;", class: "learn-more-head-item" } do %>
+      <%= link_to statistic_path, {style: "text-decoration: none;", class: "learn-more-head-item-active" } do %>
         <div class="learn-more-head-item-image">
           <%= image_tag"home/ruler.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
         </div>
@@ -78,15 +78,7 @@
           <small class="text-dark">レポコ</small>
         </div>
       <% end %>
-      <%= link_to privacy_path, {style: "text-decoration: none;", class: "learn-more-head-item-active"} do %>
-        <div class="learn-more-head-item-image">
-          <%= image_tag"home/cookie.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
-        </div>
-        <div class="learn-more-head-item-label small text-center">
-          <small class="text-dark"><span>PP</span></small>
-        </div>
-      <% end %>
-      <%= link_to guideline_path, {style: "text-decoration: none;", class: "learn-more-head-item" } do %>
+      <%= link_to statistic_path, {style: "text-decoration: none;", class: "learn-more-head-item-active" } do %>
         <div class="learn-more-head-item-image">
           <%= image_tag"home/ruler.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
         </div>
@@ -134,6 +126,14 @@
           <small class="text-dark">利用規約</small>
         </div>
       <% end %>
+      <%= link_to privacy_path, {style: "text-decoration: none;", class: "learn-more-head-item"} do %>
+        <div class="learn-more-head-item-image">
+          <%= image_tag"home/cookie.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+        </div>
+        <div class="learn-more-head-item-label small text-center">
+          <small class="text-dark"><span>PP</span></small>
+        </div>
+      <% end %>
     </div>
   </div>
 
@@ -141,13 +141,12 @@
     <div class="learn-more-body-inner">
       <div class="learn-more-body-inner-content">
         <div class="learn-more-body-inner-content-head">
-          <h4 class="m-0">Privacy Policy</h4>
-          <p class="small"><span class="small text-muted">(&nbsp;プライバシーポリシー&nbsp;)</span></p>
+          <h4 class="m-0">口コミガイドライン</h4>
         </div>
         <hr>
         <div class="learn-more-body-inner-content-body">
           <div class="px-2">
-            <%= render "privacy" %>
+            <%= render "guideline" %>
           </div>
         </div>
       </div>

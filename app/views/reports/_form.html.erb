@@ -438,10 +438,20 @@
                     <p class="question mb-0 pt-4"><span class="select-clinic-name"></span>を選んだ詳しい理由</span></p>
                     <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control p-2 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
                   </div>
+                  <div class="text-right small pt-2">
+                    <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
+                      口コミガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
+                    <% end %>
+                  </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-0 pt-1">前院から転院した理由</p>
                     <%= f.text_area :reason_for_transfer, class: "form-control p-2 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                  </div>
+                  <div class="text-right small pt-2">
+                    <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
+                      口コミガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
+                    <% end %>
                   </div>
 
                   <div class="mt-5 d-flex justify-content-between">
@@ -1088,11 +1098,6 @@
                     </div>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-3">
-                    <p class="question mb-0 pt-1">費用についての補足説明</p>
-                    <%= f.text_area :explanation_of_costs, class: "form-control p-2 border", style: "background: rgb(232, 254, 252); line-height: 1.5; font-size: 13px;", rows: 7, placeholder: "記入例)\n\n成功報酬制度があり、妊娠して治療終了後に成功報酬を支払う形だったので、回数によって1回あたりの採卵/移植費用は変わってきます。上記のそれぞれの金額は最大値としてチェックしています。" %>
-                  </div>
-
                   <div class="form-group mt-0 mb-2 pt-2 amount_that_can_be_activated m-1">
                     <p class="question mb-0 pt-1">クレジットカード利用可能額</p>
                     <div class="row p-0 m-0 d-flex align-items-end">
@@ -1104,6 +1109,16 @@
                       </div>
                     </div>
                     <small class="text-muted"><span class="small text-warning">「半角数字」入力</span></small>
+                  </div>
+
+                  <div class="form-group mt-0 mb-2 pt-3">
+                    <p class="question mb-0 pt-1">費用についての補足説明</p>
+                    <%= f.text_area :explanation_of_costs, class: "form-control p-2 border", style: "background: rgb(232, 254, 252); line-height: 1.5; font-size: 13px;", rows: 7, placeholder: "記入例)\n\n成功報酬制度があり、妊娠して治療終了後に成功報酬を支払う形だったので、回数によって1回あたりの採卵/移植費用は変わってきます。上記のそれぞれの金額は最大値としてチェックしています。" %>
+                    <div class="text-right small pt-1">
+                      <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
+                        口コミガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
+                      <% end %>
+                    </div>
                   </div>
 
                   <div class="mt-5 d-flex justify-content-between">
@@ -1249,6 +1264,11 @@
                     <div class="form-group mt-2">
                       <p class="mb-0"><span class="select-clinic-name"></span>のレビュー</p>
                       <%= f.text_area :clinic_review, class: "form-control p-2 border", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                      <div class="text-right small pt-1">
+                        <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
+                          口コミガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                   <div class="mt-5 d-flex justify-content-between">
@@ -1407,6 +1427,11 @@
           <div class="tab-content3-1">
             <div class="form-group mt-0 pt-0">
               <%= f.rich_text_area :content, placeholder: "こちらは右隣タブの【作成のヒント】をご参考ください！", style: "background: #E8FEFC;", class:"px-3" %>
+              <div class="text-right small pt-2">
+                <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
+                  口コミ・画像ガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
+                <% end %>
+              </div>
             </div>
             <div class="form-group mt-0 px-2">
               <div><%= f.label :title, 'このレポコにタイトルをつける', class: "question-matters" %></div>
@@ -1418,10 +1443,15 @@
           <div class="tab-content3-2">
             <div class="p-1">
               <div class="m-2 p-2 rounded-lg">
-                <div class="p-2 mt-2">
-                  <h5 class="mb-3 font-weight-bold"><%= image_tag "home/hint.svg", alt: "home-top-img", width: "30px", class: "img-fluid pb-2 pl-0", loading: "lazy" %>&nbsp;<span class="marker-underline-w">テキスト作成のヒント</span></h5>
+                <div class="pt-2 px-2 mt-2">
+                  <h5 class="font-weight-bold"><%= image_tag "home/hint.svg", alt: "home-top-img", width: "30px", class: "img-fluid pb-2 pl-0", loading: "lazy" %>&nbsp;<span class="marker-underline-w">テキスト作成のヒント</span></h5>
                   <p class="small my-4" style="line-height:1.4rem;">こちらのテキスト欄では、上記の質問で載せきれなかった治療情報のみならず、治療に至る経緯や気持ちなどを自由に綴ることができます。画像やリンクを載せることも可能です。<br>以下はトピックの参考例です。こちらも参考にあなただけのレポコを作成しましょう！
                   </p>
+                  <div class="text-right small">
+                    <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
+                      口コミ・画像ガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
+                    <% end %>
+                  </div>
                 </div>
                 <div class="row px-2">
                   <div class="col-md-6 px-2">
