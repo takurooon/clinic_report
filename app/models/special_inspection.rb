@@ -32,8 +32,9 @@ class SpecialInspection < ApplicationRecord
 
   # place
   HASH_SPECIAL_INSPECTION_PLACE = {
-    1 => "このクリニックで",
-    2 => "別のクリニックで",
+    1 => "このクリニック/病院で",
+    2 => "別のクリニック/病院で",
+    3 => "検査キットなどその他の方法で",
   }
 
   def str_special_inspection_place(place)
