@@ -98,6 +98,7 @@ class ReportsController < ApplicationController
     gon.clinic_evaluation = []
     gon.clinic_evaluation << @report.doctor_quality << @report.staff_quality << @report.impression_of_technology << @report.impression_of_price << @report.average_waiting_time2 << @report.comfort_of_space
     @clinic_evaluation = gon.clinic_evaluation.compact
+    @average_score = ((@report.doctor_quality + @report.staff_quality + @report.impression_of_technology + @report.impression_of_price + @report.average_waiting_time2 + @report.comfort_of_space)/6.to_f).round(1)
   end
 
   def new

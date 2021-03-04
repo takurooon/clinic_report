@@ -2096,8 +2096,8 @@
           <br>
           <div class="box27 mt-2 mb-0 px-2">
             <span class="box-title">クリニック評価</span>
-            <div class="row">
-              <div class="col-10 offset-1 chart-container mb-4">
+            <div class="row mb-5 pb-3">
+              <div class="col-10 offset-1 chart-container">
                 <% if @clinic_evaluation.blank? %>
                   <p class="text-center py-3" style="color:#6D757D;">
                     <%= @report.clinic.name %>
@@ -2105,6 +2105,31 @@
                   <%= image_tag("home/unrated_graph.png", alt: "unrated_graph", class: "img-fluid py-2 px-3", loading: "lazy") %>
                 <% else %>
                   <canvas id="clinicEvaluation_ichiran"></canvas>
+                  <div class="d-flex align-items-center justify-content-center" style="font-size: 20px;">
+                    <% unless @average_score.blank? %>
+                      <% if @average_score == 5 %>
+                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                      <% elsif @average_score > 4 %>
+                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                      <% elsif @average_score == 4 %>
+                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                      <% elsif @average_score > 3 %>
+                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                      <% elsif @average_score == 3 %>
+                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp
+                      <% elsif @average_score > 2 %>
+                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                      <% elsif @average_score == 2 %>
+                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                      <% elsif @average_score > 1 %>
+                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                      <% elsif @average_score == 1 %>
+                        <span class="rating-star"><i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                      <% elsif @average_score > 0 %>
+                        <span class="rating-star"><i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                      <% end %>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -2114,15 +2139,15 @@
                 <td class="pl-3 ichirantable-right">
                   <% if @report.doctor_quality.present? %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.doctor_quality == 1 %>
-                    <span class="rating-star small">★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 2 %>
-                    <span class="rating-star small">★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 3 %>
-                    <span class="rating-star small">★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 4%>
-                    <span class="rating-star small">★★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.doctor_quality == 5 %>
-                    <span class="rating-star small">★★★★★</span><% end %>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span><% end %>
                   <% else %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                   <% end %>
@@ -2133,15 +2158,15 @@
                 <td class="pl-3 ichirantable-right">
                   <% if @report.staff_quality.present? %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.staff_quality == 1 %>
-                    <span class="rating-star small">★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 2 %>
-                    <span class="rating-star small">★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 3 %>
-                    <span class="rating-star small">★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 4%>
-                    <span class="rating-star small">★★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.staff_quality == 5 %>
-                    <span class="rating-star small">★★★★★</span><% end %>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span><% end %>
                   <% else %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                   <% end %>
@@ -2152,15 +2177,15 @@
                 <td class="pl-3 ichirantable-right">
                   <% if @report.impression_of_technology.present? %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_technology == 1 %>
-                    <span class="rating-star small">★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 2 %>
-                    <span class="rating-star small">★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 3 %>
-                    <span class="rating-star small">★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 4%>
-                    <span class="rating-star small">★★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.impression_of_technology == 5 %>
-                    <span class="rating-star small">★★★★★</span><% end %>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span><% end %>
                   <% else %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                   <% end %>
@@ -2171,15 +2196,15 @@
                 <td class="pl-3 ichirantable-right">
                   <% if @report.impression_of_price.present? %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_price == 1 %>
-                    <span class="rating-star small">★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 2 %>
-                    <span class="rating-star small">★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 3 %>
-                    <span class="rating-star small">★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 4%>
-                    <span class="rating-star small">★★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.impression_of_price == 5 %>
-                    <span class="rating-star small">★★★★★</span><% end %>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span><% end %>
                   <% else %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                   <% end %>
@@ -2190,15 +2215,15 @@
                 <td class="pl-3 ichirantable-right">
                   <% if @report.average_waiting_time2.present? %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.average_waiting_time2 == 1 %>
-                    <span class="rating-star small">★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 2 %>
-                    <span class="rating-star small">★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 3 %>
-                    <span class="rating-star small">★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 4%>
-                    <span class="rating-star small">★★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<%else @report.average_waiting_time2 == 5 %>
-                    <span class="rating-star small">★★★★★</span><% end %>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span><% end %>
                     <% if @report.str_average_waiting_time %>
                       <small><span class="small text-muted">(&nbsp;<%= @report.str_average_waiting_time %>&nbsp;)</span></small>
                     <% end %>
@@ -2212,15 +2237,15 @@
                 <td class="pl-3 ichirantable-right">
                   <% if @report.comfort_of_space.present? %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.comfort_of_space == 1 %>
-                    <span class="rating-star small">★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 2 %>
-                    <span class="rating-star small">★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 3 %>
-                    <span class="rating-star small">★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 4%>
-                    <span class="rating-star small">★★★★</span>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% else @report.comfort_of_space == 5 %>
-                    <span class="rating-star small">★★★★★</span><% end %>
+                    <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span><% end %>
                   <% else %>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">未回答</span>
                   <% end %>
@@ -2286,37 +2311,41 @@
             <% end %>
             <p class="px-2 mb-0 small"><span class="small text-muted">※&nbsp;<%= @report.user.name %> さんの治療当時の情報です。最新の情報は直接クリニックに確認して下さい。</span></p>
             <p class="px-2 mb-0 small"><span class="small text-muted">※&nbsp;グラフがうまく表示されない場合はリロードして下さい。</span></p>
-            <table class="table rounded table-dark p-0 mt-5 mb-2">
-              <tr>
-                <td class="small text-center" colspan="2">
-                  <% if @report.clinic.current_status == 1 %>
-                    <span class="text-danger">【閉院】</span>
-                  <% end %>
-                  <%= link_to @report.clinic.name, "/clinics/#{@report.clinic.id}", data: { "turbolinks" => false } %>&nbsp;の基本情報
-                </td>
-              </tr>
-              <tr>
-                <td class="small text-center ichirantable-left">電話</td>
-                <td class="pl-3 ichirantable-right"><i data-feather="phone-outgoing" class="feather-icon-style1 text-primary"></i>&nbsp;&nbsp;&nbsp;<a href="tel:<%= @report.clinic.tel %>"><span class="text-primary"><%= @report.clinic.tel %></span></a></td>
-              </tr>
-              <tr>
-                <td class="small text-center">住所</td>
-                <td class="pl-3 small">〒<%= @report.clinic.post_code.to_s.insert(3, " - ") %><br><%= @report.clinic.city.prefecture.name %><%= @report.clinic.city.name %><%= @report.clinic.address1 %><br><%= @report.clinic.address2 %></td>
-              </tr>
-              <tr>
-                <td class="small text-center">備考</td>
-                <td class="pl-3 small">
-                  <% if @report.clinic.pgt != 0 %>
-                    <%= "・PGT-A臨床研究参加施設" %><br>
-                  <% end %>
-                  <% if @report.clinic.japco != 0 %>
-                    <%= "・PGTコンソーシアム(JAPCO)加盟施設" %><br>
-                  <% end %>
-                  <% if @report.clinic.jis_art != 0 %>
-                    <%= "・JIS-ART登録施設" %><br>
-                  <% end %>
-                </td>
-              </tr>
+            <table class="table table-sm p-0 mt-5 mb-2">
+              <thead class="bg-light">
+                <tr>
+                  <td class="small text-center" colspan="2">
+                    <% if @report.clinic.current_status == 1 %>
+                      <span class="text-danger">【閉院】</span>
+                    <% end %>
+                    <%= link_to @report.clinic.name, "/clinics/#{@report.clinic.id}", data: { "turbolinks" => false } %>&nbsp;の基本情報
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="small text-center ichirantable-left">電話</td>
+                  <td class="pl-3 ichirantable-right"><i data-feather="phone-outgoing" class="feather-icon-style1 text-primary"></i>&nbsp;&nbsp;&nbsp;<a href="tel:<%= @report.clinic.tel %>"><span class="text-primary"><%= @report.clinic.tel %></span></a></td>
+                </tr>
+                <tr>
+                  <td class="small text-center">住所</td>
+                  <td class="pl-3 small">〒<%= @report.clinic.post_code.to_s.insert(3, " - ") %><br><%= @report.clinic.city.prefecture.name %><%= @report.clinic.city.name %><%= @report.clinic.address1 %><br><%= @report.clinic.address2 %></td>
+                </tr>
+                <tr>
+                  <td class="small text-center">備考</td>
+                  <td class="pl-3 small">
+                    <% if @report.clinic.pgt != 0 %>
+                      <%= "・PGT-A臨床研究参加施設" %><br>
+                    <% end %>
+                    <% if @report.clinic.japco != 0 %>
+                      <%= "・PGTコンソーシアム(JAPCO)加盟施設" %><br>
+                    <% end %>
+                    <% if @report.clinic.jis_art != 0 %>
+                      <%= "・JIS-ART登録施設" %><br>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
             </table>
             <div class="pt-3">
               <p class="google-maps gray">
