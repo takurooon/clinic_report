@@ -2096,7 +2096,7 @@
           <br>
           <div class="box27 mt-2 mb-0 px-2">
             <span class="box-title">クリニック評価</span>
-            <div class="row mb-5 pb-3">
+            <div class="row pb-3">
               <div class="col-10 offset-1 chart-container">
                 <% if @clinic_evaluation.blank? %>
                   <p class="text-center py-3" style="color:#6D757D;">
@@ -2105,32 +2105,35 @@
                   <%= image_tag("home/unrated_graph.png", alt: "unrated_graph", class: "img-fluid py-2 px-3", loading: "lazy") %>
                 <% else %>
                   <canvas id="clinicEvaluation_ichiran"></canvas>
-                  <div class="d-flex align-items-center justify-content-center" style="font-size: 20px;">
-                    <% unless @average_score.blank? %>
-                      <% if @average_score == 5 %>
-                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
-                      <% elsif @average_score > 4 %>
-                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
-                      <% elsif @average_score == 4 %>
-                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
-                      <% elsif @average_score > 3 %>
-                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
-                      <% elsif @average_score == 3 %>
-                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp
-                      <% elsif @average_score > 2 %>
-                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
-                      <% elsif @average_score == 2 %>
-                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
-                      <% elsif @average_score > 1 %>
-                        <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
-                      <% elsif @average_score == 1 %>
-                        <span class="rating-star"><i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
-                      <% elsif @average_score > 0 %>
-                        <span class="rating-star"><i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
-                      <% end %>
-                    <% end %>
-                  </div>
                 <% end %>
+              </div>
+              <div class="col-12 pt-3">
+                <div class="d-flex align-items-center justify-content-center" style="font-size: 20px;">
+                  <% unless @average_score.blank? %>
+                    <% if @average_score == 5 %>
+                      <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                    <% elsif @average_score > 4 %>
+                      <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                    <% elsif @average_score == 4 %>
+                      <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                    <% elsif @average_score > 3 %>
+                      <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                    <% elsif @average_score == 3 %>
+                      <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp
+                    <% elsif @average_score > 2 %>
+                      <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                    <% elsif @average_score == 2 %>
+                      <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                    <% elsif @average_score > 1 %>
+                      <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                    <% elsif @average_score == 1 %>
+                      <span class="rating-star"><i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                    <% elsif @average_score > 0 %>
+                      <span class="rating-star"><i class="fas fa-star-half"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
+                    <% end %>
+                  <% end %>
+                </div>
+                <p class="mt-2 small text-center"><span class="small text-muted">※&nbsp;グラフが表示されない場合はリロードして下さい。</span></p>
               </div>
             </div>
             <table class="table p-0">
