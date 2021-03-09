@@ -988,7 +988,10 @@
     <% if @unsuccessful_sairan_cycles.present? %>
       <div class="border rounded mx-2 mb-0">
         <div class="alert alert-info small mb-0 text-center" role="alert">
-          <%= @report.clinic.name %>での過去の採卵結果<br><span class="small text-muted"><i data-feather="arrow-left" class="feather-icon-style1"></i>&nbsp;<i class="far fa-hand-point-up fa-lg"></i>&nbsp;<i data-feather="arrow-right" class="feather-icon-style1"></i></span>
+          <%= @report.clinic.name %>での過去の採卵結果<br>
+          <% if @unsuccessful_sairan_cycles.count > 1 %>
+            <span class="small text-muted"><i data-feather="arrow-left" class="feather-icon-style1"></i>&nbsp;<i class="far fa-hand-point-up fa-lg"></i>&nbsp;<i data-feather="arrow-right" class="feather-icon-style1"></i></span>
+          <% end %>
         </div>
         <ul class="horizontal-list">
           <% @unsuccessful_sairan_cycles.each do |unsuccessful_sairan_cycle| %>
@@ -1617,7 +1620,10 @@
     <% if @unsuccessful_ishoku_cycles.present? %>
       <div class="border rounded mx-2 mb-0">
         <div class="alert alert-info small mb-0 text-center" role="alert">
-          <%= @report.clinic.name %>での過去の移植結果<br><span class="small text-muted"><i data-feather="arrow-left" class="feather-icon-style1"></i>&nbsp;<i class="far fa-hand-point-up fa-lg"></i>&nbsp;<i data-feather="arrow-right" class="feather-icon-style1"></i></span>
+          <%= @report.clinic.name %>での過去の移植結果<br>
+          <% if @unsuccessful_ishoku_cycles.count > 1 %>
+            <span class="small text-muted"><i data-feather="arrow-left" class="feather-icon-style1"></i>&nbsp;<i class="far fa-hand-point-up fa-lg"></i>&nbsp;<i data-feather="arrow-right" class="feather-icon-style1"></i></span>
+          <% end %>
         </div>
         <ul class="horizontal-list">
           <% @unsuccessful_ishoku_cycles.each do |unsuccessful_ishoku_cycle| %>
