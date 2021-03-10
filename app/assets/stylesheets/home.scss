@@ -207,6 +207,11 @@
   .howto-pc-r {
     display:none;
   }
+
+  // ヘッダーロゴ
+  .logo_header {
+    padding: 0.1rem 0 0 0;
+  }
 }
 
 @media screen and (min-width:768px) {
@@ -430,6 +435,11 @@
   .howto-pc-r p {
     font-size: 14px;
     line-height: 1.8;
+  }
+
+  // ヘッダーロゴ
+  .logo_header {
+    padding: 0.5rem 0 0 0;
   }
 }
 
