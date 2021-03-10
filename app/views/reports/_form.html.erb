@@ -420,12 +420,12 @@
                     <% end %>
 
                     <p class="question mb-0 pt-4"><span class="select-clinic-name"></span>を選んだ詳しい理由</span></p>
-                    <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                    <%= f.text_area :reasons_for_choosing_this_clinic, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252); line-height: 1.5; font-size: 13px;", rows: 5, placeholder: "" %>
                   </div>
 
                   <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-0 pt-1">前院から転院した理由</p>
-                    <%= f.text_area :reason_for_transfer, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                    <%= f.text_area :reason_for_transfer, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252); line-height: 1.5; font-size: 13px;", rows: 5, placeholder: "" %>
                   </div>
                   <div class="text-right small pt-2">
                     <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
@@ -1242,7 +1242,7 @@
                     </div>
                     <div class="form-group mt-2">
                       <p class="question mb-0"><span class="select-clinic-name"></span>のレビュー</p>
-                      <%= f.text_area :clinic_review, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252)", rows: 5, placeholder: "" %>
+                      <%= f.text_area :clinic_review, class: "form-control p-2 border rounded-lg", style: "background: rgb(232, 254, 252); line-height: 1.5; font-size: 13px;", rows: 5, placeholder: "" %>
                       <div class="text-right small pt-1">
                         <%= link_to guideline_path, class: "small text-primary", target: :_blank do %>
                           投稿ガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
