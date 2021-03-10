@@ -1105,7 +1105,10 @@
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab" class="active mostleft-tab" data-toggle="tab">最新の採卵</a></li>
-                    <li><a href="#right_tab" data-toggle="tab">過去の採卵</a></li>
+                    <% if @unsuccessful_sairan_cycles.blank? %>
+                      <% sairan_absence = "(なし)" %>
+                    <% end %>
+                    <li><a href="#right_tab" data-toggle="tab">過去の採卵<%= sairan_absence %></a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2" id="left_tab">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
@@ -1646,7 +1649,10 @@
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の移植</a></li>
-                    <li><a href="#right_tab2" data-toggle="tab">過去の移植</a></li>
+                    <% if @unsuccessful_ishoku_cycles.blank? %>
+                      <% ishoku_absence = "(なし)" %>
+                    <% end %>
+                    <li><a href="#right_tab2" data-toggle="tab">過去の移植<%= ishoku_absence %></a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2" id="left_tab2">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
@@ -2010,56 +2016,18 @@
                       <p class="small text-muted pt-1" style="line-height: 100%;"><span class="small">※移植周期開始から移植までの通院回数</span></p>
 
                       <% if false %>
-                      <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
-                        <% if @before_ishoku_hormones.present? %>
-                          <tr>
-                            <td class="text-center result-left-column" colspan="5" style="border-top:solid">
-                              <% if @report.embryo_stage == 1 %>
-                                <h6 class="p-0 m-0">初期胚移植日前&nbsp;〜</h6>
-                              <% elsif @report.embryo_stage == 2 %>
-                                <h6 class="p-0 m-0">胚盤胞移植日前&nbsp;〜</h6>
-                              <% else %>
-                                <h6 class="p-0 m-0">移植日前&nbsp;〜</h6>
-                              <% end %>
-                            </td>
-                          </tr>
-                          <tr class="test-muted small">
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              Day
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              E2
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              FSH
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              LH
-                            </th>
-                            <th class="result-left-column small text-center text-center" style="width:20%">
-                              P4
-                            </th>
-                          </tr>
-                          <% @before_ishoku_hormones.in_groups_of(5) do |row| %>
+                        <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
+                          <% if @before_ishoku_hormones.present? %>
                             <tr>
-                            <% row.each_with_index do |hormone, i| %>
-                              <td class="small text-center">
-                                <% if hormone.nil? %>
-                                  <small class="text-muted">未回答</small>
-                                <% elsif i == 0 || i % 5 == 0 %>
-                                  <span class="font-weight-bold">D<%= hormone %></span>
+                              <td class="text-center result-left-column" colspan="5" style="border-top:solid">
+                                <% if @report.embryo_stage == 1 %>
+                                  <h6 class="p-0 m-0">初期胚移植日前&nbsp;〜</h6>
+                                <% elsif @report.embryo_stage == 2 %>
+                                  <h6 class="p-0 m-0">胚盤胞移植日前&nbsp;〜</h6>
                                 <% else %>
-                                  <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                  <h6 class="p-0 m-0">移植日前&nbsp;〜</h6>
                                 <% end %>
                               </td>
-                            <% end %>
-                            </tr>
-                          <% end %>
-                        <% end %>
-                        <% if @report.embryo_stage == 1 %>
-                          <% if @day_of_shokihaiishokus.present? %>
-                            <tr>
-                              <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">初期胚移植日</h6></td>
                             </tr>
                             <tr class="test-muted small">
                               <th class="result-left-column small text-center text-center" style="width:20%">
@@ -2078,190 +2046,228 @@
                                 P4
                               </th>
                             </tr>
-                            <% @day_of_shokihaiishokus.in_groups_of(5) do |row| %>
+                            <% @before_ishoku_hormones.in_groups_of(5) do |row| %>
                               <tr>
-                                <% row.each_with_index do |hormone, i| %>
-                                  <td class="small text-center">
-                                    <% if hormone.nil? %>
-                                      <small class="text-muted">未回答</small>
-                                    <% elsif i == 0 %>
-                                      <span class="font-weight-bold">D<%= hormone %></span>
-                                    <% else %>
-                                      <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                    <% end %>
-                                  </td>
-                                <% end %>
-                              </tr>
-                            <% end %>
-                            <tr style="background-color:rgba(152,152,152,0.2);">
-                              <td class="small text-center">
-                                <span class="small">内膜</span>
-                              </td>
-                              <td class="small text-center" colspan="5">
-                                <span class="font-weight-bold"><%= @shokihaiishokus_endometrial_thickness[0] %></span>&nbsp;mm
-                              </td>
-                            </tr>
-                          <% end %>
-                        <% elsif @report.embryo_stage == 2 %>
-                          <% if @day_of_haibanhoishokus.present? %>
-                            <tr>
-                              <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">胚盤胞移植日</h6></td>
-                            </tr>
-                            <tr class="test-muted small">
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                Day
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                E2
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                FSH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                LH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                P4
-                              </th>
-                            </tr>
-                            <% @day_of_haibanhoishokus.in_groups_of(5, false) do |row| %>
-                              <tr>
-                                <% row.each_with_index do |hormone, i| %>
-                                  <td class="small text-center">
-                                    <% if hormone.nil? %>
-                                      <small class="text-muted">未回答</small>
-                                    <% elsif i == 0 %>
-                                      <span class="font-weight-bold">D<%= hormone %></span>
-                                    <% else %>
-                                      <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                    <% end %>
-                                  </td>
-                                <% end %>
-                              </tr>
-                            <% end %>
-                            <tr style="background-color:rgba(152,152,152,0.2);">
-                              <td class="small text-center">
-                                <span class="small">内膜</span>
-                              </td>
-                              <td class="small text-center" colspan="4">
-                                <span class="font-weight-bold"><%= @haibanhoishokus_endometrial_thickness[0] %></span>&nbsp;<span class="small text-muted">mm</span>
-                              </td>
-                            </tr>
-                          <% end %>
-                        <% else %>
-                        <% end %>
-                      </table>
-                      <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
-                        <% if @report.embryo_stage == 1 %>
-                          <% if @shokihaiishoku_hormones.present? %>
-                            <tr>
-                              <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">〜&nbsp;初期胚移植後</h6></td>
-                            </tr>
-                            <tr class="test-muted small">
-                              <th class="result-left-column small text-center text-center" style="width:15%">
-                                ET
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                hCG
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                E2
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                FSH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                LH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                P4
-                              </th>
-                            </tr>
-                            <% @shokihaiishoku_hormones.in_groups_of(6) do |row| %>
-                              <tr>
-                                <% row.each_with_index do |hormone, i| %>
-                                  <td class="small text-center">
-                                    <% if hormone.nil? %>
-                                      <small class="text-muted">未回答</small>
-                                    <% elsif i == 0 %>
-                                      <span class="font-weight-bold">ET<%= hormone %></span>
-                                    <% else %>
-                                      <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                    <% end %>
-                                  </td>
-                                <% end %>
+                              <% row.each_with_index do |hormone, i| %>
+                                <td class="small text-center">
+                                  <% if hormone.nil? %>
+                                    <small class="text-muted">未回答</small>
+                                  <% elsif i == 0 || i % 5 == 0 %>
+                                    <span class="font-weight-bold">D<%= hormone %></span>
+                                  <% else %>
+                                    <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                  <% end %>
+                                </td>
+                              <% end %>
                               </tr>
                             <% end %>
                           <% end %>
-                        <% elsif @report.embryo_stage == 2 %>
-                          <% if @haibanhoishoku_hormones.present? %>
-                            <tr>
-                              <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">〜&nbsp;胚盤胞移植後</h6></td>
-                            </tr>
-                            <tr class="test-muted small">
-                              <th class="result-left-column small text-center text-center" style="width:15%">
-                                BT
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                hCG
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                E2
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                FSH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                LH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:17%">
-                                P4
-                              </th>
-                            </tr>
-                            <% @haibanhoishoku_hormones.in_groups_of(6) do |row| %>
+                          <% if @report.embryo_stage == 1 %>
+                            <% if @day_of_shokihaiishokus.present? %>
                               <tr>
-                                <% row.each_with_index do |hormone, i| %>
-                                  <td class="small text-center">
-                                    <% if hormone.nil? %>
-                                      <small class="text-muted">未回答</small>
-                                    <% elsif i == 0 %>
-                                      <span class="font-weight-bold">BT<%= hormone %></span>
-                                    <% else %>
-                                      <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                    <% end %>
-                                  </td>
-                                <% end %>
+                                <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">初期胚移植日</h6></td>
+                              </tr>
+                              <tr class="test-muted small">
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  Day
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  E2
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  FSH
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  LH
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  P4
+                                </th>
+                              </tr>
+                              <% @day_of_shokihaiishokus.in_groups_of(5) do |row| %>
+                                <tr>
+                                  <% row.each_with_index do |hormone, i| %>
+                                    <td class="small text-center">
+                                      <% if hormone.nil? %>
+                                        <small class="text-muted">未回答</small>
+                                      <% elsif i == 0 %>
+                                        <span class="font-weight-bold">D<%= hormone %></span>
+                                      <% else %>
+                                        <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                      <% end %>
+                                    </td>
+                                  <% end %>
+                                </tr>
+                              <% end %>
+                              <tr style="background-color:rgba(152,152,152,0.2);">
+                                <td class="small text-center">
+                                  <span class="small">内膜</span>
+                                </td>
+                                <td class="small text-center" colspan="5">
+                                  <span class="font-weight-bold"><%= @shokihaiishokus_endometrial_thickness[0] %></span>&nbsp;mm
+                                </td>
                               </tr>
                             <% end %>
+                          <% elsif @report.embryo_stage == 2 %>
+                            <% if @day_of_haibanhoishokus.present? %>
+                              <tr>
+                                <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">胚盤胞移植日</h6></td>
+                              </tr>
+                              <tr class="test-muted small">
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  Day
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  E2
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  FSH
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  LH
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:20%">
+                                  P4
+                                </th>
+                              </tr>
+                              <% @day_of_haibanhoishokus.in_groups_of(5, false) do |row| %>
+                                <tr>
+                                  <% row.each_with_index do |hormone, i| %>
+                                    <td class="small text-center">
+                                      <% if hormone.nil? %>
+                                        <small class="text-muted">未回答</small>
+                                      <% elsif i == 0 %>
+                                        <span class="font-weight-bold">D<%= hormone %></span>
+                                      <% else %>
+                                        <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                      <% end %>
+                                    </td>
+                                  <% end %>
+                                </tr>
+                              <% end %>
+                              <tr style="background-color:rgba(152,152,152,0.2);">
+                                <td class="small text-center">
+                                  <span class="small">内膜</span>
+                                </td>
+                                <td class="small text-center" colspan="4">
+                                  <span class="font-weight-bold"><%= @haibanhoishokus_endometrial_thickness[0] %></span>&nbsp;<span class="small text-muted">mm</span>
+                                </td>
+                              </tr>
+                            <% end %>
+                          <% else %>
                           <% end %>
-                        <% else %>
-                        <% end %>
-                      </table>
+                        </table>
+                        <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
+                          <% if @report.embryo_stage == 1 %>
+                            <% if @shokihaiishoku_hormones.present? %>
+                              <tr>
+                                <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">〜&nbsp;初期胚移植後</h6></td>
+                              </tr>
+                              <tr class="test-muted small">
+                                <th class="result-left-column small text-center text-center" style="width:15%">
+                                  ET
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  hCG
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  E2
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  FSH
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  LH
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  P4
+                                </th>
+                              </tr>
+                              <% @shokihaiishoku_hormones.in_groups_of(6) do |row| %>
+                                <tr>
+                                  <% row.each_with_index do |hormone, i| %>
+                                    <td class="small text-center">
+                                      <% if hormone.nil? %>
+                                        <small class="text-muted">未回答</small>
+                                      <% elsif i == 0 %>
+                                        <span class="font-weight-bold">ET<%= hormone %></span>
+                                      <% else %>
+                                        <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                      <% end %>
+                                    </td>
+                                  <% end %>
+                                </tr>
+                              <% end %>
+                            <% end %>
+                          <% elsif @report.embryo_stage == 2 %>
+                            <% if @haibanhoishoku_hormones.present? %>
+                              <tr>
+                                <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">〜&nbsp;胚盤胞移植後</h6></td>
+                              </tr>
+                              <tr class="test-muted small">
+                                <th class="result-left-column small text-center text-center" style="width:15%">
+                                  BT
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  hCG
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  E2
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  FSH
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  LH
+                                </th>
+                                <th class="result-left-column small text-center text-center" style="width:17%">
+                                  P4
+                                </th>
+                              </tr>
+                              <% @haibanhoishoku_hormones.in_groups_of(6) do |row| %>
+                                <tr>
+                                  <% row.each_with_index do |hormone, i| %>
+                                    <td class="small text-center">
+                                      <% if hormone.nil? %>
+                                        <small class="text-muted">未回答</small>
+                                      <% elsif i == 0 %>
+                                        <span class="font-weight-bold">BT<%= hormone %></span>
+                                      <% else %>
+                                        <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                      <% end %>
+                                    </td>
+                                  <% end %>
+                                </tr>
+                              <% end %>
+                            <% end %>
+                          <% else %>
+                          <% end %>
+                        </table>
 
-                      <% if @before_ishoku_hormones.present? || @day_of_shokihaiishokus.present? || @day_of_haibanhoishokus.present? || @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
-                        <div class="grapharea pt-3">
-                          <div class="mb-0">
-                            <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
-                            <h6 class="float-right mb-0">P4<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(ng/ml)</small></span></h6>
+                        <% if @before_ishoku_hormones.present? || @day_of_shokihaiishokus.present? || @day_of_haibanhoishokus.present? || @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
+                          <div class="grapharea pt-3">
+                            <div class="mb-0">
+                              <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
+                              <h6 class="float-right mb-0">P4<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(ng/ml)</small></span></h6>
+                            </div>
+                            <canvas id="ishokuE2P4"></canvas>
                           </div>
-                          <canvas id="ishokuE2P4"></canvas>
-                        </div>
-                        <div class="grapharea pt-3">
-                          <div class="mb-0">
-                            <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
-                            <h6 class="float-right mb-0">LH<br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
+                          <div class="grapharea pt-3">
+                            <div class="mb-0">
+                              <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                              <h6 class="float-right mb-0">LH<br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
+                            </div>
+                            <canvas id="ishokuFshLh"></canvas>
                           </div>
-                          <canvas id="ishokuFshLh"></canvas>
-                        </div>
-                      <% end %>
-                      <% if @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
-                        <div class="grapharea pt-3 pt-3">
-                          <div class="mb-0">
-                            <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;hCG&nbsp;<span class="small text-muted"><small>(移植後)</small></span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                        <% end %>
+                        <% if @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
+                          <div class="grapharea pt-3 pt-3">
+                            <div class="mb-0">
+                              <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;hCG&nbsp;<span class="small text-muted"><small>(移植後)</small></span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                            </div>
+                            <canvas id="ishokuhcg"></canvas>
                           </div>
-                          <canvas id="ishokuhcg"></canvas>
-                        </div>
-                      <% end %>
+                        <% end %>
                       <% end %>
                       <div class="mt-3 d-flex justify-content-end">
                         <a class="btn minBtnNext rounded-lg pr-2 shadow">過去の移植周期<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
@@ -2925,7 +2931,9 @@
                               </td>
                               <td style="width:60%">
                                 <% if @report.doctor_quality.present? %>
-                                  <% if @report.doctor_quality == 1 %>
+                                  <% if @report.doctor_quality == 0 %>
+                                  <small class="text-muted"><span class="small">スコアなし</span></small>
+                                  <% elsif @report.doctor_quality == 1 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i></span>
                                   <% elsif @report.doctor_quality == 2 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -2946,7 +2954,9 @@
                               </td>
                               <td>
                                 <% if @report.staff_quality.present? %>
-                                  <% if @report.staff_quality == 1 %>
+                                  <% if @report.staff_quality == 0 %>
+                                  <small class="text-muted"><span class="small">スコアなし</span></small>
+                                  <% elsif @report.staff_quality == 1 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i></span>
                                   <% elsif @report.staff_quality == 2 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -2967,7 +2977,9 @@
                               </td>
                               <td>
                                 <% if @report.impression_of_technology.present? %>
-                                  <% if @report.impression_of_technology == 1 %>
+                                  <% if @report.impression_of_technology == 0 %>
+                                  <small class="text-muted"><span class="small">スコアなし</span></small>
+                                  <% elsif @report.impression_of_technology == 1 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i></span>
                                   <% elsif @report.impression_of_technology == 2 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -2988,7 +3000,9 @@
                               </td>
                               <td>
                                 <% if @report.impression_of_price.present? %>
-                                  <% if @report.impression_of_price == 1 %>
+                                  <% if @report.impression_of_price == 0 %>
+                                  <small class="text-muted"><span class="small">スコアなし</span></small>
+                                  <% elsif @report.impression_of_price == 1 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i></span>
                                   <% elsif @report.impression_of_price == 2 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -3009,7 +3023,9 @@
                               </td>
                               <td>
                                 <% if @report.average_waiting_time2.present? %>
-                                  <% if @report.average_waiting_time2 == 1 %>
+                                  <% if @report.average_waiting_time2 == 0 %>
+                                  <small class="text-muted"><span class="small">スコアなし</span></small>
+                                  <% elsif @report.average_waiting_time2 == 1 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i></span>
                                   <% elsif @report.average_waiting_time2 == 2 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -3033,7 +3049,9 @@
                               </td>
                               <td>
                                 <% if @report.comfort_of_space.present? %>
-                                  <% if @report.comfort_of_space == 1 %>
+                                  <% if @report.comfort_of_space == 0 %>
+                                  <small class="text-muted"><span class="small">スコアなし</span></small>
+                                  <% elsif @report.comfort_of_space == 1 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i></span>
                                   <% elsif @report.comfort_of_space == 2 %>
                                   <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -3074,12 +3092,12 @@
                           </table>
                         </div>
                       </div>
-                      <div class="col-md-8 chart-container px-auto mt-4">
+                      <div class="col-md-8 chart-container px-auto mt-4 text-center">
                         <% if @clinic_evaluation.blank? %>
                           <p class="text-center py-3" style="color:#6D757D;">
                             <%= @report.clinic.name %>
                           </p>
-                          <%= image_tag("home/unrated_graph.png", alt: "unrated_graph", class: "img-fluid py-2 px-3", loading: "lazy") %>
+                          <%= image_tag("home/unrated_graph.png", alt: "unrated_graph", class: "img-fluid chart_img", loading: "lazy") %>
                         <% else %>
                           <canvas id="clinicEvaluation"></canvas>
                         <% end %>
@@ -3111,7 +3129,9 @@
                             <% end %>
                           <% end %>
                         </div>
-                        <p class="mt-2 small text-right"><span class="small text-muted">※&nbsp;グラフが表示されない場合はリロードして下さい。</span></p>
+                        <% if @clinic_evaluation.present? %>
+                          <p class="mt-2 small text-right"><span class="small text-muted">※&nbsp;グラフが表示されない場合はリロードして下さい。</span></p>
+                        <% end %>
                       </div>
 
                       <div class="d-block d-sm-none col-12 m-0 pt-4 px-0">
@@ -3120,7 +3140,9 @@
                             <td class="result-left-column small text-center ichirantable-left">医師</td>
                             <td class="pl-3 ichirantable-right">
                               <% if @report.doctor_quality.present? %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.doctor_quality == 1 %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.doctor_quality == 0 %>
+                                <span class="text-muted small">スコアなし</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 1 %>
                                 <span class="rating-star"><i class="fas fa-star"></i></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 2 %>
                                 <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -3139,7 +3161,9 @@
                             <td class="result-left-column small text-center ichirantable-left">スタッフ</td>
                             <td class="pl-3 ichirantable-right">
                               <% if @report.staff_quality.present? %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.staff_quality == 1 %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.staff_quality == 0 %>
+                                <span class="text-muted small">スコアなし</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 1 %>
                                 <span class="rating-star"><i class="fas fa-star"></i></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 2 %>
                                 <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -3158,7 +3182,9 @@
                             <td class="result-left-column small text-center ichirantable-left">技術</td>
                             <td class="pl-3 ichirantable-right">
                               <% if @report.impression_of_technology.present? %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_technology == 1 %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_technology == 0 %>
+                                <span class="text-muted small">スコアなし</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 1 %>
                                 <span class="rating-star"><i class="fas fa-star"></i></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 2 %>
                                 <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -3177,7 +3203,9 @@
                             <td class="result-left-column small text-center ichirantable-left">価格</td>
                             <td class="pl-3 ichirantable-right">
                               <% if @report.impression_of_price.present? %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_price == 1 %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_price == 0 %>
+                                <span class="text-muted small">スコアなし</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 1 %>
                                 <span class="rating-star"><i class="fas fa-star"></i></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 2 %>
                                 <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -3196,7 +3224,9 @@
                             <td class="result-left-column small text-center ichirantable-left">待ち時間</td>
                             <td class="pl-3 ichirantable-right">
                               <% if @report.average_waiting_time2.present? %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.average_waiting_time2 == 1 %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.average_waiting_time2 == 0 %>
+                                <span class="text-muted small">スコアなし</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 1 %>
                                 <span class="rating-star"><i class="fas fa-star"></i></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 2 %>
                                 <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -3218,7 +3248,9 @@
                             <td class="result-left-column small text-center ichirantable-left">院内環境</td>
                             <td class="pl-3 ichirantable-right">
                               <% if @report.comfort_of_space.present? %>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.comfort_of_space == 1 %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.comfort_of_space == 0 %>
+                                <span class="text-muted small">スコアなし</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 1 %>
                                 <span class="rating-star"><i class="fas fa-star"></i></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 2 %>
                                 <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>

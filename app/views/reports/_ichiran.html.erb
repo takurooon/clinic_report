@@ -2108,7 +2108,7 @@
                   <p class="text-center py-3" style="color:#6D757D;">
                     <%= @report.clinic.name %>
                   </p>
-                  <%= image_tag("home/unrated_graph.png", alt: "unrated_graph", class: "img-fluid py-2 px-3", loading: "lazy") %>
+                  <%= image_tag("home/unrated_graph.png", alt: "unrated_graph", class: "img-fluid", loading: "lazy") %>
                 <% else %>
                   <canvas id="clinicEvaluation_ichiran"></canvas>
                 <% end %>
@@ -2139,7 +2139,9 @@
                     <% end %>
                   <% end %>
                 </div>
-                <p class="mt-2 small text-center"><span class="small text-muted">※&nbsp;グラフが表示されない場合はリロードして下さい。</span></p>
+                <% if @clinic_evaluation.present? %>
+                  <p class="mt-2 small text-center"><span class="small text-muted">※&nbsp;グラフが表示されない場合はリロードして下さい。</span></p>
+                <% end %>
               </div>
             </div>
             <table class="table p-0">
@@ -2147,7 +2149,9 @@
                 <td class="result-left-column small text-center ichirantable-left">医師</td>
                 <td class="pl-3 ichirantable-right">
                   <% if @report.doctor_quality.present? %>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.doctor_quality == 1 %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.doctor_quality == 0 %>
+                    <span class="text-muted small">スコアなし</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 1 %>
                     <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.doctor_quality == 2 %>
                     <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -2166,7 +2170,9 @@
                 <td class="result-left-column small text-center ichirantable-left">スタッフ</td>
                 <td class="pl-3 ichirantable-right">
                   <% if @report.staff_quality.present? %>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.staff_quality == 1 %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.staff_quality == 0 %>
+                    <span class="text-muted small">スコアなし</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 1 %>
                     <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.staff_quality == 2 %>
                     <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -2185,7 +2191,9 @@
                 <td class="result-left-column small text-center ichirantable-left">技術</td>
                 <td class="pl-3 ichirantable-right">
                   <% if @report.impression_of_technology.present? %>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_technology == 1 %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_technology == 0 %>
+                    <span class="text-muted small">スコアなし</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 1 %>
                     <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_technology == 2 %>
                     <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -2204,7 +2212,9 @@
                 <td class="result-left-column small text-center ichirantable-left">価格</td>
                 <td class="pl-3 ichirantable-right">
                   <% if @report.impression_of_price.present? %>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_price == 1 %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.impression_of_price == 0 %>
+                    <span class="text-muted small">スコアなし</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 1 %>
                     <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.impression_of_price == 2 %>
                     <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -2223,7 +2233,9 @@
                 <td class="result-left-column small text-center ichirantable-left">待ち時間</td>
                 <td class="pl-3 ichirantable-right">
                   <% if @report.average_waiting_time2.present? %>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.average_waiting_time2 == 1 %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.average_waiting_time2 == 0 %>
+                    <span class="text-muted small">スコアなし</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 1 %>
                     <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.average_waiting_time2 == 2 %>
                     <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -2245,7 +2257,9 @@
                 <td class="result-left-column small text-center ichirantable-left">施設の環境</td>
                 <td class="pl-3 ichirantable-right">
                   <% if @report.comfort_of_space.present? %>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.comfort_of_space == 1 %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% if @report.comfort_of_space == 0 %>
+                    <span class="text-muted small">スコアなし</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 1 %>
                     <span class="rating-star small"><i class="fas fa-star"></i></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;<% elsif @report.comfort_of_space == 2 %>
                     <span class="rating-star small"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>
@@ -2319,7 +2333,6 @@
               </div>
             <% end %>
             <p class="px-2 mb-0 small"><span class="small text-muted">※&nbsp;<%= @report.user.name %> さんの治療当時の情報です。最新の情報は直接クリニックに確認して下さい。</span></p>
-            <p class="px-2 mb-0 small"><span class="small text-muted">※&nbsp;グラフがうまく表示されない場合はリロードして下さい。</span></p>
             <table class="table table-sm p-0 mt-5 mb-2">
               <thead class="bg-light">
                 <tr>
