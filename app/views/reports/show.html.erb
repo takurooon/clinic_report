@@ -333,7 +333,7 @@
             <li class="tab-item"><a href="#tab_3" data-toggle="tab">クリニック</a></li>
             <li class="tab-item"><a href="#tab_4" data-toggle="tab">分析</a></li>
           </ul>
-          <section class="parent-tab-content active mostleft-tab" id="tab_1">
+          <section class="parent-tab-content active mostleft-tab rounded-bottom" id="tab_1">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li class="tab-item"><a href="#tab_1_1" class="active" data-toggle="tab">概要</a></li>
@@ -342,13 +342,13 @@
                 <li class="tab-item"><a href="#tab_1_4" data-toggle="tab">移植</a></li>
                 <li class="tab-item"><a href="#tab_1_5" data-toggle="tab">費用</a></li>
               </ul>
-              <section class="child-tab-content active" id="tab_1_1">
+              <section class="child-tab-content active rounded-bottom" id="tab_1_1">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title"><%= @report.str_fertility_treatment_number %>&nbsp;概要</h4>
-                <div class="row summary-info m-1 p-3 pt-4 box3">
+                <div class="row summary-info m-1 p-3 pt-4 box3 rounded-bottom">
                   <div class="col-4 px-2 d-xs d-md-none">
                     <div class="row">
                       <div class="col-6 pr-0 pt-4">
@@ -626,7 +626,7 @@
                   <a class="btn btnNext rounded-lg pr-2 shadow">次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_1_2">
+              <section class="child-tab-content rounded-bottom" id="tab_1_2">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -1095,7 +1095,7 @@
                   <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_1_3">
+              <section class="child-tab-content rounded-bottom" id="tab_1_3">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -1110,7 +1110,7 @@
                     <% end %>
                     <li><a href="#right_tab" data-toggle="tab">過去の採卵<%= sairan_absence %></a></li>
                   </ul>
-                  <div class="parent-tab-content active mostleft-tab p-2" id="left_tab">
+                  <div class="parent-tab-content active mostleft-tab p-2 rounded-bottom" id="left_tab">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
                       <h5 class="child-tab-title">
                         <span class="marker-underline small">
@@ -1519,7 +1519,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="parent-tab-content p-2" id="right_tab">
+                  <div class="parent-tab-content p-2 rounded-bottom" id="right_tab">
                     <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                       <% if @unsuccessful_sairan_cycles.present? %>
                         <% @unsuccessful_sairan_cycles.each do |unsuccessful_sairan_cycle| %>
@@ -1625,7 +1625,7 @@
                   <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_1_4">
+              <section class="child-tab-content rounded-bottom" id="tab_1_4">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -1654,7 +1654,7 @@
                     <% end %>
                     <li><a href="#right_tab2" data-toggle="tab">過去の移植<%= ishoku_absence %></a></li>
                   </ul>
-                  <div class="parent-tab-content active mostleft-tab p-2" id="left_tab2">
+                  <div class="parent-tab-content active mostleft-tab p-2 rounded-bottom" id="left_tab2">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
                       <h5 class="child-tab-title">
                         <span class="small"><span class="small">
@@ -2274,7 +2274,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="parent-tab-content p-2" id="right_tab2">
+                  <div class="parent-tab-content p-2 rounded-bottom" id="right_tab2">
                     <div class="alert alert-light rounded-lg border p-2 mb-0 text-dark" role="alert">
                       <% if @unsuccessful_ishoku_cycles.present? %>
                         <% @unsuccessful_ishoku_cycles.each do |unsuccessful_ishoku_cycle| %>
@@ -2350,7 +2350,7 @@
                   <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_1_5">
+              <section class="child-tab-content rounded-bottom" id="tab_1_5">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -2406,14 +2406,14 @@
               </section>
             </div>
           </section>
-          <section class="parent-tab-content" id="tab_2">
+          <section class="parent-tab-content rounded-bottom" id="tab_2">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li class="tab-item"><a href="#tab_2_1" class="active" data-toggle="tab">情報</a></li>
                 <li class="tab-item"><a href="#tab_2_2" data-toggle="tab">治療歴</a></li>
                 <li class="tab-item"><a href="#tab_2_3" data-toggle="tab">不妊原因</a></li>
               </ul>
-              <section class="child-tab-content active" id="tab_2_1">
+              <section class="child-tab-content active rounded-bottom" id="tab_2_1">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -2509,7 +2509,7 @@
                   <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_2_2">
+              <section class="child-tab-content rounded-bottom" id="tab_2_2">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -2684,7 +2684,7 @@
                   <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_2_3">
+              <section class="child-tab-content rounded-bottom" id="tab_2_3">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -2756,14 +2756,14 @@
               </section>
             </div>
           </section>
-          <section class="parent-tab-content" id="tab_3">
+          <section class="parent-tab-content rounded-bottom" id="tab_3">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li class="tab-item"><a href="#tab_3_1" class="active" data-toggle="tab">情報</a></li>
                 <li class="tab-item"><a href="#tab_3_2" data-toggle="tab">通院回数･決済 他</a></li>
                 <li class="tab-item"><a href="#tab_3_3" data-toggle="tab">レビュー</a></li>
               </ul>
-              <section class="child-tab-content active" id="tab_3_1">
+              <section class="child-tab-content active rounded-bottom" id="tab_3_1">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -2817,7 +2817,7 @@
                   <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_3_2">
+              <section class="child-tab-content rounded-bottom" id="tab_3_2">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -2909,7 +2909,7 @@
                   <a class="btn btnNext rounded-lg pr-2 shadow" >次へ<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                 </div>
               </section>
-              <section class="child-tab-content" id="tab_3_3">
+              <section class="child-tab-content rounded-bottom" id="tab_3_3">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
@@ -3340,12 +3340,12 @@
               </section>
             </div>
           </section>
-          <section class="parent-tab-content" id="tab_4">
+          <section class="parent-tab-content rounded-bottom" id="tab_4">
             <div class="child-tab">
               <ul class="nav nav-tabs child-menu">
                 <li class="tab-item"><a href="#tab_4_1" class="active" data-toggle="tab">データ</a></li>
               </ul>
-              <section class="child-tab-content active" id="tab_4_1">
+              <section class="child-tab-content active rounded-bottom" id="tab_4_1">
                 <div class="d-block d-sm-none text-left small my-2 px-0">
                   <small><i data-feather="book" class="px-1 pb-1" style="color: #009688;"></i><%= link_to "用語", terminology_path, { style:"color: #009688;", "data-toggle": "modal", "data-target": "#terminology" } %></small>
                 </div>
