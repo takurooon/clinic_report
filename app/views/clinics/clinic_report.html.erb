@@ -199,66 +199,40 @@
                               </h6>
                             <% end %>
                           </div>
-                          
+
                           <div class="d-none d-sm-block justify-content-start mr-2 my-2">
-                            <% if false %>
-                            <div class="personaldata-badge pr-2">
-                              <span class="badge badge-light text-muted small"><%= transfer_report.str_cost %></span>
-                              <% inspections = transfer_report.inspections.shuffle.sample(1) %>
-                              <% inspections.each do |inspection| %>
-                                <span class="badge badge-light text-muted small"><%= inspection.name %></span>
-                              <% end %>
-                              <% supplements = transfer_report.supplements.shuffle.sample(1) %>
-                              <% supplements.each do |supplement| %>
-                                <span class="badge badge-light text-muted small"><%= supplement.name %></span>
-                              <% end %>
-                            </div>
-                            <% end %>
-            
                             <% unless transfer_report.treatment_end_age.blank? %>
-                              &nbsp;&nbsp;<span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to "##{transfer_report.treatment_end_age}歳", "/category/age/#{transfer_report.treatment_end_age}#{"歳"}", class: "text-muted small" %></span>
+                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.str_treatment_end_age}", "/age/#{transfer_report.treatment_end_age}", class: "text-muted" %></span>
                             <% end %>
                             <% if transfer_report.prefecture_at_the_time_status == "hide" %>
-                              &nbsp;&nbsp;<span class="small text-muted small">−−</span>
+                              &nbsp;&nbsp;<span class="small text-muted ">−−</span>
                             <% else %>
-                              &nbsp;&nbsp;<span class="small text-muted small"><%= link_to "##{transfer_report.city.prefecture.name}", "/category/prefecture/#{transfer_report.city.prefecture.name}", class: "text-muted small" %></span>
+                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.prefecture.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}", class: "text-muted" %></span>
                             <% end %>
                             <% if transfer_report.city_at_the_time_status == "hide" %>
                               &nbsp;&nbsp;<span class="small text-muted">−−</span>
                             <% else %>
-                              &nbsp;&nbsp;<span class="small text-muted"><%= link_to "##{transfer_report.city.name}", "/category/city/#{transfer_report.city.name}", class: "text-muted small" %></span>
+                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}/#{transfer_report.city.name_alphabet}", class: "text-muted" %></span>
                             <% end %>
                           </div>
-            
+
                           <div class="d-block d-sm-none justify-content-start mr-2 mt-2 mb-1">
                             <% unless transfer_report.treatment_end_age.blank? %>
-                              &nbsp;&nbsp;<span class="badge badge-pill badge-light age-badge text-muted p-0"><%= link_to "##{transfer_report.treatment_end_age}歳", "/category/age/#{transfer_report.treatment_end_age}#{"歳"}", class: "text-muted small" %></span>
+                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.str_treatment_end_age}", "/age/#{transfer_report.treatment_end_age}", class: "text-muted" %></span>
                             <% end %>
                             <% if transfer_report.prefecture_at_the_time_status == "hide" %>
-                              &nbsp;&nbsp;<span class="small text-muted small">−−</span>
+                              &nbsp;&nbsp;<span class="small text-muted">−−</span>
                             <% else %>
-                              &nbsp;&nbsp;<span class="small text-muted small"><%= link_to "##{transfer_report.city.prefecture.name}", "/category/prefecture/#{transfer_report.city.prefecture.name}", class: "text-muted small" %></span>
+                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.prefecture.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}", class: "text-muted" %></span>
                             <% end %>
                             <% if transfer_report.city_at_the_time_status == "hide" %>
                               &nbsp;&nbsp;<span class="small text-muted">−−</span>
                             <% else %>
-                              &nbsp;&nbsp;<span class="small text-muted"><%= link_to "##{transfer_report.city.name}", "/category/city/#{transfer_report.city.name}", class: "text-muted small" %></span>
+                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}/#{transfer_report.city.name_alphabet}", class: "text-muted" %></span>
                             <% end %>
                           </div>
-            
+
                           <div>
-                            <% if false %>
-                            <div class="d-lg-flex align-items-center justify-content-start mt-0 mb-0 py-1">
-                              <div class="d-none d-sm-block my-0 mr-2 clinic_address">
-                                <%= link_to "##{transfer_report.clinic.name}", "/category/clinics/#{transfer_report.clinic.id}", class: "small" %>&nbsp;&nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/category/clinics/prefecture/#{transfer_report.clinic.city.prefecture.name}", class:"text-muted small" %></span>&nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.name}", "/category/clinics/city/#{transfer_report.clinic.city.name}", class:"text-muted small" %></span>
-                              </div>
-                              <div class="d-block d-sm-none mb-0 mr-2 clinic_address">
-                                <div class="col-12 pl-0">
-                                  <%= link_to "##{transfer_report.clinic.name}", "/category/clinics/#{transfer_report.clinic.id}", class: "text-muted small" %>
-                                </div>
-                              </div>
-                            </div>
-                            <% end %>
                             <div class="d-none d-sm-block col-12 px-0">
                               <%= link_to transfer_report, data: { "turbolinks" => false } do %>
                                 <% if transfer_report.title.present? %>
@@ -274,16 +248,16 @@
                               </div>
                               <div class="action_area pl-1 pr-0 py-2">
                                 <div class="row">
-                                  <div class="col-3 form-inline">
+                                  <div class="col-2 pr-0 form-inline">
                                     <div class="likes_buttons_<%= transfer_report.id %>">
                                       <%= render partial: 'likes/like', locals: { report: transfer_report} %>
                                     </div>
                                   </div>
-                                  <div class="col-9">
+                                  <div class="col-10">
                                     <div class="pt-2 text-right">
-                                      <%= link_to "##{transfer_report.clinic.name}", "/category/clinics/#{transfer_report.clinic.id}", class: "small" %>
-                                      &nbsp;&nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/category/clinics/prefecture/#{transfer_report.clinic.city.prefecture.name}", class:"text-muted small" %></span>
-                                      &nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.name}", "/category/clinics/city/#{transfer_report.clinic.city.name}", class:"text-muted small" %></span>
+                                      <%= link_to "##{transfer_report.clinic.name}", "/clinic/#{transfer_report.clinic.id}" %>
+                                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/clinics_/#{transfer_report.clinic.city.prefecture.name_alphabet}", class:"text-muted" %></span>
+                                      &nbsp;&nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.name}", "/clinics/#{transfer_report.clinic.city.prefecture.name_alphabet}/#{transfer_report.clinic.city.name_alphabet}", class:"text-muted" %></span>
                                     </div>
                                   </div>
                                 </div>
@@ -306,18 +280,18 @@
                           </div>
                           <div class="px-0 py-0">
                             <div class="row">
-                              <div class="col-3 mt-2">
+                              <div class="col-3 mt-2 pr-0">
                                 <div class="likes_buttons_<%= transfer_report.id %>">
                                   <%= render partial: 'likes/like', locals: { report: transfer_report} %>
                                 </div>
                               </div>
                               <div class="col-9 pt-0 pl-0 pr-4 text-right">
                                 <div class="pt-2 text-right">
-                                  <%= link_to "##{transfer_report.clinic.name}", "/category/clinics/#{transfer_report.clinic.id}", class: "small" %>
+                                  <%= link_to "##{transfer_report.clinic.name}", "/clinic/#{transfer_report.clinic.id}" %>
                                 </div>
-                                <div class="pt-0 text-right">
-                                  &nbsp;&nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/category/clinics/prefecture/#{transfer_report.clinic.city.prefecture.name}", class:"text-muted small" %></span>
-                                  &nbsp;<span class="badge badge-light"><%= link_to "##{transfer_report.clinic.city.name}", "/category/clinics/city/#{transfer_report.clinic.city.name}", class:"text-muted small" %></span>
+                                <div class="pt-1 text-right">
+                                  &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/clinics_/#{transfer_report.clinic.city.prefecture.name_alphabet}", class:"text-muted" %></span>
+                                  &nbsp;&nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.name}", "/clinics/#{transfer_report.clinic.city.prefecture.name_alphabet}/#{transfer_report.clinic.city.name_alphabet}", class:"text-muted" %></span>
                                 </div>
                               </div>
                             </div>
