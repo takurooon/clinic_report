@@ -21,7 +21,16 @@
         <tr>
           <td>
             <small class="text-muted">誘発タイプ</small>
-            <%= f.select :un_sairan_type_of_ovarian_stimulation, UnsuccessfulSairanCycle::HASH_TYPE_OF_OVARIAN_STIMULATION.invert, { prompt: "" }, { class: "form-control py-0" } %>
+            <div class="mt-2">
+              <%= f.collection_radio_buttons(:un_sairan_type_of_ovarian_stimulation, UnsuccessfulSairanCycle::HASH_TYPE_OF_OVARIAN_STIMULATION, :first, :last) do |b| %>
+                <div class="form-check pl-2">
+                  <%= b.label class: "radio-inline mb-1" do %>
+                    <%= b.radio_button onclick: "radioDeselection(this, value)" %>
+                    <%= b.text %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
           </td>
         </tr>
         <tr>
