@@ -1105,9 +1105,6 @@
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab" class="active mostleft-tab" data-toggle="tab">最新の採卵</a></li>
-                    <% if @unsuccessful_sairan_cycles.blank? %>
-                      <% sairan_absence = "(なし)" %>
-                    <% end %>
                     <li><a href="#right_tab" data-toggle="tab">過去の採卵<%= sairan_absence %></a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2 rounded-bottom" id="left_tab">
@@ -1649,9 +1646,6 @@
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の移植</a></li>
-                    <% if @unsuccessful_ishoku_cycles.blank? %>
-                      <% ishoku_absence = "(なし)" %>
-                    <% end %>
                     <li><a href="#right_tab2" data-toggle="tab">過去の移植<%= ishoku_absence %></a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2 rounded-bottom" id="left_tab2">
