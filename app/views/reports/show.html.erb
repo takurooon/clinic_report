@@ -2824,7 +2824,7 @@
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>の</p>
                 <h4 class="child-tab-title">通院回数･決済 他</h4>
                 <div class="box4 mb-2 mt-3">
-                  &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんから寄せられた&nbsp;<%= @report.clinic.name %>&nbsp;の
+                  <%= image_tag"home/finger_mom_down.svg", width: "25px", class: "m-0 p-0", loading: "lazy" %>&nbsp;<small class="text-muted"><%= @report.user.name %>さんから寄せられた&nbsp;<%= @report.clinic.name %>&nbsp;の
                     <% if @report.year_of_treatment_end.present? %>
                       <%= @report.year_of_treatment_end.year %>年時点での
                     <% else %>
@@ -3352,7 +3352,7 @@
                 <p class="child-tab-title mb-0 pb-0"><%= @report.clinic.name %>での</p>
                 <h4 class="child-tab-title">治療データ分析</h4>
                 <div class="box4 mb-2 mt-3">
-                  &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんの&nbsp;<%= @report.clinic.name %>&nbsp;での治療データ分析</small>
+                  <%= image_tag"home/finger_mom_down.svg", width: "25px", class: "m-0 p-0", loading: "lazy" %>&nbsp;<small class="text-muted"><%= @report.user.name %>さんの&nbsp;<%= @report.clinic.name %>&nbsp;での治療データ分析</small>
                 </div>
                 <div class="spacer my-0 py-0" style="height:3px;"></div>
                 <div class="box27 pb-3">

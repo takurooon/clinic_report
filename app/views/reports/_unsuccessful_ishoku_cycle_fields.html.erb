@@ -21,35 +21,13 @@
         <tr>
           <td>
             <small class="text-muted">移植胚</small>
-            <div class="row pl-2 pt-3">
-              <%= f.collection_radio_buttons(:un_ishoku_transplant_method, UnsuccessfulIshokuCycle::HASH_TRANSPLANT_METHOD, :first, :last) do |b| %>
-                <div class="col-6 col-sm-4 col-lg-12 px-0">
-                  <div class="form-check pl-2">
-                    <%= b.label class: "radio-inline mb-1" do %>
-                      <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                      <%= b.text %>
-                    <% end %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
+            <%= f.select :un_ishoku_transplant_method, UnsuccessfulIshokuCycle::HASH_TRANSPLANT_METHOD.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>
           <td>
             <small class="text-muted">移植タイプ</small>
-            <div class="row pl-2 pt-3">
-              <%= f.collection_radio_buttons(:un_ishoku_type, UnsuccessfulIshokuCycle::HASH_UNSUCCESSFUL_ISHOKU_TYPE, :first, :last) do |b| %>
-                <div class="col-6 col-sm-4 col-lg-12 px-0">
-                  <div class="form-check pl-2">
-                    <%= b.label class: "radio-inline mb-1" do %>
-                      <%= b.radio_button onclick: "radioDeselection(this, value)" %>
-                      <%= b.text %>
-                    <% end %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
+            <%= f.select :un_ishoku_type, UnsuccessfulIshokuCycle::HASH_UNSUCCESSFUL_ISHOKU_TYPE.invert, { prompt: "" }, { class: "form-control py-0" } %>
           </td>
         </tr>
         <tr>

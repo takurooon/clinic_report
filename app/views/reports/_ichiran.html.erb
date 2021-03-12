@@ -990,7 +990,7 @@
         <div class="alert alert-info small mb-0 text-center" role="alert">
           <%= @report.clinic.name %>での過去の採卵結果<br>
           <% if @unsuccessful_sairan_cycles.count > 1 %>
-            <span class="small text-muted"><i data-feather="arrow-left" class="feather-icon-style1"></i>&nbsp;<i class="far fa-hand-point-up fa-lg"></i>&nbsp;<i data-feather="arrow-right" class="feather-icon-style1"></i></span>
+            <span class="small"><%= image_tag"home/finger_swipe.svg", width: "27px", class: "m-0 p-0", loading: "lazy" %></span>
           <% end %>
         </div>
         <ul class="horizontal-list">
@@ -1622,7 +1622,7 @@
         <div class="alert alert-info small mb-0 text-center" role="alert">
           <%= @report.clinic.name %>での過去の移植結果<br>
           <% if @unsuccessful_ishoku_cycles.count > 1 %>
-            <span class="small text-muted"><i data-feather="arrow-left" class="feather-icon-style1"></i>&nbsp;<i class="far fa-hand-point-up fa-lg"></i>&nbsp;<i data-feather="arrow-right" class="feather-icon-style1"></i></span>
+            <span class="small"><%= image_tag"home/finger_swipe.svg", width: "27px", class: "m-0 p-0", loading: "lazy" %></span>
           <% end %>
         </div>
         <ul class="horizontal-list">
@@ -2097,7 +2097,7 @@
       <tr>
         <td>
           <div class="box4 mt-0 mb-3">
-            &nbsp;<i class="fas fa-pencil-alt"></i>&nbsp;<small class="text-muted"><%= @report.user.name %>さんによる満足度評価&nbsp;(5段階)</small>
+          <%= image_tag"home/finger_mom_down.svg", width: "25px", class: "m-0 p-0", loading: "lazy" %>&nbsp;<small class="text-muted"><%= @report.user.name %>さんによる満足度評価&nbsp;(5段階)</small>
           </div>
           <br>
           <div class="box27 mt-2 mb-0 px-2">
