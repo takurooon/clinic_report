@@ -3688,13 +3688,11 @@
                           <% else %>
                             <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
                             <% if @report.total_number_of_eggs_transplanted.present? %>
-                              <% if @report.total_number_of_eggs_transplanted < 2 %>
+                              <% if @report.total_number_of_eggs_transplanted == 1 %>
                                 <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
                               <% else %>
-                                1個&nbsp;未回答&nbsp;÷&nbsp;
+                                単胎&nbsp;÷&nbsp;
                               <% end %>
-                            <% else %>
-                              ステータス&nbsp;未回答&nbsp;÷&nbsp;
                             <% end %>
                             <% if @report.number_of_eggs_collected.present? %>
                               (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
