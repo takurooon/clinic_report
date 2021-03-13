@@ -3693,6 +3693,8 @@
                               <% else %>
                                 単胎&nbsp;÷&nbsp;
                               <% end %>
+                            <% else %>
+                              単胎&nbsp;÷&nbsp;
                             <% end %>
                             <% if @report.number_of_eggs_collected.present? %>
                               (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
