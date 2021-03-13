@@ -1105,7 +1105,7 @@
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab" class="active mostleft-tab" data-toggle="tab">最新の採卵</a></li>
-                    <li><a href="#right_tab" data-toggle="tab">過去の採卵<%= sairan_absence %></a></li>
+                    <li><a href="#right_tab" data-toggle="tab">過去の採卵</a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2 rounded-bottom" id="left_tab">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
@@ -1646,7 +1646,7 @@
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の移植</a></li>
-                    <li><a href="#right_tab2" data-toggle="tab">過去の移植<%= ishoku_absence %></a></li>
+                    <li><a href="#right_tab2" data-toggle="tab">過去の移植</a></li>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2 rounded-bottom" id="left_tab2">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
@@ -3686,7 +3686,31 @@
                             <% ninshinritsu_sairan = ( 1 / ( @report.number_of_eggs_collected.to_f - @report.choran ) ) * 100 %>
                             <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)&nbsp;</span></small>
                           <% else %>
-                            <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)</span></span>
+                            <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
+                            <% if @report.total_number_of_eggs_transplanted.present? %>
+                              <% if @report.total_number_of_eggs_transplanted < 2 %>
+                                <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
+                              <% else %>
+                                1個&nbsp;未回答&nbsp;÷&nbsp;
+                              <% end %>
+                            <% else %>
+                              ステータス&nbsp;未回答&nbsp;÷&nbsp;
+                            <% end %>
+                            <% if @report.number_of_eggs_collected.present? %>
+                              (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
+                            <% else %>  
+                              (&nbsp;採卵数&nbsp;未回答
+                            <% end %>
+                            <% if @report.choran.present?%>
+                              <% if @report.choran <= 50 %>
+                                &nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)
+                              <% else %>
+                                &nbsp;-&nbsp;貯卵数&nbsp;50個以上&nbsp;)
+                              <% end %>
+                            <% else %>
+                              &nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
+                            <% end %>
+                            </span></span>
                           <% end %>
                         <% elsif @report.current_state == 2 || @report.current_state == 4 %>
                           <% if @report.total_number_of_eggs_transplanted == 2 || @report.total_number_of_eggs_transplanted == 3 || @report.total_number_of_eggs_transplanted == 4 %>
@@ -3694,14 +3718,61 @@
                               <% ninshinritsu_sairan2 = ( @report.total_number_of_eggs_transplanted.to_f / ( @report.number_of_eggs_collected.to_f - @report.choran ) ) * 100 %>
                               <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan2) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)&nbsp;</span></small>
                             <% else %>
-                              <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)</span></span>
+                              <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
+                              <% if @report.total_number_of_eggs_transplanted.present? %>
+                                <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
+                              <% else %>
+                                移植個数&nbsp;未回答&nbsp;÷&nbsp;
+                              <% end %>
+                              <% if @report.number_of_eggs_collected.present? %>
+                                (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
+                              <% else %>  
+                                (&nbsp;採卵数&nbsp;未回答
+                              <% end %>
+                              <% if @report.choran.present?%>
+                                <% if @report.choran <= 50 %>
+                                  &nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)
+                                <% else %>
+                                  &nbsp;-&nbsp;貯卵数&nbsp;50個以上&nbsp;)
+                                <% end %>
+                              <% else %>
+                                &nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
+                              <% end %>
+                              </span></span>
                             <% end %>
                           <% else %>
-                            <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)</span></span>
+                            <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
+                            <% if @report.total_number_of_eggs_transplanted.present? %>
+                              <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
+                            <% else %>
+                              移植個数&nbsp;未回答&nbsp;÷&nbsp;
+                            <% end %>
+                            <% if @report.number_of_eggs_collected.present? %>
+                              (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
+                            <% else %>  
+                              (&nbsp;採卵数&nbsp;未回答
+                            <% end %>
+                            <% if @report.choran.present?%>
+                              <% if @report.choran <= 50 %>
+                                &nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)
+                              <% else %>
+                                &nbsp;-&nbsp;貯卵数&nbsp;50個以上&nbsp;)
+                              <% end %>
+                            <% else %>
+                              &nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
+                            <% end %>
+                            </span></span>
                           <% end %>
                         <% end %>
                       <% else %>
-                        <span class="text-muted small">算出不可</span>
+                        <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
+                        <% if @report.total_number_of_eggs_transplanted.present? %>
+                          <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
+                        <% else %>
+                          ステータス or 移植個数&nbsp;未回答&nbsp;÷&nbsp;
+                        <% end %>
+                          (&nbsp;採卵数&nbsp;未回答&nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
+                        </span></span>
                       <% end %>
                     </td>
                   </tr>
