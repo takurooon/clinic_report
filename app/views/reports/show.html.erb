@@ -389,31 +389,73 @@
                     <table class="pt-0">
                       <tr>
                         <td class="text-muted text-right py-1 small"><span class="small">ｽﾃｰﾀｽ&nbsp;:</span></td>
-                        <td class="font-weight-bold pl-2"><%= @report.str_current_state %></td>
+                        <td class="pl-2">
+                          <% if @report.current_state.present? %>
+                            <span class="font-weight-bold"><%= @report.str_current_state %></span>
+                          <% else %>
+                            <small><span class="text-muted small">未回答</span></small>
+                          <% end %>
+                        </td>
                       </tr>
                       <tr>
                         <td class="text-muted text-right py-1 small"><span class="small">AMH&nbsp;:</span></td>
-                        <td class="font-weight-bold pl-2"><%= @report.str_amh %></td>
+                        <td class="pl-2">
+                          <% if @report.amh.present? %>
+                            <span class="font-weight-bold"><%= @report.str_amh %></span>
+                          <% else %>
+                            <small><span class="text-muted small">未回答</span></small>
+                          <% end %>
+                        </td>
                       </tr>
                       <tr>
                         <td class="text-muted text-right py-1 small"><span class="small">採卵&nbsp;:</span></td>
-                        <td class="font-weight-bold pl-2"><%= @report.str_total_number_of_sairan %></td>
+                        <td class="pl-2">
+                          <% if @report.total_number_of_sairan.present? %>
+                            <span class="font-weight-bold"><%= @report.str_total_number_of_sairan %></span>
+                          <% else %>
+                            <small><span class="text-muted small">未回答</span></small>
+                          <% end %>
+                        </td>
                       </tr>
                       <tr>
                         <td class="text-muted text-right py-1 small"><span class="small">移植&nbsp;:</span></td>
-                        <td class="font-weight-bold pl-2"><%= @report.str_total_number_of_transplants %></td>
+                        <td class="pl-2">
+                          <% if @report.total_number_of_transplants.present? %>
+                            <span class="font-weight-bold"><%= @report.str_total_number_of_transplants %></span>
+                          <% else %>
+                            <small><span class="text-muted small">未回答</span></small>
+                          <% end %>
+                        </td>
                       </tr>
                       <tr>
                         <td class="text-muted text-right py-1 small"><span class="small">費用&nbsp;:</span></td>
-                        <td class="font-weight-bold pl-2"><%= @report.str_cost %></td>
+                        <td class="pl-2">
+                          <% if @report.cost.present? %>
+                            <span class="font-weight-bold"><%= @report.str_cost %></span>
+                          <% else %>
+                            <small><span class="text-muted small">未回答</span></small>
+                          <% end %>
+                        </td>
                       </tr>
                       <tr>
                         <td class="text-muted text-right py-1 small"><span class="small">通院期間&nbsp;:</span></td>
-                        <td class="font-weight-bold pl-2"><%= @report.str_treatment_period %></td>
+                        <td class="pl-2">
+                          <% if @report.treatment_period.present? %>
+                            <span class="font-weight-bold"><%= @report.str_treatment_period %></span>
+                          <% else %>
+                            <small><span class="text-muted small">未回答</span></small>
+                          <% end %>
+                        </td>
                       </tr>
                       <tr>
                         <td class="text-muted text-right py-1 small"><span class="small">何院目&nbsp;:</span></td>
-                        <td class="font-weight-bold pl-2"><%= @report.str_number_of_clinics %></td>
+                        <td class="pl-2">
+                          <% if @report.number_of_clinics.present? %>
+                            <span class="font-weight-bold"><%= @report.str_number_of_clinics %></span>
+                          <% else %>
+                            <small><span class="text-muted small">未回答</span></small>
+                          <% end %>
+                        </td>
                       </tr>
                     </table>
                   </div>
