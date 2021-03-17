@@ -130,6 +130,8 @@
           <% end %>
           <% if @report.transplant_method.present? %>
             <span class="result-text small">(<%= @report.str_transplant_method %>)</span>
+          <% else %>
+            <span class="text-muted small">(新鮮胚or凍結胚) 未回答</span>
           <% end %>
         </td>
       </tr>
@@ -1213,7 +1215,7 @@
           <% if @report.transplant_method.present? %>
             <span class="result-text small">&nbsp;<%= @report.str_transplant_method %></span>
           <% else %>
-            <span class="text-muted small">未回答</span>
+            <span class="text-muted small">未回答 (新鮮胚 or 凍結胚)</span>
           <% end %>
         </td>
       </tr>
