@@ -383,6 +383,27 @@
                   
                   <div class="form-group mt-0 mb-0 pt-2">
                     <p class="question mb-1 pt-3">これまでの転院歴&nbsp;<sup class="text-success">●</sup></p>
+
+                    <details class="mb-4 pt-3">
+                      <summary class="text-muted small mb-2 fluffy-b">転院歴の作成手順ガイド&nbsp;<%= image_tag"home/finger_mom_left.svg", width: "22px", class: "img-fluid", loading: "lazy" %></summary>
+                      <div class="howto-area">
+                        <div class="howto-sm-l">
+                          <%= image_tag"howto/sm_clinic.gif", class: "img-fluid", loading: "lazy" %>
+                        </div>
+                        <div class="howto-sm-r">
+                          <p>転院歴が複数ある場合は左下の「追加」ボタンで入力欄を増やせます。右下の「削除」ボタンを押せば削除できます。「非公開」にチェックすれば医療機関名を伏せることもできます。</p>
+                          <p>医療機関が複数ある場合、「順（時系列）」の選び方で迷うかもしれませんが、新･旧順またはチグハグに選択されても作成時には自動的に古い順に並び替えられますのでご安心ください。</p>
+                        </div>
+                        <div class="howto-pc-l">
+                          <%= image_tag"howto/pc_clinic.gif", class: "img-fluid", loading: "lazy" %>
+                        </div>
+                        <div class="howto-pc-r">
+                          <p>転院歴が複数ある場合は左下の「追加」ボタンで入力欄を増やせます。右下の「削除」ボタンを押せば削除できます。「非公開」にチェックすれば医療機関名を伏せることもできます。</p>
+                          <p>医療機関が複数ある場合、「順（時系列）」の選び方で迷うかもしれませんが、新･旧順またはチグハグに選択されても作成時には自動的に古い順に並び替えられますのでご安心ください。</p>
+                        </div>
+                      </div>
+                    </details>
+
                     <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
                       <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>
                     <% end %>
@@ -784,8 +805,8 @@
                           <% end %>
                         </div>
                         <div class="px-2">
-                          <details class="mb-2 pt-3">
-                            <summary class="text-muted small mb-2">参考: 具体的な薬品名の一例はこちら</summary>
+                          <details class="pt-4">
+                            <summary class="text-muted small mb-2 fluffy-b">参考: 具体的な薬品名の一例はこちら&nbsp;<%= image_tag"home/finger_mom_left.svg", width: "22px", class: "img-fluid", loading: "lazy" %></summary>
                             <table class="table bg-light rounded-lg text-dark">
                               <thead>
                                 <tr>
