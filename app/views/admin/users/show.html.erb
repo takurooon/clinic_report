@@ -217,11 +217,10 @@
             <% if @user.self_introduction.present? %>
               <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
             <% else %>
-              <h6 class="text-muted">プロフィールはまだ登録されていません。
-                <% if @user == current_user %>
-                  <br><br>右上の「プロフィールを編集」から登録が可能です。ぜひ詳しいプロフィールを載せましょう！
-                <% end %>
-              </h6>
+              <% if @user == current_user %>
+                <h6 class="text-muted">プロフィールはまだ登録されていません。
+                <br><br>右上の「プロフィールを編集」から登録が可能です。ぜひ詳しいプロフィールを載せましょう！</h6>
+              <% end %>
             <% end %>
           </div>
         </div>
