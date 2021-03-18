@@ -576,7 +576,7 @@
                         <% if @report.sairan_cost.present? %>
                           <p class="small mt-1 mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">採卵:</span>&nbsp;<%= @report.str_sairan_cost %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
                         <% end %>
-                        <% if %>
+                        <% if @report.ishoku_cost.present? %>
                           <p class="small mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">移植:</span>&nbsp;<%= @report.str_ishoku_cost %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
                         <% end %>
                       <% else %>
