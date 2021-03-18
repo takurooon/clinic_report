@@ -133,6 +133,7 @@
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0" id="current_state_area">
                     <p class="question mb-0 py-2">投稿時点の状況</p>
+                    <div class="text-muted alert alert-secondary p-2 mb-1 rounded-lg" style="line-height: 1.1rem; font-size: 10px;">※ 1人目治療(出産)のレポコを投稿する時点(現在)で2人目を妊娠している場合は「妊娠」ではなく「出産」を選択下さい。</div>
                     <div class="mt-2">
                       <%= f.collection_radio_buttons(:current_state, Report::HASH_CURRENT_STATE, :first, :last) do |b| %>
                         <div class="form-check pl-2">
