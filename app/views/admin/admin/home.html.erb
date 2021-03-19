@@ -98,7 +98,7 @@
                   <%= report.updated_at.to_s(:datetime_jp) %>
                 </td>
                 <td>
-                  <%= link_to admin_report_path(report) do %><i data-feather="external-link" class="p-1"></i><% end %>
+                  <%= link_to admin_report_path(report), data: { "turbolinks" => false } do %><i data-feather="external-link" class="p-1"></i><% end %>
                 </td>
               </tr>
             <% end %>
