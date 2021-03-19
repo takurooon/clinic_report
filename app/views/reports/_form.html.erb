@@ -424,8 +424,8 @@
                     <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
                       <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>
                     <% end %>
-                    <div class="links pt-2 pl-2">
-                      <%= link_to_add_association "+ 追加", f, :itinerary_of_choosing_a_clinics %>
+                    <div class="links pl-2">
+                      <%= link_to_add_association "+ 追加", f, :itinerary_of_choosing_a_clinics, class: "text-danger" %>
                     </div>
                   </div>
 
@@ -756,7 +756,7 @@
                           <%= render "unsuccessful_sairan_cycle_fields", f: unsuccessful_sairan_cycle %>
                         <% end %>
                         <div class="links pt-2 pl-2">
-                          <%= link_to_add_association "+ 追加", f, :unsuccessful_sairan_cycles %>
+                          <%= link_to_add_association "+ 追加", f, :unsuccessful_sairan_cycles, class: "text-danger" %>
                         </div>
                       </div>
                       <div class="mt-5 d-flex justify-content-between">
@@ -1036,7 +1036,7 @@
                           <%= render "unsuccessful_ishoku_cycle_fields", f: unsuccessful_ishoku_cycle %>
                         <% end %>
                         <div class="links pt-2 pl-2">
-                          <%= link_to_add_association "+ 追加", f, :unsuccessful_ishoku_cycles %>
+                          <%= link_to_add_association "+ 追加", f, :unsuccessful_ishoku_cycles, class: "text-danger" %>
                         </div>
                       </div>
                       <div class="mt-5 d-flex justify-content-between">
@@ -1311,7 +1311,7 @@
                       <%= render "sairan_hormone_fields", f: sairan_hormone %>
                     <% end %>
                     <div class="links pt-2 pl-2">
-                      <%= link_to_add_association "+ 追加", f, :sairan_hormones %>
+                      <%= link_to_add_association "+ 追加", f, :sairan_hormones, class: "text-danger" %>
                     </div>
                   </div>
 
@@ -1349,7 +1349,7 @@
                       <%= render "before_ishoku_hormone_fields", f: before_ishoku_hormone %>
                     <% end %>
                     <div class="links pt-2 pl-2">
-                      <%= link_to_add_association "+ 追加", f, :before_ishoku_hormones %>
+                      <%= link_to_add_association "+ 追加", f, :before_ishoku_hormones, class: "text-danger" %>
                     </div>
                   </div>
 
@@ -1418,7 +1418,7 @@
                       <%= render "shokihaiishoku_hormone_fields", f: shokihaiishoku_hormone %>
                     <% end %>
                     <div class="links pt-2 pl-2">
-                      <%= link_to_add_association "+ 追加", f, :shokihaiishoku_hormones %>
+                      <%= link_to_add_association "+ 追加", f, :shokihaiishoku_hormones, class: "text-danger" %>
                     </div>
                   </div>
 
@@ -1429,7 +1429,7 @@
                       <%= render "haibanhoishoku_hormone_fields", f: haibanhoishoku_hormone %>
                     <% end %>
                     <div class="links pt-2 pl-2">
-                      <%= link_to_add_association "+ 追加", f, :haibanhoishoku_hormones %>
+                      <%= link_to_add_association "+ 追加", f, :haibanhoishoku_hormones, class: "text-danger" %>
                     </div>
                   </div>
 
