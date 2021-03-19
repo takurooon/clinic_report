@@ -54,6 +54,10 @@ class ReportsController < ApplicationController
         yomigana: clinic.yomigana
       }
     end
+    @user = current_user
+    if @user.present?
+      @draft_reports = @user.reports.nonreleased
+    end
   end
 
   def draft

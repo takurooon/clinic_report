@@ -10,6 +10,12 @@
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" />
           <label class="tab-label ml-3" for="TAB-01">レポコ</label>
           <div class="container tab-content1">
+            <% if user_signed_in? && @draft_reports.present? %>
+              <div class="alert alert-info px-3 py-2 small rounded-lg">
+                <p class="mb-0"><%= @user.name %>さん、下書きのレポコが<%= @draft_reports.count %>件あります。</p>
+                <p class="mb-0"><%= image_tag"home/finger_mom_right.svg", width: "20px", class: "img-fluid pb-1", loading: "lazy" %>&nbsp;<%= link_to "下書きはこちら", my_page_path, class: "text-primary font-weight-bold" %></p>
+              </div>
+            <% end %>
             <%= render 'center' %>
           </div>
           <input id="TAB-02" type="radio" name="TAB" class="tab-switch" />

@@ -39,6 +39,12 @@
               <div class="text-right px-1">
                 <%= link_to " 新規作成", new_report_path, class: "btn btn-primary" %>
               </div>
+              <% if @draft_reports.present? %>
+                <div class="alert alert-info mx-2 px-3 py-2 small rounded-lg">
+                  <p class="mb-0">下書き中のレポコが<%= @draft_reports.count %>件あります。</p>
+                  <p class="mb-0">下書きは右隣の「下書き」タブにあります。&nbsp;<%= image_tag"home/finger_mom_up.svg", width: "20px", class: "img-fluid pb-1", loading: "lazy" %></p>
+                </div>
+              <% end %>
               <% @published_reports.each do |published| %>
                 <div class="card-body px-2 text-color">
                   <div class="media-body px-2">
