@@ -1563,15 +1563,15 @@
                   </div>
                   <% if is_new %>
                     <div class="pl-0 col-4 m-0 pr-4 text-right">
-                      <%= f.submit '投稿', class: "report-post-btn-area-btn", id: "submit-button-post", data: { confirm: "\n【注意!!!】1.概要→必須タブ内の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから投稿して下さい!" } %>
-                      <%= f.submit '保存', class: "report-post-btn-area-btn2", id: "submit-button-save", name: "status1", data: { confirm: "\n【注意!!!】1.概要→必須タブ内の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから保存して下さい!" } %>
+                      <%= f.submit '投稿', class: "report-post-btn-area-btn", id: "submit-button-post", data: { confirm: "\n【確認です。安心してください】\n必須情報タブ → 必須タブ内の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから投稿して下さい。" } %>
+                      <%= f.submit '保存', class: "report-post-btn-area-btn2", id: "submit-button-save", name: "status1", data: { confirm: "\n【確認です。安心してください】\n必須情報タブ → 必須タブ内の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから保存して下さい。" } %>
                     </div>
                   <% else %>
                     <div class="pl-0 col-4 m-0 pr-4 text-right">
                       <% if @report.status == "nonreleased"%>
-                        <%= f.submit '更新', class: "report-post-btn-area-btn", id: "submit-button-update", data: { confirm: "\n【注意!!!】1.概要→必須タブ内の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから更新して下さい! \nなお、このレポコは下書き(非公開)として更新されます" } %>
+                        <%= f.submit '更新', class: "report-post-btn-area-btn", id: "submit-button-update", data: { confirm: "\n【確認です。安心してください】\n必須情報タブ → 必須タブ内の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから更新して下さい。 \nなお、このレポコは下書き(非公開)として更新されます" } %>
                       <% else %>
-                        <%= f.submit '更新', class: "report-post-btn-area-btn", id: "submit-button-update", data: { confirm: "\n【注意!!!】1.概要→必須タブ内の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから更新して下さい!" } %>
+                        <%= f.submit '更新', class: "report-post-btn-area-btn", id: "submit-button-update", data: { confirm: "\n【確認です。安心してください】\n必須情報タブ → 必須タブ内の\n\n「クリニックを選択」\n「治療当時のお住まい(都道府県&市区町村の両方)」 \n\nは選択されましたか？ \n必ずこの２つの項目を選択してから更新して下さい。" } %>
                       <% end %>
                       <% if false %>
                       <% if @report.released? %>
