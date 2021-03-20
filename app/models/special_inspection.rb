@@ -35,6 +35,7 @@ class SpecialInspection < ApplicationRecord
     1 => "このクリニック/病院で",
     2 => "別のクリニック/病院で",
     3 => "検査キットなどその他の方法で",
+    4 => "非回答",
   }
 
   def str_special_inspection_place(place)
