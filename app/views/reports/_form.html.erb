@@ -43,6 +43,7 @@
           <ul class="nav nav-tabs parent-menu mt-0 pt-0">
             <li class="tab-item"><a href="#tab_1" class="active mostleft-tab" data-toggle="tab">基礎情報</a></li>
             <li class="tab-item"><a href="#tab_2" data-toggle="tab">治療詳細</a></li>
+            <li class="tab-item"><a href="#tab_3" data-toggle="tab">自由記述</a></li>
             <% if false %><li class="tab-item"><a href="#tab_3" data-toggle="tab">ホルモン値</a></li><% end %>
           </ul>
           <section class="parent-tab-content active mostleft-tab rounded-bottom" id="tab_1">
@@ -1297,6 +1298,121 @@
               </section>
             </div>
           </section>
+          <section class="parent-tab-content" id="tab_3">
+            <div class="child-tab">
+            <ul class="nav nav-tabs child-menu">
+              <li class="tab-item"><a href="#tab_3_1" class="active" data-toggle="tab">ブログ</a></li>
+            </ul>
+            <section class="child-tab-content active" id="tab_3_1">
+              <div class="scroll-box">
+                <div class="tab-wrap3 mt-0 pb-0">
+                  <input id="TAB-05" type="radio" name="TAB3" class="tab-switch3" checked="checked" /><label class="tab-label3 mb-0 px-0" for="TAB-05">レポコ&nbsp;テキスト</label>
+                  <div class="tab-content3-1">
+                    <div class="form-group mt-0 pt-0">
+                      <%= f.rich_text_area :content, placeholder: "こちらは右隣タブの【作成のヒント】をご参考ください！", style: "background: #E8FEFC;", class:"px-3" %>
+                      <div class="text-right small pt-2">
+                        <%= link_to guideline_path, class: "small text-primary", target: :_blank, rel: "noopener noreferrer" do %>
+                          投稿･画像ガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="form-group mt-0 px-2">
+                      <div><%= f.label :title, 'このレポコにタイトルをつける', class: "question-matters" %></div>
+                      <%= f.text_area :title, class: "form-control py-0 title-js-text", placeholder: "最大64文字", rowa: 4 %>
+                      <p class="title-js-text-count text-right mt-2"></p>
+                    </div>
+                  </div>
+                  <input id="TAB-06" type="radio" name="TAB3" class="tab-switch3" /><label class="tab-label3-2 small text-danger mb-0 px-0 fluffy-b" for="TAB-06">＼&nbsp;作成のヒント<i class="fas fa-hand-point-up mx-1"></i>／</label>
+                  <div class="tab-content3-2">
+                    <div class="p-1">
+                      <div class="m-2 p-2 rounded-lg">
+                        <div class="pt-2 px-2 mt-2">
+                          <h5 class="font-weight-bold"><%= image_tag "home/hint.svg", alt: "home-top-img", width: "30px", class: "img-fluid pb-2 pl-0", loading: "lazy" %>&nbsp;<span class="marker-underline-w">テキスト作成のヒント</span></h5>
+                          <p class="small my-4" style="line-height:1.4rem;">こちらのテキスト欄では、上記の質問で載せきれなかった治療情報のみならず、治療に至る経緯や気持ちなどを自由に綴ることができます。画像やリンクを載せることも可能です。<br>以下はトピックの参考例です。こちらも参考にあなただけのレポコを作成しましょう！
+                          </p>
+                          <div class="text-right small">
+                            <%= link_to guideline_path, class: "small text-primary", target: :_blank, rel: "noopener noreferrer" do %>
+                              投稿ガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
+                            <% end %>
+                          </div>
+                        </div>
+                        <div class="row px-2">
+                          <div class="col-md-6 px-2">
+                            <div class="p-3 mb-4 rounded-lg shadow example-points">
+                              <h6 class="font-weight-bold"><span class="marker-underline">治療について</span></h6>
+                              <ul class="pl-3 mt-3 mb-2">
+                                <li class="small">このクリニックを選んだ理由</li>
+                                <li class="small">胚のグレードや評価</li>
+                                <li class="small">移植オプションなど</li>
+                                <li class="small">投薬/注射などの詳細</li>
+                                <li class="small">使用薬剤について</li>
+                                <li class="small">着床前診断やERAなどのオプション検査の詳細</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-md-6 px-2">
+                            <div class="p-3 mb-4 rounded-lg shadow example-points">
+                              <h6 class="font-weight-bold"><span class="marker-underline">費用について</span></h6>
+                              <ul class="pl-3 mt-3 mb-2">
+                                <li class="small">採卵移植費用の詳細</li>
+                                <li class="small">オプション検査費用について</li>
+                                <li class="small">費用の分担について</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-md-6 px-2">
+                            <div class="p-3 mb-4 rounded-lg shadow example-points">
+                              <h6 class="font-weight-bold"><span class="marker-underline">仕事との両立について</span></h6>
+                              <ul class="pl-3 mt-3 mb-2">
+                                <li class="small">辛かったこと大変だったこと</li>
+                                <li class="small">両立のために工夫したこと</li>
+                                <li class="small">勤務先の支援制度の有無</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-md-6 px-2">
+                            <div class="p-3 mb-4 rounded-lg shadow example-points">
+                              <h6 class="font-weight-bold"><span class="marker-underline">その他</span></h6>
+                              <ul class="pl-3 mt-3 mb-2">
+                                <li class="small">ステップアップした理由やきっかけ</li>
+                                <li class="small">パートナーとの足並みや温度差</li>
+                                <li class="small">クリニックや医師について</li>
+                                <li class="small">治療中の思い</li>
+                                <li class="small">振り返って後悔しているポイント</li>
+                                <li class="small">気分転換方法など治療以外にしたこと</li>
+                              </ul>
+                              <div>
+                                <p class="small text-right text-muted pr-3">など</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="p-3">
+                          <div class="row rounded-lg shadow bg-white py-4 px-2">
+                            <div class="col-sm-7 px-2">
+                              <%= image_tag"howto/sm_6.png", class: "img-fluid", loading: "lazy" %>
+                            </div>
+                            <div class="col-sm-5 px-2">
+                              <p class="mb-0">テキスト欄では左記のように装飾や画像の貼付ができます。</p>
+                            </div>
+                            <div class="col-12 py-3">
+                              <hr>
+                            </div>
+                            <div class="col-sm-7 px-2">
+                              <%= image_tag"howto/sm_7.png", class: "img-fluid", loading: "lazy" %>
+                            </div>
+                            <div class="col-sm-5 px-2">
+                              <p class="mb-0">レポコにタイトルをつけることもできます。タイトルは一覧画面での表示に反映されます。</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
           <% if false %>
             <section class="parent-tab-content" id="tab_3">
               <div class="child-tab">
@@ -1439,113 +1555,6 @@
             </section>
           <% end %>
         </div>
-
-        <div class="tab-wrap3 mt-0 pb-0">
-          <input id="TAB-05" type="radio" name="TAB3" class="tab-switch3" checked="checked" /><label class="tab-label3 mb-0 px-0" for="TAB-05">レポコ&nbsp;テキスト</label>
-          <div class="tab-content3-1">
-            <div class="form-group mt-0 pt-0">
-              <%= f.rich_text_area :content, placeholder: "こちらは右隣タブの【作成のヒント】をご参考ください！", style: "background: #E8FEFC;", class:"px-3" %>
-              <div class="text-right small pt-2">
-                <%= link_to guideline_path, class: "small text-primary", target: :_blank, rel: "noopener noreferrer" do %>
-                  投稿･画像ガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
-                <% end %>
-              </div>
-            </div>
-            <div class="form-group mt-0 px-2">
-              <div><%= f.label :title, 'このレポコにタイトルをつける', class: "question-matters" %></div>
-              <%= f.text_area :title, class: "form-control py-0 title-js-text", placeholder: "最大64文字", rowa: 4 %>
-              <p class="title-js-text-count text-right mt-2"></p>
-            </div>
-          </div>
-          <input id="TAB-06" type="radio" name="TAB3" class="tab-switch3" /><label class="tab-label3-2 small text-danger mb-0 fluffy-b" for="TAB-06">＼&nbsp;作成のヒント<i class="fas fa-hand-point-up mx-1"></i>／</label>
-          <div class="tab-content3-2">
-            <div class="p-1">
-              <div class="m-2 p-2 rounded-lg">
-                <div class="pt-2 px-2 mt-2">
-                  <h5 class="font-weight-bold"><%= image_tag "home/hint.svg", alt: "home-top-img", width: "30px", class: "img-fluid pb-2 pl-0", loading: "lazy" %>&nbsp;<span class="marker-underline-w">テキスト作成のヒント</span></h5>
-                  <p class="small my-4" style="line-height:1.4rem;">こちらのテキスト欄では、上記の質問で載せきれなかった治療情報のみならず、治療に至る経緯や気持ちなどを自由に綴ることができます。画像やリンクを載せることも可能です。<br>以下はトピックの参考例です。こちらも参考にあなただけのレポコを作成しましょう！
-                  </p>
-                  <div class="text-right small">
-                    <%= link_to guideline_path, class: "small text-primary", target: :_blank, rel: "noopener noreferrer" do %>
-                      投稿ガイドライン<i data-feather="external-link" class="pt-1 pb-2"></i>
-                    <% end %>
-                  </div>
-                </div>
-                <div class="row px-2">
-                  <div class="col-md-6 px-2">
-                    <div class="p-3 mb-4 rounded-lg shadow example-points">
-                      <h6 class="font-weight-bold"><span class="marker-underline">治療について</span></h6>
-                      <ul class="pl-3 mt-3 mb-2">
-                        <li class="small">このクリニックを選んだ理由</li>
-                        <li class="small">胚のグレードや評価</li>
-                        <li class="small">移植オプションなど</li>
-                        <li class="small">投薬/注射などの詳細</li>
-                        <li class="small">使用薬剤について</li>
-                        <li class="small">着床前診断やERAなどのオプション検査の詳細</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-md-6 px-2">
-                    <div class="p-3 mb-4 rounded-lg shadow example-points">
-                      <h6 class="font-weight-bold"><span class="marker-underline">費用について</span></h6>
-                      <ul class="pl-3 mt-3 mb-2">
-                        <li class="small">採卵移植費用の詳細</li>
-                        <li class="small">オプション検査費用について</li>
-                        <li class="small">費用の分担について</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-md-6 px-2">
-                    <div class="p-3 mb-4 rounded-lg shadow example-points">
-                      <h6 class="font-weight-bold"><span class="marker-underline">仕事との両立について</span></h6>
-                      <ul class="pl-3 mt-3 mb-2">
-                        <li class="small">辛かったこと大変だったこと</li>
-                        <li class="small">両立のために工夫したこと</li>
-                        <li class="small">勤務先の支援制度の有無</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-md-6 px-2">
-                    <div class="p-3 mb-4 rounded-lg shadow example-points">
-                      <h6 class="font-weight-bold"><span class="marker-underline">その他</span></h6>
-                      <ul class="pl-3 mt-3 mb-2">
-                        <li class="small">ステップアップした理由やきっかけ</li>
-                        <li class="small">パートナーとの足並みや温度差</li>
-                        <li class="small">クリニックや医師について</li>
-                        <li class="small">治療中の思い</li>
-                        <li class="small">振り返って後悔しているポイント</li>
-                        <li class="small">気分転換方法など治療以外にしたこと</li>
-                      </ul>
-                      <div>
-                        <p class="small text-right text-muted pr-3">など</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-3">
-                  <div class="row rounded-lg shadow bg-white py-4 px-2">
-                    <div class="col-sm-7 px-2">
-                      <%= image_tag"howto/sm_6.png", class: "img-fluid", loading: "lazy" %>
-                    </div>
-                    <div class="col-sm-5 px-2">
-                      <p class="mb-0">テキスト欄では左記のように装飾や画像の貼付ができます。</p>
-                    </div>
-                    <div class="col-12 py-3">
-                      <hr>
-                    </div>
-                    <div class="col-sm-7 px-2">
-                      <%= image_tag"howto/sm_7.png", class: "img-fluid", loading: "lazy" %>
-                    </div>
-                    <div class="col-sm-5 px-2">
-                      <p class="mb-0">レポコにタイトルをつけることもできます。タイトルは一覧画面での表示に反映されます。</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
 
         <div class="report-save-btn-area d-flex justify-content-center py-2">
           <div class="container report-save-btn-area-inner px-0">
