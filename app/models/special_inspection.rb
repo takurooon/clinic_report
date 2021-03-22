@@ -34,7 +34,7 @@ class SpecialInspection < ApplicationRecord
   HASH_SPECIAL_INSPECTION_PLACE = {
     1 => "このクリニック/病院で",
     2 => "別のクリニック/病院で",
-    3 => "検査キットなどその他の方法で",
+    3 => "その他の方法で(ex:検査キット等)",
     4 => "非回答",
   }
 
