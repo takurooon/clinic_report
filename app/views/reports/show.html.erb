@@ -1150,31 +1150,121 @@
                       </tr>
                     <% end %>
                     <% if @special_inspection_pgta.present? %>
-                      <tr>
-                        <td class="result-left-column small text-center" style="width:30%">着床前診断</td>
-                        <td class="pl-1 pr-0 py-1" style="width:70%">
-                          <% @special_inspection_pgta.each do |pgta| %>
-                            <div class="mb-0 mt-1 p-0 box5">
-                              <table class="table p-0 mb-0">
-                                <tr>
-                                  <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                                  <% if pgta.place.present? %>
-                                    <% if pgta.place == 1 %>
-                                      <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
-                                    <% elsif pgta.place <= 4 %>
-                                      <td class="pl-3 small font-weight-bold" style="width:80%"><%= pgta.str_special_inspection_place(pgta.place) %></td>
+                      <% if @report.clinic.pgt == 1 %>
+                        <tr>
+                          <td class="result-left-column small text-center" style="width:30%">着床前診断</td>
+                          <td class="pl-1 pr-0 py-1" style="width:70%">
+                            <% @special_inspection_pgta.each do |pgta| %>
+                              <div class="mb-0 mt-1 p-0 box5">
+                                <table class="table p-0 mb-0">
+                                  <tr>
+                                    <td class="result-left-column small text-center" style="width:20%">どこで</td>
+                                    <% if pgta.place.present? %>
+                                      <% if pgta.place == 1 %>
+                                        <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                                      <% elsif pgta.place <= 4 %>
+                                        <td class="pl-3 small font-weight-bold" style="width:80%"><%= pgta.str_special_inspection_place(pgta.place) %></td>
+                                      <% else %>
+                                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                                      <% end %>
                                     <% else %>
                                       <td class="pl-3 small text-muted" style="width:80%">未回答</td>
                                     <% end %>
-                                  <% else %>
-                                    <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                                  </tr>
+                                </table>
+                              </div>
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% elsif @report.clinic.pgt != 1 || @report.clinic.pgt.blank? %>
+                        <% if user_signed_in? && @report.user_id == current_user.id %>
+                          <tr>
+                            <td class="result-left-column small text-center" style="width:30%">着床前診断</td>
+                            <td class="pl-1 pr-0 py-1" style="width:70%">
+                              <% @special_inspection_pgta.each do |pgta| %>
+                                <div class="mb-0 mt-1 p-0 box5">
+                                  <table class="table p-0 mb-0">
+                                    <tr>
+                                      <td class="result-left-column small text-center" style="width:20%">どこで</td>
+                                      <% if pgta.place.present? %>
+                                        <% if pgta.place == 1 %>
+                                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                                        <% elsif pgta.place <= 4 %>
+                                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= pgta.str_special_inspection_place(pgta.place) %></td>
+                                        <% else %>
+                                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                                        <% end %>
+                                      <% else %>
+                                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                                      <% end %>
+                                    </tr>
+                                  </table>
+                                </div>
+                              <% end %>
+                            </td>
+                          </tr>
+                        <% else %>
+                          <% pgta_cl = @special_inspection_pgta.map { |pgta| pgta[:place] } %>
+                          <% if pgta_cl.present? %>
+                            <% if pgta_cl.include?(2) || pgta_cl.include?(3) %>
+                              <tr>
+                                <td class="result-left-column small text-center" style="width:30%">着床前診断</td>
+                                <td class="pl-1 pr-0 py-1" style="width:70%">
+                                  <% @special_inspection_pgta.each do |pgta| %>
+                                    <% if pgta.place.present? %>
+                                      <% if pgta.place == 1 || pgta.place == 4 %>
+                                      <% elsif pgta.place == 2 || pgta.place == 3 %>
+                                        <div class="mb-0 mt-1 p-0 box5">
+                                          <table class="table p-0 mb-0">
+                                            <tr>
+                                              <td class="result-left-column small text-center" style="width:20%">どこで</td>
+                                              <td class="pl-3 small font-weight-bold" style="width:80%"><%= pgta.str_special_inspection_place(pgta.place) %></td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                      <% else %>
+                                        <div class="mb-0 mt-1 p-0 box5">
+                                          <table class="table p-0 mb-0">
+                                            <tr>
+                                              <td class="result-left-column small text-center" style="width:20%">どこで</td>
+                                              <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                      <% end %>
+                                    <% else %>
+                                      <div class="mb-0 mt-1 p-0 box5">
+                                        <table class="table p-0 mb-0">
+                                          <tr>
+                                            <td class="result-left-column small text-center" style="width:20%">どこで</td>
+                                            <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    <% end %>
                                   <% end %>
-                                </tr>
-                              </table>
-                            </div>
+                                </td>
+                              </tr>
+                            <% end %>
+                          <% else %>
+                            <tr>
+                              <td class="result-left-column small text-center" style="width:30%">着床前診断</td>
+                              <td class="pl-1 pr-0 py-1" style="width:70%">
+                                <% @special_inspection_pgta.each do |pgta| %>
+                                  <div class="mb-0 mt-1 p-0 box5">
+                                    <table class="table p-0 mb-0">
+                                      <tr>
+                                        <td class="result-left-column small text-center" style="width:20%">どこで</td>
+                                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                <% end %>
+                              </td>
+                            </tr>
                           <% end %>
-                        </td>
-                      </tr>
+                        <% end %>
+                      <% end %>
                     <% end %>
                     <% if @special_inspection_other_inspection.present? %>
                       <tr>
