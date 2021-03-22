@@ -1152,80 +1152,108 @@
               <section class="child-tab-content rounded-bottom" id="tab_2_5">
                 <div class="scroll-box">
                   <div class="form-group mt-0 pt-0">
-                    <div class="mt-0 pt-2">
+                    <div class="mt-0 pt-2 mb-3">
                       <p class="question mb-1 pt-2">医師&nbsp;&nbsp;<span class="small text-muted">(満足度)</span></p>
                       <div class="d-flex align-items-center flex-nowrap">
-                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <p class="small text-muted mb-0 mr-2">低</p>
                         <%= f.collection_radio_buttons(:doctor_quality, Report::HASH_RATING, :first, :last) do |b| %>
-                          <div class="form-check p-1">
-                            <%= b.label class: "radio-inline" do %>
+                          <div class="form-check px-1 pt-1 pb-0">
+                            <%= b.label class: "radio-inline pb-0 mb-0" do %>
                               <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                               <%= b.text %>
                             <% end %>
                           </div>
                         <% end %>
-                        <p class="small text-muted mb-2 ml-2">高</p>
+                        <p class="small text-muted mb-0 ml-2">高</p>
+                      </div>
+                      <div>
+                        <%= image_tag"home/score_1.svg", width: "25px", class: "score_icon_l", loading: "lazy" %>
+                        <%= image_tag"home/score_2.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_3.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_4.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_5.svg", width: "25px", class: "score_icon", loading: "lazy" %>
                       </div>
                     </div>
 
-                    <div class="mt-0 pt-3">
+                    <div class="mt-0 pt-3 mb-3">
                       <p class="question mb-1 pt-2">スタッフ&nbsp;&nbsp;<span class="small text-muted">(満足度)</span></p>
                       <div class="d-flex align-items-center flex-nowrap">
-                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <p class="small text-muted mb-0 mr-2">低</p>
                         <%= f.collection_radio_buttons(:staff_quality, Report::HASH_RATING, :first, :last) do |b| %>
-                          <div class="form-check p-1">
-                            <%= b.label class: "radio-inline" do %>
+                          <div class="form-check px-1 pt-1 pb-0">
+                            <%= b.label class: "radio-inline pb-0 mb-0" do %>
                               <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                               <%= b.text %>
                             <% end %>
                           </div>
                         <% end %>
-                        <p class="small text-muted mb-2 ml-2">高</p>
+                        <p class="small text-muted mb-0 ml-2">高</p>
+                      </div>
+                      <div>
+                        <%= image_tag"home/score_1.svg", width: "25px", class: "score_icon_l", loading: "lazy" %>
+                        <%= image_tag"home/score_2.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_3.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_4.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_5.svg", width: "25px", class: "score_icon", loading: "lazy" %>
                       </div>
                     </div>
 
-                    <div class="mt-0 pt-3">
+                    <div class="mt-0 pt-3 mb-3">
                       <p class="question mb-1 pt-2">技術&nbsp;&nbsp;<span class="small text-muted">(納得度)</span></p>
                       <div class="d-flex align-items-center flex-nowrap">
-                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <p class="small text-muted mb-0 mr-2">低</p>
                         <%= f.collection_radio_buttons(:impression_of_technology, Report::HASH_RATING, :first, :last) do |b| %>
-                          <div class="form-check p-1">
-                            <%= b.label class: "radio-inline" do %>
+                          <div class="form-check px-1 pt-1 pb-0">
+                            <%= b.label class: "radio-inline pb-0 mb-0" do %>
                               <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                               <%= b.text %>
                             <% end %>
                           </div>
                         <% end %>
-                        <p class="small text-muted mb-2 ml-2">高</p>
+                        <p class="small text-muted mb-0 ml-2">高</p>
+                      </div>
+                      <div>
+                        <%= image_tag"home/score_1.svg", width: "25px", class: "score_icon_l", loading: "lazy" %>
+                        <%= image_tag"home/score_2.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_3.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_4.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_5.svg", width: "25px", class: "score_icon", loading: "lazy" %>
                       </div>
                     </div>
 
-                    <div class="mt-0 pt-3">
+                    <div class="mt-0 pt-3 mb-3">
                       <div class="d-flex">
                         <p class="question mb-1 pt-2">価格</p>
                         <p class="mb-1 pt-2 fluffy-b">&nbsp;&nbsp;<span class="small text-muted">(</span><span class="small text-danger font-weight-bold">納得度</span><span class="small text-muted">)</span></p>
                       </div>
                       <div class="d-flex align-items-center flex-nowrap">
-                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <p class="small text-muted mb-0 mr-2">低</p>
                         <%= f.collection_radio_buttons(:impression_of_price, Report::HASH_RATING, :first, :last) do |b| %>
-                          <div class="form-check p-1">
-                            <%= b.label class: "radio-inline" do %>
+                          <div class="form-check px-1 pt-1 pb-0">
+                            <%= b.label class: "radio-inline pb-0 mb-0" do %>
                               <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                               <%= b.text %>
                             <% end %>
                           </div>
                         <% end %>
-                        <p class="small text-muted mb-2 ml-2">高</p>
+                        <p class="small text-muted mb-0 ml-2">高</p>
+                      </div>
+                      <div>
+                        <%= image_tag"home/score_1.svg", width: "25px", class: "score_icon_l", loading: "lazy" %>
+                        <%= image_tag"home/score_2.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_3.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_4.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_5.svg", width: "25px", class: "score_icon", loading: "lazy" %>
                       </div>
                     </div>
 
-                    <div class="mt-0 pt-3">
+                    <div class="mt-0 pt-3 mb-3">
                       <p class="question mb-1 pt-2">待ち時間</span></p>
                       <div class="d-flex align-items-center flex-nowrap">
                         <p class="small text-danger mb-2 mr-2 font-weight-bold fluffy-b">長</p>
                         <%= f.collection_radio_buttons(:average_waiting_time2, Report::HASH_RATING, :first, :last) do |b| %>
-                          <div class="form-check p-1">
-                            <%= b.label class: "radio-inline" do %>
+                          <div class="form-check px-1 pt-1 pb-0">
+                            <%= b.label class: "radio-inline pb-0 mb-0" do %>
                               <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                               <%= b.text %>
                             <% end %>
@@ -1233,22 +1261,38 @@
                         <% end %>
                         <p class="small text-danger mb-2 ml-2 font-weight-bold">短</p>
                       </div>
+                      <div>
+                        <%= image_tag"home/score_1.svg", width: "25px", class: "score_icon_l", loading: "lazy" %>
+                        <%= image_tag"home/score_2.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_3.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_4.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_5.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                      </div>
                     </div>
 
-                    <div class="mt-0 pt-3">
+                    <div class="mt-0 pt-3 mb-3">
                       <p class="question mb-1 pt-2">院内環境&nbsp;&nbsp;<span class="small text-muted">(満足度)</span></p>
                       <div class="d-flex align-items-center flex-nowrap">
-                        <p class="small text-muted mb-2 mr-2">低</p>
+                        <p class="small text-muted mb-0 mr-2">低</p>
                         <%= f.collection_radio_buttons(:comfort_of_space, Report::HASH_RATING, :first, :last) do |b| %>
-                          <div class="form-check p-1">
-                            <%= b.label class: "radio-inline" do %>
+                          <div class="form-check px-1 pt-1 pb-0">
+                            <%= b.label class: "radio-inline pb-0 mb-0" do %>
                               <%= b.radio_button onclick: "radioDeselection(this, value)" %>
                               <%= b.text %>
                             <% end %>
                           </div>
                         <% end %>
-                        <p class="small text-muted mb-2 ml-2">高</p>
+                        <p class="small text-muted mb-0 ml-2">高</p>
                       </div>
+                      <div>
+                        <%= image_tag"home/score_1.svg", width: "25px", class: "score_icon_l", loading: "lazy" %>
+                        <%= image_tag"home/score_2.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_3.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_4.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                        <%= image_tag"home/score_5.svg", width: "25px", class: "score_icon", loading: "lazy" %>
+                      </div>
+                    </div>
+                    <div class="mt-0">
                       <div class="form-group mt-4">
                         <p class="question mb-2">平均待ち時間</p>
                         <%= f.collection_radio_buttons(:average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME, :first, :last) do |b| %>
