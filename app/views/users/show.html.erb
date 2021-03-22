@@ -334,20 +334,14 @@
             </div>
           </div>
         <% end %>
-        <% if @user.self_introduction.blank? %>
-          <div class="pt-3 pb-2 px-0">
-            <p class="text-muted mb-0">プロフィールは未登録です。
-              <% if @user == current_user %>
-                <br><br>右上「プロフィールを編集」から登録が可能です。ぜひ詳しいプロフィールを載せましょう！
-              <% end %>
-            </p>
-          </div>
-        <% end %>
-        <div class="py-2 px-0">
-          <% if @user.self_introduction.present? %>
-            <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
+        <% if @user.self_introduction.present? %>
+          <%= text_url_to_link(h(safe_join(@user.self_introduction.split("\n"),tag(:br)))).html_safe %>
+        <% else %>
+          <% if @user == current_user %>
+            <h6 class="text-muted">プロフィールはまだ登録されていません。
+            <br><br>右上の「プロフィールを編集」から登録が可能です。ぜひ詳しいプロフィールを載せましょう！</h6>
           <% end %>
-        </div>
+        <% end %>
       </div>
     </div><hr>
 
