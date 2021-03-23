@@ -1212,6 +1212,7 @@ class Report < ApplicationRecord
 
   # total_number_of_sairanの区分値(全採卵回数/CL単位)
   HASH_TOTAL_NUMBER_OF_SAIRAN = {
+    0 => "0回(貯卵)",
     1 => "1回",
     2 => "2回",
     3 => "3回",
