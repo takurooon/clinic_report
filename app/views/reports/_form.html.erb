@@ -827,7 +827,7 @@
                           <% end %>
                         </div>
                         <div class="px-2">
-                          <details class="pt-4">
+                          <details class="pt-3">
                             <summary class="text-muted small mb-2 fluffy-b">参考: 具体的な薬品名の一例はこちら&nbsp;<%= image_tag"home/finger_mom_left.svg", width: "22px", class: "img-fluid", loading: "lazy" %></summary>
                             <table class="table bg-light rounded-lg text-dark">
                               <thead>
@@ -875,7 +875,6 @@
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-1">移植オプション&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                        <p class="small"><small class="small text-muted"><span class="text-warning">着床前診断 は「検査」タブの「基本検査以外に受けた検査」で選択できます。</span></small></p>
                         <div class="pt-2 pl-2">
                           <%= f.collection_check_boxes(:transfer_option_ids, TransferOption.all, :id, :name) do |b| %>
                             <div class="cp_ipcheck">
@@ -886,9 +885,81 @@
                             </div>
                           <% end %>
                         </div>
+                        <details class="pt-3">
+                          <summary class="text-muted small mb-2 fluffy-b">参考: オプションの説明&nbsp;<%= image_tag"home/finger_mom_left.svg", width: "22px", class: "img-fluid", loading: "lazy" %></summary>
+                          <table class="table bg-light rounded-lg text-dark">
+                            <thead>
+                              <tr>
+                                <td class="small text-muted text-center py-1" style="width:30%">名称</td>
+                                <td class="small text-muted text-center py-1" style="width:70%">内容</td>
+                              </tr>
+                            </thead>
+                            <tbody class="small">
+                              <tr>
+                                <td class="font-weight-bold pl-3">2段階移植</td>
+                                <td class="d-flex align-items-start">
+                                  <small class="pl-2">
+                                    <p class="mb-0">初期胚(受精後2〜3日)を移植後、胚盤胞(受精後5〜6日)を移植する移植方法。</p>
+                                  </small>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold pl-3">複数胚移植</td>
+                                <td class="d-flex align-items-start">
+                                  <small class="pl-2">
+                                    <p class="mb-0">複数の胚を移植する方法。</p>
+                                  </small>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold pl-3">アシステッドハッチング</td>
+                                <td class="d-flex align-items-start">
+                                  <small class="pl-2">
+                                    <p class="mb-0">着床できるよう、胚を包む透明帯を薄くしたり切開することで胚の脱出を補助(アシスト)する技術。</p>
+                                  </small>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold pl-3">hCG注射</td>
+                                <td class="d-flex align-items-start">
+                                  <small class="pl-2">
+                                    <p class="mb-0">成熟した卵胞に作用して排卵を促す薬剤。投与後おおよそ34〜36時間後に排卵が起こるとされる。</p>
+                                  </small>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold pl-3">エンブリオグルー(ヒアルロン酸胚移植用培養液)</td>
+                                <td class="d-flex align-items-start">
+                                  <small class="pl-2">
+                                    <p class="mb-0">ヒアルロン酸を多く含んだ特殊な培養液。“のり”のような特性があり、胚と移植することで着床を手助けすることが期待される。</p>
+                                  </small>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold pl-3">シート(SEET)法</td>
+                                <td class="d-flex align-items-start">
+                                  <small class="pl-2">
+                                    <p class="mb-0">移植前に胚培養液を子宮に注入する方法。これによって子宮内膜が刺激を受け、受精卵の着床に適した環境を作り出すことを期待するもの。</p>
+                                  </small>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold pl-3">スクラッチング法</td>
+                                <td class="d-flex align-items-start">
+                                  <small class="pl-2">
+                                    <p class="mb-0">着床前に故意に子宮内膜に小さな傷をつけることで、着床しやすい子宮環境を作りだす方法。</p>
+                                  </small>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="pl-3 small text-center" colspan="2"><span class="text-warning">※ 着床前診断 は「検査」タブの「基本検査以外に受けた検査」で選択できます。</span></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </details>
                       </div>
 
-                      <div class="form-group mt-0 mb-2 pt-4">
+                      <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-2">移植個数</p>
                         <small class="text-muted"><small><span class="select-current-status"></span>に至った周期に移植した胚の数</small></small>
                         <div class="transfer_option_alert1 small">

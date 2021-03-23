@@ -70,7 +70,6 @@ TransferOption.create([
   { name: "エンブリオグルー", yomigana: "エンブリオグルー", number: 105 },
   { name: "シート法(SEET)", yomigana: "シートホウ", number: 106 },
   { name: "スクラッチング法", yomigana: "スクラッチングホウ", number: 107 },
-  { name: "ヒアルロン酸胚移植用培養液", yomigana: "ヒアルロンサンハイイショクヨウバイヨウエキ", number: 108 },
   { name: "その他", yomigana: "ンンン", number: 999 },
 ])
 
