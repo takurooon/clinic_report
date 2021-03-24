@@ -22,40 +22,82 @@
               <%= image_tag(@user.icon, alt: "icon", class: "icon_image", loading: "lazy") %>
             <% end %>
           <% else %>
+            <% user_number = @user.id.digits %>
+            <% if user_number.size < 2 %>
+              <% icon_number = @user.id %>
+            <% else %>
+              <% icon_number = user_number[0] * user_number[1] %>
+            <% end %>
             <% if @user.birthday == nil %>
-              <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
+              </div>
             <% elsif Time.now.year - @user.birthday.year < 25 %>
               <% if Time.now.month < @user.birthday.month %>
-                <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
+                </div>
               <% else %>
-                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
+                </div>
               <% end %>
             <% elsif Time.now.year - @user.birthday.year < 30 %>
               <% if Time.now.month < @user.birthday.month %>
-                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
+                </div>
               <% else %>
-                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
+                </div>
               <% end %>
             <% elsif Time.now.year - @user.birthday.year < 35 %>
               <% if Time.now.month < @user.birthday.month %>
-                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
+                </div>
               <% else %>
-                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
+                </div>
               <% end %>
             <% elsif Time.now.year - @user.birthday.year < 40 %>
               <% if Time.now.month < @user.birthday.month %>
-                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
+                </div>
               <% else %>
-                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
+                </div>
               <% end %>
             <% elsif Time.now.year - @user.birthday.year < 45 %>
               <% if Time.now.month < @user.birthday.month %>
-                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
+                </div>
               <% else %>
-                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+                <div class="m-0 p-0 base_icon2">
+                  <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
+                </div>
               <% end %>
             <% else %>
-              <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
+              </div>
             <% end %>
           <% end %>
         </div>
@@ -66,46 +108,94 @@
             <%= image_tag(@user.icon, alt: "icon", class: "icon_image", loading: "lazy") %>
           <% end %>
         <% else %>
+          <% user_number = @user.id.digits %>
+          <% if user_number.size < 2 %>
+            <% icon_number = @user.id %>
+          <% else %>
+            <% icon_number = user_number[0] * user_number[1] %>
+          <% end %>
           <% if @user.birthday == nil %>
-            <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
+            <div class="m-0 p-0 base_icon2">
+              <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
+              <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
+            </div>
           <% elsif Time.now.year - @user.birthday.year < 25 %>
             <% if Time.now.month < @user.birthday.month %>
-              <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
+              </div>
             <% else %>
-              <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
+              </div>
             <% end %>
           <% elsif Time.now.year - @user.birthday.year < 30 %>
             <% if Time.now.month < @user.birthday.month %>
-              <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
+              </div>
             <% else %>
-              <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
+              </div>
             <% end %>
           <% elsif Time.now.year - @user.birthday.year < 35 %>
             <% if Time.now.month < @user.birthday.month %>
-              <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
+              </div>
             <% else %>
-              <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
+              </div>
             <% end %>
           <% elsif Time.now.year - @user.birthday.year < 40 %>
             <% if Time.now.month < @user.birthday.month %>
-              <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
+              </div>
             <% else %>
-              <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
+              </div>
             <% end %>
           <% elsif Time.now.year - @user.birthday.year < 45 %>
             <% if Time.now.month < @user.birthday.month %>
-              <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
+              </div>
             <% else %>
-              <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+              <div class="m-0 p-0 base_icon2">
+                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+                <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
+              </div>
             <% end %>
           <% else %>
-            <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+            <div class="m-0 p-0 base_icon2">
+              <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+              <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
+            </div>
           <% end %>
         <% end %>
       </div>
       <div class="d-none d-sm-block col-9 pt-5 pb-4">
         <div class="d-flex align-items-center pb-3">
           <h4 class="mb-0">
+            <% user_number = @user.id.digits %>
+            <% if user_number.size < 2 %>
+              <% icon_number = @user.id %>
+            <% else %>
+              <% icon_number = user_number[0] * user_number[1] %>
+            <% end %>
             <% if @user.birthday == nil %>
               <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明") %>
             <% elsif Time.now.year - @user.birthday.year < 25 %>
