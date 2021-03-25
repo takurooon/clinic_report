@@ -650,6 +650,10 @@
                         <p class="question mb-0 pt-1">受精個数(2PNのみ)<span class="small text-danger"><span class="small">&nbsp;※異常受精は除く</span></span></p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵時の胚(受精卵)の数</span></small>
                         <%= f.select :number_of_fertilized_eggs, Report::HASH_NUMBER_OF_FERTILIZED_EGGS.invert, { prompt: "" }, { class: "form-control py-0" }  %>
+                        <details class="pt-3">
+                          <summary class="text-muted small mb-2 fluffy-b">参考: 2PN・異常受精とは&nbsp;<%= image_tag"home/finger_mom_left.svg", width: "22px", class: "img-fluid", loading: "lazy" %></summary>
+                          <p class="mb-0 small">PN＝前核。正常受精は卵子由来と精子由来の2つの前核(PN)が確認できる。異常受精は2PN以外を指す（0PN、1PN、3PNなど）</p>
+                        </details>
                       </div>
 
                       <div class="form-group mt-0 mb-2 pt-5">
