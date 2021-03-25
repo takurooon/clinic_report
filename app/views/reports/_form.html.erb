@@ -61,12 +61,6 @@
                     <div class="alert alert-info rounded-lg fluffy-c d-flex">
                       <p class="small mb-0">投稿/更新 or 保存には以下「<span class="font-weight-bold">クリニック</span>」と「<span class="font-weight-bold">住まい</span>」の選択が最低限必要です。</p>
                     </div>
-                    <div class="bg-light rounded-lg p-2">
-                      <small>
-                        <p class="mb-1 small">「クリニック」は、まず都道府県を選択すると、市区町村の選択肢が出ますのでそちらを選ぶとクリニックの選択肢が表示されます。</p>
-                        <p class="mb-0 small">「治療当時の住まい」は、都道府県を選択すると市区町村の選択肢が表示されます。</p>
-                      </small>
-                    </div>
                   </div>
                   <div class="col-sm-6 mb-3">
                     <div class="form-group border border-info rounded-lg py-3 px-3 my-0">
@@ -127,6 +121,14 @@
                       </div>
                       <small id="poster-tip" class="form-text text-muted text-right mt-0 pt-1">
                         <%= f.check_box :city_at_the_time_status, {}, "hide", "show" %>&nbsp;非公開
+                      </small>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="bg-light rounded-lg p-2">
+                      <small>
+                        <p class="mb-1 small">「クリニック」は、まず都道府県を選択すると、市区町村の選択肢が出ますのでそちらを選ぶとクリニックの選択肢が表示されます。</p>
+                        <p class="mb-1 small">「治療当時の住まい」は、都道府県を選択すると市区町村の選択肢が表示されます。</p>
                       </small>
                     </div>
                   </div>
@@ -517,6 +519,17 @@
                     <div class="links pt-2 pl-2 text-danger">
                       <%= link_to_add_association "+ 追加", f, :special_inspections, class: "text-danger" %>
                     </div>
+                    <details class="mt-2 pt-3">
+                      <summary class="text-muted small mb-2 fluffy-b">ぜひテキストで補足を！&nbsp;<%= image_tag"home/finger_mom_left.svg", width: "22px", class: "img-fluid", loading: "lazy" %></summary>
+                      <div class="rounded-lg bg-light small p-3">
+                        <p class="mb-0">「自由記述」タブにあるブログ欄を活用し、検査内容の詳細・補足説明をぜひお願いします！<br>特に「その他」検査の情報はテキストで補足されると、より濃いレポコとなります。</p>
+                        <div class="row">
+                          <div class="col-10 offset-1 col-md-6 offset-md-3">
+                            <%= image_tag"howto/repoco_text.png", class: "img-fluid mt-3", loading: "lazy" %>
+                          </div>
+                        </div>
+                      </div>
+                    </details>
                   </div>
 
                   <div class="mt-5 d-flex justify-content-between">
