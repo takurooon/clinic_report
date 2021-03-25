@@ -1,4 +1,3 @@
-
 <div class="sticky-area px-0">
   <div class="sidebar_promote_item">
     <div class="sidebar_promote_card">
@@ -44,12 +43,18 @@
             <%= image_tag "home/heart.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
           </div>
           <div class="col-10 sidebar_promote_card_header_right">
-            <p>参考になるレポコをいつでも読み返せるストック機能を利用するには&nbsp;<%= link_to "ユーザー登録", new_user_registration_path %>&nbsp;または&nbsp;<%= link_to "ログイン", new_user_session_path %>&nbsp;が必要です。ユーザー登録はこちらから10秒ほどで簡単に登録できます <i data-feather="arrow-down" class="px-1" style="color: #646262"></i></p>
+            <p>参考になるレポコをいつでも読み返せるストック機能を利用するには&nbsp;
+            <% if $sigunup_switch == true %><%= link_to "ユーザー登録", new_user_registration_path %>&nbsp;または&nbsp;<% end %>
+            <%= link_to "ログイン", new_user_session_path %>&nbsp;が必要です。
+            <% if $sigunup_switch == true %>ユーザー登録はこちらから10秒ほどで簡単に登録できます<% end %>
+            <i data-feather="arrow-down" class="px-1" style="color: #646262"></i></p>
           </div>
         </div>
         <div class="sidebar_promote_card_body">
-          <%= link_to new_user_registration_path, { title: "ユーザー登録をする", style: "text-decoration: none;" } do %>
-            <button class="green_btn">新規登録</button>
+          <% if $sigunup_switch == true %>
+            <%= link_to new_user_registration_path, { title: "ユーザー登録をする", style: "text-decoration: none;" } do %>
+              <button class="green_btn">新規登録</button>
+            <% end %>
           <% end %>
           <%= link_to new_user_session_path, { title: "ログイン", style: "text-decoration: none;" } do %>
             <button class="outline_green_btn mt-3">登録済みの方はこちら</button>

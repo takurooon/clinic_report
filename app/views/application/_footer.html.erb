@@ -14,16 +14,20 @@
         治療データをいつでも振り返られることはもちろん、その貴重な情報はこれから治療に踏み出す方、そして今まさに治療中の方への光となります。<br><br>
         経験をカタチに、情報をエールに。<br><br>
         ぜひ、あなたの不妊治療体験をレポコとして残しませんか？&nbsp;&nbsp;
+        <% if $sigunup_switch == true %>
         <%= link_to new_report_path do %>▶︎ レポコを書く<i data-feather="external-link" class="pt-1 pb-2"></i><% end %>
+        <% end %>
       </div>
       <div class="d-block d-md-none col-md-10 offset-md-1 mt-4 mb-3 small text-muted">
         REPOCOは高度不妊治療で妊娠出産に至った方が「治療レポート(レポコ)」として足跡を残すことができるサービスです。<br><br>
         治療データをいつでも振り返られることはもちろん、その貴重な情報はこれから治療に踏み出す方、そして今まさに治療中の方への光となります。<br><br>
         経験をカタチに、情報をエールに。<br><br>
         あなたの不妊治療体験をレポコにして残しませんか？
+        <% if $sigunup_switch == true %>
         <div class="mt-2">
           <%= link_to new_report_path do %>▶︎ レポコを書く<i data-feather="external-link" class="pt-1 pb-2"></i><% end %>
         </div>
+        <% end %>
       </div>
       <div class="col-md-5 offset-md-1 col-lg-5 offset-lg-1 mt-5">
         <ul class="links list-inline">
