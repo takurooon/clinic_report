@@ -185,9 +185,20 @@
                         <% end %>
                       </div>
                     <% end %>
+                    <details class="mt-2 pt-2">
+                      <summary class="text-muted small mb-2 fluffy-b">ぜひテキストで補足を！&nbsp;<%= image_tag"home/finger_mom_left.svg", width: "22px", class: "img-fluid", loading: "lazy" %></summary>
+                      <div class="rounded-lg bg-light small p-3">
+                        <p class="mb-0">「自由記述」タブにあるブログ欄を活用し、仕事と治療の両立などの詳細・補足説明をぜひお願いします！</p>
+                        <div class="row">
+                          <div class="col-10 offset-1 col-md-6 offset-md-3">
+                            <%= image_tag"howto/repoco_text.png", class: "img-fluid mt-3", loading: "lazy" %>
+                          </div>
+                        </div>
+                      </div>
+                    </details>
                   </div>
 
-                  <div class="form-group mt-0 mb-2 pt-2">
+                  <div class="form-group mt-0 mb-2 pt-4">
                     <p class="question mb-0 py-2">何人目の不妊治療</p>
                     <%= f.collection_radio_buttons(:fertility_treatment_number, Report::HASH_FERTILITY_TREATMENT_NUMBER, :first, :last) do |b| %>
                       <div class="form-check pl-2">
@@ -372,15 +383,25 @@
 
                   <div class="form-group mt-3 mb-0 pt-0 fuiku-factor">
                     <p class="question mb-2 pt-2">不育原因&nbsp;&nbsp;<small class="text-muted"><span class="small">複数選択可</span></small></p>
-                      <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
-                        <div class="cp_ipcheck">
-                          <%= b.label do %>
-                            <%= b.check_box class: "option-input05 cb" %>
-                            <%= b.text %>
-                          <% end %>
+                    <%= f.collection_check_boxes(:fuiku_inspection_ids, FuikuInspection.all.name_yomigana, :id, :name) do |b| %>
+                      <div class="cp_ipcheck">
+                        <%= b.label do %>
+                          <%= b.check_box class: "option-input05 cb" %>
+                          <%= b.text %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                    <details class="mt-2 pt-3">
+                      <summary class="text-muted small mb-2 fluffy-b">ぜひテキストで補足を！&nbsp;<%= image_tag"home/finger_mom_left.svg", width: "22px", class: "img-fluid", loading: "lazy" %></summary>
+                      <div class="rounded-lg bg-light small p-3">
+                        <p class="mb-0">「自由記述」タブにあるブログ欄を活用し、不育原因や関連する検査の詳細・補足説明をぜひお願いします！</p>
+                        <div class="row">
+                          <div class="col-10 offset-1 col-md-6 offset-md-3">
+                            <%= image_tag"howto/repoco_text.png", class: "img-fluid mt-3", loading: "lazy" %>
+                          </div>
                         </div>
-                      <% end %>
-                      
+                      </div>
+                    </details>
                   </div>
 
                   <div class="mt-5 d-flex justify-content-between">
@@ -984,7 +1005,7 @@
 
                       <div class="form-group mt-0 mb-2 pt-5">
                         <p class="question mb-0 pt-2">移植個数</p>
-                        <small class="text-muted"><small><span class="select-current-status"></span>に至った周期に移植した胚の数</small></small>
+                        <small class="text-muted"><small><span class="select-current-status"></span>に至った周期に移植した胚の数。</small></small>
                         <div class="transfer_option_alert1 small">
                           <p class="mb-0">
                             <span class="transfer_option_dis1 small text-muted"></span>
@@ -1013,7 +1034,7 @@
 
                       <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植胚</p>
-                        <small class="text-muted"><small><span class="select-current-status"></span>に至った移植胚</small></small>
+                        <small class="text-muted"><small><span class="select-current-status"></span>に至った移植胚。</small></small>
                         <div class="number_of_eggs small">
                           <p class="mb-0">
                             <span class="small text-muted">凍結胚と新鮮胚の両方がある場合は「<span class="text-danger">凍結胚</span>」を選択ください。</span>
