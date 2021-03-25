@@ -57,9 +57,15 @@
               </ul>
               <section class="child-tab-content active rounded-bottom" id="tab_1_1">
                 <div class="scroll-box row">
-                  <div class="col-sm-12">
+                  <div class="col-sm-12 pb-2">
                     <div class="alert alert-info rounded-lg fluffy-c d-flex">
                       <p class="small mb-0">投稿/更新 or 保存には以下「<span class="font-weight-bold">クリニック</span>」と「<span class="font-weight-bold">住まい</span>」の選択が最低限必要です。</p>
+                    </div>
+                    <div class="bg-light rounded-lg p-2">
+                      <small>
+                        <p class="mb-1 small">「クリニック」は、まず都道府県を選択すると、市区町村の選択肢が出ますのでそちらを選ぶとクリニックの選択肢が表示されます。</p>
+                        <p class="mb-0 small">「治療当時の住まい」は、都道府県を選択すると市区町村の選択肢が表示されます。</p>
+                      </small>
                     </div>
                   </div>
                   <div class="col-sm-6 mb-3">
@@ -92,10 +98,10 @@
                       </div>
                       <div>
                         <% if report.clinic.blank? %>
-                          <%= f.select :clinic_id, {}, { prompt: "クリニック"}, { class: "form-control py-0" } %>
+                          <%= f.select :clinic_id, {}, { prompt: "クリニック（選択必須）"}, { class: "form-control py-0" } %>
                         <% else %>
                           <% clinics = Clinic.where(city_id: city_id) %>
-                          <%= collection_select :report, :clinic_id, clinics, :id, :name, {prompt: "クリニック"}, { class: "form-control py-0" } %>
+                          <%= collection_select :report, :clinic_id, clinics, :id, :name, {prompt: "クリニック（選択必須）"}, { class: "form-control py-0" } %>
                         <% end %>
                       </div>
                     </div>
@@ -104,19 +110,19 @@
                     <div class="form-group border border-info rounded-lg py-3 px-3 my-0">
                       <p class="question pt-0 mb-1">治療当時の住まい&nbsp;<sup class="text-success">●</sup>&nbsp;&nbsp;<span class="badge badge-danger">必須</span></p>
                       <div>
-                        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県" }, { class: "form-control py-0" }) %>
+                        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県（選択必須）" }, { class: "form-control py-0" }) %>
                       </div>
                       <small id="poster-tip" class="form-text text-muted text-right mt-0 pt-1">
                         <%= f.check_box :prefecture_at_the_time_status, {}, "hide", "show" %>&nbsp;非公開
                       </small>
                       <div>
                         <% if report.city.blank? %>
-                          <%= f.select :city_id, {}, { prompt: "市区町村" }, { class: "form-control py-0" } %>
+                          <%= f.select :city_id, {}, { prompt: "市区町村（選択必須）" }, { class: "form-control py-0" } %>
                         <% else %>
                           <% city = report.city_id %>
                           <% prefecture_id = report.prefecture_id %>
                           <% cities = City.where(prefecture_id: prefecture_id) %>
-                          <%= collection_select :report, :city_id, cities, :id, :name, { prompt: "市区町村", selected: city }, { class: "form-control py-0" } %>
+                          <%= collection_select :report, :city_id, cities, :id, :name, { prompt: "市区町村（選択必須）", selected: city }, { class: "form-control py-0" } %>
                         <% end %>
                       </div>
                       <small id="poster-tip" class="form-text text-muted text-right mt-0 pt-1">
