@@ -964,7 +964,7 @@ class Report < ApplicationRecord
   def self.make_select_haibanhoishoku_hormone_day
     hash = {}
     (1..100).each do |i|
-      hash["BT#{i}"] = i
+      hash["ET･BT#{i}"] = i
     end
     hash
   end

@@ -288,37 +288,37 @@
                           <% icon_number = user_number[0] * user_number[1] %>
                         <% end %>
                         <% if report.treatment_end_age == nil %>
-                          <div class="m-0 p-0 base_icon4">
+                          <div class="m-0 p-0 base_icon4 text-center">
                             <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image4_border", loading: "lazy", title: "不明") %>
                             <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon4", loading: "lazy", title: "不明") %>
                           </div>
                         <% elsif report.treatment_end_age < 25 %>
-                          <div class="m-0 p-0 base_icon4">
+                          <div class="m-0 p-0 base_icon4 text-center">
                             <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image4_border", loading: "lazy", title: "〜24歳") %>
                             <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon4", loading: "lazy", title: "〜24歳") %>
                           </div>
                         <% elsif report.treatment_end_age < 30 %>
-                          <div class="m-0 p-0 base_icon4">
+                          <div class="m-0 p-0 base_icon4 text-center">
                             <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image4_border", loading: "lazy", title: "25〜29歳") %>
                             <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon4", loading: "lazy", title: "25〜29歳") %>
                           </div>
                         <% elsif report.treatment_end_age < 35 %>
-                          <div class="m-0 p-0 base_icon4">
+                          <div class="m-0 p-0 base_icon4 text-center">
                             <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image4_border", loading: "lazy", title: "30〜34歳") %>
                             <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon4", loading: "lazy", title: "30〜34歳") %>
                           </div>
                         <% elsif report.treatment_end_age < 40 %>
-                          <div class="m-0 p-0 base_icon4">
+                          <div class="m-0 p-0 base_icon4 text-center">
                             <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image4_border", loading: "lazy", title: "35〜39歳") %>
                             <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon4", loading: "lazy", title: "35〜39歳") %>
                           </div>
                         <% elsif report.treatment_end_age < 45 %>
-                          <div class="m-0 p-0 base_icon4">
+                          <div class="m-0 p-0 base_icon4 text-center">
                             <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image4_border", loading: "lazy", title: "40〜44歳") %>
                             <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon4", loading: "lazy", title: "40〜44歳") %>
                           </div>
                         <% else %>
-                          <div class="m-0 p-0 base_icon4">
+                          <div class="m-0 p-0 base_icon4 text-center">
                             <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image4_border", loading: "lazy", title: "45歳〜") %>
                             <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon4", loading: "lazy", title: "45歳〜") %>
                           </div>

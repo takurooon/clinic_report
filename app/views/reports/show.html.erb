@@ -70,37 +70,37 @@
                   <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
                 <% else %>
                   <% if @report.treatment_end_age == nil %>
-                    <div class="m-0 p-0 base_icon">
+                    <div class="m-0 p-0 base_icon text-center">
                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                       <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                     </div>
                   <% elsif @report.treatment_end_age < 25 %>
-                    <div class="m-0 p-0 base_icon">
+                    <div class="m-0 p-0 base_icon text-center">
                       <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                       <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                     </div>
                   <% elsif @report.treatment_end_age < 30 %>
-                    <div class="m-0 p-0 base_icon">
+                    <div class="m-0 p-0 base_icon text-center">
                       <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                       <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                     </div>
                   <% elsif @report.treatment_end_age < 35 %>
-                    <div class="m-0 p-0 base_icon">
+                    <div class="m-0 p-0 base_icon text-center">
                       <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                       <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                     </div>
                   <% elsif @report.treatment_end_age < 40 %>
-                    <div class="m-0 p-0 base_icon">
+                    <div class="m-0 p-0 base_icon text-center">
                       <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                       <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                     </div>
                   <% elsif @report.treatment_end_age < 45 %>
-                    <div class="m-0 p-0 base_icon">
+                    <div class="m-0 p-0 base_icon text-center">
                       <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                       <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                     </div>
                   <% else %>
-                    <div class="m-0 p-0 base_icon">
+                    <div class="m-0 p-0 base_icon text-center">
                       <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                       <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                     </div>
@@ -187,37 +187,37 @@
                 <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
               <% else %>
                 <% if @report.treatment_end_age == nil %>
-                  <div class="m-0 p-0 base_icon">
+                  <div class="m-0 p-0 base_icon text-center">
                     <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image3_border", loading: "lazy", title: "不明") %>
                     <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                   </div>
                 <% elsif @report.treatment_end_age < 25 %>
-                  <div class="m-0 p-0 base_icon">
+                  <div class="m-0 p-0 base_icon text-center">
                     <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image3_border", loading: "lazy", title: "〜24歳") %>
                     <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                   </div>
                 <% elsif @report.treatment_end_age < 30 %>
-                  <div class="m-0 p-0 base_icon">
+                  <div class="m-0 p-0 base_icon text-center">
                     <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image3_border", loading: "lazy", title: "25〜29歳") %>
                     <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                   </div>
                 <% elsif @report.treatment_end_age < 35 %>
-                  <div class="m-0 p-0 base_icon">
+                  <div class="m-0 p-0 base_icon text-center">
                     <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image3_border", loading: "lazy", title: "30〜34歳") %>
                     <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                   </div>
                 <% elsif @report.treatment_end_age < 40 %>
-                  <div class="m-0 p-0 base_icon">
+                  <div class="m-0 p-0 base_icon text-center">
                     <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image3_border", loading: "lazy", title: "35〜39歳") %>
                     <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                   </div>
                 <% elsif @report.treatment_end_age < 45 %>
-                  <div class="m-0 p-0 base_icon">
+                  <div class="m-0 p-0 base_icon text-center">
                     <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image3_border", loading: "lazy", title: "40〜44歳") %>
                     <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                   </div>
                 <% else %>
-                  <div class="m-0 p-0 base_icon">
+                  <div class="m-0 p-0 base_icon text-center">
                     <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image3_border", loading: "lazy", title: "45歳〜") %>
                     <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                   </div>
@@ -1455,11 +1455,11 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if false %>
+
+                        <% if @report.day_of_sairans.present? %>
                           <tr>
                             <td class="result-left-column small text-center">採卵日とホルモン値</td>
                             <td class="pl-3">
-                            <% if @report.day_of_sairans.present? %>
                               <% @report.day_of_sairans.each do |day_of_sairan| %>
                                 <table class="table-borderless">
                                   <tr>
@@ -1516,92 +1516,88 @@
                                   </tr>
                                 </table>
                               <% end %>
-                            <% else %>
-                              <span class="text-muted small">未回答</span>
-                            <% end %>
                             </td>
                           </tr>
                         <% end %>
+
                       </table>
 
-                      <% if false %>
-                        <table class="table table-bordered p-0 mt-5" style="border-top:solid;">
-                          <% if @sairan_hormones.present? %>
+                      <table class="table table-bordered p-0 mt-5" style="border-top:solid;">
+                        <% if @sairan_hormones.present? %>
+                          <tr>
+                            <td class="text-center result-left-column" colspan="5"><h6 class="p-0 m-0">採卵前&nbsp;〜</h6></td>
+                          </tr>
+                          <tr class="test-muted small">
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              Day
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              E2
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              FSH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              LH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              P4
+                            </th>
+                          </tr>
+                          <% @sairan_hormones.in_groups_of(5) do |row| %>
                             <tr>
-                              <td class="text-center result-left-column" colspan="5"><h6 class="p-0 m-0">採卵前&nbsp;〜</h6></td>
-                            </tr>
-                            <tr class="test-muted small">
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                Day
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                E2
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                FSH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                LH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                P4
-                              </th>
-                            </tr>
-                            <% @sairan_hormones.in_groups_of(5) do |row| %>
-                              <tr>
-                                <% row.each_with_index do |hormone, i| %>
-                                  <td class="small text-center">
-                                    <% if hormone.nil? %>
-                                      <small class="text-muted">未回答</small>
-                                    <% elsif i == 0 || i % 5 == 0 %>
-                                      <span class="font-weight-bold">D<%= hormone %></span>
-                                    <% else %>
-                                      <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                    <% end %>
-                                  </td>
-                                <% end %>
-                              </tr>
-                            <% end %>
-                          <% end %>
-                          <% if @day_of_sairans.present? %>
-                            <tr>
-                              <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">採卵日</h6></td>
-                            </tr>
-                            <tr class="test-muted small">
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                Day
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                E2
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                FSH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                LH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                P4
-                              </th>
-                            </tr>
-                            <% @day_of_sairans.in_groups_of(5) do |row| %>
-                              <tr>
                               <% row.each_with_index do |hormone, i| %>
-                                <td class="small text-center">
+                                <td class="small text-center px-0 py-1">
                                   <% if hormone.nil? %>
                                     <small class="text-muted">未回答</small>
-                                  <% elsif i == 0 %>
+                                  <% elsif i == 0 || i % 5 == 0 %>
                                     <span class="font-weight-bold">D<%= hormone %></span>
                                   <% else %>
                                     <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
                                   <% end %>
                                 </td>
                               <% end %>
-                              </tr>
-                            <% end %>
+                            </tr>
                           <% end %>
-                        </table>
-                      <% end %>
+                        <% end %>
+                        <% if @day_of_sairans.present? %>
+                          <tr>
+                            <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">採卵日</h6></td>
+                          </tr>
+                          <tr class="test-muted small">
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              Day
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              E2
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              FSH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              LH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              P4
+                            </th>
+                          </tr>
+                          <% @day_of_sairans.in_groups_of(5) do |row| %>
+                            <tr>
+                            <% row.each_with_index do |hormone, i| %>
+                              <td class="small text-center px-0 py-1">
+                                <% if hormone.nil? %>
+                                  <small class="text-muted">未回答</small>
+                                <% elsif i == 0 %>
+                                  <span class="font-weight-bold">D<%= hormone %></span>
+                                <% else %>
+                                  <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                <% end %>
+                              </td>
+                            <% end %>
+                            </tr>
+                          <% end %>
+                        <% end %>
+                      </table>
 
                       <% if @sairan_hormones.present? || @day_of_sairans.present? %>
                         <div class="grapharea pt-3">
@@ -2088,169 +2084,251 @@
                             <% end %>
                           </td>
                         </tr>
-                        <% if false %>
-                          <% if @report.embryo_stage == 1 %>
-                            <tr>
-                              <td class="result-left-column small text-center">移植日とホルモン値&nbsp;<span class="small text-muted">(ET)</span></td>
-                              <td class="pl-3">
-                                <% @report.day_of_shokihaiishokus.each do |day_of_shokihaiishoku| %>
-                                  <table class="table-borderless">
-                                    <tr>
-                                      <td class="small text-muted text-right">ET&nbsp;:</td>
+
+                        <% if @report.embryo_stage == 1 %>
+                          <% day = "ET" %>
+                          <% embryo_stage = "初期胚" %>
+                        <% elsif @report.embryo_stage == 2 %>
+                          <% day = "BT" %>
+                          <% embryo_stage = "胚盤胞" %>
+                        <% else %>
+                          <% day = "D" %>
+                          <% embryo_stage = "" %>
+                        <% end %>
+
+                        <% if @report.day_of_haibanhoishokus.present? %>
+                          <tr>
+                            <td class="result-left-column small text-center">移植日とホルモン値</td>
+                            <td class="pl-3">
+                              <% @report.day_of_haibanhoishokus.each do |day_of_haibanhoishoku| %>
+                                <table class="table-borderless">
+                                  <tr>
+                                    <td class="small text-muted text-right"><%= day %>&nbsp;:</td>
+                                    <td class="font-weight-bold">
+                                      <%= day_of_haibanhoishoku.day %>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="small text-muted text-right">E2&nbsp;:</td>
+                                    <% if day_of_haibanhoishoku.e2 %>
                                       <td class="font-weight-bold">
-                                        <%= day_of_shokihaiishoku.day %>
+                                        <%= day_of_haibanhoishoku.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
                                       </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">E2&nbsp;:</td>
-                                      <% if day_of_shokihaiishoku.e2.blank? %>
-                                        <td class="font-weight-bold">
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% else %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_shokihaiishoku.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">FSH&nbsp;:</td>
-                                      <% if day_of_shokihaiishoku.fsh.blank? %>
-                                        <td class="font-weight-bold">
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% else %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_shokihaiishoku.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">LH&nbsp;:</td>
-                                      <% if day_of_shokihaiishoku.lh.blank? %>
-                                        <td class="font-weight-bold">
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% else %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_shokihaiishoku.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">P4&nbsp;:</td>
-                                      <% if day_of_shokihaiishoku.p4.blank? %>
-                                        <td class="font-weight-bold">
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% else %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_shokihaiishoku.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
-                                      <% if day_of_shokihaiishoku.endometrial_thickness.blank? %>
-                                        <td class="font-weight-bold">
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% else %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_shokihaiishoku.endometrial_thickness %>&nbsp;<span class="small text-muted"><small>mm</small></span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                  </table>
+                                    <% else %>
+                                      <td>
+                                        <span class="text-muted small">未回答</span>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                  <tr>
+                                    <td class="small text-muted text-right">FSH&nbsp;:</td>
+                                    <% if day_of_haibanhoishoku.fsh %>
+                                      <td class="font-weight-bold">
+                                        <%= day_of_haibanhoishoku.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
+                                      </td>
+                                    <% else %>
+                                      <td>
+                                        <span class="text-muted small">未回答</span>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                  <tr>
+                                    <td class="small text-muted text-right">LH&nbsp;:</td>
+                                    <% if day_of_haibanhoishoku.lh %>
+                                      <td class="font-weight-bold">
+                                        <%= day_of_haibanhoishoku.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
+                                      </td>
+                                    <% else %>
+                                      <td>
+                                        <span class="text-muted small">未回答</span>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                  <tr>
+                                    <td class="small text-muted text-right">P4&nbsp;:</td>
+                                    <% if day_of_haibanhoishoku.p4 %>
+                                      <td class="font-weight-bold">
+                                        <%= day_of_haibanhoishoku.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
+                                      </td>
+                                    <% else %>
+                                      <td>
+                                        <span class="text-muted small">未回答</span>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                  <tr>
+                                    <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
+                                    <% if day_of_haibanhoishoku.endometrial_thickness %>
+                                      <td class="font-weight-bold">
+                                        <%= day_of_haibanhoishoku.endometrial_thickness %>&nbsp;<span class="small text-muted"><small>mm</small></span>
+                                      </td>
+                                    <% else %>
+                                      <td>
+                                        <span class="text-muted small">未回答</span>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                </table>
+                              <% end %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </table>
+
+                      <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
+                        <% if @before_ishoku_hormones.present? %>
+                          <tr>
+                            <td class="text-center result-left-column" colspan="5" style="border-top:solid">
+                              <h6 class="p-0 m-0"><%= embryo_stage %>移植日前&nbsp;〜</h6>
+                            </td>
+                          </tr>
+                          <tr class="test-muted small">
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              Day
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              E2
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              FSH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              LH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              P4
+                            </th>
+                          </tr>
+                          <% @before_ishoku_hormones.in_groups_of(5) do |row| %>
+                            <tr>
+                            <% row.each_with_index do |hormone, i| %>
+                              <td class="small text-center px-0 py-1">
+                                <% if hormone.nil? %>
+                                  <small class="text-muted">未回答</small>
+                                <% elsif i == 0 || i % 5 == 0 %>
+                                  <span class="font-weight-bold">D<%= hormone %></span>
+                                <% else %>
+                                  <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
                                 <% end %>
                               </td>
+                            <% end %>
                             </tr>
-                          <% elsif @report.embryo_stage == 2 %>
+                          <% end %>
+                        <% end %>
+
+                        <% if @day_of_haibanhoishokus.present? %>
+                          <tr>
+                            <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0"><%= embryo_stage %>移植日</h6></td>
+                          </tr>
+                          <tr class="test-muted small">
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              Day
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              E2
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              FSH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              LH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:20%">
+                              P4
+                            </th>
+                          </tr>
+                          <% @day_of_haibanhoishokus.in_groups_of(5, false) do |row| %>
                             <tr>
-                              <td class="result-left-column small text-center">移植日とホルモン値&nbsp;<span class="small text-muted">(BT)</span></td>
-                              <td class="pl-3">
-                                <% @report.day_of_haibanhoishokus.each do |day_of_haibanhoishoku| %>
-                                  <table class="table-borderless">
-                                    <tr>
-                                      <td class="small text-muted text-right">BT&nbsp;:</td>
-                                      <td class="font-weight-bold">
-                                        <%= day_of_haibanhoishoku.day %>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">E2&nbsp;:</td>
-                                      <% if day_of_haibanhoishoku.e2 %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_haibanhoishoku.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
-                                        </td>
-                                      <% else %>
-                                        <td>
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">FSH&nbsp;:</td>
-                                      <% if day_of_haibanhoishoku.fsh %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_haibanhoishoku.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                        </td>
-                                      <% else %>
-                                        <td>
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">LH&nbsp;:</td>
-                                      <% if day_of_haibanhoishoku.lh %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_haibanhoishoku.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
-                                        </td>
-                                      <% else %>
-                                        <td>
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">P4&nbsp;:</td>
-                                      <% if day_of_haibanhoishoku.p4 %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_haibanhoishoku.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
-                                        </td>
-                                      <% else %>
-                                        <td>
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                    <tr>
-                                      <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
-                                      <% if day_of_haibanhoishoku.endometrial_thickness %>
-                                        <td class="font-weight-bold">
-                                          <%= day_of_haibanhoishoku.endometrial_thickness %>&nbsp;<span class="small text-muted"><small>mm</small></span>
-                                        </td>
-                                      <% else %>
-                                        <td>
-                                          <span class="text-muted small">未回答</span>
-                                        </td>
-                                      <% end %>
-                                    </tr>
-                                  </table>
-                                <% end %>
-                              </td>
+                              <% row.each_with_index do |hormone, i| %>
+                                <td class="small text-center px-0 py-1">
+                                  <% if hormone.nil? %>
+                                    <small class="text-muted">未回答</small>
+                                  <% elsif i == 0 %>
+                                    <span class="font-weight-bold">D<%= hormone %></span>
+                                  <% else %>
+                                    <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                  <% end %>
+                                </td>
+                              <% end %>
                             </tr>
-                          <% else %>
+                          <% end %>
+                          <tr style="background-color:rgba(152,152,152,0.2);">
+                            <td class="small text-center px-0 py-1">
+                              <span class="small">内膜</span>
+                            </td>
+                            <td class="small text-center px-0 py-1" colspan="4">
+                              <span class="font-weight-bold"><%= @haibanhoishokus_endometrial_thickness[0] %></span>&nbsp;<span class="small text-muted">mm</span>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </table>
+                      <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
+                        <% if @haibanhoishoku_hormones.present? %>
+                          <tr>
+                            <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0"><%= embryo_stage %>移植後</h6></td>
+                          </tr>
+                          <tr class="test-muted small">
+                            <th class="result-left-column small text-center px-0 py-1" style="width:15%">
+                              <%= day %>
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:17%">
+                              hCG
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:17%">
+                              E2
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:17%">
+                              FSH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:17%">
+                              LH
+                            </th>
+                            <th class="result-left-column small text-center px-0 py-1" style="width:17%">
+                              P4
+                            </th>
+                          </tr>
+                          <% @haibanhoishoku_hormones.in_groups_of(6) do |row| %>
                             <tr>
-                              <td class="result-left-column small text-center">移植日とホルモン値</td>
-                              <td class="pl-3">
-                                <span class="text-muted small">未回答</span>
-                              </td>
+                              <% row.each_with_index do |hormone, i| %>
+                                <td class="small text-center px-0 py-1">
+                                  <% if hormone.nil? %>
+                                    <small class="text-muted">未回答</small>
+                                  <% elsif i == 0 %>
+                                    <span class="font-weight-bold"><%= day %><%= hormone %></span>
+                                  <% else %>
+                                    <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
+                                  <% end %>
+                                </td>
+                              <% end %>
                             </tr>
                           <% end %>
                         <% end %>
                       </table>
+
+                      <% if @before_ishoku_hormones.present? || @day_of_haibanhoishokus.present? || @haibanhoishoku_hormones.present? %>
+                        <div class="grapharea pt-3">
+                          <div class="mb-0">
+                            <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
+                            <h6 class="float-right mb-0">P4<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(ng/ml)</small></span></h6>
+                          </div>
+                          <canvas id="ishokuE2P4"></canvas>
+                        </div>
+                        <div class="grapharea pt-3">
+                          <div class="mb-0">
+                            <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                            <h6 class="float-right mb-0">LH<br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
+                          </div>
+                          <canvas id="ishokuFshLh"></canvas>
+                        </div>
+                      <% end %>
+                      <% if @haibanhoishoku_hormones.present? %>
+                        <div class="grapharea pt-3 pt-3">
+                          <div class="mb-0">
+                            <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;hCG&nbsp;<span class="small text-muted"><small>(移植後)</small></span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
+                          </div>
+                          <canvas id="ishokuhcg"></canvas>
+                        </div>
+                      <% end %>
 
                       <h5 class="child-tab-title mt-4"><span class="marker-underline">通院回数</span></h5>
                       <table class="table p-0 mb-0">
@@ -2267,260 +2345,6 @@
                       </table>
                       <p class="small text-muted pt-1" style="line-height: 100%;"><span class="small">※移植周期開始から移植までの通院回数</span></p>
 
-                      <% if false %>
-                        <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
-                          <% if @before_ishoku_hormones.present? %>
-                            <tr>
-                              <td class="text-center result-left-column" colspan="5" style="border-top:solid">
-                                <% if @report.embryo_stage == 1 %>
-                                  <h6 class="p-0 m-0">初期胚移植日前&nbsp;〜</h6>
-                                <% elsif @report.embryo_stage == 2 %>
-                                  <h6 class="p-0 m-0">胚盤胞移植日前&nbsp;〜</h6>
-                                <% else %>
-                                  <h6 class="p-0 m-0">移植日前&nbsp;〜</h6>
-                                <% end %>
-                              </td>
-                            </tr>
-                            <tr class="test-muted small">
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                Day
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                E2
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                FSH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                LH
-                              </th>
-                              <th class="result-left-column small text-center text-center" style="width:20%">
-                                P4
-                              </th>
-                            </tr>
-                            <% @before_ishoku_hormones.in_groups_of(5) do |row| %>
-                              <tr>
-                              <% row.each_with_index do |hormone, i| %>
-                                <td class="small text-center">
-                                  <% if hormone.nil? %>
-                                    <small class="text-muted">未回答</small>
-                                  <% elsif i == 0 || i % 5 == 0 %>
-                                    <span class="font-weight-bold">D<%= hormone %></span>
-                                  <% else %>
-                                    <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                  <% end %>
-                                </td>
-                              <% end %>
-                              </tr>
-                            <% end %>
-                          <% end %>
-                          <% if @report.embryo_stage == 1 %>
-                            <% if @day_of_shokihaiishokus.present? %>
-                              <tr>
-                                <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">初期胚移植日</h6></td>
-                              </tr>
-                              <tr class="test-muted small">
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  Day
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  E2
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  FSH
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  LH
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  P4
-                                </th>
-                              </tr>
-                              <% @day_of_shokihaiishokus.in_groups_of(5) do |row| %>
-                                <tr>
-                                  <% row.each_with_index do |hormone, i| %>
-                                    <td class="small text-center">
-                                      <% if hormone.nil? %>
-                                        <small class="text-muted">未回答</small>
-                                      <% elsif i == 0 %>
-                                        <span class="font-weight-bold">D<%= hormone %></span>
-                                      <% else %>
-                                        <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                      <% end %>
-                                    </td>
-                                  <% end %>
-                                </tr>
-                              <% end %>
-                              <tr style="background-color:rgba(152,152,152,0.2);">
-                                <td class="small text-center">
-                                  <span class="small">内膜</span>
-                                </td>
-                                <td class="small text-center" colspan="5">
-                                  <span class="font-weight-bold"><%= @shokihaiishokus_endometrial_thickness[0] %></span>&nbsp;mm
-                                </td>
-                              </tr>
-                            <% end %>
-                          <% elsif @report.embryo_stage == 2 %>
-                            <% if @day_of_haibanhoishokus.present? %>
-                              <tr>
-                                <td class="text-center result-left-column" colspan="5" style="border-top:solid"><h6 class="p-0 m-0">胚盤胞移植日</h6></td>
-                              </tr>
-                              <tr class="test-muted small">
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  Day
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  E2
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  FSH
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  LH
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:20%">
-                                  P4
-                                </th>
-                              </tr>
-                              <% @day_of_haibanhoishokus.in_groups_of(5, false) do |row| %>
-                                <tr>
-                                  <% row.each_with_index do |hormone, i| %>
-                                    <td class="small text-center">
-                                      <% if hormone.nil? %>
-                                        <small class="text-muted">未回答</small>
-                                      <% elsif i == 0 %>
-                                        <span class="font-weight-bold">D<%= hormone %></span>
-                                      <% else %>
-                                        <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                      <% end %>
-                                    </td>
-                                  <% end %>
-                                </tr>
-                              <% end %>
-                              <tr style="background-color:rgba(152,152,152,0.2);">
-                                <td class="small text-center">
-                                  <span class="small">内膜</span>
-                                </td>
-                                <td class="small text-center" colspan="4">
-                                  <span class="font-weight-bold"><%= @haibanhoishokus_endometrial_thickness[0] %></span>&nbsp;<span class="small text-muted">mm</span>
-                                </td>
-                              </tr>
-                            <% end %>
-                          <% else %>
-                          <% end %>
-                        </table>
-                        <table class="table table-bordered p-0 mb-0" style="border-top:solid;">
-                          <% if @report.embryo_stage == 1 %>
-                            <% if @shokihaiishoku_hormones.present? %>
-                              <tr>
-                                <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">〜&nbsp;初期胚移植後</h6></td>
-                              </tr>
-                              <tr class="test-muted small">
-                                <th class="result-left-column small text-center text-center" style="width:15%">
-                                  ET
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  hCG
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  E2
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  FSH
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  LH
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  P4
-                                </th>
-                              </tr>
-                              <% @shokihaiishoku_hormones.in_groups_of(6) do |row| %>
-                                <tr>
-                                  <% row.each_with_index do |hormone, i| %>
-                                    <td class="small text-center">
-                                      <% if hormone.nil? %>
-                                        <small class="text-muted">未回答</small>
-                                      <% elsif i == 0 %>
-                                        <span class="font-weight-bold">ET<%= hormone %></span>
-                                      <% else %>
-                                        <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                      <% end %>
-                                    </td>
-                                  <% end %>
-                                </tr>
-                              <% end %>
-                            <% end %>
-                          <% elsif @report.embryo_stage == 2 %>
-                            <% if @haibanhoishoku_hormones.present? %>
-                              <tr>
-                                <td class="text-center result-left-column" colspan="6" style="border-top:solid"><h6 class="p-0 m-0">〜&nbsp;胚盤胞移植後</h6></td>
-                              </tr>
-                              <tr class="test-muted small">
-                                <th class="result-left-column small text-center text-center" style="width:15%">
-                                  BT
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  hCG
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  E2
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  FSH
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  LH
-                                </th>
-                                <th class="result-left-column small text-center text-center" style="width:17%">
-                                  P4
-                                </th>
-                              </tr>
-                              <% @haibanhoishoku_hormones.in_groups_of(6) do |row| %>
-                                <tr>
-                                  <% row.each_with_index do |hormone, i| %>
-                                    <td class="small text-center">
-                                      <% if hormone.nil? %>
-                                        <small class="text-muted">未回答</small>
-                                      <% elsif i == 0 %>
-                                        <span class="font-weight-bold">BT<%= hormone %></span>
-                                      <% else %>
-                                        <span class="font-weight-bold"><%= hormone.to_s(:delimited) %></span>
-                                      <% end %>
-                                    </td>
-                                  <% end %>
-                                </tr>
-                              <% end %>
-                            <% end %>
-                          <% else %>
-                          <% end %>
-                        </table>
-
-                        <% if @before_ishoku_hormones.present? || @day_of_shokihaiishokus.present? || @day_of_haibanhoishokus.present? || @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
-                          <div class="grapharea pt-3">
-                            <div class="mb-0">
-                              <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;E2<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(pg/ml)</small></span></h6>
-                              <h6 class="float-right mb-0">P4<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(ng/ml)</small></span></h6>
-                            </div>
-                            <canvas id="ishokuE2P4"></canvas>
-                          </div>
-                          <div class="grapharea pt-3">
-                            <div class="mb-0">
-                              <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;FSH<br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
-                              <h6 class="float-right mb-0">LH<br><span class="small text-muted"><small>(mIU/ml)</small></span></h6>
-                            </div>
-                            <canvas id="ishokuFshLh"></canvas>
-                          </div>
-                        <% end %>
-                        <% if @shokihaiishoku_hormones.present? || @haibanhoishoku_hormones.present? %>
-                          <div class="grapharea pt-3 pt-3">
-                            <div class="mb-0">
-                              <h6 class="float-left mb-0">&nbsp;&nbsp;&nbsp;hCG&nbsp;<span class="small text-muted"><small>(移植後)</small></span><br><span class="small text-muted"><small>&nbsp;&nbsp;&nbsp;(mIU/ml)</small></span></h6>
-                            </div>
-                            <canvas id="ishokuhcg"></canvas>
-                          </div>
-                        <% end %>
-                      <% end %>
                       <div class="mt-3 pr-1 d-flex justify-content-end">
                         <a class="btn minBtnNext rounded-lg pr-2 shadow">過去の移植周期<i data-feather="chevrons-right" class="text-muted pb-1"></i></a>
                       </div>
@@ -3559,37 +3383,37 @@
                                     <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
                                   <% else %>
                                     <% if @report.treatment_end_age == nil %>
-                                      <div class="m-0 p-0 base_icon">
+                                      <div class="m-0 p-0 base_icon text-center">
                                         <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                                         <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                                       </div>
                                     <% elsif @report.treatment_end_age < 25 %>
-                                      <div class="m-0 p-0 base_icon">
+                                      <div class="m-0 p-0 base_icon text-center">
                                         <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                                         <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                                       </div>
                                     <% elsif @report.treatment_end_age < 30 %>
-                                      <div class="m-0 p-0 base_icon">
+                                      <div class="m-0 p-0 base_icon text-center">
                                         <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                                         <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                                       </div>
                                     <% elsif @report.treatment_end_age < 35 %>
-                                      <div class="m-0 p-0 base_icon">
+                                      <div class="m-0 p-0 base_icon text-center">
                                         <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                                         <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                                       </div>
                                     <% elsif @report.treatment_end_age < 40 %>
-                                      <div class="m-0 p-0 base_icon">
+                                      <div class="m-0 p-0 base_icon text-center">
                                         <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                                         <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                                       </div>
                                     <% elsif @report.treatment_end_age < 45 %>
-                                      <div class="m-0 p-0 base_icon">
+                                      <div class="m-0 p-0 base_icon text-center">
                                         <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                                         <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                                       </div>
                                     <% else %>
-                                      <div class="m-0 p-0 base_icon">
+                                      <div class="m-0 p-0 base_icon text-center">
                                         <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                                         <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                                       </div>
@@ -3965,46 +3789,69 @@
                   </tr>
 
                   <% if false %>
-                  <tr>
-                    <td class="result-left-column small text-center" style="width:30%">採卵個数あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
-                    <td class="pl-3" style="width:70%">
-                      <% if @report.current_state.present? && @report.current_state <= 4 %>
-                        <% if @report.current_state == 1 || @report.current_state == 3 %>
-                          <% if @report.choran.present? && @report.choran <= 50 %>
-                            <% ninshinritsu_sairan = ( 1 / ( @report.number_of_eggs_collected.to_f - @report.choran ) ) * 100 %>
-                            <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)&nbsp;</span></small>
-                          <% else %>
-                            <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
-                            <% if @report.total_number_of_eggs_transplanted.present? %>
-                              <% if @report.total_number_of_eggs_transplanted == 1 %>
-                                <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
+                    <tr>
+                      <td class="result-left-column small text-center" style="width:30%">採卵個数あたりの妊娠率<i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
+                      <td class="pl-3" style="width:70%">
+                        <% if @report.current_state.present? && @report.current_state <= 4 %>
+                          <% if @report.current_state == 1 || @report.current_state == 3 %>
+                            <% if @report.choran.present? && @report.choran <= 50 %>
+                              <% ninshinritsu_sairan = ( 1 / ( @report.number_of_eggs_collected.to_f - @report.choran ) ) * 100 %>
+                              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan) %>%<small><br><span class="small text-muted">=&nbsp;1個&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)&nbsp;</span></small>
+                            <% else %>
+                              <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
+                              <% if @report.total_number_of_eggs_transplanted.present? %>
+                                <% if @report.total_number_of_eggs_transplanted == 1 %>
+                                  <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
+                                <% else %>
+                                  単胎&nbsp;÷&nbsp;
+                                <% end %>
                               <% else %>
                                 単胎&nbsp;÷&nbsp;
                               <% end %>
-                            <% else %>
-                              単胎&nbsp;÷&nbsp;
-                            <% end %>
-                            <% if @report.number_of_eggs_collected.present? %>
-                              (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
-                            <% else %>  
-                              (&nbsp;採卵数&nbsp;未回答
-                            <% end %>
-                            <% if @report.choran.present?%>
-                              <% if @report.choran <= 50 %>
-                                &nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)
-                              <% else %>
-                                &nbsp;-&nbsp;貯卵数&nbsp;50個以上&nbsp;)
+                              <% if @report.number_of_eggs_collected.present? %>
+                                (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
+                              <% else %>  
+                                (&nbsp;採卵数&nbsp;未回答
                               <% end %>
-                            <% else %>
-                              &nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
+                              <% if @report.choran.present?%>
+                                <% if @report.choran <= 50 %>
+                                  &nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)
+                                <% else %>
+                                  &nbsp;-&nbsp;貯卵数&nbsp;50個以上&nbsp;)
+                                <% end %>
+                              <% else %>
+                                &nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
+                              <% end %>
+                              </span></span>
                             <% end %>
-                            </span></span>
-                          <% end %>
-                        <% elsif @report.current_state == 2 || @report.current_state == 4 %>
-                          <% if @report.total_number_of_eggs_transplanted == 2 || @report.total_number_of_eggs_transplanted == 3 || @report.total_number_of_eggs_transplanted == 4 %>
-                            <% if @report.choran.present? && @report.choran <= 50 %>
-                              <% ninshinritsu_sairan2 = ( @report.total_number_of_eggs_transplanted.to_f / ( @report.number_of_eggs_collected.to_f - @report.choran ) ) * 100 %>
-                              <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan2) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)&nbsp;</span></small>
+                          <% elsif @report.current_state == 2 || @report.current_state == 4 %>
+                            <% if @report.total_number_of_eggs_transplanted == 2 || @report.total_number_of_eggs_transplanted == 3 || @report.total_number_of_eggs_transplanted == 4 %>
+                              <% if @report.choran.present? && @report.choran <= 50 %>
+                                <% ninshinritsu_sairan2 = ( @report.total_number_of_eggs_transplanted.to_f / ( @report.number_of_eggs_collected.to_f - @report.choran ) ) * 100 %>
+                                <span class="result-text"><%= sprintf("%.2f", ninshinritsu_sairan2) %>%<small><br><span class="small text-muted">=&nbsp;<%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;(&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>&nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)&nbsp;</span></small>
+                              <% else %>
+                                <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
+                                <% if @report.total_number_of_eggs_transplanted.present? %>
+                                  <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
+                                <% else %>
+                                  移植個数&nbsp;未回答&nbsp;÷&nbsp;
+                                <% end %>
+                                <% if @report.number_of_eggs_collected.present? %>
+                                  (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
+                                <% else %>  
+                                  (&nbsp;採卵数&nbsp;未回答
+                                <% end %>
+                                <% if @report.choran.present?%>
+                                  <% if @report.choran <= 50 %>
+                                    &nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)
+                                  <% else %>
+                                    &nbsp;-&nbsp;貯卵数&nbsp;50個以上&nbsp;)
+                                  <% end %>
+                                <% else %>
+                                  &nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
+                                <% end %>
+                                </span></span>
+                              <% end %>
                             <% else %>
                               <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
                               <% if @report.total_number_of_eggs_transplanted.present? %>
@@ -4028,42 +3875,19 @@
                               <% end %>
                               </span></span>
                             <% end %>
-                          <% else %>
-                            <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
-                            <% if @report.total_number_of_eggs_transplanted.present? %>
-                              <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
-                            <% else %>
-                              移植個数&nbsp;未回答&nbsp;÷&nbsp;
-                            <% end %>
-                            <% if @report.number_of_eggs_collected.present? %>
-                              (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
-                            <% else %>  
-                              (&nbsp;採卵数&nbsp;未回答
-                            <% end %>
-                            <% if @report.choran.present?%>
-                              <% if @report.choran <= 50 %>
-                                &nbsp;-&nbsp;貯卵数&nbsp;<%= @report.str_choran %>&nbsp;)
-                              <% else %>
-                                &nbsp;-&nbsp;貯卵数&nbsp;50個以上&nbsp;)
-                              <% end %>
-                            <% else %>
-                              &nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
-                            <% end %>
-                            </span></span>
                           <% end %>
-                        <% end %>
-                      <% else %>
-                        <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
-                        <% if @report.total_number_of_eggs_transplanted.present? %>
-                          <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
                         <% else %>
-                          ステータス or 移植個数&nbsp;未回答&nbsp;÷&nbsp;
+                          <span class="text-muted small">算出不可<br><span class="small text-muted">&nbsp;
+                          <% if @report.total_number_of_eggs_transplanted.present? %>
+                            <%= @report.str_total_number_of_eggs_transplanted %>&nbsp;÷&nbsp;
+                          <% else %>
+                            ステータス or 移植個数&nbsp;未回答&nbsp;÷&nbsp;
+                          <% end %>
+                            (&nbsp;採卵数&nbsp;未回答&nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
+                          </span></span>
                         <% end %>
-                          (&nbsp;採卵数&nbsp;未回答&nbsp;-&nbsp;貯卵数&nbsp;未回答&nbsp;)
-                        </span></span>
-                      <% end %>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
                   <% end %>
 
                 </table>
@@ -4235,38 +4059,38 @@
                                     <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
                                   <% end %>
                                   <% if @report.previous.treatment_end_age == nil %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 25 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 30 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 35 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 40 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 45 %>
                                     <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                                     </div>
                                   <% else %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                                     </div>
@@ -4294,38 +4118,38 @@
                                     <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
                                   <% end %>
                                   <% if @report.previous.treatment_end_age == nil %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 25 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 30 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 35 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 40 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 45 %>
                                     <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                                     </div>
                                   <% else %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                                     </div>
@@ -4374,37 +4198,37 @@
                                     <% next_icon_number = next_user_number[0] * next_user_number[1] %>
                                   <% end %>
                                   <% if @report.next.treatment_end_age == nil %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 25 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 30 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 35 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 40 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 45 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                                     </div>
                                   <% else %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                                     </div>
@@ -4432,37 +4256,37 @@
                                     <% next_icon_number = next_user_number[0] * next_user_number[1] %>
                                   <% end %>
                                   <% if @report.next.treatment_end_age == nil %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 25 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 30 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 35 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 40 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 45 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                                     </div>
                                   <% else %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                                     </div>
@@ -4519,38 +4343,38 @@
                                     <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
                                   <% end %>
                                   <% if @report.previous.treatment_end_age == nil %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 25 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 30 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 35 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 40 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 45 %>
                                     <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                                     </div>
                                   <% else %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                                     </div>
@@ -4578,38 +4402,38 @@
                                     <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
                                   <% end %>
                                   <% if @report.previous.treatment_end_age == nil %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 25 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 30 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 35 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 40 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation35_39", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                                     </div>
                                   <% elsif @report.previous.treatment_end_age < 45 %>
                                     <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                                     </div>
                                   <% else %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                                       <%= image_tag("icon/#{previous_icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                                     </div>
@@ -4656,37 +4480,37 @@
                                     <% next_icon_number = next_user_number[0] * next_user_number[1] %>
                                   <% end %>
                                   <% if @report.next.treatment_end_age == nil %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 25 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 30 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 35 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 40 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 45 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                                     </div>
                                   <% else %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                                     </div>
@@ -4714,37 +4538,37 @@
                                     <% next_icon_number = next_user_number[0] * next_user_number[1] %>
                                   <% end %>
                                   <% if @report.next.treatment_end_age == nil %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 25 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 30 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 35 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 40 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
                                     </div>
                                   <% elsif @report.next.treatment_end_age < 45 %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
                                     </div>
                                   <% else %>
-                                    <div class="m-0 p-0 base_icon">
+                                    <div class="m-0 p-0 base_icon text-center">
                                       <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
                                       <%= image_tag("icon/#{next_icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
                                     </div>

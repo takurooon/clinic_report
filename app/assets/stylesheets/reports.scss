@@ -399,6 +399,66 @@ i .fa-edit {
 	transition: all 0.5s;
 }
 
+// 続きを読む2
+.cp_box2 *, .cp_box2 *:before, .cp_box2 *:after {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.cp_box2 {
+	position: relative;
+}
+.cp_box2 label {
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	width: 100%;
+	height: 300px; /* グラデーションの高さ */
+	margin-bottom: 0;
+	cursor: pointer;
+	text-align: center;
+	/* 以下グラデーションは背景を自身のサイトに合わせて設定してください */
+	background: linear-gradient(to bottom, rgba(250, 252, 252, 0) 0%, rgba(250, 252, 252, 0.99) 95%);
+}
+.cp_box2 input:checked + label {
+	background: inherit; /* 開いた時にグラデーションを消す */
+}
+.cp_box2 label:after {
+	line-height: 2.5rem;
+	position: absolute;
+	z-index: 2;
+	bottom: 20px;
+	left: 50%;
+	width: 16rem;
+	font-family: FontAwesome 5 Free;
+	content: '【開く】 回答する';
+	transform: translate(-50%, 0);
+	letter-spacing: 0.05em;
+	color: #1A2438;
+	border: solid thin;
+	border-radius: 20px;
+	// background-color: rgba(232, 254, 252, 0.8);
+	background-color: rgba(151, 251, 243, 1);
+}
+.cp_box2 input {
+	display: none;
+}
+.cp_box2 .cp_container2 {
+	overflow: hidden;
+	height: 300px; /* 開く前に見えている部分の高さ */
+	transition: all 0.5s;
+}
+.cp_box2 input:checked + label {
+	/* display: none ; 閉じるボタンを消す場合解放 */
+}
+.cp_box2 input:checked + label:after {
+	font-family: FontAwesome;
+	content: '閉じる';
+}
+.cp_box2 input:checked ~ .cp_container2 {
+	height: auto;
+	padding-bottom: 80px; /* 閉じるボタンのbottomからの位置 */
+	transition: all 0.5s;
+}
 
 // 採卵ホルモン数値選択テーブルのカラム幅(day,e2...)
 .day-column {
@@ -1157,7 +1217,7 @@ i .fa-edit {
 	display: block;
 }
 .acd-content-multiple2{
-	background: #F7F9F9;
+	background: #FFFFFF;
 	border: 1px solid #2ECFC0;
 	border-radius: 0 0 5px 5px;
 	height: 0;
@@ -1181,19 +1241,21 @@ i .fa-edit {
 	background: #2ECFC0;
 	color: #fff;
 	display: block;
+	height: 7.5rem;
 	margin-bottom: 1px;
 	padding: 10px;
 	position: relative;
 	border-radius: 5px 5px 0 0;
+	line-height: 1.2rem;
 }
 .acd-label3:after {
 	background: #2ECFC0;
 	box-sizing: border-box;
-	content: '\f0fe';
-	color: rgba(255, 75, 62, 0.9);
-	display: block;
-	font-family: "Font Awesome 5 Free";
-	height: auto;
+	// content: '\f0fe';
+	// color: rgba(255, 75, 62, 0.9);
+	// display: block;
+	// font-family: "Font Awesome 5 Free";
+	// height: auto;
 	padding: 10px 0 10px 10px;
 	position: absolute;
 	left: 0;
@@ -1201,28 +1263,22 @@ i .fa-edit {
 	border-radius: 5px 0 0 0;
 }
 .acd-content3 {
-	background: rgba(46,207,192, 0.1);
+	background: rgba(167, 255, 246, 0.1);
 	border-bottom: 0.5px solid #2ECFC0;
 	border-left: 0.5px solid #2ECFC0;
 	border-right: 0.5px solid #2ECFC0;
 	border-radius: 0 0 5px 5px;
-	display: block;
+	display: none;
 	height: 0;
 	opacity: 0;
 	padding: 0 10px;
 	transition: .5s;
-	visibility: hidden;
-}
-
-.acd-check3:checked + .acd-label3:after {
-	content: '\f146';
-	color:#ffffff;
 }
 .acd-check3:checked + .acd-label3 + .acd-content3 {
 	height: auto;
 	opacity: 1;
 	padding: 10px;
-	visibility: visible;
+	display: block;
 }
 
 // 投稿/更新/保存エリアとボタン
@@ -1272,6 +1328,9 @@ i .fa-edit {
 
 .branchbox {
 	min-height: 2rem;
+}
+.branchbox-s {
+	height: 1rem;
 }
 
 
@@ -1497,4 +1556,12 @@ i .fa-edit {
 }
 .score_icon {
 	margin: 0 0 0 13.3px;
+}
+
+// ホルモン値入力欄
+.hormon-column {
+	background: #ffffff;
+}
+.day-column-sairan_hormone, .day-column-day-of-sairan, .day-column-before-ishoku-hormone, .day-column-ishoku, .day-column-et-bt {
+	background: rgba(255, 80, 80, 0.5);
 }
