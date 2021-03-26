@@ -123,6 +123,146 @@ class ReportsController < ApplicationController
     end
     @average_score = ((@report.doctor_quality + @report.staff_quality + @report.impression_of_technology + @report.impression_of_price + @report.average_waiting_time2 + @report.comfort_of_space)/6.to_f).round(1)
     
+    # ホルモン値
+    day_of_sairans = @report.day_of_sairans
+    @day_of_sairans = day_of_sairans.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
+    sairan_days = @report.day_of_sairans.pluck(:day)
+    if sairan_days
+      sairan_day = sairan_days.map do |sairan_day|
+        "D" + sairan_day.to_s + "(採卵日)"
+      end
+    else
+      sairan_day = "採卵日:未回答"
+    end
+    sairan_hormones = @report.sairan_hormones.order(day: "ASC")
+    @sairan_hormones = sairan_hormones.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
+
+    sairan_hormones_days = sairan_hormones.map { |d| d[:day] }
+    sairan_hormones_day = sairan_hormones_days.map do |d|
+      "D" + d.to_s
+    end
+    sairan_hormones_day_sairan_day = sairan_hormones_day << sairan_day
+    gon.sairan_hormones_day = sairan_hormones_day_sairan_day.flatten
+
+    day_of_sairan_e2 = day_of_sairans.map { |de2| de2[:e2] }
+    sairan_hormones_e2 = sairan_hormones.map { |e| e[:e2] }
+    sairan_hormones_e2_de2 = sairan_hormones_e2 << day_of_sairan_e2
+    gon.sairan_hormones_e2 = sairan_hormones_e2_de2.flatten
+
+    day_of_sairan_fsh = day_of_sairans.map { |dfsh| dfsh[:fsh] }
+    sairan_hormones_fsh = sairan_hormones.map { |f| f[:fsh] }
+    sairan_hormones_fsh_dfsh = sairan_hormones_fsh << day_of_sairan_fsh
+    gon.sairan_hormones_fsh = sairan_hormones_fsh_dfsh.flatten
+
+    day_of_sairan_lh = day_of_sairans.map { |dlh| dlh[:lh] }
+    sairan_hormones_lh = sairan_hormones.map { |l| l[:lh] }
+    sairan_hormones_lh_dlh = sairan_hormones_lh << day_of_sairan_lh
+    gon.sairan_hormones_lh = sairan_hormones_lh_dlh.flatten
+
+    day_of_sairan_p4 = day_of_sairans.map { |dp4| dp4[:p4] }
+    sairan_hormones_p4 = sairan_hormones.map { |p| p[:p4] }
+    sairan_hormones_p4_dp4 = sairan_hormones_p4 << day_of_sairan_p4
+    gon.sairan_hormones_p4 = sairan_hormones_p4_dp4.flatten
+
+    before_ishoku_hormones = @report.before_ishoku_hormones.order(day: "ASC")
+    @before_ishoku_hormones = before_ishoku_hormones.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
+    before_ishoku_hormones_days = before_ishoku_hormones.map { |bd| bd[:day] }
+    before_ishoku_hormones_day = before_ishoku_hormones_days.map do |bd|
+      "D" + bd.to_s
+    end
+    before_ishoku_hormones_e2 = before_ishoku_hormones.map { |be2| be2[:e2] }
+    before_ishoku_hormones_fsh = before_ishoku_hormones.map { |bfsh| bfsh[:fsh] }
+    before_ishoku_hormones_lh = before_ishoku_hormones.map { |blh| blh[:lh] }
+    before_ishoku_hormones_p4 = before_ishoku_hormones.map { |bp4| bp4[:p4] }
+
+    day_of_shokihaiishokus = @report.day_of_shokihaiishokus
+    @day_of_shokihaiishokus = day_of_shokihaiishokus.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
+    @shokihaiishokus_endometrial_thickness = day_of_shokihaiishokus.pluck(:endometrial_thickness)
+    day_of_shokihaiishokus_day = day_of_shokihaiishokus.pluck(:day)
+    day_of_shokihaiishoku_day = day_of_shokihaiishokus_day.map do |day_of_shokihaiishoku_day|
+      "Day" + day_of_shokihaiishoku_day.to_s + "(移植日)"
+    end
+    day_of_shokihaiishokus_e2 = day_of_shokihaiishokus.pluck(:e2)
+    day_of_shokihaiishokus_fsh = day_of_shokihaiishokus.pluck(:fsh)
+    day_of_shokihaiishokus_lh = day_of_shokihaiishokus.pluck(:lh)
+    day_of_shokihaiishokus_p4 = day_of_shokihaiishokus.pluck(:p4)
+
+    day_of_haibanhoishokus = @report.day_of_haibanhoishokus
+    @day_of_haibanhoishokus = day_of_haibanhoishokus.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
+    @haibanhoishokus_endometrial_thickness = day_of_haibanhoishokus.pluck(:endometrial_thickness)
+    day_of_haibanhoishokus_day = day_of_haibanhoishokus.pluck(:day)
+    day_of_haibanhoishoku_day = day_of_haibanhoishokus_day.map do |day_of_haibanhoishoku_day|
+      "Day" + day_of_haibanhoishoku_day.to_s + "(移植日)"
+    end
+    day_of_haibanhoishokus_e2 = day_of_haibanhoishokus.pluck(:e2)
+    day_of_haibanhoishokus_fsh = day_of_haibanhoishokus.pluck(:fsh)
+    day_of_haibanhoishokus_lh = day_of_haibanhoishokus.pluck(:lh)
+    day_of_haibanhoishokus_p4 = day_of_haibanhoishokus.pluck(:p4)
+
+    if @report.embryo_stage == 1
+      shokihaiishoku_hormones = @report.shokihaiishoku_hormones.order(et: "ASC")
+      @shokihaiishoku_hormones = shokihaiishoku_hormones.pluck(:et, :hcg, :e2, :fsh, :lh, :p4).flatten!
+      shokihaiishoku_hormones_ets = shokihaiishoku_hormones.map { |et| et[:et] }
+      shokihaiishoku_hormones_et = shokihaiishoku_hormones_ets.map do |d|
+        "ET" + d.to_s
+      end
+      gon.ishoku_hormones_et_bt = shokihaiishoku_hormones_et
+      labels = before_ishoku_hormones_day << day_of_shokihaiishoku_day << shokihaiishoku_hormones_et
+      gon.labels = labels.flatten
+
+      ishoku_hormones_e2 = shokihaiishoku_hormones.map { |e| e[:e2] }
+      ishoku_hormones_bihe2 = before_ishoku_hormones_e2 << day_of_shokihaiishokus_e2 << ishoku_hormones_e2
+      gon.ishoku_hormones_e2 = ishoku_hormones_bihe2.flatten
+
+      ishoku_hormones_fsh = shokihaiishoku_hormones.map { |f| f[:fsh] }
+      ishoku_hormones_bihfsh = before_ishoku_hormones_fsh << day_of_shokihaiishokus_fsh << ishoku_hormones_fsh
+      gon.ishoku_hormones_fsh = ishoku_hormones_bihfsh.flatten
+
+      ishoku_hormones_lh = shokihaiishoku_hormones.map { |l| l[:lh] }
+      ishoku_hormones_bihlh = before_ishoku_hormones_lh << day_of_shokihaiishokus_lh << ishoku_hormones_lh
+      gon.ishoku_hormones_lh = ishoku_hormones_bihlh.flatten
+
+      ishoku_hormones_p4 = shokihaiishoku_hormones.map { |p| p[:p4] }
+      ishoku_hormones_bihp4 = before_ishoku_hormones_p4 << day_of_shokihaiishokus_p4 << ishoku_hormones_p4
+      gon.ishoku_hormones_p4 = ishoku_hormones_bihp4.flatten
+
+      gon.ishoku_hormones_hcg = shokihaiishoku_hormones.map { |h| h[:hcg] }
+
+    elsif @report.embryo_stage == 2
+      haibanhoishoku_hormones = @report.haibanhoishoku_hormones.order(bt: "ASC")
+      @haibanhoishoku_hormones = haibanhoishoku_hormones.pluck(:bt, :hcg, :e2, :fsh, :lh, :p4).flatten!
+      haibanhoishoku_hormones_bts = haibanhoishoku_hormones.map { |b| b[:bt] }
+      haibanhoishoku_hormones_bt = haibanhoishoku_hormones_bts.map do |d|
+        "BT" + d.to_s
+      end
+      gon.ishoku_hormones_et_bt = haibanhoishoku_hormones_bt
+      labels = before_ishoku_hormones_day << day_of_haibanhoishoku_day << haibanhoishoku_hormones_bt
+      gon.labels = labels.flatten
+
+      ishoku_hormones_e2 = haibanhoishoku_hormones.map { |e| e[:e2] }
+      ishoku_hormones_bihe2 = before_ishoku_hormones_e2 << day_of_haibanhoishokus_e2 << ishoku_hormones_e2
+      gon.ishoku_hormones_e2 = ishoku_hormones_bihe2.flatten
+
+      ishoku_hormones_fsh = haibanhoishoku_hormones.map { |f| f[:fsh] }
+      ishoku_hormones_bihfsh = before_ishoku_hormones_fsh << day_of_haibanhoishokus_fsh << ishoku_hormones_fsh
+      gon.ishoku_hormones_fsh = ishoku_hormones_bihfsh.flatten
+
+      ishoku_hormones_lh = haibanhoishoku_hormones.map { |l| l[:lh] }
+      ishoku_hormones_bihlh = before_ishoku_hormones_lh << day_of_haibanhoishokus_lh << ishoku_hormones_lh
+      gon.ishoku_hormones_lh = ishoku_hormones_bihlh.flatten
+
+      ishoku_hormones_p4 = haibanhoishoku_hormones.map { |p| p[:p4] }
+      ishoku_hormones_bihp4 = before_ishoku_hormones_p4 << day_of_haibanhoishokus_p4 << ishoku_hormones_p4
+      gon.ishoku_hormones_p4 = ishoku_hormones_bihp4.flatten
+
+      gon.ishoku_hormones_hcg = haibanhoishoku_hormones.map { |h| h[:hcg] }
+    else
+      gon.labels = before_ishoku_hormones_day
+      gon.ishoku_hormones_e2 = before_ishoku_hormones_e2
+      gon.ishoku_hormones_fsh = before_ishoku_hormones_fsh
+      gon.ishoku_hormones_lh = before_ishoku_hormones_lh
+      gon.ishoku_hormones_p4 = before_ishoku_hormones_p4
+    end
   end
 
   def new
@@ -131,6 +271,16 @@ class ReportsController < ApplicationController
     @report.special_inspections.build
     @report.unsuccessful_sairan_cycles.build
     @report.unsuccessful_ishoku_cycles.build
+    
+    # ホルモン値
+    @report.sairan_hormones.build
+    @report.day_of_sairans.build
+    @report.before_ishoku_hormones.build
+    @report.day_of_shokihaiishokus.build
+    @report.day_of_haibanhoishokus.build
+    @report.shokihaiishoku_hormones.build
+    @report.haibanhoishoku_hormones.build
+
   end
 
   def molding(materials)
@@ -204,6 +354,29 @@ class ReportsController < ApplicationController
 
     if @report.unsuccessful_ishoku_cycles.count == 0
       @report.unsuccessful_ishoku_cycles.build
+    end
+
+    # ホルモン値
+    if @report.sairan_hormones.count == 0
+      @report.sairan_hormones.build
+    end
+    if @report.day_of_sairans.count == 0
+      @report.day_of_sairans.build
+    end
+    if @report.before_ishoku_hormones.count == 0
+      @report.before_ishoku_hormones.build
+    end
+    if @report.day_of_shokihaiishokus.count == 0
+      @report.day_of_shokihaiishokus.build
+    end
+    if @report.day_of_haibanhoishokus.count == 0
+      @report.day_of_haibanhoishokus.build
+    end
+    if @report.shokihaiishoku_hormones.count == 0
+      @report.shokihaiishoku_hormones.build
+    end
+    if @report.haibanhoishoku_hormones.count == 0
+      @report.haibanhoishoku_hormones.build
     end
   end
 
