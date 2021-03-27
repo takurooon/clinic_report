@@ -32,6 +32,16 @@ ja:
         clinic: 「クリニック」
         prefecture: 「都道府県」
         city: 「市区町村」
+      sairan_hormones:
+        day: 移植タブにある「採卵日前」のホルモン値の「Day」
+      day_of_sairans:
+        day: 移植タブにある「採卵日」のホルモン値の「Day」
+      before_ishoku_hormones:
+        day: 移植タブにある「移植前」のホルモン値の「Day」
+      day_of_haibanhoishokus:
+        day: 移植タブにある「移植日」のホルモン値の「Day」
+      haibanhoishoku_hormones:
+        day: 移植タブにある「移植後」のホルモン値の「ET･BT」
       comment:
         comment: コメント
       clinic_reviews:

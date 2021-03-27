@@ -233,9 +233,7 @@ class ReportsController < ApplicationController
     @report.sairan_hormones.build
     @report.day_of_sairans.build
     @report.before_ishoku_hormones.build
-    @report.day_of_shokihaiishokus.build
     @report.day_of_haibanhoishokus.build
-    @report.shokihaiishoku_hormones.build
     @report.haibanhoishoku_hormones.build
 
   end
@@ -323,14 +321,8 @@ class ReportsController < ApplicationController
     if @report.before_ishoku_hormones.count == 0
       @report.before_ishoku_hormones.build
     end
-    if @report.day_of_shokihaiishokus.count == 0
-      @report.day_of_shokihaiishokus.build
-    end
     if @report.day_of_haibanhoishokus.count == 0
       @report.day_of_haibanhoishokus.build
-    end
-    if @report.shokihaiishoku_hormones.count == 0
-      @report.shokihaiishoku_hormones.build
     end
     if @report.haibanhoishoku_hormones.count == 0
       @report.haibanhoishoku_hormones.build
