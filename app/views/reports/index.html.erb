@@ -30,14 +30,18 @@
                     <label class="tab__item" for="all_clinics">ALL</label>
                     <div class="tab__content" id="ivf_clinics_content">
                       <div class="my-3">
-                        <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.where(ivf: 1).count.to_s(:delimited) %>施設)</span></span></h5>
-                        <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.where(ivf: 1).count.to_s(:delimited) %>施設)</span></span></h4>
+                        <h5 class="mt-4 mb-0 text-center"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @ivf_clinics %>施設)</span></span></h5>
                         <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
                       </div>
                       <% @list_ivf.each do |key, value| %>
                         <div class="col-12 mb-1 px-2">
                           <input id='acd-check-cllist-ivf<%= value[:id] %>' class="acd-check-cllist2" type="checkbox">
-                          <label class="acd-cllist-label2 small mb-0 px-1 py-2" for="acd-check-cllist-ivf<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(ivf: 1, prefecture_id: value[:id]).count %>施設&nbsp;)</span></span></label>
+                          <label class="acd-cllist-label2 small mb-0 px-1 py-2" for="acd-check-cllist-ivf<%= value[:id] %>">
+                            <i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;
+                            <span class="font-weight-bold "><%= value[:name] %></span>
+                            の医療機関&nbsp;
+                            <% if false %><span class="small">(&nbsp;<%= Clinic.where(ivf: 1, prefecture_id: value[:id]).count %>施設&nbsp;)</span><% end %>
+                          </label>
                           <div class="acd-content-multiple2 container mb-2">
                             <div class="row mt-0 pb-0">
                             <div class="col-12 border-bottom">
@@ -53,7 +57,7 @@
                                         <%= value[:name] %>
                                       <% end %>
                                     】</span>
-                                    <span class="small text-muted"><%= value[:clinics].count %>施設<span>
+                                    <% if false %><span class="small text-muted"><%= value[:clinics].count %>施設<span><% end %>
                                   </p>
                                 </div>
                                 <div>
@@ -76,14 +80,18 @@
                     </div>
                     <div class="tab__content" id="all_clinics_content">
                       <div class="my-3">
-                        <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h5>
-                        <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h4>
+                        <h5 class="mt-4 mb-0 text-center"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @all_clinics %>施設)</span></span></h5>
                         <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
                       </div>
                       <% @list.each do |key, value| %>
                         <div class="col-12 mb-1 px-2">
                           <input id='acd-check-cllist<%= value[:id] %>' class="acd-check-cllist" type="checkbox">
-                          <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(prefecture_id: value[:id]).count %>施設&nbsp;)</span></span></label>
+                          <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>">
+                            <i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;
+                            <span class="font-weight-bold "><%= value[:name] %></span>
+                            の医療機関&nbsp;
+                            <% if false %><span class="small">(&nbsp;<%= Clinic.where(prefecture_id: value[:id]).count %>施設&nbsp;)</span><% end %>
+                          </label>
                           <div class="acd-content-multiple container mb-2">
                             <div class="row mt-0 pb-0">
                             <div class="col-12 border-bottom">
@@ -99,7 +107,7 @@
                                         <%= value[:name] %>
                                       <% end %>
                                     】</span>
-                                    <span class="small text-muted"><%= value[:clinics].count %>施設<span>
+                                    <% if false %><span class="small text-muted"><%= value[:clinics].count %>施設<span><% end %>
                                   </p>
                                 </div>
                                 <div>

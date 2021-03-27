@@ -54,6 +54,9 @@ class ReportsController < ApplicationController
         yomigana: clinic.yomigana
       }
     end
+    @all_clinics = Clinic.count.to_s(:delimited)
+    @ivf_clinics = Clinic.where(ivf: 1).count.to_s(:delimited)
+
     @user = current_user
     if @user.present?
       @draft_reports = @user.reports.nonreleased
