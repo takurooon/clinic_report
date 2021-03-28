@@ -1,7 +1,7 @@
 class SairanHormone < ApplicationRecord
   belongs_to :report, inverse_of: :sairan_hormones
 
-  validates :day, presence: true, numericality: true
+  validates :day, presence: { message: 'を選択してください。' }
 end
 
 # == Schema Information
