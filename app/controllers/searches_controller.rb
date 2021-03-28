@@ -345,7 +345,7 @@ class SearchesController < ApplicationController
     # クリニックが存在する市区町村だけ抽出(clはid順→できればyomigamna順にしたいが...)
     clinics = Clinic.where(prefecture_id: params[:prefecture_id]).group(:city_id).pluck(:city_id).sort
     @cities = City.where(id: clinics)
-    render partial: 'address/clinics'
+    render partial: 'address/clinics_by_city'
   end
   # ここまで
 end

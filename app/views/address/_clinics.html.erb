@@ -1,1 +1,1 @@
-<%= grouped_collection_select :report, :clinic_id, @cities, :clinics, :name, :id, :name %>
+<%= collection_select :report, :clinic_id, @clinics, :id, :name, { prompt: "クリニック" } %>

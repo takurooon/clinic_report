@@ -227,18 +227,7 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
-    @report.itinerary_of_choosing_a_clinics.build
-    @report.special_inspections.build
-    @report.unsuccessful_sairan_cycles.build
-    @report.unsuccessful_ishoku_cycles.build
-    
-    # ホルモン値
-    @report.sairan_hormones.build
-    @report.day_of_sairans.build
-    @report.before_ishoku_hormones.build
-    @report.day_of_haibanhoishokus.build
-    @report.haibanhoishoku_hormones.build
-
+    @report.form_building
   end
 
   def molding(materials)
@@ -286,6 +275,8 @@ class ReportsController < ApplicationController
         end
       else
         # @report = Report.new(report_params)
+        binding.pry
+        @report.form_building
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
@@ -298,38 +289,8 @@ class ReportsController < ApplicationController
       return
     end
 
-    if @report.itinerary_of_choosing_a_clinics.count == 0
-      @report.itinerary_of_choosing_a_clinics.build
-    end
-
-    if @report.special_inspections.count == 0
-      @report.special_inspections.build
-    end
-
-    if @report.unsuccessful_sairan_cycles.count == 0
-      @report.unsuccessful_sairan_cycles.build
-    end
-
-    if @report.unsuccessful_ishoku_cycles.count == 0
-      @report.unsuccessful_ishoku_cycles.build
-    end
-
     # ホルモン値
-    if @report.sairan_hormones.count == 0
-      @report.sairan_hormones.build
-    end
-    if @report.day_of_sairans.count == 0
-      @report.day_of_sairans.build
-    end
-    if @report.before_ishoku_hormones.count == 0
-      @report.before_ishoku_hormones.build
-    end
-    if @report.day_of_haibanhoishokus.count == 0
-      @report.day_of_haibanhoishokus.build
-    end
-    if @report.haibanhoishoku_hormones.count == 0
-      @report.haibanhoishoku_hormones.build
-    end
+    @report.form_building
   end
 
   def release
@@ -373,6 +334,7 @@ class ReportsController < ApplicationController
         end
       else
         # @report.update_attributes(report_params)
+        @report.form_building
         format.html { render :edit }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end

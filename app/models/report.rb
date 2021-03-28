@@ -115,6 +115,39 @@ class Report < ApplicationRecord
   #   end
   # end
 
+  def form_building
+    if self.sairan_hormones.size == 0
+      self.sairan_hormones.build
+    end
+    if self.day_of_sairans.size == 0
+      self.day_of_sairans.build
+    end
+    if self.before_ishoku_hormones.size == 0
+      self.before_ishoku_hormones.build
+    end
+    if self.day_of_haibanhoishokus.size == 0
+      self.day_of_haibanhoishokus.build
+    end
+    if self.haibanhoishoku_hormones.size == 0
+      self.haibanhoishoku_hormones.build
+    end
+    if self.itinerary_of_choosing_a_clinics.size == 0
+      self.itinerary_of_choosing_a_clinics.build
+    end
+
+    if self.special_inspections.size == 0
+      self.special_inspections.build
+    end
+
+    if self.unsuccessful_sairan_cycles.size == 0
+      self.unsuccessful_sairan_cycles.build
+    end
+
+    if self.unsuccessful_ishoku_cycles.size == 0
+      self.unsuccessful_ishoku_cycles.build
+    end
+  end
+
   def normalize_for_credit_card_validity
     unless self.credit_card_validity == 3
       self.creditcards_can_be_used_from_more_than = nil
