@@ -1,7 +1,7 @@
 class DayOfHaibanhoishoku < ApplicationRecord
   belongs_to :report
 
-  validates :day, presence: true, numericality: true
+  validates :day, presence: { message: 'を選択してください。' }
 end
 
 # == Schema Information

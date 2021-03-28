@@ -1,7 +1,7 @@
 class BeforeIshokuHormone < ApplicationRecord
   belongs_to :report, inverse_of: :before_ishoku_hormones
 
-  validates :day, presence: true, numericality: true
+  validates :day, presence: { message: 'を選択してください。' }
 end
 
 # == Schema Information

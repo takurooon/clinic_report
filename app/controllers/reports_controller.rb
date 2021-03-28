@@ -275,7 +275,6 @@ class ReportsController < ApplicationController
         end
       else
         # @report = Report.new(report_params)
-        binding.pry
         @report.form_building
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }

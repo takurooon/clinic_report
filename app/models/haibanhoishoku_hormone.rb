@@ -1,7 +1,7 @@
 class HaibanhoishokuHormone < ApplicationRecord
   belongs_to :report, inverse_of: :haibanhoishoku_hormones
 
-  validates :bt, presence: true, numericality: true
+  validates :bt, presence: { message: 'を選択してください。' }
 end
 
 # == Schema Information
