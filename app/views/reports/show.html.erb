@@ -3989,7 +3989,7 @@
                 <div class="d-flex justify-content-center">
                   <div class="commnet-blur-text  fluffy-d">
                     <div class="card text-center mb-5">
-                      <div class="card-body">
+                      <div class="card-body rounded-lg">
                         <p class="card-title"><i data-feather="message-circle" class="feather-icon-style4 m-0 p-0"></i>&nbsp;&nbsp;コメントはログインが必要です。</p>
                         <p class="card-text">アカウントをお持ちでない方は「新規登録」をしてください。</p>
                         <div class="d-flex justify-content-center">
@@ -4650,7 +4650,9 @@
                           </div>
                           <div class="col-3 py-2 pl-0 d-flex align-items-center">
                             <% if report.user.icon.attached? %>
+                            <div class="m-0 p-0 base_icon text-center">
                               <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                            </div>
                             <% else %>
                               <% user_number = report.user_id.digits %>
                               <% if user_number.size < 2 %>
@@ -4769,7 +4771,9 @@
                           </div>
                           <div class="col-3 py-2 pl-0 d-flex align-items-center">
                             <% if report.user.icon.attached? %>
-                              <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                              </div>
                             <% else %>
                               <% user_number = report.user_id.digits %>
                               <% if user_number.size < 2 %>
@@ -4888,7 +4892,9 @@
                       </div>
                       <div class="col-2 py-2 pl-0 pr-1 d-flex align-items-center">
                         <% if report.user.icon.attached? %>
-                          <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                          <div class="m-0 p-0 base_icon text-center">
+                            <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                          </div>
                         <% else %>
                           <% user_number = report.user_id.digits %>
                           <% if user_number.size < 2 %>
@@ -4997,7 +5003,9 @@
                       </div>
                       <div class="col-2 py-2 pl-0 pr-1 d-flex align-items-center">
                         <% if report.user.icon.attached? %>
-                          <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                          <div class="m-0 p-0 base_icon text-center">
+                            <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                          </div>
                         <% else %>
                           <% user_number = report.user_id.digits %>
                           <% if user_number.size < 2 %>
