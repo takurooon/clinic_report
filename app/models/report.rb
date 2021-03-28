@@ -18,10 +18,10 @@ class Report < ApplicationRecord
   validate :validate_content_attachments_count
 
   MAX_CONTENT_LENGTH = 100000
-  MEGA_BYTES = 5
+  MEGA_BYTES = 10
   ONE_KILOBYTE = 1024
   MAX_CONTENT_ATTACHMENT_BYTE_SIZE = MEGA_BYTES * 1_000 * ONE_KILOBYTE
-  MAX_CONTENT_ATTACHMENTS_COUNT = 10
+  MAX_CONTENT_ATTACHMENTS_COUNT = 20
 
   def previous
     Report.where("id < ?", self.id).where(status: 0).order("id DESC").first
