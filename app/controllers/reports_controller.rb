@@ -251,7 +251,7 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user_id = current_user.id
 
-    @report.normalize_for_create_embryo_stage
+    # @report.normalize_for_create_embryo_stage
     @report.normalize_for_credit_card_validity
 
     if params[:status1] || params[:status2]

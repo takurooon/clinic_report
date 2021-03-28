@@ -341,8 +341,11 @@ class SearchesController < ApplicationController
 
   def clinic_select
     @clinics = Clinic.where(prefecture_id: params[:prefecture_id]).clinic_name_yomigana
+
+    # クリニックが存在する市区町村だけ抽出(clはid順→できればyomigamna順にしたいが...)
+    clinics = Clinic.where(prefecture_id: params[:prefecture_id]).group(:city_id).pluck(:city_id).sort
+    @cities = City.where(id: clinics)
     render partial: 'address/clinics'
   end
   # ここまで
-
 end

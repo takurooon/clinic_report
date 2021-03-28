@@ -94,26 +94,26 @@ class Report < ApplicationRecord
   #   end
   # end
 
-  def normalize_for_create_embryo_stage
-    if self.embryo_stage == 1
-      self.blastocyst_grade1 = nil
-      self.blastocyst_grade2 = nil
-      self.day_of_haibanhoishokus = []
-      self.haibanhoishoku_hormones = []
-    elsif self.embryo_stage == 2
-      self.early_embryo_grade = nil
-      self.day_of_shokihaiishokus = []
-      self.shokihaiishoku_hormones = []
-    else
-      self.early_embryo_grade = nil
-      self.blastocyst_grade1 = nil
-      self.blastocyst_grade2 = nil
-      self.day_of_shokihaiishokus = []
-      self.shokihaiishoku_hormones = []
-      self.day_of_haibanhoishokus = []
-      self.haibanhoishoku_hormones = []
-    end
-  end
+  # def normalize_for_create_embryo_stage
+  #   if self.embryo_stage == 1
+  #     self.blastocyst_grade1 = nil
+  #     self.blastocyst_grade2 = nil
+  #     self.day_of_haibanhoishokus = []
+  #     self.haibanhoishoku_hormones = []
+  #   elsif self.embryo_stage == 2
+  #     self.early_embryo_grade = nil
+  #     self.day_of_shokihaiishokus = []
+  #     self.shokihaiishoku_hormones = []
+  #   else
+  #     self.early_embryo_grade = nil
+  #     self.blastocyst_grade1 = nil
+  #     self.blastocyst_grade2 = nil
+  #     self.day_of_shokihaiishokus = []
+  #     self.shokihaiishoku_hormones = []
+  #     self.day_of_haibanhoishokus = []
+  #     self.haibanhoishoku_hormones = []
+  #   end
+  # end
 
   def normalize_for_credit_card_validity
     unless self.credit_card_validity == 3

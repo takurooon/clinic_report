@@ -40,8 +40,6 @@
         <script>
           $(function() {
             $('.clinic_prefecture').change(function() {
-              
-              console.log ($(this).parent().next().children("select"));
               let clinic = $(this).parent().next().children("select");
               $.ajax('/clinic_select',
                 {
