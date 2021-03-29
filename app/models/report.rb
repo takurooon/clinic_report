@@ -134,15 +134,12 @@ class Report < ApplicationRecord
     if self.itinerary_of_choosing_a_clinics.size == 0
       self.itinerary_of_choosing_a_clinics.build
     end
-
     if self.special_inspections.size == 0
       self.special_inspections.build
     end
-
     if self.unsuccessful_sairan_cycles.size == 0
       self.unsuccessful_sairan_cycles.build
     end
-
     if self.unsuccessful_ishoku_cycles.size == 0
       self.unsuccessful_ishoku_cycles.build
     end
