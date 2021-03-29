@@ -6,6 +6,20 @@
     </div>
     <div class="row px-0">
       <div class="col-lg-7 offset-lg-1 main-column text-color px-0">
+
+        <% if user_signed_in? %>
+          <div class="px-2 mb-4">
+            <details class="mt-2 pt-2">
+              <summary class="mb-2 ml-3 text-danger fluffy-b">【新機能追加のお知らせ】</summary>
+              <p class="my-3 small text-center font-weight-bold">＼ホルモン値の入力ができるようになりました／</p>
+              <p><%= image_tag"howto/sairan_ishoku_graph.png", class: "img-fluid pb-1", loading: "lazy" %></p>
+              <p class="my-3 small text-center font-weight-bold">＼作成方法／</p>
+              <p><%= image_tag"info/add_hormone_form.png", class: "img-fluid pb-1", loading: "lazy" %></p>
+              <p class="mb-0 text-center"><%= image_tag"home/finger_mom_right.svg", width: "22px", class: "img-fluid", loading: "lazy" %>&nbsp;<%= link_to "ホルモン値を入力してみる", my_page_path, class: "text-primary font-weight-bold" %></p>
+            </details>
+          </div>
+        <% end %>
+
         <div class="tab-wrap1 mt-0">
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" />
           <label class="tab-label ml-3" for="TAB-01">レポコ</label>
