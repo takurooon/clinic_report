@@ -4829,235 +4829,237 @@
           </div>
         </div>
 
-        <% if Report.same_cl(@report).present? %>
-          <div class="d-block d-sm-none px-3">
-            <div class="same_cl_report mt-3">
-              <div class="mb-2 d-flex justify-content-between">
-                <div>
-                  <i data-feather="layers" class="pr-1 text-dark"></i>&nbsp;&nbsp;
-                  <h7 class="font-weight-bold text-dark">同じクリニックのレポコ</h7>
+        <div class="pt-3">
+          <% if Report.same_cl(@report).present? %>
+            <div class="d-block d-sm-none px-3 pt-5">
+              <div class="same_cl_report mt-3">
+                <div class="mb-2 d-flex justify-content-between">
+                  <div>
+                    <i data-feather="layers" class="pr-1 text-dark"></i>&nbsp;&nbsp;
+                    <h7 class="font-weight-bold text-dark">同じクリニックのレポコ</h7>
+                  </div>
+                  <% if false %>
+                  <div class="d-flex align-items-center pr-3">
+                    <p class="small text-muted mb-0">すべて見る</p>
+                  </div>
+                  <% end %>
                 </div>
-                <% if false %>
-                <div class="d-flex align-items-center pr-3">
-                  <p class="small text-muted mb-0">すべて見る</p>
-                </div>
+                <% Report.same_cl(@report).each do |report| %>
+                  <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
+                    <div class="mb-2">
+                      <div class="row mb-2 rounded-lg">
+                        <div class="col-10 pt-2 pr-2">
+                          <div class="mb-3 text-dark d-flex align-items-center" style="height: 60px">
+                            <p class="mb-0">
+                            <% if report.title.present? %>
+                              <small class="text-muted" style="font-size: 10px;"><%= report.clinic.name %>&nbsp;(<%= report.clinic.prefecture.name %>)</small>
+                              <br><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
+                            <% else %>
+                              <% if report.year_of_treatment_end.present? %>
+                                <small class="text-muted" style="font-size: 10px;"><%= report.year_of_treatment_end.year %>年卒業</small>
+                              <% end %>
+                              <% if report.fertility_treatment_number.present? %>
+                                <small class="text-muted" style="font-size: 10px;"><%= report.str_fertility_treatment_number %></small>
+                              <% end %>
+                              <% if report.current_state.present? %>
+                                <small class="text-muted" style="font-size: 10px;"><%= report.str_current_state %></small>
+                              <% end %>
+                              <br><%= report.clinic.name %><span class="text-muted" style="font-size: 10px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ
+                            <% end %>
+                            </p>
+                          </div>
+                          <div class="small pb-2">
+                            <% if user_signed_in? %>
+                              <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
+                                <% if current_user.already_liked?(report) %>
+                                  <%= images_action_svg("like_mobile.svg") %><span class="text-danger">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
+                                <% else %>
+                                  <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
+                                <% end %>
+                              </p>
+                            <% else %>
+                              <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
+                                <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
+                              </p>
+                            <% end %>
+                            <p class="m-0 text-muted d-flex align-items-center">
+                              <span class="small"><%= report.prefecture.name %></span>&nbsp;
+                              <% if report.str_treatment_end_age.present? %>
+                                <span class="small"><%= report.str_treatment_end_age %></span>&nbsp;
+                              <% end %>
+                              <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(10) %>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-2 py-2 pl-0 pr-1 d-flex align-items-center">
+                          <% if report.user.icon.attached? %>
+                            <div class="m-0 p-0 base_icon text-center">
+                              <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                            </div>
+                          <% else %>
+                            <% user_number = report.user_id.digits %>
+                            <% if user_number.size < 2 %>
+                              <% icon_number = report.user_id %>
+                            <% else %>
+                              <% icon_number = user_number[0] * user_number[1] %>
+                            <% end %>
+                            <% if report.treatment_end_age == nil %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 25 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 30 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 35 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 40 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 45 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
+                              </div>
+                            <% else %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
+                              </div>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </div><hr class="my-2">
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
-              <% Report.same_cl(@report).each do |report| %>
-                <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
-                  <div class="mb-2">
-                    <div class="row mb-2 rounded-lg">
-                      <div class="col-10 pt-2 pr-2">
-                        <div class="mb-3 text-dark d-flex align-items-center" style="height: 60px">
-                          <p class="mb-0">
-                          <% if report.title.present? %>
-                            <small class="text-muted" style="font-size: 10px;"><%= report.clinic.name %>&nbsp;(<%= report.clinic.prefecture.name %>)</small>
-                            <br><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
-                          <% else %>
-                            <% if report.year_of_treatment_end.present? %>
-                              <small class="text-muted" style="font-size: 10px;"><%= report.year_of_treatment_end.year %>年卒業</small>
-                            <% end %>
-                            <% if report.fertility_treatment_number.present? %>
-                              <small class="text-muted" style="font-size: 10px;"><%= report.str_fertility_treatment_number %></small>
-                            <% end %>
-                            <% if report.current_state.present? %>
-                              <small class="text-muted" style="font-size: 10px;"><%= report.str_current_state %></small>
-                            <% end %>
-                            <br><%= report.clinic.name %><span class="text-muted" style="font-size: 10px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ
-                          <% end %>
-                          </p>
-                        </div>
-                        <div class="small pb-2">
-                          <% if user_signed_in? %>
-                            <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
-                              <% if current_user.already_liked?(report) %>
-                                <%= images_action_svg("like_mobile.svg") %><span class="text-danger">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
-                              <% else %>
-                                <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
-                              <% end %>
-                            </p>
-                          <% else %>
-                            <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
-                              <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
-                            </p>
-                          <% end %>
-                          <p class="m-0 text-muted d-flex align-items-center">
-                            <span class="small"><%= report.prefecture.name %></span>&nbsp;
-                            <% if report.str_treatment_end_age.present? %>
-                              <span class="small"><%= report.str_treatment_end_age %></span>&nbsp;
-                            <% end %>
-                            <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(10) %>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-2 py-2 pl-0 pr-1 d-flex align-items-center">
-                        <% if report.user.icon.attached? %>
-                          <div class="m-0 p-0 base_icon text-center">
-                            <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
-                          </div>
-                        <% else %>
-                          <% user_number = report.user_id.digits %>
-                          <% if user_number.size < 2 %>
-                            <% icon_number = report.user_id %>
-                          <% else %>
-                            <% icon_number = user_number[0] * user_number[1] %>
-                          <% end %>
-                          <% if report.treatment_end_age == nil %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 25 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 30 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 35 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 40 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 45 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
-                            </div>
-                          <% else %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
-                            </div>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div><hr class="my-2">
-                  </div>
-                <% end %>
-              <% end %>
             </div>
-          </div>
-        <% end %>
+          <% end %>
 
-        <% if Report.rank.present? %>
-          <div class="d-block d-sm-none px-3">
-            <div class="rank_report mt-3">
-              <div class="mb-2">
-                <i data-feather="trending-up" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">注目レポコ</h7>
-              </div>
-              <% Report.rank.each do |report| %>
-                <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
-                  <div class="mb-2">
-                    <div class="row mb-2 rounded-lg">
-                      <div class="col-10 pt-2 pr-2">
-                        <div class="mb-3 text-dark d-flex align-items-center" style="height: 60px">
-                          <p class="mb-0">
-                          <% if report.title.present? %>
-                            <small class="text-muted" style="font-size: 10px;"><%= report.clinic.name %>&nbsp;(<%= report.clinic.prefecture.name %>)</small>
-                            <br><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
-                          <% else %>
-                            <% if report.year_of_treatment_end.present? %>
-                              <small class="text-muted" style="font-size: 10px;"><%= report.year_of_treatment_end.year %>年卒業</small>
-                            <% end %>
-                            <% if report.fertility_treatment_number.present? %>
-                              <small class="text-muted" style="font-size: 10px;"><%= report.str_fertility_treatment_number %></small>
-                            <% end %>
-                            <% if report.current_state.present? %>
-                              <small class="text-muted" style="font-size: 10px;"><%= report.str_current_state %></small>
-                            <% end %>
-                            <br><%= report.clinic.name %><span class="text-muted" style="font-size: 10px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ
-                          <% end %>
-                          </p>
-                        </div>
-                        <div class="small pb-2">
-                          <% if user_signed_in? %>
-                            <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
-                              <% if current_user.already_liked?(report) %>
-                                <%= images_action_svg("like_mobile.svg") %><span class="text-danger">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
-                              <% else %>
-                                <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
+          <% if Report.rank.present? %>
+            <div class="d-block d-sm-none px-3 pt-5">
+              <div class="rank_report mt-3">
+                <div class="mb-2">
+                  <i data-feather="trending-up" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">注目レポコ</h7>
+                </div>
+                <% Report.rank.each do |report| %>
+                  <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
+                    <div class="mb-2">
+                      <div class="row mb-2 rounded-lg">
+                        <div class="col-10 pt-2 pr-2">
+                          <div class="mb-3 text-dark d-flex align-items-center" style="height: 60px">
+                            <p class="mb-0">
+                            <% if report.title.present? %>
+                              <small class="text-muted" style="font-size: 10px;"><%= report.clinic.name %>&nbsp;(<%= report.clinic.prefecture.name %>)</small>
+                              <br><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
+                            <% else %>
+                              <% if report.year_of_treatment_end.present? %>
+                                <small class="text-muted" style="font-size: 10px;"><%= report.year_of_treatment_end.year %>年卒業</small>
                               <% end %>
-                            </p>
-                          <% else %>
-                            <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
-                              <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
-                            </p>
-                          <% end %>
-                          <p class="m-0 text-muted d-flex align-items-center">
-                            <span class="small"><%= report.prefecture.name %></span>&nbsp;
-                            <% if report.str_treatment_end_age.present? %>
-                              <span class="small"><%= report.str_treatment_end_age %></span>&nbsp;
+                              <% if report.fertility_treatment_number.present? %>
+                                <small class="text-muted" style="font-size: 10px;"><%= report.str_fertility_treatment_number %></small>
+                              <% end %>
+                              <% if report.current_state.present? %>
+                                <small class="text-muted" style="font-size: 10px;"><%= report.str_current_state %></small>
+                              <% end %>
+                              <br><%= report.clinic.name %><span class="text-muted" style="font-size: 10px;">(<%= report.clinic.prefecture.name %>)</span>でのレポコ
                             <% end %>
-                            <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(10) %>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-2 py-2 pl-0 pr-1 d-flex align-items-center">
-                        <% if report.user.icon.attached? %>
-                          <div class="m-0 p-0 base_icon text-center">
-                            <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
+                            </p>
                           </div>
-                        <% else %>
-                          <% user_number = report.user_id.digits %>
-                          <% if user_number.size < 2 %>
-                            <% icon_number = report.user_id %>
-                          <% else %>
-                            <% icon_number = user_number[0] * user_number[1] %>
-                          <% end %>
-                          <% if report.treatment_end_age == nil %>
+                          <div class="small pb-2">
+                            <% if user_signed_in? %>
+                              <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
+                                <% if current_user.already_liked?(report) %>
+                                  <%= images_action_svg("like_mobile.svg") %><span class="text-danger">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
+                                <% else %>
+                                  <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
+                                <% end %>
+                              </p>
+                            <% else %>
+                              <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
+                                <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
+                              </p>
+                            <% end %>
+                            <p class="m-0 text-muted d-flex align-items-center">
+                              <span class="small"><%= report.prefecture.name %></span>&nbsp;
+                              <% if report.str_treatment_end_age.present? %>
+                                <span class="small"><%= report.str_treatment_end_age %></span>&nbsp;
+                              <% end %>
+                              <%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(10) %>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-2 py-2 pl-0 pr-1 d-flex align-items-center">
+                          <% if report.user.icon.attached? %>
                             <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 25 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 30 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 35 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 40 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
-                            </div>
-                          <% elsif report.treatment_end_age < 45 %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
+                              <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
                             </div>
                           <% else %>
-                            <div class="m-0 p-0 base_icon text-center">
-                              <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
-                              <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
-                            </div>
+                            <% user_number = report.user_id.digits %>
+                            <% if user_number.size < 2 %>
+                              <% icon_number = report.user_id %>
+                            <% else %>
+                              <% icon_number = user_number[0] * user_number[1] %>
+                            <% end %>
+                            <% if report.treatment_end_age == nil %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image2_border", loading: "lazy", title: "不明") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon", loading: "lazy", title: "不明") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 25 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image2_border", loading: "lazy", title: "〜24歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon", loading: "lazy", title: "〜24歳") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 30 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image2_border", loading: "lazy", title: "25〜29歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon", loading: "lazy", title: "25〜29歳") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 35 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image2_border", loading: "lazy", title: "30〜34歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "30〜34歳") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 40 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image2_border", loading: "lazy", title: "35〜39歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon", loading: "lazy", title: "35〜39歳") %>
+                              </div>
+                            <% elsif report.treatment_end_age < 45 %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image2_border", loading: "lazy", title: "40〜44歳") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon", loading: "lazy", title: "40〜44歳") %>
+                              </div>
+                            <% else %>
+                              <div class="m-0 p-0 base_icon text-center">
+                                <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image2_border", loading: "lazy", title: "45歳〜") %>
+                                <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon", loading: "lazy", title: "45歳〜") %>
+                              </div>
+                            <% end %>
                           <% end %>
-                        <% end %>
-                      </div>
-                    </div><hr class="my-2">
-                  </div>
+                        </div>
+                      </div><hr class="my-2">
+                    </div>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
 
         <div class="mt-4 text-muted">
           <%= render 'category_header' %>
