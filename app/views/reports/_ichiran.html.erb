@@ -2310,8 +2310,8 @@
                           <% if user_number.size < 2 %>
                             <% icon_number = @report.user_id %>
                           <% else %>
-                            <% if user_number[0] == 0 %>
-                              <% icon_number = user_number[1] * user_number[1] %>
+                            <% if user_number[1] == 0 %>
+                              <% icon_number = user_number[0] * user_number[0] %>
                             <% else %>
                               <% icon_number = user_number[0] * user_number[1] %>
                             <% end %>
