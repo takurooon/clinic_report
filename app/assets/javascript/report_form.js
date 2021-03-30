@@ -575,6 +575,31 @@ function embryo_stage_checked(embryo_stage) {
   }
 }
 
+// 作成途中
+$(function(){
+  $('#report_number_of_transferable_embryos').change(function(){ 
+    var transferble_embryos = $('#report_number_of_transferable_embryos').val();
+    if (transferble_embryos != null && transferble_embryos <= 51) {
+      $(".transferble_embryos_sum").text("移植可能胚 " + transferble_embryos + "個");
+    }
+  });
+  $('input[name="report[total_number_of_transplants]"]:radio').change(function() {
+    var total_number_of_transplants = $('input[name="report[total_number_of_transplants]"]:radio').val();
+    if (total_number_of_transplants != null && total_number_of_transplants <= 15) {
+      $(".total_number_of_transplants_sum").text("移植回数 " + total_number_of_transplants + "回");
+    }
+  });
+  $('#report_choran').change(function(){ 
+    var choran = $('#report_choran').val();
+    if (choran <= 51) {
+      $(".report_choran_sum").text("貯卵数 " + choran + "個");
+      $(".report_choran_sum").show();
+    } else {
+      $(".report_choran_sum").hide();
+    }
+  });
+});
+
 // クレジットカードの使用可否
 $(function() {
   $('input[name="report[credit_card_validity]"]:radio').change(function() {

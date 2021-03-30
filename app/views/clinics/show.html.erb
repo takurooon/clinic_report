@@ -285,7 +285,11 @@
                         <% if user_number.size < 2 %>
                           <% icon_number = report.user.id %>
                         <% else %>
-                          <% icon_number = user_number[0] * user_number[1] %>
+                          <% if user_number[0] == 0 %>
+                            <% icon_number = user_number[1] * user_number[1] %>
+                          <% else %>
+                            <% icon_number = user_number[0] * user_number[1] %>
+                          <% end %>
                         <% end %>
                         <% if report.treatment_end_age == nil %>
                           <div class="m-0 p-0 base_icon4 text-center">

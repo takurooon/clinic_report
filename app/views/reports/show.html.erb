@@ -4,7 +4,11 @@
   <% if user_number.size < 2 %>
     <% icon_number = @report.user_id %>
   <% else %>
-    <% icon_number = user_number[0] * user_number[1] %>
+    <% if user_number[0] == 0 %>
+      <% icon_number = user_number[1] * user_number[1] %>
+    <% else %>
+      <% icon_number = user_number[0] * user_number[1] %>
+    <% end %>
   <% end %>
 
   <div class="d-none d-lg-block position-fixed mt-5 pt-5">
@@ -4056,7 +4060,11 @@
                                   <% if previous_user_number.size < 2 %>
                                     <% previous_icon_number = @report.previous.user.id %>
                                   <% else %>
+                                    <% if previous_user_number[0] == 0 %>
+                                    <% previous_icon_number = previous_user_number[1] * previous_user_number[1] %>
+                                  <% else %>
                                     <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
+                                  <% end %>
                                   <% end %>
                                   <% if @report.previous.treatment_end_age == nil %>
                                     <div class="m-0 p-0 base_icon text-center">
@@ -4115,7 +4123,11 @@
                                   <% if previous_user_number.size < 2 %>
                                     <% previous_icon_number = @report.previous.user.id %>
                                   <% else %>
-                                    <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
+                                    <% if previous_user_number[0] == 0 %>
+                                      <% previous_icon_number = previous_user_number[1] * previous_user_number[1] %>
+                                    <% else %>
+                                      <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
+                                    <% end %>
                                   <% end %>
                                   <% if @report.previous.treatment_end_age == nil %>
                                     <div class="m-0 p-0 base_icon text-center">
@@ -4195,7 +4207,11 @@
                                   <% if next_user_number.size < 2 %>
                                     <% next_icon_number = @report.next.user.id %>
                                   <% else %>
-                                    <% next_icon_number = next_user_number[0] * next_user_number[1] %>
+                                    <% if next_user_number[0] == 0 %>
+                                      <% next_icon_number = next_user_number[1] * next_user_number[1] %>
+                                    <% else %>
+                                      <% next_icon_number = next_user_number[0] * next_user_number[1] %>
+                                    <% end %>
                                   <% end %>
                                   <% if @report.next.treatment_end_age == nil %>
                                     <div class="m-0 p-0 base_icon text-center">
@@ -4253,7 +4269,11 @@
                                   <% if next_user_number.size < 2 %>
                                     <% next_icon_number = @report.next.user.id %>
                                   <% else %>
-                                    <% next_icon_number = next_user_number[0] * next_user_number[1] %>
+                                    <% if next_user_number[0] == 0 %>
+                                      <% next_icon_number = next_user_number[1] * next_user_number[1] %>
+                                    <% else %>
+                                      <% next_icon_number = next_user_number[0] * next_user_number[1] %>
+                                    <% end %>
                                   <% end %>
                                   <% if @report.next.treatment_end_age == nil %>
                                     <div class="m-0 p-0 base_icon text-center">
@@ -4340,7 +4360,11 @@
                                   <% if previous_user_number.size < 2 %>
                                     <% previous_icon_number = @report.previous.user.id %>
                                   <% else %>
-                                    <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
+                                    <% if previous_user_number[0] == 0 %>
+                                      <% previous_icon_number = previous_user_number[1] * previous_user_number[1] %>
+                                    <% else %>
+                                      <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
+                                    <% end %>
                                   <% end %>
                                   <% if @report.previous.treatment_end_age == nil %>
                                     <div class="m-0 p-0 base_icon text-center">
@@ -4399,7 +4423,11 @@
                                   <% if previous_user_number.size < 2 %>
                                     <% previous_icon_number = @report.previous.user.id %>
                                   <% else %>
-                                    <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
+                                    <% if previous_user_number[0] == 0 %>
+                                      <% previous_icon_number = previous_user_number[1] * previous_user_number[1] %>
+                                    <% else %>
+                                      <% previous_icon_number = previous_user_number[0] * previous_user_number[1] %>
+                                    <% end %>
                                   <% end %>
                                   <% if @report.previous.treatment_end_age == nil %>
                                     <div class="m-0 p-0 base_icon text-center">
@@ -4477,7 +4505,11 @@
                                   <% if next_user_number.size < 2 %>
                                     <% next_icon_number = @report.next.user.id %>
                                   <% else %>
-                                    <% next_icon_number = next_user_number[0] * next_user_number[1] %>
+                                    <% if next_user_number[0] == 0 %>
+                                      <% next_icon_number = next_user_number[1] * next_user_number[1] %>
+                                    <% else %>
+                                      <% next_icon_number = next_user_number[0] * next_user_number[1] %>
+                                    <% end %>
                                   <% end %>
                                   <% if @report.next.treatment_end_age == nil %>
                                     <div class="m-0 p-0 base_icon text-center">
@@ -4535,7 +4567,11 @@
                                   <% if next_user_number.size < 2 %>
                                     <% next_icon_number = @report.next.user.id %>
                                   <% else %>
-                                    <% next_icon_number = next_user_number[0] * next_user_number[1] %>
+                                    <% if next_user_number[0] == 0 %>
+                                      <% next_icon_number = next_user_number[1] * next_user_number[1] %>
+                                    <% else %>
+                                      <% next_icon_number = next_user_number[0] * next_user_number[1] %>
+                                    <% end %>
                                   <% end %>
                                   <% if @report.next.treatment_end_age == nil %>
                                     <div class="m-0 p-0 base_icon text-center">
@@ -4658,7 +4694,11 @@
                               <% if user_number.size < 2 %>
                                 <% icon_number = report.user_id %>
                               <% else %>
-                                <% icon_number = user_number[0] * user_number[1] %>
+                                <% if user_number[0] == 0 %>
+                                  <% icon_number = user_number[1] * user_number[1] %>
+                                <% else %>
+                                  <% icon_number = user_number[0] * user_number[1] %>
+                                <% end %>
                               <% end %>
                               <% if report.treatment_end_age == nil %>
                                 <div class="m-0 p-0 base_icon text-center">
@@ -4779,7 +4819,11 @@
                               <% if user_number.size < 2 %>
                                 <% icon_number = report.user_id %>
                               <% else %>
-                                <% icon_number = user_number[0] * user_number[1] %>
+                                <% if user_number[0] == 0 %>
+                                  <% icon_number = user_number[1] * user_number[1] %>
+                                <% else %>
+                                  <% icon_number = user_number[0] * user_number[1] %>
+                                <% end %>
                               <% end %>
                               <% if report.treatment_end_age == nil %>
                                 <div class="m-0 p-0 base_icon text-center">
@@ -4901,7 +4945,11 @@
                             <% if user_number.size < 2 %>
                               <% icon_number = report.user_id %>
                             <% else %>
-                              <% icon_number = user_number[0] * user_number[1] %>
+                              <% if user_number[0] == 0 %>
+                                <% icon_number = user_number[1] * user_number[1] %>
+                              <% else %>
+                                <% icon_number = user_number[0] * user_number[1] %>
+                              <% end %>
                             <% end %>
                             <% if report.treatment_end_age == nil %>
                               <div class="m-0 p-0 base_icon text-center">
@@ -5012,7 +5060,11 @@
                             <% if user_number.size < 2 %>
                               <% icon_number = report.user_id %>
                             <% else %>
-                              <% icon_number = user_number[0] * user_number[1] %>
+                              <% if user_number[0] == 0 %>
+                                <% icon_number = user_number[1] * user_number[1] %>
+                              <% else %>
+                                <% icon_number = user_number[0] * user_number[1] %>
+                              <% end %>
                             <% end %>
                             <% if report.treatment_end_age == nil %>
                               <div class="m-0 p-0 base_icon text-center">
