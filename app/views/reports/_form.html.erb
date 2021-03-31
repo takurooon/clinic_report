@@ -807,13 +807,13 @@
 
                     <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label small px-0 mb-0" for="TAB-02"><p class="mb-0"><%= image_tag"home/egg.svg", width: "20px", class: "img-fluid", loading: "lazy" %>&nbsp;過去の採卵</p></label>
                     <div class="tab-content1">
-                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の採卵</span></h6>
+                      <h6 class="child-tab-title pt-5"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の採卵</span></h6>
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_sairan_cycles do |unsuccessful_sairan_cycle| %>
                           <%= render "unsuccessful_sairan_cycle_fields", f: unsuccessful_sairan_cycle %>
                         <% end %>
                         <div class="links pt-2 pl-2">
-                          <%= link_to_add_association "+ 追加", f, :unsuccessful_sairan_cycles, class: "text-danger" %>
+                          <%= link_to_add_association "+ 追加", f, :unsuccessful_sairan_cycles, class: "btn btn-outline-danger rounded-lg btn-sm bg-white" %>
                         </div>
                       </div>
                       <div class="mt-5 d-flex justify-content-between">
@@ -1437,13 +1437,13 @@
 
                     <input id="TAB-04" type="radio" name="TAB2" class="tab-switch2" /><label class="tab-label2 small px-0 mb-0" for="TAB-04"><p class="mb-0"><%= image_tag"home/injection.svg", width: "20px", class: "img-fluid", loading: "lazy" %>&nbsp;過去の移植</p></label>
                     <div class="tab-content2">
-                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の移植</span></h6>
+                      <h6 class="child-tab-title pt-5"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の移植</span></h6>
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_ishoku_cycles do |unsuccessful_ishoku_cycle| %>
                           <%= render "unsuccessful_ishoku_cycle_fields", f: unsuccessful_ishoku_cycle %>
                         <% end %>
                         <div class="links pt-2 pl-2">
-                          <%= link_to_add_association "+ 追加", f, :unsuccessful_ishoku_cycles, class: "text-danger" %>
+                          <%= link_to_add_association "+ 追加", f, :unsuccessful_ishoku_cycles, class: "btn btn-outline-danger rounded-lg btn-sm bg-white" %>
                         </div>
                       </div>
                       <div class="mt-5 d-flex justify-content-between">
