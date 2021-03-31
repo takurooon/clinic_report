@@ -605,7 +605,7 @@ h1 {
 
 .tab-wrap1::after {
 	content: '';
-	height: 20px;
+	height: 0px;
 	order: -1;
 	width: 100%;
 }
@@ -696,7 +696,7 @@ h1 {
 
 .tab-wrap2::after {
 	content: '';
-	height: 20px;
+	height: 0px;
 	order: -1;
 	width: 100%;
 }

@@ -1090,7 +1090,7 @@ i .fa-edit {
   box-sizing: border-box;
 }
 
-// 上からの吹き出し
+// 左上からの吹き出し
 .balloon1-top {
   position: relative;
   display: inline-block;
@@ -1113,6 +1113,33 @@ i .fa-edit {
   border-bottom: 15px solid #ACFCF5;
 }
 .balloon1-top p {
+  margin: 0;
+  padding: 0;
+}
+
+// 右上からの吹き出し
+.balloon1-top-right {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 0 0;
+  padding: 1rem;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+	background: #ACFCF5;
+	border-radius: 12px 15px 15px 15px;
+}
+.balloon1-top-right:before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: 17%;
+  margin-left: 0;
+  border: 15px solid transparent;
+  border-bottom: 15px solid #ACFCF5;
+}
+.balloon1-top-right p {
   margin: 0;
   padding: 0;
 }
@@ -1324,6 +1351,9 @@ i .fa-edit {
 
 .left-bottom-curve {
 	border-bottom-left-radius: 5px;
+}
+.right-bottom-curve {
+	border-bottom-right-radius: 5px;
 }
 
 .branchbox {

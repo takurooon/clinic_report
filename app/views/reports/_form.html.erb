@@ -563,9 +563,17 @@
               <section class="child-tab-content pt-0 rounded-bottom" id="tab_2_2">
                 <div class="scroll-box">
                   <div class="tab-wrap1 mt-4">
-                    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">最新の採卵周期</label>
+                    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label mb-0" for="TAB-01">最新の採卵周期</label>
                     <div class="tab-content1">
-                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った採卵周期について</span></h6>
+                      <div class="row">
+                        <div class="col-12 col-md-11 d-flex align-items-center justify-content-end">
+                          <div class="balloon1-top-right small pl-2 py-2 d-flex align-items-center">
+                            <%= image_tag"home/doctor_f.svg", width: "35px;", class: "img-fluid fluffy-b", loading: "lazy" %>
+                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での過去の採卵はこちらのタブで回答できます。ぜひ回答ください！</p>
+                          </div>
+                        </div>
+                      </div>
+                      <h6 class="child-tab-title pt-5"><span class="marker-underline"><span class="select-current-status"></span>に至った採卵周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">採卵までの通院回数</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った採卵周期の周期開始から採卵日当日まで(採卵日当日含む)の通院回数</span></small>
@@ -797,7 +805,7 @@
                       </div>
                     </div>
 
-                    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label small px-0" for="TAB-02"><p class="fluffy-b mb-0"><%= image_tag"home/egg.svg", width: "20px", class: "img-fluid", loading: "lazy" %>&nbsp;過去の採卵</p></label>
+                    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label small px-0 mb-0" for="TAB-02"><p class="mb-0"><%= image_tag"home/egg.svg", width: "20px", class: "img-fluid", loading: "lazy" %>&nbsp;過去の採卵</p></label>
                     <div class="tab-content1">
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の採卵</span></h6>
                       <div class="form-group mt-0 pt-0">
@@ -819,9 +827,17 @@
               <section class="child-tab-content pt-0" id="tab_2_3">
                 <div class="scroll-box">
                   <div class="tab-wrap2 mt-4">
-                    <input id="TAB-03" type="radio" name="TAB2" class="tab-switch2" checked="checked" /><label class="tab-label2" for="TAB-03">最新の移植周期</label>
+                    <input id="TAB-03" type="radio" name="TAB2" class="tab-switch2" checked="checked" /><label class="tab-label2 mb-0" for="TAB-03">最新の移植周期</label>
                     <div class="tab-content2">
-                      <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-current-status"></span>に至った移植周期について</span></h6>
+                      <div class="row">
+                        <div class="col-12 col-md-11 d-flex align-items-center justify-content-end">
+                          <div class="balloon1-top-right small pl-2 py-2 d-flex align-items-center">
+                            <%= image_tag"home/doctor_f.svg", width: "35px;", class: "img-fluid fluffy-b", loading: "lazy" %>
+                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での過去の移植はこちらのタブで回答できます。ぜひ回答ください！</p>
+                          </div>
+                        </div>
+                      </div>
+                      <h6 class="child-tab-title pt-5"><span class="marker-underline"><span class="select-current-status"></span>に至った移植周期について</span></h6>
                       <div class="form-group mt-0 mb-2 pt-4">
                         <p class="question mb-0 pt-1">移植までの通院回数</p>
                         <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植周期の周期開始から移植日当日まで(移植日含む)の通院回数</span></small>
@@ -1419,7 +1435,7 @@
                       </div>
                     </div>
 
-                    <input id="TAB-04" type="radio" name="TAB2" class="tab-switch2" /><label class="tab-label2 small px-0" for="TAB-04"><p class="fluffy-b mb-0"><%= image_tag"home/injection.svg", width: "33px", class: "img-fluid", loading: "lazy" %>&nbsp;過去の移植</p></label>
+                    <input id="TAB-04" type="radio" name="TAB2" class="tab-switch2" /><label class="tab-label2 small px-0 mb-0" for="TAB-04"><p class="mb-0"><%= image_tag"home/injection.svg", width: "20px", class: "img-fluid", loading: "lazy" %>&nbsp;過去の移植</p></label>
                     <div class="tab-content2">
                       <h6 class="child-tab-title pt-3"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の移植</span></h6>
                       <div class="form-group mt-0 pt-0">
