@@ -77,11 +77,11 @@
   </div>
 
   <div class="sidebar_rank_report mt-5">
-    <% if Report.rank.present? %>
+    <% if @rank.present? %>
       <div class="mb-2">
         <i data-feather="trending-up" class="pr-1 text-dark"></i>&nbsp;&nbsp;<h7 class="font-weight-bold text-dark">注目レポコ</h7>
       </div>
-      <% Report.rank.each do |report| %>
+      <% @rank.each do |report| %>
         <%= link_to report_path(report), data: { "turbolinks" => false }, style:"text-decoration: none;" do %>
           <div class="mb-2">
             <div class="row mb-2 rounded-lg">

@@ -5,7 +5,9 @@ class ReportsController < ApplicationController
   def index
     # @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
     # @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
-    @reports = Report.released.order("created_at DESC").page(params[:page]).per(30)
+    @reports = Report.released.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).order("created_at DESC").page(params[:page]).per(10)
+    @rank = Report.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
+
     @list = {}
     Clinic.joins(city: :prefecture).includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
       if @list[clinic.prefecture.id].nil?
@@ -70,6 +72,7 @@ class ReportsController < ApplicationController
 
   def show
     @comment = Comment.new(report_id: @report.id)
+    @rank = Report.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
 
     if @report.nonreleased? && @report.user != current_user
       redirect_to root_path

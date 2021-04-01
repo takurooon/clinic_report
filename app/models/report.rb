@@ -31,8 +31,9 @@ class Report < ApplicationRecord
     Report.where("id > ?", self.id).where(status: 0).order("id ASC").first
   end
 
+  # rankはreport_controllerに@rankとして移管(消してもいいかも)
   def self.rank
-    Report.find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
+    Report.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
   end
 
   def self.same_cl(report)

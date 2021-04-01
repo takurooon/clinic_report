@@ -585,8 +585,20 @@ $(function(){
   });
   $('input[name="report[total_number_of_transplants]"]:radio').change(function() {
     var total_number_of_transplants = $('input[name="report[total_number_of_transplants]"]:radio').val();
-    if (total_number_of_transplants != null && total_number_of_transplants <= 15) {
-      $(".total_number_of_transplants_sum").text("移植回数 " + total_number_of_transplants + "回");
+    if (total_number_of_transplants < 15) {
+      var num_transplants = Number(total_number_of_transplants) - 1
+      var total_number_of_transplants_1 = " （過去" + num_transplants + "回分の移植について回答しませんか？）"
+      var total_number_of_transplants_2 = "移植回数 " + total_number_of_transplants + "回"
+      $(".total_number_of_transplants_sum1").text(total_number_of_transplants_1);
+      $(".total_number_of_transplants_sum2").text(total_number_of_transplants_2);
+      $(".total_number_of_transplants_sum").show();
+    } else if (total_number_of_transplants == 15) {
+      var total_number_of_transplants_2 = "移植回数 " + total_number_of_transplants + "回"
+      $(".total_number_of_transplants_sum2").text(total_number_of_transplants_2);
+      $(".total_number_of_transplants_sum").show();
+    } else {
+      $(".total_number_of_transplants_sum").text(total_number_of_transplants_show);
+      $(".total_number_of_transplants_sum").hide();
     }
   });
   $('#report_choran').change(function(){ 
