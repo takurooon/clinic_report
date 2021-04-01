@@ -77,7 +77,7 @@ class ReportsController < ApplicationController
     end
 
     @clinics = @report.itinerary_of_choosing_a_clinics.order(order_of_transfer: "desc")
-    @clinics_exist = @clinics.map { |i| i[:clinic_id] }
+    # @clinics_exist = @clinics.map { |i| i[:clinic_id] }   ※show/ichiranで<% if @clinics_exist.any? { |e| e.present? } %><% end %>で囲み判定→選択肢なし表示につき取り外し
 
     @unsuccessful_sairan_cycles = @report.unsuccessful_sairan_cycles.order(un_sairan_number: "asc")
     @unsuccessful_ishoku_cycles = @report.unsuccessful_ishoku_cycles.order(un_ishoku_number: "asc")
