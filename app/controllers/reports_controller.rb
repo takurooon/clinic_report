@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   def index
     # @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
     # @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
-    @reports = Report.released.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).order("created_at DESC").page(params[:page]).per(10)
+    @reports = Report.released.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).order("created_at DESC").page(params[:page]).per(20)
     @rank = Report.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
 
     @list = {}
