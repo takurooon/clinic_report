@@ -72,8 +72,6 @@ class ReportsController < ApplicationController
 
   def show
     @comment = Comment.new(report_id: @report.id)
-    @rank = Report.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
-
     if @report.nonreleased? && @report.user != current_user
       redirect_to root_path
     end
