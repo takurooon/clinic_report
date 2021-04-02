@@ -621,7 +621,7 @@ function past_sairan_count(total_number_of_sairans) {
     var num_sairans = total_number_of_sairan - 1
     var total_number_of_sairans_1 = " 過去" + num_sairans + "回分の採卵についてぜひ回答ください！"
     var total_number_of_sairans_2 = "（採卵" + total_number_of_sairan + "回 － " + "最新採卵周期）"
-    var total_number_of_sairans_3 = total_number_of_sairan + "回"
+    var total_number_of_sairans_3 = num_sairans + "回"
     $(".total_number_of_sairans_sum").text(total_number_of_sairans_1);
     $(".total_number_of_sairans_sum2").text(total_number_of_sairans_2);
     $(".total_number_of_sairans_sum3").text(total_number_of_sairans_3);
