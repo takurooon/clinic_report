@@ -569,7 +569,7 @@
                         <div class="col-12 col-md-11 d-flex align-items-center justify-content-end">
                           <div class="balloon1-top-right small pl-2 py-2 d-flex align-items-center">
                             <%= image_tag"home/doctor_f.svg", width: "35px;", class: "img-fluid fluffy-b", loading: "lazy" %>
-                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での過去の採卵はこちらのタブで回答できます。ぜひ回答ください！<br>
+                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での過去の採卵はこちらのタブで回答できます。<br>
                             <span class="total_number_of_sairans_sum font-weight-bold text-danger"></span><br><span class="total_number_of_sairans_sum2"></span></p>
                           </div>
                         </div>
@@ -808,6 +808,16 @@
 
                     <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label small px-0 mb-0" for="TAB-02"><p class="mb-0"><%= image_tag"home/egg.svg", width: "20px", class: "img-fluid", loading: "lazy" %>&nbsp;過去の採卵</p></label>
                     <div class="tab-content1">
+                      <div class="row past_sairan">
+                        <div class="col-3 d-flex align-items-center justify-content-end pt-3">
+                          <%= image_tag"home/doctor_f.svg", width: "60px;", class: "img-fluid", loading: "lazy" %>
+                        </div>
+                        <div class="col-9 d-flex align-items-center pl-0 pt-3" style="min-height: 70px;">
+                          <div class="balloon1-left small pl-2 py-2 d-flex align-items-center w-100">
+                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での<span class="select-current-status"></span>に至った採卵周期を除く、過去<span class="total_number_of_sairans_sum3"></span>の採卵周期について詳しく教えてください。<br>1サイクル(周期)ごとに回答でき、サイクルは「追加」ボタンで追加、「削除」ボタンで削除できます。</p>
+                          </div>
+                        </div>
+                      </div>
                       <h6 class="child-tab-title pt-5"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の採卵</span></h6>
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_sairan_cycles do |unsuccessful_sairan_cycle| %>
@@ -1439,6 +1449,16 @@
 
                     <input id="TAB-04" type="radio" name="TAB2" class="tab-switch2" /><label class="tab-label2 small px-0 mb-0" for="TAB-04"><p class="mb-0"><%= image_tag"home/injection.svg", width: "20px", class: "img-fluid", loading: "lazy" %>&nbsp;過去の移植</p></label>
                     <div class="tab-content2">
+                      <div class="row past_ishoku">
+                        <div class="col-3 d-flex align-items-center justify-content-end pt-3">
+                          <%= image_tag"home/doctor_f.svg", width: "60px;", class: "img-fluid", loading: "lazy" %>
+                        </div>
+                        <div class="col-9 d-flex align-items-center pl-0 pt-3" style="min-height: 70px;">
+                          <div class="balloon1-left small pl-2 py-2 d-flex align-items-center w-100">
+                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での<span class="select-current-status"></span>に至った移植周期を除く、過去<span class="total_number_of_transplants_sum3"></span>の移植周期について詳しく教えてください。<br>1サイクル(周期)ごとに回答でき、サイクルは「追加」ボタンで追加、「削除」ボタンで削除できます。</p>
+                          </div>
+                        </div>
+                      </div>
                       <h6 class="child-tab-title pt-5"><span class="marker-underline"><span class="select-clinic-name"></span>での過去の移植</span></h6>
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_ishoku_cycles do |unsuccessful_ishoku_cycle| %>

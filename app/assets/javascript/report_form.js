@@ -587,15 +587,18 @@ function past_ishoku_count(total_number_of_transplants) {
     $(".past_ishoku").hide();
   } else if (total_number_of_transplant < 15) {
     var num_transplants = total_number_of_transplant - 1
-    var total_number_of_transplants_1 = " 過去" + num_transplants + "回分の移植についてもぜひ回答ください！"
+    var total_number_of_transplants_1 = " 過去" + num_transplants + "回分の移植についてぜひ回答ください！"
     var total_number_of_transplants_2 = "（移植" + total_number_of_transplant + "回 － " + "最新移植周期）"
+    var total_number_of_transplants_3 = num_transplants + "回"
     $(".total_number_of_transplants_sum").text(total_number_of_transplants_1);
     $(".total_number_of_transplants_sum2").text(total_number_of_transplants_2);
+    $(".total_number_of_transplants_sum3").text(total_number_of_transplants_3);
     $(".past_ishoku").show();
   } else if (total_number_of_transplant == 15) {
     var total_number_of_transplants_1 = " 過去の移植についてもぜひ回答ください！"
     $(".total_number_of_transplants_sum").text(total_number_of_transplants_1);
     $(".total_number_of_transplants_sum2").text();
+    $(".total_number_of_transplants_sum3").text();
     $(".past_ishoku").show();
   } else if (total_number_of_transplant == null){
     $(".past_ishoku").show();
@@ -616,15 +619,18 @@ function past_sairan_count(total_number_of_sairans) {
     $(".past_sairan").hide();
   } else if (total_number_of_sairan < 15) {
     var num_sairans = total_number_of_sairan - 1
-    var total_number_of_sairans_1 = " 過去" + num_sairans + "回分の採卵についてもぜひ回答ください！"
+    var total_number_of_sairans_1 = " 過去" + num_sairans + "回分の採卵についてぜひ回答ください！"
     var total_number_of_sairans_2 = "（採卵" + total_number_of_sairan + "回 － " + "最新採卵周期）"
+    var total_number_of_sairans_3 = total_number_of_sairan + "回"
     $(".total_number_of_sairans_sum").text(total_number_of_sairans_1);
     $(".total_number_of_sairans_sum2").text(total_number_of_sairans_2);
+    $(".total_number_of_sairans_sum3").text(total_number_of_sairans_3);
     $(".past_sairan").show();
   } else if (total_number_of_sairan == 15) {
     var total_number_of_sairans_1 = " 過去の採卵についてもぜひ回答ください！"
     $(".total_number_of_sairans_sum").text(total_number_of_sairans_1);
     $(".total_number_of_sairans_sum2").text();
+    $(".total_number_of_sairans_sum3").text();
     $(".past_sairan").show();
   } else if (total_number_of_sairan == null){
     $(".past_sairan").show();
@@ -634,23 +640,23 @@ function past_sairan_count(total_number_of_sairans) {
 }
 
 // 作成中
-$(function(){
-  $('#report_number_of_transferable_embryos').change(function(){ 
-    var transferble_embryos = $('#report_number_of_transferable_embryos').val();
-    if (transferble_embryos != null && transferble_embryos <= 51) {
-      $(".transferble_embryos_sum").text("移植可能胚 " + transferble_embryos + "個");
-    }
-  });
-  $('#report_choran').change(function(){ 
-    var choran = $('#report_choran').val();
-    if (choran <= 51) {
-      $(".report_choran_sum").text("貯卵数 " + choran + "個");
-      $(".report_choran_sum").show();
-    } else {
-      $(".report_choran_sum").hide();
-    }
-  });
-});
+// $(function(){
+//   $('#report_number_of_transferable_embryos').change(function(){ 
+//     var transferble_embryos = $('#report_number_of_transferable_embryos').val();
+//     if (transferble_embryos != null && transferble_embryos <= 51) {
+//       $(".transferble_embryos_sum").text("移植可能胚 " + transferble_embryos + "個");
+//     }
+//   });
+//   $('#report_choran').change(function(){ 
+//     var choran = $('#report_choran').val();
+//     if (choran <= 51) {
+//       $(".report_choran_sum").text("貯卵数 " + choran + "個");
+//       $(".report_choran_sum").show();
+//     } else {
+//       $(".report_choran_sum").hide();
+//     }
+//   });
+// });
 
 // クレジットカードの使用可否
 $(function() {
