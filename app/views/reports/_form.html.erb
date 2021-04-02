@@ -565,11 +565,12 @@
                   <div class="tab-wrap1 mt-4">
                     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label mb-0" for="TAB-01">最新の採卵周期</label>
                     <div class="tab-content1">
-                      <div class="row">
+                      <div class="row past_sairan">
                         <div class="col-12 col-md-11 d-flex align-items-center justify-content-end">
                           <div class="balloon1-top-right small pl-2 py-2 d-flex align-items-center">
                             <%= image_tag"home/doctor_f.svg", width: "35px;", class: "img-fluid fluffy-b", loading: "lazy" %>
-                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での過去の採卵はこちらのタブで回答できます。ぜひ回答ください！</p>
+                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での過去の採卵はこちらのタブで回答できます。ぜひ回答ください！<br>
+                            <span class="total_number_of_sairans_sum font-weight-bold text-danger"></span><br><span class="total_number_of_sairans_sum2"></span></p>
                           </div>
                         </div>
                       </div>
@@ -829,11 +830,12 @@
                   <div class="tab-wrap2 mt-4">
                     <input id="TAB-03" type="radio" name="TAB2" class="tab-switch2" checked="checked" /><label class="tab-label2 mb-0" for="TAB-03">最新の移植周期</label>
                     <div class="tab-content2">
-                      <div class="row">
+                      <div class="row past_ishoku">
                         <div class="col-12 col-md-11 d-flex align-items-center justify-content-end">
                           <div class="balloon1-top-right small pl-2 py-2 d-flex align-items-center">
                             <%= image_tag"home/doctor_f.svg", width: "35px;", class: "img-fluid fluffy-b", loading: "lazy" %>
-                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での過去の移植はこちらのタブで回答できます。ぜひ回答ください！</p>
+                            <p class="mb-0 pl-2 small"><span class="select-clinic-name"></span>での過去の移植はこちらのタブで回答できます。<br>
+                            <span class="total_number_of_transplants_sum font-weight-bold text-danger"></span><br><span class="total_number_of_transplants_sum2"></span></p>
                           </div>
                         </div>
                       </div>
