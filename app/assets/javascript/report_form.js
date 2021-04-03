@@ -618,6 +618,7 @@ function past_sairan_count(total_number_of_sairans) {
 $(function() {
   $('input[name="report[total_number_of_transplants]"]:radio').change(function() {
     past_ishoku_count($(this).val());
+    choran_ishokukaisu_count($(this).val());
   });
 })
 function past_ishoku_count(total_number_of_transplants) {
@@ -651,6 +652,44 @@ function past_ishoku_count(total_number_of_transplants) {
   } else {
     $(".past_ishoku").hide();
     $(".total_number_of_transplants_sum3").hide();
+  }
+}
+
+// 移植可能胚数
+$(function() {
+  $('#report_number_of_transferable_embryos').change(function() {
+    choran_ishokukanouhai_count($(this).val());
+  });
+})
+// 貯卵への注釈
+  // 移植回数
+function choran_ishokukaisu_count(total_number_of_transplants) {
+  var total_number_of_transplant = Number(total_number_of_transplants)
+  var total_number_of_transplants_1 = "(移植回数は「" + total_number_of_transplant + "回」を選択中)"
+  var total_number_of_transplants_2 = "(移植回数は「" + total_number_of_transplant + "回以上」を選択中)"
+  if (total_number_of_transplant < 15) {
+    $(".ishokukaisu").show();
+    $(".ishokukaisu").text(total_number_of_transplants_1);
+  } else if (total_number_of_transplant == 15) {
+    $(".ishokukaisu").show();
+    $(".ishokukaisu").text(total_number_of_transplants_2);
+  } else {
+    $(".ishokukaisu").hide();
+  }
+}
+  // 移植可能胚数
+function choran_ishokukanouhai_count(number_of_transferable_embryos) {
+  var number_of_transferable_embryo = Number(number_of_transferable_embryos)
+  var number_of_transferable_embryos_1 = "(移植可能胚数は「" + number_of_transferable_embryo + "個」を選択中)"
+  var number_of_transferable_embryos_2 = "(移植可能胚数は「" + number_of_transferable_embryo + "個以上」を選択中)"
+  if (number_of_transferable_embryo < 51) {
+    $(".ishokukanouhai").show();
+    $(".ishokukanouhai").text(number_of_transferable_embryos_1);
+  } else if (number_of_transferable_embryo == 51) {
+    $(".ishokukanouhai").show();
+    $(".ishokukanouhai").text(number_of_transferable_embryos_2);
+  } else {
+    $(".ishokukanouhai").hide();
   }
 }
 

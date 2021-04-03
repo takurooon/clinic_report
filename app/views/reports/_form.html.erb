@@ -1166,7 +1166,9 @@
 
                       <div class="form-group mt-0 mb-2 pt-4 pb-5 mb-3">
                         <p class="question mb-0 pt-1">貯卵数</p>
-                        <small class="text-muted"><span class="small"><span class="select-current-status"></span>に至った移植後に残っている凍結胚数</span></small>
+                        <div class="text-muted small"><span class="small"><span class="select-current-status"></span>に至った移植後に残っている凍結胚数</span></div>
+                        <div class="text-muted small"><span class="small"><span class="ishokukanouhai text-danger"></span></span></div>
+                        <div class="text-muted small"><span class="small"><span class="ishokukaisu text-danger"></span></span></div>
                         <%= f.select :choran, Report::HASH_CHORAN.invert, { prompt: "" }, { class: "form-control py-0" } %>
                       </div>
 
