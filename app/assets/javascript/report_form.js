@@ -344,6 +344,51 @@ function m_funin_checked(male_infertility) {
   }
 }
 
+// 転院歴
+  // ↓tenin-info2の初期値をhidden
+$(".tenin-info2").hide();
+$(function() {
+  $('input[name="report[number_of_clinics]"]:radio').change(function() {
+    tenin_count($(this).val());
+  });
+})
+function tenin_count(number_of_clinics) {
+  var number_of_clinic = Number(number_of_clinics)
+  if (number_of_clinic == 1) {
+    $(".number_of_clinics_count").text("");
+    $(".tenin-info").hide();
+    $(".tenin-info2").show();
+    $(".tenin-info3").hide();
+  } else if (number_of_clinic < 11) {
+    var num_tenin = number_of_clinic - 1
+    var number_of_clinics_1 = num_tenin + "つの"
+    var number_of_clinics_2 = num_tenin + "行分作成ください。"
+    $(".number_of_clinics_count").text(number_of_clinics_1);
+    $(".number_of_clinics_count2").text(number_of_clinics_2);
+    $(".tenin-info").show();
+    $(".tenin-info2").hide();
+    $(".tenin-info3").show();
+  } else if (number_of_clinic == 11) {
+    $(".number_of_clinics_count").text("");
+    $(".number_of_clinics_count2").text("");
+    $(".tenin-info").show();
+    $(".tenin-info2").hide();
+    $(".tenin-info3").show();
+  } else if (number_of_clinic == null){
+    $(".number_of_clinics_count").text("");
+    $(".number_of_clinics_count2").text("");
+    $(".tenin-info").show();
+    $(".tenin-info2").hide();
+    $(".tenin-info3").show();
+  } else {
+    $(".number_of_clinics_count").text("");
+    $(".number_of_clinics_count2").text("");
+    $(".tenin-info").show();
+    $(".tenin-info2").hide();
+    $(".tenin-info3").show();
+  }
+}
+
 // 卵子内訳足し算
 $(function(){
   $('#report_number_of_eggs_collected').on('change keyup', function(){ 

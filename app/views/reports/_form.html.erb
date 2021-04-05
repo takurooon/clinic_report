@@ -454,7 +454,21 @@
                     </details>
 
                     <div class="m-0 px-0 pt- pb-3" style="line-height: 0.85rem;">
-                      <small class="text-dark"><span class="small"><span class="select-clinic-name"></span>&nbsp;以前に通われた医療機関を選択〜追加してください（<span class="select-clinic-name"></span>&nbsp;の選択は不要です）<br><u><span class="font-weight-bold">選択肢にクリニック名がない場合は「選択肢なし」をお選びください。</u></span></span></small>
+                      <div class="text-dark small tenin-info">
+                        <span class="small">
+                          <span class="select-clinic-name"></span>
+                          &nbsp;以前に通われた
+                          <span class="number_of_clinics_count text-danger font-weight-bold"></span>
+                          医療機関を教えてください（ <span class="number_of_clinics_count2 text-danger font-weight-bold"></span>
+                          <span class="select-clinic-name"></span>&nbsp;の選択は不要です）
+                        </span>
+                      </div>
+                      <div class="text-dark small tenin-info2">
+                        <span class="small">
+                          前問で<span class="select-clinic-name"></span>は「<span class="font-weight-bold">1院目</span>」と回答されていますので、それ以前の通院歴は無いと思いますので、<span class="text-danger font-weight-bold">以下の選択/作成は不要です。</span>
+                        </span>
+                      </div>
+                      <div class="small tenin-info3"><u><span class="font-weight-bold small">選択肢にクリニック名がない場合は「選択肢なし」をお選びください。</u></span></span></div>
                     </div>
                     <%= f.fields_for :itinerary_of_choosing_a_clinics do |itinerary_of_choosing_a_clinic| %>
                       <%= render "itinerary_of_choosing_a_clinic_fields", f: itinerary_of_choosing_a_clinic %>
