@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_011633) do
+ActiveRecord::Schema.define(version: 2021_04_07_093651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -380,6 +380,16 @@ ActiveRecord::Schema.define(version: 2020_11_16_011633) do
     t.bigint "user_id", null: false
     t.bigint "prefecture_id"
     t.bigint "city_id"
+    t.integer "multiple_birth"
+    t.integer "egg_unknown"
+    t.integer "unknown_number_of_frozen_embryos"
+    t.integer "unknown_unfrozen_or_frozen_embryos"
+    t.integer "transplant_method_2"
+    t.integer "embryo_stage_2"
+    t.integer "blastocyst_grade1_2"
+    t.integer "blastocyst_grade2_2"
+    t.integer "culture_days_2"
+    t.integer "early_embryo_grade_2"
     t.index ["city_id"], name: "index_reports_on_city_id"
     t.index ["clinic_id"], name: "index_reports_on_clinic_id"
     t.index ["prefecture_id"], name: "index_reports_on_prefecture_id"

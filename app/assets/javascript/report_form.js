@@ -4,9 +4,12 @@ $(function(){
 function reflesh() {
   fertilization_method($('input[name="report[types_of_fertilization_methods]"]:checked').val());
   current_status();
+  multiple_birth_checked($('input[name="report[current_state]"]:checked').val());
   fuiku_checked($('input[name="report[fuiku]"]:checked').val());
   m_funin_checked($('input[name="report[male_infertility]"]:checked').val());
+  eggs($('input[name="report[total_number_of_eggs_transplanted]"]:checked').val());
   embryo_stage_checked($('input[name="report[embryo_stage]"]:checked').val());
+  embryo_stage_2_checked($('input[name="report[embryo_stage_2]"]:checked').val());
   cost_checked($('input[name="report[credit_card_validity]"]:checked').val());
   sairan_count($('#report_number_of_eggs_collected').val());
   transferable_embryos_count_area($('#report_number_of_transferable_embryos').val());
@@ -274,6 +277,29 @@ function current_status() {
     $('.select-current-status').text("「出産(多胎)」");
   } else {
     $('.select-current-status').text("現在の状況");
+  }
+}
+
+// 多胎の詳細
+$(function() {
+  $('input[name="report[current_state]"]:radio').change(function() {
+    multiple_birth_checked($(this).val());
+  });
+})
+function multiple_birth_checked(current_state) {
+  if (current_state == "1") {
+    $(".multiple_birth_area").hide();
+    $('input[name="report[multiple_birth]"]:checked').prop('checked', false);
+  } else if (current_state == "3") {
+    $(".multiple_birth_area").hide();
+    $('input[name="report[multiple_birth]"]:checked').prop('checked', false);
+  } else if (current_state == "2") {
+    $(".multiple_birth_area").show();
+  } else if (current_state == "4") {
+    $(".multiple_birth_area").show();
+  } else {
+    $(".multiple_birth_area").hide();
+    $('input[name="report[multiple_birth]"]:checked').prop('checked', false);
   }
 }
 
@@ -575,24 +601,33 @@ $(function() {
     eggs($(this).val());
   });
 })
-$(".number_of_eggs").hide();
+$(".second_egg").hide();
 function eggs(eggs_number) {
-  if (eggs_number > 1 && eggs_number < 6) {
-    $(".number_of_eggs").show();
+  if (eggs_number > 1 && eggs_number < 100) {
+    $(".first_egg").addClass('box28 mx-0 mt-5 px-3 rounded-lg');
+    $(".first_egg_2").show();
+    $(".first_egg_3").show();
+    $(".second_egg").show();
   } else {
-    $(".number_of_eggs").hide();
+    $(".first_egg").removeClass('box28 mx-0 mt-5 px-3 rounded-lg');
+    $(".first_egg_2").hide();
+    $(".first_egg_3").hide();
+    $(".second_egg").hide();
+    $('input[name="report[transplant_method_2]"]:checked').prop('checked', false);
+    $('input[name="report[embryo_stage_2]"]:checked').prop('checked', false);
+    $('input[name="report[early_embryo_grade_2]"]:checked').prop('checked', false);
+    $('input[name="report[blastocyst_grade1_2]"]:checked').prop('checked', false);
+    $('input[name="report[blastocyst_grade2_2]"]:checked').prop('checked', false);
+    $('input[name="report[culture_days_2]"]:checked').prop('checked', false);
   }
 };
 
-// 胚のステージ選択
+// 胚のステージ選択(1個目)
 $(function() {
   $('input[name="report[embryo_stage]"]:radio').change(function() {
     embryo_stage_checked($(this).val());
   });
 })
-// $(".early_embryo_grade").hide();
-// $(".blastocyst_grade1").hide();
-// $(".blastocyst_grade2").hide();
 function embryo_stage_checked(embryo_stage) {
   if (embryo_stage == "1") {
     $(".early_embryo_grade").show();
@@ -617,6 +652,39 @@ function embryo_stage_checked(embryo_stage) {
     $('input[name="report[blastocyst_grade2]"]:checked').prop('checked', false);
     $(".culture_days").hide();
     $('input[name="report[culture_days]"]:checked').prop('checked', false);
+  }
+}
+
+// 胚のステージ選択(2個目)
+$(function() {
+  $('input[name="report[embryo_stage_2]"]:radio').change(function() {
+    embryo_stage_2_checked($(this).val());
+  });
+})
+function embryo_stage_2_checked(embryo_stage_2) {
+  if (embryo_stage_2 == "1") {
+    $(".early_embryo_grade_2").show();
+    $(".blastocyst_grade1_2").hide();
+    $('input[name="report[blastocyst_grade1_2]"]:checked').prop('checked', false);
+    $(".blastocyst_grade2_2").hide();
+    $('input[name="report[blastocyst_grade2_2]"]:checked').prop('checked', false);
+    $(".culture_days_2").hide();
+    $('input[name="report[culture_days_2]"]:checked').prop('checked', false);
+  } else if (embryo_stage_2 == "2") {
+    $(".early_embryo_grade_2").hide();
+    $('input[name="report[early_embryo_grade_2]"]:checked').prop('checked', false);
+    $(".blastocyst_grade1_2").show();
+    $(".blastocyst_grade2_2").show();
+    $(".culture_days_2").show();
+  } else {
+    $(".early_embryo_grade_2").hide();
+    $('input[name="report[early_embryo_grade_2]"]:checked').prop('checked', false);
+    $(".blastocyst_grade1_2").hide();
+    $('input[name="report[blastocyst_grade1_2]"]:checked').prop('checked', false);
+    $(".blastocyst_grade2_2").hide();
+    $('input[name="report[blastocyst_grade2_2]"]:checked').prop('checked', false);
+    $(".culture_days_2").hide();
+    $('input[name="report[culture_days_2]"]:checked').prop('checked', false);
   }
 }
 
@@ -791,15 +859,72 @@ $(function() {
 });
 
 // ラジオボタンチェック外し
-var remove = 0;
-function radioDeselection(already, numeric) {
-  if(remove == numeric) {
-    already.checked = false;
-    remove = 0;
-  } else {
-    remove = numeric;
-  }
-  reflesh();
+// var remove = 0;
+// function radioDeselection(already, numeric) {
+//   console.log(numeric)
+//   console.log(already.checked)
+//   if(remove == numeric) {
+//     already.checked = false;
+//     remove = 0;
+//   } else {
+//     remove = numeric;
+//   }
+//   reflesh();
+// }
+
+
+// ラジオボタンチェック外し
+/**
+ * ページが読み込まれたときに一度だけやる.
+ */
+$(function() {
+  // 現在のチェック状態を保持
+  setRadioValues();
+
+  // 全てのラジオボタンを全取得
+  let inputRadios = $("input[type='radio']")
+
+  // 取得したラジオボタンに onclick イベント設定
+  inputRadios.on('click', function() {
+    // name 値 (<input type="radio" name="★group1★" value="a">)
+    let name = $(this).attr("name");
+
+    // value 値 (<input type="radio" name="group1" value="★a★">)
+    let val = $(this).val();
+
+    // 設定済みなら消す、設定してなかったらチェック状態を記録
+    if (radioValues[name] == val) {
+      this.checked = false;
+      delete radioValues[name];
+    } else {
+      radioValues[name] = val;
+    }
+    reflesh();
+  });
+});
+/**
+ * ラジオボタンのチェック状態.
+ *
+ * - こんな感じの連想配列 → { group1: "b", group2: "a", group3: "c" }
+ */
+let radioValues = {};
+
+/**
+ * radioValues に全てのラジオボタンのチェック状態を設定.
+ */
+function setRadioValues() {
+  // チェックしてあるラジオボタンを全取得
+  let inputRadios = $("input[type='radio']").filter(":checked");
+
+  inputRadios.each(function(i, ele) {
+    // name 値 (<input type="radio" name="★group1★" value="a">)
+    let name = $(ele).attr("name");
+
+    // value 値 (<input type="radio" name="group1" value="★a★">)
+    let val = $(ele).val();
+
+    radioValues[name] = val;
+  });
 }
 
 // コメント文字数カウント

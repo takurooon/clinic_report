@@ -8,7 +8,9 @@
 #  average_waiting_time                   :integer
 #  average_waiting_time2                  :integer
 #  blastocyst_grade1                      :integer
+#  blastocyst_grade1_2                    :integer
 #  blastocyst_grade2                      :integer
+#  blastocyst_grade2_2                    :integer
 #  choran                                 :integer
 #  city_at_the_time_status                :integer          default("show"), not null
 #  clinic_review                          :text
@@ -18,14 +20,18 @@
 #  credit_card_validity                   :integer
 #  creditcards_can_be_used_from_more_than :integer
 #  culture_days                           :integer
+#  culture_days_2                         :integer
 #  current_state                          :integer
 #  details_of_icsi                        :integer
 #  doctor_quality                         :integer
 #  early_embryo_grade                     :integer
+#  early_embryo_grade_2                   :integer
 #  egg_gv                                 :integer
 #  egg_m1                                 :integer
 #  egg_m2                                 :integer
+#  egg_unknown                            :integer
 #  embryo_stage                           :integer
+#  embryo_stage_2                         :integer
 #  explanation_of_costs                   :text
 #  fertility_treatment_number             :integer
 #  free_wifi                              :integer
@@ -37,6 +43,7 @@
 #  ishoku_type                            :integer
 #  level_of_male_infertility              :integer
 #  male_infertility                       :integer
+#  multiple_birth                         :integer
 #  number_of_clinics                      :integer
 #  number_of_eggs_collected               :integer
 #  number_of_fertilized_eggs              :integer
@@ -64,11 +71,14 @@
 #  total_number_of_sairan                 :integer
 #  total_number_of_transplants            :integer
 #  transplant_method                      :integer
+#  transplant_method_2                    :integer
 #  treatment_end_age                      :integer
 #  treatment_period                       :integer
 #  treatment_policy                       :text
 #  type_of_ovarian_stimulation            :integer
 #  types_of_fertilization_methods         :integer
+#  unknown_number_of_frozen_embryos       :integer
+#  unknown_unfrozen_or_frozen_embryos     :integer
 #  use_of_anesthesia                      :integer
 #  work_style                             :integer
 #  work_style_status                      :integer          default("show"), not null

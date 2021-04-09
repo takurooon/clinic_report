@@ -134,6 +134,7 @@ end
 #                                 about GET    /about(.:format)                                                                         application#about
 #                                 terms GET    /terms(.:format)                                                                         application#terms
 #                               privacy GET    /privacy(.:format)                                                                       application#privacy
+#                             guideline GET    /guideline(.:format)                                                                     application#guideline
 #                                repoco GET    /repoco(.:format)                                                                        application#repoco
 #                           terminology GET    /terminology(.:format)                                                                   application#terminology
 #                                   faq GET    /faq(.:format)                                                                           application#faq

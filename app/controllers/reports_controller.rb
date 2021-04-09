@@ -5,8 +5,8 @@ class ReportsController < ApplicationController
   def index
     # @reports = params[:tag_id].present? ? Tag.find(params[:tag_id]).reports : Report.all
     # @toptags = Tag.find(ReportTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
-    @reports = Report.released.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).order("created_at DESC").page(params[:page]).per(20)
-    @rank = Report.includes([:user, city: :prefecture, clinic: [city: :prefecture]]).find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
+    @reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).order("created_at DESC").page(params[:page]).per(20).with_rich_text_content
+    @rank = Report.includes([:user, :prefecture, user: { icon_attachment: :blob }, clinic: :prefecture]).find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
 
     @list = {}
     Clinic.joins(city: :prefecture).includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
@@ -372,6 +372,7 @@ class ReportsController < ApplicationController
       :city_id,
       :city_at_the_time_status,
       :current_state,
+      :multiple_birth,
       :work_style,
       :work_style_status,
       :switching_work_styles,
@@ -379,6 +380,7 @@ class ReportsController < ApplicationController
       :types_of_fertilization_methods,
       :details_of_icsi,
       :transplant_method,
+      :transplant_method_2,
       :treatment_end_age,
       :age_of_partner_at_end_of_treatment,
       :year_of_treatment_end,
@@ -401,22 +403,30 @@ class ReportsController < ApplicationController
       :egg_m2,
       :egg_m1,
       :egg_gv,
+      :egg_unknown,
       :number_of_fertilized_eggs,
       :number_of_transferable_embryos,
       :number_of_unfrozen_embryos,
       :number_of_frozen_pronuclear_embryos,
       :number_of_frozen_early_embryos,
       :number_of_frozen_blastocysts,
+      :unknown_number_of_frozen_embryos,
+      :unknown_unfrozen_or_frozen_embryos,
       :embryo_stage,
+      :embryo_stage_2,
       :total_number_of_eggs_transplanted,
       :total_number_of_transplants,
       :number_of_visits_before_ishoku,
       :ishoku_age,
       :ishoku_type,
       :early_embryo_grade,
+      :early_embryo_grade_2,
       :blastocyst_grade1,
+      :blastocyst_grade1_2,
       :blastocyst_grade2,
+      :blastocyst_grade2_2,
       :culture_days,
+      :culture_days_2,
       :choran,
       :cost,
       :explanation_of_costs,

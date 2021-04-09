@@ -325,6 +325,32 @@ class Report < ApplicationRecord
     return HASH_CURRENT_STATE_SEARCH[self.current_state]
   end
 
+  # multiple_birthの区分値(多胎の詳細)
+  HASH_MULTIPLE_BIRTH = {
+    2 => "双子",
+    3 => "三つ子",
+    4 => "四つ子",
+    99 => "五つ子以上",
+    100 => "未判明",
+  }
+
+  def str_multiple_birth
+    return HASH_MULTIPLE_BIRTH[self.multiple_birth]
+  end
+
+  # 検索画面用のmultiple_birthの区分値(多胎の詳細)
+  HASH_MULTIPLE_BIRTH_SEARCH = {
+    2 => "双子",
+    3 => "三つ子",
+    4 => "四つ子",
+    99 => "五つ子以上",
+    100 => "未判明",
+  }
+
+  def str_multiple_birth_search
+    return HASH_MULTIPLE_BIRTH_SEARCH[self.multiple_birth]
+  end
+
   # treatment_periodの区分値(休み期間除く正味治療期間/CL単位)
   HASH_TREATMENT_PERIOD = {
     1 => "〜3ヵ月",
@@ -517,6 +543,10 @@ class Report < ApplicationRecord
     return HASH_TRANSPLANT_METHOD[self.transplant_method]
   end
 
+  def str_transplant_method_2
+    return HASH_TRANSPLANT_METHOD[self.transplant_method_2]
+  end
+
   # embryo_stageの区分値(妊娠に至った胚のステージ)
   HASH_EMBRYO_STAGE = {
     1 => "初期胚",
@@ -526,6 +556,10 @@ class Report < ApplicationRecord
 
   def str_embryo_stage
     return HASH_EMBRYO_STAGE[self.embryo_stage]
+  end
+
+  def str_embryo_stage_2
+    return HASH_EMBRYO_STAGE[self.embryo_stage_2]
   end
 
   # early_embryo_gradeの区分値(初期胚のグレード)
@@ -542,6 +576,10 @@ class Report < ApplicationRecord
   def str_early_embryo_grade
     return HASH_EARLY_EMBRYO_GRADE[self.early_embryo_grade]
   end
+
+  def str_early_embryo_grade_2
+    return HASH_EARLY_EMBRYO_GRADE[self.early_embryo_grade_2]
+  end
   # ↓show用
   HASH_EARLY_EMBRYO_GRADE_SHOW = {
     1 => "グレード1",
@@ -552,8 +590,13 @@ class Report < ApplicationRecord
     9 => "",
     100 => ""
   }
+
   def str_early_embryo_grade_show
     return HASH_EARLY_EMBRYO_GRADE_SHOW[self.early_embryo_grade]
+  end
+
+  def str_early_embryo_grade_2_show
+    return HASH_EARLY_EMBRYO_GRADE_SHOW[self.early_embryo_grade_2]
   end
 
   # blastocyst_grade1の区分値(胚盤胞以上のグレード)
@@ -571,6 +614,10 @@ class Report < ApplicationRecord
   def str_blastocyst_grade1
     return HASH_BLASTOCYST_GRADE1[self.blastocyst_grade1]
   end
+
+  def str_blastocyst_grade1_2
+    return HASH_BLASTOCYST_GRADE1[self.blastocyst_grade1_2]
+  end
   # ↓show用
   HASH_BLASTOCYST_GRADE1_SHOW = {
     1 => "1",
@@ -582,8 +629,13 @@ class Report < ApplicationRecord
     99 => "",
     100 => ""
   }
+
   def str_blastocyst_grade1_show
     return HASH_BLASTOCYST_GRADE1_SHOW[self.blastocyst_grade1]
+  end
+
+  def str_blastocyst_grade1_2_show
+    return HASH_BLASTOCYST_GRADE1_SHOW[self.blastocyst_grade1_2]
   end
 
   # blastocyst_grade2の区分値(胚盤胞以上の評価/ICM/TE)
@@ -603,6 +655,10 @@ class Report < ApplicationRecord
 
   def str_blastocyst_grade2
     return HASH_BLASTOCYST_GRADE2[self.blastocyst_grade2]
+  end
+
+  def str_blastocyst_grade2_2
+    return HASH_BLASTOCYST_GRADE2[self.blastocyst_grade2_2]
   end
   # ↓show用
   HASH_BLASTOCYST_GRADE2_SHOW = {
@@ -629,6 +685,10 @@ class Report < ApplicationRecord
     return HASH_BLASTOCYST_GRADE2_SHOW[self.blastocyst_grade2]
   end
 
+  def str_blastocyst_grade2_2_show
+    return HASH_BLASTOCYST_GRADE2_SHOW[self.blastocyst_grade2_2]
+  end
+
   # culture_daysの区分値(培養日数)
   HASH_CULTURE_DAYS = {
     5 => "5日目",
@@ -640,6 +700,10 @@ class Report < ApplicationRecord
 
   def str_culture_days
     return HASH_CULTURE_DAYS[self.culture_days]
+  end
+
+  def str_culture_days_2
+    return HASH_CULTURE_DAYS[self.culture_days_2]
   end
 
   # fuikuの区分値(不育症の診断有無)
@@ -1333,7 +1397,7 @@ class Report < ApplicationRecord
     2 => "2個",
     3 => "3個",
     4 => "4個",
-    5 => "5個以上",
+    99 => "5個以上",
     100 => "不明",
   }
 
@@ -1583,6 +1647,67 @@ class Report < ApplicationRecord
 
   def str_egg_gv
     return HASH_EGG_GV[self.egg_gv]
+  end
+
+  # egg_unknownの区分値(採卵の内訳 不明/CL単位)
+  HASH_EGG_UNKNOWN = {
+    0 => "0個",
+    1 => "1個",
+    2 => "2個",
+    3 => "3個",
+    4 => "4個",
+    5 => "5個",
+    6 => "6個",
+    7 => "7個",
+    8 => "8個",
+    9 => "9個",
+    10 => "10個",
+    11 => "11個",
+    12 => "12個",
+    13 => "13個",
+    14 => "14個",
+    15 => "15個",
+    16 => "16個",
+    17 => "17個",
+    18 => "18個",
+    19 => "19個",
+    20 => "20個",
+    21 => "21個",
+    22 => "22個",
+    23 => "23個",
+    24 => "24個",
+    25 => "25個",
+    26 => "26個",
+    27 => "27個",
+    28 => "28個",
+    29 => "29個",
+    30 => "30個",
+    31 => "31個",
+    32 => "32個",
+    33 => "33個",
+    34 => "34個",
+    35 => "35個",
+    36 => "36個",
+    37 => "37個",
+    38 => "38個",
+    39 => "39個",
+    40 => "40個",
+    41 => "41個",
+    42 => "42個",
+    43 => "43個",
+    44 => "44個",
+    45 => "45個",
+    46 => "46個",
+    47 => "47個",
+    48 => "48個",
+    49 => "49個",
+    50 => "50個",
+    51 => "51個以上",
+    100 => "不明",
+  }
+
+  def str_egg_unknown
+    return HASH_EGG_UNKNOWN[self.egg_unknown]
   end
 
   # number_of_fertilized_eggsの区分値(最新採卵周期での受精した個数/CL単位)
@@ -1905,6 +2030,128 @@ class Report < ApplicationRecord
     return HASH_NUMBER_OF_FROZEN_BLASTOCYSTS[self.number_of_frozen_blastocysts]
   end
 
+  # unknown_number_of_frozen_embryosの区分値(最新採卵周期での不明胚数/CL単位)
+  HASH_UNKNOWN_NUMBER_OF_FROZEN_EMBRYOS = {
+    0 => "0個",
+    1 => "1個",
+    2 => "2個",
+    3 => "3個",
+    4 => "4個",
+    5 => "5個",
+    6 => "6個",
+    7 => "7個",
+    8 => "8個",
+    9 => "9個",
+    10 => "10個",
+    11 => "11個",
+    12 => "12個",
+    13 => "13個",
+    14 => "14個",
+    15 => "15個",
+    16 => "16個",
+    17 => "17個",
+    18 => "18個",
+    19 => "19個",
+    20 => "20個",
+    21 => "21個",
+    22 => "22個",
+    23 => "23個",
+    24 => "24個",
+    25 => "25個",
+    26 => "26個",
+    27 => "27個",
+    28 => "28個",
+    29 => "29個",
+    30 => "30個",
+    31 => "31個",
+    32 => "32個",
+    33 => "33個",
+    34 => "34個",
+    35 => "35個",
+    36 => "36個",
+    37 => "37個",
+    38 => "38個",
+    39 => "39個",
+    40 => "40個",
+    41 => "41個",
+    42 => "42個",
+    43 => "43個",
+    44 => "44個",
+    45 => "45個",
+    46 => "46個",
+    47 => "47個",
+    48 => "48個",
+    49 => "49個",
+    50 => "50個",
+    51 => "51個以上",
+    100 => "不明",
+  }
+
+  def str_unknown_number_of_frozen_embryos
+    return HASH_UNKNOWN_NUMBER_OF_FROZEN_EMBRYOS[self.unknown_number_of_frozen_embryos]
+  end
+
+  # unknown_unfrozen_or_frozen_embryosの区分値(最新採卵周期での新鮮胚or凍結胚が不明)
+  HASH_UNKNOWN_UNFROZEN_OR_FROZEN_EMBRYOS = {
+    0 => "0個",
+    1 => "1個",
+    2 => "2個",
+    3 => "3個",
+    4 => "4個",
+    5 => "5個",
+    6 => "6個",
+    7 => "7個",
+    8 => "8個",
+    9 => "9個",
+    10 => "10個",
+    11 => "11個",
+    12 => "12個",
+    13 => "13個",
+    14 => "14個",
+    15 => "15個",
+    16 => "16個",
+    17 => "17個",
+    18 => "18個",
+    19 => "19個",
+    20 => "20個",
+    21 => "21個",
+    22 => "22個",
+    23 => "23個",
+    24 => "24個",
+    25 => "25個",
+    26 => "26個",
+    27 => "27個",
+    28 => "28個",
+    29 => "29個",
+    30 => "30個",
+    31 => "31個",
+    32 => "32個",
+    33 => "33個",
+    34 => "34個",
+    35 => "35個",
+    36 => "36個",
+    37 => "37個",
+    38 => "38個",
+    39 => "39個",
+    40 => "40個",
+    41 => "41個",
+    42 => "42個",
+    43 => "43個",
+    44 => "44個",
+    45 => "45個",
+    46 => "46個",
+    47 => "47個",
+    48 => "48個",
+    49 => "49個",
+    50 => "50個",
+    51 => "51個以上",
+    100 => "不明",
+  }
+
+  def str_unknown_unfrozen_or_frozen_embryos
+    return HASH_UNKNOWN_UNFROZEN_OR_FROZEN_EMBRYOS[self.unknown_unfrozen_or_frozen_embryos]
+  end
+
   # choranの区分値(最新採卵周期での胚盤胞数/CL単位)
   HASH_CHORAN = {
     0 => "0個",
@@ -2013,7 +2260,9 @@ end
 #  average_waiting_time                   :integer
 #  average_waiting_time2                  :integer
 #  blastocyst_grade1                      :integer
+#  blastocyst_grade1_2                    :integer
 #  blastocyst_grade2                      :integer
+#  blastocyst_grade2_2                    :integer
 #  choran                                 :integer
 #  city_at_the_time_status                :integer          default("show"), not null
 #  clinic_review                          :text
@@ -2023,14 +2272,18 @@ end
 #  credit_card_validity                   :integer
 #  creditcards_can_be_used_from_more_than :integer
 #  culture_days                           :integer
+#  culture_days_2                         :integer
 #  current_state                          :integer
 #  details_of_icsi                        :integer
 #  doctor_quality                         :integer
 #  early_embryo_grade                     :integer
+#  early_embryo_grade_2                   :integer
 #  egg_gv                                 :integer
 #  egg_m1                                 :integer
 #  egg_m2                                 :integer
+#  egg_unknown                            :integer
 #  embryo_stage                           :integer
+#  embryo_stage_2                         :integer
 #  explanation_of_costs                   :text
 #  fertility_treatment_number             :integer
 #  free_wifi                              :integer
@@ -2042,6 +2295,7 @@ end
 #  ishoku_type                            :integer
 #  level_of_male_infertility              :integer
 #  male_infertility                       :integer
+#  multiple_birth                         :integer
 #  number_of_clinics                      :integer
 #  number_of_eggs_collected               :integer
 #  number_of_fertilized_eggs              :integer
@@ -2069,11 +2323,14 @@ end
 #  total_number_of_sairan                 :integer
 #  total_number_of_transplants            :integer
 #  transplant_method                      :integer
+#  transplant_method_2                    :integer
 #  treatment_end_age                      :integer
 #  treatment_period                       :integer
 #  treatment_policy                       :text
 #  type_of_ovarian_stimulation            :integer
 #  types_of_fertilization_methods         :integer
+#  unknown_number_of_frozen_embryos       :integer
+#  unknown_unfrozen_or_frozen_embryos     :integer
 #  use_of_anesthesia                      :integer
 #  work_style                             :integer
 #  work_style_status                      :integer          default("show"), not null
