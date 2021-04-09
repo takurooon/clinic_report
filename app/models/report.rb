@@ -662,7 +662,6 @@ class Report < ApplicationRecord
   end
   # ↓show用
   HASH_BLASTOCYST_GRADE2_SHOW = {
-    100 => "",
     1 => "AA",
     2 => "AB",
     3 => "AC",
@@ -679,6 +678,7 @@ class Report < ApplicationRecord
     14 => "? + B",
     15 => "? + C",
     99 => "",
+    100 => ""
   }
 
   def str_blastocyst_grade2_show
@@ -704,6 +704,22 @@ class Report < ApplicationRecord
 
   def str_culture_days_2
     return HASH_CULTURE_DAYS[self.culture_days_2]
+  end
+# ↓show用
+  HASH_CULTURE_DAYS_SHOW = {
+    5 => "5日目",
+    6 => "6日目",
+    7 => "7日目",
+    99 => "",
+    100 => ""
+  }
+
+  def str_culture_days_show
+    return HASH_CULTURE_DAYS_SHOW[self.culture_days]
+  end
+
+  def str_culture_days_2_show
+    return HASH_CULTURE_DAYS_SHOW[self.culture_days_2]
   end
 
   # fuikuの区分値(不育症の診断有無)

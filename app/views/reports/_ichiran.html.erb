@@ -159,23 +159,23 @@
                 <%= @report.str_early_embryo_grade_show %>
               <% elsif @report.embryo_stage == 2 %>
                 <% if @report.blastocyst_grade1.present? || @report.blastocyst_grade2.present? || @report.culture_days.present? %>
-                  <% if @report.culture_days < 99 %>
+                  <% if @report.culture_days.present? && @report.culture_days < 99 %>
                     <%= @report.str_culture_days %>
                   <% end %>
                   胚盤胞&nbsp;
-                  <% if  @report.blastocyst_grade1 < 99 %>
+                  <% if @report.blastocyst_grade1.present? &&  @report.blastocyst_grade1 < 99 %>
                     <%= @report.str_blastocyst_grade1_show %>
                   <% end %>
-                  <% if @report.blastocyst_grade2 < 99 %>
+                  <% if @report.blastocyst_grade2.present? && @report.blastocyst_grade2 < 99 %>
                     <%= @report.str_blastocyst_grade2 %>
                   <% end %>
-                  <% if  @report.blastocyst_grade1 >= 99 %>
+                  <% if @report.blastocyst_grade1.present? && @report.blastocyst_grade1 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1 %></p>
                   <% end %>
-                  <% if @report.blastocyst_grade2 >= 99 %>
+                  <% if @report.blastocyst_grade2.present? && @report.blastocyst_grade2 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2 %></p>
                   <% end %>
-                  <% if @report.culture_days >= 99 %>
+                  <% if @report.culture_days.present? && @report.culture_days >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days %></p>
                   <% end %>
                 <% end %>
@@ -197,23 +197,23 @@
                 <%= @report.str_early_embryo_grade_2_show %>
               <% elsif @report.embryo_stage_2 == 2 %>
                 <% if @report.blastocyst_grade1_2.present? || @report.blastocyst_grade2_2.present? || @report.culture_days_2.present? %>
-                  <% if @report.culture_days_2 < 99 %>
+                  <% if @report.culture_days_2.present? && @report.culture_days_2 < 99 %>
                     <%= @report.str_culture_days_2 %>
                   <% end %>
                   胚盤胞&nbsp;
-                  <% if  @report.blastocyst_grade1_2 < 99 %>
+                  <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 < 99 %>
                     <%= @report.str_blastocyst_grade1_2_show %>
                   <% end %>
-                  <% if @report.blastocyst_grade2_2 < 99 %>
+                  <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 < 99 %>
                     <%= @report.str_blastocyst_grade2_2 %>
                   <% end %>
-                  <% if  @report.blastocyst_grade1_2 >= 99 %>
+                  <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1_2 %></p>
                   <% end %>
-                  <% if @report.blastocyst_grade2_2 >= 99 %>
+                  <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2_2 %></p>
                   <% end %>
-                  <% if @report.culture_days_2 >= 99 %>
+                  <% if @report.culture_days_2.present? && @report.culture_days_2 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days_2 %></p>
                   <% end %>
                 <% end %>
@@ -244,23 +244,23 @@
               <%= @report.str_early_embryo_grade_show %>
             <% elsif @report.embryo_stage == 2 %>
               <% if @report.blastocyst_grade1.present? || @report.blastocyst_grade2.present? || @report.culture_days.present? %>
-                <% if @report.culture_days < 99 %>
+                <% if @report.culture_days.present? && @report.culture_days < 99 %>
                   <%= @report.str_culture_days %>
                 <% end %>
                 胚盤胞&nbsp;
-                <% if  @report.blastocyst_grade1 < 99 %>
+                <% if @report.blastocyst_grade1.present? &&  @report.blastocyst_grade1 < 99 %>
                   <%= @report.str_blastocyst_grade1_show %>
                 <% end %>
-                <% if @report.blastocyst_grade2 < 99 %>
+                <% if @report.blastocyst_grade2.present? && @report.blastocyst_grade2 < 99 %>
                   <%= @report.str_blastocyst_grade2 %>
                 <% end %>
-                <% if  @report.blastocyst_grade1 >= 99 %>
+                <% if @report.blastocyst_grade1.present? && @report.blastocyst_grade1 >= 99 %>
                   <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1 %></p>
                 <% end %>
-                <% if @report.blastocyst_grade2 >= 99 %>
+                <% if @report.blastocyst_grade2.present? && @report.blastocyst_grade2 >= 99 %>
                   <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2 %></p>
                 <% end %>
-                <% if @report.culture_days >= 99 %>
+                <% if @report.culture_days.present? && @report.culture_days >= 99 %>
                   <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days %></p>
                 <% end %>
               <% end %>
@@ -1462,23 +1462,23 @@
                 <%= @report.str_early_embryo_grade_show %>
               <% elsif @report.embryo_stage == 2 %>
                 <% if @report.blastocyst_grade1.present? || @report.blastocyst_grade2.present? || @report.culture_days.present? %>
-                  <% if @report.culture_days < 99 %>
+                  <% if @report.culture_days.present? && @report.culture_days < 99 %>
                     <%= @report.str_culture_days %>
                   <% end %>
                   胚盤胞&nbsp;
-                  <% if  @report.blastocyst_grade1 < 99 %>
+                  <% if @report.blastocyst_grade1.present? &&  @report.blastocyst_grade1 < 99 %>
                     <%= @report.str_blastocyst_grade1_show %>
                   <% end %>
-                  <% if @report.blastocyst_grade2 < 99 %>
+                  <% if @report.blastocyst_grade2.present? && @report.blastocyst_grade2 < 99 %>
                     <%= @report.str_blastocyst_grade2 %>
                   <% end %>
-                  <% if  @report.blastocyst_grade1 >= 99 %>
+                  <% if @report.blastocyst_grade1.present? && @report.blastocyst_grade1 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1 %></p>
                   <% end %>
-                  <% if @report.blastocyst_grade2 >= 99 %>
+                  <% if @report.blastocyst_grade2.present? && @report.blastocyst_grade2 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2 %></p>
                   <% end %>
-                  <% if @report.culture_days >= 99 %>
+                  <% if @report.culture_days.present? && @report.culture_days >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days %></p>
                   <% end %>
                 <% end %>
@@ -1500,23 +1500,23 @@
                 <%= @report.str_early_embryo_grade_2_show %>
               <% elsif @report.embryo_stage_2 == 2 %>
                 <% if @report.blastocyst_grade1_2.present? || @report.blastocyst_grade2_2.present? || @report.culture_days_2.present? %>
-                  <% if @report.culture_days_2 < 99 %>
+                  <% if @report.culture_days_2.present? && @report.culture_days_2 < 99 %>
                     <%= @report.str_culture_days_2 %>
                   <% end %>
                   胚盤胞&nbsp;
-                  <% if  @report.blastocyst_grade1_2 < 99 %>
+                  <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 < 99 %>
                     <%= @report.str_blastocyst_grade1_2_show %>
                   <% end %>
-                  <% if @report.blastocyst_grade2_2 < 99 %>
+                  <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 < 99 %>
                     <%= @report.str_blastocyst_grade2_2 %>
                   <% end %>
-                  <% if  @report.blastocyst_grade1_2 >= 99 %>
+                  <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1_2 %></p>
                   <% end %>
-                  <% if @report.blastocyst_grade2_2 >= 99 %>
+                  <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2_2 %></p>
                   <% end %>
-                  <% if @report.culture_days_2 >= 99 %>
+                  <% if @report.culture_days_2.present? && @report.culture_days_2 >= 99 %>
                     <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days_2 %></p>
                   <% end %>
                 <% end %>
@@ -1547,23 +1547,23 @@
               <%= @report.str_early_embryo_grade_show %>
             <% elsif @report.embryo_stage == 2 %>
               <% if @report.blastocyst_grade1.present? || @report.blastocyst_grade2.present? || @report.culture_days.present? %>
-                <% if @report.culture_days < 99 %>
+                <% if @report.culture_days.present? && @report.culture_days < 99 %>
                   <%= @report.str_culture_days %>
                 <% end %>
                 胚盤胞&nbsp;
-                <% if  @report.blastocyst_grade1 < 99 %>
+                <% if @report.blastocyst_grade1.present? &&  @report.blastocyst_grade1 < 99 %>
                   <%= @report.str_blastocyst_grade1_show %>
                 <% end %>
-                <% if @report.blastocyst_grade2 < 99 %>
+                <% if @report.blastocyst_grade2.present? && @report.blastocyst_grade2 < 99 %>
                   <%= @report.str_blastocyst_grade2 %>
                 <% end %>
-                <% if  @report.blastocyst_grade1 >= 99 %>
+                <% if @report.blastocyst_grade1.present? && @report.blastocyst_grade1 >= 99 %>
                   <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1 %></p>
                 <% end %>
-                <% if @report.blastocyst_grade2 >= 99 %>
+                <% if @report.blastocyst_grade2.present? && @report.blastocyst_grade2 >= 99 %>
                   <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2 %></p>
                 <% end %>
-                <% if @report.culture_days >= 99 %>
+                <% if @report.culture_days.present? && @report.culture_days >= 99 %>
                   <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days %></p>
                 <% end %>
               <% end %>
