@@ -2192,7 +2192,6 @@
                     <% end %>
                   </h5>
                 <% end %>
-
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の移植</a></li>
@@ -4290,13 +4289,6 @@
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">胚盤胞到達率<span class="small text-muted">(対 採卵数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
-                      <% if @report.embryo_stage == 1 %>
-                        <% if @report.current_state.present? %>
-                          <p class="small text-danger"><span class="small">※「<%= @report.str_current_state %>」に至った移植胚は初期胚を使用</span></p>
-                        <% else %>
-                          <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は初期胚を使用</span></p>
-                        <% end %>
-                      <% end %>
                       <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_eggs_collected.present? && @report.number_of_eggs_collected <= 50 %>
                         <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_eggs_collected.to_f ) * 100 %>
                         <% if haibanho_rate <= 100.00 %>
@@ -4326,13 +4318,6 @@
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">胚盤胞到達率<span class="small text-muted">(対 受精個数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
-                      <% if @report.embryo_stage == 1 %>
-                        <% if @report.current_state.present? %>
-                          <p class="small text-danger"><span class="small">※「<%= @report.str_current_state %>」に至った移植胚は初期胚を使用</span></p>
-                        <% else %>
-                          <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は初期胚を使用</span></p>
-                        <% end %>
-                      <% end %>
                       <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_fertilized_eggs.present? && @report.number_of_fertilized_eggs <= 50 %>
                         <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_fertilized_eggs.to_f ) * 100 %>
                         <% if haibanho_rate <= 100.00 %>
@@ -4362,13 +4347,6 @@
                   <tr>
                     <td class="result-left-column small text-center" style="width:30%">胚盤胞到達率<span class="small text-muted">(対 移植可能胚数)</span><i data-feather="bar-chart-2" class="feather-icon-style3 px-1 py-1 pb-2 mx-0"></i></td>
                     <td class="pl-3" style="width:70%">
-                      <% if @report.embryo_stage == 1 %>
-                        <% if @report.current_state.present? %>
-                          <p class="small text-danger"><span class="small">※「<%= @report.str_current_state %>」に至った移植胚は初期胚を使用</span></p>
-                        <% else %>
-                          <p class="small text-danger"><span class="small">※現在の状況に至った移植胚は初期胚を使用</span></p>
-                        <% end %>
-                      <% end %>
                       <% if @report.number_of_frozen_blastocysts.present? && @report.number_of_frozen_blastocysts <= 50 && @report.number_of_transferable_embryos.present? && @report.number_of_transferable_embryos <= 50 %>
                         <% haibanho_rate = ( @report.number_of_frozen_blastocysts.to_f / @report.number_of_transferable_embryos.to_f ) * 100 %>
                         <% if haibanho_rate <= 100.00 %>
