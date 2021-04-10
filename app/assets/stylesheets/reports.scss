@@ -1619,3 +1619,10 @@ i .fa-edit {
 .day-column-sairan_hormone, .day-column-day-of-sairan, .day-column-before-ishoku-hormone, .day-column-ishoku, .day-column-et-bt {
 	background: rgba(255, 80, 80, 0.5);
 }
+
+// center/card
+@media screen and (min-width: 768px) {
+	.repoco_card {
+		padding-right: 0.5rem;
+	}
+}
