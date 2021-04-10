@@ -122,7 +122,7 @@
           </td>
         </tr>
       <% end %>
-      <% if @report.transplant_method_2.present? %>
+      <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted > 1 && @report.total_number_of_eggs_transplanted < 100 %>
         <tr>
           <td class="result-left-column small text-center">移植胚</td>
           <td class="pl-3 pr-0">
@@ -182,41 +182,46 @@
               <% end %>
             </div>
             <div>
-              <% if @report.transplant_method_2.present? %>
-                <p class="mb-1 small text-dark"><span class="small">【移植胚②】</span></p>
-                <% if @report.transplant_method_2 < 99 %>
-                  <span class="result-text small">&nbsp;<%= @report.str_transplant_method_2 %></span>
+              <% if @report.transplant_method_2.present? || @report.embryo_stage_2.present? || @report.blastocyst_grade1_2.present? || @report.blastocyst_grade2_2.present? || @report.culture_days_2.present? %>
+                <% if @report.transplant_method_2.present? %>
+                  <p class="mb-1 small text-dark"><span class="small">【移植胚②】</span></p>
+                  <% if @report.transplant_method_2 < 99 %>
+                    <span class="result-text small">&nbsp;<%= @report.str_transplant_method_2 %></span>
+                  <% else %>
+                    <span class="text-muted small">未回答&nbsp;<span class="small">(新鮮胚 or 凍結胚)</span></span><br>
+                  <% end %>
                 <% else %>
                   <span class="text-muted small">未回答&nbsp;<span class="small">(新鮮胚 or 凍結胚)</span></span><br>
                 <% end %>
-              <% else %>
-                <span class="text-muted small">未回答&nbsp;<span class="small">(新鮮胚 or 凍結胚)</span></span><br>
-              <% end %>
-              <% if @report.embryo_stage_2 == 1 %>
-                <%= @report.str_embryo_stage_2 %>
-                <%= @report.str_early_embryo_grade_2_show %>
-              <% elsif @report.embryo_stage_2 == 2 %>
-                <% if @report.blastocyst_grade1_2.present? || @report.blastocyst_grade2_2.present? || @report.culture_days_2.present? %>
-                  <% if @report.culture_days_2.present? && @report.culture_days_2 < 99 %>
-                    <%= @report.str_culture_days_2 %>
-                  <% end %>
-                  胚盤胞&nbsp;
-                  <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 < 99 %>
-                    <%= @report.str_blastocyst_grade1_2_show %>
-                  <% end %>
-                  <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 < 99 %>
-                    <%= @report.str_blastocyst_grade2_2 %>
-                  <% end %>
-                  <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 >= 99 %>
-                    <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1_2 %></p>
-                  <% end %>
-                  <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 >= 99 %>
-                    <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2_2 %></p>
-                  <% end %>
-                  <% if @report.culture_days_2.present? && @report.culture_days_2 >= 99 %>
-                    <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days_2 %></p>
+                <% if @report.embryo_stage_2 == 1 %>
+                  <%= @report.str_embryo_stage_2 %>
+                  <%= @report.str_early_embryo_grade_2_show %>
+                <% elsif @report.embryo_stage_2 == 2 %>
+                  <% if @report.blastocyst_grade1_2.present? || @report.blastocyst_grade2_2.present? || @report.culture_days_2.present? %>
+                    <% if @report.culture_days_2.present? && @report.culture_days_2 < 99 %>
+                      <%= @report.str_culture_days_2 %>
+                    <% end %>
+                    胚盤胞&nbsp;
+                    <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 < 99 %>
+                      <%= @report.str_blastocyst_grade1_2_show %>
+                    <% end %>
+                    <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 < 99 %>
+                      <%= @report.str_blastocyst_grade2_2 %>
+                    <% end %>
+                    <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 >= 99 %>
+                      <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1_2 %></p>
+                    <% end %>
+                    <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 >= 99 %>
+                      <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2_2 %></p>
+                    <% end %>
+                    <% if @report.culture_days_2.present? && @report.culture_days_2 >= 99 %>
+                      <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days_2 %></p>
+                    <% end %>
                   <% end %>
                 <% end %>
+              <% else %>
+                <p class="mb-1 small text-dark"><span class="small">【移植胚②】</span></p>
+                <span class="text-muted small pl-2">未回答</span>
               <% end %>
               <% if @report.total_number_of_eggs_transplanted > 2 && @report.total_number_of_eggs_transplanted < 100 %>
                 <div class="pt-3 text-right">
@@ -1425,7 +1430,7 @@
           <% end %>
         </td>
       </tr>
-      <% if @report.transplant_method_2.present? %>
+      <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted > 1 && @report.total_number_of_eggs_transplanted < 100 %>
         <tr>
           <td class="result-left-column small text-center">移植胚</td>
           <td class="pl-3 pr-0">
@@ -1485,41 +1490,46 @@
               <% end %>
             </div>
             <div>
-              <% if @report.transplant_method_2.present? %>
-                <p class="mb-1 small text-dark"><span class="small">【移植胚②】</span></p>
-                <% if @report.transplant_method_2 < 99 %>
-                  <span class="result-text small">&nbsp;<%= @report.str_transplant_method_2 %></span>
+              <% if @report.transplant_method_2.present? || @report.embryo_stage_2.present? || @report.blastocyst_grade1_2.present? || @report.blastocyst_grade2_2.present? || @report.culture_days_2.present? %>
+                <% if @report.transplant_method_2.present? %>
+                  <p class="mb-1 small text-dark"><span class="small">【移植胚②】</span></p>
+                  <% if @report.transplant_method_2 < 99 %>
+                    <span class="result-text small">&nbsp;<%= @report.str_transplant_method_2 %></span>
+                  <% else %>
+                    <span class="text-muted small">未回答&nbsp;<span class="small">(新鮮胚 or 凍結胚)</span></span><br>
+                  <% end %>
                 <% else %>
                   <span class="text-muted small">未回答&nbsp;<span class="small">(新鮮胚 or 凍結胚)</span></span><br>
                 <% end %>
-              <% else %>
-                <span class="text-muted small">未回答&nbsp;<span class="small">(新鮮胚 or 凍結胚)</span></span><br>
-              <% end %>
-              <% if @report.embryo_stage_2 == 1 %>
-                <%= @report.str_embryo_stage_2 %>
-                <%= @report.str_early_embryo_grade_2_show %>
-              <% elsif @report.embryo_stage_2 == 2 %>
-                <% if @report.blastocyst_grade1_2.present? || @report.blastocyst_grade2_2.present? || @report.culture_days_2.present? %>
-                  <% if @report.culture_days_2.present? && @report.culture_days_2 < 99 %>
-                    <%= @report.str_culture_days_2 %>
-                  <% end %>
-                  胚盤胞&nbsp;
-                  <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 < 99 %>
-                    <%= @report.str_blastocyst_grade1_2_show %>
-                  <% end %>
-                  <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 < 99 %>
-                    <%= @report.str_blastocyst_grade2_2 %>
-                  <% end %>
-                  <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 >= 99 %>
-                    <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1_2 %></p>
-                  <% end %>
-                  <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 >= 99 %>
-                    <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2_2 %></p>
-                  <% end %>
-                  <% if @report.culture_days_2.present? && @report.culture_days_2 >= 99 %>
-                    <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days_2 %></p>
+                <% if @report.embryo_stage_2 == 1 %>
+                  <%= @report.str_embryo_stage_2 %>
+                  <%= @report.str_early_embryo_grade_2_show %>
+                <% elsif @report.embryo_stage_2 == 2 %>
+                  <% if @report.blastocyst_grade1_2.present? || @report.blastocyst_grade2_2.present? || @report.culture_days_2.present? %>
+                    <% if @report.culture_days_2.present? && @report.culture_days_2 < 99 %>
+                      <%= @report.str_culture_days_2 %>
+                    <% end %>
+                    胚盤胞&nbsp;
+                    <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 < 99 %>
+                      <%= @report.str_blastocyst_grade1_2_show %>
+                    <% end %>
+                    <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 < 99 %>
+                      <%= @report.str_blastocyst_grade2_2 %>
+                    <% end %>
+                    <% if @report.blastocyst_grade1_2.present? && @report.blastocyst_grade1_2 >= 99 %>
+                      <p class="mb-0 small pl-3"><span class="small text-muted">グレード:</span>&nbsp;<%= @report.str_blastocyst_grade1_2 %></p>
+                    <% end %>
+                    <% if @report.blastocyst_grade2_2.present? && @report.blastocyst_grade2_2 >= 99 %>
+                      <p class="mb-0 small pl-3"><span class="small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;評価:</span>&nbsp;<%= @report.str_blastocyst_grade2_2 %></p>
+                    <% end %>
+                    <% if @report.culture_days_2.present? && @report.culture_days_2 >= 99 %>
+                      <p class="mb-0 small pl-3"><span class="small text-muted">培養日数:</span>&nbsp;<%= @report.str_culture_days_2 %></p>
+                    <% end %>
                   <% end %>
                 <% end %>
+              <% else %>
+                <p class="mb-1 small text-dark"><span class="small">【移植胚②】</span></p>
+                <span class="text-muted small pl-2">未回答</span>
               <% end %>
               <% if @report.total_number_of_eggs_transplanted > 2 && @report.total_number_of_eggs_transplanted < 100 %>
                 <div class="pt-3 text-right">
