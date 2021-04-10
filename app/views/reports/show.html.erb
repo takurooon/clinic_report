@@ -1778,11 +1778,11 @@
                                   <% end %>
                                   &nbsp;新鮮胚&nbsp;<%= @report.str_number_of_unfrozen_embryos %></p>
                               <% end %>
-                              <% if @report.number_of_transferable_embryos.present? %>
-                                <p class="small result-text mb-0"><span class="text-muted small">内</span>&nbsp;凍結胚&nbsp;<%= @report.str_number_of_transferable_embryos %></p>
-                              <% end %>
                               <% number_of_frozen_eggs = @report.number_of_frozen_pronuclear_embryos.to_i + @report.number_of_frozen_early_embryos.to_i + @report.number_of_frozen_blastocysts.to_i + @report.unknown_number_of_frozen_embryos.to_i %>
-                              <% if number_of_frozen_eggs > 0 %>
+                              <% if number_of_frozen_eggs.present? && number_of_frozen_eggs > 0 %>
+                                <p class="small result-text mb-0"><span class="text-muted small">内</span>&nbsp;凍結胚&nbsp;<%= number_of_frozen_eggs %>個</p>
+                              <% end %>
+                              <% if number_of_frozen_eggs.present? && number_of_frozen_eggs > 0 %>
                                 <ul class="small pl-4">
                                   <% if @report.number_of_frozen_pronuclear_embryos.present? && @report.number_of_frozen_pronuclear_embryos > 0 %>
                                     <li class="list-unstyled small text-muted">前核胚<%= @report.str_number_of_frozen_pronuclear_embryos %></li>
