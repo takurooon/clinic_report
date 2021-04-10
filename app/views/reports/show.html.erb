@@ -1826,6 +1826,9 @@
                           <% end %>
                         </div>
                         <div class="col-10 pt-3 pl-1">
+                          <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted > 1 && @report.total_number_of_eggs_transplanted < 100 %>
+                            <p class="mb-2 small"><span class="text-muted small">※&nbsp;移植胚個数:</span>&nbsp;<span class="font-weight-bold"><u>複数個</u></span><%= image_tag"home/finger_mom_down.svg", width: "18px", class: "m-0 p-0", loading: "lazy" %></p>
+                          <% end %>
                           <div class="my-0 pt-0">
                             <p class="small mb-1 pt-1">
                               <% if @report.current_state.present? && @report.current_state <= 4 %>
@@ -1833,7 +1836,11 @@
                               <% else %>
                                 現在の状況
                               <% end %>
-                              に至った移植胚
+                              に至った
+                              <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted > 1 && @report.total_number_of_eggs_transplanted < 100 %>
+                                周期の
+                              <% end %>
+                              移植胚
                               <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted > 1 && @report.total_number_of_eggs_transplanted < 100 %>
                                 ①
                               <% end %>
@@ -1908,7 +1915,7 @@
                                 <% else %>
                                   現在の状況
                                 <% end %>
-                                に至った移植胚②
+                                に至った周期の移植胚②
                               </p>
                               <table class="table p-0">
                                 <tr>
@@ -2453,13 +2460,13 @@
                               <% @report.day_of_haibanhoishokus.each do |day_of_haibanhoishoku| %>
                                 <table class="table-borderless">
                                   <tr>
-                                    <td class="small text-muted text-right"><%= day %>&nbsp;:</td>
+                                    <td class="small text-muted text-right px-0"><%= day %>&nbsp;:</td>
                                     <td class="font-weight-bold">
                                       <%= day_of_haibanhoishoku.day %>
                                     </td>
                                   </tr>
                                   <tr>
-                                    <td class="small text-muted text-right">E2&nbsp;:</td>
+                                    <td class="small text-muted text-right px-0">E2&nbsp;:</td>
                                     <% if day_of_haibanhoishoku.e2 %>
                                       <td class="font-weight-bold">
                                         <%= day_of_haibanhoishoku.e2 %>&nbsp;<span class="small text-muted"><small>pg/ml</small></span>
@@ -2471,7 +2478,7 @@
                                     <% end %>
                                   </tr>
                                   <tr>
-                                    <td class="small text-muted text-right">FSH&nbsp;:</td>
+                                    <td class="small text-muted text-right px-0">FSH&nbsp;:</td>
                                     <% if day_of_haibanhoishoku.fsh %>
                                       <td class="font-weight-bold">
                                         <%= day_of_haibanhoishoku.fsh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
@@ -2483,7 +2490,7 @@
                                     <% end %>
                                   </tr>
                                   <tr>
-                                    <td class="small text-muted text-right">LH&nbsp;:</td>
+                                    <td class="small text-muted text-right px-0">LH&nbsp;:</td>
                                     <% if day_of_haibanhoishoku.lh %>
                                       <td class="font-weight-bold">
                                         <%= day_of_haibanhoishoku.lh %>&nbsp;<span class="small text-muted"><small>mIU/ml</small></span>
@@ -2495,7 +2502,7 @@
                                     <% end %>
                                   </tr>
                                   <tr>
-                                    <td class="small text-muted text-right">P4&nbsp;:</td>
+                                    <td class="small text-muted text-right px-0">P4&nbsp;:</td>
                                     <% if day_of_haibanhoishoku.p4 %>
                                       <td class="font-weight-bold">
                                         <%= day_of_haibanhoishoku.p4 %>&nbsp;<span class="small text-muted"><small>ng/ml</small></span>
@@ -2507,7 +2514,7 @@
                                     <% end %>
                                   </tr>
                                   <tr>
-                                    <td class="small text-muted text-right">子宮内膜の厚さ&nbsp;:</td>
+                                    <td class="small text-muted text-right px-0"><small>子宮内膜の厚さ&nbsp;</small>:</td>
                                     <% if day_of_haibanhoishoku.endometrial_thickness %>
                                       <td class="font-weight-bold">
                                         <%= day_of_haibanhoishoku.endometrial_thickness %>&nbsp;<span class="small text-muted"><small>mm</small></span>
