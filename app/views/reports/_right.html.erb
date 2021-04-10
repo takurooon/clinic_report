@@ -106,18 +106,20 @@
                   </p>
                 </div>
                 <div class="small pb-2">
-                  <% if user_signed_in? %>
-                    <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
-                      <% if current_user.already_liked?(report) %>
-                        <%= images_action_svg("like_mobile.svg") %><span class="text-danger">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
-                      <% else %>
+                  <% if false %>
+                    <% if user_signed_in? %>
+                      <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
+                        <% if current_user.already_liked?(report) %>
+                          <%= images_action_svg("like_mobile.svg") %><span class="text-danger">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
+                        <% else %>
+                          <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
+                        <% end %>
+                      </p>
+                    <% else %>
+                      <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
                         <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
-                      <% end %>
-                    </p>
-                  <% else %>
-                    <p class="float-left mb-0 pr-2 d-inline" style="font-size:10px">
-                      <%= images_action_svg("unlike_mobile.svg") %><span class="text-muted">&nbsp;&nbsp;<% if report.likes.present? %><%= report.likes.count %><% end %></span>
-                    </p>
+                      </p>
+                    <% end %>
                   <% end %>
                   <p class="m-0 text-muted d-flex align-items-center">
                     <span class="small"><%= report.prefecture.name %></span>&nbsp;
