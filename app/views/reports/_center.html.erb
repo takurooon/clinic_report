@@ -6,7 +6,7 @@
           <div class="row">
             <div class="d-block d-sm-none col-3 pl-0 text-center px-0">
               <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
-                <div class="icon-field">
+                <div class="icon-field pb-0">
                   <% if report.user.icon.present? %>
                     <%= image_tag(report.user.icon, class:"icon_image") %>
                   <% else %>
@@ -60,7 +60,7 @@
                 </div>
               <% end %>
               <div class="pl-0 pr-2">
-                <p class="mb-0 text-enter">
+                <p class="mb-0 text-enter pb-1">
                   <% if report.treatment_end_age == nil %>
                     <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "17px", class: "px-0", loading: "lazy", title: "不明"), user_path(report.user_id) %>
                   <% elsif report.treatment_end_age < 25 %>
@@ -141,7 +141,7 @@
           <div class="row">
             <div class="d-none d-sm-block col-sm-3 pl-0 text-center px-0">
               <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
-                <div class="icon-field">
+                <div class="icon-field pt-2">
                   <% if report.user.icon.present? %>
                     <%= image_tag(report.user.icon, class:"icon_image") %>
                   <% else %>
@@ -195,7 +195,7 @@
                 </div>
               <% end %>
               <div class="d-none d-sm-block px-0">
-                <div class="align-items-center text-center pt-2">
+                <div class="align-items-center text-center">
                   <p class="mb-0 pb-1">
                     <% if report.treatment_end_age == nil %>
                       <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明"), user_path(report.user_id) %>
@@ -219,7 +219,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-9 mt-2 px-1">
+            <div class="col-12 col-sm-9 px-1">
               <div class="d-none d-sm-block repoco_card">
                 <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
                   <small class="text-muted d-none d-sm-block">
