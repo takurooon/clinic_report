@@ -10,7 +10,16 @@
         <% if user_signed_in? %>
           <div class="px-2 mb-4">
             <details class="mt-2 pt-2">
-              <summary class="mb-2 ml-3 text-danger fluffy-b">【新機能追加のお知らせ】</summary>
+              <summary class="mb-2 ml-3 text-danger fluffy-b">【複数胚移植などに関する入力欄追加】</summary>
+              <p class="my-3 small text-center font-weight-bold">多胎の場合の子の人数を選択できるようになりました。</p>
+              <p><%= image_tag"info/multiple_births.png", class: "img-fluid pb-1", loading: "lazy" %></p>
+              <p class="my-3 small text-center font-weight-bold">卵子、移植可能胚の内訳に「不明」欄を追加しました。</p>
+              <p><%= image_tag"info/breakdown_of_eggs.png", class: "img-fluid pb-1", loading: "lazy" %></p>
+              <p class="my-3 small text-center font-weight-bold">複数胚移植の場合に2個目の胚情報の登録ができるようになりました。</p>
+              <p><%= image_tag"info/multiple_embryo_transfer.gif", class: "img-fluid pb-1", loading: "lazy" %></p>
+            </details>
+            <details class="mt-2 pt-2">
+              <summary class="mb-2 ml-3 text-danger fluffy-b">【ホルモン値入力欄追加】</summary>
               <p class="my-3 small text-center font-weight-bold">＼ホルモン値の入力ができるようになりました／</p>
               <p><%= image_tag"howto/sairan_ishoku_graph.png", class: "img-fluid pb-1", loading: "lazy" %></p>
               <p class="my-3 small text-center font-weight-bold">＼作成方法／</p>
