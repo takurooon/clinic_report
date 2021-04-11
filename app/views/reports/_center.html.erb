@@ -60,7 +60,7 @@
                 </div>
               <% end %>
               <div class="pl-0 pr-2">
-                <p class="mb-0 text-enter pb-1">
+                <p class="mb-0 text-enter py-1">
                   <% if report.treatment_end_age == nil %>
                     <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "17px", class: "px-0", loading: "lazy", title: "不明"), user_path(report.user_id) %>
                   <% elsif report.treatment_end_age < 25 %>
