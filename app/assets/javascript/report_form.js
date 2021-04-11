@@ -882,7 +882,7 @@ $(function() {
   setRadioValues();
 
   // 全てのラジオボタンを全取得
-  let inputRadios = $("input[type='radio']")
+  let inputRadios = $(".q_radio")
 
   // 取得したラジオボタンに onclick イベント設定
   inputRadios.on('click', function() {
@@ -914,7 +914,7 @@ let radioValues = {};
  */
 function setRadioValues() {
   // チェックしてあるラジオボタンを全取得
-  let inputRadios = $("input[type='radio']").filter(":checked");
+  let inputRadios = $(".q_radio").filter(":checked");
 
   inputRadios.each(function(i, ele) {
     // name 値 (<input type="radio" name="★group1★" value="a">)

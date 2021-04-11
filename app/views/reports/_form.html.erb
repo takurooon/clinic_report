@@ -148,7 +148,7 @@
                       <%= f.collection_radio_buttons(:current_state, Report::HASH_CURRENT_STATE, :first, :last) do |b| %>
                         <div class="form-check pl-2">
                           <%= b.label class: "radio-inline mb-1" do %>
-                            <%= b.radio_button %>
+                            <%= b.radio_button class: "q_radio" %>
                             <%= b.text %>
                           <% end %>
                         </div>
@@ -162,7 +162,7 @@
                     <%= f.collection_radio_buttons(:multiple_birth, Report::HASH_MULTIPLE_BIRTH, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button class: "q_radio" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -174,7 +174,7 @@
                     <%= f.collection_radio_buttons(:work_style, Report::HASH_WORK_STYLE, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button class: "q_radio" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -193,7 +193,7 @@
                     <%= f.collection_radio_buttons(:switching_work_styles, Report::HASH_SWITCHING_WORK_STYLES, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button class: "q_radio" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -216,7 +216,7 @@
                     <%= f.collection_radio_buttons(:fertility_treatment_number, Report::HASH_FERTILITY_TREATMENT_NUMBER, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button class: "q_radio" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -228,7 +228,7 @@
                     <%= f.collection_radio_buttons(:types_of_fertilization_methods, Report::HASH_TYPES_OF_FERTILIZATION_METHODS, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button class: "q_radio" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -242,7 +242,7 @@
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -259,7 +259,7 @@
                         <div class="col-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -276,7 +276,7 @@
                         <div class="col-4 col-sm-3 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -326,7 +326,7 @@
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -361,7 +361,7 @@
                       <%= f.collection_radio_buttons(:male_infertility, Report::HASH_MALE_INFERTILITY, :first, :last) do |b| %>
                         <div class="form-check pl-2">
                           <%= b.label class: "radio-inline mb-1" do %>
-                            <%= b.radio_button %>
+                            <%= b.radio_button class: "q_radio" %>
                             <%= b.text %>
                           <% end %>
                         </div>
@@ -373,7 +373,7 @@
                     <%= f.collection_radio_buttons(:level_of_male_infertility, Report::HASH_LEVEL_OF_MALE_INFERTILITY, :first, :last) do |b| %>
                       <div class="form-check pl-2">
                         <%= b.label class: "radio-inline mb-1" do %>
-                          <%= b.radio_button %>
+                          <%= b.radio_button class: "q_radio" %>
                           <%= b.text %>
                         <% end %>
                       </div>
@@ -386,7 +386,7 @@
                       <%= f.collection_radio_buttons(:fuiku, Report::HASH_FUIKU, :first, :last) do |b| %>
                         <div class="form-check pl-2">
                           <%= b.label class: "radio-inline mb-1" do %>
-                            <%= b.radio_button %>
+                            <%= b.radio_button class: "q_radio" %>
                             <%= b.text %>
                           <% end %>
                         </div>
@@ -433,7 +433,7 @@
                         <div class="col-4 col-sm-3 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -498,7 +498,7 @@
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -608,7 +608,7 @@
                           <%= f.collection_radio_buttons(:number_of_visits_before_sairan, Report::HASH_NUMBER_OF_VISITS_BEFORE_SAIRAN, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button class: "q_radio" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -629,7 +629,7 @@
                           <%= f.collection_radio_buttons(:type_of_ovarian_stimulation, Report::HASH_TYPE_OF_OVARIAN_STIMULATION, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button class: "q_radio" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -644,7 +644,7 @@
                           <%= f.collection_radio_buttons(:use_of_anesthesia, Report::HASH_USE_OF_ANESTHESIA, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button class: "q_radio" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -659,7 +659,7 @@
                           <%= f.collection_radio_buttons(:selection_of_anesthesia_type, Report::HASH_SELECTION_OF_ANESTHESIA_TYPE, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button class: "q_radio" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -928,7 +928,7 @@
                           <%= f.collection_radio_buttons(:number_of_visits_before_ishoku, Report::HASH_NUMBER_OF_VISITS_BEFORE_ISHOKU, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button class: "q_radio" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -949,7 +949,7 @@
                           <%= f.collection_radio_buttons(:ishoku_type, Report::HASH_ISHOKU_TYPE, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button class: "q_radio" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -1123,7 +1123,7 @@
                           <%= f.collection_radio_buttons(:total_number_of_eggs_transplanted, Report::HASH_TOTAL_NUMBER_OF_EGGS_TRANSPLANTED, :first, :last) do |b| %>
                             <div class="form-check pl-2">
                               <%= b.label class: "radio-inline mb-1" do %>
-                                <%= b.radio_button %>
+                                <%= b.radio_button class: "q_radio" %>
                                 <%= b.text %>
                               <% end %>
                             </div>
@@ -1143,7 +1143,7 @@
                             <%= f.collection_radio_buttons(:transplant_method, Report::HASH_TRANSPLANT_METHOD, :first, :last) do |b| %>
                               <div class="form-check pl-2">
                                 <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button %>
+                                  <%= b.radio_button class: "q_radio" %>
                                   <%= b.text %>
                                 <% end %>
                               </div>
@@ -1159,7 +1159,7 @@
                             <%= f.collection_radio_buttons(:embryo_stage, Report::HASH_EMBRYO_STAGE, :first, :last) do |b| %>
                               <div class="form-check pl-2">
                                 <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button %>
+                                  <%= b.radio_button class: "q_radio" %>
                                   <%= b.text %>
                                 <% end %>
                               </div>
@@ -1174,7 +1174,7 @@
                             <%= f.collection_radio_buttons(:early_embryo_grade, Report::HASH_EARLY_EMBRYO_GRADE, :first, :last) do |b| %>
                               <div class="form-check pl-2">
                                 <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button %>
+                                  <%= b.radio_button class: "q_radio" %>
                                   <%= b.text %>
                                 <% end %>
                               </div>
@@ -1189,7 +1189,7 @@
                             <%= f.collection_radio_buttons(:blastocyst_grade1, Report::HASH_BLASTOCYST_GRADE1, :first, :last) do |b| %>
                               <div class="form-check pl-2">
                                 <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button %>
+                                  <%= b.radio_button class: "q_radio" %>
                                   <%= b.text %>
                                 <% end %>
                               </div>
@@ -1205,7 +1205,7 @@
                               <div class="col-4 col-sm-3 col-lg-12 px-0">
                                 <div class="form-check pl-2">
                                   <%= b.label class: "radio-inline mb-1" do %>
-                                    <%= b.radio_button %>
+                                    <%= b.radio_button class: "q_radio" %>
                                     <%= b.text %>
                                   <% end %>
                                 </div>
@@ -1221,7 +1221,7 @@
                             <%= f.collection_radio_buttons(:culture_days, Report::HASH_CULTURE_DAYS, :first, :last) do |b| %>
                               <div class="form-check pl-2">
                                 <%= b.label class: "radio-inline mb-1" do %>
-                                  <%= b.radio_button %>
+                                  <%= b.radio_button class: "q_radio" %>
                                   <%= b.text %>
                                 <% end %>
                               </div>
@@ -1243,7 +1243,7 @@
                               <%= f.collection_radio_buttons(:transplant_method_2, Report::HASH_TRANSPLANT_METHOD, :first, :last) do |b| %>
                                 <div class="form-check pl-2">
                                   <%= b.label class: "radio-inline mb-1" do %>
-                                    <%= b.radio_button %>
+                                    <%= b.radio_button class: "q_radio" %>
                                     <%= b.text %>
                                   <% end %>
                                 </div>
@@ -1259,7 +1259,7 @@
                               <%= f.collection_radio_buttons(:embryo_stage_2, Report::HASH_EMBRYO_STAGE, :first, :last) do |b| %>
                                 <div class="form-check pl-2">
                                   <%= b.label class: "radio-inline mb-1" do %>
-                                    <%= b.radio_button %>
+                                    <%= b.radio_button class: "q_radio" %>
                                     <%= b.text %>
                                   <% end %>
                                 </div>
@@ -1274,7 +1274,7 @@
                               <%= f.collection_radio_buttons(:early_embryo_grade_2, Report::HASH_EARLY_EMBRYO_GRADE, :first, :last) do |b| %>
                                 <div class="form-check pl-2">
                                   <%= b.label class: "radio-inline mb-1" do %>
-                                    <%= b.radio_button %>
+                                    <%= b.radio_button class: "q_radio" %>
                                     <%= b.text %>
                                   <% end %>
                                 </div>
@@ -1289,7 +1289,7 @@
                               <%= f.collection_radio_buttons(:blastocyst_grade1_2, Report::HASH_BLASTOCYST_GRADE1, :first, :last) do |b| %>
                                 <div class="form-check pl-2">
                                   <%= b.label class: "radio-inline mb-1" do %>
-                                    <%= b.radio_button %>
+                                    <%= b.radio_button class: "q_radio" %>
                                     <%= b.text %>
                                   <% end %>
                                 </div>
@@ -1305,7 +1305,7 @@
                                 <div class="col-4 col-sm-3 col-lg-12 px-0">
                                   <div class="form-check pl-2">
                                     <%= b.label class: "radio-inline mb-1" do %>
-                                      <%= b.radio_button %>
+                                      <%= b.radio_button class: "q_radio" %>
                                       <%= b.text %>
                                     <% end %>
                                   </div>
@@ -1321,7 +1321,7 @@
                               <%= f.collection_radio_buttons(:culture_days_2, Report::HASH_CULTURE_DAYS, :first, :last) do |b| %>
                                 <div class="form-check pl-2">
                                   <%= b.label class: "radio-inline mb-1" do %>
-                                    <%= b.radio_button %>
+                                    <%= b.radio_button class: "q_radio" %>
                                     <%= b.text %>
                                   <% end %>
                                 </div>
@@ -1657,7 +1657,7 @@
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1674,7 +1674,7 @@
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1691,7 +1691,7 @@
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1707,7 +1707,7 @@
                       <%= f.collection_radio_buttons(:credit_card_validity, Report::HASH_CREDIT_CARD_VALIDITY, :first, :last) do |b| %>
                         <div class="form-check pl-2">
                           <%= b.label class: "radio-inline mb-1" do %>
-                            <%= b.radio_button %>
+                            <%= b.radio_button class: "q_radio" %>
                             <%= b.text %>
                           <% end %>
                         </div>
@@ -1761,7 +1761,7 @@
                         <%= f.collection_radio_buttons(:doctor_quality, Report::HASH_RATING, :first, :last) do |b| %>
                           <div class="form-check px-1 pt-1 pb-0">
                             <%= b.label class: "radio-inline pb-0 mb-0" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1784,7 +1784,7 @@
                         <%= f.collection_radio_buttons(:staff_quality, Report::HASH_RATING, :first, :last) do |b| %>
                           <div class="form-check px-1 pt-1 pb-0">
                             <%= b.label class: "radio-inline pb-0 mb-0" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1807,7 +1807,7 @@
                         <%= f.collection_radio_buttons(:impression_of_technology, Report::HASH_RATING, :first, :last) do |b| %>
                           <div class="form-check px-1 pt-1 pb-0">
                             <%= b.label class: "radio-inline pb-0 mb-0" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1833,7 +1833,7 @@
                         <%= f.collection_radio_buttons(:impression_of_price, Report::HASH_RATING, :first, :last) do |b| %>
                           <div class="form-check px-1 pt-1 pb-0">
                             <%= b.label class: "radio-inline pb-0 mb-0" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1856,7 +1856,7 @@
                         <%= f.collection_radio_buttons(:average_waiting_time2, Report::HASH_RATING, :first, :last) do |b| %>
                           <div class="form-check px-1 pt-1 pb-0">
                             <%= b.label class: "radio-inline pb-0 mb-0" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1879,7 +1879,7 @@
                         <%= f.collection_radio_buttons(:comfort_of_space, Report::HASH_RATING, :first, :last) do |b| %>
                           <div class="form-check px-1 pt-1 pb-0">
                             <%= b.label class: "radio-inline pb-0 mb-0" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1893,7 +1893,7 @@
                         <%= f.collection_radio_buttons(:average_waiting_time, Report::HASH_AVERAGE_WAITING_TIME, :first, :last) do |b| %>
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1904,7 +1904,7 @@
                         <%= f.collection_radio_buttons(:free_wifi, Report::HASH_FREE_WIFI, :first, :last) do |b| %>
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
@@ -1915,7 +1915,7 @@
                         <%= f.collection_radio_buttons(:possible_to_wait_outside_cl, Report::HASH_POSSIBLE_TO_WAIT_OUTSIDE_CL, :first, :last) do |b| %>
                           <div class="form-check pl-2">
                             <%= b.label class: "radio-inline mb-1" do %>
-                              <%= b.radio_button %>
+                              <%= b.radio_button class: "q_radio" %>
                               <%= b.text %>
                             <% end %>
                           </div>
