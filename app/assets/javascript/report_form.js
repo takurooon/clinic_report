@@ -697,6 +697,17 @@ $(function() {
 function past_sairan_count(total_number_of_sairans) {
   var total_number_of_sairan = Number(total_number_of_sairans)
   if (total_number_of_sairan <= 1) {
+    $(".total_number_of_sairans_sum4").hide();
+    $(".total_number_of_sairans_sum5").hide();
+    $(".past_sairan").hide();
+    $(".total_number_of_sairans_sum3").hide();
+  } else if (total_number_of_sairan == 2) {
+    var total_number_of_sairans_4 = total_number_of_sairan + "回目の採卵(左隣タブ)" + "の1つ前の"
+    var total_number_of_sairans_5 = "1回目の採卵情報を教えてください"
+    $(".total_number_of_sairans_sum4").text(total_number_of_sairans_4);
+    $(".total_number_of_sairans_sum5").text(total_number_of_sairans_5);
+    $(".total_number_of_sairans_sum4").show();
+    $(".total_number_of_sairans_sum5").show();
     $(".past_sairan").hide();
     $(".total_number_of_sairans_sum3").hide();
   } else if (total_number_of_sairan < 15) {
@@ -704,26 +715,40 @@ function past_sairan_count(total_number_of_sairans) {
     var total_number_of_sairans_1 = " 過去" + num_sairans + "回分の採卵についてぜひ回答ください！"
     var total_number_of_sairans_2 = "（採卵" + total_number_of_sairan + "回 － " + "最新採卵周期）"
     var total_number_of_sairans_3 = num_sairans + "回"
+    var total_number_of_sairans_4 = total_number_of_sairan + "回目の採卵(左隣タブ)" + "以前の"
+    var total_number_of_sairans_5 = "1回目から" + num_sairans + "回目の採卵情報を教えてください"
     $(".total_number_of_sairans_sum").text(total_number_of_sairans_1);
     $(".total_number_of_sairans_sum2").text(total_number_of_sairans_2);
     $(".total_number_of_sairans_sum3").text(total_number_of_sairans_3);
+    $(".total_number_of_sairans_sum4").text(total_number_of_sairans_4);
+    $(".total_number_of_sairans_sum5").text(total_number_of_sairans_5);
     $(".past_sairan").show();
     $(".total_number_of_sairans_sum2").show();
     $(".total_number_of_sairans_sum3").show();
+    $(".total_number_of_sairans_sum4").show();
+    $(".total_number_of_sairans_sum5").show();
   } else if (total_number_of_sairan == 15) {
     var total_number_of_sairans_1 = " 過去の採卵についてもぜひ回答ください！"
     $(".total_number_of_sairans_sum").text(total_number_of_sairans_1);
     $(".total_number_of_sairans_sum2").text();
     $(".total_number_of_sairans_sum3").text();
+    $(".total_number_of_sairans_sum4").text();
+    $(".total_number_of_sairans_sum5").text();
     $(".past_sairan").show();
     $(".total_number_of_sairans_sum2").hide();
     $(".total_number_of_sairans_sum3").hide();
+    $(".total_number_of_sairans_sum4").hide();
+    $(".total_number_of_sairans_sum5").hide();
   } else if (total_number_of_sairan == null){
     $(".past_sairan").show();
     $(".total_number_of_sairans_sum3").hide();
+    $(".total_number_of_sairans_sum4").hide();
+    $(".total_number_of_sairans_sum5").hide();
   } else {
     $(".past_sairan").hide();
     $(".total_number_of_sairans_sum3").hide();
+    $(".total_number_of_sairans_sum4").hide();
+    $(".total_number_of_sairans_sum5").hide();
   }
 }
 
@@ -737,6 +762,17 @@ $(function() {
 function past_ishoku_count(total_number_of_transplants) {
   var total_number_of_transplant = Number(total_number_of_transplants)
   if (total_number_of_transplant <= 1) {
+    $(".total_number_of_transplants_sum4").hide();
+    $(".total_number_of_transplants_sum5").hide();
+    $(".past_ishoku").hide();
+    $(".total_number_of_transplants_sum3").hide();
+  } else if (total_number_of_transplant == 2) {
+    var total_number_of_transplants_4 = total_number_of_transplant + "回目の移植(左隣タブ)" + "以前の"
+    var total_number_of_transplants_5 = "1回目の移植情報を教えてください"
+    $(".total_number_of_transplants_sum4").text(total_number_of_transplants_4);
+    $(".total_number_of_transplants_sum5").text(total_number_of_transplants_5);
+    $(".total_number_of_transplants_sum4").show();
+    $(".total_number_of_transplants_sum5").show();
     $(".past_ishoku").hide();
     $(".total_number_of_transplants_sum3").hide();
   } else if (total_number_of_transplant < 15) {
@@ -744,27 +780,41 @@ function past_ishoku_count(total_number_of_transplants) {
     var total_number_of_transplants_1 = " 過去" + num_transplants + "回分の移植についてぜひ回答ください！"
     var total_number_of_transplants_2 = "（移植" + total_number_of_transplant + "回 － " + "最新移植周期）"
     var total_number_of_transplants_3 = num_transplants + "回"
+    var total_number_of_transplants_4 = total_number_of_transplant + "回目の移植(左隣タブ)" + "以前の"
+    var total_number_of_transplants_5 = "1回目から" + num_transplants + "回目の移植情報を教えてください"
     $(".total_number_of_transplants_sum").text(total_number_of_transplants_1);
     $(".total_number_of_transplants_sum2").text(total_number_of_transplants_2);
-    $(".total_number_of_transplants_sum3").text(total_number_of_transplants_3);
+    $(".total_number_of_transplants_sum2").text(total_number_of_transplants_2);
+    $(".total_number_of_transplants_sum4").text(total_number_of_transplants_4);
+    $(".total_number_of_transplants_sum5").text(total_number_of_transplants_5);
     $(".past_ishoku").show();
     $(".total_number_of_transplants_sum2").show();
     $(".total_number_of_transplants_sum3").show();
+    $(".total_number_of_transplants_sum4").show();
+    $(".total_number_of_transplants_sum5").show();
   } else if (total_number_of_transplant == 15) {
     var total_number_of_transplants_1 = " 過去の移植についてもぜひ回答ください！"
     $(".total_number_of_transplants_sum").text(total_number_of_transplants_1);
     $(".total_number_of_transplants_sum2").text();
     $(".total_number_of_transplants_sum3").text();
+    $(".total_number_of_transplants_sum4").text();
+    $(".total_number_of_transplants_sum5").text();
     $(".past_ishoku").show();
     $(".total_number_of_transplants_sum2").hide();
     $(".total_number_of_transplants_sum3").hide();
+    $(".total_number_of_transplants_sum4").hide();
+    $(".total_number_of_transplants_sum5").hide();
   } else if (total_number_of_transplant == null){
     $(".past_ishoku").show();
     $(".total_number_of_transplants_sum2").hide();
     $(".total_number_of_transplants_sum3").hide();
+    $(".total_number_of_transplants_sum4").hide();
+    $(".total_number_of_transplants_sum5").hide();
   } else {
     $(".past_ishoku").hide();
     $(".total_number_of_transplants_sum3").hide();
+    $(".total_number_of_transplants_sum4").hide();
+    $(".total_number_of_transplants_sum5").hide();
   }
 }
 

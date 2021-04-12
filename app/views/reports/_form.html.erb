@@ -890,6 +890,9 @@
                         </div>
                       </div>
                       <h6 class="child-tab-title pt-5"><span class="marker-underline"><span class="select-clinic-name"></span>での過去<span class="total_number_of_sairans_sum3"></span>の採卵</span></h6>
+                      <div class="mb-0 px-2">
+                        <p class="mb-0 small"><span class="total_number_of_sairans_sum4"></span>&nbsp;<u><span class="total_number_of_sairans_sum5 font-weight-bold text-danger"></span></u></p>
+                      </div>
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_sairan_cycles do |unsuccessful_sairan_cycle| %>
                           <%= render "unsuccessful_sairan_cycle_fields", f: unsuccessful_sairan_cycle %>
@@ -1631,6 +1634,9 @@
                         </div>
                       </div>
                       <h6 class="child-tab-title pt-5"><span class="marker-underline"><span class="select-clinic-name"></span>での過去<span class="total_number_of_transplants_sum3"></span>の移植</span></h6>
+                      <div class="mb-0 px-2">
+                        <p class="mb-0 small"><span class="total_number_of_transplants_sum4"></span>&nbsp;<u><span class="total_number_of_transplants_sum5 font-weight-bold text-danger"></span></u></p>
+                      </div>
                       <div class="form-group mt-0 pt-0">
                         <%= f.fields_for :unsuccessful_ishoku_cycles do |unsuccessful_ishoku_cycle| %>
                           <%= render "unsuccessful_ishoku_cycle_fields", f: unsuccessful_ishoku_cycle %>
