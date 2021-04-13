@@ -1505,7 +1505,11 @@
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab" class="active mostleft-tab" data-toggle="tab">最新の採卵</a></li>
-                    <li><a href="#right_tab" data-toggle="tab">過去の採卵</a></li>
+                    <% if @unsuccessful_sairan_cycles.present? %>
+                      <li class="tab-popup"><a href="#right_tab" data-toggle="tab">過去の採卵<i class="fas fa-circle tab-popup-circle2 fa-stack-1x"></i></a></li>
+                    <% else %>
+                      <li><a href="#right_tab" data-toggle="tab">過去の採卵</a></li>
+                    <% end %>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2 rounded-bottom" id="left_tab">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
@@ -2195,7 +2199,11 @@
                 <div class="parent-tab mb-3">
                   <ul class="nav nav-tabs2 parent-menu mt-0 pt-0">
                     <li><a href="#left_tab2" class="active mostleft-tab" data-toggle="tab">最新の移植</a></li>
-                    <li><a href="#right_tab2" data-toggle="tab">過去の移植</a></li>
+                    <% if @unsuccessful_ishoku_cycles.present? %>
+                      <li class="tab-popup"><a href="#right_tab2" data-toggle="tab">過去の移植<i class="fas fa-circle tab-popup-circle2 fa-stack-1x"></i></a></li>
+                    <% else %>
+                      <li><a href="#right_tab2" data-toggle="tab">過去の移植</a></li>
+                    <% end %>
                   </ul>
                   <div class="parent-tab-content active mostleft-tab p-2 rounded-bottom" id="left_tab2">
                     <div class="alert alert-light rounded-lg border py-2 px-1 mb-0 text-dark" role="alert">
