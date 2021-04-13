@@ -135,7 +135,7 @@
               <%= link_to report, data: { "turbolinks" => false } do %>
                 <% if report.title.present? %>
                   <div class="p-0">
-                    <p class="mb-0"><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
+                    <p class="mb-0 pb-2"><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
                   </div>
                 <% end %>
               <% end %>
