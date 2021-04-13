@@ -142,7 +142,7 @@
               <section class="child-tab-content rounded-bottom" id="tab_1_2">
                 <div class="scroll-box">
                   <div class="form-group mt-0 mb-2 pt-0" id="current_state_area">
-                    <p class="question mb-0 pt-2">投稿時点の状況</p>
+                    <p class="question mb-0 pt-2">投稿時点の状況&nbsp;&nbsp;<span class="badge badge-warning">重要</span></p>
                     <div class="text-muted alert alert-white p-2 mb-1 rounded-lg" style="line-height: 1.1rem; font-size: 12px;"><span class="text-danger">以下選択肢のいずれかに至ったクリニックのレポコを作成してください。</span></div>
                     <div class="mt-2">
                       <%= f.collection_radio_buttons(:current_state, Report::HASH_CURRENT_STATE, :first, :last) do |b| %>
