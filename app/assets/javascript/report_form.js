@@ -699,6 +699,7 @@ function past_sairan_count(total_number_of_sairans) {
   if (total_number_of_sairan <= 1) {
     $(".total_number_of_sairans_sum4").hide();
     $(".total_number_of_sairans_sum5").hide();
+    $(".total_number_of_sairans_sum6").hide();
     $(".past_sairan").hide();
     $(".total_number_of_sairans_sum3").hide();
   } else if (total_number_of_sairan == 2) {
@@ -708,6 +709,7 @@ function past_sairan_count(total_number_of_sairans) {
     $(".total_number_of_sairans_sum5").text(total_number_of_sairans_5);
     $(".total_number_of_sairans_sum4").show();
     $(".total_number_of_sairans_sum5").show();
+    $(".total_number_of_sairans_sum6").show();
     $(".past_sairan").hide();
     $(".total_number_of_sairans_sum3").hide();
   } else if (total_number_of_sairan < 15) {
@@ -716,17 +718,20 @@ function past_sairan_count(total_number_of_sairans) {
     var total_number_of_sairans_2 = "（採卵" + total_number_of_sairan + "回 － " + "最新採卵周期）"
     var total_number_of_sairans_3 = num_sairans + "回"
     var total_number_of_sairans_4 = total_number_of_sairan + "回目の採卵(左隣タブ)" + "以前の"
-    var total_number_of_sairans_5 = "1回目から" + num_sairans + "回目の採卵情報を教えてください"
+    var total_number_of_sairans_5 = "1回目から" + num_sairans + "回目の採卵情報を教えてください。"
+    var total_number_of_sairans_6 = " ただし、妊娠・出産に至った移植周期が最新周期でない場合はこの限りではありません。例えば3回採卵していずれも移植可能胚を得て移植に進んだけれども、妊娠・出産に至った胚は最新の3回目の採卵で採れた胚ではなく2回目で採れた胚といった場合には、1回目と3回目の採卵情報について教えてください。"
     $(".total_number_of_sairans_sum").text(total_number_of_sairans_1);
     $(".total_number_of_sairans_sum2").text(total_number_of_sairans_2);
     $(".total_number_of_sairans_sum3").text(total_number_of_sairans_3);
     $(".total_number_of_sairans_sum4").text(total_number_of_sairans_4);
     $(".total_number_of_sairans_sum5").text(total_number_of_sairans_5);
+    $(".total_number_of_sairans_sum6").text(total_number_of_sairans_6);
     $(".past_sairan").show();
     $(".total_number_of_sairans_sum2").show();
     $(".total_number_of_sairans_sum3").show();
     $(".total_number_of_sairans_sum4").show();
     $(".total_number_of_sairans_sum5").show();
+    $(".total_number_of_sairans_sum6").show();
   } else if (total_number_of_sairan == 15) {
     var total_number_of_sairans_1 = " 過去の採卵についてもぜひ回答ください！"
     $(".total_number_of_sairans_sum").text(total_number_of_sairans_1);
@@ -734,21 +739,25 @@ function past_sairan_count(total_number_of_sairans) {
     $(".total_number_of_sairans_sum3").text();
     $(".total_number_of_sairans_sum4").text();
     $(".total_number_of_sairans_sum5").text();
+    $(".total_number_of_sairans_sum6").text();
     $(".past_sairan").show();
     $(".total_number_of_sairans_sum2").hide();
     $(".total_number_of_sairans_sum3").hide();
     $(".total_number_of_sairans_sum4").hide();
     $(".total_number_of_sairans_sum5").hide();
+    $(".total_number_of_sairans_sum6").hide();
   } else if (total_number_of_sairan == null){
     $(".past_sairan").show();
     $(".total_number_of_sairans_sum3").hide();
     $(".total_number_of_sairans_sum4").hide();
     $(".total_number_of_sairans_sum5").hide();
+    $(".total_number_of_sairans_sum6").hide();
   } else {
     $(".past_sairan").hide();
     $(".total_number_of_sairans_sum3").hide();
     $(".total_number_of_sairans_sum4").hide();
     $(".total_number_of_sairans_sum5").hide();
+    $(".total_number_of_sairans_sum6").hide();
   }
 }
 
