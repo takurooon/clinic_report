@@ -4,71 +4,87 @@
     <div class="col-md-6 offset-md-3 mt-md-5 mb-md-5">
       <div class="card text-center mt-4">
         <div class="pt-4">
-          <h3 class="mb-0 text-dark font-weight-bold">Sign Up</h3>
+          <h3 class="mb-0 text-dark font-weight-bold">新規登録</h3>
         </div>
         <div class="card-body pt-0">
           <div class="pt-0">
-            <% if $sigunup_switch == true%>
-              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                <div class="form-group mt-0 pt-4 text-left">
-                  <%= f.label :name, 'ユーザー名', for: "formGroupInput", class: "bmd-label-floating" %>
-                  <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control signup-name-js-text validate[required]', id: "formGroupInput" %>
-                  <span class="bmd-help">1〜20文字以内で入力してください。</span>
-                  <p class="signup-name-js-text-count small text-right mt-2"></p>
-                  <div class="small text-left pt-2">
-                    <p class="small text-muted mb-0">※ユーザー名はレポコ内で自分以外にも公開されます。ひらがな･カナ･漢字･英数字の使用が可能です。</p>
-                  </div>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <div class="form-group mt-0 pt-4 text-left">
+                <%= f.label :name, 'ユーザー名', for: "formGroupInput", class: "bmd-label-floating" %>
+                <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control signup-name-js-text validate[required]', id: "formGroupInput" %>
+                <span class="bmd-help">1〜20文字以内で入力してください。</span>
+                <p class="signup-name-js-text-count small text-right mt-2"></p>
+                <div class="small text-left pt-2">
+                  <p class="small text-muted mb-0">※ユーザー名はレポコ内で自分以外にも公開されます。ひらがな･カナ･漢字･英数字の使用が可能です。</p>
                 </div>
+              </div>
 
-                <div class="form-group mt-0 pt-4 text-left">
-                  <%= f.label :email, 'メール', for: "formGroupInput", class: "bmd-label-floating" %>
-                  <%= f.email_field :email, autocomplete: "email", class: 'form-control validate[required, custom[email]]', id: "formGroupInput" %>
-                  <span class="bmd-help">登録頂いたメールアドレスに認証リンクをお送りします。</span>
-                </div>
+              <div class="form-group mt-0 pt-4 text-left">
+                <%= f.label :email, 'メール', for: "formGroupInput", class: "bmd-label-floating" %>
+                <%= f.email_field :email, autocomplete: "email", class: 'form-control validate[required, custom[email]]', id: "formGroupInput" %>
+                <span class="bmd-help">登録頂いたメールアドレスに認証リンクをお送りします。</span>
+              </div>
 
-                <div class="form-group mt-0 mb-0 pt-4 text-left">
-                  <%= f.label :password, 'パスワード', for: "formGroupInput", class: "bmd-label-floating" %>
-                  <%= f.password_field :password, autocomplete: "new-password", class: 'form-control signup-pass1-js-text', id: "password" %>
-                  <span class="bmd-help">8文字以上〜16文字以内、半角英数字記号で入力ください。</span>
-                  <p class="signup-pass1-js-text-count small text-right pt-3 mb-0"></p>
-                </div>
+              <div class="form-group mt-0 mb-0 pt-4 text-left">
+                <%= f.label :password, 'パスワード', for: "formGroupInput", class: "bmd-label-floating" %>
+                <%= f.password_field :password, autocomplete: "new-password", class: 'form-control signup-pass1-js-text', id: "password" %>
+                <span class="bmd-help">8文字以上〜16文字以内、半角英数字記号で入力ください。</span>
+                <p class="signup-pass1-js-text-count small text-right pt-3 mb-0"></p>
+              </div>
 
-                <div class="form-group mt-0 pt-4 text-left">
-                  <%= f.label :password_confirmation, 'パスワード（確認）', for: "formGroupInput", class: "bmd-label-floating" %>
-                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control signup-pass2-js-text validate[required, equals[password]]', id: "formGroupInput" %>
-                  <span class="bmd-help">前項と同じパスワードを入力してください。</span>
-                </div>
+              <div class="form-group mt-0 pt-4 text-left">
+                <%= f.label :password_confirmation, 'パスワード（確認）', for: "formGroupInput", class: "bmd-label-floating" %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control signup-pass2-js-text validate[required, equals[password]]', id: "formGroupInput" %>
+                <span class="bmd-help">前項と同じパスワードを入力してください。</span>
+              </div>
 
-                <script>
-                  $(function (){
-                    var count = $(".signup-name-js-text").text().replace(/\n/g, "改行").length;
+              <script>
+                $(function (){
+                  var count = $(".signup-name-js-text").text().replace(/\n/g, "改行").length;
+                  var now_count = 20 - count;
+                  if (count > 20) {
+                    $(".signup-name-js-text-count").css("color","red");
+                  } else {
+                    $(".signup-name-js-text-count").css("color","#808080");
+                  }
+                  $(".signup-name-js-text-count").text( "");
+
+                  $(".signup-name-js-text").on("keyup", function() {
+                    var count = $(this).val().replace(/\n/g, "改行").length;
                     var now_count = 20 - count;
+
                     if (count > 20) {
                       $(".signup-name-js-text-count").css("color","red");
+                      var status = (now_count * -1) + "文字オーバーしています！"
                     } else {
                       $(".signup-name-js-text-count").css("color","#808080");
+                      var status = ""
                     }
-                    $(".signup-name-js-text-count").text( "");
-
-                    $(".signup-name-js-text").on("keyup", function() {
-                      var count = $(this).val().replace(/\n/g, "改行").length;
-                      var now_count = 20 - count;
-
-                      if (count > 20) {
-                        $(".signup-name-js-text-count").css("color","red");
-                        var status = (now_count * -1) + "文字オーバーしています！"
-                      } else {
-                        $(".signup-name-js-text-count").css("color","#808080");
-                        var status = ""
-                      }
-                      $(".signup-name-js-text-count").text(status);
-                    });
+                    $(".signup-name-js-text-count").text(status);
                   });
+                });
 
-                  $(function (){
-                    var count = $(".signup-pass1-js-text").text().replace(/\n/g, "改行").length;
+                $(function (){
+                  var count = $(".signup-pass1-js-text").text().replace(/\n/g, "改行").length;
+                  var now_min_count = 8 - count;
+                  var now_max_count = count - 16;
+                  if (count < 8) {
+                    $(".signup-pass1-js-text-count").css("color","red");
+                    var status = "あと" + now_min_count + "文字足りません！(半角英数字)"
+                  } else if (count >= 8 && count < 17) {
+                    $(".signup-pass1-js-text-count").css("color","#808080");
+                    var status = ""
+                  } else {
+                    $(".signup-pass1-js-text-count").css("color","red");
+                    var status = now_max_count + "文字オーバーしています！"
+                  }
+                  $(".signup-pass1-js-text-count").text(status);
+
+                  $(".signup-pass1-js-text").on("keyup", function() {
+                    var count = $(this).val().replace(/\n/g, "改行").length;
                     var now_min_count = 8 - count;
                     var now_max_count = count - 16;
+
                     if (count < 8) {
                       $(".signup-pass1-js-text-count").css("color","red");
                       var status = "あと" + now_min_count + "文字足りません！(半角英数字)"
@@ -80,94 +96,68 @@
                       var status = now_max_count + "文字オーバーしています！"
                     }
                     $(".signup-pass1-js-text-count").text(status);
-
-                    $(".signup-pass1-js-text").on("keyup", function() {
-                      var count = $(this).val().replace(/\n/g, "改行").length;
-                      var now_min_count = 8 - count;
-                      var now_max_count = count - 16;
-
-                      if (count < 8) {
-                        $(".signup-pass1-js-text-count").css("color","red");
-                        var status = "あと" + now_min_count + "文字足りません！(半角英数字)"
-                      } else if (count >= 8 && count < 17) {
-                        $(".signup-pass1-js-text-count").css("color","#808080");
-                        var status = ""
-                      } else {
-                        $(".signup-pass1-js-text-count").css("color","red");
-                        var status = now_max_count + "文字オーバーしています！"
-                      }
-                      $(".signup-pass1-js-text-count").text(status);
-                    });
                   });
-                </script>
+                });
+              </script>
 
-                <div class="form-group radio mt-0 mb-0 pt-3 text-left">
-                  <%= f.label :gender, "性別", class:"pl-0" %>
-                  <%= f.label :female, "女" %>
-                  <%= f.radio_button :gender, :female, class: "mr-0" %>
-                  <%= f.label :male, "男", class:"pl-3" %>
-                  <%= f.radio_button :gender, :male %>
-                  <%= f.label :male, "無回答", class:"pl-3" %>
-                  <%= f.radio_button :gender, :third_gender %>
-                </div>
+              <div class="form-group radio mt-0 mb-0 pt-3 text-left">
+                <%= f.label :gender, "性別", class:"pl-0" %>
+                <%= f.label :female, "女" %>
+                <%= f.radio_button :gender, :female, class: "mr-0" %>
+                <%= f.label :male, "男", class:"pl-3" %>
+                <%= f.radio_button :gender, :male %>
+                <%= f.label :male, "無回答", class:"pl-3" %>
+                <%= f.radio_button :gender, :third_gender %>
+              </div>
 
-                <div class="form-group mt-0 pt-3 text-left text-muted d-flex align-items-end">
-                  生年月&nbsp;&nbsp;
-                    <%= raw sprintf(
-                      f.date_select(
-                          :birthday,
-                          use_month_numbers: true,
-                          discard_day: true,
-                          start_year:        (Time.now.year - 60),
-                          end_year:          (Time.now.year - 18),
-                          default:           Date.new(1980, 1, 1),
-                          date_separator:    '%s'
-                          ), # 年月日区切りをそれぞれ指定
-                      '年 ') + '月'
-                    %>
-                    <small class="text-muted ml-2"><span class="small">※自分以外には表示されません。</span></small>
-                </div>
+              <div class="form-group mt-0 pt-3 text-left text-muted d-flex align-items-end">
+                生年月&nbsp;&nbsp;
+                  <%= raw sprintf(
+                    f.date_select(
+                        :birthday,
+                        use_month_numbers: true,
+                        discard_day: true,
+                        start_year:        (Time.now.year - 60),
+                        end_year:          (Time.now.year - 18),
+                        default:           Date.new(1980, 1, 1),
+                        date_separator:    '%s'
+                        ), # 年月日区切りをそれぞれ指定
+                    '年 ') + '月'
+                  %>
+                  <small class="text-muted ml-2"><span class="small">※自分以外には表示されません。</span></small>
+              </div>
 
-                <div class="form-group text-left mt-0 justify-content-start">
-                <small><span class="small text-muted">新規登録により</span></small>
-                  <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#terms_of_service">
-                    <small><span class="small">利用規約</span></small>
-                  </p>
-                  <small><span class="small text-muted">･</span></small>
-                  <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#privacy_policy">
-                    <small><span class="small">プライバシーボリシー</span></small>
-                  </p>
-                  <small><span class="small text-muted">が適用されます。</span></small>
-                </div>
+              <div class="form-group text-left mt-0 justify-content-start">
+              <small><span class="small text-muted">新規登録により</span></small>
+                <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#terms_of_service">
+                  <small><span class="small">利用規約</span></small>
+                </p>
+                <small><span class="small text-muted">･</span></small>
+                <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#privacy_policy">
+                  <small><span class="small">プライバシーボリシー</span></small>
+                </p>
+                <small><span class="small text-muted">が適用されます。</span></small>
+              </div>
 
-                <% if false %>
-                <div class="form-group text-left mt-3 justify-content-start">
-                  <%= f.check_box :agreement, :as => :boolean, checked:false, class: "mx-1 validate[required]", id: "formGroupInput" %>
-                  <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#terms_of_service">
-                    <small><span class="small">利用規約</span></small>
-                  </p>
-                  <small><span class="small text-muted">･</span></small>
-                  <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#privacy_policy">
-                    <small><span class="small">プライバシーボリシー</span></small>
-                  </p>
-                  <small><span class="small text-muted">&nbsp;に同意する。</span></small>
-                </div>
-                <% end %>
-
-                <div class="actions mt-3">
-                  <%= f.submit '登録', class: 'btn btn-raised btn-primary mx-auto d-block w-75' %>
-                </div>
+              <% if false %>
+              <div class="form-group text-left mt-3 justify-content-start">
+                <%= f.check_box :agreement, :as => :boolean, checked:false, class: "mx-1 validate[required]", id: "formGroupInput" %>
+                <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#terms_of_service">
+                  <small><span class="small">利用規約</span></small>
+                </p>
+                <small><span class="small text-muted">･</span></small>
+                <p class="btn btn-primary mx-0 px-0" data-toggle="modal" data-target="#privacy_policy">
+                  <small><span class="small">プライバシーボリシー</span></small>
+                </p>
+                <small><span class="small text-muted">&nbsp;に同意する。</span></small>
+              </div>
               <% end %>
-              <%= render "devise/shared/links" %>
-            <% else %>
-              <p class="pt-5 mb-1 text-left">投稿して頂ける方、お手数おかけし恐縮ですが以下twitterまでDMください。</p>
-              <p class="mb-3 text-left">登録URLをお送りさせていただきます&nbsp;↓</p>
-              <div class="popup_area">
-                <%= link_to "https://twitter.com/repoco_official", {class: "text-decoration-none w-100", target: :_blank, rel: "noopener noreferrer"} do %>
-                  <button class="tw_blue_btn p-1"><%= image_tag"action/Twitter_Social_Icon_Rounded_Square_Color.svg", width: "35px", class: "img-fluid", loading: "lazy" %>REPOCO_OFFICIAL</button>
-                <% end %>
+
+              <div class="actions mt-3">
+                <%= f.submit '登録', class: 'btn btn-raised btn-primary mx-auto d-block w-75' %>
               </div>
             <% end %>
+            <%= render "devise/shared/links" %>
           </div>
         </div>
       </div>

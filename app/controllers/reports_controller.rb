@@ -357,6 +357,9 @@ class ReportsController < ApplicationController
     render partial: 'address/address_cities'
   end
   
+  def signup
+  end
+
   private
   
   def set_report

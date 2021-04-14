@@ -102,6 +102,8 @@ Rails.application.routes.draw do
     root 'admin#home'
   end
 
+  get "signup" => "reports#signup"
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
