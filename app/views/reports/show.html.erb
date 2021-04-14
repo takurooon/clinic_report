@@ -49,7 +49,7 @@
     <% end %>
     <% author = " #{user_name}さんの" %>
     <% if @report.fertility_treatment_number.present? %>
-      <% treatment_number = @report.str_fertility_treatment_number %>
+      <% treatment_number = "#{@report.str_fertility_treatment_number}" %>
     <% else %>
       <% treatment_number = "" %>
     <% end %>
