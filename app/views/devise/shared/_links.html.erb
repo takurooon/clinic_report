@@ -5,7 +5,11 @@
 
 <div class="py-2">
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to "新規登録はこちら", new_registration_path(resource_name) %><br />
+    <% if $sigunup_switch == true %>
+      <%= link_to "新規登録はこちら", new_registration_path(resource_name) %><br />
+    <% else %>
+      <%= link_to "新規登録はこちら", signup_path(resource_name) %><br />
+    <% end %>
   <% end %>
 </div>
 
