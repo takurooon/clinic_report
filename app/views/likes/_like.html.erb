@@ -7,7 +7,7 @@
         <% end %>
         <% if false %>
         <% if report.likes.present? %>
-          <span class="text-danger like-counter small">&nbsp;<small><%= report.likes.count %></small></span>
+          <span class="text-danger like-counter small">&nbsp;<small><%= report.likes.size %></small></span>
         <% end %>
         <% end %>
       </div>
@@ -18,8 +18,10 @@
         <%= link_to report_likes_path(report), style:" text-decoration: none;", method: :post, remote: true do %>
           <%= images_action_svg("unlike.svg") %>
         <% end %>
+        <% if false %>
         <% if report.likes.present? %>
-          <span class="text-muted like-counter small">&nbsp;<small><%= report.likes.count %></small></span>
+          <span class="text-muted like-counter small">&nbsp;<small><%= report.likes.size %></small></span>
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -32,7 +34,7 @@
       <% end %>
       <% if false %>
       <% if report.likes.present? %>
-        <span class="text-muted like-counter small">&nbsp;<small><%= report.likes.count %></small></span>
+        <span class="text-muted like-counter small">&nbsp;<small><%= report.likes.size %></small></span>
       <% end %>
       <% end %>
     </div>

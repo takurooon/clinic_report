@@ -262,6 +262,13 @@ class ReportsController < ApplicationController
     # end
     # tag_list = tag_list.uniq
 
+    # 転院歴がない場合にレコードを削除する↓
+    # if params[:number_of_clinics].blank? || params[:number_of_clinics] == 1
+    #   if params[:itinerary_of_choosing_a_clinics].blank? && @report.itinerary_of_choosing_a_clinics.size >= 1
+    #     @report.itinerary_of_choosing_a_clinics.destroy = true
+    #   end
+    # end
+
     respond_to do |format|
       if params[:back]
         format.html { render :new }
