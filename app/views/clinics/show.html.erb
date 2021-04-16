@@ -391,7 +391,7 @@
           <% end %>
           <% if @clinic_reports_count > @get_limit %>
             <div class="mt-5">
-              <%= link_to "/category/clinics/#{@clinic.id}", { style: "text-decoration: none;" } do %>
+              <%= link_to "/category/clinic/#{@clinic.id}", { style: "text-decoration: none;" } do %>
                 <button class="green_btn"><%= @clinic.name %>の全レビューをみる</button>
               <% end %>
             </div>
