@@ -46,11 +46,30 @@
             </div>
           <% end %>
           <%= render 'center' %>
+          <div class="mt-5 pt-5">
+            <%= paginate @reports %>
+          </div>
+          <div class="pt-3">
+            <div class="rounded-lg">
+              <div class="text-center">
+                <p>＼ 最新レポコを配信中 ／</p>
+                <p class="small">レポコをはじめ、不妊不育治療情報をお届けします<%= image_tag"home/finger_mom_down.svg", width: "20px", class: "m-0 p-0", loading: "lazy" %></p>
+              </div>
+              <div class="row">
+                <div class="col-md-8 offset-md-2 popup_area">
+                  <%= link_to "https://twitter.com/repoco_official", {class: "text-decoration-none w-100", target: :_blank, rel: "noopener noreferrer"} do %>
+                    <button class="tw_blue_btn"><%= image_tag"action/Twitter_Social_Icon_Rounded_Square_Color.svg", width: "35px", class: "img-fluid", loading: "lazy" %>@REPOCO_OFFICIALをフォロー</button>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        
       </div>
       <div class="col-lg-3 d-none d-lg-block pl-2 pr-0">
         <%= render 'right' %>
       </div>
+      
     </div>
   </div>
-  <%= paginate @reports %>
