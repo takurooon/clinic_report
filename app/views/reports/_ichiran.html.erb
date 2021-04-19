@@ -309,7 +309,7 @@
         <td class="result-left-column small text-center ichirantable-left">AMH</td>
         <td class="pl-3 ichirantable-right">
           <% if @report.amh.present? %>
-            <span class="result-text"><%= @report.str_amh %></span>
+            <span class="result-text"><%= link_to "# " + @report.str_amh, "/amh/#{@report.amh}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>

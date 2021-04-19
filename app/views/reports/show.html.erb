@@ -465,7 +465,7 @@
                         <td class="text-muted text-right py-1 small"><span class="small">AMH&nbsp;:</span></td>
                         <td class="pl-2">
                           <% if @report.amh.present? %>
-                            <span class="font-weight-bold"><%= @report.str_amh %></span>
+                            <span class="font-weight-bold"><%= link_to "#" + @report.str_amh, "/amh/#{@report.amh}", class: "text-primary" %></span>
                           <% else %>
                             <small><span class="text-muted small">未回答</span></small>
                           <% end %>
@@ -877,7 +877,7 @@
                     <td class="result-left-column small text-center" style="width:30%">AMH</td>
                     <td class="pl-3" style="width:70%">
                       <% if @report.amh.present? %>
-                        <span class="result-text"><%= @report.str_amh %></span>
+                        <span class="result-text"><%= link_to "# " + @report.str_amh, "/amh/#{@report.amh}", class: "text-primary" %></span>
                       <% else %>
                         <span class="text-muted small">未回答</span>
                       <% end %>
