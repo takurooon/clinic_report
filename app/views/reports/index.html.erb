@@ -12,31 +12,6 @@
         <div class="mb-3">
           <%= link_to image_tag("info/saitamaika.png", class: "img-fluid pb-1", loading: "lazy"), "http://www.saitama-med.ac.jp/hospital/division/33gynecology/predictionivf.html", target: '_blank', rel: "nofollow" %>
         </div>
-        <% if user_signed_in? %>
-          <div class="px-2 mb-4">
-            <details class="mt-2 pt-2">
-              <summary class="mb-2 ml-3 text-danger fluffy-b">【4/11&nbsp;新機能追加】</summary>
-              <p class="my-3 small text-center font-weight-bold">多胎の場合の子の人数を選択できるようになりました。</p>
-              <p><%= image_tag "info/multiple_births.png", class: "img-fluid pb-1", loading: "lazy" %></p>
-              <p class="my-3 small text-center font-weight-bold">卵子、移植可能胚の内訳に「不明」欄を追加しました。</p>
-              <p><%= image_tag "info/breakdown_of_eggs.png", class: "img-fluid pb-1", loading: "lazy" %></p>
-              <p class="my-3 small text-center font-weight-bold">複数胚移植の場合に2個目の胚情報の登録ができるようになりました。</p>
-              <div class="row">
-                <div class="col-8 offset-2 col-sm-6 offset-sm-3">
-                  <p><%= image_tag "info/multiple_embryo_transfer.gif", class: "img-fluid pb-1", loading: "lazy" %></p>
-                </div>
-              </div>
-            </details>
-            <details class="mt-2 pt-2">
-              <summary class="mb-2 ml-3 text-danger fluffy-b">【ホルモン値入力欄追加】</summary>
-              <p class="my-3 small text-center font-weight-bold">＼ホルモン値の入力ができるようになりました／</p>
-              <p><%= image_tag "howto/sairan_ishoku_graph.png", class: "img-fluid pb-1", loading: "lazy" %></p>
-              <p class="my-3 small text-center font-weight-bold">＼作成方法／</p>
-              <p><%= image_tag "info/add_hormone_form.png", class: "img-fluid pb-1", loading: "lazy" %></p>
-              <p class="mb-0 text-center"><%= image_tag"home/finger_mom_right.svg", width: "22px", class: "img-fluid", loading: "lazy" %>&nbsp;<%= link_to "ホルモン値を入力してみる", my_page_path, class: "text-primary font-weight-bold" %></p>
-            </details>
-          </div>
-        <% end %>
 
         <div class="px-3 mt-0">
           <% if user_signed_in? && @draft_reports.present? %>
