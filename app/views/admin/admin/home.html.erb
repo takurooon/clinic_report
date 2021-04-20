@@ -4,15 +4,17 @@
   </div>
   <div class="d-none d-sm-block col-sm-3">
     <small class="text-muted">レポコ</small>
-    <h6 class="mb-0"><%= @reports.count %>投稿</h6>
+    <h6 class="mb-0"><%= @reports.size %>投稿</h6>
+    <p class="mb-0 small">(<%= @released_reports.size %>投稿)</p>
   </div>
   <div class="d-none d-sm-block col-sm-3">
     <small class="text-muted">ユーザー数</small>
-    <h6 class="mb-0"><%= @users.count %>人</h6>
+    <h6 class="mb-0"><%= @users.size %>人</h6>
   </div>
   <div class="d-none d-sm-block col-sm-3">
     <small class="text-muted">クリニック数</small>
-    <h6 class="mb-0"><%= @clinics.count.to_s(:delimited) %>施設</h6>
+    <h6 class="mb-0"><%= @clinics.size.to_s(:delimited) %>施設</h6>
+    <p class="mb-0 small">(<%= @clinics_count_released.size %>/<%= @clinics_count.size %>施設)</p>
   </div>
 </div>
 <ul class="d-block d-sm-none nav nav-tabs d-flex justify-content-between mb-3 sticky-top">
@@ -36,15 +38,17 @@
         <div class="row px-1">
           <div class="col-4 pb-3 text-center">
             <small class="text-muted">投稿</small>
-            <h5><%= @reports.count %>件</h5>
+            <h5 class="mb-0"><%= @reports.size %>件</h5>
+            <p class="mb-0 small">(<%= @released_reports.size %>投稿)</p>
           </div>
           <div class="col-4 pb-3 text-center">
             <small class="text-muted">ユーザー</small>
-            <h5><%= @users.count %>人</h5>
+            <h5><%= @users.size %>人</h5>
           </div>
           <div class="col-4 pb-3 text-center">
             <small class="text-muted">クリニック</small>
-            <h5><%= @clinics.count.to_s(:delimited) %>施設</h5>
+            <h5 class="mb-0"><%= @clinics.size.to_s(:delimited) %>施設</h5>
+            <p class="mb-0 small">(<%= @clinics_count_released.size %>/<%= @clinics_count.size %>施設)</p>
           </div>
         </div>
         <div class="tab-wrap1 mt-3 px-1">
@@ -134,7 +138,7 @@
                   <% end %>
                 </td>
                 <td>
-                  <%= user.reports.count %>件
+                  <%= user.reports.size %>件
                 </td>
                 <td>
                   <%= link_to admin_user_path(user) do %><i data-feather="external-link" class="p-1"></i><% end %>
@@ -167,7 +171,7 @@
                 <%= clinic.city.name %>
               </td>
               <td>
-                <%= clinic.reports.count %>件
+                <%= clinic.reports.size %>件
               </td>
             </tr>
           <% end %>
