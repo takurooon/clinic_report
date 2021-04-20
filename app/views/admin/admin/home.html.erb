@@ -5,7 +5,7 @@
   <div class="d-none d-sm-block col-sm-3">
     <small class="text-muted">レポコ</small>
     <h6 class="mb-0"><%= @reports.size %>投稿</h6>
-    <p class="mb-0 small">(<%= @released_reports.size %>投稿)</p>
+    <p class="mb-0 small">公&nbsp;<%= @released_reports.size %>&nbsp;(非&nbsp;<%= @reports.size - @released_reports.size %>)</p>
   </div>
   <div class="d-none d-sm-block col-sm-3">
     <small class="text-muted">ユーザー数</small>
