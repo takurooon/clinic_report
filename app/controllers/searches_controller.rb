@@ -94,23 +94,23 @@ class SearchesController < ApplicationController
     @clinics = Clinic.all
   end
 
-  def clinic_prefecture_area
-    @prefecture = Prefecture.find_by(name: params[:value])
-    clinics = Clinic.where(prefecture_id: @prefecture)
-    @prefecture_clinics = Clinic.where(prefecture_id: @prefecture).name_yomigana
-    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
-    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
-    @rereased_reports = Clinic.joins(:reports).where(city_id: @prefecture.id, reports: {status: 0})
-  end
+  # def clinic_prefecture_area
+  #   @prefecture = Prefecture.find_by(id: params[:value])
+  #   clinics = Clinic.where(prefecture_id: @prefecture.id)
+  #   @prefecture_clinics = Clinic.where(prefecture_id: @prefecture).name_yomigana
+  #   @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
+  #   @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
+  #   @rereased_reports = Clinic.joins(:reports).where(city_id: @prefecture.id, reports: {status: 0})
+  # end
   
-  def clinic_city_area
-    @city = City.find_by(name: params[:value])
-    clinics = Clinic.where(city_id: @city.id)
-    @city_clinics = Clinic.where(city_id: @city.id).name_yomigana
-    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
-    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
-    @rereased_reports = Clinic.joins(:reports).where(city_id: @city.id, reports: {status: 0})
-  end
+  # def clinic_city_area
+  #   @city = City.find_by(id: params[:value])
+  #   clinics = Clinic.where(city_id: @city.id)
+  #   @city_clinics = Clinic.where(city_id: @city.id).name_yomigana
+  #   @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
+  #   @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
+  #   @rereased_reports = Clinic.joins(:reports).where(city_id: @city.id, reports: {status: 0})
+  # end
 
   def all_age
     age = Report::HASH_TREATMENT_END_AGE_SEARCH
@@ -171,25 +171,22 @@ class SearchesController < ApplicationController
     report_f_funin_factors = ReportFFuninFactor.joins(:report, :f_funin_factor).where(reports: {status: 0}).group(:f_funin_factor_id).count
     f_funin_factor = report_f_funin_factors.keys
     @f_funin_factors = FFuninFactor.where(id: f_funin_factor)
-    @special_examinations = SpecialInspection.joins(:report).where(reports: {status: 0}).group(:id).distinct
+    @special_examinations = SpecialInspection.joins(:report).where(reports: {status: 0}).where.not(name: nil).select(:name).distinct
   end
 
   def tag
-    if params[:gender] === "女性"
-      if params[:tags] === "オプション検査"
-        @tag = SpecialInspection.find_by(name: params[:value])
-        @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag.name }, reports: {status: 0})
-        @clinic_all_reports = @reports.count
-      elsif params[:tags] === "不育症"
-        @tag = FuikuInspection.find_by(name: params[:value])
-        @reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      elsif
-        params[:tags] === "不妊原因"
-        @tag = FFuninFactor.find_by(name: params[:value])
-        @reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      end
+    if params[:type] === "factor"
+      @tag = FFuninFactor.find_by(id: params[:value])
+      @reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
+      @clinic_all_reports = @reports.size
+    elsif params[:type] === "option"
+      @tag = SpecialInspection.find_by(name: params[:value])
+      @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag }, reports: {status: 0})
+      @clinic_all_reports = @reports.size
+    elsif params[:type] === "fuiku"
+      @tag = FuikuInspection.find_by(id: params[:value])
+      @reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
+      @clinic_all_reports = @reports.size
     end
   end
 

@@ -13,11 +13,13 @@ Rails.application.routes.draw do
   get 'status/:value' => 'searches#status'
   get 'search/clinics' => 'searches#clinics'
 
-  get 'category/clinics_area' => 'searches#clinics_area'
-  get 'category/clinics_area/prefecture/:value' => 'searches#clinic_prefecture_area'
-  get 'category/clinics_area/city/:value' => 'searches#clinic_city_area'
-  get 'category/tags' => 'searches#tags'
-  get ':category/:tags/:gender/:value' => 'searches#tag'
+  get 'clinics_area' => 'searches#clinics_area'
+  # get 'clinics_area/prefecture/:value' => 'searches#clinic_prefecture_area'
+  get 'clinics_area/:prefecture' => 'clinics#prefecture'
+  # get 'clinics_area/city/:value' => 'searches#clinic_city_area'
+  get 'clinics_area/:prefecture/:value' => 'clinics#city'
+  get 'tags' => 'searches#tags'
+  get 'tags/:type/:value' => 'searches#tag'
 
   get 'works' => 'searches#works'
   get 'work/:value' => 'searches#work'
@@ -74,7 +76,6 @@ Rails.application.routes.draw do
   end
 
   resources :clinics
-  get "clinics/:prefecture/:value" => "clinics#city"
 
   # centerの各レポコ下部のclinic, prefecture, cityのリンク↓
   get 'clinic/:value' => 'clinics#clinic_report'

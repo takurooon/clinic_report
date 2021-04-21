@@ -6,10 +6,10 @@
   <!-- カテゴリ検索hide --!>
   <% if false %>
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", search_path %>
-  </small>
   <% end %>
   <!-- ここまで --!>
 
+  </small>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-4">
 
   <!-- カテゴリ検索hide --!>
@@ -35,11 +35,11 @@
       <div class="col-md-8 offset-md-2 main-column tab-pane active" id="area_prefecture">
         <div>
           <%= select_tag :area_prefecture,
-                          options_from_collection_for_select(Prefecture.where(id: 1..47), :name, :name),
+                          options_from_collection_for_select(Prefecture.where(id: 1..47), :name_alphabet, :name),
                           {
                             prompt: "都道府県を選択する",
                             class: "form-control",
-                            onchange: "location = 'clinics_area/prefecture/' + this.value"
+                            onchange: "location = 'clinics_area/' + this.value"
                           }
           %>
         </div>
@@ -47,7 +47,7 @@
       <div class="col-md-8 offset-md-2 main-column tab-pane" id="area_city">
         <div>
           <%= select_tag :select_prefecture,
-                          options_from_collection_for_select(Prefecture.where(id: 1..47), :id, :name),
+                          options_from_collection_for_select(Prefecture.where(id: 1..47), :name_alphabet, :name),
                           {
                             prompt: "都道府県を選択し",
                             class: "form-control"
@@ -56,7 +56,7 @@
         </div><br>
 
         <div>
-          <%= select_tag :city, options_for_select([["市区町村選択する", 99]],), { class: "form-control", onchange: "location = 'clinics_area/city/' + this.value" } %></div><br>
+          <%= select_tag :city, options_for_select([["市区町村選択する", 99]],), { class: "form-control", onchange: "location = 'clinics_area/' + this.value" } %></div><br>
         </div>
 
         <script>
