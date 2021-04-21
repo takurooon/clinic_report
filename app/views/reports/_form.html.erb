@@ -1337,8 +1337,6 @@
                         </div>
                       </div>
 
-                      
-
                       <div class="form-group mt-0 mb-2 pt-4 pb-5 mb-3">
                         <p class="question mb-0 pt-1">貯卵数</p>
                         <div class="text-muted small"><span class="small"><span class="select-current-status"></span>に至った移植後に残っている凍結胚数</span></div>
@@ -1347,29 +1345,25 @@
                         <%= f.select :choran, Report::HASH_CHORAN.invert, { prompt: "" }, { class: "form-control py-0" } %>
                       </div>
 
-                      <input id='acd-check-sairanishoku' class="acd-check3" type="checkbox">
-                      <label class="acd-label3 mb-0 p-3" for="acd-check-sairanishoku">
-                        <div class="fluffy">
-                          <p class="mb-2 text-center font-weight-bold">【余裕があればぜひお答え下さい】</p>
-                          <p class="mb-1 small">こちらでは<span class="select-current-status"></span>に至った採卵〜移植周期のホルモン値を入力できます。</p>
-                          <p class="mb-0 text-center small font-weight-bold"><%= image_tag"home/finger_mom_up.svg", width: "25px", class: "p-0 m-0", loading: "lazy" %>＼&nbsp;クリック！&nbsp;／<%= image_tag"home/finger_mom_up.svg", width: "25px", class: "p-0 m-0", loading: "lazy" %></p>
-                        </div>
-                      </label>
-                      <div class="acd-content3 container pt-3 mb-2">
-                        <div class="alert alert-info rounded-lg mb-5 p-3 small">
+                      <h6 class="font-weight-bold pb-3 fluffy-b"><span class="marker-underline">（任意）分かればホルモン値を入力ください</span><%= image_tag"home/finger_mom_down.svg", width: "22px", class: "img-fluid", loading: "lazy" %></h6>
+                      <p class="small">こちらも任意入力ですが、移植後のhcgなどは特に関心の高いポイントですので、わかる範囲でぜひご入力ください。入力前に以下「<span class="text-danger">注意</span>」をご一読ください。</p>
+                      <div class="row">
+                        <div class="col-md-8 offset-md-2 alert alert-info rounded-lg mb-5 p-3 small">
                           <div class="pb-4">
                             <h5 class="text-center mt-3">グラフで表示されます。</h5>
-                            <p class="mt-3">ホルモン値を入力すると、作成したレポコに以下のようにグラフで表示されます。</p>
+                            <p class="mt-3 px-2">ホルモン値を入力すると、作成したレポコに以下のようにグラフで表示されます。</p>
                             <div class="m-0">
-                              <%= image_tag"howto/sairan_ishoku_graph.png", class: "img-fluid", loading: "lazy" %>
+                              <%= image_tag"howto/sairan_ishoku_graph.png", class: "img-fluid px-3", loading: "lazy" %>
                             </div>
                           </div>
                           <h5 class="text-center text-danger mt-4">注意！</h5>
-                          <p class="mb-0">各行入力される際には、一番左にある<span class="text-danger">赤枠</span>の「<span class="font-weight-bold text-danger">Day</span>」または「<span class="font-weight-bold text-danger">ET･BT</span>」は必ず選択してください。こちらが選択されていないと投稿/保存/更新に失敗しますのでご注意ください。<br>（赤枠以外に入力が有る場合には赤枠の選択が必須ですが、赤枠以外への入力がなければ赤枠の選択は必須ではありません＝各行オール空欄OK）</p>
+                          <p class="mb-0 px-2">各行入力される際には、一番左にある<span class="text-danger">赤枠</span>の「<span class="font-weight-bold text-danger">Day</span>」または「<span class="font-weight-bold text-danger">ET･BT</span>」は必ず選択してください。こちらが選択されていないと投稿/保存/更新に失敗しますのでご注意ください。<br>（青枠に一つでも入力が有る場合には赤枠の選択が必須ですが、青枠への入力一つもなければ赤枠の選択は必須ではありません＝各行オール空欄OK）</p>
                           <div class="m-3">
                             <%= image_tag"howto/caution_hormone_input.png", class: "img-fluid", loading: "lazy" %>
                           </div>
                         </div>
+                      </div>
+
                         <div class="pb-4 text-center">
                           <h4><%= image_tag"home/egg.svg", width: "30px", class: "img-fluid", loading: "lazy" %>&nbsp;採卵周期&nbsp;<%= image_tag"home/egg.svg", width: "30px", class: "img-fluid", loading: "lazy" %></h4>
                         </div>
@@ -1614,7 +1608,7 @@
                             <p class="mb-0 pt-1"><span class="select-current-status"></span>&nbsp;&nbsp;<span class="small">※&nbsp;現在</small></p>
                           </div>
                         </div>
-                      </div>
+
 
                       <div class="mt-5 d-flex justify-content-between">
                         <a class="btn FormBtnPrevious rounded-lg pl-2 shadow" ><i data-feather="chevrons-left" class="text-muted pb-1"></i>前へ</a>
