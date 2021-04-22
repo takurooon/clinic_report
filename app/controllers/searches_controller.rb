@@ -192,7 +192,7 @@ class SearchesController < ApplicationController
       @selected_sairan_ishoku = sairan[sairan_value]
       @selected_sairan_ishoku_name = "採卵"
       reports = Report.where(total_number_of_sairan: sairan_value, status: 0).order(created_at: :desc)
-      @reports = reports.page(params[:page]).per(1)
+      @reports = reports.page(params[:page]).per(20)
       @sairan_ishoku_reports = reports.size
     elsif params[:type] == "ishoku"
       ishoku = Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS_SEARCH
