@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'tags' => 'searches#tags'
   get 'tags/:type/:value' => 'searches#tag'
 
+  get 'count' => 'searches#count'
+  get 'count/:type/:value' => 'searches#sairan_ishoku_count'
   get 'works' => 'searches#works'
   get 'work/:value' => 'searches#work'
   get 'costs' => 'searches#costs'

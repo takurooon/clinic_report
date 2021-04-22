@@ -1346,6 +1346,30 @@ class Report < ApplicationRecord
     return HASH_TOTAL_NUMBER_OF_SAIRAN[self.total_number_of_sairan]
   end
 
+  # 検索画面用のtotal_number_of_sairanの区分値(全採卵回数/CL単位)
+  HASH_TOTAL_NUMBER_OF_SAIRAN_SEARCH = {
+    0 => "0回(貯卵)",
+    1 => "1回",
+    2 => "2回",
+    3 => "3回",
+    4 => "4回",
+    5 => "5回",
+    6 => "6回",
+    7 => "7回",
+    8 => "8回",
+    9 => "9回",
+    10 => "10回",
+    11 => "11回",
+    12 => "12回",
+    13 => "13回",
+    14 => "14回",
+    15 => "15回以上",
+  }
+
+  def str_total_number_of_sairan_search
+    return HASH_TOTAL_NUMBER_OF_SAIRAN_SEARCH[self.total_number_of_sairan_search]
+  end
+
   # ishoku_typeの区分値(移植周期のタイプ)
   HASH_ISHOKU_TYPE = {
     1 => "自然周期",
@@ -1380,6 +1404,29 @@ class Report < ApplicationRecord
 
   def str_total_number_of_transplants
     return HASH_TOTAL_NUMBER_OF_TRANSPLANTS[self.total_number_of_transplants]
+  end
+
+  # 検索画面用のtotal_number_of_transplantsの区分値(全移植回数/CL単位)
+  HASH_TOTAL_NUMBER_OF_TRANSPLANTS_SEARCH = {
+    1 => "1回",
+    2 => "2回",
+    3 => "3回",
+    4 => "4回",
+    5 => "5回",
+    6 => "6回",
+    7 => "7回",
+    8 => "8回",
+    9 => "9回",
+    10 => "10回",
+    11 => "11回",
+    12 => "12回",
+    13 => "13回",
+    14 => "14回",
+    15 => "15回以上",
+  }
+
+  def str_total_number_of_transplants_search
+    return HASH_TOTAL_NUMBER_OF_TRANSPLANTS_SEARCH[self.total_number_of_transplants_search]
   end
 
   # 採卵前までの通院回数質問にも利用

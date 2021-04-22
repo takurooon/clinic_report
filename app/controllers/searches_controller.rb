@@ -164,6 +164,42 @@ class SearchesController < ApplicationController
     end
   end
 
+  def count
+    sairan = Report::HASH_TOTAL_NUMBER_OF_SAIRAN_SEARCH
+    reports = Report.group(:total_number_of_sairan).where.not(total_number_of_sairan: nil, status: 1).distinct.size
+    all_sairan = sairan.keys - reports.keys
+    all_sairan.each do |aa|
+      sairan.delete(aa)
+    end
+    @sairan = sairan
+
+    ishoku = Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS_SEARCH
+    reports = Report.group(:total_number_of_transplants).where.not(total_number_of_transplants: nil, status: 1).distinct.size
+    all_ishoku = ishoku.keys - reports.keys
+    all_ishoku.each do |aa|
+      ishoku.delete(aa)
+    end
+    @ishoku = ishoku
+  end
+
+  def sairan_ishoku_count
+    if params[:type] == "sairan"
+      sairan = Report::HASH_TOTAL_NUMBER_OF_SAIRAN_SEARCH
+      sairan_value = params[:value].to_i
+      @selected_sairan_ishoku = sairan[sairan_value]
+      @selected_sairan_ishoku_name = "採卵"
+      @reports = Report.where(total_number_of_sairan: sairan_value, status: 0).order(created_at: :desc)
+      @sairan_ishoku_reports = @reports.size
+    elsif params[:type] == "ishoku"
+      ishoku = Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS_SEARCH
+      ishoku_value = params[:value].to_i
+      @selected_sairan_ishoku = ishoku[ishoku_value]
+      @selected_sairan_ishoku_name = "移植"
+      @reports = Report.where(total_number_of_transplants: ishoku_value, status: 0).order(created_at: :desc)
+      @sairan_ishoku_reports = @reports.size
+    end
+  end
+
   def tags
     report_fuiku_inspections = ReportFuikuInspection.joins(:report, :fuiku_inspection).where(reports: {status: 0}).group(:fuiku_inspection_id).count
     fuiku_inspection = report_fuiku_inspections.keys
