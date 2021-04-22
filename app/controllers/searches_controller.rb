@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
 
   def all_amh
     amhs = Report::HASH_AMH_SEARCH
-    reports = Report.group(:amh).where.not(amh: nil).distinct.count
+    reports = Report.group(:amh).where.not(amh: nil).distinct.size
     c = amhs.keys - reports.keys
     c.each do |d|
       amhs.delete(d)
@@ -18,7 +18,7 @@ class SearchesController < ApplicationController
     amh_value = params[:value].to_i
     @selected_amh = amh[amh_value]
     @reports = Report.where(amh: amh_value, status: 0).order(created_at: :desc)
-    @clinic_all_reports = @reports.count
+    @clinic_all_reports = @reports.size
   end
 
   def all_status
@@ -114,7 +114,7 @@ class SearchesController < ApplicationController
 
   def all_age
     age = Report::HASH_TREATMENT_END_AGE_SEARCH
-    reports = Report.group(:treatment_end_age).where.not(treatment_end_age: nil).distinct.count
+    reports = Report.group(:treatment_end_age).where.not(treatment_end_age: nil, status: 1).distinct.size
     all_age = age.keys - reports.keys
     all_age.each do |aa|
       age.delete(aa)
@@ -157,10 +157,10 @@ class SearchesController < ApplicationController
       a = i[0]
       b = i[1]
       @reports = Report.where(treatment_end_age: a..b, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
+      @clinic_all_reports = @reports.size
     else
       @reports = Report.where(treatment_end_age: age_value, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
+      @clinic_all_reports = @reports.size
     end
   end
 
