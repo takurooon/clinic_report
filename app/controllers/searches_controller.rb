@@ -17,7 +17,7 @@ class SearchesController < ApplicationController
     amh = Report::HASH_AMH_SEARCH
     amh_value = params[:value].to_i
     @selected_amh = amh[amh_value]
-    @reports = Report.where(amh: amh_value, status: 0).order(created_at: :desc)
+    @reports = Report.where(amh: amh_value, status: 0).order(created_at: :desc).page(params[:page]).per(20)
     @clinic_all_reports = @reports.size
   end
 
@@ -156,10 +156,10 @@ class SearchesController < ApplicationController
       i = age_value.scan(/.{2}/)
       a = i[0]
       b = i[1]
-      @reports = Report.where(treatment_end_age: a..b, status: 0).order(created_at: :desc)
+      @reports = Report.where(treatment_end_age: a..b, status: 0).order(created_at: :desc).page(params[:page]).per(20)
       @clinic_all_reports = @reports.size
     else
-      @reports = Report.where(treatment_end_age: age_value, status: 0).order(created_at: :desc)
+      @reports = Report.where(treatment_end_age: age_value, status: 0).order(created_at: :desc).page(params[:page]).per(20)
       @clinic_all_reports = @reports.size
     end
   end
@@ -188,14 +188,14 @@ class SearchesController < ApplicationController
       sairan_value = params[:value].to_i
       @selected_sairan_ishoku = sairan[sairan_value]
       @selected_sairan_ishoku_name = "採卵"
-      @reports = Report.where(total_number_of_sairan: sairan_value, status: 0).order(created_at: :desc)
+      @reports = Report.where(total_number_of_sairan: sairan_value, status: 0).order(created_at: :desc).page(params[:page]).per(20)
       @sairan_ishoku_reports = @reports.size
     elsif params[:type] == "ishoku"
       ishoku = Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS_SEARCH
       ishoku_value = params[:value].to_i
       @selected_sairan_ishoku = ishoku[ishoku_value]
       @selected_sairan_ishoku_name = "移植"
-      @reports = Report.where(total_number_of_transplants: ishoku_value, status: 0).order(created_at: :desc)
+      @reports = Report.where(total_number_of_transplants: ishoku_value, status: 0).order(created_at: :desc).page(params[:page]).per(20)
       @sairan_ishoku_reports = @reports.size
     end
   end
