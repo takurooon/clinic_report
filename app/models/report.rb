@@ -569,7 +569,7 @@ class Report < ApplicationRecord
     3 => "グレード3",
     4 => "グレード4",
     5 => "グレード5",
-    9 => "その他",
+    99 => "その他",
     100 => "不明"
   }
 
@@ -587,7 +587,7 @@ class Report < ApplicationRecord
     3 => "グレード3",
     4 => "グレード4",
     5 => "グレード5",
-    9 => "",
+    99 => "",
     100 => ""
   }
 
@@ -597,6 +597,19 @@ class Report < ApplicationRecord
 
   def str_early_embryo_grade_2_show
     return HASH_EARLY_EMBRYO_GRADE_SHOW[self.early_embryo_grade_2]
+  end
+
+  # ↓検索用
+  HASH_EARLY_EMBRYO_GRADE_SEARCH = {
+    1 => "グレード1",
+    2 => "グレード2",
+    3 => "グレード3",
+    4 => "グレード4",
+    5 => "グレード5",
+  }
+
+  def str_early_embryo_grade_search
+    return HASH_EARLY_EMBRYO_GRADE_SEARCH[self.early_embryo_grade]
   end
 
   # blastocyst_grade1の区分値(胚盤胞以上のグレード)
@@ -637,6 +650,79 @@ class Report < ApplicationRecord
   def str_blastocyst_grade1_2_show
     return HASH_BLASTOCYST_GRADE1_SHOW[self.blastocyst_grade1_2]
   end
+  # ↓検索用
+  HASH_BLASTOCYST_GRADE1_GRADE2_SEARCH = {
+    11 => "1AA",
+    12 => "1AB",
+    13 => "1AC",
+    14 => "1BA",
+    15 => "1BB",
+    16 => "1BC",
+    17 => "1CA",
+    18 => "1CB",
+    19 => "1CC",
+    21 => "2AA",
+    22 => "2AB",
+    23 => "2AC",
+    24 => "2BA",
+    25 => "2BB",
+    26 => "2BC",
+    27 => "2CA",
+    28 => "2CB",
+    29 => "2CC",
+    31 => "3AA",
+    32 => "3AB",
+    33 => "3AC",
+    34 => "3BA",
+    35 => "3BB",
+    36 => "3BC",
+    37 => "3CA",
+    38 => "3CB",
+    39 => "3CC",
+    41 => "4AA",
+    42 => "4AB",
+    43 => "4AC",
+    44 => "4BA",
+    45 => "4BB",
+    46 => "4BC",
+    47 => "4CA",
+    48 => "4CB",
+    49 => "4CC",
+    51 => "5AA",
+    52 => "5AB",
+    53 => "5AC",
+    54 => "5BA",
+    55 => "5BB",
+    56 => "5BC",
+    57 => "5CA",
+    58 => "5CB",
+    59 => "5CC",
+    61 => "6AA",
+    62 => "6AB",
+    63 => "6AC",
+    64 => "6BA",
+    65 => "6BB",
+    66 => "6BC",
+    67 => "6CA",
+    68 => "6CB",
+    69 => "6CC",
+    199 => "1 + 不明",
+    299 => "2 + 不明",
+    399 => "3 + 不明",
+    499 => "4 + 不明",
+    599 => "5 + 不明",
+    699 => "6 + 不明",
+    991 => "不明 + AA",
+    992 => "不明 + AB",
+    993 => "不明 + AC",
+    994 => "不明 + BA",
+    995 => "不明 + BB",
+    996 => "不明 + BC",
+    997 => "不明 + CA",
+    998 => "不明 + CB",
+    999 => "不明 + CC",
+    100100 => "不明 + 不明",
+  }
 
   # blastocyst_grade2の区分値(胚盤胞以上の評価/ICM/TE)
   HASH_BLASTOCYST_GRADE2 = {

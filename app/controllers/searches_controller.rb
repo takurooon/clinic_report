@@ -205,6 +205,63 @@ class SearchesController < ApplicationController
     end
   end
 
+  def grade
+    haibanho = Report::HASH_BLASTOCYST_GRADE1_GRADE2_SEARCH
+    reports = Report.group(:blastocyst_grade1, :blastocyst_grade2).where.not(blastocyst_grade1: nil, blastocyst_grade2: nil, status: 1).distinct.size
+    reports_haibanho = reports.keys.map do |r|
+      r.join.to_i
+    end
+    haibanho_grade = haibanho.keys - reports_haibanho
+    haibanho_grade.each do |h|
+      haibanho.delete(h)
+    end
+    @haibanho = haibanho
+
+    shokihai = Report::HASH_EARLY_EMBRYO_GRADE_SEARCH
+    reports = Report.group(:early_embryo_grade).where.not(early_embryo_grade: nil, status: 1).distinct.size
+    shokihai_grade = shokihai.keys - reports.keys
+    shokihai_grade.each do |aa|
+      shokihai.delete(aa)
+    end
+    @shokihai = shokihai
+  end
+
+  def embryo_grade
+    if params[:type] == "haibanho"
+      haibanho = Report::HASH_BLASTOCYST_GRADE1_GRADE2_SEARCH
+      haibanho_value = params[:value]
+      if haibanho_value.size == 2
+        blastocyst_grade1_value = haibanho_value[0]
+        blastocyst_grade2_value = haibanho_value[1]
+      elsif haibanho_value.size == 3 && haibanho_value.to_i >= 199 && haibanho_value.to_i <= 699
+        haibanho_num = haibanho_value.split(/\A(.{1,1})/, 2)[1..-1]
+        blastocyst_grade1_value = haibanho_value[0]
+        blastocyst_grade2_value = haibanho_value[1]
+      elsif haibanho_value.size == 3 && haibanho_value.to_i >= 991 && haibanho_value.to_i <= 999
+        haibanho_num = haibanho_value.split(/\A(.{1,2})/, 2)[1..-1]
+        blastocyst_grade1_value = haibanho_value[0..1]
+        blastocyst_grade2_value = haibanho_value[2]
+      elsif haibanho_value.size == 6
+        haibanho_num = haibanho_value.split(/\A(.{1,3})/, 2)[1..-1]
+        blastocyst_grade1_value = haibanho_value[0..2]
+        blastocyst_grade2_value = haibanho_value[3..5]
+      end
+      @selected_grade = haibanho[haibanho_value.to_i]
+      @selected_grade_name = "胚盤胞"
+      reports = Report.where(blastocyst_grade1: blastocyst_grade1_value.to_i, blastocyst_grade2: blastocyst_grade2_value.to_i, status: 0).order(created_at: :desc)
+      @reports = reports.page(params[:page]).per(20)
+      @grade_reports = reports.size
+    elsif params[:type] == "shokihai"
+      shokihai = Report::HASH_EARLY_EMBRYO_GRADE_SEARCH
+      shokihai_value = params[:value].to_i
+      @selected_grade = shokihai[shokihai_value]
+      @selected_grade_name = "初期胚"
+      reports = Report.where(early_embryo_grade: shokihai_value, status: 0).order(created_at: :desc)
+      @reports = reports.page(params[:page]).per(20)
+      @grade_reports = reports.size
+    end
+  end
+
   def tags
     report_fuiku_inspections = ReportFuikuInspection.joins(:report, :fuiku_inspection).where(reports: {status: 0}).group(:fuiku_inspection_id).count
     fuiku_inspection = report_fuiku_inspections.keys

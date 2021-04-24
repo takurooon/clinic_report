@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get 'count' => 'searches#count'
   get 'count/:type/:value' => 'searches#sairan_ishoku_count'
+  get 'grade' => 'searches#grade'
+  get 'grade/:type/:value' => 'searches#embryo_grade'
   get 'works' => 'searches#works'
   get 'work/:value' => 'searches#work'
   get 'costs' => 'searches#costs'
