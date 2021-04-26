@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'amh/:value' => 'searches#amh'
   get 'status' => 'searches#all_status'
   get 'status/:value' => 'searches#status'
+  get 'what_numbers' => 'searches#what_numbers'
+  get 'what_number/:value' => 'searches#what_number'
   get 'search/clinics' => 'searches#clinics'
 
   get 'clinics_area' => 'searches#clinics_area'

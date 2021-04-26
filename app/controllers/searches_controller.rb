@@ -24,15 +24,26 @@ class SearchesController < ApplicationController
 
   def all_status
     current_statuses = Report::HASH_CURRENT_STATE_SEARCH
-    current_state_reports = Report.group(:current_state).where.not(current_state: nil).distinct.count
+    current_state_reports = Report.group(:current_state).where.not(current_state: nil, status: 1).distinct.size
     c = current_statuses.keys - current_state_reports.keys
     c.each do |s|
       current_statuses.delete(s)
     end
     @current_status = current_statuses
+  end
 
+  def status
+    status = Report::HASH_CURRENT_STATE_SEARCH
+    status_value = params[:value].to_i
+    @selected_word = status[status_value]
+    reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
+    @reports = reports.page(params[:page]).per(20)
+    @clinic_all_reports = @reports.size
+  end
+
+  def what_numbers
     fertility_treatment_number = Report::HASH_FERTILITY_TREATMENT_NUMBER_SEARCH
-    fertility_treatment_number_reports = Report.group(:fertility_treatment_number).where.not(fertility_treatment_number: nil).distinct.count
+    fertility_treatment_number_reports = Report.group(:fertility_treatment_number).where.not(fertility_treatment_number: nil, status: 1).distinct.count
     f = fertility_treatment_number.keys - fertility_treatment_number_reports.keys
     f.each do |t|
       fertility_treatment_number.delete(t)
@@ -40,20 +51,13 @@ class SearchesController < ApplicationController
     @fertility_treatment_number = fertility_treatment_number
   end
 
-  def status
-    if params[:value].include?("child")
-      fertility_treatment_number = Report::HASH_FERTILITY_TREATMENT_NUMBER_SEARCH
-      fertility_treatment_number_value = params[:value].to_i
-      @selected_word = fertility_treatment_number[fertility_treatment_number_value]
-      @reports = Report.where(fertility_treatment_number: fertility_treatment_number_value, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
-    else
-      status = Report::HASH_CURRENT_STATE_SEARCH
-      status_value = params[:value].to_i
-      @selected_word = status[status_value]
-      @reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
-    end
+  def what_number
+    fertility_treatment_number = Report::HASH_FERTILITY_TREATMENT_NUMBER_SEARCH
+    fertility_treatment_number_value = params[:value].to_i
+    @selected_number = fertility_treatment_number[fertility_treatment_number_value]
+    reports = Report.where(fertility_treatment_number: fertility_treatment_number_value, status: 0).order(created_at: :desc)
+    @reports = reports.page(params[:page]).per(20)
+    @clinic_all_reports = @reports.size
   end
 
   def clinics

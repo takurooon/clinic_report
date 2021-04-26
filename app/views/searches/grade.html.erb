@@ -17,7 +17,6 @@
         </div>
         <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">初期胚</label>
         <div class="tab-content1">
-          <% if false %><%= select "report", :total_number_of_transplants, @ishoku.invert, { prompt: "グレード   で絞り込み" }, { class: "form-control my-3", onchange: "location = 'grade/shokihai/' + this.value" } %><% end %>
           <div class="row pl-3 pt-4">
             <%= collection_radio_buttons(:report, :total_number_of_transplants, @shokihai, :first, :last) do |b| %>
               <div class="col-4 col-lg-12 px-0 mb-3">

@@ -1,9 +1,9 @@
 class ClinicsController < ApplicationController
 
   def index
-    @clinics = Clinic.all
-    @prefecture = Prefecture.where(id: 1..47)
-    @all_clinics = Clinic.all.order(prefecture_id: :asc, city_id: :asc)
+    # @clinics = Clinic.all
+    # @prefecture = Prefecture.where(id: 1..47)
+    # @all_clinics = Clinic.all.order(prefecture_id: :asc, city_id: :asc)
     @list = {}
     Clinic.joins(city: :prefecture).includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
       if @list[clinic.prefecture.id].nil?

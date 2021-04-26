@@ -44,9 +44,9 @@
                           <ul class="p-0 pb-0">
                             <% value[:clinics].each do |clinic| %>
                               <li class="list-unstyled small mb-2">
-                              <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
-                                <%= clinic[:name] %>
-                              <% end %>
+                                <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                  <%= clinic[:name] %>
+                                <% end %>
                               </li>
                             <% end %>
                           </ul>
