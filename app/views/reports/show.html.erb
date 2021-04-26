@@ -41,8 +41,8 @@
       <% treatment_end_age2 = "" %>
     <% end %>
     <% if @report.year_of_treatment_end.present? %>
-      <% year_of_treatment_end = "(#{@report.year_of_treatment_end.year.to_s}年卒業)" %>
-      <% year_of_treatment_end2 = "･･･#{@report.year_of_treatment_end.year.to_s}年卒業" %>
+      <% year_of_treatment_end = "(#{@report.year_of_treatment_end.year.to_s}年)" %>
+      <% year_of_treatment_end2 = "･･･#{@report.year_of_treatment_end.year.to_s}年" %>
     <% else %>
       <% year_of_treatment_end = "" %>
       <% year_of_treatment_end2 = "" %>
