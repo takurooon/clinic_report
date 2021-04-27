@@ -8,7 +8,7 @@
     <div class="row px-0">
       <div class="col-lg-7 offset-lg-1 main-column text-color px-0">
 
-        <div id="carouselExampleControls" class="carousel slide" data-interval=6000 data-pause=hover data-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide" data-interval=8000 data-pause=hover data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleControls" data-slide-to="1"></li>
@@ -44,8 +44,8 @@
 
         <div class="px-3 mt-0">
           <div class="py-4">
-            <p class="mb-2"><span class="marker-underline"><span class="small">現在公開中のレポコ:</span>&nbsp;&nbsp;<span class="text-danger font-weight-bold"><%= @released_reports.size %>&nbsp;</span>投稿</span></p>
-            <p class="mb-0"><span class="marker-underline"><span class="small">レポコのある施設数:</span>&nbsp;&nbsp;<span class="text-danger font-weight-bold"><%= @clinics_count_released.size %>&nbsp;</span>施設</span></p>
+            <p class="mb-2"><span class="small">現在公開中のレポコ:</span>&nbsp;&nbsp;<span class="marker-underline"><span class="text-danger font-weight-bold"><%= @released_reports.size %>&nbsp;</span><span class="small font-weight-bold">投稿</span></span></p>
+            <p class="mb-0"><span class="small">レポコのある施設数:</span>&nbsp;&nbsp;<span class="marker-underline"><span class="text-danger font-weight-bold"><%= @clinics_count_released.size %>&nbsp;</span><span class="small font-weight-bold">施設</span></span></p>
           </div>
           <% if user_signed_in? && @draft_reports.present? %>
             <div class="alert alert-info px-3 py-2 small rounded-lg">
