@@ -21,7 +21,7 @@
               <% @list_ivf.each do |key, value| %>
                 <div class="col-12 mb-1 px-2">
                   <input id='acd-check-cllist-ivf<%= value[:id] %>' class="acd-check-cllist2" type="checkbox">
-                  <label class="acd-cllist-label2 small mb-0 px-1 py-2" for="acd-check-cllist-ivf<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(ivf: 1, prefecture_id: value[:id]).count %>施設&nbsp;)</span></span></label>
+                  <label class="acd-cllist-label2 small mb-0 px-1 py-2" for="acd-check-cllist-ivf<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(ivf: 1, prefecture_id: value[:id]).size %>施設&nbsp;)</span></span></label>
                   <div class="acd-content-multiple2 container mb-2">
                     <div class="row mt-0 pb-0">
                     <div class="col-12 border-bottom">
@@ -72,7 +72,7 @@
               <% @list.each do |key, value| %>
                 <div class="col-12 mb-1 px-2">
                   <input id='acd-check-cllist<%= value[:id] %>' class="acd-check-cllist" type="checkbox">
-                  <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(prefecture_id: value[:id]).count %>施設&nbsp;)</span></span></label>
+                  <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(prefecture_id: value[:id]).size %>施設&nbsp;)</span></span></label>
                   <div class="acd-content-multiple container mb-2">
                     <div class="row mt-0 pb-0">
                     <div class="col-12 border-bottom">
