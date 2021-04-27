@@ -7,13 +7,46 @@
     <% end %>
     <div class="row px-0">
       <div class="col-lg-7 offset-lg-1 main-column text-color px-0">
-        <p class="d-block d-sm-none small mb-0 p-2"><span class="marker-underline">はじめて体外受精･顕微授精を行う方（初採卵後１ヵ月以内の方）</span>、以下アンケート調査にご協力ください！</p>
-        <p class="d-none d-sm-block mb-0 p-2"><span class="marker-underline">はじめて体外受精･顕微授精を行う方（初採卵後１ヵ月以内の方）</span>、以下アンケート調査にご協力ください！</p>
-        <div class="mb-3">
-          <%= link_to image_tag("info/saitamaika.png", class: "img-fluid pb-1", loading: "lazy"), "http://www.saitama-med.ac.jp/hospital/division/33gynecology/predictionivf.html", target: '_blank', rel: "nofollow" %>
+
+        <div id="carouselExampleControls" class="carousel slide" data-interval=6000 data-pause=hover data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <p class="d-block d-sm-none small p-2"><span class="marker-underline">体外・顕微授精で妊娠/出産された方へ。ぜひレポコの投稿をお願いします！</p>
+              <p class="d-none d-sm-block p-2"><span class="marker-underline">体外・顕微授精で妊娠/出産された方へ。ぜひレポコの投稿をお願いします！</p>
+              <div class="mb-3">
+                <div class="mb-3">
+                  <%= link_to image_tag("info/lets_repoco.png", class: "img-fluid pb-1", loading: "lazy"), signup_path %>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <p class="d-block d-sm-none small mb-0 p-2"><span class="marker-underline">はじめて体外受精･顕微授精を行う方（初採卵後１ヵ月以内の方）</span>、以下アンケート調査にご協力ください！</p>
+              <p class="d-none d-sm-block mb-0 p-2"><span class="marker-underline">はじめて体外受精･顕微授精を行う方（初採卵後１ヵ月以内の方）</span>、以下アンケート調査にご協力ください！</p>
+              <div class="mb-3">
+                <%= link_to image_tag("info/saitamaika.png", class: "img-fluid pb-1", loading: "lazy"), "http://www.saitama-med.ac.jp/hospital/division/33gynecology/predictionivf.html", target: '_blank', rel: "nofollow" %>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
         </div>
+      
 
         <div class="px-3 mt-0">
+          <div class="py-4">
+            <p class="mb-2"><span class="marker-underline"><span class="small">現在公開のレポコ数:</span>&nbsp;&nbsp;<span class="text-danger font-weight-bold"><%= @released_reports.size %>&nbsp;</span>件</span></p>
+            <p class="mb-0"><span class="marker-underline"><span class="small">レポコのある施設数:</span>&nbsp;&nbsp;<span class="text-danger font-weight-bold"><%= @clinics_count_released.size %>&nbsp;</span>施設</span></p>
+          </div>
           <% if user_signed_in? && @draft_reports.present? %>
             <div class="alert alert-info px-3 py-2 small rounded-lg">
               <p class="mb-0"><%= @user.name %>さん、下書きのレポコが<%= @draft_reports.count %>件あります。</p>

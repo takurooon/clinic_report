@@ -15,8 +15,8 @@
             <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" />
             <label class="tab-label ml-3" for="TAB-01">IVF</label>
             <div class="tab-content1">
-              <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.where(ivf: 1).count.to_s(:delimited) %>施設)</span></span></h5>
-              <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.where(ivf: 1).count.to_s(:delimited) %>施設)</span></span></h4>
+              <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @iv_clinics_count %>施設)</span></span></h5>
+              <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @ivf_clinics_count %>施設)</span></span></h4>
               <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
               <% @list_ivf.each do |key, value| %>
                 <div class="col-12 mb-1 px-2">
@@ -45,7 +45,11 @@
                             <% value[:clinics].each do |clinic| %>
                               <li class="list-unstyled small mb-2">
                                 <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
-                                  <%= clinic[:name] %>
+                                  <% if clinic[:count].present? %>
+                                    <span class="font-weight-bold"><%= clinic[:name] %>&nbsp;(<%= clinic[:count] %>)</span>
+                                  <% else %>
+                                    <span class="small text-muted"><%= clinic[:name] %></span>
+                                  <% end %>
                                 <% end %>
                               </li>
                             <% end %>
@@ -62,8 +66,8 @@
             <input id="TAB-02" type="radio" name="TAB" class="tab-switch" />
             <label class="tab-label mr-3 small" for="TAB-02">ALL</label>
             <div class="tab-content1">
-              <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h5>
-              <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= Clinic.count.to_s(:delimited) %>施設)</span></span></h4>
+              <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @all_clinics_count %>施設)</span></span></h5>
+              <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @all_clinics_count %>施設)</span></span></h4>
               <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
               <% @list.each do |key, value| %>
                 <div class="col-12 mb-1 px-2">
@@ -91,10 +95,14 @@
                           <ul class="p-0 pb-0">
                             <% value[:clinics].each do |clinic| %>
                               <li class="list-unstyled small mb-2">
-                              <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
-                                <%= clinic[:name] %>
-                              <% end %>
-                              </li>
+                                <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                  <% if clinic[:count].present? %>
+                                    <span class="font-weight-bold"><%= clinic[:name] %>&nbsp;(<%= clinic[:count] %>)</span>
+                                  <% else %>
+                                    <span class="small text-muted"><%= clinic[:name] %></span>
+                                  <% end %>
+                                <% end %>
+                                </li>
                             <% end %>
                           </ul>
                         </div>

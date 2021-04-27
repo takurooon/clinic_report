@@ -8,56 +8,11 @@ class ReportsController < ApplicationController
     @reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).order("created_at DESC").page(params[:page]).per(20).with_rich_text_content
     @rank = Report.includes([:user, :prefecture, user: { icon_attachment: :blob }, clinic: :prefecture]).find(Like.joins(:report).where(reports: {status: 0}).group(:report_id).order('count(report_id) desc').limit(5).pluck(:report_id))
 
-    # @list = {}
-    # Clinic.joins(city: :prefecture).includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
-    #   if @list[clinic.prefecture.id].nil?
-    #     @list[clinic.prefecture.id] = {
-    #       id: clinic.prefecture.id,
-    #       name: clinic.prefecture.name,
-    #       name_alphabet: clinic.prefecture.name_alphabet,
-    #       cities: {}
-    #     }
-    #   end
-    #   if @list[clinic.prefecture.id][:cities][clinic.city.id].nil?
-    #     @list[clinic.prefecture.id][:cities][clinic.city.id] = {
-    #       name: clinic.city.name,
-    #       name_alphabet: clinic.city.name_alphabet,
-    #       clinics: [],
-    #       ivf_clinics: []
-    #     }
-    #   end
-    #   @list[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
-    #     id: clinic.id,
-    #     name: clinic.name,
-    #     yomigana: clinic.yomigana
-    #   }
-    # end
-    # @list_ivf = {}
-    # Clinic.joins(city: :prefecture).includes(:city, :prefecture).where(ivf: 1).order(:prefecture_id, :city_id).each do |clinic|
-    #   if @list_ivf[clinic.prefecture.id].nil?
-    #     @list_ivf[clinic.prefecture.id] = {
-    #       id: clinic.prefecture.id,
-    #       name: clinic.prefecture.name,
-    #       name_alphabet: clinic.prefecture.name_alphabet,
-    #       cities: {}
-    #     }
-    #   end
-    #   if @list_ivf[clinic.prefecture.id][:cities][clinic.city.id].nil?
-    #     @list_ivf[clinic.prefecture.id][:cities][clinic.city.id] = {
-    #       name: clinic.city.name,
-    #       name_alphabet: clinic.city.name_alphabet,
-    #       clinics: [],
-    #       ivf_clinics: []
-    #     }
-    #   end
-    #   @list_ivf[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
-    #     id: clinic.id,
-    #     name: clinic.name,
-    #     yomigana: clinic.yomigana
-    #   }
-    # end
-    @all_clinics = Clinic.count.to_s(:delimited)
-    @ivf_clinics = Clinic.where(ivf: 1).count.to_s(:delimited)
+    @like_count = Like.group(:report_id).size
+    @released_reports = Report.released.all.includes(:user, :clinic).order("created_at DESC")
+    @clinics_count_released = Report.released.group(:clinic_id).size
+    # @all_clinics = Clinic.count.to_s(:delimited)
+    # @ivf_clinics = Clinic.where(ivf: 1).count.to_s(:delimited)
 
     @user = current_user
     if @user.present?

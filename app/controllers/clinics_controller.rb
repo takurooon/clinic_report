@@ -4,6 +4,9 @@ class ClinicsController < ApplicationController
     # @clinics = Clinic.all
     # @prefecture = Prefecture.where(id: 1..47)
     # @all_clinics = Clinic.all.order(prefecture_id: :asc, city_id: :asc)
+    report_count = Report.group(:clinic_id).where.not(status: 1).size
+    @all_clinics_count = Clinic.count.to_s(:delimited)
+    @ivf_clinics_count = Clinic.where(ivf: 1).count.to_s(:delimited)
     @list = {}
     Clinic.joins(city: :prefecture).includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
       if @list[clinic.prefecture.id].nil?
@@ -25,7 +28,8 @@ class ClinicsController < ApplicationController
       @list[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
         id: clinic.id,
         name: clinic.name,
-        yomigana: clinic.yomigana
+        yomigana: clinic.yomigana,
+        count: report_count[clinic.id]
       }
     end
     @list_ivf = {}
@@ -49,7 +53,8 @@ class ClinicsController < ApplicationController
       @list_ivf[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
         id: clinic.id,
         name: clinic.name,
-        yomigana: clinic.yomigana
+        yomigana: clinic.yomigana,
+        count: report_count[clinic.id]
       }
     end
   end
