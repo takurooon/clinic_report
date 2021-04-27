@@ -44,7 +44,7 @@
 
         <div class="px-3 mt-0">
           <div class="py-4">
-            <p class="mb-2"><span class="marker-underline"><span class="small">現在公開のレポコ数:</span>&nbsp;&nbsp;<span class="text-danger font-weight-bold"><%= @released_reports.size %>&nbsp;</span>件</span></p>
+            <p class="mb-2"><span class="marker-underline"><span class="small">現在公開中のレポコ:</span>&nbsp;&nbsp;<span class="text-danger font-weight-bold"><%= @released_reports.size %>&nbsp;</span>投稿</span></p>
             <p class="mb-0"><span class="marker-underline"><span class="small">レポコのある施設数:</span>&nbsp;&nbsp;<span class="text-danger font-weight-bold"><%= @clinics_count_released.size %>&nbsp;</span>施設</span></p>
           </div>
           <% if user_signed_in? && @draft_reports.present? %>
