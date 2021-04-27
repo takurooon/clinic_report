@@ -43,7 +43,7 @@ class SearchesController < ApplicationController
 
   def what_numbers
     fertility_treatment_number = Report::HASH_FERTILITY_TREATMENT_NUMBER_SEARCH
-    fertility_treatment_number_reports = Report.group(:fertility_treatment_number).where.not(fertility_treatment_number: nil, status: 1).distinct.count
+    fertility_treatment_number_reports = Report.group(:fertility_treatment_number).where.not(fertility_treatment_number: nil, status: 1).distinct.size
     f = fertility_treatment_number.keys - fertility_treatment_number_reports.keys
     f.each do |t|
       fertility_treatment_number.delete(t)
