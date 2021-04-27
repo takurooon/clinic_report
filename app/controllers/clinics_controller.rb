@@ -7,7 +7,6 @@ class ClinicsController < ApplicationController
     report_count = Report.group(:clinic_id).where.not(status: 1).size
     @all_clinics_count = Clinic.count.to_s(:delimited)
     @ivf_clinics_count = Clinic.where(ivf: 1).count.to_s(:delimited)
-    binding.pry
     @list = {}
     Clinic.joins(city: :prefecture).includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
       if @list[clinic.prefecture.id].nil?
