@@ -20,6 +20,7 @@ class SearchesController < ApplicationController
     reports = Report.where(amh: amh_value, status: 0).order(created_at: :desc)
     @reports = reports.page(params[:page]).per(20)
     @clinic_all_reports = reports.size
+    @like_count = Like.group(:report_id).size
   end
 
   def all_status
@@ -39,6 +40,7 @@ class SearchesController < ApplicationController
     reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
     @reports = reports.page(params[:page]).per(20)
     @clinic_all_reports = @reports.size
+    @like_count = Like.group(:report_id).size
   end
 
   def what_numbers
@@ -58,6 +60,7 @@ class SearchesController < ApplicationController
     reports = Report.where(fertility_treatment_number: fertility_treatment_number_value, status: 0).order(created_at: :desc)
     @reports = reports.page(params[:page]).per(20)
     @clinic_all_reports = @reports.size
+    @like_count = Like.group(:report_id).size
   end
 
   def clinics
@@ -92,7 +95,8 @@ class SearchesController < ApplicationController
     @reports = Report.where(clinic_id: @clinics.id, status: 0)
     @clinic_reports = Report.where(activated: true).search(params[:search]).order(created_at: :desc)
     @transfer_reports = Report.joins(:itinerary_of_choosing_a_clinics).where(status: 0, itinerary_of_choosing_a_clinics: {clinic_id: @clinics.id}).distinct
-    @clinic_all_reports = Report.where(clinic_id: @clinics.id, status: 0).count
+    @clinic_all_reports = Report.where(clinic_id: @clinics.id, status: 0).size
+    @like_count = Like.group(:report_id).size
   end
 
   def clinics_area
@@ -169,6 +173,7 @@ class SearchesController < ApplicationController
       @reports = reports.page(params[:page]).per(20)
       @clinic_all_reports = reports.size
     end
+    @like_count = Like.group(:report_id).size
   end
 
   def count
@@ -207,6 +212,7 @@ class SearchesController < ApplicationController
       @reports = reports.page(params[:page]).per(20)
       @sairan_ishoku_reports = reports.size
     end
+    @like_count = Like.group(:report_id).size
   end
 
   def grade
@@ -264,6 +270,7 @@ class SearchesController < ApplicationController
       @reports = reports.page(params[:page]).per(20)
       @grade_reports = reports.size
     end
+    @like_count = Like.group(:report_id).size
   end
 
   def tags
@@ -290,6 +297,7 @@ class SearchesController < ApplicationController
       @reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
       @clinic_all_reports = @reports.size
     end
+    @like_count = Like.group(:report_id).size
   end
 
   def works
@@ -308,6 +316,7 @@ class SearchesController < ApplicationController
     @selected_work = "「" + work_style[work_value] + "」"
     @reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
     @clinic_all_reports = @reports.count
+    @like_count = Like.group(:report_id).size
   end
 
   def costs
@@ -418,6 +427,7 @@ class SearchesController < ApplicationController
         @clinic_all_reports = @reports.count
       end
     end
+    @like_count = Like.group(:report_id).size
   end
 
   # 以下は4つのメソッドはclinics_controllerから移植(ここから)

@@ -309,8 +309,7 @@
                 <div class="row">
                   <div class="col-3 mt-2 pr-0">
                     <div class="likes_buttons_<%= report.id %>">
-                      <% if false %><%= render partial: 'likes/like', locals: { report: report, like_count: @like_count[report.id] } %><% end %>
-                      <%= render partial: 'likes/like', locals: { report: report } %>
+                      <%= render partial: 'likes/like_index', locals: { report: report, like_count: @like_count[report.id] } %>
                     </div>
                   </div>
                   <div class="col-9 pt-0 pl-0 pr-4 text-right">

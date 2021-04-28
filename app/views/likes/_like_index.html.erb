@@ -5,7 +5,7 @@
         <%= link_to report_likes_path(report), style:" text-decoration: none;", method: :delete, remote: true do %>
           <%= images_action_svg("like.svg") %>
         <% end %>
-          <span class="text-danger like-counter small">&nbsp;<small><%= report.likes.size %></small></span>
+          <span class="text-danger like-counter small">&nbsp;<small><%= like_count %></small></span>
       </div>
     </div>
   <% else %>
@@ -14,7 +14,7 @@
         <%= link_to report_likes_path(report), style:" text-decoration: none;", method: :post, remote: true do %>
           <%= images_action_svg("unlike.svg") %>
         <% end %>
-          <span class="text-muted like-counter small">&nbsp;<small><%= report.likes.size %></small></span>
+          <span class="text-muted like-counter small">&nbsp;<small><%= like_count %></small></span>
       </div>
     </div>
   <% end %>
@@ -24,7 +24,7 @@
       <%= link_to new_user_session_path, "data-toggle": "modal", "data-target": "#signinLikeModal" do %>
         <%= images_action_svg("unlike.svg") %>
       <% end %>
-        <span class="text-muted like-counter small">&nbsp;<small><%= report.likes.size %></small></span>
+        <span class="text-muted like-counter small">&nbsp;<small><%= like_count %></small></span>
     </div>
   </div>
 <% end %>
