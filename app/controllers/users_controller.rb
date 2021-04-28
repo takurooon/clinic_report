@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reports = @user.reports.released.order("created_at DESC").page(params[:page]).per(10)
+    @like_count = Like.group(:report_id).size
     # @like_reports = @user.like_reports
   end
 

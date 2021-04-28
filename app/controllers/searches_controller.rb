@@ -274,10 +274,10 @@ class SearchesController < ApplicationController
   end
 
   def tags
-    report_fuiku_inspections = ReportFuikuInspection.joins(:report, :fuiku_inspection).where(reports: {status: 0}).group(:fuiku_inspection_id).count
+    report_fuiku_inspections = ReportFuikuInspection.joins(:report, :fuiku_inspection).where(reports: {status: 0}).group(:fuiku_inspection_id).size
     fuiku_inspection = report_fuiku_inspections.keys
     @fuiku_inspections = FuikuInspection.where(id: fuiku_inspection).name_yomigana
-    report_f_funin_factors = ReportFFuninFactor.joins(:report, :f_funin_factor).where(reports: {status: 0}).group(:f_funin_factor_id).count
+    report_f_funin_factors = ReportFFuninFactor.joins(:report, :f_funin_factor).where(reports: {status: 0}).group(:f_funin_factor_id).size
     f_funin_factor = report_f_funin_factors.keys
     @f_funin_factors = FFuninFactor.where(id: f_funin_factor)
     @special_examinations = SpecialInspection.joins(:report).where(reports: {status: 0}).where.not(name: nil).select(:name).distinct

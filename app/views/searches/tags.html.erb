@@ -8,19 +8,34 @@
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", search_path %>
   </small>
 
-  <div class="row px-3">
-    <div class="col-md-8 offset-md-2 px-0">
-      <% @f_funin_factors.each do |f_funin_factor| %>
-        <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to f_funin_factor.name, "/tags/factor/#{f_funin_factor.id}", class: "text-dark" %></span>
-      <% end %>
-      <% @special_examinations.each do |special_examination| %>
-        <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3">
-          <%= link_to special_examination.str_special_inspection_name(special_examination.name), "/tags/option/#{special_examination.name}", class: "text-dark" %>
-        </span>
-      <% end %>
-      <% @fuiku_inspections.each do |fuiku_inspection| %>
-        <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3"><%= link_to fuiku_inspection.name, "/tags/fuiku/#{fuiku_inspection.id}", class: "text-dark" %></span>
-      <% end %>
+  <div class="row pb-5 mb-5">
+    <div class="col-md-8 offset-md-2 main-column">
+      <div class="tab-wrap1 mt-3">
+        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label px-0" for="TAB-01">不妊原因</label>
+        <div class="tab-content1 pt-2">
+          <% @f_funin_factors.each do |f_funin_factor| %>
+            <%= link_to "/tags/factor/#{f_funin_factor.id}" do %>
+              <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3 text-dark"><%= f_funin_factor.name %></span>
+            <% end %>
+          <% end %>
+        </div>
+        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label px-0" for="TAB-02">特殊検査</label>
+        <div class="tab-content1 pt-2">
+          <% @special_examinations.each do |special_examination| %>
+            <%= link_to "/tags/option/#{special_examination.name}" do %>
+              <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3 text-dark"><%= special_examination.str_special_inspection_name(special_examination.name) %></span>
+            <% end %>
+          <% end %>
+        </div>
+        <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label px-0" for="TAB-03">不育症</label>
+        <div class="tab-content1 pt-2">
+          <% @fuiku_inspections.each do |fuiku_inspection| %>
+            <%= link_to "/tags/fuiku/#{fuiku_inspection.id}" do %>
+              <span class="btn btn-primary border border-primary rounded-pill mr-2 mb-3 text-dark"><%= fuiku_inspection.name %></span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
