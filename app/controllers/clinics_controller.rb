@@ -68,6 +68,7 @@ class ClinicsController < ApplicationController
     @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
     @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
     @rereased_reports = Clinic.joins(:reports).where(city_id: @prefecture.id, reports: {status: 0})
+    @like_count = Like.group(:report_id).size
   end
 
   def city
@@ -78,6 +79,7 @@ class ClinicsController < ApplicationController
     @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
     @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
     @rereased_reports = Clinic.joins(:reports).where(city_id: @city.id, reports: {status: 0})
+    @like_count = Like.group(:report_id).size
   end
 
   def show
