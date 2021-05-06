@@ -321,17 +321,69 @@ class SearchesController < ApplicationController
 
   def costs
     total_costs = Report::HASH_COST_SEARCH
-    reports = Report.group(:cost).where.not(cost: nil).distinct.count
+    reports = Report.group(:cost).where.not(cost: nil, status: 1).distinct.size
     v_cost = total_costs.keys - reports.keys
     v_cost.each do |vc|
       total_costs.delete(vc)
     end
     @total_costs = total_costs
 
-    @total_costs_range = { "1~5": "50万円未満", "6~10": "50万円以上〜100万円未満", "11~20": "100万円以上〜200万円未満", "21~30": "200万円以上〜300万円未満", "31~40": "300万円以上〜400万円未満", "41~50": "400万円以上〜500万円未満", "51~60": "500万円以上〜600万円未満", "61~70": "600万円以上〜700万円未満", "71~80": "700万円以上〜800万円未満", "81~90": "800万円以上〜900万円未満", "91~100": "900万円以上〜1,000万円未満", "101000~": "1,000万円以上(または不明)" }
+    @range_cost = {}
+    total_costs.keys.each do |range|
+      case range
+      when 1..2
+        range_v_1 = "1~2" 
+        range_n_1 = "50万円未満"
+        @range_cost[range_v_1] = range_n_1
+      when 3
+        range_v_2 = "3" 
+        range_n_2 = "50万円以上〜100万円未満"
+        @range_cost[range_v_2] = range_n_2
+      when 4..5
+        range_v_3 = "4~50" 
+        range_n_3 = "100万円以上〜200万円未満"
+        @range_cost[range_v_3] = range_n_3
+      when 6..7
+        range_v_4 = "6~70" 
+        range_n_4 = "200万円以上〜300万円未満"
+        @range_cost[range_v_4] = range_n_4
+      when 8..9
+        range_v_5 = "8~90" 
+        range_n_5 = "300万円以上〜400万円未満"
+        @range_cost[range_v_5] = range_n_5
+      when 10..11
+        range_v_6 = "10~11" 
+        range_n_6 = "400万円以上〜500万円未満"
+        @range_cost[range_v_6] = range_n_6
+      when 12
+        range_v_7 = "12000" 
+        range_n_7 = "500万円以上〜600万円未満"
+        @range_cost[range_v_7] = range_n_7
+      when 13
+        range_v_8 = "13000" 
+        range_n_8 = "600万円以上〜700万円未満"
+        @range_cost[range_v_8] = range_n_8
+      when 14
+        range_v_9 = "14000" 
+        range_n_9 = "700万円以上〜800万円未満"
+        @range_cost[range_v_9] = range_n_9
+      when 15
+        range_v_10 = "15000" 
+        range_n_10 = "800万円以上〜900万円未満"
+        @range_cost[range_v_10] = range_n_10
+      when 16
+        range_v_11 = "16000" 
+        range_n_11 = "900万円以上〜1,000万円未満"
+        @range_cost[range_v_11] = range_n_11
+      when 17
+        range_v_12 = "17000" 
+        range_n_12 = "1,000万円以上"
+        @range_cost[range_v_12] = range_n_12
+      end
+    end
 
     sairan_cost = Report::HASH_SAIRAN_COST_SEARCH
-    reports = Report.group(:sairan_cost).where.not(sairan_cost: nil).distinct.count
+    reports = Report.group(:sairan_cost).where.not(sairan_cost: nil, status: 1).distinct.count
     sairan = sairan_cost.keys - reports.keys
     sairan.each do |sc|
       sairan_cost.delete(sc)
@@ -339,7 +391,7 @@ class SearchesController < ApplicationController
     @sairan_cost = sairan_cost
 
     ishoku_cost = Report::HASH_ISHOKU_COST_SEARCH
-    reports = Report.group(:ishoku_cost).where.not(ishoku_cost: nil).distinct.count
+    reports = Report.group(:ishoku_cost).where.not(ishoku_cost: nil, status: 1).distinct.count
     ishoku = ishoku_cost.keys - reports.keys
     ishoku.each do |ic|
       ishoku_cost.delete(ic)
@@ -370,61 +422,58 @@ class SearchesController < ApplicationController
       value = params[:value]
       cost_value = value.delete("^0-9")
       case cost_value.to_i
-      when 15
+      when 12
         @selected_cost = "治療費用「50万円未満」"
-      when 610
+      when 3
         @selected_cost = "治療費用「50万円以上〜100万円未満」"
-      when 1120
+      when 450
         @selected_cost = "治療費用「100万円以上〜200万円未満」"
-      when 2130
+      when 670
         @selected_cost = "治療費用「200万円以上〜300万円未満」"
-      when 3140
+      when 890
         @selected_cost = "治療費用「300万円以上〜400万円未満」"
-      when 4150
+      when 1011
         @selected_cost = "治療費用「400万円以上〜500万円未満」"
-      when 5160
+      when 12000
         @selected_cost = "治療費用「500万円以上〜600万円未満」"
-      when 6170
+      when 13000
         @selected_cost = "治療費用「600万円以上〜700万円未満」"
-      when 7180
+      when 14000
         @selected_cost = "治療費用「700万円以上〜800万円未満」"
-      when 8190
+      when 15000
         @selected_cost = "治療費用「800万円以上〜900万円未満」"
-      when 91100
+      when 16000
         @selected_cost = "治療費用「900万円以上〜1,000万円未満」"
-      when 101000
+      when 17000
         @selected_cost = "治療費用「1,000万円以上(または不明)」"
       end
-      if cost_value.length == 2
+      if cost_value.length == 1
+        a = cost_value.length
+        @reports = Report.where(cost: a, status: 0).order(created_at: :desc)
+        @clinic_all_reports = @reports.size
+      elsif cost_value.length == 2
         i = cost_value.split(//,2)
         a = i[0]
         b = i[1]
         @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.count
+        @clinic_all_reports = @reports.size
       elsif cost_value.length == 3
-        i = cost_value.split(//,2)
+        i = cost_value.split(//,3)
         a = i[0]
         b = i[1]
         @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.count
+        @clinic_all_reports = @reports.size
       elsif cost_value.length == 4
         i = cost_value.scan(/.{2}/)
         a = i[0]
         b = i[1]
         @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      elsif cost_value.length == 5 
+        @clinic_all_reports = @reports.size
+      else cost_value.length == 5 
         i = cost_value.split(/\A(.{1,2})/,2)
-        a = i[0]
-        b = i[1]
-        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.count
-      else cost_value.length > 5
-        i = cost_value.split(/\A(.{1,3})/,2)
         a = i[1]
-        b = "104"
-        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.count
+        @reports = Report.where(cost: a, status: 0).order(created_at: :desc)
+        @clinic_all_reports = @reports.size
       end
     end
     @like_count = Like.group(:report_id).size

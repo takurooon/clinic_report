@@ -2,22 +2,10 @@
   <h5 class="d-sm d-md-none mt-5 mb-5 text-center"><span class="marker-underline"><strong>費用</strong></span>からレポコを探す</h5>
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-5 mb-4"><span class="marker-underline"><strong>費用</strong></span>からレポコを探す</h4>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
-
-  <!-- カテゴリ検索hide --!>
-  <% if false %>
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", search_path %>
-  <% end %>
-  <!-- ここまで --!>
-
   </small>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-4">
-
-  <!-- カテゴリ検索hide --!>
-  <% if false %>
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", search_path %>
-  <% end %>
-  <!-- ここまで --!>
-
   </small>
 
   <div class="row pb-5 mb-5">
@@ -29,7 +17,7 @@
         </div>
         <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">費用帯</label>
         <div class="tab-content1">
-          <%= select "report", :cost, @total_costs_range.invert, { prompt: "治療費用帯から探す" }, { class: "form-control my-3", onchange: "location = 'cost/' + this.value + '_range'" } %>
+          <%= select "report", :cost, @range_cost.invert, { prompt: "治療費用帯から探す" }, { class: "form-control my-3", onchange: "location = 'cost/' + this.value + '_range'" } %>
         </div>
         <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">採卵</label>
         <div class="tab-content1">
