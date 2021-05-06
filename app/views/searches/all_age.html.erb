@@ -17,7 +17,7 @@
         </div>
         <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">年齢層</label>
         <div class="tab-content1">
-          <%= select "report", :treatment_end_age, @age_range.invert, { prompt: "年齢層   で絞り込み" }, { class: "form-control my-3", onchange: "location = 'age/' + this.value" } %>
+          <%= select "report", :treatment_end_age, @range_age.invert, { prompt: "年齢層   で絞り込み" }, { class: "form-control my-3", onchange: "location = 'age/' + this.value" } %>
         </div>
       </div>
     </div>

@@ -130,7 +130,43 @@ class SearchesController < ApplicationController
     end
     @age = age
 
-    @age_range = { "~19": "19歳以下", "20~24": "20〜24歳", "25~29": "25〜29歳", "30~34": "30〜34歳", "35~39": "35〜39歳", "40~44": "40〜44歳", "45~": "45歳以上" }
+    @range_age = {}
+    age.keys.each do |range|
+      case range
+      when 19
+        range_v_1 = "~19" 
+        range_n_1 = "20歳未満"
+        @range_age[range_v_1] = range_n_1
+      when 20..24
+        range_v_2 = "20~24" 
+        range_n_2 = "20〜24歳"
+        @range_age[range_v_2] = range_n_2
+      when 25..29
+        range_v_3 = "25~29" 
+        range_n_3 = "25〜29歳"
+        @range_age[range_v_3] = range_n_3
+      when 30..34
+        range_v_4 = "30~34" 
+        range_n_4 = "30〜34歳"
+        @range_age[range_v_4] = range_n_4
+      when 35..39
+        range_v_5 = "35~39" 
+        range_n_5 = "35〜39歳"
+        @range_age[range_v_5] = range_n_5
+      when 40..44
+        range_v_6 = "40~44" 
+        range_n_6 = "40〜44歳"
+        @range_age[range_v_6] = range_n_6
+      when 45..44
+        range_v_7 = "45~49" 
+        range_n_7 = "45〜45歳"
+        @range_age[range_v_7] = range_n_7
+      when 50
+        range_v_8 = "50~" 
+        range_n_8 = "50歳以上"
+        @range_age[range_v_8] = range_n_8
+      end
+    end
   end
 
   def age
@@ -150,14 +186,12 @@ class SearchesController < ApplicationController
       @selected_age = "40〜44歳"
     when 4044
       @selected_age = "40〜44歳"
-    when 45
-      @selected_age = "45歳以上"
+    when 4549
+      @selected_age = "45〜45歳"
+    when 50
+      @selected_age = "50歳以上"
     when 19
       @selected_age = "20歳未満"
-    when 20..59
-      @selected_age = age_value.to_s + "歳"
-    when 60
-      @selected_age = age_value.to_s + "歳以上"
     else
       @selected_age = "不明"
     end
