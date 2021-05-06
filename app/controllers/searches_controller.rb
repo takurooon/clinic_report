@@ -451,7 +451,7 @@ class SearchesController < ApplicationController
         @selected_cost = "治療費用「1,000万円以上(または不明)」"
       end
       if cost_value.length == 1
-        a = cost_value.length
+        a = cost_value
         reports = Report.where(cost: a, status: 0).order(created_at: :desc)
         @clinic_all_reports = reports.size
       elsif cost_value.length == 2
