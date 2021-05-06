@@ -404,20 +404,23 @@ class SearchesController < ApplicationController
       cost = Report::HASH_COST_SEARCH
       cost_value = params[:value].to_i
       @selected_cost = "治療費用「" + cost[cost_value] + "」"
-      @reports = Report.where(cost: cost_value, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
+      reports = Report.where(cost: cost_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = reports.size
+      @reports = reports.page(params[:page]).per(20)
     elsif params[:value].include?("_sairan")
       sairan_cost = Report::HASH_SAIRAN_COST_SEARCH
       sairan_cost_value = params[:value].to_i
       @selected_cost = "採卵1回あたりの費用「" + sairan_cost[sairan_cost_value] + "」"
-      @reports = Report.where(sairan_cost: sairan_cost_value, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
+      reports = Report.where(sairan_cost: sairan_cost_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = reports.size
+      @reports = reports.page(params[:page]).per(20)
     elsif params[:value].include?("_ishoku")
       ishoku_cost = Report::HASH_ISHOKU_COST_SEARCH
       ishoku_cost_value = params[:value].to_i
       @selected_cost = "移植1回あたりの費用「" + ishoku_cost[ishoku_cost_value] + "」"
-      @reports = Report.where(ishoku_cost: ishoku_cost_value, status: 0).order(created_at: :desc)
-      @clinic_all_reports = @reports.count
+      reports = Report.where(ishoku_cost: ishoku_cost_value, status: 0).order(created_at: :desc)
+      @clinic_all_reports = reports.size
+      @reports = reports.page(params[:page]).per(20)
     else
       value = params[:value]
       cost_value = value.delete("^0-9")
@@ -449,32 +452,33 @@ class SearchesController < ApplicationController
       end
       if cost_value.length == 1
         a = cost_value.length
-        @reports = Report.where(cost: a, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.size
+        reports = Report.where(cost: a, status: 0).order(created_at: :desc)
+        @clinic_all_reports = reports.size
       elsif cost_value.length == 2
         i = cost_value.split(//,2)
         a = i[0]
         b = i[1]
-        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.size
+        reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+        @clinic_all_reports = reports.size
       elsif cost_value.length == 3
         i = cost_value.split(//,3)
         a = i[0]
         b = i[1]
-        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.size
+        reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+        @clinic_all_reports = reports.size
       elsif cost_value.length == 4
         i = cost_value.scan(/.{2}/)
         a = i[0]
         b = i[1]
-        @reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.size
+        reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
+        @clinic_all_reports = reports.size
       else cost_value.length == 5 
         i = cost_value.split(/\A(.{1,2})/,2)
         a = i[1]
-        @reports = Report.where(cost: a, status: 0).order(created_at: :desc)
-        @clinic_all_reports = @reports.size
+        reports = Report.where(cost: a, status: 0).order(created_at: :desc)
+        @clinic_all_reports = reports.size
       end
+      @reports = reports.page(params[:page]).per(20)
     end
     @like_count = Like.group(:report_id).size
   end
