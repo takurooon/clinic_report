@@ -7,6 +7,7 @@ class ClinicsController < ApplicationController
     report_count = Report.group(:clinic_id).where.not(status: 1).size
     @all_clinics_count = Clinic.count.to_s(:delimited)
     @ivf_clinics_count = Clinic.where(ivf: 1).count.to_s(:delimited)
+    @pgt_clinics_count = Clinic.where(pgt: 1).count.to_s(:delimited)
     @list = {}
     Clinic.joins(city: :prefecture).includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
       if @list[clinic.prefecture.id].nil?
@@ -22,7 +23,6 @@ class ClinicsController < ApplicationController
           name: clinic.city.name,
           name_alphabet: clinic.city.name_alphabet,
           clinics: [],
-          ivf_clinics: []
         }
       end
       @list[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
@@ -47,10 +47,33 @@ class ClinicsController < ApplicationController
           name: clinic.city.name,
           name_alphabet: clinic.city.name_alphabet,
           clinics: [],
-          ivf_clinics: []
         }
       end
       @list_ivf[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
+        id: clinic.id,
+        name: clinic.name,
+        yomigana: clinic.yomigana,
+        count: report_count[clinic.id]
+      }
+    end
+    @list_pgt = {}
+    Clinic.joins(city: :prefecture).includes(:city, :prefecture).where(pgt: 1).order(:prefecture_id, :city_id).each do |clinic|
+      if @list_pgt[clinic.prefecture.id].nil?
+        @list_pgt[clinic.prefecture.id] = {
+          id: clinic.prefecture.id,
+          name: clinic.prefecture.name,
+          name_alphabet: clinic.prefecture.name_alphabet,
+          cities: {}
+        }
+      end
+      if @list_pgt[clinic.prefecture.id][:cities][clinic.city.id].nil?
+        @list_pgt[clinic.prefecture.id][:cities][clinic.city.id] = {
+          name: clinic.city.name,
+          name_alphabet: clinic.city.name_alphabet,
+          clinics: [],
+        }
+      end
+      @list_pgt[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
         id: clinic.id,
         name: clinic.name,
         yomigana: clinic.yomigana,
