@@ -314,21 +314,28 @@ class SearchesController < ApplicationController
     report_f_funin_factors = ReportFFuninFactor.joins(:report, :f_funin_factor).where(reports: {status: 0}).group(:f_funin_factor_id).size
     f_funin_factor = report_f_funin_factors.keys
     @f_funin_factors = FFuninFactor.where(id: f_funin_factor)
-    @special_examinations = SpecialInspection.joins(:report).where(reports: {status: 0}).where.not(name: nil).select(:name).distinct
+    if SpecialInspection.joins({report: :clinic}).where(name: 18).where.not(place: [1, 4], clinics: {pgt: 0}).pluck(:name)[0].present?
+      pgta = nil
+    end
+    @special_examinations = SpecialInspection.joins(:report).where.not(name: [nil, pgta], reports: {status: 1}).select(:name).distinct
   end
 
   def tag
     if params[:type] === "factor"
       @tag = FFuninFactor.find_by(id: params[:value])
-      @reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
+      reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
+      @reports = reports.page(params[:page]).per(20)
       @clinic_all_reports = @reports.size
     elsif params[:type] === "option"
       @tag = SpecialInspection.find_by(name: params[:value])
-      @reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag }, reports: {status: 0})
+      pgta_report = SpecialInspection.joins({report: :clinic}).where(name: 18, place: [1, 4], clinics: {pgt: 0}).distinct.pluck(:report_id)
+      reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag.name }, reports: {status: 0}).where.not(id: pgta_report).order(created_at: :desc)
+      @reports = reports.page(params[:page]).per(20)
       @clinic_all_reports = @reports.size
     elsif params[:type] === "fuiku"
       @tag = FuikuInspection.find_by(id: params[:value])
-      @reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
+      reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
+      @reports = reports.page(params[:page]).per(20)
       @clinic_all_reports = @reports.size
     end
     @like_count = Like.group(:report_id).size

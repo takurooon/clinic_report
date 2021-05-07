@@ -7,14 +7,8 @@
     <% end %>
   </strong></span>」<br>を含むレポコ一覧</h5>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-5">
-
-    <!-- カテゴリ検索hide --!>
-    <% if false %>
     <%= link_to "カテゴリ一覧", search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
-    <% end %>
-    <!-- ここまで --!>
-
-    <%= link_to "不妊原因一覧", "/tags" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>
+    <%= link_to "不妊原因･検査", "/tags" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>
     &nbsp;&nbsp;&nbsp;<strong><b>
     <% if @tag.class == SpecialInspection %>
       <%= @tag.str_special_inspection_name(@tag.name) %>
@@ -31,14 +25,8 @@
     <% end %>
   </strong></span>」を含むレポコ一覧</h4>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
-
-    <!-- カテゴリ検索hide --!>
-    <% if false %>
     <%= link_to "カテゴリ一覧", search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
-    <% end %>
-    <!-- ここまで --!>
-
-    <%= link_to "不妊原因一覧", "/tags" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>
+    <%= link_to "不妊原因･検査", "/tags" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>
     &nbsp;&nbsp;&nbsp;<strong><b>
     <% if @tag.class == SpecialInspection %>
       <%= @tag.str_special_inspection_name(@tag.name) %>
@@ -55,25 +43,28 @@
             <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
               <span class="small"><span class="small">
               <% if @tag.class == SpecialInspection %>
-                <%= @tag.str_special_inspection_name(@tag.name) %>
+                「<%= @tag.str_special_inspection_name(@tag.name) %>」を受けられた
               <% else %>
-                <%= @tag.name %>
+                「<%= @tag.name %>」の
               <% end %>
-              の方のレポコは&nbsp;<%= @clinic_all_reports %>件&nbsp;あります。</span></span>
+              方のレポコは&nbsp;<%= @clinic_all_reports %>件&nbsp;あります。</span></span>
             </div>
           <% else %>
             <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
               <span class="small"><span class="small">
               <% if @tag.class == SpecialInspection %>
-                <%= @tag.str_special_inspection_name(@tag.name) %>
+                「<%= @tag.str_special_inspection_name(@tag.name) %>」を受けられた
               <% else %>
-                <%= @tag.name %>
+                「<%= @tag.name %>」の
               <% end %>
               の方のレポコはまだありません。</span></span>
             </div>
           <% end %>
         </div>
         <%= render 'reports/center' %>
+        <div class="mt-5 pt-5">
+          <%= paginate @reports %>
+        </div>
       </div>
       <div class="col-lg-3 col-md-3 d-none d-md-block pl-2 pr-0">
         <%= render 'reports/right' %>
