@@ -134,7 +134,7 @@ class SearchesController < ApplicationController
     age.keys.each do |range|
       case range
       when 19
-        range_v_1 = "~19" 
+        range_v_1 = "~19000" 
         range_n_1 = "20歳未満"
         @range_age[range_v_1] = range_n_1
       when 20..24
@@ -162,7 +162,7 @@ class SearchesController < ApplicationController
         range_n_7 = "45〜45歳"
         @range_age[range_v_7] = range_n_7
       when 50
-        range_v_8 = "50~" 
+        range_v_8 = "50000~" 
         range_n_8 = "50歳以上"
         @range_age[range_v_8] = range_n_8
       end
@@ -188,18 +188,27 @@ class SearchesController < ApplicationController
       @selected_age = "40〜44歳"
     when 4549
       @selected_age = "45〜45歳"
+    when 50000
+      @selected_age = "50歳以上"
+    when 19000
+      @selected_age = "20歳未満"
+    when 19
+      @selected_age = "19歳未満"
     when 50
       @selected_age = "50歳以上"
-    when 19
-      @selected_age = "20歳未満"
     else
-      @selected_age = "不明"
+      @selected_age = age_value + "歳"
     end
-    if age_value.length > 3
+    if age_value.length == 4
       i = age_value.scan(/.{2}/)
       a = i[0]
       b = i[1]
       reports = Report.where(treatment_end_age: a..b, status: 0).order(created_at: :desc)
+      @reports = reports.page(params[:page]).per(20)
+      @clinic_all_reports = reports.size
+    elsif age_value.length == 5
+      i = age_value.scan(/.{2}/)
+      reports = Report.where(treatment_end_age: i[0], status: 0).order(created_at: :desc)
       @reports = reports.page(params[:page]).per(20)
       @clinic_all_reports = reports.size
     else
