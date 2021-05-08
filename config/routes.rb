@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'grade/:type/:value' => 'searches#embryo_grade'
   get 'works' => 'searches#works'
   get 'work/:value' => 'searches#work'
+  get 'works_switch' => 'searches#works_switch'
+  get 'work_switch/:value' => 'searches#work_switch'
   get 'costs' => 'searches#costs'
   get 'cost/:value' => 'searches#cost'
   get 'about' => 'application#about'

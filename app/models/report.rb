@@ -1046,6 +1046,20 @@ class Report < ApplicationRecord
     return HASH_WORK_STYLE[self.work_style]
   end
 
+  # 検索画面用のwork_styleの区分値(働き方)
+  HASH_WORK_STYLE_SEARCH= {
+    1 => "会社役員",
+    2 => "会社員",
+    3 => "自営業/フリーランス",
+    4 => "パート",
+    5 => "無職",
+    99 => "その他"
+  }
+
+  def str_work_style_search
+    return HASH_WORK_STYLE_SEARCH[self.work_style]
+  end
+
   # switching_work_stylesの区分値(働き方の変化)
   HASH_SWITCHING_WORK_STYLES = {
     1 => "変わらず",
@@ -1061,18 +1075,19 @@ class Report < ApplicationRecord
     return HASH_SWITCHING_WORK_STYLES[self.switching_work_styles]
   end
 
-  # 検索画面用のwork_styleの区分値(働き方)
-  HASH_WORK_STYLE_SEARCH= {
-    1 => "会社役員",
-    2 => "会社員",
-    3 => "自営業/フリーランス",
-    4 => "パート",
-    5 => "無職",
+  # 検索画面用のswitching_work_stylesの区分値(働き方の変化)
+  HASH_SWITCHING_WORK_STYLES_SEARCH = {
+    1 => "働き方は変えず/変わらず",
+    2 => "休職(業)した",
+    3 => "退職した",
+    4 => "異動した",
+    5 => "転職した",
+    6 => "就職した",
     99 => "その他"
   }
 
-  def str_work_style_search
-    return HASH_WORK_STYLE_SEARCH[self.work_style]
+  def str_switching_work_styles_search
+    return HASH_SWITCHING_WORK_STYLES_SEARCH[self.switching_work_styles]
   end
 
   TIMES = "回"

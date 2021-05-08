@@ -352,7 +352,7 @@ class SearchesController < ApplicationController
 
   def works
     works = Report::HASH_WORK_STYLE_SEARCH
-    reports = Report.group(:work_style).where.not(work_style: nil).distinct.count
+    reports = Report.group(:work_style).where.not(work_style: nil, status: 1).distinct.count
     w = works.keys - reports.keys
     w.each do |wo|
       works.delete(wo)
@@ -361,11 +361,32 @@ class SearchesController < ApplicationController
   end
 
   def work
-    work_style = Report::HASH_WORK_STYLE_SEARCH
+    work = Report::HASH_WORK_STYLE_SEARCH
     work_value = params[:value].to_i
-    @selected_work = "「" + work_style[work_value] + "」"
-    @reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
-    @clinic_all_reports = @reports.count
+    @selected_work = "「" + work[work_value] + "」"
+    reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
+    @clinic_all_reports = reports.size
+    @reports = reports.page(params[:page]).per(20)
+    @like_count = Like.group(:report_id).size
+  end
+
+  def works_switch
+    works_switch = Report::HASH_SWITCHING_WORK_STYLES_SEARCH
+    reports = Report.group(:switching_work_styles).where.not(switching_work_styles: nil, status: 1).distinct.count
+    w = works_switch.keys - reports.keys
+    w.each do |wo|
+      works_switch.delete(wo)
+    end
+    @works_switch = works_switch
+  end
+
+  def work_switch
+    work_switch = Report::HASH_SWITCHING_WORK_STYLES_SEARCH
+    work_switch_value = params[:value].to_i
+    @selected_work_switch = "「" + work_switch[work_switch_value] + "」"
+    reports = Report.where(switching_work_styles: work_switch_value, status: 0).order(created_at: :desc)
+    @clinic_all_reports = reports.size
+    @reports = reports.page(params[:page]).per(20)
     @like_count = Like.group(:report_id).size
   end
 
