@@ -1065,7 +1065,7 @@ class Report < ApplicationRecord
   HASH_SWITCHING_WORK_STYLES = {
     1 => "変わらず",
     2 => "休職(業)した",
-    3 => "退職した",
+    3 => "退職(廃業)した",
     4 => "異動した",
     5 => "転職した",
     6 => "就職した",
@@ -1080,7 +1080,7 @@ class Report < ApplicationRecord
   HASH_SWITCHING_WORK_STYLES_SEARCH = {
     1 => "働き方は変えず/変わらず",
     2 => "休職(業)した",
-    3 => "退職した",
+    3 => "退職(廃業)した",
     4 => "異動した",
     5 => "転職した",
     6 => "就職した",
