@@ -9,7 +9,7 @@ class ClinicsController < ApplicationController
     @ivf_clinics_count = Clinic.where(ivf: 1).count.to_s(:delimited)
     @pgt_clinics_count = Clinic.where(pgt: 1).count.to_s(:delimited)
     @list = {}
-    Clinic.joins(city: :prefecture).includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
+    Clinic.includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
       if @list[clinic.prefecture.id].nil?
         @list[clinic.prefecture.id] = {
           id: clinic.prefecture.id,
@@ -33,7 +33,7 @@ class ClinicsController < ApplicationController
       }
     end
     @list_ivf = {}
-    Clinic.joins(city: :prefecture).includes(:city, :prefecture).where(ivf: 1).order(:prefecture_id, :city_id).each do |clinic|
+    Clinic.includes(:city, :prefecture).where(ivf: 1).order(:prefecture_id, :city_id).each do |clinic|
       if @list_ivf[clinic.prefecture.id].nil?
         @list_ivf[clinic.prefecture.id] = {
           id: clinic.prefecture.id,

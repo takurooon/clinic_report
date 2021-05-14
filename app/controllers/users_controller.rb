@@ -19,6 +19,27 @@ class UsersController < ApplicationController
 
   # search_controllerから移動
   def all_area
+    # user_prefecture_count = Report.group(:prefecture_id).where.not(status: 1).size
+    # user_city_count = Report.group(:city_id).where.not(status: 1).size
+    # @list = {}
+    # User.includes(:reports).order(:id).each do |user|
+    #   if @list[user.reports.prefecture.id].nil?
+    #     @list[user.prefecture.id] = {
+    #       id: user.prefecture.id,
+    #       cities: {}
+    #     }
+    #   end
+    #   if @list[user.prefecture.id][:cities][user.city.id].nil?
+    #     @list[user.prefecture.id][:cities][user.city.id] = {
+    #       id: user.city.id,
+    #       users: [],
+    #     }
+    #   end
+    #   @list[user.prefecture.id][:cities][user.city.id][:users] << {
+    #     id: user.id,
+    #     count: user_city_count[user.id]
+    #   }
+    # end
   end
 
   def cities_select_area
@@ -31,8 +52,9 @@ class UsersController < ApplicationController
 
   def area_prefecture
     @prefecture = Prefecture.find_by(name_alphabet: params[:prefecture])
-    @reports = Report.where(prefecture_id: @prefecture.id, status: 0, prefecture_at_the_time_status: 0).order(created_at: :desc)
-    @clinic_all_reports = @reports.size
+    reports = Report.where(prefecture_id: @prefecture.id, status: 0, prefecture_at_the_time_status: 0).order(created_at: :desc)
+    @reports = reports.page(params[:page]).per(20)
+    @clinic_all_reports = reports.size
     @like_count = Like.group(:report_id).size
     # @reports = Report.joins(clinic: :prefecture).where(prefectures: {id: @prefecture.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
@@ -40,8 +62,9 @@ class UsersController < ApplicationController
   def area_city
     prefecture = Prefecture.find_by(name_alphabet: params[:prefecture])
     @city = City.find_by(prefecture_id: prefecture.id, name_alphabet: params[:city])
-    @reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0).order(created_at: :desc)
-    @clinic_all_reports = @reports.size
+    reports = Report.where(city_id: @city.id, status: 0, city_at_the_time_status: 0).order(created_at: :desc)
+    @reports = reports.page(params[:page]).per(20)
+    @clinic_all_reports = reports.size
     @like_count = Like.group(:report_id).size
     # @reports = Report.joins(clinic: :city).where(cities: {id: @city.id}).where("(status = ?)", 0) エリアからクリニックのレポコ検索
   end
