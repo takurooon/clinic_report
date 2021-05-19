@@ -1634,12 +1634,18 @@ i .fa-edit {
 
 // 検索窓
 .search-window {
-	height: 45px;
+	height: 55px;
 	width: 100%;
-	padding: 0 1rem;
+	padding: 0 1rem 0 1.5rem;
 	font-size: 14px;
 	border-style: solid;
 	border-width: 0.3px;
 	border-color: rgb(214, 214, 214);
-	border-radius: 25px;
+	border-radius: 30px;
+}
+
+// formのズーム回避
+input[type=text] {
+  font-size: 16px;
+  transform: scale(0.8);
 }
