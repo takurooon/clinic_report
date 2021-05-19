@@ -89,6 +89,7 @@ Rails.application.routes.draw do
   get 'clinic/:value' => 'clinics#clinic_report'
   get 'clinics_/:prefecture' => 'clinics#prefecture'
   get 'clinics/:prefecture/:value' => 'clinics#city'
+  get 'search_cl' => 'clinics#search_cl'
   # ここまで
 
   # formでも利用

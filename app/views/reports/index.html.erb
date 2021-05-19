@@ -1,81 +1,134 @@
-<%= render 'category_header' %>
-  <div class="container main-index mt-3 m-bottom">
-    <% if false %>
-      <div class="d-block d-sm-none text-right small pb-3">
-        <%= link_to "レポコの作り方", make_path, class:"small" %>
-      </div>
-    <% end %>
-    <div class="row px-0">
-      <div class="col-lg-7 offset-lg-1 main-column text-color px-0">
+<% unless @reports.current_page == 1 %>
+  <div class="pb-3">
+    <%= render 'category_header' %>
+  </div>
+<% end %>
+<div class="container main-index mt-3 m-bottom">
+  <% if false %>
+    <div class="d-block d-sm-none text-right small pb-3">
+      <%= link_to "レポコの作り方", make_path, class:"small" %>
+    </div>
+  <% end %>
 
-        <div id="carouselExampleControls" class="carousel slide px-3" data-interval=8000 data-pause=hover data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleControls" data-slide-to="1"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <p class="d-block d-sm-none small mb-0 p-2"><span class="marker-underline">体外・顕微授精で妊娠/出産された方へ。ぜひレポコの投稿をお願いします！</p>
-              <p class="d-none d-sm-block mb-0 p-2"><span class="marker-underline">体外・顕微授精で妊娠/出産された方へ。ぜひレポコの投稿をお願いします！</p>
-              <div class="mb-3">
-                <div class="mb-3">
-                  <%= link_to image_tag("info/lets_repoco.png", class: "img-fluid pb-1", loading: "lazy"), signup_path %>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <p class="d-block d-sm-none small mb-0 p-2"><span class="marker-underline">はじめて体外受精･顕微授精を行う方（初採卵後１ヵ月以内の方）</span>、以下アンケート調査にご協力ください！</p>
-              <p class="d-none d-sm-block mb-0 p-2"><span class="marker-underline">はじめて体外受精･顕微授精を行う方（初採卵後１ヵ月以内の方）</span>、以下アンケート調査にご協力ください！</p>
-              <div class="mb-3">
-                <%= link_to image_tag("info/saitamaika.png", class: "img-fluid pb-1", loading: "lazy"), "http://www.saitama-med.ac.jp/hospital/division/33gynecology/predictionivf.html", target: '_blank', rel: "nofollow" %>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
+  <% if @reports.current_page == 1 %>
+    <div class="pt-2 pb-4 d-flex justify-content-center row">
+      <div class="mt-0 col-sm-7 text-center px-0">
+        <div class="py-3">
+          <h5 class="font-weight-bold" style="font-family: 游ゴシック体,YuGothic,游ゴシック Medium,Yu Gothic Medium,游ゴシック,Yu Gothic,sans-serif;">経験をカタチに&nbsp;&nbsp;情報をエールに</h5>
         </div>
-      
-
-        <div class="px-3 mt-0">
-          <div class="py-4">
-            <p class="mb-2"><span class="small">現在公開中のレポコ:</span>&nbsp;&nbsp;<span class="marker-underline"><span class="text-danger font-weight-bold"><%= @released_reports.size %>&nbsp;</span><span class="small font-weight-bold">投稿</span></span></p>
-            <p class="mb-0"><span class="small">レポコのある施設数:</span>&nbsp;&nbsp;<span class="marker-underline"><span class="text-danger font-weight-bold"><%= @clinics_count_released.size %>&nbsp;</span><span class="small font-weight-bold">施設</span></span></p>
-          </div>
-          <% if user_signed_in? && @draft_reports.present? %>
-            <div class="alert alert-info px-3 py-2 small rounded-lg">
-              <p class="mb-0"><%= @user.name %>さん、下書きのレポコが<%= @draft_reports.count %>件あります。</p>
-              <p class="mb-0"><%= image_tag"home/finger_mom_right.svg", width: "20px", class: "img-fluid pb-1", loading: "lazy" %>&nbsp;<%= link_to "下書きはこちら", my_page_path, class: "text-primary font-weight-bold" %></p>
-            </div>
-          <% end %>
-          <%= render 'center' %>
-          <div class="mt-5 pt-5">
-            <%= paginate @reports %>
-          </div>
-          <div class="pt-3">
-            <div class="rounded-lg">
-              <div class="text-center">
-                <p>＼ 最新レポコを配信中 ／</p>
-                <p class="small">レポコをはじめ、不妊不育治療情報をお届けします<%= image_tag"home/finger_mom_down.svg", width: "20px", class: "m-0 p-0", loading: "lazy" %></p>
+        <div class="mt-0 px-4">
+          <div class="px-1">
+            <%= form_tag(search_cl_path,:method => 'get', class: "mb-0") do %>
+              <div class="p-2">
+                <%= text_field_tag :keyword, "", { class: "text-muted search-window", placeholder: "クリニック名から探す" } %>
               </div>
-              <div class="row">
-                <div class="col-md-8 offset-md-2 popup_area">
-                  <%= link_to "https://twitter.com/repoco_official", {class: "text-decoration-none w-100", target: :_blank, rel: "noopener noreferrer"} do %>
-                    <button class="tw_blue_btn"><%= image_tag"action/Twitter_Social_Icon_Rounded_Square_Color.svg", width: "35px", class: "img-fluid", loading: "lazy" %>@REPOCO_OFFICIALをフォロー</button>
-                  <% end %>
+              <div class="row d-flex justify-content-center">
+                <div class="col-sm-8">
+                  <div class="p-2">
+                    <%= submit_tag '検索する', :name => nil, class: "btn btn-info w-100 rounded-lg active", style: "background-color: #2ECFC0; color: #ffffff;box-shadow: 0 1px 2px gray;" %>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div class="d-none d-sm-block">
+                <div class="mt-3 p-2 small d-flex align-item-center justify-content-center">
+                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "クリニック一覧から探す", clinics_path, class: "text-primary" %>
+                </div>
+                <div class="p-2 small d-flex align-item-center justify-content-center">
+                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
+                </div>
+              </div>
+              <div class="d-block d-sm-none">
+                <div class="mt-3 p-2 small d-flex align-item-center justify-content-end">
+                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "クリニック一覧から探す", clinics_path, class: "text-primary" %>
+                </div>
+                <div class="p-2 small d-flex align-item-center justify-content-end">
+                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
-      <div class="col-lg-3 d-none d-lg-block pl-2 pr-0">
-        <%= render 'right' %>
+      <div class="d-none d-sm-block">
+        <div style="height: 350px;">
+        </div>
       </div>
     </div>
+  <% end %>
+
+  <div class="row px-0">
+    <div class="col-lg-7 offset-lg-1 main-column text-color px-0">
+
+    <% if false %>
+      <div id="carouselExampleControls" class="carousel slide px-3" data-interval=8000 data-pause=hover data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <p class="d-block d-sm-none small mb-0 p-2"><span class="marker-underline">体外・顕微授精で妊娠/出産された方へ。ぜひレポコの投稿をお願いします！</p>
+            <p class="d-none d-sm-block mb-0 p-2"><span class="marker-underline">体外・顕微授精で妊娠/出産された方へ。ぜひレポコの投稿をお願いします！</p>
+            <div class="mb-3">
+              <div class="mb-3">
+                <%= link_to image_tag("info/lets_repoco.png", class: "img-fluid pb-1", loading: "lazy"), signup_path %>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <p class="d-block d-sm-none small mb-0 p-2"><span class="marker-underline">はじめて体外受精･顕微授精を行う方（初採卵後１ヵ月以内の方）</span>、以下アンケート調査にご協力ください！</p>
+            <p class="d-none d-sm-block mb-0 p-2"><span class="marker-underline">はじめて体外受精･顕微授精を行う方（初採卵後１ヵ月以内の方）</span>、以下アンケート調査にご協力ください！</p>
+            <div class="mb-3">
+              <%= link_to image_tag("info/saitamaika.png", class: "img-fluid pb-1", loading: "lazy"), "http://www.saitama-med.ac.jp/hospital/division/33gynecology/predictionivf.html", target: '_blank', rel: "nofollow" %>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    <% end %>
+
+      <div class="px-3 mt-0">
+        <div class="pb-4">
+          <p class="mb-2"><span class="small">現在公開中のレポコ:</span>&nbsp;&nbsp;<span class="marker-underline"><span class="text-danger font-weight-bold"><%= @released_reports.size %>&nbsp;</span><span class="small font-weight-bold">投稿</span></span></p>
+          <p class="mb-0"><span class="small">レポコのある施設数:</span>&nbsp;&nbsp;<span class="marker-underline"><span class="text-danger font-weight-bold"><%= @clinics_count_released.size %>&nbsp;</span><span class="small font-weight-bold">施設</span></span></p>
+        </div>
+        <% if user_signed_in? && @draft_reports.present? %>
+          <div class="alert alert-info px-3 py-2 small rounded-lg">
+            <p class="mb-0"><%= @user.name %>さん、下書きのレポコが<%= @draft_reports.count %>件あります。</p>
+            <p class="mb-0"><%= image_tag"home/finger_mom_right.svg", width: "20px", class: "img-fluid pb-1", loading: "lazy" %>&nbsp;<%= link_to "下書きはこちら", my_page_path, class: "text-primary font-weight-bold" %></p>
+          </div>
+        <% end %>
+        <%= render 'center' %>
+        <div class="mt-5 pt-5">
+          <%= paginate @reports %>
+        </div>
+        <div class="pt-3">
+          <div class="rounded-lg">
+            <div class="text-center">
+              <p>＼ 最新レポコを配信中 ／</p>
+              <p class="small">レポコをはじめ、不妊不育治療情報をお届けします<%= image_tag"home/finger_mom_down.svg", width: "20px", class: "m-0 p-0", loading: "lazy" %></p>
+            </div>
+            <div class="row">
+              <div class="col-md-8 offset-md-2 popup_area">
+                <%= link_to "https://twitter.com/repoco_official", {class: "text-decoration-none w-100", target: :_blank, rel: "noopener noreferrer"} do %>
+                  <button class="tw_blue_btn"><%= image_tag"action/Twitter_Social_Icon_Rounded_Square_Color.svg", width: "35px", class: "img-fluid", loading: "lazy" %>@REPOCO_OFFICIALをフォロー</button>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-3 d-none d-lg-block pl-2 pr-0">
+      <%= render 'right' %>
+    </div>
   </div>
+</div>

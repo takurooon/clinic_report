@@ -1,11 +1,35 @@
 <div class="container search-page">
   <div class="search-page m-bottom">
-    <div class="mt-5">
+    <div class="py-3 d-flex justify-content-center row bg-light">
+      <div class="mt-0 col-sm-7 text-center px-0">
+        <div class="mt-0 px-4">
+          <div class="px-1">
+            <%= form_tag(search_cl_path,:method => 'get', class: "mb-0") do %>
+              <div class="p-2">
+                <%= text_field_tag :keyword, "", { class: "text-muted search-window", placeholder: "クリニック名から探す" } %>
+              </div>
+              <div class="row d-flex justify-content-center">
+                <div class="col-sm-8">
+                  <div class="p-2">
+                    <%= submit_tag '検索する', :name => nil, class: "btn btn-info w-100 rounded-lg active", style: "background-color: #2ECFC0; color: #ffffff;box-shadow: 0 1px 2px gray;" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="d-none d-sm-block">
+        <div style="height: 350px;">
+        </div>
+      </div>
+    </div>
+    <div class="mt-4">
       <h3 class="d-none d-md-block pl-5 lead"><span class="marker-underline">カテゴリ</span>からレポコを探す</h3>
       <h3 class="d-sm d-md-none text-center lead"><span class="marker-underline">カテゴリ</span>からレポコを探す</h3>
     </div>
 
-    <div class="mt-5 text-center">
+    <div class="mt-4 text-center">
       <%= link_to hack_path, class: "btn btn-outline-primary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-primary font-weight-bold">探し方</span><% end %>
       <%= link_to clinics_path, class: "btn btn-outline-secondary btn-lg rounded-pill mb-4 mx-2 h-75" do %><span class="text-dark font-weight-bold">クリニック</span>&nbsp;<small><small>から探す</small></small><% end %>
       

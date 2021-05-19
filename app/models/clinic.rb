@@ -10,6 +10,18 @@ class Clinic < ApplicationRecord
   end
 
   scope :clinic_name_yomigana, -> { order('yomigana COLLATE "C" ASC') }
+
+  scope :search_cl, ->(params) do
+    find_by_sql([<<-SQL, { keyword: "%#{params}%" }])
+      SELECT
+        *
+      FROM
+        clinics
+      WHERE
+        name ILIKE :keyword
+        OR yomigana LIKE :keyword
+      SQL
+  end
 end
 
 # == Schema Information

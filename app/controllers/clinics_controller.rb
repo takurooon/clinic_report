@@ -150,11 +150,20 @@ class ClinicsController < ApplicationController
   end
 
   def clinic_report
-    @clinics = Clinic.find_by(id: params[:value])
-    @reports = Report.where(clinic_id: @clinics.id, status: 0)
-    @clinic_reports = Report.where(activated: true).search(params[:search]).order(created_at: :desc)
-    @transfer_reports = Report.joins(:itinerary_of_choosing_a_clinics).where(status: 0, itinerary_of_choosing_a_clinics: {clinic_id: @clinics.id, public_status: "show"}).distinct
-    @clinic_reports_count = Report.where(clinic_id: @clinics.id, status: 0).size
+    @clinic = Clinic.find_by(id: params[:value])
+    @reports = Report.where(clinic_id: @clinic.id, status: 0)
+    # @clinic_reports = Report.where(activated: true).search(params[:search]).order(created_at: :desc)
+    @transfer_reports = Report.joins(:itinerary_of_choosing_a_clinics).where(status: 0, itinerary_of_choosing_a_clinics: {clinic_id: @clinic.id, public_status: "show"}).distinct
+    @clinic_reports_count = Report.where(clinic_id: @clinic.id, status: 0).size
+    @like_count = Like.group(:report_id).size
+  end
+
+  def search_cl
+    @keyword = params[:keyword]
+    @clinics = Clinic.search_cl(params[:keyword]).pluck(:id)
+    reports = Report.where(clinic_id: @clinics, status: 0)
+    @reports = reports.page(params[:page]).per(20)
+    @clinic_reports_count = Report.where(clinic_id: @clinics, status: 0).size
     @like_count = Like.group(:report_id).size
   end
 end

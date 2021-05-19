@@ -1,5 +1,5 @@
 <div class="container px-2 m-bottom">
-  <h5 class="d-sm d-md-none mt-5 text-center">「<span class="marker-underline"><strong><%= @clinics.name %></strong></span>」<br>でのレポコ一覧</h5>
+  <h5 class="d-sm d-md-none mt-5 text-center">「<span class="marker-underline"><strong><%= @clinic.name %></strong></span>」<br>でのレポコ一覧</h5>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
 
     <!-- カテゴリ検索hide --!>
@@ -8,9 +8,9 @@
     <% end %>
     <!-- ここまで --!>
 
-    <%= link_to @clinics.city.prefecture.name, "/clinics_/#{@clinics.city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= link_to @clinics.city.name, "/clinics/#{@clinics.city.prefecture.name_alphabet}/#{@clinics.city.name_alphabet}" %></b></strong>
+    <%= link_to @clinic.city.prefecture.name, "/clinics_/#{@clinic.city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= link_to @clinic.city.name, "/clinics/#{@clinic.city.prefecture.name_alphabet}/#{@clinic.city.name_alphabet}" %></b></strong>
   </small>
-  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-5">「<span class="marker-underline"><strong><%=  @clinics.name %></strong></span>」でのレポコ一覧</h4>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-5">「<span class="marker-underline"><strong><%=  @clinic.name %></strong></span>」でのレポコ一覧</h4>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
 
     <!-- カテゴリ検索hide --!>
@@ -19,21 +19,21 @@
     <% end %>
     <!-- ここまで --!>
 
-    <%= link_to @clinics.city.prefecture.name, "/clinics_/#{@clinics.city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= link_to @clinics.city.name, "/clinics/#{@clinics.city.prefecture.name_alphabet}/#{@clinics.city.name_alphabet}" %></b></strong>
+    <%= link_to @clinic.city.prefecture.name, "/clinics_/#{@clinic.city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= link_to @clinic.city.name, "/clinics/#{@clinic.city.prefecture.name_alphabet}/#{@clinic.city.name_alphabet}" %></b></strong>
   </small>
   <div class="container-fluid main-index">
     <div class="row px-0">
       <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-0">
         <% unless @clinic_reports_count == 0 %>
           <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
-            <span class="small"><span class="small"><%= @clinics.name %>でのレポコは&nbsp;<%= @clinic_reports_count %>件&nbsp;あります。</span></span>
+            <span class="small"><span class="small"><%= @clinic.name %>でのレポコは&nbsp;<%= @clinic_reports_count %>件&nbsp;あります。</span></span>
             <% unless @transfer_reports.count == 0 %>
               <br><span class="small"><span class="small">同院を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
             <% end %>
           </div>
         <% else %>
           <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
-            <span class="small"><span class="small"><%= @clinics.name %>でのレポコはまだありません。</span></span>
+            <span class="small"><span class="small"><%= @clinic.name %>でのレポコはまだありません。</span></span>
           </div>
           <% unless @transfer_reports.count == 0 %>
             <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
@@ -42,10 +42,10 @@
           <% end %>
         <% end %>
         <div class="my-3 py-3 px-1 text-center bg-light rounded-lg">
-          <% if @clinics.current_status == 1 %>
+          <% if @clinic.current_status == 1 %>
             <span class="text-danger">【閉院】</span>
           <% end %>
-          <%= link_to @clinics.name, clinic_path(@clinics.id), class: "text-primary font-weight-bold", data: { "turbolinks" => false } %><i data-feather="external-link" class="text-primary pb-1"></i>
+          <%= link_to @clinic.name, clinic_path(@clinic.id), class: "text-primary font-weight-bold", data: { "turbolinks" => false } %><i data-feather="external-link" class="text-primary pb-1"></i>
         </div>
 
         <div class="tab-wrap1 mt-4">
@@ -57,11 +57,11 @@
           <div class="tab-content1">
             <% unless @transfer_reports.count == 0 %>
               <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
-                <span class="small"><span class="small"><%= @clinics.name %>を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
+                <span class="small"><span class="small"><%= @clinic.name %>を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
               </div>
             <% else %>
               <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
-                <span class="small"><span class="small"><%= @clinics.name %>を過去に経由した方のレポコはまだありません。</span></span>
+                <span class="small"><span class="small"><%= @clinic.name %>を過去に経由した方のレポコはまだありません。</span></span>
               </div>
             <% end %>
             <% @transfer_reports.each do |transfer_report| %>
