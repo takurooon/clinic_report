@@ -26,6 +26,11 @@
               <div class="mt-3 p-2 d-flex align-item-center justify-content-center">
                 <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
               </div>
+              <% unless user_signed_in? %>
+                <div class="mt-3 p-2 d-flex align-item-center justify-content-center">
+                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "レポコる", signup_path, class: "text-primary" %>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>
