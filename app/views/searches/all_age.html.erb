@@ -17,7 +17,18 @@
         </div>
         <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">年齢層</label>
         <div class="tab-content1">
-          <%= select "report", :treatment_end_age, @range_age.invert, { prompt: "年齢層   で絞り込み" }, { class: "form-control my-3", onchange: "location = 'age/' + this.value" } %>
+          <div class="row pl-3 pt-4">
+            <%= collection_radio_buttons(:report, :treatment_end_age, @range_age, :first, :last) do |b| %>
+              <div class="col-4 col-lg-12 px-0 mb-3">
+                <div class="form-check pl-2">
+                  <%= b.label class: "radio-inline mb-1" do %>
+                    <%= b.radio_button class: "q_radio", onchange: "location = 'age/' + this.value" %>
+                    <%= b.text %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
