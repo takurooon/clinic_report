@@ -753,6 +753,10 @@ i .fa-edit {
 .marker-underline-w {
 	background:linear-gradient(transparent 60%, #ffffff 0%);
 }
+// マーカー風アンダーライン(肌色)
+.marker-underline-fem {
+	background:linear-gradient(transparent 60%, #ffe5dc 0%);
+}
 
 // showのグラフエリア
 .grapharea {
@@ -1631,10 +1635,9 @@ i .fa-edit {
 	}
 }
 
-
 // 検索窓
 .search-window {
-	height: 55px;
+	height: 50px;
 	width: 100%;
 	padding: 0 1rem 0 1.5rem;
 	font-size: 14px;
@@ -1648,4 +1651,16 @@ i .fa-edit {
 input[type=text] {
   font-size: 16px;
   transform: scale(0.8);
+}
+
+// 複合検索フォーム
+.select_search_form {
+	height: 35px;
+	width: 100%;
+	padding: 0;
+	font-size: 14px;
+	border-style: solid;
+	border-width: 0.3px;
+	border-color: rgb(214, 214, 214);
+	border-radius: 5px;
 }
