@@ -88,9 +88,7 @@ class ClinicsController < ApplicationController
     # clinics = Clinic.where(city_id: cities.ids)
     clinics = Clinic.where(prefecture_id: @prefecture)
     @prefecture_clinics = Clinic.where(prefecture_id: @prefecture).name_yomigana
-    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc).page(params[:page]).per(20)
-    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).size
-    @rereased_reports = Clinic.joins(:reports).where(city_id: @prefecture.id, reports: {status: 0})
+    @reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).where(clinic_id: clinics.ids).order("created_at DESC").page(params[:page]).per(20).with_rich_text_content
     @like_count = Like.group(:report_id).size
   end
 
@@ -99,9 +97,7 @@ class ClinicsController < ApplicationController
     @city = City.find_by(prefecture_id: prefecture.id, name_alphabet: params[:value])
     clinics = Clinic.where(city_id: @city.id)
     @city_clinics = Clinic.where(city_id: @city.id).name_yomigana
-    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc).page(params[:page]).per(20)
-    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).size
-    @rereased_reports = Clinic.joins(:reports).where(city_id: @city.id, reports: {status: 0})
+    @reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).where(clinic_id: clinics.ids).order("created_at DESC").page(params[:page]).per(20).with_rich_text_content
     @like_count = Like.group(:report_id).size
   end
 

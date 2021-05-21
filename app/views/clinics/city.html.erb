@@ -14,12 +14,12 @@
         <div class="row mb-3">
           <div class="col-12">
             <input id="acd-check1" class="acd-check" type="checkbox" checked>
-            <label class="acd-label small mb-0 px-1 py-2" for="acd-check1"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<%= @city.name %>の医療機関&nbsp;<span class="small">(全<%= @city.clinics.count %>施設)</span>&nbsp;のレポコ&nbsp;<span class="small">(<%= @clinic_all_reports %>件)</span></label>
+            <label class="acd-label small mb-0 px-1 py-2" for="acd-check1"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<%= @city.name %>の医療機関&nbsp;<span class="small">(全<%= @city.clinics.size %>施設)</span>&nbsp;のレポコ&nbsp;<span class="small">(<%= @reports.size %>件)</span></label>
 
             <div class="acd-content container">
               <div class="row mt-2 pb-3">
                 <% @city_clinics.each_with_index do |clinic, num| %>
-                  <% if @rereased_reports.blank? && num == 0 %>
+                  <% if @reports.blank? && num == 0 %>
                     <div class="col-12 px-2 small">
                       <div class="alert alert-danger rounded-lg mt-0">
                         <p class="mb-0"><%= clinic.city.name %>のクリニックでのレポコはまだありません。</p>
