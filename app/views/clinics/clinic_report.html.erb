@@ -52,6 +52,9 @@
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">最新</label>
           <div class="tab-content1 px-2">
             <%= render 'reports/center' %>
+            <div class="mt-5 pt-5">
+              <%= paginate @reports %>
+            </div>
           </div>
           <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">同院経由レポコ&nbsp;<span class="small"><span class="small text-muted">(<%= @transfer_reports.count %>件)</span></span></label>
           <div class="tab-content1">

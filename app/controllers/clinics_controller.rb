@@ -88,8 +88,8 @@ class ClinicsController < ApplicationController
     # clinics = Clinic.where(city_id: cities.ids)
     clinics = Clinic.where(prefecture_id: @prefecture)
     @prefecture_clinics = Clinic.where(prefecture_id: @prefecture).name_yomigana
-    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
-    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
+    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc).page(params[:page]).per(20)
+    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).size
     @rereased_reports = Clinic.joins(:reports).where(city_id: @prefecture.id, reports: {status: 0})
     @like_count = Like.group(:report_id).size
   end
@@ -99,8 +99,8 @@ class ClinicsController < ApplicationController
     @city = City.find_by(prefecture_id: prefecture.id, name_alphabet: params[:value])
     clinics = Clinic.where(city_id: @city.id)
     @city_clinics = Clinic.where(city_id: @city.id).name_yomigana
-    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc)
-    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
+    @reports = Report.where(clinic_id: clinics.ids, status: 0).order(created_at: :desc).page(params[:page]).per(20)
+    @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).size
     @rereased_reports = Clinic.joins(:reports).where(city_id: @city.id, reports: {status: 0})
     @like_count = Like.group(:report_id).size
   end
@@ -151,7 +151,7 @@ class ClinicsController < ApplicationController
 
   def clinic_report
     @clinic = Clinic.find_by(id: params[:value])
-    @reports = Report.where(clinic_id: @clinic.id, status: 0)
+    @reports = Report.where(clinic_id: @clinic.id, status: 0).page(params[:page]).per(20)
     # @clinic_reports = Report.where(activated: true).search(params[:search]).order(created_at: :desc)
     @transfer_reports = Report.joins(:itinerary_of_choosing_a_clinics).where(status: 0, itinerary_of_choosing_a_clinics: {clinic_id: @clinic.id, public_status: "show"}).distinct
     @clinic_reports_count = Report.where(clinic_id: @clinic.id, status: 0).size
