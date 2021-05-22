@@ -1669,7 +1669,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-3">
                     <p class="question mb-0 pt-1">採卵1周期あたりのおおよその費用</p>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での採卵1周期あたりにかかったおおよ費用総額(診察代や薬剤など含む)</span></small>
+                    <p class="pb-0 text-muted small" style="line-height: 110%;"><span class="small"><span class="select-clinic-name"></span>での採卵1周期あたりにかかったおおよその費用総額（採卵周期の最初の診察からの診察代・薬剤費などと採卵日当日の採卵費用。受精〜培養〜凍結費用は除く）</span></p>
                     <div class="row pl-2 pt-3">
                       <%= f.collection_radio_buttons(:sairan_cost, Report::HASH_SAIRAN_COST, :first, :last) do |b| %>
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
@@ -1686,7 +1686,7 @@
 
                   <div class="form-group mt-0 mb-2 pt-3">
                     <p class="question mb-0 pt-1">移植1周期あたりのおおよその費用</p>
-                    <small class="text-muted"><span class="small"><span class="select-clinic-name"></span>での移植1周期あたりにかかったおおよ費用総額(診察代や薬剤など含む)</span></small>
+                    <p class="pb-0 text-muted small" style="line-height: 110%;"><span class="small"><span class="select-clinic-name"></span>での移植1周期あたりにかかったおおよその費用総額（移植周期の最初の診察からの診察代・薬剤費などと移植日当日の移植費用。移植後の診察や薬剤費用は除く）</span></p>
                     <div class="row pl-2 pt-3">
                       <%= f.collection_radio_buttons(:ishoku_cost, Report::HASH_ISHOKU_COST, :first, :last) do |b| %>
                         <div class="col-6 col-sm-4 col-lg-12 px-0">
