@@ -306,7 +306,7 @@ class ReportsController < ApplicationController
       format.html { redirect_to reports_url, notice: 'レポコを削除しました。' }
     end
   end
-  
+
   def address_cities_select
     @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id)
     render partial: 'address/address_cities'
@@ -315,8 +315,22 @@ class ReportsController < ApplicationController
   def signup
   end
 
+  def search
+    reports = Report.compound_search(params)
+    @reports = reports.page(params[:page]).per(20)
+    if reports.present?
+      @released_reports = reports.released
+      @clinics_count_released = reports.pluck(:clinic_id).uniq
+    else
+      @released_reports = Report.released.all.includes(:user, :clinic).order("created_at DESC")
+      @clinics_count_released = Report.released.group(:clinic_id).size
+    end
+    @like_count = Like.group(:report_id).size
+    render 'index'
+  end
+
   private
-  
+
   def set_report
     @report = Report.find(params[:id])
   end

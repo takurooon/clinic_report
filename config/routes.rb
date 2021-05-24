@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   resources :reports do
     collection do
       post :confirm
+      get 'search'
     end
     member do
       patch :confirm

@@ -159,6 +159,26 @@ class Report < ApplicationRecord
     return summary_content
   end
 
+  def self.compound_search(search)
+    reports = Report.released.all.includes(:user, :clinic).order("created_at DESC")
+    if search[:treatment_end_age].present?
+      reports = reports.where(treatment_end_age: search[:treatment_end_age])
+    end
+    if search[:fertility_treatment_number].present?
+    reports = reports.where(fertility_treatment_number: search[:fertility_treatment_number])
+    end
+    if search[:amh].present?
+    reports = reports.where(amh: search[:amh])
+    end
+    if search[:type_of_ovarian_stimulation].present?
+    reports = reports.where(type_of_ovarian_stimulation: search[:type_of_ovarian_stimulation])
+    end
+    if search[:ishoku_type].present?
+    reports = reports.where(ishoku_type: search[:ishoku_type])
+    end
+    return reports
+  end
+
   # アクションテキスト
   has_rich_text :content
   
