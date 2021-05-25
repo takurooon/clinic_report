@@ -26,7 +26,9 @@
                   <div class="acd-content-multiple2 container mb-2">
                     <div class="row mt-0 pb-0">
                     <div class="col-12 border-bottom">
-                      <h5 class="mt-3 mb-0 pb-2"><%= value[:name] %></h5>
+                      <div class="pt-3 pb-2">
+                        <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5 font-weight-bold", data: { "turbolinks" => false } %>
+                      </div>
                       <% prefecture = value[:name_alphabet] %>
                     </div>
                     <% value[:cities].sort.to_h.each do |key, value| %>
@@ -77,7 +79,9 @@
                   <div class="acd-content-multiple container mb-2">
                     <div class="row mt-0 pb-0">
                     <div class="col-12 border-bottom">
-                      <h5 class="mt-3 mb-0 pb-2"><%= value[:name] %></h5>
+                      <div class="pt-3 pb-2">
+                        <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5 font-weight-bold", data: { "turbolinks" => false } %>
+                      </div>
                       <% prefecture = value[:name_alphabet] %>
                     </div>
                     <% value[:cities].sort.to_h.each do |key, value| %>
@@ -128,7 +132,9 @@
                   <div class="acd-content-multiple2 container mb-2">
                     <div class="row mt-0 pb-0">
                     <div class="col-12 border-bottom">
-                      <h5 class="mt-3 mb-0 pb-2"><%= value[:name] %></h5>
+                      <div class="pt-3 pb-2">
+                        <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5 font-weight-bold", data: { "turbolinks" => false } %>
+                      </div>
                       <% prefecture = value[:name_alphabet] %>
                     </div>
                     <% value[:cities].sort.to_h.each do |key, value| %>
