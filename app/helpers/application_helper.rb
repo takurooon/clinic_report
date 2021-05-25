@@ -28,13 +28,13 @@ module ApplicationHelper
       reverse: true,
       charset: 'utf-8',
       description: '経験をカタチに情報をエールに。REPOCO(レポコ)は不妊治療経験をレポートとして投稿できるアプリ。あなたのレポコが誰かの治療の道を照らす光に。さぁレポコしよう！',
-      keywords: 'レポコ, REPOCO, 口コミ, 不妊治療戦士達の通院先と実績, 体外受精',
+      keywords: 'レポコ, REPOCO, 口コミ, 評判, レビュー, 不妊治療戦士達の通院先と実績',
       canonical: request.original_url,
       separator: '-',
       icon: [
       ],
       og: {
-        site_name: :site,
+        site_name: "REPOCO | レポコ",
         title: :title,
         description: :description,
         type: 'website',
