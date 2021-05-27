@@ -38,7 +38,7 @@
           <%= link_to @clinic.name, clinic_path(@clinic.id), class: "text-primary font-weight-bold", data: { "turbolinks" => false } %><i data-feather="external-link" class="text-primary pb-1"></i>
         </div>
 
-        <% if @clinic.reports.present? && @clinic.reports.size > 20 %>
+        <% if @clinic.reports.present? && @clinic.reports.size > 10 %>
           <details class="mt-2 pt-3">
             <summary class="font-weight-bold">【複数条件で絞込み検索】</summary>
             <div class="pt-2">
