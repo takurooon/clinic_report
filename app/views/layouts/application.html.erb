@@ -44,7 +44,13 @@
       <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
       <div class="base bg-light">
         <div class="container-fluid px-0">
-          
+          <%= link_to "https://forms.gle/iWm4Atv5nXp3ruwU7", target: :_blank do %>
+            <div class="position-sticky p-2 d-flex justify-content-center bg-origin-blue">
+              <%= image_tag"home/finger_mom_up.svg", width: "19px", class: "m-0 p-0", loading: "lazy" %>&nbsp;
+              <p class="d-none d-sm-block mb-0 text-dark">サービス向上のためのアンケートにご協力ください！</p>
+              <p class="d-block d-sm-none mb-0 text-dark">アンケートにご協力ください！</p>
+            </div>
+          <% end %>
           <%= yield %>
         </div>
         <%= render 'layouts/area_under_mobile_screen' %>
