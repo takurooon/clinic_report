@@ -12,22 +12,24 @@
 
   <div class="row pb-5 mb-5">
     <div class="col-md-8 offset-md-2 main-column">
-      <div class="tab-wrap1 mt-3">
-        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">費用</label>
-        <div class="tab-content1">
-          <%= select "report", :cost, @total_costs.invert, { prompt: "治療費用から探す" }, { class: "form-control my-3", onchange: "location = 'cost/' + this.value + '_all'" } %>
-        </div>
-        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">費用帯</label>
-        <div class="tab-content1">
-          <%= select "report", :cost, @range_cost.invert, { prompt: "治療費用帯から探す" }, { class: "form-control my-3", onchange: "location = 'cost/' + this.value + '_range'" } %>
-        </div>
-        <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">採卵</label>
-        <div class="tab-content1">
-          <%= select "report", :sairan_cost, @sairan_cost.invert, { prompt: "1回あたりの採卵費用から探す" }, { class: "form-control my-3", onchange: "location = 'cost/' + this.value + '_sairan'" } %>
-        </div>
-        <input id="TAB-04" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-04">移植</label>
-        <div class="tab-content1">
-          <%= select "report", :ishoku_cost, @ishoku_cost.invert, { prompt: "1回あたりの移植費用から探す" }, { class: "form-control my-3", onchange: "location = 'cost/' + this.value + '_ishoku'" } %>
+      <div class="rounded-lg bg-white shadow-sm p-4">
+        <div class="tab-wrap1">
+          <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label px-0" for="TAB-01">費用</label>
+          <div class="tab-content1">
+            <%= select "report", :cost, @total_costs.invert, { prompt: "治療費用から探す" }, { class: "form-control mt-4", onchange: "location = 'cost/' + this.value + '_all'" } %>
+          </div>
+          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label px-0" for="TAB-02">費用帯</label>
+          <div class="tab-content1">
+            <%= select "report", :cost, @range_cost.invert, { prompt: "治療費用帯から探す" }, { class: "form-control mt-4", onchange: "location = 'cost/' + this.value + '_range'" } %>
+          </div>
+          <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label px-0" for="TAB-03">採卵</label>
+          <div class="tab-content1">
+            <%= select "report", :sairan_cost, @sairan_cost.invert, { prompt: "1回あたりの採卵費用から探す" }, { class: "form-control mt-4", onchange: "location = 'cost/' + this.value + '_sairan'" } %>
+          </div>
+          <input id="TAB-04" type="radio" name="TAB" class="tab-switch" /><label class="tab-label px-0" for="TAB-04">移植</label>
+          <div class="tab-content1">
+            <%= select "report", :ishoku_cost, @ishoku_cost.invert, { prompt: "1回あたりの移植費用から探す" }, { class: "form-control mt-4", onchange: "location = 'cost/' + this.value + '_ishoku'" } %>
+          </div>
         </div>
       </div>
     </div>

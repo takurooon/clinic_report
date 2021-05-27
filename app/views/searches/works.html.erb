@@ -10,18 +10,20 @@
     <i data-feather="chevrons-left" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "カテゴリ一覧", search_path %>
   </small>
 
-  <div class="row pt-5 pb-5 mb-5">
+  <div class="row mb-5">
     <div class="col-md-8 offset-md-2 main-column">
-      <%= collection_radio_buttons(:report, :work_styles, @works, :first, :last) do |b| %>
-        <div class="px-0 mb-3">
-          <div class="form-check pl-2">
-            <%= b.label class: "radio-inline mb-1" do %>
-              <%= b.radio_button class: "q_radio", onchange: "location = 'work/' + this.value" %>
-              <%= b.text %>
-            <% end %>
+      <div class="rounded-lg bg-white shadow-sm pt-5 pb-4 px-4">
+        <%= collection_radio_buttons(:report, :work_styles, @works, :first, :last) do |b| %>
+          <div class="px-0 mb-3">
+            <div class="form-check pl-2">
+              <%= b.label class: "radio-inline mb-1" do %>
+                <%= b.radio_button class: "q_radio", onchange: "location = 'work/' + this.value" %>
+                <%= b.text %>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

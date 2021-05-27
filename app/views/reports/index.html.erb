@@ -21,7 +21,7 @@
             <h5 class="font-weight-bold text-dark" style="font-family: 游ゴシック体,YuGothic,游ゴシック Medium,Yu Gothic Medium,游ゴシック,Yu Gothic,sans-serif;">経験をカタチに&nbsp;&nbsp;情報をエールに</h5>
           <% end %>
         </div>
-        <div class="tab-wrap4 mt-1">
+        <div class="tab-wrap4 mt-1 mb-4 mx-3 pt-3 rounded-lg shadow-sm">
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch4" checked="checked" /><label class="tab-label4 tab-label4-l small mb-0 px-0" for="TAB-01">クリニック名で探す</label>
           <div class="tab-content1 pt-2">
             <%= form_tag(search_cl_path,:method => 'get', class: "mb-0") do %>
@@ -169,7 +169,7 @@
         </div>
       </div>
     </div>
-    <div class="px-4 pb-5">
+    <div class="px-1 pb-3">
       <div class="d-none d-sm-block">
         <div class="pb-2 small d-flex align-item-center justify-content-center">
           <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "クリニック一覧から探す", clinics_path, class: "text-primary" %>

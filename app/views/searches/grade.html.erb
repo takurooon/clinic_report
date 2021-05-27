@@ -12,24 +12,26 @@
 
   <div class="row pb-5 mb-5">
     <div class="col-md-8 offset-md-2 main-column">
-      <div class="tab-wrap1 mt-3">
-        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">胚盤胞</label>
-        <div class="tab-content1">
-          <%= select "report", :blastocyst_grade, @haibanho .invert, { prompt: "グレード･評価  で絞り込み" }, { class: "form-control my-3", onchange: "location = 'grade/haibanho/' + this.value"} %>
-        </div>
-        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">初期胚</label>
-        <div class="tab-content1">
-          <div class="row pl-3 pt-4">
-            <%= collection_radio_buttons(:report, :total_number_of_transplants, @shokihai, :first, :last) do |b| %>
-              <div class="col-4 col-lg-12 px-0 mb-3">
-                <div class="form-check pl-2">
-                  <%= b.label class: "radio-inline mb-1" do %>
-                    <%= b.radio_button class: "q_radio", onchange: "location = 'grade/shokihai/' + this.value" %>
-                    <%= b.text %>
-                  <% end %>
+      <div class="rounded-lg bg-white shadow-sm p-4">
+        <div class="tab-wrap1">
+          <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">胚盤胞</label>
+          <div class="tab-content1">
+            <%= select "report", :blastocyst_grade, @haibanho .invert, { prompt: "グレード･評価  で絞り込み" }, { class: "form-control mt-4", onchange: "location = 'grade/haibanho/' + this.value"} %>
+          </div>
+          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">初期胚</label>
+          <div class="tab-content1">
+            <div class="row pl-3 pt-4">
+              <%= collection_radio_buttons(:report, :total_number_of_transplants, @shokihai, :first, :last) do |b| %>
+                <div class="col-6 col-lg-4 px-0 mb-3">
+                  <div class="form-check pl-2">
+                    <%= b.label class: "radio-inline mb-1" do %>
+                      <%= b.radio_button class: "q_radio", onchange: "location = 'grade/shokihai/' + this.value" %>
+                      <%= b.text %>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

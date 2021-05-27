@@ -4,38 +4,40 @@
   <h5 class="d-sm d-md-none mt-5 text-center">「<span class="marker-underline"><strong><%= @clinic.name %></strong></span>」<br>でのレポコ一覧</h5>
   <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
     <%= link_to "カテゴリ一覧", search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to "全国", clinics_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
-    <%= link_to @clinic.city.prefecture.name, "/clinics_/#{@clinic.city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= link_to @clinic.city.name, "/clinics/#{@clinic.city.prefecture.name_alphabet}/#{@clinic.city.name_alphabet}" %></b></strong>
+    <%= link_to @clinic.city.prefecture.name, "/clinics_/#{@clinic.city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= link_to @clinic.city.name, "/clinics/#{@clinic.city.prefecture.name_alphabet}/#{@clinic.city.name_alphabet}" %></b></strong>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>
   </small>
   <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-5">「<span class="marker-underline"><strong><%=  @clinic.name %></strong></span>」でのレポコ一覧</h4>
   <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
     <%= link_to "カテゴリ一覧", search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to "全国", clinics_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
-    <%= link_to @clinic.city.prefecture.name, "/clinics_/#{@clinic.city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= link_to @clinic.city.name, "/clinics/#{@clinic.city.prefecture.name_alphabet}/#{@clinic.city.name_alphabet}" %></b></strong>
+    <%= link_to @clinic.city.prefecture.name, "/clinics_/#{@clinic.city.prefecture.name_alphabet}" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= link_to @clinic.city.name, "/clinics/#{@clinic.city.prefecture.name_alphabet}/#{@clinic.city.name_alphabet}" %></b></strong>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>
   </small>
   <div class="container-fluid main-index">
     <div class="row px-0">
       <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-0">
         <% unless @clinic_reports_count == 0 %>
-          <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
+          <div class="alert alert-info rounded-lg mt-0 mb-0 mx-2 px-3 py-1">
             <span class="small"><span class="small"><%= @clinic.name %>でのレポコは&nbsp;<%= @clinic_reports_count %>件&nbsp;あります。</span></span>
             <% unless @transfer_reports.count == 0 %>
               <br><span class="small"><span class="small">同院を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
             <% end %>
           </div>
         <% else %>
-          <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
+          <div class="alert alert-danger rounded-lg mt-0 mb-0 mx-2 px-3 py-1">
             <span class="small"><span class="small"><%= @clinic.name %>でのレポコはまだありません。</span></span>
           </div>
           <% unless @transfer_reports.count == 0 %>
-            <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
+            <div class="alert alert-info rounded-lg mt-0 mb-0 mx-2 px-3 py-1">
               <span class="small"><span class="small">同院を過去に経由した方のレポコは&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
             </div>
           <% end %>
         <% end %>
-        <div class="my-3 py-3 px-1 text-center bg-light rounded-lg">
+        <div class="py-3 px-1 text-center">
           <% if @clinic.current_status == 1 %>
             <span class="text-danger">【閉院】</span>
           <% end %>
-          <%= link_to @clinic.name, clinic_path(@clinic.id), class: "text-primary font-weight-bold", data: { "turbolinks" => false } %><i data-feather="external-link" class="text-primary pb-1"></i>
+          <div class="rounded-lg bg-white shadow-sm mx-1 p-3">
+            <%= link_to @clinic.name, clinic_path(@clinic.id), class: "text-primary font-weight-bold", data: { "turbolinks" => false } %><i data-feather="external-link" class="text-primary pb-1"></i>
+          </div>
         </div>
 
         <% if @clinic.reports.present? && @clinic.reports.size > 2 %>
@@ -46,175 +48,178 @@
               open_or_close = ""
             end
           %>
-          <details <%= open_or_close %> class="mt-2 pt-3">
-            <summary class="font-weight-bold">【複数条件で絞込み検索】</summary>
-            <div class="pt-3">
-              <p class="px-2 small text-dark">検索対象は、<%= @clinic.name %>でのレポコのみです。</p>
-              <%= form_with(url: search_reports_path, local: true, method: :get) do |search| %>
-                <div class="px-2 pt-1">
-                  <div class="px-3">
-                    <div class="cp_ipselect cp_sl01">
-                      <select name="treatment_end_age">
-                        <option selected value="">年齢を選ぶ（任意）</option>
-                        <optgroup label="【年齢層】から選ぶ">
-                          <option value="19">20歳未満</option>
-                          <option value="20~24">20〜24歳</option>
-                          <option value="25~29">25〜29歳</option>
-                          <option value="30~34">30〜34歳</option>
-                          <option value="35~39">35〜39歳</option>
-                          <option value="40~44">40〜44歳</option>
-                          <option value="45~49">45〜49歳</option>
-                          <option value="50000~">50歳以上</option>
-                        </optgroup>
-                        <optgroup label="【年齢】で選ぶ">
-                          <option value="20">21歳</option>
-                          <option value="21">21歳</option>
-                          <option value="22">22歳</option>
-                          <option value="23">23歳</option>
-                          <option value="24">24歳</option>
-                          <option value="25">25歳</option>
-                          <option value="26">26歳</option>
-                          <option value="27">27歳</option>
-                          <option value="28">28歳</option>
-                          <option value="29">29歳</option>
-                          <option value="30">30歳</option>
-                          <option value="31">31歳</option>
-                          <option value="32">32歳</option>
-                          <option value="33">33歳</option>
-                          <option value="34">34歳</option>
-                          <option value="35">35歳</option>
-                          <option value="36">36歳</option>
-                          <option value="37">37歳</option>
-                          <option value="38">38歳</option>
-                          <option value="39">39歳</option>
-                          <option value="40">40歳</option>
-                          <option value="41">41歳</option>
-                          <option value="42">42歳</option>
-                          <option value="43">43歳</option>
-                          <option value="44">44歳</option>
-                          <option value="45">45歳</option>
-                          <option value="46">46歳</option>
-                          <option value="47">47歳</option>
-                          <option value="48">48歳</option>
-                          <option value="49">49歳</option>
-                          <option value="50">50歳以上</option>
-                        </optgroup>
-                      </select>
+          <div class="rounded-lg bg-white shadow-sm mx-2 py-3 px-4">
+            <details <%= open_or_close %>>
+              <summary class="font-weight-bold">【複数条件で絞込み検索】</summary>
+              <div class="pt-3">
+                <p class="px-2 small text-dark">検索対象は、<%= @clinic.name %>でのレポコのみです。</p>
+                <%= form_with(url: search_reports_path, local: true, method: :get) do |search| %>
+                  <div class="px-2 pt-1">
+                    <div class="px-0">
+                      <div class="cp_ipselect cp_sl01">
+                        <select name="treatment_end_age">
+                          <option selected value="">年齢を選ぶ（任意）</option>
+                          <optgroup label="【年齢層】から選ぶ">
+                            <option value="19">20歳未満</option>
+                            <option value="20~24">20〜24歳</option>
+                            <option value="25~29">25〜29歳</option>
+                            <option value="30~34">30〜34歳</option>
+                            <option value="35~39">35〜39歳</option>
+                            <option value="40~44">40〜44歳</option>
+                            <option value="45~49">45〜49歳</option>
+                            <option value="50000~">50歳以上</option>
+                          </optgroup>
+                          <optgroup label="【年齢】で選ぶ">
+                            <option value="20">21歳</option>
+                            <option value="21">21歳</option>
+                            <option value="22">22歳</option>
+                            <option value="23">23歳</option>
+                            <option value="24">24歳</option>
+                            <option value="25">25歳</option>
+                            <option value="26">26歳</option>
+                            <option value="27">27歳</option>
+                            <option value="28">28歳</option>
+                            <option value="29">29歳</option>
+                            <option value="30">30歳</option>
+                            <option value="31">31歳</option>
+                            <option value="32">32歳</option>
+                            <option value="33">33歳</option>
+                            <option value="34">34歳</option>
+                            <option value="35">35歳</option>
+                            <option value="36">36歳</option>
+                            <option value="37">37歳</option>
+                            <option value="38">38歳</option>
+                            <option value="39">39歳</option>
+                            <option value="40">40歳</option>
+                            <option value="41">41歳</option>
+                            <option value="42">42歳</option>
+                            <option value="43">43歳</option>
+                            <option value="44">44歳</option>
+                            <option value="45">45歳</option>
+                            <option value="46">46歳</option>
+                            <option value="47">47歳</option>
+                            <option value="48">48歳</option>
+                            <option value="49">49歳</option>
+                            <option value="50">50歳以上</option>
+                          </optgroup>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="px-0 pt-3">
+                      <div class="cp_ipselect cp_sl01">
+                        <%= search.select "fertility_treatment_number", options_for_select(Report::HASH_FERTILITY_TREATMENT_NUMBER.invert), {class: "text-muted", prompt: "何人目治療かを選ぶ（任意）" } %>
+                      </div>
+                    </div>
+                    <div class="px-0 pt-3">
+                      <div class="cp_ipselect cp_sl01">
+                        <select name="amh">
+                          <option selected value="">AMH値を選ぶ（任意）</option>
+                          <optgroup label="【大きい幅】から選ぶ">
+                            <option value="1500000">〜0.5未満</option>
+                            <option value="610000">0.5〜1.0未満</option>
+                            <option value="1520">1.0〜2.0未満</option>
+                            <option value="2530">2.0〜3.0未満</option>
+                            <option value="3540">3.0〜4.0未満</option>
+                            <option value="4550">4.0〜5.0未満</option>
+                            <option value="5560">5.0〜6.0未満</option>
+                            <option value="6570">6.0〜7.0未満</option>
+                            <option value="7580">7.0〜8.0未満</option>
+                            <option value="8590">8.0〜9.0未満</option>
+                            <option value="95100">9.0〜10.0未満</option>
+                            <option value="999">10.0以上</option>
+                          </optgroup>
+                          <optgroup label="【小さい幅】から選ぶ">
+                            <option value="1">0.1未満</option>
+                            <option value="2">0.1〜0.2未満</option>
+                            <option value="3">0.2〜0.3未満</option>
+                            <option value="4">0.3〜0.4未満</option>
+                            <option value="5">0.4〜0.5未満</option>
+                            <option value="6">0.5〜0.6未満</option>
+                            <option value="7">0.6〜0.7未満</option>
+                            <option value="8">0.7〜0.8未満</option>
+                            <option value="9">0.8〜0.9未満</option>
+                            <option value="10">0.9〜1.0未満</option>
+                            <option value="15">1.0〜1.5未満</option>
+                            <option value="20">1.5〜2.0未満</option>
+                            <option value="25">2.0〜2.5未満</option>
+                            <option value="30">2.5〜3.0未満</option>
+                            <option value="35">3.0〜3.5未満</option>
+                            <option value="40">3.5〜4.0未満</option>
+                            <option value="45">4.0〜4.5未満</option>
+                            <option value="50">4.5〜5.0未満</option>
+                            <option value="55">5.0〜5.5未満</option>
+                            <option value="60">5.5〜6.0未満</option>
+                            <option value="65">6.0〜6.5未満</option>
+                            <option value="70">6.5〜7.0未満</option>
+                            <option value="75">7.0〜7.5未満</option>
+                            <option value="80">7.5〜8.0未満</option>
+                            <option value="85">8.0〜8.5未満</option>
+                            <option value="90">8.5〜9.0未満</option>
+                            <option value="95">9.0〜9.5未満</option>
+                            <option value="100">9.5〜10.0未満</option>
+                            <option value="999">10.0以上</option>
+                          </optgroup>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="px-0 pt-3">
+                      <div class="cp_ipselect cp_sl01">
+                        <%= search.select "type_of_ovarian_stimulation", options_for_select(Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert), {class: "text-muted", prompt: "採卵タイプを選ぶ（任意）" } %>
+                      </div>
+                    </div>
+                    <div class="px-0 pt-3">
+                      <div class="cp_ipselect cp_sl01">
+                        <%= search.select "ishoku_type", options_for_select(Report::HASH_ISHOKU_TYPE.invert), {class: "text-muted", prompt: "移植タイプを選ぶ（任意）" } %>
+                      </div>
+                    </div>
+                    <div class="px-0 pt-2">
+                      <div class="pt-3">
+                        <%= hidden_field_tag :from_clinic_page, @clinic.id %>
+                        <%= submit_tag '検索する', :name => nil, class: "btn btn-info w-100 rounded-lg active", style: "background-color: #2ECFC0; color: #ffffff;box-shadow: 0 1px 2px gray;" %>
+                      </div>
                     </div>
                   </div>
-                  <div class="px-3 pt-3">
-                    <div class="cp_ipselect cp_sl01">
-                      <%= search.select "fertility_treatment_number", options_for_select(Report::HASH_FERTILITY_TREATMENT_NUMBER.invert), {class: "text-muted", prompt: "何人目治療かを選ぶ（任意）" } %>
-                    </div>
-                  </div>
-                  <div class="px-3 pt-3">
-                    <div class="cp_ipselect cp_sl01">
-                      <select name="amh">
-                        <option selected value="">AMH値を選ぶ（任意）</option>
-                        <optgroup label="【大きい幅】から選ぶ">
-                          <option value="1500000">〜0.5未満</option>
-                          <option value="610000">0.5〜1.0未満</option>
-                          <option value="1520">1.0〜2.0未満</option>
-                          <option value="2530">2.0〜3.0未満</option>
-                          <option value="3540">3.0〜4.0未満</option>
-                          <option value="4550">4.0〜5.0未満</option>
-                          <option value="5560">5.0〜6.0未満</option>
-                          <option value="6570">6.0〜7.0未満</option>
-                          <option value="7580">7.0〜8.0未満</option>
-                          <option value="8590">8.0〜9.0未満</option>
-                          <option value="95100">9.0〜10.0未満</option>
-                          <option value="999">10.0以上</option>
-                        </optgroup>
-                        <optgroup label="【小さい幅】から選ぶ">
-                          <option value="1">0.1未満</option>
-                          <option value="2">0.1〜0.2未満</option>
-                          <option value="3">0.2〜0.3未満</option>
-                          <option value="4">0.3〜0.4未満</option>
-                          <option value="5">0.4〜0.5未満</option>
-                          <option value="6">0.5〜0.6未満</option>
-                          <option value="7">0.6〜0.7未満</option>
-                          <option value="8">0.7〜0.8未満</option>
-                          <option value="9">0.8〜0.9未満</option>
-                          <option value="10">0.9〜1.0未満</option>
-                          <option value="15">1.0〜1.5未満</option>
-                          <option value="20">1.5〜2.0未満</option>
-                          <option value="25">2.0〜2.5未満</option>
-                          <option value="30">2.5〜3.0未満</option>
-                          <option value="35">3.0〜3.5未満</option>
-                          <option value="40">3.5〜4.0未満</option>
-                          <option value="45">4.0〜4.5未満</option>
-                          <option value="50">4.5〜5.0未満</option>
-                          <option value="55">5.0〜5.5未満</option>
-                          <option value="60">5.5〜6.0未満</option>
-                          <option value="65">6.0〜6.5未満</option>
-                          <option value="70">6.5〜7.0未満</option>
-                          <option value="75">7.0〜7.5未満</option>
-                          <option value="80">7.5〜8.0未満</option>
-                          <option value="85">8.0〜8.5未満</option>
-                          <option value="90">8.5〜9.0未満</option>
-                          <option value="95">9.0〜9.5未満</option>
-                          <option value="100">9.5〜10.0未満</option>
-                          <option value="999">10.0以上</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="px-3 pt-3">
-                    <div class="cp_ipselect cp_sl01">
-                      <%= search.select "type_of_ovarian_stimulation", options_for_select(Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert), {class: "text-muted", prompt: "採卵タイプを選ぶ（任意）" } %>
-                    </div>
-                  </div>
-                  <div class="px-3 pt-3">
-                    <div class="cp_ipselect cp_sl01">
-                      <%= search.select "ishoku_type", options_for_select(Report::HASH_ISHOKU_TYPE.invert), {class: "text-muted", prompt: "移植タイプを選ぶ（任意）" } %>
-                    </div>
-                  </div>
-                  <div class="px-3 pt-2">
-                    <div class="pt-3">
-                      <%= hidden_field_tag :from_clinic_page, @clinic.id %>
-                      <%= submit_tag '検索する', :name => nil, class: "btn btn-info w-100 rounded-lg active", style: "background-color: #2ECFC0; color: #ffffff;box-shadow: 0 1px 2px gray;" %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </details>
+                <% end %>
+              </div>
+            </details>
+          </div>
         <% end %>
 
-        <div class="tab-wrap1 mt-4">
-          <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">最新</label>
-          <div class="tab-content1 px-2">
+        <div class="tab-wrap1 mt-4 bg-light">
+          <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label px-0 ml-2" for="TAB-01">最新</label>
+          <div class="tab-content1 pt-2 px-2">
             <%= render 'reports/center' %>
             <div class="mt-5 pt-5">
               <%= paginate @reports %>
             </div>
           </div>
-          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">同院経由レポコ&nbsp;<span class="small"><span class="small text-muted">(<%= @transfer_reports.count %>件)</span></span></label>
-          <div class="tab-content1">
+          <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label px-0 mr-2" for="TAB-02">同院経由レポコ&nbsp;<span class="small"><span class="small text-muted">(<%= @transfer_reports.count %>件)</span></span></label>
+          <div class="tab-content1 pt-2 px-2">
             <% unless @transfer_reports.count == 0 %>
-              <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
+              <div class="alert alert-info rounded-lg mt-0 mb-3 px-3 py-1">
                 <span class="small"><span class="small"><%= @clinic.name %>を過去に経由した方のレポコが&nbsp;<%= @transfer_reports.count %>件&nbsp;あります。</span></span>
               </div>
             <% else %>
-              <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
+              <div class="alert alert-danger rounded-lg mt-0 mb-3 px-3 py-1">
                 <span class="small"><span class="small"><%= @clinic.name %>を過去に経由した方のレポコはまだありません。</span></span>
               </div>
             <% end %>
+
             <% @transfer_reports.each do |transfer_report| %>
-              <div class="row">
-                <div class="card col-12 my-3 pb-0 px-0 shadow-none">
-                  <div class="card-body pt-3 px-3">
+              <div class="row main-column">
+                <div class="card col-12 my-0 pb-0 px-0 shadow-none bg-light">
+                  <div class="card-body py-3 px-3 mb-4 mx-3 rounded-lg bg-white shadow-sm">
                     <div class="media-body px-2">
                       <div class="row">
-                        <div class="col-3 pl-0 text-center px-0">
+                        <div class="d-block d-sm-none col-3 pl-0 text-center px-0">
                           <%= link_to user_path(transfer_report.user_id), data: { "turbolinks" => false } do %>
-                            <div class="icon-field">
-                              <% if transfer_report.user.icon.attached? %>
+                            <div class="icon-field pb-0">
+                              <% if transfer_report.user.icon.present? %>
                                 <%= image_tag(transfer_report.user.icon, class:"icon_image") %>
                               <% else %>
-                                <% user_number = transfer_report.user.id.digits %>
+                                <% user_number = transfer_report.user_id.digits %>  
                                 <% if user_number.size < 2 %>
-                                  <% icon_number = transfer_report.user.id %>
+                                  <% icon_number = transfer_report.user_id %>
                                 <% else %>
                                   <% if user_number[1] == 0 %>
                                     <% icon_number = user_number[0] * user_number[0] %>
@@ -239,13 +244,13 @@
                                   </div>
                                 <% elsif transfer_report.treatment_end_age < 35 %>
                                   <div class="m-0 p-0 base_icon text-center">
-                                  <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
-                                  <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon2", loading: "lazy", title: "30〜34歳") %>
-                                </div>
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon2", loading: "lazy", title: "30〜34歳") %>
+                                  </div>
                                 <% elsif transfer_report.treatment_end_age < 40 %>
                                   <div class="m-0 p-0 base_icon text-center">
                                     <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
-                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon2", loading: "lazy", title: "35〜39歳") %>
+                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon2", loading: "lazy", title: "35〜39歳") %>
                                   </div>
                                 <% elsif transfer_report.treatment_end_age < 45 %>
                                   <div class="m-0 p-0 base_icon text-center">
@@ -254,16 +259,153 @@
                                   </div>
                                 <% else %>
                                   <div class="m-0 p-0 base_icon text-center">
-                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image4_border", loading: "lazy", title: "45歳〜") %>
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
                                     <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon2", loading: "lazy", title: "45歳〜") %>
                                   </div>
                                 <% end %>
                               <% end %>
                             </div>
                           <% end %>
+                          <div class="pl-0 pr-2">
+                            <p class="mb-0 text-enter py-1">
+                              <% if transfer_report.treatment_end_age == nil %>
+                                <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "17px", class: "px-0", loading: "lazy", title: "不明"), user_path(transfer_report.user_id) %>
+                              <% elsif transfer_report.treatment_end_age < 25 %>
+                                <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "17px", class: "px-0", loading: "lazy", title: "〜24歳"), user_path(transfer_report.user_id) %>
+                              <% elsif transfer_report.treatment_end_age < 30 %>
+                                <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "17px", class: "px-0", loading: "lazy", title: "25〜29歳"), user_path(transfer_report.user_id) %>
+                              <% elsif transfer_report.treatment_end_age < 35 %>
+                                <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "17px", class: "px-0", loading: "lazy", title: "30〜34歳"), user_path(transfer_report.user_id) %>
+                              <% elsif transfer_report.treatment_end_age < 40 %>
+                                <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "17px", class: "px-0", loading: "lazy", title: "35〜39歳"), user_path(transfer_report.user_id) %>
+                              <% elsif transfer_report.treatment_end_age < 45 %>
+                                <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "17px", class: "px-0", loading: "lazy", title: "40〜44歳"), user_path(transfer_report.user_id) %>
+                              <% else %>
+                                <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "17px", class: "px-0", loading: "lazy", title: "45歳〜"), user_path(transfer_report.user_id) %>
+                              <% end %>
+                              <%= link_to user_path(transfer_report.user_id), {class: "small"} do %>
+                                <%= strip_tags(transfer_report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %>
+                              <% end %>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="d-block d-sm-none col-9 pl-0 pr-2">
+                          <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
+                            <small class="text-muted">
+                              <% unless transfer_report.current_state.blank? %>
+                                <%= transfer_report.str_current_state %>&nbsp;&nbsp;
+                              <% end %>
+                              <% if transfer_report.user.gender == "female" %>
+                                女性&nbsp;&nbsp;
+                              <% elsif transfer_report.user.gender == "male" %>
+                                男性&nbsp;&nbsp;
+                              <% else %>
+                              <% end %>
+                              <% if transfer_report.number_of_clinics.present? && transfer_report.number_of_clinics <= 11 %>
+                                <span class="font-weight-bold"><%= transfer_report.str_number_of_clinics %></span>&nbsp;(転院歴)
+                              <% end %>
+                            </small>
+                            <small class="text-muted">
+                              <%= transfer_report.created_at.to_s(:datetime_jp) %>
+                            </small>
+                          </div>
+                          <div>
+                            <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                              <h6 class="mb-0 mt-2 mx-0 mb-1">
+                                <% if transfer_report.treatment_end_age.present? %>
+                                  <%= transfer_report.str_treatment_end_age %>&nbsp;
+                                <% end %>
+                                <%= transfer_report.clinic.name %>のレポコ
+                                <% unless transfer_report.year_of_treatment_end.blank? %>
+                                  <span class="small"><span class="small text-muted">&nbsp;&nbsp;(<%= transfer_report.year_of_treatment_end.year %>年卒業)</span></span>
+                                <% end %>
+                              </h6>
+                            <% end %>
+                          </div>
             
+                          <div class="justify-content-start mr-2 mt-2 mb-1">
+                            <% unless transfer_report.treatment_end_age.blank? %>
+                              <span class="small"><%= link_to "##{transfer_report.str_treatment_end_age}", "/age/#{transfer_report.treatment_end_age}", class: "text-muted" %></span>
+                            <% end %>
+                            <% if transfer_report.prefecture_at_the_time_status == "hide" %>
+                              <span class="small text-muted">−−</span>
+                            <% else %>
+                              <span class="small"><%= link_to "##{transfer_report.city.prefecture.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}", class: "text-muted" %></span>
+                            <% end %>
+                            <% if transfer_report.city_at_the_time_status == "hide" %>
+                              <span class="small text-muted">−−</span>
+                            <% else %>
+                              <span class="small"><%= link_to "##{transfer_report.city.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}/#{transfer_report.city.name_alphabet}", class: "text-muted" %></span>
+                            <% end %>
+                          </div>
+            
+                          <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                            <% if transfer_report.title.present? %>
+                              <div class="p-0">
+                                <p class="mb-0 pb-2"><%= strip_tags(transfer_report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
+                              </div>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="d-none d-sm-block col-sm-3 pl-0 text-center px-0">
+                          <%= link_to user_path(transfer_report.user_id), data: { "turbolinks" => false } do %>
+                            <div class="icon-field pt-2">
+                              <% if transfer_report.user.icon.present? %>
+                                <%= image_tag(transfer_report.user.icon, class:"icon_image") %>
+                              <% else %>
+                                <% user_number = transfer_report.user_id.digits %>  
+                                <% if user_number.size < 2 %>
+                                  <% icon_number = transfer_report.user_id %>
+                                <% else %>
+                                  <% if user_number[1] == 0 %>
+                                    <% icon_number = user_number[0] * user_number[0] %>
+                                  <% else %>
+                                    <% icon_number = user_number[0] * user_number[1] %>
+                                  <% end %>
+                                <% end %>
+                                <% if transfer_report.treatment_end_age == nil %>
+                                  <div class="m-0 p-0 base_icon text-center">
+                                    <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image_border", loading: "lazy", title: "不明") %>
+                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon2", loading: "lazy", title: "不明") %>
+                                  </div>
+                                <% elsif transfer_report.treatment_end_age < 25 %>
+                                  <div class="m-0 p-0 base_icon text-center">
+                                    <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image_border", loading: "lazy", title: "〜24歳") %>
+                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon2", loading: "lazy", title: "〜24歳") %>
+                                  </div>
+                                <% elsif transfer_report.treatment_end_age < 30 %>
+                                  <div class="m-0 p-0 base_icon text-center">
+                                    <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image_border", loading: "lazy", title: "25〜29歳") %>
+                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon2", loading: "lazy", title: "25〜29歳") %>
+                                  </div>
+                                <% elsif transfer_report.treatment_end_age < 35 %>
+                                  <div class="m-0 p-0 base_icon text-center">
+                                    <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image_border", loading: "lazy", title: "30〜34歳") %>
+                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon2", loading: "lazy", title: "30〜34歳") %>
+                                  </div>
+                                <% elsif transfer_report.treatment_end_age < 40 %>
+                                  <div class="m-0 p-0 base_icon text-center">
+                                    <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image_border", loading: "lazy", title: "35〜39歳") %>
+                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon2", loading: "lazy", title: "35〜39歳") %>
+                                  </div>
+                                <% elsif transfer_report.treatment_end_age < 45 %>
+                                  <div class="m-0 p-0 base_icon text-center">
+                                    <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image_border", loading: "lazy", title: "40〜44歳") %>
+                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon2", loading: "lazy", title: "40〜44歳") %>
+                                  </div>
+                                <% else %>
+                                  <div class="m-0 p-0 base_icon text-center">
+                                    <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image_border", loading: "lazy", title: "45歳〜") %>
+                                    <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon2", loading: "lazy", title: "45歳〜") %>
+                                  </div>
+                                <% end %>
+                              <% end %>
+                            </div>
+                          <% end %>
                           <div class="d-none d-sm-block px-0">
-                            <div class="align-items-center text-center pt-2">
+                            <div class="align-items-center text-center">
                               <p class="mb-0 pb-1">
                                 <% if transfer_report.treatment_end_age == nil %>
                                   <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "20px", class: "img-fluid", loading: "lazy", title: "不明"), user_path(transfer_report.user_id) %>
@@ -280,183 +422,110 @@
                                 <% else %>
                                   <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "20px", class: "img-fluid", loading: "lazy", title: "45歳〜"), user_path(transfer_report.user_id) %>
                                 <% end %>
-                                <%= link_to user_path(transfer_report.user_id) do %>
-                                  <%= strip_tags(transfer_report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %>
+                                <%= link_to user_path(transfer_report.user_id), {class: "small"} do %>
+                                  <%= strip_tags(transfer_report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(14) %>
                                 <% end %>
                               </p>
                             </div>
                           </div>
-                          <div class="d-block d-sm-none pl-0 pr-2">
-                            <p class="mb-0 text-enter">
-                              <% if transfer_report.treatment_end_age == nil %>
-                                <%= link_to image_tag("icon/g_blank.png", alt: "generation_blank", width: "17px", class: "px-0", loading: "lazy", title: "不明"), user_path(transfer_report.user_id) %>
-                              <% elsif transfer_report.treatment_end_age < 25 %>
-                                <%= link_to image_tag("icon/g_10_24.png", alt: "generation10_24", width: "17px", class: "px-0", loading: "lazy", title: "〜24歳"), user_path(transfer_report.user_id) %>
-                              <% elsif transfer_report.treatment_end_age < 30 %>
-                                <%= link_to image_tag("icon/g_25_29.png", alt: "generation25_29", width: "17px", class: "px-0", loading: "lazy", title: "25〜29歳"), user_path(transfer_report.user_id) %>
-                              <% elsif transfer_report.treatment_end_age < 35 %>
-                                <%= link_to image_tag("icon/g_30_34.png", alt: "generation30_34", width: "17px", class: "px-0", loading: "lazy", title: "30〜34歳"), user_path(transfer_report.user_id) %>
-                              <% elsif transfer_report.treatment_end_age < 40 %>
-                                <%= link_to image_tag("icon/g_35_39.png", alt: "generation35_39", width: "17px", class: "px-0", loading: "lazy", title: "35〜39歳"), user_path(transfer_report.user_id) %>
-                              <% elsif transfer_report.treatment_end_age < 45 %>
-                                <%= link_to image_tag("icon/g_40_44.png", alt: "generation40_44", width: "17px", class: "px-0", loading: "lazy", title: "40〜44歳"), user_path(transfer_report.user_id) %>
-                              <% else %>
-                                <%= link_to image_tag("icon/g_45_.png", alt: "generation45_", width: "17px", class: "px-0", loading: "lazy", title: "45歳〜"), user_path(transfer_report.user_id) %>
-                              <% end %>
-                              <%= link_to user_path(transfer_report.user_id) do %>
-                                <%= strip_tags(transfer_report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>
-                              <% end %>
-                            </p>
-                          </div>
                         </div>
-                        <div class="col-9 pl-0">
-                          <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
-                            <small class="text-muted d-none d-sm-block">
-                              <% unless transfer_report.current_state.blank? %>
-                                <%= transfer_report.str_current_state %>&nbsp;&nbsp;
-                              <% end %>
-                              <% if transfer_report.user.gender == "female" %>
-                                女性&nbsp;&nbsp;
-                              <% elsif transfer_report.user.gender == "male" %>
-                                男性&nbsp;&nbsp;
-                              <% else %>
-                              <% end %>
-                              <% unless transfer_report.fertility_treatment_number.blank? %>
-                                <%= transfer_report.str_fertility_treatment_number %>&nbsp;&nbsp;
-                              <% end %>
-                            </small>
-                            <small class="text-muted d-block d-sm-none">
-                              <% if transfer_report.user.gender == "female" %>
-                                女性&nbsp;&nbsp;
-                              <% elsif transfer_report.user.gender == "male" %>
-                                男性&nbsp;&nbsp;
-                              <% else %>
-                              <% end %>
-                              <% unless transfer_report.current_state.blank? %>
-                                <%= transfer_report.str_current_state %>&nbsp;&nbsp;
-                              <% end %>
-                            </small>
-                            <small class="text-muted">
-                              <%= transfer_report.created_at.to_s(:datetime_jp) %>
-                            </small>
-                          </div>
-                          <div class="d-none d-sm-block">
-                            <%= link_to transfer_report, data: { "turbolinks" => false } do %>
-                              <h5 class="mb-0 mt-2 mx-0 mb-1">
-                                <% if transfer_report.treatment_end_age %>
-                                  <%= transfer_report.treatment_end_age %>歳&nbsp;
+                        <div class="col-12 col-sm-9 px-1">
+                          <div class="d-none d-sm-block repoco_card">
+                            <div class="date mb-0 pt-0 px-0 d-flex justify-content-between">
+                              <small class="text-muted">
+                                <% unless transfer_report.current_state.blank? %>
+                                  <%= transfer_report.str_current_state %>&nbsp;&nbsp;
                                 <% end %>
-                                <%= transfer_report.clinic.name %>のレポコ
-                                <% unless transfer_report.year_of_treatment_end.blank? %>
-                                  <span class="small"><span class="small text-muted">&nbsp;&nbsp;(<%= transfer_report.year_of_treatment_end.year %>年卒業)</span></span>
+                                <% if transfer_report.user.gender == "female" %>
+                                  女性&nbsp;&nbsp;
+                                <% elsif transfer_report.user.gender == "male" %>
+                                  男性&nbsp;&nbsp;
+                                <% else %>
                                 <% end %>
-                              </h5>
-                            <% end %>
-                          </div>
-                          <div class="d-block d-sm-none">
-                            <%= link_to transfer_report, data: { "turbolinks" => false } do %>
-                              <h6 class="mb-0 mt-2 mx-0 mb-1">
-                                <% if transfer_report.treatment_end_age %>
-                                  <%= transfer_report.treatment_end_age %>歳&nbsp;
+                                <% unless transfer_report.fertility_treatment_number.blank? %>
+                                  <%= transfer_report.str_fertility_treatment_number %>&nbsp;&nbsp;
                                 <% end %>
-                                <%= transfer_report.clinic.name %>のレポコ
-                                <% unless transfer_report.year_of_treatment_end.blank? %>
-                                  <span class="small"><span class="small text-muted">&nbsp;&nbsp;(<%= transfer_report.year_of_treatment_end.year %>年卒業)</span></span>
+                                <% if transfer_report.number_of_clinics.present? && transfer_report.number_of_clinics <= 11 %>
+                                  <span class="font-weight-bold"><%= transfer_report.str_number_of_clinics %></span>&nbsp;(転院歴)
                                 <% end %>
-                              </h6>
-                            <% end %>
-                          </div>
-
-                          <div class="d-none d-sm-block justify-content-start mr-2 my-2">
-                            <% unless transfer_report.treatment_end_age.blank? %>
-                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.str_treatment_end_age}", "/age/#{transfer_report.treatment_end_age}", class: "text-muted" %></span>
-                            <% end %>
-                            <% if transfer_report.prefecture_at_the_time_status == "hide" %>
-                              &nbsp;&nbsp;<span class="small text-muted ">−−</span>
-                            <% else %>
-                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.prefecture.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}", class: "text-muted" %></span>
-                            <% end %>
-                            <% if transfer_report.city_at_the_time_status == "hide" %>
-                              &nbsp;&nbsp;<span class="small text-muted">−−</span>
-                            <% else %>
-                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}/#{transfer_report.city.name_alphabet}", class: "text-muted" %></span>
-                            <% end %>
-                          </div>
-
-                          <div class="d-block d-sm-none justify-content-start mr-2 mt-2 mb-1">
-                            <% unless transfer_report.treatment_end_age.blank? %>
-                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.str_treatment_end_age}", "/age/#{transfer_report.treatment_end_age}", class: "text-muted" %></span>
-                            <% end %>
-                            <% if transfer_report.prefecture_at_the_time_status == "hide" %>
-                              &nbsp;&nbsp;<span class="small text-muted">−−</span>
-                            <% else %>
-                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.prefecture.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}", class: "text-muted" %></span>
-                            <% end %>
-                            <% if transfer_report.city_at_the_time_status == "hide" %>
-                              &nbsp;&nbsp;<span class="small text-muted">−−</span>
-                            <% else %>
-                              &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}/#{transfer_report.city.name_alphabet}", class: "text-muted" %></span>
-                            <% end %>
-                          </div>
-
-                          <div>
-                            <div class="d-none d-sm-block col-12 px-0">
+                              </small>
+                              <small class="text-muted">
+                                <%= transfer_report.created_at.to_s(:datetime_jp) %>
+                              </small>
+                            </div>
+                            <div>
                               <%= link_to transfer_report, data: { "turbolinks" => false } do %>
-                                <% if transfer_report.title.present? %>
-                                  <div class="pt-2 pb-1 px-1">
-                                    <h6><%= strip_tags(transfer_report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
-                                  </div>
-                                <% end %>
+                                <h5 class="mb-0 mt-2 mx-0 mb-1">
+                                  <% if transfer_report.treatment_end_age.present? %>
+                                    <%= transfer_report.str_treatment_end_age %>&nbsp;
+                                  <% end %>
+                                  <%= transfer_report.clinic.name %>のレポコ
+                                  <% unless transfer_report.year_of_treatment_end.blank? %>
+                                    <span class="small"><span class="small text-muted">&nbsp;&nbsp;<%= transfer_report.year_of_treatment_end.year %>年卒業</span></span>
+                                  <% end %>
+                                </h5>
                               <% end %>
-                              <div class="lead-content px-2 py-1">
-                                <%= link_to transfer_report, data: { "turbolinks" => false } do %>
-                                  <small><span class="text-muted"><%= strip_tags(transfer_report.summarize_content).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                                <% end %>
-                              </div>
-                              <div class="action_area pl-1 pr-0 py-2">
-                                <div class="row">
-                                  <div class="col-2 pr-0 form-inline">
-                                    <div class="likes_buttons_<%= transfer_report.id %>">
-                                      <%= render partial: 'likes/like', locals: { report: transfer_report} %>
-                                    </div>
-                                  </div>
-                                  <div class="col-10">
-                                    <div class="pt-2 text-right">
-                                      <%= link_to "##{transfer_report.clinic.name}", "/clinic/#{transfer_report.clinic.id}" %>
-                                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/clinics_/#{transfer_report.clinic.city.prefecture.name_alphabet}", class:"text-muted" %></span>
-                                      &nbsp;&nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.name}", "/clinics/#{transfer_report.clinic.city.prefecture.name_alphabet}/#{transfer_report.clinic.city.name_alphabet}", class:"text-muted" %></span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                            </div>
+                            <div class="justify-content-start mr-2 my-2">
+                              <% unless transfer_report.treatment_end_age.blank? %>
+                                &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.str_treatment_end_age}", "/age/#{transfer_report.treatment_end_age}", class: "text-muted" %></span>
+                              <% end %>
+                              <% if transfer_report.prefecture_at_the_time_status == "hide" %>
+                                &nbsp;&nbsp;<span class="small text-muted ">−−</span>
+                              <% else %>
+                                &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.prefecture.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}", class: "text-muted" %></span>
+                              <% end %>
+                              <% if transfer_report.city_at_the_time_status == "hide" %>
+                                &nbsp;&nbsp;<span class="small text-muted">−−</span>
+                              <% else %>
+                                &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.city.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}/#{transfer_report.city.name_alphabet}", class: "text-muted" %></span>
+                              <% end %>
                             </div>
                           </div>
-                        </div>
-                        <div class="d-block d-sm-none col-12 mt-2 px-1">
-                          <%= link_to transfer_report, data: { "turbolinks" => false } do %>
-                            <% if transfer_report.title.present? %>
-                              <div class="py-2 px-3">
-                                <h7><%= strip_tags(transfer_report.title.to_s).gsub(/[\n]/,"").strip.truncate(30) %></h7>
-                              </div>
-                            <% end %>
-                          <% end %>
-                          <div  class="lead-content px-2 py-1">
+                          <div class="repoco_card">
                             <%= link_to transfer_report, data: { "turbolinks" => false } do %>
-                              <small><%= strip_tags(transfer_report.summarize_content).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                              <% if transfer_report.title.present? %>
+                                <div class="d-none d-sm-block pt-2 pb-1 px-1">
+                                  <h6><%= strip_tags(transfer_report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
+                                </div>
+                              <% end %>
                             <% end %>
+                            <div class="d-none d-sm-block lead-content px-2 py-1">
+                            <% if transfer_report.content.present? %>
+                              <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                                <small><span class="text-muted"><%= strip_tags(transfer_report.summarize_content).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                              <% end %>
+                            <% else %>
+                              <small>&nbsp;&nbsp;.........&nbsp;&nbsp;<span class="font-weight-bold"><%= transfer_report.user.name.strip.truncate(30) %>さんのレポコを読む</span>&nbsp;&nbsp;<%= image_tag"home/finger_mom_up.svg", width: "19px", class: "m-0 p-0", loading: "lazy" %></small>
+                            <% end %>
+                            </div>
+                            <div  class="d-block d-sm-none lead-content px-2 py-1">
+                              <%= link_to transfer_report, data: { "turbolinks" => false } do %>
+                                <% if transfer_report.content.present? %>
+                                  <small><%= strip_tags(transfer_report.summarize_content).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                                <% else %>
+                                  <small>&nbsp;&nbsp;.........&nbsp;&nbsp;<span class="font-weight-bold"><%= transfer_report.user.name.strip.truncate(30) %>さんのレポコを読む</span>&nbsp;&nbsp;<%= image_tag"home/finger_mom_up.svg", width: "19px", class: "m-0 p-0", loading: "lazy" %></small>
+                                <% end %>
+                              <% end %>
+                            </div>
                           </div>
                           <div class="px-0 py-0">
                             <div class="row">
                               <div class="col-3 mt-2 pr-0">
                                 <div class="likes_buttons_<%= transfer_report.id %>">
-                                  <%= render partial: 'likes/like', locals: { report: transfer_report} %>
+                                  <%= render partial: 'likes/like_index', locals: { report: transfer_report,like_count: @like_count[transfer_report.id] } %>
                                 </div>
                               </div>
                               <div class="col-9 pt-0 pl-0 pr-4 text-right">
-                                <div class="pt-2 text-right">
+                                <div class="d-none d-sm-block pt-3 text-right">
+                                  <%= link_to "##{transfer_report.clinic.name}", "/clinic/#{transfer_report.clinic.id}" %>
+                                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/clinics_/#{transfer_report.clinic.city.prefecture.name_alphabet}", class:"text-muted" %></span>
+                                  &nbsp;&nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.name}", "/clinics/#{transfer_report.clinic.city.prefecture.name_alphabet}/#{transfer_report.clinic.city.name_alphabet}", class:"text-muted" %></span>
+                                </div>
+                                <div class="d-block d-sm-none pt-2 text-right">
                                   <%= link_to "##{transfer_report.clinic.name}", "/clinic/#{transfer_report.clinic.id}" %>
                                 </div>
-                                <div class="pt-1 text-right">
+                                <div class="d-block d-sm-none pt-1 text-right">
                                   &nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.prefecture.name}", "/clinics_/#{transfer_report.clinic.city.prefecture.name_alphabet}", class:"text-muted" %></span>
                                   &nbsp;&nbsp;&nbsp;<span class="small"><%= link_to "##{transfer_report.clinic.city.name}", "/clinics/#{transfer_report.clinic.city.prefecture.name_alphabet}/#{transfer_report.clinic.city.name_alphabet}", class:"text-muted" %></span>
                                 </div>
@@ -470,6 +539,23 @@
                 </div>
               </div>
             <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
         </div>
       </div>

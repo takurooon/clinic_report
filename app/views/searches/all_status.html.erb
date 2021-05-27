@@ -12,17 +12,19 @@
 
   <div class="row pb-5 mb-5"> 
     <div class="col-md-8 offset-md-2 main-column">
-      <div class="row pl-3 pt-4">
-        <%= collection_radio_buttons(:report, :current_state, @current_status, :first, :last) do |b| %>
-          <div class="col-4 col-lg-12 px-0 mb-3">
-            <div class="form-check pl-2">
-              <%= b.label class: "radio-inline mb-1" do %>
-                <%= b.radio_button class: "q_radio", onchange: "location = 'status/' + this.value" %>
-                <%= b.text %>
-              <% end %>
+      <div class="rounded-lg bg-white shadow-sm p-4">
+        <div class="row pl-3 pt-4">
+          <%= collection_radio_buttons(:report, :current_state, @current_status, :first, :last) do |b| %>
+            <div class="col-6 col-lg-4 px-0 mb-3">
+              <div class="form-check pl-2">
+                <%= b.label class: "radio-inline mb-1" do %>
+                  <%= b.radio_button class: "q_radio", onchange: "location = 'status/' + this.value" %>
+                  <%= b.text %>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

@@ -12,7 +12,9 @@
 
   <div class="row pb-5 mb-5">
     <div class="col-md-8 offset-md-2 main-column">
-      <%= select "report", :amh, @amhs.invert, { prompt: "AMHから探す" }, { class: "form-control my-5", onchange: "location = 'amh/' + this.value" } %>
+      <div class="rounded-lg bg-white shadow-sm p-4">
+        <%= select "report", :amh, @amhs.invert, { prompt: "AMHから探す" }, { class: "form-control mb-2", onchange: "location = 'amh/' + this.value" } %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="p-comment__formBox">
+<div class="p-comment__formBox bg-white shadow-sm">
   <p class="p-comment__formTitle">コメントする</p>
   <%= form_with model: comment, data: { remote: false } do |f| %>
     <%= f.hidden_field :report_id %>

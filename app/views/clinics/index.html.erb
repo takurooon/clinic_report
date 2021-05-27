@@ -12,164 +12,166 @@
     <div class="container main-index">
       <div class="row">
         <div class="col-sm-8 offset-sm-2 mb-1 px-0">
-          <div class="tab-wrap1 mt-0">
-            <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" />
-            <label class="tab-label" for="TAB-01">IVF</label>
-            <div class="tab-content1">
-              <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @ivf_clinics_count %>施設)</span></span></h5>
-              <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @ivf_clinics_count %>施設)</span></span></h4>
-              <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
-              <% @list_ivf.each do |key, value| %>
-                <div class="col-12 mb-1 px-2">
-                  <input id='acd-check-cllist-ivf<%= value[:id] %>' class="acd-check-cllist2" type="checkbox">
-                  <label class="acd-cllist-label2 small mb-0 px-1 py-2" for="acd-check-cllist-ivf<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(ivf: 1, prefecture_id: value[:id]).size %>施設&nbsp;)</span></span></label>
-                  <div class="acd-content-multiple2 container mb-2">
-                    <div class="row mt-0 pb-0">
-                    <div class="col-12 border-bottom">
-                      <div class="pt-3 pb-2">
-                        <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5 font-weight-bold", data: { "turbolinks" => false } %>
-                      </div>
-                      <% prefecture = value[:name_alphabet] %>
-                    </div>
-                    <% value[:cities].sort.to_h.each do |key, value| %>
-                      <div class="col-6 col-md-4 my-0 pt-3 px-2 border-right border-bottom">
-                        <div>
-                          <p class="small">
-                            <span class="font-weight-bold">【
-                              <%= link_to "/clinics/#{prefecture}/#{value[:name_alphabet]}", class: "text-primary", data: { "turbolinks" => false } do %>
-                                <%= value[:name] %>
-                              <% end %>
-                            】</span>
-                            <span class="small text-muted"><%= value[:clinics].count %>施設<span>
-                          </p>
+          <div class="mx-2 pt-4 pb-2 px-2 rounded-lg bg-white shadow-sm">
+            <div class="tab-wrap1 mt-0">
+              <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" />
+              <label class="tab-label ml-2 px-0" for="TAB-01">IVF</label>
+              <div class="tab-content1">
+                <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @ivf_clinics_count %>施設)</span></span></h5>
+                <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>体外受精&nbsp;実施医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @ivf_clinics_count %>施設)</span></span></h4>
+                <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
+                <% @list_ivf.each do |key, value| %>
+                  <div class="col-12 mb-1 px-2">
+                    <input id='acd-check-cllist-ivf<%= value[:id] %>' class="acd-check-cllist2" type="checkbox">
+                    <label class="acd-cllist-label2 small mb-0 px-1 py-2" for="acd-check-cllist-ivf<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(ivf: 1, prefecture_id: value[:id]).size %>施設&nbsp;)</span></span></label>
+                    <div class="acd-content-multiple2 container mb-2">
+                      <div class="row mt-0 pb-0">
+                      <div class="col-12 border-bottom">
+                        <div class="pt-3 pb-2">
+                          <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5 font-weight-bold", data: { "turbolinks" => false } %>
                         </div>
-                        <div>
-                          <ul class="p-0 pb-0">
-                            <% value[:clinics].each do |clinic| %>
-                              <li class="list-unstyled small mb-2">
-                                <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
-                                  <% if clinic[:count].present? %>
-                                    <span class="font-weight-bold"><%= clinic[:name] %>&nbsp;(<%= clinic[:count] %>)</span>
-                                  <% else %>
-                                    <span class="small text-muted"><%= clinic[:name] %></span>
-                                  <% end %>
+                        <% prefecture = value[:name_alphabet] %>
+                      </div>
+                      <% value[:cities].sort.to_h.each do |key, value| %>
+                        <div class="col-6 col-md-4 my-0 pt-3 px-2 border-right border-bottom">
+                          <div>
+                            <p class="small">
+                              <span class="font-weight-bold">【
+                                <%= link_to "/clinics/#{prefecture}/#{value[:name_alphabet]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                  <%= value[:name] %>
                                 <% end %>
-                              </li>
-                            <% end %>
-                          </ul>
-                        </div>
-                      </div>
-                    <% end %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-
-            <input id="TAB-02" type="radio" name="TAB" class="tab-switch" />
-            <label class="tab-label small" for="TAB-02">ALL</label>
-            <div class="tab-content1">
-              <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @all_clinics_count %>施設)</span></span></h5>
-              <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @all_clinics_count %>施設)</span></span></h4>
-              <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
-              <% @list.each do |key, value| %>
-                <div class="col-12 mb-1 px-2">
-                  <input id='acd-check-cllist<%= value[:id] %>' class="acd-check-cllist" type="checkbox">
-                  <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(prefecture_id: value[:id]).size %>施設&nbsp;)</span></span></label>
-                  <div class="acd-content-multiple container mb-2">
-                    <div class="row mt-0 pb-0">
-                    <div class="col-12 border-bottom">
-                      <div class="pt-3 pb-2">
-                        <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5 font-weight-bold", data: { "turbolinks" => false } %>
-                      </div>
-                      <% prefecture = value[:name_alphabet] %>
-                    </div>
-                    <% value[:cities].sort.to_h.each do |key, value| %>
-                      <div class="col-6 col-md-4 my-0 pt-3 px-2 border-right border-bottom">
-                        <div>
-                          <p class="small">
-                            <span class="font-weight-bold">【
-                              <%= link_to "/clinics/#{prefecture}/#{value[:name_alphabet]}", class: "text-primary", data: { "turbolinks" => false } do %>
-                                <%= value[:name] %>
-                              <% end %>
-                            】</span>
-                            <span class="small text-muted"><%= value[:clinics].count %>施設<span>
-                          </p>
-                        </div>
-                        <div>
-                          <ul class="p-0 pb-0">
-                            <% value[:clinics].each do |clinic| %>
-                              <li class="list-unstyled small mb-2">
-                                <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
-                                  <% if clinic[:count].present? %>
-                                    <span class="font-weight-bold"><%= clinic[:name] %>&nbsp;(<%= clinic[:count] %>)</span>
-                                  <% else %>
-                                    <span class="small text-muted"><%= clinic[:name] %></span>
+                              】</span>
+                              <span class="small text-muted"><%= value[:clinics].count %>施設<span>
+                            </p>
+                          </div>
+                          <div>
+                            <ul class="p-0 pb-0">
+                              <% value[:clinics].each do |clinic| %>
+                                <li class="list-unstyled small mb-2">
+                                  <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                    <% if clinic[:count].present? %>
+                                      <span class="font-weight-bold"><%= clinic[:name] %>&nbsp;(<%= clinic[:count] %>)</span>
+                                    <% else %>
+                                      <span class="small text-muted"><%= clinic[:name] %></span>
+                                    <% end %>
                                   <% end %>
-                                <% end %>
                                 </li>
-                            <% end %>
-                          </ul>
-                        </div>
-                      </div>
-                    <% end %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-
-            <input id="TAB-03" type="radio" name="TAB" class="tab-switch" />
-            <label class="tab-label small" for="TAB-03">PGT-A</label>
-            <div class="tab-content1">
-              <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>PGT-A臨床研究参加施設一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @pgt_clinics_count %>施設)</span></span></h5>
-              <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>PGT-A臨床研究参加施設一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @pgt_clinics_count %>施設)</span></span></h4>
-              <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設<br>(2020年12月1日時点)</span></div>
-              <% @list_pgt.each do |key, value| %>
-                <div class="col-12 mb-1 px-2">
-                  <input id='acd-check-cllist-pgt<%= value[:id] %>' class="acd-check-cllist2" type="checkbox">
-                  <label class="acd-cllist-label2 small mb-0 px-1 py-2" for="acd-check-cllist-pgt<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(pgt: 1, prefecture_id: value[:id]).size %>施設&nbsp;)</span></span></label>
-                  <div class="acd-content-multiple2 container mb-2">
-                    <div class="row mt-0 pb-0">
-                    <div class="col-12 border-bottom">
-                      <div class="pt-3 pb-2">
-                        <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5 font-weight-bold", data: { "turbolinks" => false } %>
-                      </div>
-                      <% prefecture = value[:name_alphabet] %>
-                    </div>
-                    <% value[:cities].sort.to_h.each do |key, value| %>
-                      <div class="col-6 col-md-4 my-0 pt-3 px-2 border-right border-bottom">
-                        <div>
-                          <p class="small">
-                            <span class="font-weight-bold">【
-                              <%= link_to "/clinics/#{prefecture}/#{value[:name_alphabet]}", class: "text-primary", data: { "turbolinks" => false } do %>
-                                <%= value[:name] %>
                               <% end %>
-                            】</span>
-                            <span class="small text-muted"><%= value[:clinics].count %>施設<span>
-                          </p>
+                            </ul>
+                          </div>
                         </div>
-                        <div>
-                          <ul class="p-0 pb-0">
-                            <% value[:clinics].each do |clinic| %>
-                              <li class="list-unstyled small mb-2">
-                                <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
-                                  <% if clinic[:count].present? %>
-                                    <span class="font-weight-bold"><%= clinic[:name] %>&nbsp;(<%= clinic[:count] %>)</span>
-                                  <% else %>
-                                    <span class="small text-muted"><%= clinic[:name] %></span>
-                                  <% end %>
-                                <% end %>
-                              </li>
-                            <% end %>
-                          </ul>
-                        </div>
+                      <% end %>
                       </div>
-                    <% end %>
                     </div>
                   </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
+
+              <input id="TAB-02" type="radio" name="TAB" class="tab-switch" />
+              <label class="tab-label px-0 small" for="TAB-02">ALL</label>
+              <div class="tab-content1">
+                <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @all_clinics_count %>施設)</span></span></h5>
+                <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>全国の医療機関一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @all_clinics_count %>施設)</span></span></h4>
+                <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設</span></div>
+                <% @list.each do |key, value| %>
+                  <div class="col-12 mb-1 px-2">
+                    <input id='acd-check-cllist<%= value[:id] %>' class="acd-check-cllist" type="checkbox">
+                    <label class="acd-cllist-label small mb-0 px-1 py-2" for="acd-check-cllist<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(prefecture_id: value[:id]).size %>施設&nbsp;)</span></span></label>
+                    <div class="acd-content-multiple container mb-2">
+                      <div class="row mt-0 pb-0">
+                      <div class="col-12 border-bottom">
+                        <div class="pt-3 pb-2">
+                          <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5 font-weight-bold", data: { "turbolinks" => false } %>
+                        </div>
+                        <% prefecture = value[:name_alphabet] %>
+                      </div>
+                      <% value[:cities].sort.to_h.each do |key, value| %>
+                        <div class="col-6 col-md-4 my-0 pt-3 px-2 border-right border-bottom">
+                          <div>
+                            <p class="small">
+                              <span class="font-weight-bold">【
+                                <%= link_to "/clinics/#{prefecture}/#{value[:name_alphabet]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                  <%= value[:name] %>
+                                <% end %>
+                              】</span>
+                              <span class="small text-muted"><%= value[:clinics].count %>施設<span>
+                            </p>
+                          </div>
+                          <div>
+                            <ul class="p-0 pb-0">
+                              <% value[:clinics].each do |clinic| %>
+                                <li class="list-unstyled small mb-2">
+                                  <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                    <% if clinic[:count].present? %>
+                                      <span class="font-weight-bold"><%= clinic[:name] %>&nbsp;(<%= clinic[:count] %>)</span>
+                                    <% else %>
+                                      <span class="small text-muted"><%= clinic[:name] %></span>
+                                    <% end %>
+                                  <% end %>
+                                  </li>
+                              <% end %>
+                            </ul>
+                          </div>
+                        </div>
+                      <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+
+              <input id="TAB-03" type="radio" name="TAB" class="tab-switch" />
+              <label class="tab-label mr-2 px-0 small" for="TAB-03">PGT-A</label>
+              <div class="tab-content1">
+                <h5 class="d-sm d-md-none mt-4 mb-0 text-center"><span class="marker-underline"><strong>PGT-A臨床研究参加施設一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @pgt_clinics_count %>施設)</span></span></h5>
+                <h4 class="d-none d-md-block col-12 mt-4 mb-0"><span class="marker-underline"><strong>PGT-A臨床研究参加施設一覧</strong></span>&nbsp;<span class="small"><span class="small">(<%= @pgt_clinics_count %>施設)</span></span></h4>
+                <div class="small text-muted text-right px-3 pt-1 mb-5"><span class="small">※日本産科婦人科学会 登録施設<br>(2020年12月1日時点)</span></div>
+                <% @list_pgt.each do |key, value| %>
+                  <div class="col-12 mb-1 px-2">
+                    <input id='acd-check-cllist-pgt<%= value[:id] %>' class="acd-check-cllist2" type="checkbox">
+                    <label class="acd-cllist-label2 small mb-0 px-1 py-2" for="acd-check-cllist-pgt<%= value[:id] %>"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<span class="font-weight-bold "><%= value[:name] %></span>の医療機関&nbsp;<span class="small">(&nbsp;<%= Clinic.where(pgt: 1, prefecture_id: value[:id]).size %>施設&nbsp;)</span></span></label>
+                    <div class="acd-content-multiple2 container mb-2">
+                      <div class="row mt-0 pb-0">
+                      <div class="col-12 border-bottom">
+                        <div class="pt-3 pb-2">
+                          <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5 font-weight-bold", data: { "turbolinks" => false } %>
+                        </div>
+                        <% prefecture = value[:name_alphabet] %>
+                      </div>
+                      <% value[:cities].sort.to_h.each do |key, value| %>
+                        <div class="col-6 col-md-4 my-0 pt-3 px-2 border-right border-bottom">
+                          <div>
+                            <p class="small">
+                              <span class="font-weight-bold">【
+                                <%= link_to "/clinics/#{prefecture}/#{value[:name_alphabet]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                  <%= value[:name] %>
+                                <% end %>
+                              】</span>
+                              <span class="small text-muted"><%= value[:clinics].count %>施設<span>
+                            </p>
+                          </div>
+                          <div>
+                            <ul class="p-0 pb-0">
+                              <% value[:clinics].each do |clinic| %>
+                                <li class="list-unstyled small mb-2">
+                                  <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                    <% if clinic[:count].present? %>
+                                      <span class="font-weight-bold"><%= clinic[:name] %>&nbsp;(<%= clinic[:count] %>)</span>
+                                    <% else %>
+                                      <span class="small text-muted"><%= clinic[:name] %></span>
+                                    <% end %>
+                                  <% end %>
+                                </li>
+                              <% end %>
+                            </ul>
+                          </div>
+                        </div>
+                      <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
