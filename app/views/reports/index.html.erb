@@ -10,35 +10,13 @@
     </div>
   <% end %>
 
-  <% if false %>
-  <% if @reports.current_page == 1 %>
-    <div class="pt-2 pb-4 d-flex justify-content-center row">
-      <div class="mt-0 col-sm-7 text-center px-0">
-        <div class="py-3">
-          <h5 class="font-weight-bold" style="font-family: 游ゴシック体,YuGothic,游ゴシック Medium,Yu Gothic Medium,游ゴシック,Yu Gothic,sans-serif;">経験をカタチに&nbsp;&nbsp;情報をエールに</h5>
-        </div>
-        <%= form_tag(search_cl_path,:method => 'get', class: "mb-0") do %>
-          <div class="p-0">
-            <%= text_field_tag :keyword, "", { class: "font-weight-bold search-window", placeholder: "クリニック名から探す" } %>
-          </div>
-          <div class="row d-flex justify-content-center px-4">
-            <div class="col-sm-8">
-              <div class="py-2 px-3">
-                <%= submit_tag '検索する', :name => nil, class: "btn btn-info w-100 rounded-lg active", style: "background-color: #2ECFC0; color: #ffffff;box-shadow: 0 1px 2px gray;" %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-  <% end %>
-
   <% if @reports.current_page == 1 %>
     <div class="pt-2 d-flex justify-content-center row">
       <div class="mt-0 col-sm-7 text-center px-0">
         <div class="py-3 px-2">
-          <h5 class="font-weight-bold text-dark" style="font-family: 游ゴシック体,YuGothic,游ゴシック Medium,Yu Gothic Medium,游ゴシック,Yu Gothic,sans-serif;">経験をカタチに&nbsp;&nbsp;情報をエールに</h5>
+          <%= link_to root_path do %>
+            <h5 class="font-weight-bold text-dark" style="font-family: 游ゴシック体,YuGothic,游ゴシック Medium,Yu Gothic Medium,游ゴシック,Yu Gothic,sans-serif;">経験をカタチに&nbsp;&nbsp;情報をエールに</h5>
+          <% end %>
         </div>
         <div class="tab-wrap4 mt-1">
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch4" checked="checked" /><label class="tab-label4 tab-label4-l small mb-0 px-0" for="TAB-01">クリニック名で探す</label>
