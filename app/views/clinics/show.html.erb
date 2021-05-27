@@ -2,12 +2,12 @@
 <% set_meta_tags description: @clinic.name + "(" + @clinic.prefecture.name + @clinic.city.name + ")の口コミ・評判・レビュー・治療内容などの詳細情報をチェックできます。" %>
 <div class="container main-index m-bottom">
   <div class="row px-0">
-    <div class="col-lg-11 offset-lg-1 mt-4">
+    <div class="col-lg-11 offset-lg-1 mt-4 px-4">
       <small class="text-muted mt-0 mb-0 d-flex align-content-start flex-wrap align-items-start">
         <p class="mb-0"><%= link_to "ホーム", root_path %>&nbsp;&nbsp;</p>
         <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to @clinic.prefecture.name, "/clinics_/#{@clinic.prefecture.name_alphabet}" %>&nbsp;&nbsp;</p>
         <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to @clinic.city.name, "/clinics/#{@clinic.city.prefecture.name_alphabet}/#{@clinic.city.name_alphabet}" %>&nbsp;&nbsp;</p>
-        <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><%= @clinic.name %></strong></p>
+        <p class="mb-0"><i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i></p>
       </small>
     </div>
     <div class="col-lg-7 offset-lg-1 mt-4 px-1">
@@ -17,7 +17,7 @@
         &nbsp;&nbsp;<span class="badge badge-success mb-2">【休診】</span>
       <% else %>
       <% end %>
-      <div class="d-flex align-content-start flex-wrap align-items-end px-2">
+      <div class="d-flex align-content-start flex-wrap align-items-end px-3">
         <h3 class="d-none d-sm-block font-weight-bold mb-0" style="letter-spacing: 3px;">
           <span class="marker-underline"><%= @clinic.name %></span>
             <sup class="text-dark">
@@ -38,7 +38,7 @@
         </h5>
         <small class="pt-2 mb-0 small text-muted">(&nbsp;<%= @clinic.yomigana %>&nbsp;)</small>
       </div>
-      <div class="d-flex align-items-center pt-4 px-2">
+      <div class="d-flex align-items-center pt-4 px-3">
         <% unless @average_score.blank? %>
           <% if @average_score == 5 %>
             <span class="rating-star"><i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i>&nbsp;<i class="fas fa-star"></i></span>&nbsp;&nbsp<span class="font-weight-bold" style="color: #F6AE3A"><%= @average_score %></span>
@@ -374,7 +374,7 @@
                   <% end %>
                 </div>
                 <%= link_to report_path(report.id), data: { "turbolinks" => false } do %>
-                  <div class="small text-muted pl-4 pt-2">
+                  <div class="small text-muted pt-2">
                     <% if report.clinic_review.present? %>
                       <%= strip_tags(report.clinic_review).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
                     <% elsif report.reasons_for_choosing_this_clinic.present? %>
@@ -392,7 +392,7 @@
             </div>
           <% end %>
           <% if @clinic_reports_count > @get_limit %>
-            <div class="mt-5">
+            <div class="pt-2 pb-4 px-4">
               <%= link_to "/clinic/#{@clinic.id}", { style: "text-decoration: none;" } do %>
                 <button class="green_btn"><%= @clinic.name %>の全レビューをみる</button>
               <% end %>
