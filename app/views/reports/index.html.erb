@@ -1,6 +1,9 @@
-<% unless @reports.current_page == 1 %>
-  <div class="pb-3">
+<% if @reports.current_page > 1 %>
+  <div class="d-none d-sm-block pb-3 mx-5 px-5">
     <%= render 'category_header' %>
+  </div>
+  <div class="d-block d-sm-none pt-3">
+    <%= render 'category_header_body' %>
   </div>
 <% end %>
 <div class="container main-index mt-3 m-bottom">
@@ -166,36 +169,35 @@
         </div>
       </div>
     </div>
-  <% end %>
-
-  <div class="px-4 pb-5">
-    <div class="d-none d-sm-block">
-      <div class="pb-2 small d-flex align-item-center justify-content-center">
-        <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "クリニック一覧から探す", clinics_path, class: "text-primary" %>
-      </div>
-      <div class="py-2 small d-flex align-item-center justify-content-center">
-        <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
-      </div>
-      <% unless user_signed_in? %>
+    <div class="px-4 pb-5">
+      <div class="d-none d-sm-block">
+        <div class="pb-2 small d-flex align-item-center justify-content-center">
+          <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "クリニック一覧から探す", clinics_path, class: "text-primary" %>
+        </div>
         <div class="py-2 small d-flex align-item-center justify-content-center">
-          <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "レポコる", signup_path, class: "text-primary" %>
+          <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
         </div>
-      <% end %>
-    </div>
-    <div class="d-block d-sm-none">
-      <div class="pb-2 small d-flex align-item-center justify-content-end">
-        <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "クリニック一覧から探す", clinics_path, class: "text-primary" %>
+        <% unless user_signed_in? %>
+          <div class="py-2 small d-flex align-item-center justify-content-center">
+            <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "レポコる", signup_path, class: "text-primary" %>
+          </div>
+        <% end %>
       </div>
-      <div class="py-2 small d-flex align-item-center justify-content-end">
-        <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
-      </div>
-      <% unless user_signed_in? %>
+      <div class="d-block d-sm-none">
+        <div class="pb-2 small d-flex align-item-center justify-content-end">
+          <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "クリニック一覧から探す", clinics_path, class: "text-primary" %>
+        </div>
         <div class="py-2 small d-flex align-item-center justify-content-end">
-          <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "レポコる", signup_path, class: "text-primary" %>
+          <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
         </div>
-      <% end %>
+        <% unless user_signed_in? %>
+          <div class="py-2 small d-flex align-item-center justify-content-end">
+            <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "レポコる", signup_path, class: "text-primary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="row px-0">
     <div class="col-lg-7 offset-lg-1 main-column text-color px-0">
@@ -213,6 +215,141 @@
             <p class="mb-0"><%= image_tag"home/finger_mom_right.svg", width: "20px", class: "img-fluid pb-1", loading: "lazy" %>&nbsp;<%= link_to "下書きはこちら", my_page_path, class: "text-primary font-weight-bold" %></p>
           </div>
         <% end %>
+
+        <% if @reports.current_page > 1 %>
+          <details class="py-3">
+            <summary class="font-weight-bold">【複数条件で絞込み検索】</summary>
+            <div class="pt-3">
+              <%= form_with(url: search_reports_path, local: true, method: :get) do |search| %>
+                <div class="px-1 pt-1">
+                  <div class="px-3">
+                    <div class="cp_ipselect cp_sl01">
+                      <select name="treatment_end_age">
+                        <option selected value="">年齢を選ぶ（任意）</option>
+                        <optgroup label="【年齢層】から選ぶ">
+                          <option value="19">20歳未満</option>
+                          <option value="20~24">20〜24歳</option>
+                          <option value="25~29">25〜29歳</option>
+                          <option value="30~34">30〜34歳</option>
+                          <option value="35~39">35〜39歳</option>
+                          <option value="40~44">40〜44歳</option>
+                          <option value="45~49">45〜49歳</option>
+                          <option value="50000~">50歳以上</option>
+                        </optgroup>
+                        <optgroup label="【年齢】で選ぶ">
+                          <option value="20">21歳</option>
+                          <option value="21">21歳</option>
+                          <option value="22">22歳</option>
+                          <option value="23">23歳</option>
+                          <option value="24">24歳</option>
+                          <option value="25">25歳</option>
+                          <option value="26">26歳</option>
+                          <option value="27">27歳</option>
+                          <option value="28">28歳</option>
+                          <option value="29">29歳</option>
+                          <option value="30">30歳</option>
+                          <option value="31">31歳</option>
+                          <option value="32">32歳</option>
+                          <option value="33">33歳</option>
+                          <option value="34">34歳</option>
+                          <option value="35">35歳</option>
+                          <option value="36">36歳</option>
+                          <option value="37">37歳</option>
+                          <option value="38">38歳</option>
+                          <option value="39">39歳</option>
+                          <option value="40">40歳</option>
+                          <option value="41">41歳</option>
+                          <option value="42">42歳</option>
+                          <option value="43">43歳</option>
+                          <option value="44">44歳</option>
+                          <option value="45">45歳</option>
+                          <option value="46">46歳</option>
+                          <option value="47">47歳</option>
+                          <option value="48">48歳</option>
+                          <option value="49">49歳</option>
+                          <option value="50">50歳以上</option>
+                        </optgroup>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="px-3 pt-3">
+                    <div class="cp_ipselect cp_sl01">
+                      <%= search.select "fertility_treatment_number", options_for_select(Report::HASH_FERTILITY_TREATMENT_NUMBER.invert), {class: "text-muted", prompt: "何人目治療かを選ぶ（任意）" } %>
+                    </div>
+                  </div>
+                  <div class="px-3 pt-3">
+                    <div class="cp_ipselect cp_sl01">
+                      <select name="amh">
+                        <option selected value="">AMH値を選ぶ（任意）</option>
+                        <optgroup label="【大きい幅】から選ぶ">
+                          <option value="1500000">〜0.5未満</option>
+                          <option value="610000">0.5〜1.0未満</option>
+                          <option value="1520">1.0〜2.0未満</option>
+                          <option value="2530">2.0〜3.0未満</option>
+                          <option value="3540">3.0〜4.0未満</option>
+                          <option value="4550">4.0〜5.0未満</option>
+                          <option value="5560">5.0〜6.0未満</option>
+                          <option value="6570">6.0〜7.0未満</option>
+                          <option value="7580">7.0〜8.0未満</option>
+                          <option value="8590">8.0〜9.0未満</option>
+                          <option value="95100">9.0〜10.0未満</option>
+                          <option value="999">10.0以上</option>
+                        </optgroup>
+                        <optgroup label="【小さい幅】から選ぶ">
+                          <option value="1">0.1未満</option>
+                          <option value="2">0.1〜0.2未満</option>
+                          <option value="3">0.2〜0.3未満</option>
+                          <option value="4">0.3〜0.4未満</option>
+                          <option value="5">0.4〜0.5未満</option>
+                          <option value="6">0.5〜0.6未満</option>
+                          <option value="7">0.6〜0.7未満</option>
+                          <option value="8">0.7〜0.8未満</option>
+                          <option value="9">0.8〜0.9未満</option>
+                          <option value="10">0.9〜1.0未満</option>
+                          <option value="15">1.0〜1.5未満</option>
+                          <option value="20">1.5〜2.0未満</option>
+                          <option value="25">2.0〜2.5未満</option>
+                          <option value="30">2.5〜3.0未満</option>
+                          <option value="35">3.0〜3.5未満</option>
+                          <option value="40">3.5〜4.0未満</option>
+                          <option value="45">4.0〜4.5未満</option>
+                          <option value="50">4.5〜5.0未満</option>
+                          <option value="55">5.0〜5.5未満</option>
+                          <option value="60">5.5〜6.0未満</option>
+                          <option value="65">6.0〜6.5未満</option>
+                          <option value="70">6.5〜7.0未満</option>
+                          <option value="75">7.0〜7.5未満</option>
+                          <option value="80">7.5〜8.0未満</option>
+                          <option value="85">8.0〜8.5未満</option>
+                          <option value="90">8.5〜9.0未満</option>
+                          <option value="95">9.0〜9.5未満</option>
+                          <option value="100">9.5〜10.0未満</option>
+                          <option value="999">10.0以上</option>
+                        </optgroup>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="px-3 pt-3">
+                    <div class="cp_ipselect cp_sl01">
+                      <%= search.select "type_of_ovarian_stimulation", options_for_select(Report::HASH_TYPE_OF_OVARIAN_STIMULATION.invert), {class: "text-muted", prompt: "採卵タイプを選ぶ（任意）" } %>
+                    </div>
+                  </div>
+                  <div class="px-3 pt-3">
+                    <div class="cp_ipselect cp_sl01">
+                      <%= search.select "ishoku_type", options_for_select(Report::HASH_ISHOKU_TYPE.invert), {class: "text-muted", prompt: "移植タイプを選ぶ（任意）" } %>
+                    </div>
+                  </div>
+                  <div class="px-3 pt-2">
+                    <div class="pt-3">
+                      <%= submit_tag '検索する', :name => nil, class: "btn btn-info w-100 rounded-lg active", style: "background-color: #2ECFC0; color: #ffffff;box-shadow: 0 1px 2px gray;" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </details>
+        <% end %>
+
         <%= render 'center' %>
         <div class="mt-5 pt-5">
           <%= paginate @reports %>

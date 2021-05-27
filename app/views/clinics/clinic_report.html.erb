@@ -39,7 +39,14 @@
         </div>
 
         <% if @clinic.reports.present? && @clinic.reports.size > 2 %>
-          <details open class="mt-2 pt-3">
+          <%
+            if @reports.current_page == 1
+              open_or_close = "open"
+            else
+              open_or_close = ""
+            end
+          %>
+          <details <%= open_or_close %> class="mt-2 pt-3">
             <summary class="font-weight-bold">【複数条件で絞込み検索】</summary>
             <div class="pt-3">
               <p class="px-2 small text-dark">検索対象は、<%= @clinic.name %>でのレポコのみです。</p>
