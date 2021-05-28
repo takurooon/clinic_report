@@ -225,6 +225,104 @@ class Report < ApplicationRecord
     return reports
   end
 
+  def self.combined_search_within_cl_prefecture(search)
+    clinic_ids = Clinic.where(prefecture_id: search[:from_clinic_prefecture_page]).pluck(:id)
+    reports = Report.released.all.includes(:user, :clinic).where(clinic_id: clinic_ids).order("created_at DESC")
+    if search[:treatment_end_age].present?
+      age_value = search[:treatment_end_age].delete("^0-9")
+      if age_value.length == 2
+        reports = reports.where(treatment_end_age: age_value)
+      elsif age_value.length == 4
+        i = age_value.scan(/.{2}/)
+        a = i[0]
+        b = i[1]
+        reports = reports.where(treatment_end_age: a..b)
+      elsif age_value.length == 5
+        reports = reports.where(treatment_end_age: 50)
+      else
+        reports = reports.where(treatment_end_age: age_value)
+      end
+    end
+    if search[:fertility_treatment_number].present?
+      reports = reports.where(fertility_treatment_number: search[:fertility_treatment_number])
+    end
+    if search[:amh].present?
+      amh_value = search[:amh].delete("^0-9")
+      if amh_value.length <= 3
+        reports = reports.where(amh: amh_value)
+      elsif amh_value.length == 4
+        i = amh_value.scan(/.{2}/)
+        a = i[0]
+        b = i[1]
+        reports = reports.where(amh: a..b)
+      elsif amh_value.length == 5
+        reports = reports.where(amh: [95, 100])
+      elsif amh_value.length == 6
+        reports = reports.where(amh: [6, 7, 8, 9, 10])
+      elsif amh_value.length == 7
+        reports = reports.where(amh: [1, 2, 3, 4, 5])
+      else
+        reports = reports.where(amh: "1000")
+      end
+    end
+    if search[:type_of_ovarian_stimulation].present?
+      reports = reports.where(type_of_ovarian_stimulation: search[:type_of_ovarian_stimulation])
+    end
+    if search[:ishoku_type].present?
+      reports = reports.where(ishoku_type: search[:ishoku_type])
+    end
+    return reports
+  end
+
+  def self.combined_search_within_cl_city(search)
+    clinic_ids = Clinic.where(city_id: search[:from_clinic_city_page]).pluck(:id)
+    reports = Report.released.all.includes(:user, :clinic).where(clinic_id: clinic_ids).order("created_at DESC")
+    if search[:treatment_end_age].present?
+      age_value = search[:treatment_end_age].delete("^0-9")
+      if age_value.length == 2
+        reports = reports.where(treatment_end_age: age_value)
+      elsif age_value.length == 4
+        i = age_value.scan(/.{2}/)
+        a = i[0]
+        b = i[1]
+        reports = reports.where(treatment_end_age: a..b)
+      elsif age_value.length == 5
+        reports = reports.where(treatment_end_age: 50)
+      else
+        reports = reports.where(treatment_end_age: age_value)
+      end
+    end
+    if search[:fertility_treatment_number].present?
+      reports = reports.where(fertility_treatment_number: search[:fertility_treatment_number])
+    end
+    if search[:amh].present?
+      amh_value = search[:amh].delete("^0-9")
+      if amh_value.length <= 3
+        reports = reports.where(amh: amh_value)
+      elsif amh_value.length == 4
+        i = amh_value.scan(/.{2}/)
+        a = i[0]
+        b = i[1]
+        reports = reports.where(amh: a..b)
+      elsif amh_value.length == 5
+        reports = reports.where(amh: [95, 100])
+      elsif amh_value.length == 6
+        reports = reports.where(amh: [6, 7, 8, 9, 10])
+      elsif amh_value.length == 7
+        reports = reports.where(amh: [1, 2, 3, 4, 5])
+      else
+        reports = reports.where(amh: "1000")
+      end
+    end
+    if search[:type_of_ovarian_stimulation].present?
+      reports = reports.where(type_of_ovarian_stimulation: search[:type_of_ovarian_stimulation])
+    end
+    if search[:ishoku_type].present?
+      reports = reports.where(ishoku_type: search[:ishoku_type])
+    end
+    return reports
+  end
+
   # アクションテキスト
   has_rich_text :content
   

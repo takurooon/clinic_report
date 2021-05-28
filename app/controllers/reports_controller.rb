@@ -328,6 +328,30 @@ class ReportsController < ApplicationController
       end
       @like_count = Like.group(:report_id).size
       render 'index'
+    elsif params[:from_clinic_prefecture_page]
+      reports = Report.combined_search_within_cl_prefecture(params)
+      @reports = reports.page(params[:page]).per(20)
+      if reports.present?
+        @released_reports = reports.released
+        @clinics_count_released = reports.pluck(:clinic_id).uniq
+      else
+        @released_reports = Report.released.all.includes(:user, :clinic).order("created_at DESC")
+        @clinics_count_released = Report.released.group(:clinic_id).size
+      end
+      @like_count = Like.group(:report_id).size
+      render 'index'
+    elsif params[:from_clinic_city_page]
+      reports = Report.combined_search_within_cl_city(params)
+      @reports = reports.page(params[:page]).per(20)
+      if reports.present?
+        @released_reports = reports.released
+        @clinics_count_released = reports.pluck(:clinic_id).uniq
+      else
+        @released_reports = Report.released.all.includes(:user, :clinic).order("created_at DESC")
+        @clinics_count_released = Report.released.group(:clinic_id).size
+      end
+      @like_count = Like.group(:report_id).size
+      render 'index'
     else
       reports = Report.compound_search(params)
       @reports = reports.page(params[:page]).per(20)
