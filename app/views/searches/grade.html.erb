@@ -16,7 +16,7 @@
         <div class="tab-wrap1">
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">胚盤胞</label>
           <div class="tab-content1">
-            <%= select "report", :blastocyst_grade, @haibanho .invert, { prompt: "グレード･評価  で絞り込み" }, { class: "form-control mt-4", onchange: "location = 'grade/haibanho/' + this.value"} %>
+            <%= select "report", :blastocyst_grade, @haibanho.invert, { prompt: "グレード･評価  で絞り込み" }, { class: "form-control mt-4", onchange: "location = 'grade/haibanho/' + this.value"} %>
           </div>
           <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">初期胚</label>
           <div class="tab-content1">

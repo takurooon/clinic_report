@@ -179,6 +179,8 @@ class ReportsController < ApplicationController
     gon.ishoku_hormones_p4 = ishoku_hormones_bihp4.flatten
 
     gon.ishoku_hormones_hcg = haibanhoishoku_hormones.map { |h| h[:hcg] }
+
+    @clinic = Clinic.find_by(id: @report.clinic_id)
   end
 
   def new

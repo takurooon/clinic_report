@@ -19,10 +19,14 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">ステータス</td>
+        <td class="result-left-column small text-center ichirantable-left">
+          <%= link_to status_path, class: "text-dark" do %>
+            ステータス<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3 ichirantable-right">
           <% if @report.current_state.present? %>
-            <span class="result-text"><%= @report.str_current_state %></span>
+            <span class="result-text"><%= link_to @report.str_current_state, "/status/#{@report.current_state}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -34,20 +38,28 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">何人目治療</td>
+        <td class="result-left-column small text-center">
+          <%= link_to what_numbers_path, class: "text-dark" do %>
+            何人目治療<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3">
           <% if @report.fertility_treatment_number.present? %>
-            <span class="result-text"><%= @report.str_fertility_treatment_number %></span>
+            <span class="result-text"><%= link_to @report.str_fertility_treatment_number, "/what_number/#{@report.fertility_treatment_number}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">通院終了年齢</td>
+        <td class="result-left-column small text-center">
+          <%= link_to age_path, class: "text-dark" do %>
+            通院終了年齢<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3">
           <% if @report.treatment_end_age.present? %>
-            <span class="result-text"><%= @report.str_treatment_end_age %></span>
+            <span class="result-text"><%= link_to @report.str_treatment_end_age, "/age/#{@report.treatment_end_age}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -124,7 +136,11 @@
       <% end %>
       <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted > 1 && @report.total_number_of_eggs_transplanted < 100 %>
         <tr>
-          <td class="result-left-column small text-center">移植胚</td>
+          <td class="result-left-column small text-center">
+            <%= link_to grade_path, class: "text-dark" do %>
+              移植胚<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+            <% end %>
+          </td>
           <td class="pl-3 pr-0">
             <% if @report.total_number_of_eggs_transplanted > 1 %>
               <p class="mb-3 small"><span class="text-muted"><span class="small">移植胚個数</span></span>&nbsp;<span class="font-weight-bold text-dark"><%= @report.str_total_number_of_eggs_transplanted %></span>
@@ -233,7 +249,11 @@
         </tr>
       <% else %>
         <tr>
-          <td class="result-left-column small text-center">移植胚</td>
+          <td class="result-left-column small text-center">
+            <%= link_to grade_path, class: "text-dark" do %>
+              移植胚<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+            <% end %>
+          </td>
           <td class="pl-3">
             <% if @report.transplant_method.present? %>
               <% if @report.transplant_method < 99 %>
@@ -274,23 +294,27 @@
         </tr>
       <% end %>
       <tr>
-        <td class="result-left-column small text-center">費用</td>
+        <td class="result-left-column small text-center">
+          <%= link_to costs_path, class: "text-dark" do %>
+            費用<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3">
           <% if @report.cost.present? %>
-            <span class="result-text"><%= @report.str_cost %></span>
+            <span class="mb-2 result-text"><%= link_to @report.str_cost, "/cost/#{@report.cost}_all", class: "text-primary" %></span>
             <% if @report.sairan_cost.present? %>
-              <p class="small mt-1 mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">採卵:</span>&nbsp;<%= @report.str_sairan_cost %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
+              <p class="small mt-1 mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">採卵:</span>&nbsp;<%= link_to @report.str_sairan_cost, "/cost/#{@report.sairan_cost}_sairan", class: "text-primary" %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
             <% end %>
             <% if @report.ishoku_cost.present? %>
-              <p class="small mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">移植:</span>&nbsp;<%= @report.str_ishoku_cost %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
+              <p class="small mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">移植:</span>&nbsp;<%= link_to @report.str_ishoku_cost, "/cost/#{@report.ishoku_cost}_ishoku", class: "text-primary" %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
             <% end %>
           <% else %>
             <span class="text-muted small">未回答</span>
             <% if @report.sairan_cost.present? %>
-              <p class="small mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">採卵:</span>&nbsp;<%= @report.str_sairan_cost %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
+              <p class="small mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">採卵:</span>&nbsp;<%= link_to @report.str_sairan_cost, "/cost/#{@report.sairan_cost}_sairan", class: "text-primary" %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
             <% end %>
             <% if @report.ishoku_cost.present? %>
-              <p class="small mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">移植:</span>&nbsp;<%= @report.str_ishoku_cost %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
+              <p class="small mb-0"><span class="small text-muted">(&nbsp;</span><span class="small text-muted">移植:</span>&nbsp;<%= link_to @report.str_ishoku_cost, "/cost/#{@report.ishoku_cost}_ishoku", class: "text-primary" %><span class="small text-muted">&nbsp;/回あたり&nbsp;)</span></p>
             <% end %>
           <% end %>
         </td>
@@ -306,10 +330,14 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">AMH</td>
+        <td class="result-left-column small text-center ichirantable-left">
+          <%= link_to amh_path, class: "text-dark" do %>
+            AMH<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3 ichirantable-right">
           <% if @report.amh.present? %>
-            <span class="result-text"><%= link_to "# " + @report.str_amh, "/amh/#{@report.amh}", class: "text-primary" %></span>
+            <span class="result-text"><%= link_to @report.str_amh, "/amh/#{@report.amh}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -327,14 +355,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if era.place.present? %>
                         <% if era.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{era.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif era.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= era.str_special_inspection_place(era.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{era.name}", class: "text-primary" do %>
+                              <%= era.str_special_inspection_place(era.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{era.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{era.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -354,14 +398,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if emma.place.present? %>
                         <% if emma.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{emma.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif emma.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= emma.str_special_inspection_place(emma.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{emma.name}", class: "text-primary" do %>
+                              <%= emma.str_special_inspection_place(emma.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{emma.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{emma.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -381,14 +441,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if alice.place.present? %>
                         <% if alice.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{alice.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif alice.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= alice.str_special_inspection_place(alice.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{alice.name}", class: "text-primary" do %>
+                              <%= alice.str_special_inspection_place(alice.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{alice.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{alice.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -408,14 +484,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if trio.place.present? %>
                         <% if trio.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{trio.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif trio.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= trio.str_special_inspection_place(trio.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{trio.name}", class: "text-primary" do %>
+                              <%= trio.str_special_inspection_place(trio.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{trio.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{trio.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -435,14 +527,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if erpeak.place.present? %>
                         <% if erpeak.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{erpeak.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif erpeak.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= erpeak.str_special_inspection_place(erpeak.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{erpeak.name}", class: "text-primary" do %>
+                              <%= erpeak.str_special_inspection_place(erpeak.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{erpeak.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{erpeak.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -462,14 +570,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if hysteroscopy.place.present? %>
                         <% if hysteroscopy.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{hysteroscopy.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif hysteroscopy.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= hysteroscopy.str_special_inspection_place(hysteroscopy.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{hysteroscopy.name}", class: "text-primary" do %>
+                              <%= hysteroscopy.str_special_inspection_place(hysteroscopy.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{hysteroscopy.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{hysteroscopy.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -489,14 +613,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if intrauterine_flora.place.present? %>
                         <% if intrauterine_flora.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{intrauterine_flora.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif intrauterine_flora.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= intrauterine_flora.str_special_inspection_place(intrauterine_flora.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{intrauterine_flora.name}", class: "text-primary" do %>
+                              <%= intrauterine_flora.str_special_inspection_place(intrauterine_flora.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{intrauterine_flora.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{intrauterine_flora.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -516,14 +656,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if endometrial_biopsy.place.present? %>
                         <% if endometrial_biopsy.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{endometrial_biopsy.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif endometrial_biopsy.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= endometrial_biopsy.str_special_inspection_place(endometrial_biopsy.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{endometrial_biopsy.name}", class: "text-primary" do %>
+                              <%= endometrial_biopsy.str_special_inspection_place(endometrial_biopsy.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{endometrial_biopsy.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{endometrial_biopsy.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -543,14 +699,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if hidukeshin.place.present? %>
                         <% if hidukeshin.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{hidukeshin.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif hidukeshin.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= hidukeshin.str_special_inspection_place(hidukeshin.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{hidukeshin.name}", class: "text-primary" do %>
+                              <%= hidukeshin.str_special_inspection_place(hidukeshin.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{hidukeshin.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{hidukeshin.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -570,14 +742,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if bce.place.present? %>
                         <% if bce.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{bce.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif bce.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= bce.str_special_inspection_place(bce.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{bce.name}", class: "text-primary" do %>
+                              <%= bce.str_special_inspection_place(bce.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td> 
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{bce.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{bce.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -597,14 +785,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if chromosome.place.present? %>
                         <% if chromosome.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{chromosome.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif chromosome.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= chromosome.str_special_inspection_place(chromosome.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{chromosome.name}", class: "text-primary" do %>
+                              <%= chromosome.str_special_inspection_place(chromosome.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{chromosome.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{chromosome.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -624,14 +828,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if ca125.place.present? %>
                         <% if ca125.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{ca125.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif ca125.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= ca125.str_special_inspection_place(ca125.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{ca125.name}", class: "text-primary" do %>
+                              <%= ca125.str_special_inspection_place(ca125.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{ca125.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{ca125.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -651,14 +871,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if mri.place.present? %>
                         <% if mri.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{mri.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif mri.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= mri.str_special_inspection_place(mri.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{mri.name}", class: "text-primary" do %>
+                              <%= mri.str_special_inspection_place(mri.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{mri.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{mri.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -678,14 +914,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if vitamin_d.place.present? %>
                         <% if vitamin_d.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{vitamin_d.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif vitamin_d.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= vitamin_d.str_special_inspection_place(vitamin_d.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{vitamin_d.name}", class: "text-primary" do %>
+                              <%= vitamin_d.str_special_inspection_place(vitamin_d.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{vitamin_d.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{vitamin_d.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -705,14 +957,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if copper_zinc.place.present? %>
                         <% if copper_zinc.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{copper_zinc.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif copper_zinc.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= copper_zinc.str_special_inspection_place(copper_zinc.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{copper_zinc.name}", class: "text-primary" do %>
+                              <%= copper_zinc.str_special_inspection_place(copper_zinc.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{copper_zinc.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{copper_zinc.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -732,14 +1000,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if kruger.place.present? %>
                         <% if kruger.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{kruger.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif kruger.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= kruger.str_special_inspection_place(kruger.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{kruger.name}", class: "text-primary" do %>
+                              <%= kruger.str_special_inspection_place(kruger.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{kruger.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{kruger.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -759,14 +1043,30 @@
                       <td class="result-left-column small text-center" style="width:20%">どこで</td>
                       <% if dfi.place.present? %>
                         <% if dfi.place == 1 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{dfi.name}", class: "text-primary" do %>
+                              <%= @report.clinic.name %>
+                            <% end %>
+                          </td>
                         <% elsif dfi.place <= 4 %>
-                          <td class="pl-3 small font-weight-bold" style="width:80%"><%= dfi.str_special_inspection_place(dfi.place) %></td>
+                          <td class="pl-3 small font-weight-bold" style="width:80%">
+                            <%= link_to "/tags/option/#{dfi.name}", class: "text-primary" do %>
+                              <%= dfi.str_special_inspection_place(dfi.place) %>
+                            <% end %>
+                          </td>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{dfi.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       <% else %>
-                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                        <td class="pl-3 small text-muted" style="width:80%">
+                          <%= link_to "/tags/option/#{dfi.name}", class: "text-primary" do %>
+                            未回答
+                          <% end %>
+                        </td>
                       <% end %>
                     </tr>
                   </table>
@@ -787,14 +1087,30 @@
                         <td class="result-left-column small text-center" style="width:20%">どこで</td>
                         <% if pgta.place.present? %>
                           <% if pgta.place == 1 %>
-                            <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                            <td class="pl-3 small font-weight-bold" style="width:80%">
+                              <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                <%= @report.clinic.name %>
+                              <% end %>
+                            </td>
                           <% elsif pgta.place <= 4 %>
-                            <td class="pl-3 small font-weight-bold" style="width:80%"><%= pgta.str_special_inspection_place(pgta.place) %></td>
+                            <td class="pl-3 small font-weight-bold" style="width:80%">
+                              <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                <%= pgta.str_special_inspection_place(pgta.place) %>
+                              <% end %>
+                            </td>
                           <% else %>
-                            <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                            <td class="pl-3 small text-muted" style="width:80%">
+                              <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                未回答
+                              <% end %>
+                            </td>
                           <% end %>
                         <% else %>
-                          <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                          <td class="pl-3 small text-muted" style="width:80%">
+                            <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                              未回答
+                            <% end %>
+                          </td>
                         <% end %>
                       </tr>
                     </table>
@@ -814,14 +1130,30 @@
                           <td class="result-left-column small text-center" style="width:20%">どこで</td>
                           <% if pgta.place.present? %>
                             <% if pgta.place == 1 %>
-                              <td class="pl-3 small font-weight-bold" style="width:80%"><%= @report.clinic.name %></td>
+                              <td class="pl-3 small font-weight-bold" style="width:80%">
+                                <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                  <%= @report.clinic.name %>
+                                <% end %>
+                              </td>
                             <% elsif pgta.place <= 4 %>
-                              <td class="pl-3 small font-weight-bold" style="width:80%"><%= pgta.str_special_inspection_place(pgta.place) %></td>
+                              <td class="pl-3 small font-weight-bold" style="width:80%">
+                                <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                  <%= pgta.str_special_inspection_place(pgta.place) %>
+                                <% end %>
+                              </td>
                             <% else %>
-                              <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                              <td class="pl-3 small text-muted" style="width:80%">
+                                <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                  未回答
+                                <% end %>
+                              </td>
                             <% end %>
                           <% else %>
-                            <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                            <td class="pl-3 small text-muted" style="width:80%">
+                              <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                未回答
+                              <% end %>
+                            </td>
                           <% end %>
                         </tr>
                       </table>
@@ -844,7 +1176,11 @@
                               <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                                  <td class="pl-3 small font-weight-bold" style="width:80%"><%= pgta.str_special_inspection_place(pgta.place) %></td>
+                                  <td class="pl-3 small font-weight-bold" style="width:80%">
+                                    <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                      <%= pgta.str_special_inspection_place(pgta.place) %>
+                                    <% end %>
+                                  </td>
                                 </tr>
                               </table>
                             </div>
@@ -853,7 +1189,11 @@
                               <table class="table p-0 mb-0">
                                 <tr>
                                   <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                                  <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                                  <td class="pl-3 small text-muted" style="width:80%">
+                                    <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                      未回答
+                                    <% end %>
+                                  </td>
                                 </tr>
                               </table>
                             </div>
@@ -863,7 +1203,11 @@
                             <table class="table p-0 mb-0">
                               <tr>
                                 <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                                <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                                <td class="pl-3 small text-muted" style="width:80%">
+                                  <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                    未回答
+                                  <% end %>
+                                </td>
                               </tr>
                             </table>
                           </div>
@@ -881,7 +1225,11 @@
                         <table class="table p-0 mb-0">
                           <tr>
                             <td class="result-left-column small text-center" style="width:20%">どこで</td>
-                            <td class="pl-3 small text-muted" style="width:80%">未回答</td>
+                            <td class="pl-3 small text-muted" style="width:80%">
+                              <%= link_to "/tags/option/#{pgta.name}", class: "text-primary" do %>
+                                未回答
+                              <% end %>
+                            </td>
                           </tr>
                         </table>
                       </div>
@@ -931,10 +1279,14 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">採卵回数</td>
+        <td class="result-left-column small text-center ichirantable-left">
+          <%= link_to count_path, class: "text-dark" do %>
+            採卵回数<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3 ichirantable-right">
           <% if @report.total_number_of_sairan.present? %>
-            <span class="result-text"><%= @report.str_total_number_of_sairan %></span>
+            <span class="result-text"><%= link_to @report.str_total_number_of_sairan, "/count/sairan/#{@report.total_number_of_sairan}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -1401,10 +1753,14 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">移植回数</td>
+        <td class="result-left-column small text-center ichirantable-left">
+        <%= link_to count_path, class: "text-dark" do %>
+          移植回数<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+        <% end %>
+        </td>
         <td class="pl-3 ichirantable-right">
           <% if @report.total_number_of_transplants.present? %>
-            <span class="result-text"><%= @report.str_total_number_of_transplants %></span>
+            <span class="result-text"><%= link_to @report.str_total_number_of_transplants, "/count/sairan/#{@report.total_number_of_transplants}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -1432,7 +1788,11 @@
       </tr>
       <% if @report.total_number_of_eggs_transplanted.present? && @report.total_number_of_eggs_transplanted > 1 && @report.total_number_of_eggs_transplanted < 100 %>
         <tr>
-          <td class="result-left-column small text-center">移植胚</td>
+          <td class="result-left-column small text-center">
+            <%= link_to grade_path, class: "text-dark" do %>
+              移植胚<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+            <% end %>
+          </td>
           <td class="pl-3 pr-0">
             <% if @report.total_number_of_eggs_transplanted > 1 %>
               <p class="mb-3 small"><span class="text-muted"><span class="small">移植胚個数</span></span>&nbsp;<span class="font-weight-bold text-dark"><%= @report.str_total_number_of_eggs_transplanted %></span>
@@ -1541,7 +1901,11 @@
         </tr>
       <% else %>
         <tr>
-          <td class="result-left-column small text-center">移植胚</td>
+          <td class="result-left-column small text-center">
+            <%= link_to grade_path, class: "text-dark" do %>
+              移植胚<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+            <% end %>
+          </td>
           <td class="pl-3">
             <% if @report.transplant_method.present? %>
               <% if @report.transplant_method < 99 %>
@@ -1967,30 +2331,42 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">治療費総額</td>
+        <td class="result-left-column small text-center ichirantable-left">
+          <%= link_to costs_path, class: "text-dark" do %>
+            治療費総額<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3 ichirantable-right">
           <% if @report.cost.present? %>
-            <span class="result-text"><%= @report.str_cost %></span>
+            <span class="result-text"><%= link_to @report.str_cost, "/cost/#{@report.cost}_all", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">1回あたりの採卵費用</td>
+        <td class="result-left-column small text-center">
+          <%= link_to costs_path, class: "text-dark" do %>
+            1回あたりの採卵費用<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3">
           <% if @report.sairan_cost.present? %>
-            <span class="result-text"><%= @report.str_sairan_cost %></span>
+            <span class="result-text"><%= link_to @report.str_sairan_cost, "/cost/#{@report.sairan_cost}_sairan", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">1回あたりの移植費用</td>
+        <td class="result-left-column small text-center">
+          <%= link_to costs_path, class: "text-dark" do %>
+            1回あたりの移植費用<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3">
           <% if @report.ishoku_cost.present? %>
-            <span class="result-text"><%= @report.str_ishoku_cost %></span>
+            <span class="result-text"><%= link_to @report.str_ishoku_cost, "/cost/#{@report.ishoku_cost}_ishoku", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -2026,10 +2402,14 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center">ステータス</td>
-        <td class="pl-3">
+        <td class="result-left-column small text-center ichirantable-left">
+          <%= link_to status_path, class: "text-dark" do %>
+            ステータス<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
+        <td class="pl-3 ichirantable-right">
           <% if @report.current_state.present? %>
-            <span class="result-text"><%= @report.str_current_state %></span>
+            <span class="result-text"><%= link_to @report.str_current_state, "/status/#{@report.current_state}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -2067,22 +2447,30 @@
       </tr>
       <% if @report.work_style.present? || @report.switching_work_styles.present? %>
         <tr>
-          <td class="result-left-column small text-center" style="width:30%">治療開始時の働き方&nbsp;<sup class="text-success">●</sup></td>
+          <td class="result-left-column small text-center" style="width:30%">
+            <%= link_to works_path, class: "text-dark" do %>
+              治療開始時の働き方&nbsp;<sup class="text-success">●</sup><i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+            <% end %>
+          </td>
           <td class="pl-3" style="width:70%">
             <% if @report.work_style_status == "hide" %>
               <span class="small text-muted"><i data-feather="lock" class="my-1 pb-1 px-1"></i><%= "非公開" %></span>
             <% elsif @report.work_style.blank? %>
               <span class="small text-muted"><%= "未回答" %></span>
             <% else %>
-              <span class="result-text"><%= @report.str_work_style %></span>
+              <span class="result-text"><%= link_to @report.str_work_style, "/work/#{@report.work_style}_sairan", class: "text-primary" %></span>
             <% end %>
           </td>
         </tr>
         <tr>
-          <td class="result-left-column small text-center" style="width:30%">治療中の働き方の変化</td>
+          <td class="result-left-column small text-center" style="width:30%">
+            <%= link_to works_switch_path, class: "text-dark" do %>
+              治療中の働き方の変化&nbsp;<sup class="text-success">●</sup><i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+            <% end %>
+          </td>
           <td class="pl-3" style="width:70%">
             <% if @report.switching_work_styles.present? %>
-              <span class="result-text"><%= @report.str_switching_work_styles %></span>
+              <span class="result-text"><%= link_to @report.str_switching_work_styles, "/work_switch/#{@report.switching_work_styles}_sairan", class: "text-primary" %></span>
             <% else %>
               <span class="small text-muted"><%= "未回答" %></span>
             <% end %>
@@ -2272,12 +2660,18 @@
         </td>
       </tr>
       <tr>
-        <td class="result-left-column small text-center ichirantable-left">女性</td>
+        <td class="result-left-column small text-center ichirantable-left">
+          <%= link_to tags_path, class: "text-dark" do %>
+            女性<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+          <% end %>
+        </td>
         <td class="pl-3 ichirantable-right">
           <% if @report.f_funin_factors.present? %>
             <% @report.f_funin_factors.each do |f_funin_factor| %>
               <ul class="list-unstyled mb-0">
-                <li class="result-text small">･&nbsp;&nbsp;<%= f_funin_factor.name %></li>
+                <%= link_to "/tags/factor/#{f_funin_factor.id}" do %>
+                  <li class="result-text small text-primary mb-2">･&nbsp;&nbsp;<%= f_funin_factor.name %></li>
+                <% end %>
               </ul>
             <% end %>
           <% else %>
@@ -2309,11 +2703,17 @@
         <% end %>
         <% if @report.fuiku_inspections.present? %>
           <tr>
-            <td class="result-left-column small text-center">不育原因</td>
+            <td class="result-left-column small text-center">
+              <%= link_to tags_path, class: "text-dark" do %>
+                不育原因<i data-feather="external-link" class="text-primary pt-1 pb-2"></i>
+              <% end %>
+            </td>
             <td class="pl-3">
               <% @report.fuiku_inspections.each do |fuiku_inspection| %>
                 <ul class="list-unstyled mb-0">
-                  <li class="result-text small">･&nbsp;&nbsp;<%= fuiku_inspection.name %></li>
+                  <%= link_to "/tags/fuiku/#{fuiku_inspection.id}" do %>
+                    <li class="result-text small text-primary mb-2">･&nbsp;&nbsp;<%= fuiku_inspection.name %></li>
+                  <% end %>
                 </ul>
               <% end %>
             </td>
@@ -2392,7 +2792,7 @@
           <%= image_tag"home/finger_mom_down.svg", width: "25px", class: "m-0 p-0", loading: "lazy" %>&nbsp;<small class="text-muted"><%= @report.user.name %>さんによる満足度評価&nbsp;(5段階)</small>
           </div>
           <br>
-          <div class="box27 mt-2 mb-0 px-2">
+          <div class="box27 mt-2 mb-0 px-2 bg-white">
             <span class="box-title">満足度 評価</span>
             <div class="row pb-3">
               <div class="col-10 offset-1 chart-container">

@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <% if @clinic.reports.present? && @clinic.reports.size > 2 %>
+        <% if @clinic.reports.present? && @clinic.reports.size > 10 %>
           <%
             if @reports.current_page == 1
               open_or_close = "open"
