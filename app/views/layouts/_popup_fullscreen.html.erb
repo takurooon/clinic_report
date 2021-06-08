@@ -45,7 +45,7 @@ $(window).on('load',function(){
 <% if flash[:popup_fullscreen].present? %>
   <% if flash[:popup_fullscreen] == 0 %>
     <div class="modal in pt-5" id="popup_fullscreen_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-left: 0px;">
-      <div class="modal-dialog px-3" role="document" style="height: 100%">
+      <div class="modal-dialog mt-3 pt-5 px-3" role="document" style="height: 100%">
         <div class="modal-content" style="border-radius: 3%;">
           <div class="modal-header mx-auto">
             <h6><%= image_tag("home/confetti_ball.svg", width: "30px;", loading: "lazy") %>&nbsp;&nbsp;&nbsp;<%= flash[:popup_fullscreen_1] %></h6>
@@ -65,7 +65,7 @@ $(window).on('load',function(){
     </div>
   <% else %>
     <div class="modal in pt-5" id="popup_fullscreen_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-left: 0px;">
-      <div class="modal-dialog px-3" role="document" style="height: 100%">
+      <div class="modal-dialog mt-3 pt-5 px-3" role="document" style="height: 100%">
         <div class="modal-content" style="border-radius: 3%;">
           <div class="modal-header mx-auto">
             <h6><%= image_tag("home/confetti_ball.svg", width: "30px;", loading: "lazy") %>&nbsp;&nbsp;&nbsp;<%= flash[:popup_fullscreen_1] %></h6>
