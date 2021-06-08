@@ -225,9 +225,18 @@ class ReportsController < ApplicationController
       elsif @report.save
         # @report.save_tags(tag_list)
         if params[:status1].present?
+          flash[:popup_fullscreen] = 1
+          flash[:popup_fullscreen_1] = "下書きありがとうございます！"
+          flash[:popup_fullscreen_2] = "レポコ作成に際して何か不明なことやわかりづらい点などあれば以下までご連絡ください。"
+          flash[:popup_fullscreen_3] = "repoco.net@gmail.com"
+          flash[:popup_fullscreen_4] = "あなたの貴重な治療経験をじっくりカタチにして、\n完成したらぜひ公開してください！"
           format.html { redirect_to report_path(@report), notice: 'レポコを保存しました。' }
           format.json { render :show, status: :created, location: @report }
         else
+          flash[:popup_fullscreen] = 0
+          flash[:popup_fullscreen_1] = "投稿ありがとうございます！"
+          flash[:popup_fullscreen_2] = "たくさんのレポコが集まるほど不妊治療の不透明な環境の可視化につながります！"
+          flash[:popup_fullscreen_3] = "よろしければあなたのレポコをぜひシェアしてください！"
           format.html { redirect_to report_path(@report), notice: 'レポコを作成しました。' }
           format.json { render :show, status: :created, location: @report }
         end
@@ -283,9 +292,18 @@ class ReportsController < ApplicationController
         format.html { render :edit }
       elsif @report.update(report_params)
         if @report.status == "nonreleased"
+          flash[:popup_fullscreen] = 1
+          flash[:popup_fullscreen_1] = "更新ありがとうございます！"
+          flash[:popup_fullscreen_2] = "レポコ作成に際して何か不明なことやわかりづらい点などあれば以下までご連絡ください。"
+          flash[:popup_fullscreen_3] = "repoco.net@gmail.com"
+          flash[:popup_fullscreen_4] = "あなたの貴重な治療経験をじっくりカタチにして、\n完成したらぜひ公開してください！"
           format.html { redirect_to report_path(@report), notice: 'レポコの下書きを更新しました。' }
           format.json { render :show, status: :created, location: @report }
         else
+          flash[:popup_fullscreen] = 0
+          flash[:popup_fullscreen_1] = "更新ありがとうございます！"
+          flash[:popup_fullscreen_2] = "たくさんのレポコが集まるほど不妊治療の不透明な環境の可視化につながります！"
+          flash[:popup_fullscreen_3] = "よろしければあなたのレポコをぜひシェアしてください！"
           format.html { redirect_to report_path(@report), notice: 'レポコを更新しました。' }
           format.json { render :show, status: :created, location: @report }
         end

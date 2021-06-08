@@ -320,6 +320,10 @@ h1 {
     width: 100%;
 }
 
+.modal-header h6 {
+  line-height: 1.4;
+}
+
 // 画面下の投稿やSNSボタン・ナビゲーションバー
 @media screen and (min-width:768px){
 	.area_under_mobile_screen {

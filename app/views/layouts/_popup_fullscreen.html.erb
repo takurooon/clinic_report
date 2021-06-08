@@ -1,0 +1,88 @@
+<script>
+$(window).on('load',function(){
+    $('#popup_fullscreen_modal').modal('show');
+});
+</script>
+
+<% report_title = strip_tags(@report.title.to_s).gsub(/[\n]/,"").strip.truncate(26) %>
+  <% report_title_long = strip_tags(@report.title.to_s).gsub(/[\n]/,"").strip.truncate(50) %>
+  <% user_name = strip_tags(@report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %>
+  <% if @report.treatment_end_age.present? %>
+    <% treatment_end_age = "(#{@report.str_treatment_end_age})" %>
+    <% treatment_end_age2 = "#{@report.str_treatment_end_age}: " %>
+  <% else %>
+    <% treatment_end_age = "" %>
+    <% treatment_end_age2 = "" %>
+  <% end %>
+  <% if @report.year_of_treatment_end.present? %>
+    <% year_of_treatment_end = "(#{@report.year_of_treatment_end.year.to_s}年)" %>
+    <% year_of_treatment_end2 = "･･･#{@report.year_of_treatment_end.year.to_s}年" %>
+  <% else %>
+    <% year_of_treatment_end = "" %>
+    <% year_of_treatment_end2 = "" %>
+  <% end %>
+  <% author = " #{user_name}さん" %>
+  <% if @report.fertility_treatment_number.present? %>
+    <% treatment_number = "#{@report.str_fertility_treatment_number}" %>
+  <% else %>
+    <% treatment_number = "" %>
+  <% end %>
+  <% if @report.title.present? %>
+    <% title = "#{report_title} | REPOCO" %>
+    <% og_title = "#{report_title}" %>
+    <% sns_text = "【#{treatment_end_age2}#{@report.clinic.name} (#{@report.clinic.prefecture.name})での#{author}の#{treatment_number}レポコ#{year_of_treatment_end2}】 " + "#{report_title_long}" %>
+  <% else %>
+    <% title = "#{@report.clinic.name}のレポコ | REPOCO" %>
+    <% og_title = "#{@report.clinic.name}(#{@report.clinic.prefecture.name}/#{@report.clinic.city.name})の口コミ･レビュー" %>
+    <% sns_text = "【#{treatment_end_age2}#{@report.clinic.name} (#{@report.clinic.prefecture.name})での#{author}の#{treatment_number}レポコ#{year_of_treatment_end2}】 " %>
+  <% end %>
+
+  <% set_meta_tags description: @report.clinic.name + "(" + @report.clinic.prefecture.name + @report.clinic.city.name + ")の口コミ・評判・レビュー・治療内容などの詳細情報をチェックできます。" %>
+  <% set_meta_tags title: og_title %>
+  <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_22:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}の#{treatment_number}レポコ,co_rgb:333,w_400,c_fit/v1579444928/ogp_476_298_brandcolor3_4_ceilky.png"} %>
+  <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_22:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}の#{treatment_number}レポコ,co_rgb:333,w_400,c_fit/v1579444928/ogp_476_298_brandcolor3_4_ceilky.png"} %>
+
+<% if flash[:popup_fullscreen].present? %>
+  <% if flash[:popup_fullscreen] == 0 %>
+    <div class="modal in pt-5" id="popup_fullscreen_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-left: 0px;">
+      <div class="modal-dialog mt-5 pt-5 px-3" role="document" style="height: 100%">
+        <div class="modal-content" style="border-radius: 3%;">
+          <div class="modal-header mx-auto">
+            <h6><%= image_tag("home/confetti_ball.svg", width: "30px;", loading: "lazy") %>&nbsp;&nbsp;&nbsp;<%= flash[:popup_fullscreen_1] %></h6>
+          </div>
+          <div class="modal-body mx-auto">
+            <p><%= flash[:popup_fullscreen_2] %></p>
+            <p><%= flash[:popup_fullscreen_3] %></p>
+            <div class="pt-4 text-center">
+              <%= link_to "シェアする", "https://twitter.com/intent/tweet?text=#{sns_text}&hashtags=レポコ,REPOCO&url=#{request.url}", class:"btn bg-info text-white rounded-pill w-75 mb-0", title: 'Twitter', target: '_blank' %>
+            </div>
+            <div class="pt-3 text-center">
+              <button type="button" class="btn btn-primary mb-0" data-dismiss="modal">またにする</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="modal in pt-5" id="popup_fullscreen_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-left: 0px;">
+      <div class="modal-dialog mt-5 pt-5 px-3" role="document" style="height: 100%">
+        <div class="modal-content" style="border-radius: 3%;">
+          <div class="modal-header mx-auto">
+            <h6><%= image_tag("home/confetti_ball.svg", width: "30px;", loading: "lazy") %>&nbsp;&nbsp;&nbsp;<%= flash[:popup_fullscreen_1] %></h6>
+          </div>
+          <div class="modal-body mx-auto">
+            <p><%= flash[:popup_fullscreen_4] %></p>
+            <p><%= flash[:popup_fullscreen_2] %></p>
+            <p><%= mail_to flash[:popup_fullscreen_3], '→お問合せはこちら' %></p>
+            <div class="pt-4 text-center">
+              <%= link_to 'やっぱり公開する', release_report_path(@report), method: :patch, data: { confirm: '公開して良いですか？'}, class:"btn bg-info text-white rounded-pill w-75 mb-0" %>
+            </div>
+            <div class="pt-3 text-center">
+              <button type="button" class="btn btn-primary mb-0" data-dismiss="modal">とじる</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

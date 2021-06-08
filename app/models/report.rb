@@ -476,6 +476,9 @@ class Report < ApplicationRecord
   def str_current_state
     return HASH_CURRENT_STATE[self.current_state]
   end
+  def self.str_current_state_cm(current_state)
+    return HASH_CURRENT_STATE[current_state]
+  end
 
   # 検索画面用のcurrent_stateの区分値(現在の状況)
   HASH_CURRENT_STATE_SEARCH = {

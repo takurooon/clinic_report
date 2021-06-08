@@ -14,20 +14,30 @@
     <% treatment_end_age2 = "" %>
   <% end %>
   <% if @report.year_of_treatment_end.present? %>
-    <% year_of_treatment_end = "(#{@report.year_of_treatment_end.year.to_s}年卒業)" %>
-    <% year_of_treatment_end2 = "･･･#{@report.year_of_treatment_end.year.to_s}年卒業" %>
+    <% year_of_treatment_end = "(#{@report.year_of_treatment_end.year.to_s}年)" %>
+    <% year_of_treatment_end2 = "･･･#{@report.year_of_treatment_end.year.to_s}年" %>
   <% else %>
     <% year_of_treatment_end = "" %>
     <% year_of_treatment_end2 = "" %>
   <% end %>
-  <% author = " #{user_name}さんの" %>
+  <% author = " #{user_name}さん" %>
+  <% if @report.fertility_treatment_number.present? %>
+    <% treatment_number = "#{@report.str_fertility_treatment_number}" %>
+  <% else %>
+    <% treatment_number = "" %>
+  <% end %>
   <% if @report.title.present? %>
     <% title = "#{report_title} | REPOCO" %>
-    <% sns_text = "【#{treatment_end_age2}#{@report.clinic.name} (#{@report.clinic.prefecture.name})での#{author}レポコ#{year_of_treatment_end2}】 " + "#{report_title_long}" %>
+    <% og_title = "#{report_title}" %>
+    <% sns_text = "【#{treatment_end_age2}#{@report.clinic.name} (#{@report.clinic.prefecture.name})での#{author}の#{treatment_number}レポコ#{year_of_treatment_end2}】 " + "#{report_title_long}" %>
   <% else %>
     <% title = "#{@report.clinic.name}のレポコ | REPOCO" %>
-    <% sns_text = "【#{treatment_end_age2}#{@report.clinic.name} (#{@report.clinic.prefecture.name})での#{author}レポコ#{year_of_treatment_end2}】 " %>
+    <% og_title = "#{@report.clinic.name}(#{@report.clinic.prefecture.name}/#{@report.clinic.city.name})の口コミ･レビュー" %>
+    <% sns_text = "【#{treatment_end_age2}#{@report.clinic.name} (#{@report.clinic.prefecture.name})での#{author}の#{treatment_number}レポコ#{year_of_treatment_end2}】 " %>
   <% end %>
+
+  <% set_meta_tags description: @report.clinic.name + "(" + @report.clinic.prefecture.name + @report.clinic.city.name + ")の口コミ・評判・レビュー・治療内容などの詳細情報をチェックできます。" %>
+  <% set_meta_tags title: og_title %>
 
   <div class="twitter-circle">
     <div class="twitter-btn" title='Twitterでシェア！'>
@@ -35,7 +45,7 @@
         <%= images_action_svg("twitter_mobile.svg") %>
       <% end %>
     </div>
-    <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_22:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_400,c_fit/v1579444928/ogp_476_298_brandcolor3_4_ceilky.png"} %>
-      <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_22:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}のレポコ,co_rgb:333,w_400,c_fit/v1579444928/ogp_476_298_brandcolor3_4_ceilky.png"} %>
+    <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_22:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}の#{treatment_number}レポコ,co_rgb:333,w_400,c_fit/v1579444928/ogp_476_298_brandcolor3_4_ceilky.png"} %>
+    <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_22:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}の#{treatment_number}レポコ,co_rgb:333,w_400,c_fit/v1579444928/ogp_476_298_brandcolor3_4_ceilky.png"} %>
   </div>
 </div>

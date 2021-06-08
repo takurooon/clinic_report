@@ -165,6 +165,11 @@ class ClinicsController < ApplicationController
     gon.clinic_evaluation = []
     gon.clinic_evaluation << @doctor_quality << @staff_quality << @impression_of_technology << @impression_of_price << @average_waiting_time2 << @comfort_of_space
     @clinic_evaluation = gon.clinic_evaluation.compact
+
+    current_state = clinic_reports.pluck(:current_state).compact
+    @current_state_frequent = current_state.max_by{|value| current_state.count(value)}
+    @current_state_frequent_2 = current_state.group_by { |e| e }.sort_by { |e, v| -v.size }.map(&:first).second
+    @current_state_frequent_3 = current_state.group_by { |e| e }.sort_by { |e, v| -v.size }.map(&:first).third
   end
 
   def clinic_report
