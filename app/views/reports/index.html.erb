@@ -13,6 +13,36 @@
     </div>
   <% end %>
 
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {
+          'packages':['geochart'],
+          'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+          var data = google.visualization.arrayToDataTable(
+            gon.prefecture_reports
+          );
+          //描画オプション：描画地域などを設定できる。
+          var options = {
+            region: 'JP',
+            resolution: 'provinces',
+            colorAxis: {colors: ['#F5F5F5', '#ACFCF5', '#2ECFC0']},
+            backgroundColor: '#ffffff',
+            datalessRegionColor: '#F5F5F5',
+            Default: '#e31b23'
+            };
+          //地図を描画するための要素を指定する。
+          var chart1 = new google.visualization.GeoChart(document.getElementById('regions_div1'));
+          var chart2 = new google.visualization.GeoChart(document.getElementById('regions_div2'));
+          //地図を描画する
+          chart1.draw(data, options);
+          chart2.draw(data, options);
+        }
+      </script>
+
   <% if @reports.current_page == 1 %>
     <div class="d-flex justify-content-center row">
       <div class="mt-0 col-sm-7 text-center px-0">
@@ -167,25 +197,45 @@
                 </div>
               <% end %>
             </div>
-          </div>
+          </div><hr class="mt-0 mb-4">
           <div class="px-3">
-            <div class="pr-4">
-              <div class="d-none d-sm-block">
-                <div class="pb-2 small d-flex align-item-center justify-content-center">
-                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "クリニック一覧から探す", clinics_path, class: "text-primary" %>
-                </div>
-                <div class="py-2 small d-flex align-item-center justify-content-center">
-                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
-                </div>
-                <% unless user_signed_in? %>
-                  <div class="py-2 small d-flex align-item-center justify-content-center">
-                    <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "レポコる", signup_path, class: "text-primary" %>
+            <div class="d-none d-sm-block">
+              <div class="mb-3">
+                <div class="d-flex justify-content-center">
+                  <div class="cp_ipselect cp_sl01 w-50">
+                  <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県から探す", onchange: "location = 'clinics_/' + this.value" } %>
                   </div>
-                <% end %>
+                </div>
               </div>
-              <div class="d-block d-sm-none">
+              <div class="pb-4">
+                <p class="mb-0 small text-muted text-right"><span class="small">※&nbsp;レポコのある都道府県（医療機関）</small></p>
+                <div id="regions_div1"></div>
+              </div>
+              <div class="pb-2 small d-flex align-item-center justify-content-center">
+                <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "都道府県一覧から探す", clinics_path, class: "text-primary" %>
+              </div>
+              <div class="py-2 small d-flex align-item-center justify-content-center">
+                <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
+              </div>
+              <% unless user_signed_in? %>
+                <div class="py-2 small d-flex align-item-center justify-content-center">
+                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "レポコる", signup_path, class: "text-primary" %>
+                </div>
+              <% end %>
+            </div>
+            <div class="d-block d-sm-none">
+              <div class="d-flex justify-content-center pb-2">
+                <div class="cp_ipselect cp_sl01 w-75">
+                  <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県から探す", onchange: "location = 'clinics_/' + this.value" } %>
+                </div>
+              </div>
+              <div class="pb-4">
+                <p class="mb-0 small text-muted text-right"><span class="small">※&nbsp;レポコのある都道府県（医療機関）</small></p>
+                <div id="regions_div2"></div>
+              </div>
+              <div class="pr-4">
                 <div class="pb-2 small d-flex align-item-center justify-content-end">
-                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "クリニック一覧から探す", clinics_path, class: "text-primary" %>
+                  <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "都道府県一覧から探す", clinics_path, class: "text-primary" %>
                 </div>
                 <div class="pb-2 small d-flex align-item-center justify-content-end">
                   <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "カテゴリから探す", search_path, class: "text-primary" %>
@@ -345,7 +395,7 @@
                   </div>
                   <div class="px-3 pt-2">
                     <div class="pt-3">
-                      <%= submit_tag '検索する', :name => nil, class: "btn btn-info w-100 rounded-lg active", style: "background-color: #2ECFC0; color: #ffffff;box-shadow: 0 1px 2px gray;" %>
+                      <%= submit_tag '検索する', :name => nil, class: "btn btn-info w-100 rounded-lg active", style: "background-color: #2ECFC0; color: #ffffff; box-shadow: 0 1px 2px gray;" %>
                     </div>
                   </div>
                 </div>

@@ -166,10 +166,19 @@ class ClinicsController < ApplicationController
     gon.clinic_evaluation << @doctor_quality << @staff_quality << @impression_of_technology << @impression_of_price << @average_waiting_time2 << @comfort_of_space
     @clinic_evaluation = gon.clinic_evaluation.compact
 
-    current_state = clinic_reports.pluck(:current_state).compact
-    @current_state_frequent = current_state.max_by{|value| current_state.count(value)}
-    @current_state_frequent_2 = current_state.group_by { |e| e }.sort_by { |e, v| -v.size }.map(&:first).second
-    @current_state_frequent_3 = current_state.group_by { |e| e }.sort_by { |e, v| -v.size }.map(&:first).third
+    # reports_columns = [current_state, amh, total_number_of_sairan, total_number_of_transplants, cost, treatment_period, number_of_clinics, fertility_treatment_number, treatment_end_age, treatment_period, types_of_fertilization_methods, details_of_icsi, cost, sairan_cost, ishoku_cost, amh, total_number_of_sairan, sairan_age, type_of_ovarian_stimulation, use_of_anesthesia, selection_of_anesthesia_type, number_of_eggs_collected, number_of_fertilized_eggs, number_of_transferable_embryos, number_of_visits_before_sairan, total_number_of_transplants, ishoku_age, total_number_of_eggs_transplanted, ishoku_type, choran, number_of_visits_before_ishoku, cost, sairan_cost, ishoku_cost]
+
+    # reports_columns = ["current_state", "amh", "total_number_of_sairan", "total_number_of_transplants", "cost", "treatment_period", "number_of_clinics"]
+
+    # @statistics = {}
+    # @statistics_frequent = {}
+    # reports_columns.each do |reports_column|
+    #   @statistics["#{reports_column}"] = clinic_reports.pluck(:"#{reports_column}").compact.group_by(&:itself).map{ |key, value| [key, value.count] }.to_h
+    # end
+    # @overview_columns_hash = {}
+    # @statistics.take(7).to_h.values.each.with_index(1) do |column_value, index|
+    #   @overview_columns_hash[index] = column_value.take(3).sort_by{ |_, v| -v }
+    # end
   end
 
   def clinic_report

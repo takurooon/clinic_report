@@ -473,16 +473,19 @@
                       <table class="pt-0">
                         <tr>
                           <td class="text-muted text-right py-1 small"><span class="small">ｽﾃｰﾀｽ&nbsp;:</span></td>
-                          <td class="pl-2" style="line-height: 0.9rem;">
-                            <div class="d-flex align-items-end">
-                              <%= image_tag "icon/gold_medal", width: "25px", class: "img-fluid", loading: "lazy" %>&nbsp;<%= Report.str_current_state_cm(@current_state_frequent) %>
-                            </div>
-                            <div class="d-flex align-items-end">
-                              <%= image_tag "icon/silver_medal", width: "15px", class: "img-fluid", loading: "lazy" %>&nbsp;<%= Report.str_current_state_cm(@current_state_frequent_2) %>
-                            </div>
-                            <div class="d-flex align-items-end">
-                              <%= image_tag "icon/bronze_medal", width: "10px", class: "img-fluid", loading: "lazy" %>&nbsp;<%= Report.str_current_state_cm(@current_state_frequent_3) %>
-                            </div>
+                          <td class="pl-2">
+                            <% if @overview_columns_hash[1].present? %>
+                              <% if @overview_columns_hash[1][0].present? && @overview_columns_hash[1][1].present? && @overview_columns_hash[1][2].present? %>
+                                <%= Report.str_current_state_cm(@overview_columns_hash[1][0][0]) %>
+                                <small><%= Report.str_current_state_cm(@overview_columns_hash[1][1][0]) %></small>
+                                <small><small><%= Report.str_current_state_cm(@overview_columns_hash[1][2][0]) %></small></small>
+                              <% elsif @overview_columns_hash[1][0].present? && @overview_columns_hash[1][1].present? %>
+                                <%= Report.str_current_state_cm(@overview_columns_hash[1][0][0]) %>
+                                <small><%= Report.str_current_state_cm(@overview_columns_hash[1][1][0]) %></small>
+                              <% elsif @overview_columns_hash[1][0].present? %>
+                                <%= Report.str_current_state_cm(@overview_columns_hash[1][0][0]) %>
+                              <% end %>
+                            <% end %>
                           </td>
                         </tr>
                         <tr>

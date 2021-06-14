@@ -18,6 +18,17 @@ class ReportsController < ApplicationController
     if @user.present?
       @draft_reports = @user.reports.nonreleased
     end
+
+    @prefecture = Prefecture.all
+    @prefecture_list = {}
+    @prefecture.each do |prefecture|
+      @prefecture_list[prefecture.id] = {
+        name: prefecture.name,
+        name_alphabet: prefecture.name_alphabet
+      }
+    end
+    prefecture_reports_count = Report.released.joins(:clinic).group("clinics.prefecture_id").size.sort.to_h
+    gon.prefecture_reports = prefecture_reports_count.map {|key, val| ["#{@prefecture_list[key][:name_alphabet]}", val]}.unshift(["都道府県", "レポコ数"])
   end
 
   def draft
