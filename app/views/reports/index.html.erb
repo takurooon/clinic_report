@@ -206,10 +206,14 @@
                   </div>
                 </div>
               </div>
+
+              <% if false %>
               <div class="pb-4">
                 <p class="mb-0 small text-muted text-right"><span class="small">※&nbsp;レポコのある都道府県（医療機関）マップ</small></p>
                 <div id="regions_div1"></div>
               </div>
+              <% end %>
+
               <div class="pb-2 small d-flex align-item-center justify-content-center">
                 <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "都道府県一覧から探す", clinics_path, class: "text-primary" %>
               </div>
@@ -228,10 +232,14 @@
                   <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県から探す", onchange: "location = 'clinics_/' + this.value" } %>
                 </div>
               </div>
+
+              <% if false %>
               <div class="pb-4">
                 <p class="mb-0 small text-muted text-right"><span class="small">※&nbsp;レポコのある都道府県（医療機関）マップ</small></p>
                 <div id="regions_div2"></div>
               </div>
+              <% end %>
+
               <div class="pr-4">
                 <div class="pb-2 small d-flex align-item-center justify-content-end">
                   <i data-feather="chevrons-right" class="pb-1 text-primary"></i><%= link_to "都道府県一覧から探す", clinics_path, class: "text-primary" %>
