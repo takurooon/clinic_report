@@ -13,34 +13,34 @@
     </div>
   <% end %>
 
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script type="text/javascript">
-        google.charts.load('current', {
-          'packages':['geochart'],
-          'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-        });
-        google.charts.setOnLoadCallback(drawRegionsMap);
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages':['geochart'],
+      'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
 
-        function drawRegionsMap() {
-          var data = google.visualization.arrayToDataTable(
-            gon.prefecture_reports
-          );
-          //描画オプション：描画地域などを設定できる。
-          var options = {
-            region: 'JP',
-            resolution: 'provinces',
-            colorAxis: {colors: ['#e3fffd', '#92FDFF', '#2ECFC0']},
-            backgroundColor: '#F5F5F5',
-            datalessRegionColor: '#ffffff'
-            };
-          //地図を描画するための要素を指定する。
-          var chart1 = new google.visualization.GeoChart(document.getElementById('regions_div1'));
-          var chart2 = new google.visualization.GeoChart(document.getElementById('regions_div2'));
-          //地図を描画する
-          chart1.draw(data, options);
-          chart2.draw(data, options);
-        }
-      </script>
+    function drawRegionsMap() {
+      var data = google.visualization.arrayToDataTable(
+        gon.prefecture_reports
+      );
+      //描画オプション：描画地域などを設定できる。
+      var options = {
+        region: 'JP',
+        resolution: 'provinces',
+        colorAxis: {colors: ['#e3fffd', '#92FDFF', '#2ECFC0']},
+        backgroundColor: '#F5F5F5',
+        datalessRegionColor: '#ffffff'
+        };
+      //地図を描画するための要素を指定する。
+      var chart1 = new google.visualization.GeoChart(document.getElementById('regions_div1'));
+      var chart2 = new google.visualization.GeoChart(document.getElementById('regions_div2'));
+      //地図を描画する
+      chart1.draw(data, options);
+      chart2.draw(data, options);
+    }
+  </script>
 
   <% if @reports.current_page == 1 %>
     <div class="d-flex justify-content-center row">
