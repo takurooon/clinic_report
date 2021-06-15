@@ -202,7 +202,11 @@
               <div class="mb-3">
                 <div class="d-flex justify-content-center">
                   <div class="cp_ipselect cp_sl01 w-50">
-                  <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県から探す", onchange: "location = 'clinics_/' + this.value" } %>
+                    <% if request.path.include?("reports") %>
+                      <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県から探す", onchange: "location = '/clinics_/' + this.value" } %>
+                    <% else %>
+                      <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県から探す", onchange: "location = 'clinics_/' + this.value" } %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -229,7 +233,11 @@
             <div class="d-block d-sm-none">
               <div class="d-flex justify-content-center pb-2">
                 <div class="cp_ipselect cp_sl01 w-75">
-                  <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県から探す", onchange: "location = 'clinics_/' + this.value" } %>
+                  <% if request.path.include?("reports") %>
+                    <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県から探す", onchange: "location = '/clinics_/' + this.value" } %>
+                  <% else %>
+                    <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県から探す", onchange: "location = 'clinics_/' + this.value" } %>
+                  <% end %>
                 </div>
               </div>
 
