@@ -13,6 +13,8 @@
     </div>
   <% end %>
 
+  <% if false %>
+  //googlechart/geomap表示の残骸
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load('current', {
@@ -41,6 +43,7 @@
       chart2.draw(data, options);
     }
   </script>
+  <% end %>
 
   <% if @reports.current_page == 1 %>
     <div class="d-flex justify-content-center row">
@@ -50,7 +53,7 @@
             <h5 class="font-weight-bold text-dark" style="font-family: 游ゴシック体,YuGothic,游ゴシック Medium,Yu Gothic Medium,游ゴシック,Yu Gothic,sans-serif;">経験をカタチに&nbsp;&nbsp;情報をエールに</h5>
           <% end %>
         </div>
-        <div class="mb-5 mx-3 pt-4 pb-3 rounded-lg bg-white shadow-sm">
+        <div class="mb-5 mx-3 pt-4 pb-3 rounded-lg bg-white shadow">
           <div class="tab-wrap4 mt-1 pb-3">
             <input id="TAB-01" type="radio" name="TAB" class="tab-switch4" checked="checked" /><label class="tab-label4 tab-label4-l small mb-0 px-0" for="TAB-01">クリニック名で探す</label>
             <div class="tab-content1 pt-2">
