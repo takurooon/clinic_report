@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-3 px-0">
           <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
-            <div class="icon-field py-0">
+            <div class="icon-field py-0 text-center">
               <% if report.user.icon.present? %>
                 <%= image_tag(report.user.icon, class:"icon_image") %>
               <% else %>
