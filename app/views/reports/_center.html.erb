@@ -173,7 +173,7 @@
             <canvas id="personalScoreCirleChart_<%= num %>" width="180px;" height="70px;"></canvas>
             <p class="text-dark">
               <% if score != 0 %>
-                <%= score %>
+                <%= score.floor(1) %>
               <% else %>
                 <small><span class="small text-muted">なし</span></small>
               <% end %>
