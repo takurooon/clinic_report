@@ -156,7 +156,7 @@
                               <a href="#comments_area">
                                 <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
                                 <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
-                              </a> 
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -180,7 +180,7 @@
                                     <a href="#comments_area">
                                       <p class="mb-0 small text-muted">#コメント(<%= @report.comments.count %>件)<span class="small">&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-hand-point-up fa-lg"></i></span></p>
                                       <p class="my-2 small text-dark"><i data-feather="message-circle" class="pb-1"></i>&nbsp;&nbsp;<%= strip_tags(@report.comments.first.comment.to_s).gsub(/[\n]/,"").strip.truncate(40) %>&nbsp;&nbsp;<span class="small text-muted">(<%= strip_tags(@report.comments.first.user.name.to_s).gsub(/[\n]/,"").strip.truncate(8) %>さん)</span></p>
-                                    </a> 
+                                    </a>
                                   </div>
                                 </div>
                               </div>
@@ -254,7 +254,7 @@
               こちらのレポコは&nbsp;<%= @report.year_of_treatment_end.year %>年&nbsp;<span class="small text-muted">(約<%= Time.now.year - @report.year_of_treatment_end.year %>年前)</span>&nbsp;の治療情報です。
             </div>
           <% end %>
-          
+
           <div class="action_area pl-2 py-0 mx-0 my-1">
             <div class="d-flex">
               <div class="likes_buttons_<%= @report.id %> fluffy-c">
@@ -897,7 +897,7 @@
                                       <% elsif bce.place <= 4 %>
                                         <td class="pl-3 small font-weight-bold" style="width:80%"><%= bce.str_special_inspection_place(bce.place) %></td>
                                       <% else %>
-                                        <td class="pl-3 small text-muted" style="width:80%">未回答</td> 
+                                        <td class="pl-3 small text-muted" style="width:80%">未回答</td>
                                       <% end %>
                                     <% else %>
                                       <td class="pl-3 small text-muted" style="width:80%">未回答</td>
@@ -1783,7 +1783,7 @@
                               <% else %>
                               <% end %>
                             <% end %>
-                            
+
                             <% if @report.transfer_options.present? %>
                               <% tp = [] %>
                               <% @report.transfer_options.each do |transfer_option| %>
@@ -2765,7 +2765,7 @@
                           <span class="text-muted small">未回答</span>
                         <% end %>
                       </td>
-                    </tr> 
+                    </tr>
                     <tr>
                       <td class="result-left-column small text-center">男性<br><span class="small text-muted">(男性不妊有無)</span></td>
                       <td class="pl-3">
@@ -3011,7 +3011,7 @@
                               </tr>
                               <tr>
                                 <td class="text-center small text-muted">
-                                  <span class="small">スタッフ</center>&nbsp;:
+                                  <span class="small">スタッフ</span>&nbsp;:
                                 </td>
                                 <td>
                                   <% if @report.staff_quality.present? %>
@@ -3767,7 +3767,7 @@
                               <% end %>
                               <% if @report.number_of_eggs_collected.present? %>
                                 (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
-                              <% else %>  
+                              <% else %>
                                 (&nbsp;採卵数&nbsp;未回答
                               <% end %>
                               <% if @report.choran.present?%>
@@ -3795,7 +3795,7 @@
                                 <% end %>
                                 <% if @report.number_of_eggs_collected.present? %>
                                   (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
-                                <% else %>  
+                                <% else %>
                                   (&nbsp;採卵数&nbsp;未回答
                                 <% end %>
                                 <% if @report.choran.present?%>
@@ -3818,7 +3818,7 @@
                               <% end %>
                               <% if @report.number_of_eggs_collected.present? %>
                                 (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
-                              <% else %>  
+                              <% else %>
                                 (&nbsp;採卵数&nbsp;未回答
                               <% end %>
                               <% if @report.choran.present?%>

@@ -185,7 +185,7 @@
           </div>
         <% end %>
 
-        <div class="tab-wrap1 mt-4 bg-light">
+        <div class="tab-wrap1 mt-4">
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label px-0 ml-2" for="TAB-01">最新</label>
           <div class="tab-content1 pt-2 px-2">
             <%= render 'reports/center' %>
@@ -217,7 +217,7 @@
                               <% if transfer_report.user.icon.present? %>
                                 <%= image_tag(transfer_report.user.icon, class:"icon_image") %>
                               <% else %>
-                                <% user_number = transfer_report.user_id.digits %>  
+                                <% user_number = transfer_report.user_id.digits %>
                                 <% if user_number.size < 2 %>
                                   <% icon_number = transfer_report.user_id %>
                                 <% else %>
@@ -322,7 +322,7 @@
                               </h6>
                             <% end %>
                           </div>
-            
+
                           <div class="justify-content-start mr-2 mt-2 mb-1">
                             <% unless transfer_report.treatment_end_age.blank? %>
                               <span class="small"><%= link_to "##{transfer_report.str_treatment_end_age}", "/age/#{transfer_report.treatment_end_age}", class: "text-muted" %></span>
@@ -338,7 +338,7 @@
                               <span class="small"><%= link_to "##{transfer_report.city.name}", "/users_/#{transfer_report.city.prefecture.name_alphabet}/#{transfer_report.city.name_alphabet}", class: "text-muted" %></span>
                             <% end %>
                           </div>
-            
+
                           <%= link_to transfer_report, data: { "turbolinks" => false } do %>
                             <% if transfer_report.title.present? %>
                               <div class="p-0">
@@ -355,7 +355,7 @@
                               <% if transfer_report.user.icon.present? %>
                                 <%= image_tag(transfer_report.user.icon, class:"icon_image") %>
                               <% else %>
-                                <% user_number = transfer_report.user_id.digits %>  
+                                <% user_number = transfer_report.user_id.digits %>
                                 <% if user_number.size < 2 %>
                                   <% icon_number = transfer_report.user_id %>
                                 <% else %>

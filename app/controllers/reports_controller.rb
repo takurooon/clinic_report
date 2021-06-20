@@ -11,8 +11,6 @@ class ReportsController < ApplicationController
     @like_count = Like.group(:report_id).size
     @released_reports = Report.released.all.includes(:user, :clinic).order("created_at DESC")
     @clinics_count_released = Report.released.group(:clinic_id).size
-    # @all_clinics = Clinic.count.to_s(:delimited)
-    # @ivf_clinics = Clinic.where(ivf: 1).count.to_s(:delimited)
 
     @user = current_user
     if @user.present?
@@ -83,7 +81,7 @@ class ReportsController < ApplicationController
       @report.comfort_of_space = 0
     end
     @average_score = ((@report.doctor_quality + @report.staff_quality + @report.impression_of_technology + @report.impression_of_price + @report.average_waiting_time2 + @report.comfort_of_space)/6.to_f).round(1)
-    
+
     # ホルモン値
     day_of_sairans = @report.day_of_sairans
     @day_of_sairans = day_of_sairans.pluck(:day, :e2, :fsh, :lh, :p4).flatten!
@@ -253,7 +251,7 @@ class ReportsController < ApplicationController
 
   def edit
     if @report.user != current_user
-      redirect_to root_path, alert: '編集権限がありません' 
+      redirect_to root_path, alert: '編集権限がありません'
       return
     end
 
@@ -275,7 +273,7 @@ class ReportsController < ApplicationController
 
   def update
     if @report.user != current_user
-      redirect_to root_path, alert: '編集権限がありません' 
+      redirect_to root_path, alert: '編集権限がありません'
       return
     end
 
@@ -320,7 +318,7 @@ class ReportsController < ApplicationController
 
   def destroy
     if @report.user != current_user
-      redirect_to root_path, alert: '削除権限がありません' 
+      redirect_to root_path, alert: '削除権限がありません'
       return
     end
     @report.destroy
@@ -333,7 +331,7 @@ class ReportsController < ApplicationController
     @cities = City.where(prefecture_id: params[:prefecture_id]).order(:id)
     render partial: 'address/address_cities'
   end
-  
+
   def signup
   end
 
@@ -412,7 +410,7 @@ class ReportsController < ApplicationController
   def set_report
     @report = Report.find(params[:id])
   end
-  
+
   def report_params
     params.require(:report).permit(
       :status,

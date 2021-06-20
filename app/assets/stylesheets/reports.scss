@@ -85,7 +85,7 @@
 }
 
 // アクションテキスト
-.trix-content {  
+.trix-content {
 	font-size: 16px;
 	line-height: 26px;
 	letter-spacing: 0.02em;
@@ -94,7 +94,7 @@
   // min-height: 30rem;
 }
 
-.trix-content h1 {  
+.trix-content h1 {
   // border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   // background: #f5f5f5;
@@ -264,7 +264,7 @@ i .fa-edit {
 }
 
 .main-column {
-  margin-left: 80px; 
+  margin-left: 80px;
 }
 
 // md未満ではmain-columnの左マージンを消す
@@ -530,7 +530,7 @@ i .fa-edit {
 	line-height: 1.5em
 }
 .box1 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -555,7 +555,7 @@ i .fa-edit {
 	line-height: 1.5em
 }
 .box2 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -568,7 +568,7 @@ i .fa-edit {
 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
 }
 .box3 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -592,7 +592,7 @@ i .fa-edit {
 	height: 0;
 }
 .box4 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -619,7 +619,7 @@ i .fa-edit {
 	line-height: 1.5em
 }
 .box27 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -631,7 +631,7 @@ i .fa-edit {
 	border-radius: 10px;
 }
 .box16 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -641,7 +641,7 @@ i .fa-edit {
 	border: double 5px #4ec4d3;
 }
 .box5 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -666,7 +666,7 @@ i .fa-edit {
 	line-height: 1.5em
 }
 .box26 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -691,7 +691,7 @@ i .fa-edit {
 	line-height: 1.5em
 }
 .box26-2 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -715,7 +715,7 @@ i .fa-edit {
 	font-weight: bold;
 }
 .box28 p {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
 }
 
@@ -1025,7 +1025,7 @@ i .fa-edit {
 	border-top-left-radius: 4px;
 }
 // 追加
-// .nav-tabs.nav-bottom .nav-item.show .nav-link, 
+// .nav-tabs.nav-bottom .nav-item.show .nav-link,
 // .nav-tabs.nav-bottom .nav-link.active {
 // 	color: #495057;
 // 	background-color: #fff;
@@ -1698,4 +1698,22 @@ input[type=text] {
 .cp_ipselect.cp_sl01 select {
 	padding: 8px 38px 8px 15px;
 	color: #bcbcbc;
+}
+
+// スコア(ドーナツ)チャート
+.personalScoreCirleChart_area {
+  position: relative;
+}
+
+.personalScoreCirleChart_area p {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: auto;
+	right: 0;
+	margin: auto;
+	text-align: center;
+	top: 56%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
 }

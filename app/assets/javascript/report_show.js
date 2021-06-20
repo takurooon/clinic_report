@@ -51,7 +51,7 @@ document.addEventListener("turbolinks:load", function() {
       };
       element = document.getElementById("sairanE2P4");
       if (element != null) {
-        ctx = element.getContext("2d"); 
+        ctx = element.getContext("2d");
         window.myBar = new Chart(ctx, {
           type: 'bar',
           data: barChartData2,
@@ -60,7 +60,7 @@ document.addEventListener("turbolinks:load", function() {
       };
       element = document.getElementById("sairanE2P4_ichiran");
       if (element != null) {
-        ctx = element.getContext("2d"); 
+        ctx = element.getContext("2d");
         window.myBar = new Chart(ctx, {
           type: 'bar',
           data: barChartData2,
@@ -192,21 +192,21 @@ document.addEventListener("turbolinks:load", function() {
       scales: {
         yAxes: [{
           id: "y-axis-1",
-          type: "linear", 
+          type: "linear",
           position: "left",
           ticks: {
             min: 0
           },
-        }, 
+        },
         {
           id: "y-axis-2",
-          type: "linear", 
+          type: "linear",
           position: "right",
           ticks: {
             min: 0
           },
           gridLines: {
-            drawOnChartArea: false, 
+            drawOnChartArea: false,
           },
         }],
       }
@@ -241,21 +241,21 @@ document.addEventListener("turbolinks:load", function() {
       scales: {
         yAxes: [{
           id: "y-axis-1",
-          type: "linear", 
+          type: "linear",
           position: "left",
           ticks: {
             min: 0
           },
-        }, 
+        },
         {
           id: "y-axis-2",
-          type: "linear", 
+          type: "linear",
           position: "right",
           ticks: {
             min: 0
           },
           gridLines: {
-            drawOnChartArea: false, 
+            drawOnChartArea: false,
           },
         }],
       }
@@ -291,21 +291,21 @@ document.addEventListener("turbolinks:load", function() {
       scales: {
         yAxes: [{
           id: "y-axis-1",
-          type: "linear", 
+          type: "linear",
           position: "left",
           ticks: {
             min: 0
           },
-        }, 
+        },
         {
           id: "y-axis-2",
-          type: "linear", 
+          type: "linear",
           position: "right",
           ticks: {
             min: 0
           },
           gridLines: {
-            drawOnChartArea: false, 
+            drawOnChartArea: false,
           },
         }],
       }
@@ -341,21 +341,21 @@ document.addEventListener("turbolinks:load", function() {
       scales: {
         yAxes: [{
           id: "y-axis-1",
-          type: "linear", 
+          type: "linear",
           position: "left",
           ticks: {
             min: 0
           },
-        }, 
+        },
         {
           id: "y-axis-2",
-          type: "linear", 
+          type: "linear",
           position: "right",
           ticks: {
             min: 0
           },
           gridLines: {
-            drawOnChartArea: false, 
+            drawOnChartArea: false,
           },
         }],
       }
@@ -381,7 +381,7 @@ document.addEventListener("turbolinks:load", function() {
       scales: {
         yAxes: [{
           id: "y-axis-1",
-          type: "linear", 
+          type: "linear",
           position: "right",
           ticks: {
             min: 0
@@ -440,7 +440,7 @@ document.addEventListener("turbolinks:load", function() {
         }
         scrollTabTop();
     });
-    
+
     $('.btnPrevious').click(function(){
         var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().prev().find('a');
         if (ele.length == 0) {
@@ -472,7 +472,7 @@ document.addEventListener("turbolinks:load", function() {
         }
         scrollTabTopForm();
     });
-    
+
     $('.FormBtnPrevious').click(function(){
         var ele = $('.parent-tab-content.active .child-tab .nav-tabs .active').parent().prev().find('a');
         if (ele.length == 0) {
@@ -504,7 +504,7 @@ document.addEventListener("turbolinks:load", function() {
         }
         scrollMinTabTop();
     });
-    
+
     $('.minBtnPrevious').click(function(){
         var ele = $('.parent-tab-content.active .nav-tabs2 .active').parent().prev().find('a');
         if (ele.length == 0) {
@@ -524,13 +524,13 @@ document.addEventListener("turbolinks:load", function() {
     // $('.tab-item a').on('click', function (event) {
     //     var tabEle = $(event.target).closest('ul');
     //     var ele = $(event.target).attr('href');
-        
+
     //     if (tabEle.hasClass('parent-menu')) {
     //       $('.parent-menu a[data-toggle=tab].active').removeClass('active show');
     //     } else if (tabEle.hasClass('child-menu')) {
     //       $('.parent-tab-content.active .child-menu a[data-toggle=tab].active').removeClass('active show');
     //     }
-        
+
     //     if (tabEle.hasClass('nav-bottom')) {
     //       $('ul:not(.nav-bottom) a[href=\\' + ele +']').addClass('active show');
     //     } else {
