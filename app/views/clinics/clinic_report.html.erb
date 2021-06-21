@@ -364,7 +364,7 @@
                           </div>
                           <div class="col-sm-9 pl-0 pr-5">
                             <%= link_to transfer_report, data: { "turbolinks" => false } do %>
-                              <div class="d-none d-sm-block lead-content p-2" style="min-height: 4rem;">
+                              <div class="d-none d-sm-block lead-content p-2" style="min-height: 4rem; word-wrap: break-word;">
                                 <% if transfer_report.content.present? %>
                                   <small><span class="text-muted"><%= strip_tags(transfer_report.summarize_content).gsub(/[\n]/,"").strip.truncate(75) %></span>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                                 <% elsif transfer_report.clinic_review.present? %>
@@ -429,7 +429,7 @@
                                 <h6><%= strip_tags(transfer_report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
                               </div>
                             <% end %>
-                            <div  class="d-block d-sm-none lead-content p-2">
+                            <div  class="d-block d-sm-none lead-content p-2" style="word-wrap: break-word">
                               <% if transfer_report.content.present? %>
                                 <small><%= strip_tags(transfer_report.summarize_content).gsub(/[\n]/,"").strip.truncate(155) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                               <% elsif transfer_report.clinic_review.present? %>
