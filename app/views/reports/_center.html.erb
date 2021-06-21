@@ -231,15 +231,15 @@
                 <% end %>
                 <div  class="d-block d-sm-none lead-content p-2">
                   <% if report.content.present? %>
-                    <small><%= strip_tags(report.summarize_content).gsub(/[\n]/,"").strip.truncate(155) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                    <small><%= strip_tags(report.summarize_content).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                   <% elsif report.clinic_review.present? %>
-                    <small><%= strip_tags(report.clinic_review).gsub(/[\n]/,"").strip.truncate(155) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                    <small><%= strip_tags(report.clinic_review).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                   <% elsif report.reasons_for_choosing_this_clinic.present? %>
-                    <small><%= strip_tags(report.reasons_for_choosing_this_clinic).gsub(/[\n]/,"").strip.truncate(155) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                    <small><%= strip_tags(report.reasons_for_choosing_this_clinic).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                   <% elsif report.reason_for_transfer.present? %>
-                    <small><%= strip_tags(report.reason_for_transfer).gsub(/[\n]/,"").strip.truncate(155) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                    <small><%= strip_tags(report.reason_for_transfer).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                   <% elsif report.explanation_of_costs.present? %>
-                    <small><%= strip_tags(report.explanation_of_costs).gsub(/[\n]/,"").strip.truncate(155) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+                    <small><%= strip_tags(report.explanation_of_costs).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
                   <% else %>
                     <small>&nbsp;&nbsp;.........&nbsp;&nbsp;<span class="font-weight-bold"><%= report.user.name.strip.truncate(30) %>さんのレポコを読む</span>&nbsp;&nbsp;<%= image_tag"home/finger_mom_up.svg", width: "19px", class: "m-0 p-0", loading: "lazy" %></small>
                   <% end %>
