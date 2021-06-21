@@ -67,7 +67,7 @@
       <div class="tab-wrap1 mt-4 mx-3 pb-0 rounded-lg">
         <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label px-0 py-3" for="TAB-01">評価<span class="small">&nbsp;<span class="small text-muted">(<%= @clinic_reports_count %>件)</span></span></label>
         <div class="tab-content1 pt-3">
-          <div class="row">
+          <div class="row mb-2">
             <div class="col-sm-6 chart-container px-auto">
               <canvas id="clinicEvaluation" class="px-4 pb-5"></canvas>
             </div>
@@ -270,7 +270,7 @@
             </div>
           </div>
           <% @clinic_reports.each do |report| %>
-            <div class="p-3 rounded-lg shadow-sm" style="background-color: #FAFAFA">
+            <div class="p-3 mb-4 rounded-lg shadow-sm bg-fem">
               <div class="small">
                 <% if report.year_of_treatment_end.present? %>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted"><%= "#{report.year_of_treatment_end.year}年卒業" %></span>
