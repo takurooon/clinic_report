@@ -19,7 +19,7 @@ class ReportsController < ApplicationController
 
     @prefecture = Report.released.joins(:clinic).pluck("clinics.prefecture_id").uniq.sort.map{|i| Prefecture.find_by(id: i)}
 
-    # prefecture_reports_count
+    prefecture_reports_count
   end
 
   def draft
@@ -349,7 +349,7 @@ class ReportsController < ApplicationController
         @clinics_count_released = Report.released.group(:clinic_id).size
       end
       @like_count = Like.group(:report_id).size
-      # prefecture_reports_count
+      prefecture_reports_count
       render 'index'
     elsif params[:from_clinic_prefecture_page]
       reports = Report.combined_search_within_cl_prefecture(params)
@@ -362,7 +362,7 @@ class ReportsController < ApplicationController
         @clinics_count_released = Report.released.group(:clinic_id).size
       end
       @like_count = Like.group(:report_id).size
-      # prefecture_reports_count
+      prefecture_reports_count
       render 'index'
     elsif params[:from_clinic_city_page]
       reports = Report.combined_search_within_cl_city(params)
@@ -375,7 +375,7 @@ class ReportsController < ApplicationController
         @clinics_count_released = Report.released.group(:clinic_id).size
       end
       @like_count = Like.group(:report_id).size
-      # prefecture_reports_count
+      prefecture_reports_count
       render 'index'
     else
       reports = Report.compound_search(params)
@@ -388,25 +388,25 @@ class ReportsController < ApplicationController
         @clinics_count_released = Report.released.group(:clinic_id).size
       end
       @like_count = Like.group(:report_id).size
-      # prefecture_reports_count
+      prefecture_reports_count
       render 'index'
     end
   end
 
   # 都道府県ごとのレポコ数カウント(gemapで使用)
-  # def prefecture_reports_count
-  #   prefecture = Prefecture.all
-  #   prefecture_list = {}
-  #   prefecture.each do |prefecture|
-  #     prefecture_list[prefecture.id] = {
-  #       name: prefecture.name,
-  #       name_alphabet: prefecture.name_alphabet
-  #     }
-  #   end
-  #   prefecture_reports_count = Report.released.joins(:clinic).group("clinics.prefecture_id").size.sort.to_h
-  #   gon.prefecture_reports = prefecture_reports_count.map {|key, val| ["#{prefecture_list[key][:name_alphabet]}", val]}.unshift(["都道府県", "レポコ数"])
-  #   @prefecture = Report.released.joins(:clinic).pluck("clinics.prefecture_id").uniq.sort.map{|i| Prefecture.find_by(id: i)}
-  # end
+  def prefecture_reports_count
+    prefecture = Prefecture.all
+    prefecture_list = {}
+    prefecture.each do |prefecture|
+      prefecture_list[prefecture.id] = {
+        name: prefecture.name,
+        name_alphabet: prefecture.name_alphabet
+      }
+    end
+    prefecture_reports_count = Report.released.joins(:clinic).group("clinics.prefecture_id").size.sort.to_h
+    gon.prefecture_reports = prefecture_reports_count.map {|key, val| ["#{prefecture_list[key][:name_alphabet]}", val]}.unshift(["都道府県", "レポコ数"])
+    @prefecture = Report.released.joins(:clinic).pluck("clinics.prefecture_id").uniq.sort.map{|i| Prefecture.find_by(id: i)}
+  end
 
   private
 
