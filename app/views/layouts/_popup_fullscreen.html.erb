@@ -37,7 +37,7 @@ $(window).on('load',function(){
     <% sns_text = "【#{treatment_end_age2}#{@report.clinic.name} (#{@report.clinic.prefecture.name})での#{author}の#{treatment_number}レポコ#{year_of_treatment_end2}】 " %>
   <% end %>
 
-  <% set_meta_tags description: @report.clinic.name + "(" + @report.clinic.prefecture.name + @report.clinic.city.name + ")の口コミ・評判・レビュー・治療内容などの詳細情報をチェックできます。" %>
+  <% set_meta_tags description: @report.clinic.name + "(" + @report.clinic.prefecture.name + @report.clinic.city.name + ")の口コミ・評判・レビュー・不妊治療の詳細情報をチェックできます。" %>
   <% set_meta_tags title: og_title %>
   <% set_meta_tags og: {image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_22:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}の#{treatment_number}レポコ,co_rgb:333,w_400,c_fit/v1579444928/ogp_476_298_brandcolor3_4_ceilky.png"} %>
   <% set_meta_tags twitter: {title: "#{title}", image: "https://res.cloudinary.com/dt8ullid9/image/upload/l_text:Sawarabi%20Gothic_22:【#{@report.clinic.name} #{year_of_treatment_end}】#{@report.user.name}さん#{treatment_end_age}の#{treatment_number}レポコ,co_rgb:333,w_400,c_fit/v1579444928/ogp_476_298_brandcolor3_4_ceilky.png"} %>
