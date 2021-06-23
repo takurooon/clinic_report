@@ -192,7 +192,7 @@
       </div>
       <%= link_to report, data: { "turbolinks" => false } do %>
         <% if report.title.present? %>
-          <div class="d-block d-sm-none pb-1 px-2 text-dark">
+          <div class="d-block d-sm-none pt-2 pb-1 px-2 text-dark">
             <h6><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(42) %></h6>
           </div>
         <% end %>
