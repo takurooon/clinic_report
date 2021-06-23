@@ -62,7 +62,7 @@
                   </div>
                 <% end %>
               <% end %>
-              <span class="small text-muted"><%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %></span>
+              <p class="mb-0 pt-1 small text-muted"><%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %></p>
             </div>
           <% end %>
         </div>
@@ -117,7 +117,7 @@
                   <%= link_to "##{report.clinic.city.name}", "/clinics/#{report.clinic.city.prefecture.name_alphabet}/#{report.clinic.city.name_alphabet}", class:"badge badge-pill badge-light text-muted" %>
                 </div>
                 <% if report.title.present? %>
-                  <div class="d-none d-sm-block pt-3 px-2 text-muted">
+                  <div class="d-none d-sm-block pt-3 px-2 text-dark">
                     <p class="mb-0 pl-1"><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
                   </div>
                 <% end %>
@@ -192,8 +192,8 @@
       </div>
       <%= link_to report, data: { "turbolinks" => false } do %>
         <% if report.title.present? %>
-          <div class="d-block d-sm-none pb-1 px-2 text-muted">
-            <h6 class="small"><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(52) %></h6>
+          <div class="d-block d-sm-none pb-1 px-2 text-dark">
+            <h6><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(42) %></h6>
           </div>
         <% end %>
         <div class="d-block d-sm-none lead-content2 p-3 text-muted" style="word-wrap: break-word;">
