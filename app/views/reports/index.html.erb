@@ -74,7 +74,7 @@
             <div class="tab-content1 pt-2">
               <div class="px-3">
                 <div class="d-none d-sm-block">
-                  <div class="mb-3">
+                  <div class="mb-4">
                     <div class="d-flex justify-content-center">
                       <div class="cp_ipselect cp_sl01 w-50">
                         <% if request.path.include?("reports") %>
@@ -87,12 +87,36 @@
                   </div>
                 </div>
                 <div class="d-block d-sm-none">
-                  <div class="d-flex justify-content-center pb-2">
+                  <div class="d-flex justify-content-center pb-2 mb-2">
                     <div class="cp_ipselect cp_sl01 w-75">
                       <% if request.path.include?("reports") %>
                         <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県からCLを探す", onchange: "location = '/clinics_/' + this.value" } %>
                       <% else %>
                         <%= select_tag "prefecture", options_from_collection_for_select(@prefecture, "name_alphabet", "name"), { class: "text-muted", prompt: "都道府県からCLを探す", onchange: "location = 'clinics_/' + this.value" } %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-none d-sm-block">
+                  <div class="mb-3">
+                    <div class="d-flex justify-content-center">
+                      <div class="cp_ipselect cp_sl01 w-50">
+                        <% if request.path.include?("reports") %>
+                          <%= select_tag "region", options_from_collection_for_select(@regions, "name_alphabet", "name"), { class: "text-muted", prompt: "エリアからクリニックを探す", onchange: "location = '/clinics/region/' + this.value" } %>
+                        <% else %>
+                          <%= select_tag "region", options_from_collection_for_select(@regions, "name_alphabet", "name"), { class: "text-muted", prompt: "エリアからクリニックを探す", onchange: "location = 'clinics/region/' + this.value" } %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-block d-sm-none">
+                  <div class="d-flex justify-content-center pb-2">
+                    <div class="cp_ipselect cp_sl01 w-75">
+                      <% if request.path.include?("reports") %>
+                        <%= select_tag "region", options_from_collection_for_select(@regions, "name_alphabet", "name"), { class: "text-muted", prompt: "エリアからCLを探す", onchange: "location = '/clinics/region/' + this.value" } %>
+                      <% else %>
+                        <%= select_tag "region", options_from_collection_for_select(@regions, "name_alphabet", "name"), { class: "text-muted", prompt: "エリアからCLを探す", onchange: "location = 'clinics/region/' + this.value" } %>
                       <% end %>
                     </div>
                   </div>

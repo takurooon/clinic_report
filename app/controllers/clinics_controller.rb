@@ -82,6 +82,40 @@ class ClinicsController < ApplicationController
     end
   end
 
+  def region
+    @region = Region1.find_by(name_alphabet: params[:region])
+    @prefecture = Prefecture.where(region1_id: @region)
+    clinics = Clinic.where(prefecture_id: @prefecture)
+    @clinics = clinics
+    report_count = Report.group(:clinic_id).where.not(status: 1).size
+    @list = {}
+    Clinic.where(prefecture_id: @prefecture).each do |clinic|
+      if @list[clinic.prefecture.id].nil?
+        @list[clinic.prefecture.id] = {
+          id: clinic.prefecture.id,
+          name: clinic.prefecture.name,
+          name_alphabet: clinic.prefecture.name_alphabet,
+          cities: {}
+        }
+      end
+      if @list[clinic.prefecture.id][:cities][clinic.city.id].nil?
+        @list[clinic.prefecture.id][:cities][clinic.city.id] = {
+          name: clinic.city.name,
+          name_alphabet: clinic.city.name_alphabet,
+          clinics: [],
+        }
+      end
+      @list[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
+        id: clinic.id,
+        name: clinic.name,
+        yomigana: clinic.yomigana,
+        count: report_count[clinic.id]
+      }
+    end
+    @reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).where(clinic_id: clinics.ids).order("created_at DESC").page(params[:page]).per(20).with_rich_text_content
+    @like_count = Like.group(:report_id).size
+  end
+
   def prefecture
     @prefecture = Prefecture.find_by(name_alphabet: params[:prefecture])
     clinics = Clinic.where(prefecture_id: @prefecture)

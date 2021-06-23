@@ -1,0 +1,87 @@
+<% set_meta_tags title: @region.name + "にある不妊治療クリニック(医療機関)の口コミ・評判・レビュー・不妊治療の内容一覧" %>
+<% set_meta_tags description: @region.name + "にある不妊治療クリニック(医療機関)一覧。口コミ・評判・レビュー・不妊治療の詳細情報をチェックできます。" %>
+<div class="container px-2 m-bottom">
+  <h5 class="d-sm d-md-none mt-5 text-center">「<span class="marker-underline"><strong><%= @region.name %></strong></span>」にあるクリニックでの<br>レポコ一覧</h5>
+  <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
+    <%= link_to "カテゴリ一覧", search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
+    <%= link_to "全国", "/clinics" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= @region.name %></b></strong>
+  </small>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-5">「<span class="marker-underline"><strong><%= @region.name %></strong></span>」にあるクリニックでのレポコ一覧</h4>
+  <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
+    <%= link_to "カテゴリ一覧", search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
+    <%= link_to "全国", "/clinics" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b><%= @region.name %></b></strong>
+  </small>
+  <div class="container main-index">
+    <div class="row px-0">
+      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-1">
+        <div class="mb-3">
+          <input id="acd-check1" class="acd-check" type="checkbox" checked>
+          <label class="acd-label small mb-0 px-1 py-2" for="acd-check1"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<%= @region.name %>の医療機関&nbsp;<span class="small">(全<%= @clinics.size %>施設)</span>&nbsp;のレポコ&nbsp;<span class="small">(<%= @reports.size %>件)</span></label>
+
+          <div class="acd-content container">
+            <div class="row mt-2 py-2">
+              <% if @reports.size == 0 %>
+                <div class="col-12 px-2 small">
+                  <div class="alert alert-danger rounded-lg mt-0">
+                    <p class="mb-0"><%= @region.name %>のクリニックでのレポコはまだありません。</p>
+                  </div>
+                </div>
+              <% end %>
+              <% @list.each do |key, value| %>
+                <% region = value[:name_alphabet] %>
+                <div class="col-12 mb-4 px-3">
+                  <div class="p-3 border border-dark rounded-lg">
+                    <h4 class="">
+                      <span class="font-weight-bold">【
+                        <%= link_to "/clinics_/#{region}", class: "text-primary", data: { "turbolinks" => false } do %>
+                          <%= value[:name] %>
+                        <% end %>
+                      】</span>
+                      <span class="small text-muted"><%= @clinics.where(prefecture_id: key).count %>施設<span>
+                    </h4>
+                    <hr>
+                    <div class="row">
+                      <% value[:cities].sort.to_h.each do |key, value| %>
+                        <div class="col-sm-6 mb-3 px-3">
+                          <p class="small">
+                            <span class="font-weight-bold">【
+                              <%= link_to "/clinics/#{region}/#{value[:name_alphabet]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                <%= value[:name] %>
+                              <% end %>
+                            】</span>
+                            <span class="small text-muted"><%= value[:clinics].count %>施設<span>
+                          </p>
+                          <ul class="p-0 pb-0">
+                            <% value[:clinics].each do |clinic| %>
+                              <li class="list-unstyled small mb-2">
+                                <%= link_to "/clinic/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                                  <% if clinic[:count].present? %>
+                                    <span class="font-weight-bold"><span class="text-dark"><%= clinic[:name] %></span>&nbsp;(<%= clinic[:count] %>件)</span>
+                                  <% else %>
+                                    <span class="small text-dark"><%= clinic[:name] %></span>
+                                  <% end %>
+                                <% end %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <%= render 'reports/center' %>
+        <div class="mt-5 pt-5">
+          <%= paginate @reports %>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 d-none d-md-block pl-2 pr-0">
+        <%= render 'reports/right' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -88,6 +88,7 @@ Rails.application.routes.draw do
 
   # centerの各レポコ下部のclinic, prefecture, cityのリンク↓
   get 'clinic/:value' => 'clinics#clinic_report'
+  get 'clinics/region/:region' => 'clinics#region'
   get 'clinics_/:prefecture' => 'clinics#prefecture'
   get 'clinics/:prefecture/:value' => 'clinics#city'
   get 'search_cl' => 'clinics#search_cl'
@@ -101,7 +102,7 @@ Rails.application.routes.draw do
   get "clinic_select" => "searches#clinic_select"
 
   get "address_cities_select" => "reports#address_cities_select"
-  
+
   resources :comments, only: %i[create destroy]
 
   resources :notifications, only: :index
