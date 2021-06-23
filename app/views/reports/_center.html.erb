@@ -8,7 +8,7 @@
 <% @reports.each_with_index do |report, num| %>
   <div class="row main-column">
     <div class="col-12">
-      <div class="row pr-2">
+      <div class="row px-2">
         <div class="col-3 d-flex align-items-center justify-content-center px-0">
           <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
             <div class="icon-field py-0 text-center">
@@ -62,6 +62,7 @@
                   </div>
                 <% end %>
               <% end %>
+              <span class="small text-muted"><%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %></span>
             </div>
           <% end %>
         </div>
@@ -70,7 +71,7 @@
             <div class="col-11 pr-0">
               <%= link_to report, data: { "turbolinks" => false } do %>
                 <div class="date mb-2 pt-0 px-0 d-flex justify-content-between">
-                  <small class="text-muted">
+                  <small class="d-none d-sm-block text-muted pl-3">
                     <% unless report.treatment_end_age.blank? %>
                       <%= report.str_treatment_end_age %>
                     <% end %>
@@ -78,8 +79,19 @@
                       <%= report.str_current_state %>
                     <% end %>
                   </small>
-                  <small class="text-muted">
-                    <%= report.created_at.to_s(:datetime_jp) %>
+                  <small class="d-none d-sm-block text-muted pl-3">
+                    <%= time_ago_in_words(report.created_at) %>前
+                  </small>
+                  <small class="d-block d-sm-none text-muted">
+                    <% unless report.treatment_end_age.blank? %>
+                      <%= report.str_treatment_end_age %>
+                    <% end %>
+                    <% unless report.current_state.blank? %>
+                      <%= report.str_current_state %>
+                    <% end %>
+                  </small>
+                  <small class="d-block d-sm-none text-muted">
+                    <%= time_ago_in_words(report.created_at) %>前
                   </small>
                 </div>
               <% end %>
@@ -88,34 +100,27 @@
               <%= link_to report, data: { "turbolinks" => false } do %>
                 <div class="d-flex align-items-center">
                   <div>
-                    <h5 class="d-none d-sm-block mb-0 mx-0">
+                    <h5 class="d-none d-sm-block mb-0 mx-0 pl-3 font-weight-bold">
                       <%= report.clinic.name %>
                     </h5>
-                    <h6 class="d-block d-sm-none mb-0 mx-0">
+                    <h6 class="d-block d-sm-none mb-0 mx-0 font-weight-bold">
                       <%= report.clinic.name %>
                     </h6>
                   </div>
                 </div>
-                <div class="mt-2">
-                  <p class="mb-1">
-                    <% if report.treatment_end_age == nil %>
-                      <%= image_tag("icon/g_blank.png", alt: "generation_blank", width: "17px", class: "px-0", loading: "lazy", title: "不明") %>
-                    <% elsif report.treatment_end_age < 25 %>
-                      <%= image_tag("icon/g_10_24.png", alt: "generation10_24", width: "17px", class: "px-0", loading: "lazy", title: "〜24歳") %>
-                    <% elsif report.treatment_end_age < 30 %>
-                      <%= image_tag("icon/g_25_29.png", alt: "generation25_29", width: "17px", class: "px-0", loading: "lazy", title: "25〜29歳") %>
-                    <% elsif report.treatment_end_age < 35 %>
-                      <%= image_tag("icon/g_30_34.png", alt: "generation30_34", width: "17px", class: "px-0", loading: "lazy", title: "30〜34歳") %>
-                    <% elsif report.treatment_end_age < 40 %>
-                      <%= image_tag("icon/g_35_39.png", alt: "generation35_39", width: "17px", class: "px-0", loading: "lazy", title: "35〜39歳") %>
-                    <% elsif report.treatment_end_age < 45 %>
-                      <%= image_tag("icon/g_40_44.png", alt: "generation40_44", width: "17px", class: "px-0", loading: "lazy", title: "40〜44歳") %>
-                    <% else %>
-                      <%= image_tag("icon/g_45_.png", alt: "generation45_", width: "17px", class: "px-0", loading: "lazy", title: "45歳〜") %>
-                    <% end %>
-                    <span class="text-muted"><%= strip_tags(report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %></span>&nbsp;<span class="small text-muted"><small>さんのレポコ</small></span>
-                  </p>
+                <div class="d-none d-sm-block mt-2 pl-3">
+                  <%= link_to "##{report.clinic.city.prefecture.name}", "/clinics_/#{report.clinic.city.prefecture.name_alphabet}", class:"badge badge-pill badge-light text-muted mr-1" %>
+                  <%= link_to "##{report.clinic.city.name}", "/clinics/#{report.clinic.city.prefecture.name_alphabet}/#{report.clinic.city.name_alphabet}", class:"badge badge-pill badge-light text-muted" %>
                 </div>
+                <div class="d-block d-sm-none mt-2">
+                  <%= link_to "##{report.clinic.city.prefecture.name}", "/clinics_/#{report.clinic.city.prefecture.name_alphabet}", class:"badge badge-pill badge-light text-muted mr-1" %>
+                  <%= link_to "##{report.clinic.city.name}", "/clinics/#{report.clinic.city.prefecture.name_alphabet}/#{report.clinic.city.name_alphabet}", class:"badge badge-pill badge-light text-muted" %>
+                </div>
+                <% if report.title.present? %>
+                  <div class="d-none d-sm-block pt-3 px-2 text-muted">
+                    <p class="mb-0 pl-1"><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></p>
+                  </div>
+                <% end %>
               <% end %>
             </div>
             <div class="col-3 pl-0 pr-4">
@@ -158,7 +163,7 @@
           <div class="pl-4">
             <div class="row">
               <div class="col-3 col-sm-2 offset-sm-1 d-flex align-items-center p-0">
-                <div class="likes_buttons_<%= report.id %> d-none d-sm-block">
+                <div class="likes_buttons_<%= report.id %> d-none d-sm-block pl-1">
                   <%= render partial: 'likes/like_index', locals: { report: report, like_count: @like_count[report.id] } %>
                 </div>
               </div>
@@ -185,74 +190,36 @@
           </div>
         </div>
       </div>
+      <%= link_to report, data: { "turbolinks" => false } do %>
+        <% if report.title.present? %>
+          <div class="d-block d-sm-none pb-1 px-2 text-muted">
+            <h6 class="small"><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(52) %></h6>
+          </div>
+        <% end %>
+        <div class="d-block d-sm-none lead-content2 p-3 text-muted" style="word-wrap: break-word;">
+          <% if report.clinic_review.present? %>
+            <small><%= strip_tags(report.clinic_review).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+          <% elsif report.reasons_for_choosing_this_clinic.present? %>
+            <small><%= strip_tags(report.reasons_for_choosing_this_clinic).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+          <% elsif report.content.present? %>
+            <small><%= strip_tags(report.summarize_content).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+          <% elsif report.reason_for_transfer.present? %>
+            <small><%= strip_tags(report.reason_for_transfer).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+          <% elsif report.explanation_of_costs.present? %>
+            <small><%= strip_tags(report.explanation_of_costs).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
+          <% else %>
+            <small>&nbsp;&nbsp;.........&nbsp;&nbsp;<span class="font-weight-bold"><%= report.user.name.strip.truncate(30) %>さんのレポコを読む</span>&nbsp;&nbsp;<%= image_tag"home/finger_mom_up.svg", width: "19px", class: "m-0 p-0", loading: "lazy" %></small>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-3 offset-9 mb-2 py-2 px-0 d-block d-sm-none">
       <div class="row">
-        <div class="col-12">
-          <div class="d-block d-sm-none">
-            <div class="rounded-lg bg-fem p-3">
-              <div class="d-flex align-items-start pl-1 pb-3">
-                <div>
-                  <%= link_to image_tag("home/user.svg", class: "img-fluid mr-1", loading: "lazy", width: "30px;"), user_path(report.user_id), data: { "turbolinks" => false } %>
-                </div>
-                <div>
-                  <% if report.treatment_end_age.present? %>
-                    <%= link_to "##{report.str_treatment_end_age}", "/age/#{report.treatment_end_age}", class: "badge badge-pill badge-light text-dark mr-1" %>
-                  <% end %>
-                  <% if report.prefecture_at_the_time_status == "hide" %>
-                    <span class="small text-muted mr-1">−−</span>
-                  <% else %>
-                    <%= link_to "##{report.city.prefecture.name}", "/users_/#{report.city.prefecture.name_alphabet}", class: "badge badge-pill badge-light mr-1 text-dark" %>
-                  <% end %>
-                  <% if report.city_at_the_time_status == "hide" %>
-                    <span class="small text-muted">−−</span>
-                  <% else %>
-                    <%= link_to "##{report.city.name}", "/users_/#{report.city.prefecture.name_alphabet}/#{report.city.name_alphabet}", class: "badge badge-pill badge-light text-dark" %>
-                  <% end %>
-                </div>
-              </div>
-              <div class="d-flex align-items-start pl-1 pb-3">
-                <div>
-                  <%= link_to image_tag("home/hospital.svg", class: "img-fluid mr-1", loading: "lazy", width: "30px;" ), "/clinic/#{report.clinic.id}" %>
-                </div>
-                <div class="pt-1">
-                  <div class="mb-2">
-                    <%= link_to "# #{report.clinic.name}", "/clinic/#{report.clinic.id}", class: "ml-1 small" %>
-                  </div>
-                  <div>
-                    <%= link_to "##{report.clinic.city.prefecture.name}", "/clinics_/#{report.clinic.city.prefecture.name_alphabet}", class:"badge badge-pill badge-light text-dark mr-1" %>
-                    <%= link_to "##{report.clinic.city.name}", "/clinics/#{report.clinic.city.prefecture.name_alphabet}/#{report.clinic.city.name_alphabet}", class:"badge badge-pill badge-light text-dark" %>
-                  </div>
-                </div>
-              </div>
-              <%= link_to report, data: { "turbolinks" => false } do %>
-                <% if report.title.present? %>
-                  <div class="pt-2 pb-1 px-1">
-                    <h6><%= strip_tags(report.title.to_s).gsub(/[\n]/,"").strip.truncate(40) %></h6>
-                  </div>
-                <% end %>
-                <div class="d-block d-sm-none lead-content p-2" style="word-wrap: break-word;">
-                  <% if report.clinic_review.present? %>
-                    <small><%= strip_tags(report.clinic_review).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                  <% elsif report.reasons_for_choosing_this_clinic.present? %>
-                    <small><%= strip_tags(report.reasons_for_choosing_this_clinic).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                  <% elsif report.content.present? %>
-                    <small><%= strip_tags(report.summarize_content).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                  <% elsif report.reason_for_transfer.present? %>
-                    <small><%= strip_tags(report.reason_for_transfer).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                  <% elsif report.explanation_of_costs.present? %>
-                    <small><%= strip_tags(report.explanation_of_costs).gsub(/[\n]/,"").strip.truncate(149) %>&nbsp;&nbsp;&nbsp;…&nbsp;<span class="font-weight-bold">続きを読む</span></small>
-                  <% else %>
-                    <small>&nbsp;&nbsp;.........&nbsp;&nbsp;<span class="font-weight-bold"><%= report.user.name.strip.truncate(30) %>さんのレポコを読む</span>&nbsp;&nbsp;<%= image_tag"home/finger_mom_up.svg", width: "19px", class: "m-0 p-0", loading: "lazy" %></small>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
+        <div class="col-10 offset-2">
+          <div class="likes_buttons_<%= report.id %>">
+            <%= render partial: 'likes/like_index', locals: { report: report, like_count: @like_count[report.id] }, class: "pl-4" %>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-2 my-2 py-2 d-block d-sm-none">
-      <div class="likes_buttons_<%= report.id %>">
-        <%= render partial: 'likes/like_index', locals: { report: report, like_count: @like_count[report.id] } %>
       </div>
     </div>
   </div>
