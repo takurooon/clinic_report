@@ -17,9 +17,6 @@ class ReportsController < ApplicationController
       @draft_reports = @user.reports.nonreleased
     end
 
-    # @prefecture = Report.released.joins(:clinic).pluck("clinics.prefecture_id").uniq.sort.map{|i| Prefecture.find_by(id: i)}
-    # @regions = @prefecture.pluck(:region1_id).uniq.sort.map{|r| Region1.find_by(id: r)}
-
     region_prefecture_reports
   end
 
