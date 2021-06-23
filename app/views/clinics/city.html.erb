@@ -15,7 +15,7 @@
       <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-1">
           <div class="mb-3">
             <input id="acd-check1" class="acd-check" type="checkbox" checked>
-            <label class="acd-label small mb-0 px-1 py-2" for="acd-check1"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<%= @city.name %>の医療機関&nbsp;<span class="small">(全<%= @city.clinics.size %>施設)</span>&nbsp;のレポコ&nbsp;<span class="small">(<%= @reports.size %>件)</span></label>
+            <label class="acd-label small mb-0 px-1 py-2" for="acd-check1"><i data-feather="align-justify" class="text-light m-0 py-1 px-0"></i>&nbsp;<%= @city.name %>の医療機関&nbsp;（全<%= @city.clinics.size %>施設）&nbsp;のレポコ&nbsp;（<%= @reports_count %>件）</label>
 
             <div class="acd-content container">
               <div class="row mt-2 pb-3">

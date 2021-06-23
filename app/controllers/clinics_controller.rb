@@ -112,7 +112,9 @@ class ClinicsController < ApplicationController
         count: report_count[clinic.id]
       }
     end
-    @reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).where(clinic_id: clinics.ids).order("created_at DESC").page(params[:page]).per(20).with_rich_text_content
+    reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).where(clinic_id: clinics.ids).order("created_at DESC")
+    @reports_count = reports.size
+    @reports = reports.page(params[:page]).per(20).with_rich_text_content
     @like_count = Like.group(:report_id).size
   end
 
@@ -144,7 +146,9 @@ class ClinicsController < ApplicationController
         count: report_count[clinic.id]
       }
     end
-    @reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).where(clinic_id: clinics.ids).order("created_at DESC").page(params[:page]).per(20).with_rich_text_content
+    reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).where(clinic_id: clinics.ids).order("created_at DESC")
+    @reports_count = reports.size
+    @reports = reports.page(params[:page]).per(20).with_rich_text_content
     @like_count = Like.group(:report_id).size
   end
 
@@ -153,7 +157,9 @@ class ClinicsController < ApplicationController
     @city = City.find_by(prefecture_id: prefecture.id, name_alphabet: params[:value])
     clinics = Clinic.where(city_id: @city.id)
     @city_clinics = Clinic.where(city_id: @city.id).name_yomigana
-    @reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).where(clinic_id: clinics.ids).order("created_at DESC").page(params[:page]).per(20).with_rich_text_content
+    reports = Report.released.includes([:user, user: { icon_attachment: :blob }, city: :prefecture, clinic: [city: :prefecture]]).where(clinic_id: clinics.ids).order("created_at DESC")
+    @reports_count = reports.size
+    @reports = reports.page(params[:page]).per(20).with_rich_text_content
     @like_count = Like.group(:report_id).size
   end
 
