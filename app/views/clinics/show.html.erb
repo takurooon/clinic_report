@@ -269,137 +269,6 @@
               </table>
             </div>
           </div>
-          <% @clinic_reports.each do |report| %>
-            <div class="p-3 mb-4 rounded-lg shadow-sm bg-fem">
-              <div class="small">
-                <% if report.year_of_treatment_end.present? %>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted"><%= "#{report.year_of_treatment_end.year}年卒業" %></span>
-                <% end %>
-              </div>
-              <div class="form-inline">
-                <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
-                  <div class="icon-field py-0">
-                    <% if report.user.icon.attached? %>
-                      <%= image_tag(report.user.icon, class:"icon_image4") %>
-                    <% else %>
-                      <% user_number = report.user.id.digits %>
-                      <% if user_number.size < 2 %>
-                        <% icon_number = report.user.id %>
-                      <% else %>
-                        <% if user_number[1] == 0 %>
-                          <% icon_number = user_number[0] * user_number[0] %>
-                        <% else %>
-                          <% icon_number = user_number[0] * user_number[1] %>
-                        <% end %>
-                      <% end %>
-                      <% if report.treatment_end_age == nil %>
-                        <div class="m-0 p-0 base_icon4 text-center">
-                          <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image4_border", loading: "lazy", title: "不明") %>
-                          <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon4", loading: "lazy", title: "不明") %>
-                        </div>
-                      <% elsif report.treatment_end_age < 25 %>
-                        <div class="m-0 p-0 base_icon4 text-center">
-                          <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image4_border", loading: "lazy", title: "〜24歳") %>
-                          <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon4", loading: "lazy", title: "〜24歳") %>
-                        </div>
-                      <% elsif report.treatment_end_age < 30 %>
-                        <div class="m-0 p-0 base_icon4 text-center">
-                          <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image4_border", loading: "lazy", title: "25〜29歳") %>
-                          <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon4", loading: "lazy", title: "25〜29歳") %>
-                        </div>
-                      <% elsif report.treatment_end_age < 35 %>
-                        <div class="m-0 p-0 base_icon4 text-center">
-                          <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image4_border", loading: "lazy", title: "30〜34歳") %>
-                          <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon4", loading: "lazy", title: "30〜34歳") %>
-                        </div>
-                      <% elsif report.treatment_end_age < 40 %>
-                        <div class="m-0 p-0 base_icon4 text-center">
-                          <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image4_border", loading: "lazy", title: "35〜39歳") %>
-                          <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon4", loading: "lazy", title: "35〜39歳") %>
-                        </div>
-                      <% elsif report.treatment_end_age < 45 %>
-                        <div class="m-0 p-0 base_icon4 text-center">
-                          <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image4_border", loading: "lazy", title: "40〜44歳") %>
-                          <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon4", loading: "lazy", title: "40〜44歳") %>
-                        </div>
-                      <% else %>
-                        <div class="m-0 p-0 base_icon4 text-center">
-                          <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image4_border", loading: "lazy", title: "45歳〜") %>
-                          <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon4", loading: "lazy", title: "45歳〜") %>
-                        </div>
-                      <% end %>
-                    <% end %>
-                  </div>
-                <% end %>
-                <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
-                  <p class="mb-0">
-                    &nbsp;&nbsp;<%= strip_tags(report.user.name).gsub(/[\n]/,"").strip.truncate(9) %><span class="small"><span class="small">さん</span></span>
-                    <% if report.treatment_end_age.present? %>
-                      <span class="small text-muted"><span class="small">(<%= report.str_treatment_end_age %>)</span></span>
-                    <% end %>
-                  </p>
-                <% end %>
-                <%= link_to report_path(report.id), data: { "turbolinks" => false } do %>
-                  <% rating = ((report.doctor_quality.to_i + report.staff_quality.to_i + report.impression_of_technology.to_i + report.impression_of_price.to_i + report.average_waiting_time2.to_i + report.comfort_of_space.to_i) / 6.to_f).round(1) %>
-                  <p class="mb-0">
-                    <% unless rating.blank? %>
-                      <% if rating == 5 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% elsif rating > 4 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% elsif rating == 4 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% elsif rating > 3 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% elsif rating == 3 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% elsif rating > 2 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% elsif rating == 2 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% elsif rating > 1 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% elsif rating == 1 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% elsif rating > 0 %>
-                        <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
-                      <% else %>
-                        <span class="rating-star small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア&nbsp;未回答</span></span>
-                      <% end %>
-                    <% else %>
-                      <span class="rating-star small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア&nbsp;未回答</span></span>
-                    <% end %>
-                  </p>
-                <% end %>
-              </div>
-              <%= link_to report_path(report.id), data: { "turbolinks" => false } do %>
-                <div class="small text-muted pt-2">
-                  <% if report.clinic_review.present? %>
-                    <%= strip_tags(report.clinic_review).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
-                  <% elsif report.reasons_for_choosing_this_clinic.present? %>
-                    <%= strip_tags(report.reasons_for_choosing_this_clinic).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
-                  <% elsif report.summarize_content.present? %>
-                    <%= strip_tags(report.summarize_content).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
-                  <% elsif report.reason_for_transfer.present? %>
-                    <%= strip_tags(report.reason_for_transfer).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
-                  <% elsif report.explanation_of_costs.present? %>
-                    <%= strip_tags(report.explanation_of_costs).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
-                  <% elsif report.title.present? %>
-                    <%= strip_tags(report.title).gsub(/[\n]/,"").strip.truncate(45) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
-                  <% else %>
-                    <%= report.user.name %>さんのレポコをみる
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-          <% if @clinic_reports_count > @get_limit %>
-            <div class="pt-2 pb-4 px-4">
-              <%= link_to "/clinic/#{@clinic.id}", { style: "text-decoration: none;" } do %>
-                <button class="green_btn"><%= @clinic.name %>の全レビューをみる</button>
-              <% end %>
-            </div>
-          <% end %>
         </div>
 
         <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label px-0 py-3" for="TAB-02">基本情報</label>
@@ -878,6 +747,138 @@
           </div>
         </div>
         <% end %>
+      </div>
+
+      <div class="pt-4 px-3">
+        <% @clinic_reports.each do |report| %>
+          <div class="p-3 mb-4 lead-content2">
+            <div class="small">
+              <% if report.year_of_treatment_end.present? %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted"><%= "#{report.year_of_treatment_end.year}年卒業" %></span>
+              <% end %>
+            </div>
+            <div class="form-inline">
+              <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
+                <div class="icon-field py-0">
+                  <% if report.user.icon.attached? %>
+                    <%= image_tag(report.user.icon, class:"icon_image4") %>
+                  <% else %>
+                    <% user_number = report.user.id.digits %>
+                    <% if user_number.size < 2 %>
+                      <% icon_number = report.user.id %>
+                    <% else %>
+                      <% if user_number[1] == 0 %>
+                        <% icon_number = user_number[0] * user_number[0] %>
+                      <% else %>
+                        <% icon_number = user_number[0] * user_number[1] %>
+                      <% end %>
+                    <% end %>
+                    <% if report.treatment_end_age == nil %>
+                      <div class="m-0 p-0 base_icon4 text-center">
+                        <%= image_tag("icon/g_blank.png", alt: "generation_blank", class: "icon_image4_border", loading: "lazy", title: "不明") %>
+                        <%= image_tag("icon/#{icon_number}.svg", alt: "generation_blank", class: "icon_on_icon4", loading: "lazy", title: "不明") %>
+                      </div>
+                    <% elsif report.treatment_end_age < 25 %>
+                      <div class="m-0 p-0 base_icon4 text-center">
+                        <%= image_tag("icon/g_10_24.png", alt: "generation10_24", class: "icon_image4_border", loading: "lazy", title: "〜24歳") %>
+                        <%= image_tag("icon/#{icon_number}.svg", alt: "generation10_24", class: "icon_on_icon4", loading: "lazy", title: "〜24歳") %>
+                      </div>
+                    <% elsif report.treatment_end_age < 30 %>
+                      <div class="m-0 p-0 base_icon4 text-center">
+                        <%= image_tag("icon/g_25_29.png", alt: "generation25_29", class: "icon_image4_border", loading: "lazy", title: "25〜29歳") %>
+                        <%= image_tag("icon/#{icon_number}.svg", alt: "generation25_29", class: "icon_on_icon4", loading: "lazy", title: "25〜29歳") %>
+                      </div>
+                    <% elsif report.treatment_end_age < 35 %>
+                      <div class="m-0 p-0 base_icon4 text-center">
+                        <%= image_tag("icon/g_30_34.png", alt: "generation30_34", class: "icon_image4_border", loading: "lazy", title: "30〜34歳") %>
+                        <%= image_tag("icon/#{icon_number}.svg", alt: "generation30_34", class: "icon_on_icon4", loading: "lazy", title: "30〜34歳") %>
+                      </div>
+                    <% elsif report.treatment_end_age < 40 %>
+                      <div class="m-0 p-0 base_icon4 text-center">
+                        <%= image_tag("icon/g_35_39.png", alt: "generation35_39", class: "icon_image4_border", loading: "lazy", title: "35〜39歳") %>
+                        <%= image_tag("icon/#{icon_number}.svg", alt: "generation35_39", class: "icon_on_icon4", loading: "lazy", title: "35〜39歳") %>
+                      </div>
+                    <% elsif report.treatment_end_age < 45 %>
+                      <div class="m-0 p-0 base_icon4 text-center">
+                        <%= image_tag("icon/g_40_44.png", alt: "generation40_44", class: "icon_image4_border", loading: "lazy", title: "40〜44歳") %>
+                        <%= image_tag("icon/#{icon_number}.svg", alt: "generation40_44", class: "icon_on_icon4", loading: "lazy", title: "40〜44歳") %>
+                      </div>
+                    <% else %>
+                      <div class="m-0 p-0 base_icon4 text-center">
+                        <%= image_tag("icon/g_45_.png", alt: "generation45_", class: "icon_image4_border", loading: "lazy", title: "45歳〜") %>
+                        <%= image_tag("icon/#{icon_number}.svg", alt: "generation45_", class: "icon_on_icon4", loading: "lazy", title: "45歳〜") %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+              <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>
+                <p class="mb-0">
+                  &nbsp;&nbsp;<%= strip_tags(report.user.name).gsub(/[\n]/,"").strip.truncate(9) %><span class="small"><span class="small">さん</span></span>
+                  <% if report.treatment_end_age.present? %>
+                    <span class="small text-muted"><span class="small">(<%= report.str_treatment_end_age %>)</span></span>
+                  <% end %>
+                </p>
+              <% end %>
+              <%= link_to report_path(report.id), data: { "turbolinks" => false } do %>
+                <% rating = ((report.doctor_quality.to_i + report.staff_quality.to_i + report.impression_of_technology.to_i + report.impression_of_price.to_i + report.average_waiting_time2.to_i + report.comfort_of_space.to_i) / 6.to_f).round(1) %>
+                <p class="mb-0">
+                  <% unless rating.blank? %>
+                    <% if rating == 5 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% elsif rating > 4 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% elsif rating == 4 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% elsif rating > 3 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% elsif rating == 3 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% elsif rating > 2 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% elsif rating == 2 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% elsif rating > 1 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i><i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% elsif rating == 1 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% elsif rating > 0 %>
+                      <span class="rating-star small">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア</span>&nbsp;&nbsp;<i class="fas fa-star-half"></i>&nbsp;&nbsp;<%= rating %></span>
+                    <% else %>
+                      <span class="rating-star small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア&nbsp;未回答</span></span>
+                    <% end %>
+                  <% else %>
+                    <span class="rating-star small text-muted">&nbsp;&nbsp;&nbsp;&nbsp;<span class="small text-muted">スコア&nbsp;未回答</span></span>
+                  <% end %>
+                </p>
+              <% end %>
+            </div>
+            <%= link_to report_path(report.id), data: { "turbolinks" => false } do %>
+              <div class="small text-muted pt-2" style="word-wrap: break-word;">
+                <% if report.clinic_review.present? %>
+                  <%= strip_tags(report.clinic_review).gsub(/[\n]/,"").strip.truncate(75) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
+                <% elsif report.reasons_for_choosing_this_clinic.present? %>
+                  <%= strip_tags(report.reasons_for_choosing_this_clinic).gsub(/[\n]/,"").strip.truncate(75) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
+                <% elsif report.summarize_content.present? %>
+                  <%= strip_tags(report.summarize_content).gsub(/[\n]/,"").strip.truncate(75) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
+                <% elsif report.reason_for_transfer.present? %>
+                  <%= strip_tags(report.reason_for_transfer).gsub(/[\n]/,"").strip.truncate(75) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
+                <% elsif report.explanation_of_costs.present? %>
+                  <%= strip_tags(report.explanation_of_costs).gsub(/[\n]/,"").strip.truncate(75) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
+                <% elsif report.title.present? %>
+                  <%= strip_tags(report.title).gsub(/[\n]/,"").strip.truncate(75) %>&nbsp;&nbsp;&nbsp;<span class="font-weight-bold">続きを読む</span>
+                <% else %>
+                  <%= report.user.name %>さんのレポコをみる
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="pt-2 pb-4">
+          <%= link_to "/clinic/#{@clinic.id}", { style: "text-decoration: none;" } do %>
+            <button class="green_btn shadow"><%= @clinic.name %>の全レポコをみる</button>
+          <% end %>
+        </div>
       </div>
 
     </div>
