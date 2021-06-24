@@ -418,7 +418,7 @@
         <div class="d-flex pl-1 pb-4">
           <h4><span class="small text-muted mr-3 mb-0 pt-1"><span class="font-weight-bold"><%= @released_reports.size %></span><span class="small">&nbsp;REPOCO</span></span></h4>
           <%= link_to clinics_path(cl_repoco: "repoco_count") do %>
-            <h4><span class="text-muted mb-0 badge badge-pill badge-light shadow"><span class="font-weight-bold text-primary"><%= "#{@clinics_count_released.size}" %></span><span class="small text-primary">&nbsp;Clinic</span></span></h4>
+            <h4><span class="text-muted mb-0 badge badge-pill shadow"><span class="font-weight-bold text-primary"><%= "#{@clinics_count_released.size}" %></span><span class="small text-primary">&nbsp;Clinic</span></span></h4>
           <% end %>
         </div>
         <% if user_signed_in? && @draft_reports.present? %>
