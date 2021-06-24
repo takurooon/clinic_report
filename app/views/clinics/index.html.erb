@@ -1,5 +1,6 @@
 <% set_meta_tags title: "全国の不妊治療クリニック（医療機関）の口コミ・評判・レビュー・不妊治療の内容一覧" %>
 <% set_meta_tags description: "全国の不妊治療クリニック(医療機関)一覧。都道府県・市区町村から不妊治療クリニックを探せます。口コミ・評判・レビュー・不妊治療の詳細情報もチェックできます。" %>
+<% unless @repoco_count %>
   <div class="container px-2 m-bottom">
     <h5 class="d-sm d-md-none mt-5 text-center"><span class="marker-underline"><strong>医療機関一覧</strong></span></h5>
     <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
@@ -178,3 +179,66 @@
       </div>
     </div>
   </div>
+<% else %>
+  <div class="container px-2 m-bottom">
+    <div class="d-block d-md-none">
+      <h5 class="mt-5 text-center"><span class="marker-underline"><strong>レポコのある医療機関一覧</strong></span></h5>
+      <small class="text-muted d-flex align-content-start flex-wrap align-items-start col-md-8 offset-md-2 mt-4 mb-4">
+        <%= link_to "ホーム", root_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<%= link_to "全国", clinics_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b>レポコのある医療機関一覧</b></strong>
+      </small>
+    </div>
+    <div class="d-none d-md-block">
+      <h4 class="col-md-8 offset-md-2 mt-5"><span class="marker-underline"><strong>レポコのある医療機関一覧</strong></span></h4>
+      <small class="text-muted d-flex align-content-start flex-wrap align-items-start col-md-8 offset-md-2 mt-4 mb-5">
+        <%= link_to "ホーム", root_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;<%= link_to "全国", clinics_path %>&nbsp;&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;<strong><b>レポコのある医療機関一覧</b></strong>
+      </small>
+    </div>
+    <div class="container main-index">
+      <div class="row">
+        <div class="col-sm-8 offset-sm-2 mb-1 px-0">
+          <div class="px-3">
+            <p><%= image_tag "home/hospital.svg", class: "pb-1", width: "25px;" %>&nbsp;<%= @all_clinics_count.size %>施設&nbsp;<span class="small">（<%= @all_reports_count.size %>レポコ）</span></p>
+          </div>
+          <% @cl_repoco.each do |key, value| %>
+            <div class="px-3 pb-4">
+              <div class="mb-2 pt-3 pb-1 border-bottom">
+                <%= link_to value[:name], "/clinics_/#{value[:name_alphabet]}", class: "h5", data: { "turbolinks" => false } %>
+                <span class="small text-muted">&nbsp;<%= @prefecture_clinics_count.where(prefecture_id: key).size %>施設（<%= @prefecture_reports_count[key] %>）</span>
+              </div>
+              <% prefecture = value[:name_alphabet] %>
+              <% value[:cities].sort.to_h.each do |key, value| %>
+                <div class="mb-5">
+                  <div>
+                    <p class="small mb-3">【
+                        <%= link_to "/clinics/#{prefecture}/#{value[:name_alphabet]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                          <%= value[:name] %>
+                        <% end %>
+                      】
+                      <span class="small text-muted"><%= value[:clinics].count %>施設<span>（<%= @city_reports_count[key] %>）
+                    </p>
+                  </div>
+                  <div class="px-3">
+                    <ul class="p-0 pb-0">
+                      <% value[:clinics].each do |clinic| %>
+                        <li class="list-unstyled small mb-1">
+                          <i data-feather="chevron-right" class="feather-icon-style1"></i>&nbsp;
+                          <%= link_to "/clinics/#{clinic[:id]}", class: "text-primary", data: { "turbolinks" => false } do %>
+                            <% if clinic[:count].present? %>
+                              <span class="font-weight-bold"><%= clinic[:name] %>&nbsp;(<%= clinic[:count] %>)</span>
+                            <% else %>
+                              <span class="small text-muted"><%= clinic[:name] %></span>
+                            <% end %>
+                          <% end %>
+                          </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

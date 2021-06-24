@@ -1,84 +1,116 @@
 class ClinicsController < ApplicationController
 
   def index
-    # @clinics = Clinic.all
-    # @prefecture = Prefecture.where(id: 1..47)
-    # @all_clinics = Clinic.all.order(prefecture_id: :asc, city_id: :asc)
     report_count = Report.group(:clinic_id).where.not(status: 1).size
-    @all_clinics_count = Clinic.count.to_s(:delimited)
-    @ivf_clinics_count = Clinic.where(ivf: 1).count.to_s(:delimited)
-    @pgt_clinics_count = Clinic.where(pgt: 1).count.to_s(:delimited)
-    @list = {}
-    Clinic.includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
-      if @list[clinic.prefecture.id].nil?
-        @list[clinic.prefecture.id] = {
-          id: clinic.prefecture.id,
-          name: clinic.prefecture.name,
-          name_alphabet: clinic.prefecture.name_alphabet,
-          cities: {}
+    unless params[:cl_repoco] == "repoco_count"
+      @repoco_count = false
+      @all_clinics_count = Clinic.count.to_s(:delimited)
+      @ivf_clinics_count = Clinic.where(ivf: 1).count.to_s(:delimited)
+      @pgt_clinics_count = Clinic.where(pgt: 1).count.to_s(:delimited)
+      @list = {}
+      Clinic.includes(:city, :prefecture).order(:prefecture_id, :city_id).each do |clinic|
+        if @list[clinic.prefecture.id].nil?
+          @list[clinic.prefecture.id] = {
+            id: clinic.prefecture.id,
+            name: clinic.prefecture.name,
+            name_alphabet: clinic.prefecture.name_alphabet,
+            cities: {}
+          }
+        end
+        if @list[clinic.prefecture.id][:cities][clinic.city.id].nil?
+          @list[clinic.prefecture.id][:cities][clinic.city.id] = {
+            name: clinic.city.name,
+            name_alphabet: clinic.city.name_alphabet,
+            clinics: [],
+          }
+        end
+        @list[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
+          id: clinic.id,
+          name: clinic.name,
+          yomigana: clinic.yomigana,
+          count: report_count[clinic.id]
         }
       end
-      if @list[clinic.prefecture.id][:cities][clinic.city.id].nil?
-        @list[clinic.prefecture.id][:cities][clinic.city.id] = {
-          name: clinic.city.name,
-          name_alphabet: clinic.city.name_alphabet,
-          clinics: [],
+      @list_ivf = {}
+      Clinic.includes(:city, :prefecture).where(ivf: 1).order(:prefecture_id, :city_id).each do |clinic|
+        if @list_ivf[clinic.prefecture.id].nil?
+          @list_ivf[clinic.prefecture.id] = {
+            id: clinic.prefecture.id,
+            name: clinic.prefecture.name,
+            name_alphabet: clinic.prefecture.name_alphabet,
+            cities: {}
+          }
+        end
+        if @list_ivf[clinic.prefecture.id][:cities][clinic.city.id].nil?
+          @list_ivf[clinic.prefecture.id][:cities][clinic.city.id] = {
+            name: clinic.city.name,
+            name_alphabet: clinic.city.name_alphabet,
+            clinics: [],
+          }
+        end
+        @list_ivf[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
+          id: clinic.id,
+          name: clinic.name,
+          yomigana: clinic.yomigana,
+          count: report_count[clinic.id]
         }
       end
-      @list[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
-        id: clinic.id,
-        name: clinic.name,
-        yomigana: clinic.yomigana,
-        count: report_count[clinic.id]
-      }
-    end
-    @list_ivf = {}
-    Clinic.includes(:city, :prefecture).where(ivf: 1).order(:prefecture_id, :city_id).each do |clinic|
-      if @list_ivf[clinic.prefecture.id].nil?
-        @list_ivf[clinic.prefecture.id] = {
-          id: clinic.prefecture.id,
-          name: clinic.prefecture.name,
-          name_alphabet: clinic.prefecture.name_alphabet,
-          cities: {}
+      @list_pgt = {}
+      Clinic.joins(city: :prefecture).includes(:city, :prefecture).where(pgt: 1).order(:prefecture_id, :city_id).each do |clinic|
+        if @list_pgt[clinic.prefecture.id].nil?
+          @list_pgt[clinic.prefecture.id] = {
+            id: clinic.prefecture.id,
+            name: clinic.prefecture.name,
+            name_alphabet: clinic.prefecture.name_alphabet,
+            cities: {}
+          }
+        end
+        if @list_pgt[clinic.prefecture.id][:cities][clinic.city.id].nil?
+          @list_pgt[clinic.prefecture.id][:cities][clinic.city.id] = {
+            name: clinic.city.name,
+            name_alphabet: clinic.city.name_alphabet,
+            clinics: [],
+          }
+        end
+        @list_pgt[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
+          id: clinic.id,
+          name: clinic.name,
+          yomigana: clinic.yomigana,
+          count: report_count[clinic.id]
         }
       end
-      if @list_ivf[clinic.prefecture.id][:cities][clinic.city.id].nil?
-        @list_ivf[clinic.prefecture.id][:cities][clinic.city.id] = {
-          name: clinic.city.name,
-          name_alphabet: clinic.city.name_alphabet,
-          clinics: [],
+    else
+      @repoco_count = true
+      @all_reports_count = Report.released
+      @all_clinics_count = @all_reports_count.group(:clinic_id).size
+      @prefecture_clinics_count = Clinic.includes(:reports).where(reports: {status: 0})
+      @prefecture_reports_count = @all_reports_count.joins(:clinic).group("clinics.prefecture_id").size.sort.to_h
+      @city_reports_count = @all_reports_count.joins(:clinic).group("clinics.city_id").size.sort.to_h
+      clinics = @all_reports_count.joins(:clinic).pluck("clinic_id").uniq.sort.map{|i| Clinic.find_by(id: i)}
+      @cl_repoco = {}
+      clinics.each do |clinic|
+        if @cl_repoco[clinic.prefecture.id].nil?
+          @cl_repoco[clinic.prefecture.id] = {
+            id: clinic.prefecture.id,
+            name: clinic.prefecture.name,
+            name_alphabet: clinic.prefecture.name_alphabet,
+            cities: {}
+          }
+        end
+        if @cl_repoco[clinic.prefecture.id][:cities][clinic.city.id].nil?
+          @cl_repoco[clinic.prefecture.id][:cities][clinic.city.id] = {
+            name: clinic.city.name,
+            name_alphabet: clinic.city.name_alphabet,
+            clinics: [],
+          }
+        end
+        @cl_repoco[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
+          id: clinic.id,
+          name: clinic.name,
+          yomigana: clinic.yomigana,
+          count: report_count[clinic.id]
         }
       end
-      @list_ivf[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
-        id: clinic.id,
-        name: clinic.name,
-        yomigana: clinic.yomigana,
-        count: report_count[clinic.id]
-      }
-    end
-    @list_pgt = {}
-    Clinic.joins(city: :prefecture).includes(:city, :prefecture).where(pgt: 1).order(:prefecture_id, :city_id).each do |clinic|
-      if @list_pgt[clinic.prefecture.id].nil?
-        @list_pgt[clinic.prefecture.id] = {
-          id: clinic.prefecture.id,
-          name: clinic.prefecture.name,
-          name_alphabet: clinic.prefecture.name_alphabet,
-          cities: {}
-        }
-      end
-      if @list_pgt[clinic.prefecture.id][:cities][clinic.city.id].nil?
-        @list_pgt[clinic.prefecture.id][:cities][clinic.city.id] = {
-          name: clinic.city.name,
-          name_alphabet: clinic.city.name_alphabet,
-          clinics: [],
-        }
-      end
-      @list_pgt[clinic.prefecture.id][:cities][clinic.city.id][:clinics] << {
-        id: clinic.id,
-        name: clinic.name,
-        yomigana: clinic.yomigana,
-        count: report_count[clinic.id]
-      }
     end
   end
 
