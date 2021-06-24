@@ -262,7 +262,7 @@
                               </div>
                             <% end %>
                           <% end %>
-                          <span class="small text-muted"><%= strip_tags(transfer_report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %></span>
+                          <p class="mb-0 pt-1 small text-muted"><%= strip_tags(transfer_report.user.name.to_s).gsub(/[\n]/,"").strip.truncate(12) %></p>
                         </div>
                       <% end %>
                     </div>
@@ -425,18 +425,6 @@
               </div>
               <hr class="mb-5">
             <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
 
           </div>
         </div>
