@@ -1,0 +1,40 @@
+<% set_meta_tags title: "「" + @selected_cycletype_sairan_ishoku_name + "」の方の口コミ・評判・レビュー・不妊治療の内容一覧" %>
+<% set_meta_tags description: "「" + @selected_cycletype_sairan_ishoku_name + "」の方の口コミ・評判・レビュー・不妊治療の詳細情報を全国の不妊治療クリニックごとにチェックできます。" %>
+<div class="container px-2 m-bottom">
+  <h5 class="d-sm d-md-none mt-5 text-center px-2">「<span class="marker-underline"><strong><%= @selected_cycletype_sairan_ishoku_name %><%= @selected_cycletype_sairan_ishoku %></strong></span>」の方の<br>レポコ一覧</h5>
+  <small class="text-muted d-flex d-md-none col-md-8 offset-md-2 mt-4 mb-4">
+    <%= link_to "カテゴリ一覧", search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
+    <%= link_to "採卵･移植回数", "/count" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
+    <strong><b><%= @selected_cycletype_sairan_ishoku_name %><%= @selected_cycletype_sairan_ishoku %></b></strong>
+  </small>
+  <h4 class="d-none d-md-block col-md-8 offset-md-2 mt-5">「<span class="marker-underline"><strong><%= @selected_cycletype_sairan_ishoku_name %><%= @selected_cycletype_sairan_ishoku %></strong></span>」の方のレポコ一覧</h4>
+  <small class="text-muted d-none d-md-block col-md-8 offset-md-2 mt-4 mb-5">
+    <%= link_to "カテゴリ一覧", search_path %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
+    <%= link_to "採卵･移植回数", "/count" %>&nbsp;&nbsp;&nbsp;<i data-feather="chevrons-right" class="feather-icon-style1 pb-1"></i>&nbsp;&nbsp;&nbsp;
+    <strong><b><%= @selected_cycletype_sairan_ishoku_name %><%= @selected_cycletype_sairan_ishoku %></b></strong>
+  </small>
+  <div class="container main-index">
+    <div class="row px-0">
+      <div class="col-lg-7 offset-lg-1 col-md-9 offset-md-0 col-sm-12 col-xs-12 main-column text-color px-1">
+        <div class="mt-0 mb-3 p-0">
+          <% unless @reports.size == 0 %>
+            <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
+              <span class="small"><span class="small"><%= @selected_cycletype_sairan_ishoku_name %><%= @selected_cycletype_sairan_ishoku %>の方のレポコは&nbsp;<%= @reports.size %>件&nbsp;あります。</span></span>
+            </div>
+          <% else %>
+            <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
+              <span class="small"><span class="small"><%= @selected_cycletype_sairan_ishoku_name %><%= @selected_cycletype_sairan_ishoku %>の方のレポコはまだありません。</span></span>
+            </div>
+          <% end %>
+        </div>
+        <%= render 'reports/center' %>
+        <div class="mt-5 pt-5">
+          <%= paginate @reports %>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 d-none d-md-block pl-2 pr-0">
+        <%= render 'reports/right' %>
+      </div>
+    </div>
+  </div>
+</div>

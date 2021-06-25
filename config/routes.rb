@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get 'count' => 'searches#count'
   get 'count/:type/:value' => 'searches#sairan_ishoku_count'
+  get 'cycletype' => 'searches#cycletype'
+  get 'cycletype/:type/:value' => 'searches#cycletype_sairan_ishoku'
   get 'grade' => 'searches#grade'
   get 'grade/:type/:value' => 'searches#embryo_grade'
   get 'works' => 'searches#works'

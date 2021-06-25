@@ -65,7 +65,7 @@ class SearchesController < ApplicationController
     # @prefecture = Prefecture.where(id: 1..47)
     # @all_clinics = Clinic.all.order(prefecture_id: :asc, city_id: :asc)
     @list = {}
-    Clinic.joins(city: :prefecture).includes(:city, :prefecture).each do |clinic| 
+    Clinic.joins(city: :prefecture).includes(:city, :prefecture).each do |clinic|
       if @list[clinic.prefecture.id].nil?
         @list[clinic.prefecture.id] = {
           id: clinic.prefecture.id,
@@ -108,7 +108,7 @@ class SearchesController < ApplicationController
   #   @clinic_all_reports = Report.where(clinic_id: clinics.ids, status: 0).count
   #   @rereased_reports = Clinic.joins(:reports).where(city_id: @prefecture.id, reports: {status: 0})
   # end
-  
+
   # def clinic_city_area
   #   @city = City.find_by(id: params[:value])
   #   clinics = Clinic.where(city_id: @city.id)
@@ -131,35 +131,35 @@ class SearchesController < ApplicationController
     age.keys.each do |range|
       case range
       when 19
-        range_v_1 = "~19000" 
+        range_v_1 = "~19000"
         range_n_1 = "20歳未満"
         @range_age[range_v_1] = range_n_1
       when 20..24
-        range_v_2 = "20~24" 
+        range_v_2 = "20~24"
         range_n_2 = "20〜24歳"
         @range_age[range_v_2] = range_n_2
       when 25..29
-        range_v_3 = "25~29" 
+        range_v_3 = "25~29"
         range_n_3 = "25〜29歳"
         @range_age[range_v_3] = range_n_3
       when 30..34
-        range_v_4 = "30~34" 
+        range_v_4 = "30~34"
         range_n_4 = "30〜34歳"
         @range_age[range_v_4] = range_n_4
       when 35..39
-        range_v_5 = "35~39" 
+        range_v_5 = "35~39"
         range_n_5 = "35〜39歳"
         @range_age[range_v_5] = range_n_5
       when 40..44
-        range_v_6 = "40~44" 
+        range_v_6 = "40~44"
         range_n_6 = "40〜44歳"
         @range_age[range_v_6] = range_n_6
       when 45..44
-        range_v_7 = "45~49" 
+        range_v_7 = "45~49"
         range_n_7 = "45〜45歳"
         @range_age[range_v_7] = range_n_7
       when 50
-        range_v_8 = "50000~" 
+        range_v_8 = "50000~"
         range_n_8 = "50歳以上"
         @range_age[range_v_8] = range_n_8
       end
@@ -245,6 +245,43 @@ class SearchesController < ApplicationController
       @selected_sairan_ishoku = ishoku[ishoku_value]
       @selected_sairan_ishoku_name = "移植"
       reports = Report.where(total_number_of_transplants: ishoku_value, status: 0).order(created_at: :desc)
+      @reports = reports.page(params[:page]).per(20)
+    end
+    @like_count = Like.group(:report_id).size
+  end
+
+  def cycletype
+    sairan_type = Report::HASH_TYPE_OF_OVARIAN_STIMULATION_SEARCH
+    reports = Report.group(:type_of_ovarian_stimulation).where.not(type_of_ovarian_stimulation: nil, status: 1).distinct.size
+    all_sairan_type = sairan_type.keys - reports.keys
+    all_sairan_type.each do |aa|
+      sairan_type.delete(aa)
+    end
+    @sairan_type = sairan_type
+
+    ishoku_type = Report::HASH_ISHOKU_TYPE_SEARCH
+    reports = Report.group(:ishoku_type).where.not(ishoku_type: nil, status: 1).distinct.size
+    all_ishoku_type = ishoku_type.keys - reports.keys
+    all_ishoku_type.each do |aa|
+      ishoku_type.delete(aa)
+    end
+    @ishoku_type = ishoku_type
+  end
+
+  def cycletype_sairan_ishoku
+    if params[:type] == "sairan"
+      sairan_cycletype = Report::HASH_TYPE_OF_OVARIAN_STIMULATION_SEARCH
+      sairan_cycletype_value = params[:value].to_i
+      @selected_cycletype_sairan_ishoku = sairan_cycletype[sairan_cycletype_value]
+      @selected_cycletype_sairan_ishoku_name = "採卵"
+      reports = Report.where(type_of_ovarian_stimulation: sairan_cycletype_value, status: 0).order(created_at: :desc)
+      @reports = reports.page(params[:page]).per(20)
+    elsif params[:type] == "ishoku"
+      ishoku_cycletype = Report::HASH_ISHOKU_TYPE_SEARCH
+      ishoku_cycletype_value = params[:value].to_i
+      @selected_cycletype_sairan_ishoku = ishoku_cycletype[ishoku_cycletype_value]
+      @selected_cycletype_sairan_ishoku_name = "移植"
+      reports = Report.where(ishoku_type: ishoku_cycletype_value, status: 0).order(created_at: :desc)
       @reports = reports.page(params[:page]).per(20)
     end
     @like_count = Like.group(:report_id).size
@@ -388,51 +425,51 @@ class SearchesController < ApplicationController
     total_costs.keys.each do |range|
       case range
       when 1..2
-        range_v_1 = "1~2" 
+        range_v_1 = "1~2"
         range_n_1 = "50万円未満"
         @range_cost[range_v_1] = range_n_1
       when 3
-        range_v_2 = "3" 
+        range_v_2 = "3"
         range_n_2 = "50万円以上〜100万円未満"
         @range_cost[range_v_2] = range_n_2
       when 4..5
-        range_v_3 = "4~50" 
+        range_v_3 = "4~50"
         range_n_3 = "100万円以上〜200万円未満"
         @range_cost[range_v_3] = range_n_3
       when 6..7
-        range_v_4 = "6~70" 
+        range_v_4 = "6~70"
         range_n_4 = "200万円以上〜300万円未満"
         @range_cost[range_v_4] = range_n_4
       when 8..9
-        range_v_5 = "8~90" 
+        range_v_5 = "8~90"
         range_n_5 = "300万円以上〜400万円未満"
         @range_cost[range_v_5] = range_n_5
       when 10..11
-        range_v_6 = "10~11" 
+        range_v_6 = "10~11"
         range_n_6 = "400万円以上〜500万円未満"
         @range_cost[range_v_6] = range_n_6
       when 12
-        range_v_7 = "12000" 
+        range_v_7 = "12000"
         range_n_7 = "500万円以上〜600万円未満"
         @range_cost[range_v_7] = range_n_7
       when 13
-        range_v_8 = "13000" 
+        range_v_8 = "13000"
         range_n_8 = "600万円以上〜700万円未満"
         @range_cost[range_v_8] = range_n_8
       when 14
-        range_v_9 = "14000" 
+        range_v_9 = "14000"
         range_n_9 = "700万円以上〜800万円未満"
         @range_cost[range_v_9] = range_n_9
       when 15
-        range_v_10 = "15000" 
+        range_v_10 = "15000"
         range_n_10 = "800万円以上〜900万円未満"
         @range_cost[range_v_10] = range_n_10
       when 16
-        range_v_11 = "16000" 
+        range_v_11 = "16000"
         range_n_11 = "900万円以上〜1,000万円未満"
         @range_cost[range_v_11] = range_n_11
       when 17
-        range_v_12 = "17000" 
+        range_v_12 = "17000"
         range_n_12 = "1,000万円以上"
         @range_cost[range_v_12] = range_n_12
       end
@@ -521,7 +558,7 @@ class SearchesController < ApplicationController
         a = i[0]
         b = i[1]
         reports = Report.where(cost: a..b, status: 0).order(created_at: :desc)
-      else cost_value.length == 5 
+      else cost_value.length == 5
         i = cost_value.split(/\A(.{1,2})/,2)
         a = i[1]
         reports = Report.where(cost: a, status: 0).order(created_at: :desc)
@@ -542,7 +579,7 @@ class SearchesController < ApplicationController
     # 新規投稿はvalueがname、編集はvalueがidなので以下で判定
     if (/^[+-]?[0-9]+$/ =~ params[:city_name].to_s)
       city = City.find_by(id: params[:city_name])
-    else 
+    else
       city = City.find_by(name: params[:city_name])
     end
     @clinics = Clinic.where(city_id: city.id).clinic_name_yomigana

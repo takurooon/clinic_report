@@ -325,7 +325,7 @@ class Report < ApplicationRecord
 
   # アクションテキスト
   has_rich_text :content
-  
+
   # ---親---
   belongs_to :user
   belongs_to :clinic
@@ -648,6 +648,19 @@ class Report < ApplicationRecord
 
   def str_type_of_ovarian_stimulation
     return HASH_TYPE_OF_OVARIAN_STIMULATION[self.type_of_ovarian_stimulation]
+  end
+
+  HASH_TYPE_OF_OVARIAN_STIMULATION_SEARCH = {
+    1 => "刺激なし",
+    2 => "低刺激(内服のみ)",
+    3 => "中刺激(内服+注射3回程度)",
+    4 => "高刺激(内服+注射4回以上)",
+    99 => "その他",
+    100 => "不明"
+  }
+
+  def str_type_of_ovarian_stimulation_search
+    return HASH_TYPE_OF_OVARIAN_STIMULATION_SEARCH[self.type_of_ovarian_stimulation_search]
   end
 
   # types_of_fertilization_methodsの区分値(受精方法)
@@ -1649,6 +1662,17 @@ class Report < ApplicationRecord
 
   def str_ishoku_type
     return HASH_ISHOKU_TYPE[self.ishoku_type]
+  end
+
+  HASH_ISHOKU_TYPE_SEARCH = {
+    1 => "自然周期",
+    2 => "ホルモン補充周期",
+    99 => "その他",
+    100 => "不明",
+  }
+
+  def str_ishoku_type_search
+    return HASH_ISHOKU_TYPE_SEARCH[self.ishoku_type_search]
   end
 
   # total_number_of_transplantsの区分値(全移植回数/CL単位)
