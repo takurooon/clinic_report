@@ -7,7 +7,14 @@
       <%= link_to image_tag("home/logo.png", alt: "repoco_logo", width: "170px", class: "img-fluid", loading: "lazy"), root_path, class: "navbar-brand", data: {confirm: "#{form_edit_link_alert_message}"} %>
     <% end %>
     <button class="btn btn-link d-md-none" type="button" data-toggle="modal" data-target="#menuModal" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <% if unchecked_notifications.any? %>
+        <span class="fa-stack">
+          <span class="navbar-toggler-icon"></span>
+          <i class="fas fa-circle n-circle-mobile n-circle-pc fa-stack-1x pb-1"></i>
+        </span>
+      <% else %>
+        <span class="navbar-toggler-icon"></span>
+      <% end %>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -241,14 +248,38 @@
               <li><%= link_to "レポコ一覧", root_path %></li>
               <li><%= link_to "レポコ作成", new_report_path %></li>
               <li><%= link_to "マイページ", my_page_path %></li>
-              <li><%= link_to "通知", notifications_path %></li>
+              <li>
+                <% if unchecked_notifications.any? %>
+                  <%= link_to "通知", notifications_path %>
+                  <span class="fa-stack">
+                    <i data-feather="bell" class="text-muted pb-1"></i>
+                    <i class="fas fa-circle n-circle-mobile n-circle-pc fa-stack-1x pb-1"></i>
+                  </span>
+                <% else %>
+                  <%= link_to "通知", notifications_path %>
+                  <i data-feather="bell" class="text-muted pb-1"></i>
+                <% end %>
+              </li>
+              <li><%= link_to "専門用語", terminology_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか？"} %></li>
             <% else %>
               <li><%= link_to "カテゴリから検索", search_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
               <li><%= link_to "レポコ一覧", root_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
               <li><%= link_to "レポコ作成", new_report_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
               <li><%= link_to "マイページ", my_page_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
-              <li><%= link_to "通知", notifications_path, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
+              <li>
+                <% if unchecked_notifications.any? %>
+                  <%= link_to "通知", notifications_path, data: {confirm: "#{form_edit_link_alert_message}"} %>
+                  <span class="fa-stack">
+                    <i data-feather="bell" class="text-muted pb-1"></i>
+                    <i class="fas fa-circle n-circle-mobile n-circle-pc fa-stack-1x pb-1"></i>
+                  </span>
+                <% else %>
+                  <%= link_to "通知", notifications_path, data: {confirm: "#{form_edit_link_alert_message}"} %>
+                  <i data-feather="bell" class="text-muted pb-1"></i>
+                <% end %>
+              </li>
+              <li><%= link_to "専門用語", terminology_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "#{form_edit_link_alert_message}"} %></li>
             <% end %>
           <% else %>

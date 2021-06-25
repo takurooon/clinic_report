@@ -1,16 +1,18 @@
 <div class="sticky-area px-0">
-  <div class="sidebar_promote_item bg-white shadow">
-    <div class="sidebar_promote_card">
-      <div class="sidebar_promote_card_header row">
-        <div class="col-2 sidebar_promote_card_header_left pl-3 pr-0">
-          <%= image_tag "home/writing_hand.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
-        </div>
-        <div class="col-10 sidebar_promote_card_header_right mt-1">
-          <p class="mb-0 font-weight-bold"><%= link_to "レポコの作り方", make_path %></p>
+  <%= link_to make_path do %>
+    <div class="sidebar_promote_item bg-white shadow">
+      <div class="sidebar_promote_card">
+        <div class="sidebar_promote_card_header row">
+          <div class="col-2 sidebar_promote_card_header_left pl-3 pr-0">
+            <%= image_tag "home/writing_hand.svg", width: "50px", class: "img-fluid", loading: "lazy" %>
+          </div>
+          <div class="col-10 sidebar_promote_card_header_right mt-1">
+            <p class="mb-0 text-primary font-weight-bold">レポコの作り方</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
   <% if user_signed_in? %>
     <% if current_user.registration_status1 || current_user.registration_status2 == true %>
       <div class="sidebar_promote_item mt-3 bg-white shadow">
@@ -63,18 +65,20 @@
       </div>
     </div>
   <% end %>
-  <div class="sidebar_promote_item mt-4 bg-white shadow">
-    <div class="sidebar_promote_card">
-      <div class="sidebar_promote_card_header row">
-        <div class="col-2 sidebar_promote_card_header_left">
-          <i data-feather="book" class="pl-1" style="color: #646262"></i>
-        </div>
-        <div class="col-10 sidebar_promote_card_header_right mt-1">
-          <p class="mb-0 font-weight-bold"><%= link_to "用語", terminology_path %></p>
+  <%= link_to terminology_path do %>
+    <div class="sidebar_promote_item mt-4 bg-white shadow">
+      <div class="sidebar_promote_card">
+        <div class="sidebar_promote_card_header row">
+          <div class="col-2 sidebar_promote_card_header_left">
+            <i data-feather="book" class="pl-1" style="color: #646262"></i>
+          </div>
+          <div class="col-10 sidebar_promote_card_header_right mt-1">
+            <p class="mb-0 text-primary font-weight-bold">用語</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="sidebar_rank_report mt-5">
     <% if @rank.present? %>
@@ -134,7 +138,7 @@
                 <% if report.user.icon.attached? %>
                   <%= image_tag(report.user.icon, alt: "icon", class: "icon_image2", loading: "lazy") %>
                 <% else %>
-                  <% user_number = report.user_id.digits %>  
+                  <% user_number = report.user_id.digits %>
                   <% if user_number.size < 2 %>
                     <% icon_number = report.user_id %>
                   <% else %>
