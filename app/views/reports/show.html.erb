@@ -2055,7 +2055,8 @@
                           <td class="result-left-column small text-center">誘発タイプ</td>
                           <td class="pl-3">
                             <% if @report.type_of_ovarian_stimulation.present? %>
-                              <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
+                              <span class="result-text"><%= link_to @report.str_type_of_ovarian_stimulation, "/cycletype/sairan/#{@report.type_of_ovarian_stimulation}", class: "text-primary" %></span>
+
                             <% else %>
                               <span class="text-muted small">未回答</span>
                             <% end %>
@@ -3131,7 +3132,7 @@
                           <td class="result-left-column small text-center">移植タイプ</td>
                           <td class="pl-3">
                             <% if @report.ishoku_type.present? %>
-                              <span class="result-text"><%= @report.str_ishoku_type %></span>
+                              <span class="result-text"><%= link_to @report.str_ishoku_type, "/cycletype/ishoku/#{@report.ishoku_type}", class: "text-primary" %></span>
                             <% else %>
                               <span class="text-muted small">未回答</span>
                             <% end %>

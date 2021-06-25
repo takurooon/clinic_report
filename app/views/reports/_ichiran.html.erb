@@ -1306,7 +1306,7 @@
         <td class="result-left-column small text-center">誘発タイプ</td>
         <td class="pl-3">
           <% if @report.type_of_ovarian_stimulation.present? %>
-            <span class="result-text"><%= @report.str_type_of_ovarian_stimulation %></span>
+            <span class="result-text"><%= link_to @report.str_type_of_ovarian_stimulation, "/cycletype/sairan/#{@report.type_of_ovarian_stimulation}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -1949,7 +1949,7 @@
         <td class="result-left-column small text-center">移植タイプ</td>
         <td class="pl-3">
           <% if @report.ishoku_type.present? %>
-            <span class="result-text"><%= @report.str_ishoku_type %></span>
+            <span class="result-text"><%= link_to @report.str_ishoku_type, "/cycletype/ishoku/#{@report.ishoku_type}", class: "text-primary" %></span>
           <% else %>
             <span class="text-muted small">未回答</span>
           <% end %>
@@ -2999,7 +2999,7 @@
                         <% if @report.user.icon.attached? %>
                           <%= image_tag(@report.user.icon, alt: "icon", class: "icon_image3", loading: "lazy") %>
                         <% else %>
-                          <% user_number = @report.user_id.digits %>  
+                          <% user_number = @report.user_id.digits %>
                           <% if user_number.size < 2 %>
                             <% icon_number = @report.user_id %>
                           <% else %>
@@ -3307,7 +3307,7 @@
                   <% end %>
                   <% if @report.number_of_eggs_collected.present? %>
                     (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
-                  <% else %>  
+                  <% else %>
                     (&nbsp;採卵数&nbsp;未回答
                   <% end %>
                   <% if @report.choran.present?%>
@@ -3335,7 +3335,7 @@
                     <% end %>
                     <% if @report.number_of_eggs_collected.present? %>
                       (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
-                    <% else %>  
+                    <% else %>
                       (&nbsp;採卵数&nbsp;未回答
                     <% end %>
                     <% if @report.choran.present?%>
@@ -3358,7 +3358,7 @@
                   <% end %>
                   <% if @report.number_of_eggs_collected.present? %>
                     (&nbsp;採卵数&nbsp;<%= @report.str_number_of_eggs_collected %>
-                  <% else %>  
+                  <% else %>
                     (&nbsp;採卵数&nbsp;未回答
                   <% end %>
                   <% if @report.choran.present?%>

@@ -60,7 +60,7 @@
           <div class="tab-wrap4 pb-3">
             <input id="TAB-01" type="radio" name="TAB" class="tab-switch4" checked="checked" /><label class="tab-label4 tab-label4-l small mb-0 px-0" for="TAB-01">クリニック名</label>
             <div class="tab-content1 pt-2">
-              <%= form_tag(search_cl_path,:method => 'get', class: "mb-0") do %>
+              <%= form_tag(search_cl_path, method: 'get', class: "mb-0") do %>
                 <div class="px-0">
                   <%= text_field_tag :keyword, "", { class: "search-window", placeholder: "クリニック名から探す" } %>
                 </div>
