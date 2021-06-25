@@ -273,14 +273,14 @@ class SearchesController < ApplicationController
       sairan_cycletype = Report::HASH_TYPE_OF_OVARIAN_STIMULATION_SEARCH
       sairan_cycletype_value = params[:value].to_i
       @selected_cycletype_sairan_ishoku = sairan_cycletype[sairan_cycletype_value]
-      @selected_cycletype_sairan_ishoku_name = "採卵"
+      @selected_cycletype_sairan_ishoku_name = "採卵タイプ"
       reports = Report.where(type_of_ovarian_stimulation: sairan_cycletype_value, status: 0).order(created_at: :desc)
       @reports = reports.page(params[:page]).per(20)
     elsif params[:type] == "ishoku"
       ishoku_cycletype = Report::HASH_ISHOKU_TYPE_SEARCH
       ishoku_cycletype_value = params[:value].to_i
       @selected_cycletype_sairan_ishoku = ishoku_cycletype[ishoku_cycletype_value]
-      @selected_cycletype_sairan_ishoku_name = "移植"
+      @selected_cycletype_sairan_ishoku_name = "移植タイプ"
       reports = Report.where(ishoku_type: ishoku_cycletype_value, status: 0).order(created_at: :desc)
       @reports = reports.page(params[:page]).per(20)
     end
