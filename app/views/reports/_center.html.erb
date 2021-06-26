@@ -8,6 +8,14 @@
 <% @reports.each_with_index do |report, num| %>
   <div class="row main-column">
     <div class="col-12">
+
+      <%if false%>クリニック名検索で転院歴に該当するものを判定(clinicscontroller/searc_cl)<% end %>
+      <% if @transfer_reports.present? %>
+        <% if @transfer_reports.include?(report.id) %>
+          <h6 class="text-right pr-2"><span class="badge badge-info">転院歴に含まれるレポコ</span></h6>
+        <% end %>
+      <% end %>
+
       <div class="row px-2">
         <div class="col-3 d-flex align-items-center justify-content-center px-0">
           <%= link_to user_path(report.user_id), data: { "turbolinks" => false } do %>

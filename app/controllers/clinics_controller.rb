@@ -264,10 +264,15 @@ class ClinicsController < ApplicationController
 
   def search_cl
     @keyword = params[:keyword]
-    @clinics = Clinic.search_cl(params[:keyword]).pluck(:id)
-    reports = Report.where(clinic_id: @clinics, status: 0)
-    @reports = reports.page(params[:page]).per(20)
-    @clinic_reports_count = Report.where(clinic_id: @clinics, status: 0).size
+    clinics = Clinic.search_cl(params[:keyword]).pluck(:id)
+    @transfer_reports = Report.joins(:itinerary_of_choosing_a_clinics).where(status: 0, itinerary_of_choosing_a_clinics: {clinic_id: clinics, public_status: "show"}).distinct.pluck(:id)
+    cl_reports = Report.where(clinic_id: clinics, status: 0).pluck(:id)
+    reports_ids = cl_reports.push(@transfer_reports).flatten
+    all_reports = Report.where(id: reports_ids)
+    @all_reports_count = all_reports.size
+    @reports_count = Report.where(id: cl_reports).size
+    @transfer_reports_count = Report.where(id: @transfer_reports).size
+    @reports = all_reports.page(params[:page]).per(20)
     @like_count = Like.group(:report_id).size
   end
 end
