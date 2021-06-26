@@ -2499,27 +2499,28 @@
             <span class="text-muted small">未回答</span><br>
           <% end %>
           <span class="small text-muted">(</span>
-          <% if @report.number_of_clinics.present? &&  @report.number_of_clinics > 1 %>
-            <% @clinics.each do |c| %>
-              <% clinic = Clinic.find_by(id: c.clinic_id) %>
-              <span class="result-text small">
-                <% if c.clinic_id.present? && c.public_status == "show" %>
-                  <span class="font-weight-bold"><%= link_to Clinic.find_by(id: c.clinic_id).name, "/clinic/#{c.clinic.id}", class: "text-primary" %>
-                    <% if clinic.senmon == 1 || clinic.senmon == 2 %>
-                      <sup class="small text-dark font-weight-bold">＊</sup>
-                    <% end %>
-                  </span>
-                <% elsif c.clinic_id.present? && c.public_status == "hide" %>
-                  <span class="text-muted font-weight-bold">非公開
-                    <% if clinic.senmon == 1 || clinic.senmon == 2 %>
-                      <sup class="small text-dark font-weight-bold">＊</sup>
-                    <% end %>
-                  </span>
-                <% else %>
-                  <span class="text-muted small">選択肢なし or 未選択</span>
-                <% end %>
-              </span>&nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
-            <% end %>
+          <% @clinics.each do |c| %>
+            <% clinic = Clinic.find_by(id: c.clinic_id) %>
+            <span class="result-text small">
+              <% if c.clinic_id.present? && c.public_status == "show" %>
+                <span class="font-weight-bold"><%= link_to Clinic.find_by(id: c.clinic_id).name, "/clinic/#{c.clinic.id}", class: "text-primary" %>
+                  <% if clinic.senmon == 1 || clinic.senmon == 2 %>
+                    <sup class="small text-dark font-weight-bold">＊</sup>
+                  <% end %>
+                </span>
+                &nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
+              <% elsif c.clinic_id.present? && c.public_status == "hide" %>
+                <span class="text-muted font-weight-bold">非公開
+                  <% if clinic.senmon == 1 || clinic.senmon == 2 %>
+                    <sup class="small text-dark font-weight-bold">＊</sup>
+                  <% end %>
+                </span>
+                &nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
+              <% else %>
+                <span class="text-muted small">選択肢なし or 未選択</span>
+                &nbsp;&nbsp;<span class="small text-muted mb-0">→&nbsp;</span>
+              <% end %>
+            </span>
           <% end %>
           <span class="result-text small"><span class="small"><%= link_to @report.clinic.name, "/clinic/#{@report.clinic.id}", class: "text-primary" %></span></span><span class="small text-muted">
             <% if @report.clinic.senmon == 1 || @report.clinic.senmon == 2 %>
