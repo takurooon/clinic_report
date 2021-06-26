@@ -12,7 +12,7 @@
       <%if false%>クリニック名検索で転院歴に該当するものを判定(clinicscontroller/searc_cl)<% end %>
       <% if @transfer_reports.present? %>
         <% if @transfer_reports.include?(report.id) %>
-          <h6 class="text-right pr-2"><span class="badge badge-info">転院歴に含まれるレポコ</span></h6>
+          <h6 class="pl-2"><span class="badge badge-info">転院歴に含まれるレポコ</span></h6>
         <% end %>
       <% end %>
 
