@@ -18,6 +18,7 @@ class SearchesController < ApplicationController
     amh_value = params[:value].to_i
     @selected_amh = amh[amh_value]
     reports = Report.where(amh: amh_value, status: 0).order(created_at: :desc)
+    @reports_count = reports.size
     @reports = reports.page(params[:page]).per(20)
     @like_count = Like.group(:report_id).size
   end
@@ -37,6 +38,7 @@ class SearchesController < ApplicationController
     status_value = params[:value].to_i
     @selected_word = status[status_value]
     reports = Report.where(current_state: status_value, status: 0).order(created_at: :desc)
+    @reports_count = reports.size
     @reports = reports.page(params[:page]).per(20)
     @like_count = Like.group(:report_id).size
   end
@@ -56,6 +58,7 @@ class SearchesController < ApplicationController
     fertility_treatment_number_value = params[:value].to_i
     @selected_number = fertility_treatment_number[fertility_treatment_number_value]
     reports = Report.where(fertility_treatment_number: fertility_treatment_number_value, status: 0).order(created_at: :desc)
+    @reports_count = reports.size
     @reports = reports.page(params[:page]).per(20)
     @like_count = Like.group(:report_id).size
   end
@@ -201,13 +204,16 @@ class SearchesController < ApplicationController
       a = i[0]
       b = i[1]
       reports = Report.where(treatment_end_age: a..b, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     elsif age_value.length == 5
       i = age_value.scan(/.{2}/)
       reports = Report.where(treatment_end_age: i[0], status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     else
       reports = Report.where(treatment_end_age: age_value, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     end
     @like_count = Like.group(:report_id).size
@@ -238,6 +244,7 @@ class SearchesController < ApplicationController
       @selected_sairan_ishoku = sairan[sairan_value]
       @selected_sairan_ishoku_name = "採卵"
       reports = Report.where(total_number_of_sairan: sairan_value, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     elsif params[:type] == "ishoku"
       ishoku = Report::HASH_TOTAL_NUMBER_OF_TRANSPLANTS_SEARCH
@@ -245,6 +252,7 @@ class SearchesController < ApplicationController
       @selected_sairan_ishoku = ishoku[ishoku_value]
       @selected_sairan_ishoku_name = "移植"
       reports = Report.where(total_number_of_transplants: ishoku_value, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     end
     @like_count = Like.group(:report_id).size
@@ -275,6 +283,7 @@ class SearchesController < ApplicationController
       @selected_cycletype_sairan_ishoku = sairan_cycletype[sairan_cycletype_value]
       @selected_cycletype_sairan_ishoku_name = "採卵: "
       reports = Report.where(type_of_ovarian_stimulation: sairan_cycletype_value, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     elsif params[:type] == "ishoku"
       ishoku_cycletype = Report::HASH_ISHOKU_TYPE_SEARCH
@@ -282,6 +291,7 @@ class SearchesController < ApplicationController
       @selected_cycletype_sairan_ishoku = ishoku_cycletype[ishoku_cycletype_value]
       @selected_cycletype_sairan_ishoku_name = "移植: "
       reports = Report.where(ishoku_type: ishoku_cycletype_value, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     end
     @like_count = Like.group(:report_id).size
@@ -331,6 +341,7 @@ class SearchesController < ApplicationController
       @selected_grade = haibanho[haibanho_value.to_i]
       @selected_grade_name = "胚盤胞"
       reports = Report.where(blastocyst_grade1: blastocyst_grade1_value.to_i, blastocyst_grade2: blastocyst_grade2_value.to_i, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     elsif params[:type] == "shokihai"
       shokihai = Report::HASH_EARLY_EMBRYO_GRADE_SEARCH
@@ -338,6 +349,7 @@ class SearchesController < ApplicationController
       @selected_grade = shokihai[shokihai_value]
       @selected_grade_name = "初期胚"
       reports = Report.where(early_embryo_grade: shokihai_value, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     end
     @like_count = Like.group(:report_id).size
@@ -365,10 +377,12 @@ class SearchesController < ApplicationController
       @tag = SpecialInspection.find_by(name: params[:value])
       pgta_report = SpecialInspection.joins({report: :clinic}).where(name: 18, place: [1, 4], clinics: {pgt: 0}).distinct.pluck(:report_id)
       reports = Report.joins(:special_inspections).where(special_inspections: { name: @tag.name }, reports: {status: 0}).where.not(id: pgta_report).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     elsif params[:type] === "fuiku"
       @tag = FuikuInspection.find_by(id: params[:value])
       reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     end
     @like_count = Like.group(:report_id).size
@@ -389,6 +403,7 @@ class SearchesController < ApplicationController
     work_value = params[:value].to_i
     @selected_work = "「" + work[work_value] + "」"
     reports = Report.where(work_style: work_value, status: 0).order(created_at: :desc)
+    @reports_count = reports.size
     @reports = reports.page(params[:page]).per(20)
     @like_count = Like.group(:report_id).size
   end
@@ -408,6 +423,7 @@ class SearchesController < ApplicationController
     work_switch_value = params[:value].to_i
     @selected_work_switch = "「" + work_switch[work_switch_value] + "」"
     reports = Report.where(switching_work_styles: work_switch_value, status: 0).order(created_at: :desc)
+    @reports_count = reports.size
     @reports = reports.page(params[:page]).per(20)
     @like_count = Like.group(:report_id).size
   end
@@ -498,18 +514,21 @@ class SearchesController < ApplicationController
       cost_value = params[:value].to_i
       @selected_cost = "治療費用「" + cost[cost_value] + "」"
       reports = Report.where(cost: cost_value, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     elsif params[:value].include?("_sairan")
       sairan_cost = Report::HASH_SAIRAN_COST_SEARCH
       sairan_cost_value = params[:value].to_i
       @selected_cost = "採卵1回あたりの費用「" + sairan_cost[sairan_cost_value] + "」"
       reports = Report.where(sairan_cost: sairan_cost_value, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     elsif params[:value].include?("_ishoku")
       ishoku_cost = Report::HASH_ISHOKU_COST_SEARCH
       ishoku_cost_value = params[:value].to_i
       @selected_cost = "移植1回あたりの費用「" + ishoku_cost[ishoku_cost_value] + "」"
       reports = Report.where(ishoku_cost: ishoku_cost_value, status: 0).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     else
       value = params[:value]
@@ -563,6 +582,7 @@ class SearchesController < ApplicationController
         a = i[1]
         reports = Report.where(cost: a, status: 0).order(created_at: :desc)
       end
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     end
     @like_count = Like.group(:report_id).size

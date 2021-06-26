@@ -19,7 +19,7 @@
         <div class="mt-0 mb-3 p-0">
           <% unless @reports.size == 0 %>
             <div class="alert alert-info rounded-lg mt-0 mb-2 px-3 py-1">
-              <span class="small"><span class="small"><%= @selected_work %>の方のレポコは&nbsp;<%= @reports.size %>件&nbsp;あります。</span></span>
+              <span class="small"><span class="small"><%= @selected_work %>の方のレポコは&nbsp;<%= @reports_count %>件&nbsp;あります。</span></span>
             </div>
           <% else %>
             <div class="alert alert-danger rounded-lg mt-0 mb-2 px-3 py-1">
