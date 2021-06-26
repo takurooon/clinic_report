@@ -62,7 +62,7 @@
             <div class="tab-content1 pt-2">
               <%= form_tag(search_cl_path, method: 'get', class: "mb-0") do %>
                 <div class="px-0">
-                  <%= text_field_tag :keyword, "", { class: "search-window", placeholder: "クリニック名から探す" } %>
+                  <%= text_field_tag :keyword, "", { class: "search-window", placeholder: "クリニック名から探す", autocomplete: "off" } %>
                 </div>
                 <div class="row d-flex justify-content-center px-4">
                   <div class="col-sm-8">
