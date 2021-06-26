@@ -372,6 +372,7 @@ class SearchesController < ApplicationController
     if params[:type] === "factor"
       @tag = FFuninFactor.find_by(id: params[:value])
       reports = @tag.reports.where(reports: {status: 0}).order(created_at: :desc)
+      @reports_count = reports.size
       @reports = reports.page(params[:page]).per(20)
     elsif params[:type] === "option"
       @tag = SpecialInspection.find_by(name: params[:value])
