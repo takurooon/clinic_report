@@ -2477,6 +2477,97 @@
           </td>
         </tr>
       <% end %>
+      <tr>
+        <td colspan="2" class="px-0">
+          <div class="lead-content2 mt-3 mx-3 pt-3 shadow">
+            <div class="p-2">
+              <% if @report.user.first_age_to_start.present? %>
+                <div class="d-flex">
+                  <i data-feather="map-pin" class="feather-icon-style4 m-0 pb-1 text-info"></i>
+                  <span class="text-info"><%= @report.user.str_first_age_to_start(@report.user.first_age_to_start) %></span>
+                  <p class="mb-0 ml-3 text-muted">妊活&nbsp;開始</p>
+                </div>
+              <% end %>
+              <% if @report.user.first_age_to_start_art.present? %>
+                <div class="row">
+                  <div class="col-2">
+                    <p class="mb-0 pl-1 text-muted">・</p>
+                    <p class="mb-0 pl-1 text-muted">・</p>
+                    <p class="mb-0 pl-1 text-muted">・</p>
+                    <p class="mb-0 pl-1 text-muted">・</p>
+                  </div>
+                  <div class="col-10 pl-0 d-flex align-items-center">
+                    <% if @report.user.number_of_aih.present? %>
+                      <p class="mb-0 pl-1 text-muted small">人工授精<%= @report.user.str_number_of_aih(@report.user.number_of_aih) %></p>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <i data-feather="map-pin" class="feather-icon-style4 m-0 pb-1 text-info"></i>
+                  <span class="text-info"><%= @report.user.str_first_age_to_start_art(@report.user.first_age_to_start_art) %></span>
+                  <p class="mb-0 ml-3 text-muted">高度不妊治療&nbsp;開始</p>
+                </div>
+              <% end %>
+              <div class="row">
+                <div class="col-2">
+                  <p class="mb-0 pl-1 text-muted">・</p>
+                  <p class="mb-0 pl-1 text-muted">・</p>
+                  <p class="mb-0 pl-1 text-muted">・</p>
+                  <p class="mb-0 pl-1 text-muted">・</p>
+                </div>
+                <div class="col-10 pl-0 d-flex align-items-center">
+                  <div>
+                    <% if @report.user.all_number_of_sairan.present? && @report.user.all_number_of_sairan.to_i > @report.total_number_of_sairan.to_i %>
+                      <p class="mb-0 pl-1 text-muted small">採卵&nbsp;<%= @report.user.all_number_of_sairan.to_i - @report.total_number_of_sairan.to_i %>回</p>
+                    <% end %>
+                    <% if @report.user.all_number_of_transplants.present? && @report.user.all_number_of_transplants.to_i > @report.total_number_of_transplants.to_i %>
+                      <p class="mb-0 pl-1 text-muted small">移植&nbsp;<%= @report.user.all_number_of_transplants.to_i - @report.total_number_of_transplants.to_i %>回</p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="py-3 px-2 bg-fem">
+              <div class="">
+                <i data-feather="map-pin" class="feather-icon-style4 m-0 pb-1 text-info"></i>
+                <% if @report.number_of_clinics.present? && @report.number_of_clinics != 100 %>
+                  <span class="text-info font-weight-bold"><%= @report.str_number_of_clinics %>&nbsp;</span>
+                <% end %>
+                <span class="text-dark font-weight-bold small"><%= @report.clinic.name %></span>
+                <span class="text-muted small"><small>&nbsp;で治療開始</small></span>
+              </div>
+              <div class="row">
+                <div class="col-2">
+                  <p class="mb-0 pl-1 text-muted font-weight-bold">・</p>
+                  <p class="mb-0 pl-1 text-muted font-weight-bold">・</p>
+                  <p class="mb-0 pl-1 text-muted font-weight-bold">・</p>
+                  <p class="mb-0 pl-1 text-muted font-weight-bold">・</p>
+                </div>
+                <div class="col-10 pl-0 d-flex align-items-center">
+                  <div>
+                    <% if @report.treatment_period.present? %>
+                      <p class="mb-0 text-dark"><%= @report.str_treatment_period %>&nbsp;通院</p>
+                    <% end %>
+                    <% if @report.total_number_of_sairan.present? %>
+                      <p class="mb-0 text-dark">採卵&nbsp;<%= @report.str_total_number_of_sairan %></p>
+                    <% end %>
+                    <% if @report.total_number_of_transplants.present? %>
+                      <p class="mb-0 text-dark">移植&nbsp;<%= @report.str_total_number_of_transplants %></p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <% if @report.treatment_end_age.present? %>
+                <div class="">
+                  <i data-feather="map-pin" class="feather-icon-style4 m-0 pb-1 text-info"></i>
+                  <span class="text-info font-weight-bold"><%= @report.str_treatment_end_age %></span>
+                  <span class="text-muted small"><small>&nbsp;<%= @report.clinic.name %>での治療を終了</small></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </td>
+      </tr>
     </table>
 
     <table class="table p-0 mt-5 mb-0">

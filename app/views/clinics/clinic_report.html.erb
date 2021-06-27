@@ -207,7 +207,7 @@
 
             <% @transfer_reports.each_with_index do |transfer_report, num| %>
               <div class="row main-column">
-                <div class="col-12">
+                <div class="col-12 pb-2">
                   <div class="row px-2">
                     <div class="col-3 d-flex align-items-center justify-content-center px-0">
                       <%= link_to user_path(transfer_report.user_id), data: { "turbolinks" => false } do %>
@@ -413,11 +413,134 @@
                     </div>
                   <% end %>
                 </div>
-                <div class="col-3 offset-9 mb-2 py-2 px-0 d-block d-sm-none">
+
+
+
+
+
+                <div class="col-10 pt-2 pl-3 pr-0 d-block d-sm-none">
+                  <details class="small text-muted">
+                    <summary class="pl-2">治療歴</summary>
+                    <div class="lead-content2 pt-3 shadow">
+                      <div class="p-2">
+                        <% if transfer_report.user.first_age_to_start.present? %>
+                          <div class="d-flex align-items-end">
+                            <div class="d-flex align-items-end">
+                              <i data-feather="map-pin" class="feather-icon-style4 m-0 py-1 text-info"></i>
+                              <span class="text-info"><%= transfer_report.user.str_first_age_to_start(transfer_report.user.first_age_to_start) %></span>
+                            </div>
+                            <p class="mb-0 text-dark">&nbsp;&nbsp;妊活<span class="small">&nbsp;開始</span></p>
+                          </div>
+                        <% end %>
+                        <% if transfer_report.user.first_age_to_start_art.present? %>
+                          <div class="row">
+                            <div class="col-2">
+                              <p class="mb-0 pl-1 text-muted">・</p>
+                              <p class="mb-0 pl-1 text-muted">・</p>
+                              <p class="mb-0 pl-1 text-muted">・</p>
+                              <p class="mb-0 pl-1 text-muted">・</p>
+                            </div>
+                            <div class="col-10 pl-0 d-flex align-items-center">
+                              <% if transfer_report.user.number_of_aih.present? %>
+                                <p class="mb-0 pl-1 text-muted small">人工授精<%= transfer_report.user.str_number_of_aih(transfer_report.user.number_of_aih) %></p>
+                              <% end %>
+                            </div>
+                          </div>
+                          <div class="d-flex align-items-end">
+                            <div class="d-flex align-items-end">
+                              <i data-feather="map-pin" class="feather-icon-style4 m-0 py-1 text-info"></i>
+                              <span class="text-info"><%= transfer_report.user.str_first_age_to_start_art(transfer_report.user.first_age_to_start_art) %></span>
+                              <p class="mb-0 text-dark">&nbsp;&nbsp;高度不妊治療<span class="small">&nbsp;開始</span></p>
+                            </div>
+                          </div>
+                        <% end %>
+                        <div class="row px-0 pt-2">
+                          <div class="col-1">
+                            <p class="mb-0 pl-1 text-muted">・</p>
+                            <p class="mb-0 pl-1 text-muted">・</p>
+                            <p class="mb-0 pl-1 text-muted">・</p>
+                            <p class="mb-0 pl-1 text-muted">・</p>
+                          </div>
+                          <div class="col-3 pr-0 d-flex align-items-center border-right">
+                            <div>
+                              <% if transfer_report.user.all_number_of_sairan.present? && transfer_report.user.all_number_of_sairan.to_i > transfer_report.total_number_of_sairan.to_i %>
+                                <p class="mb-0 pl-1 text-muted small">採卵&nbsp;<%= transfer_report.user.all_number_of_sairan.to_i - transfer_report.total_number_of_sairan.to_i %>回</p>
+                              <% end %>
+                              <% if transfer_report.user.all_number_of_transplants.present? && transfer_report.user.all_number_of_transplants.to_i > transfer_report.total_number_of_transplants.to_i %>
+                                <p class="mb-0 pl-1 text-muted small">移植&nbsp;<%= transfer_report.user.all_number_of_transplants.to_i - transfer_report.total_number_of_transplants.to_i %>回</p>
+                              <% end %>
+                            </div>
+                          </div>
+                          <div class="col-7 pl-2 pr-0 d-flex align-items-center justify-content-center">
+                            <div class="text-center small">
+                              <% clinics_histroy = transfer_report.itinerary_of_choosing_a_clinics.order(order_of_transfer: "desc") %>
+                              <% clinics_histroy.each do |c| %>
+                                <% clinic = Clinic.find_by(id: c.clinic_id) %>
+                                <p class="result-text small mb-0">
+                                  <% if c.clinic_id.present? && c.public_status == "show" %>
+                                    <%= link_to clinic.name, "/clinic/#{c.clinic.id}", class: "text-primary" %>
+                                  <% elsif c.clinic_id.present? && c.public_status == "hide" %>
+                                    <span class="text-muted font-weight-bold">非公開</span>
+                                  <% else %>
+                                    <span class="text-muted small">選択肢なし or 未選択</span>
+                                  <% end %>
+                                </p>
+                                <p class="mb-0 small text-muted text-center"><small>↓</small></p>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="py-3 px-2 bg-fem">
+                        <div class="">
+                          <i data-feather="map-pin" class="feather-icon-style4 m-0 pb-1 text-info"></i>
+                          <% if transfer_report.number_of_clinics.present? && transfer_report.number_of_clinics != 100 %>
+                            <span class="text-info font-weight-bold"><%= transfer_report.str_number_of_clinics %>&nbsp;</span>
+                          <% end %>
+                          <p class="text-dark font-weight-bold mb-0 pl-4 pr-1"><%= transfer_report.clinic.name %></p>
+                        </div>
+                        <div class="row">
+                          <div class="col-2">
+                            <p class="mb-0 pl-1 text-muted font-weight-bold">・</p>
+                            <p class="mb-0 pl-1 text-muted font-weight-bold">・</p>
+                            <p class="mb-0 pl-1 text-muted font-weight-bold">・</p>
+                            <p class="mb-0 pl-1 text-muted font-weight-bold">・</p>
+                          </div>
+                          <div class="col-10 pl-0 d-flex align-items-center">
+                            <div>
+                              <% if transfer_report.treatment_period.present? %>
+                                <p class="mb-0 text-dark"><%= transfer_report.str_treatment_period %>&nbsp;通院</p>
+                              <% end %>
+                              <% if transfer_report.total_number_of_sairan.present? %>
+                                <p class="mb-0 text-dark">採卵&nbsp;<%= transfer_report.str_total_number_of_sairan %></p>
+                              <% end %>
+                              <% if transfer_report.total_number_of_transplants.present? %>
+                                <p class="mb-0 text-dark">移植&nbsp;<%= transfer_report.str_total_number_of_transplants %></p>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                        <% if transfer_report.treatment_end_age.present? %>
+                          <div class="">
+                            <i data-feather="map-pin" class="feather-icon-style4 m-0 pb-1 text-info"></i>
+                            <span class="text-info font-weight-bold"><%= transfer_report.str_treatment_end_age %></span>
+                            <% if transfer_report.fertility_treatment_number.present?.present? %>
+                              <span class="text-dark ml-1"><%= transfer_report.str_fertility_treatment_number %>終了</span>
+                            <% end %>
+                            <% if transfer_report.current_state.present? %>
+                              <span class="small text-dark">（&nbsp;<%= transfer_report.str_current_state %>&nbsp;）</span>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+                <div class="col-2 pt-2 px-0 d-block d-sm-none">
                   <div class="row">
-                    <div class="col-10 offset-2">
+                    <div class="col-10">
                       <div class="likes_buttons_<%= transfer_report.id %>">
-                        <%= render partial: 'likes/like_index', locals: { report: transfer_report,like_count: @like_count[transfer_report.id] } %>
+                        <%= render partial: 'likes/like_index', locals: { report: transfer_report, like_count: @like_count[transfer_report.id] }, class: "pl-4" %>
                       </div>
                     </div>
                   </div>
