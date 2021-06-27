@@ -478,14 +478,19 @@
                                 <% clinic = Clinic.find_by(id: c.clinic_id) %>
                                 <p class="result-text small mb-0">
                                   <% if c.clinic_id.present? && c.public_status == "show" %>
-                                    <%= link_to clinic.name, "/clinic/#{c.clinic.id}", class: "text-primary" %>
+                                    <%= link_to clinic.name, "/clinic/#{c.clinic.id}", class: "text-primary" %><br>
+                                    <span class="mb-0 small text-muted text-center"><small>↓</small></span>
                                   <% elsif c.clinic_id.present? && c.public_status == "hide" %>
-                                    <span class="text-muted font-weight-bold">非公開</span>
+                                    <span class="text-muted font-weight-bold">非公開</span><br>
+                                    <span class="mb-0 small text-muted text-center"><small>↓</small></span>
                                   <% else %>
-                                    <span class="text-muted small">選択肢なし or 未選択</span>
+                                    <% if transfer_report.number_of_clinics.present? && transfer_report.number_of_clinics == 1 %>
+                                    <% else %>
+                                      <span class="text-muted small">選択肢なし or 未選択</span><br>
+                                      <span class="mb-0 small text-muted text-center"><small>↓</small></span>
+                                    <% end %>
                                   <% end %>
                                 </p>
-                                <p class="mb-0 small text-muted text-center"><small>↓</small></p>
                               <% end %>
                             </div>
                           </div>
