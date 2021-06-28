@@ -302,7 +302,7 @@
                     <% clinic = Clinic.find_by(id: c.clinic_id) %>
                     <p class="result-text mb-0">
                       <% if c.clinic_id.present? && c.public_status == "show" %>
-                        <%= link_to clinic.name, "/clinic/#{c.clinic.id}", class: "text-primary" %><br>
+                        <%= link_to clinic.name, "/clinics/#{c.clinic.id}", data: { "turbolinks" => false }, class: "text-primary" %><br>
                         <span class="mb-0 text-muted text-center"><small>↓</small></span>
                       <% elsif c.clinic_id.present? && c.public_status == "hide" %>
                         <span class="text-muted font-weight-bold">非公開</span><br>
